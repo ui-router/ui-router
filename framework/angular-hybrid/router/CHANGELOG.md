@@ -1,3 +1,45 @@
+# 20.0.0 (2025-09-27)
+[Compare `@uirouter/angular-hybrid` versions 18.0.0 and 20.0.0](https://github.com/ui-router/angular-hybrid/compare/18.0.0...20.0.0)
+
+### Features
+
+* Angular 19 support ([#600](https://github.com/ui-router/angular-hybrid/issues/600)) ([059d12d](https://github.com/ui-router/angular-hybrid/commit/059d12d))
+* Angular 20 support ([#604](https://github.com/ui-router/angular-hybrid/issues/604)) ([b8e61c6](https://github.com/ui-router/angular-hybrid/commit/b8e61c6))
+
+
+---
+
+
+### Updated `@uirouter/core` from 6.1.0 to 6.1.1
+
+
+Changelog for `@uirouter/core`:
+
+
+[Compare `@uirouter/core` versions 6.1.0 and 6.1.1](https://github.com/ui-router/core/compare/6.1.0...6.1.1)
+
+### Bug Fixes
+
+* **stateParams:** $inherit is not affected by enumerable prototype custom methods ([#841](https://github.com/ui-router/core/issues/841)) ([9c94c2a](https://github.com/ui-router/core/commit/9c94c2a))
+* **urlMatcher:** Fix potential ReDoS, thanks to www.HeroDevs.com ([0db52a1](https://github.com/ui-router/core/commit/0db52a1))
+
+
+---
+
+
+### Updated `@uirouter/angular` from 14.0.0 to 17.0.0
+
+
+Changelog for `@uirouter/angular`:
+
+
+[Compare `@uirouter/angular` versions 14.0.0 and 17.0.0](https://github.com/ui-router/angular/compare/14.0.0...17.0.0)
+
+### Features
+
+* add support for standalone angular applications ([#994](https://github.com/ui-router/angular/issues/994)) ([6b496c2](https://github.com/ui-router/angular/commit/6b496c2))
+* Extending lazy-load functionality to include loading standalone components for specific routes. ([#995](https://github.com/ui-router/angular/issues/995)) ([e381ea4](https://github.com/ui-router/angular/commit/e381ea4))
+
 # 19.0.0 (2025-01-14)
 [Compare `@uirouter/angular-hybrid` versions 18.0.0 and 19.0.0](https://github.com/ui-router/angular-hybrid/compare/18.0.0...19.0.0)
 

@@ -142,9 +142,20 @@ if (!yargs.argv.dryrun) {
     console.log('=======================================================\n');
   } else {
     console.log('\nPublishing to npm (you may be prompted for 2FA)...\n');
-    shelljs.pushd(distDir);
-    _execInteractive(`npm publish`);
-    shelljs.popd();
+    try {
+      shelljs.pushd(distDir);
+      _execInteractive(`npm login`);
+      _execInteractive(`npm publish`);
+      shelljs.popd();
+    } catch (error) {
+      console.error(error);
+      console.error('*** publish failed ***');
+      console.error();
+      console.error('To publish manually:');
+      console.error(`cd ${distDir}`);
+      console.error('npm login');
+      console.error('npm publish');
+    }
   }
 }
 

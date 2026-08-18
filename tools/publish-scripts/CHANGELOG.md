@@ -1,3 +1,11 @@
+# 2.8.0 (2026-08-18)
+[Compare `@uirouter/publish-scripts` versions 2.7.0 and 2.8.0](https://github.com/ui-router/publish-scripts/compare/2.7.0...2.8.0)
+
+### Features
+
+* **publish:** login before publishing, wrap publish in try/catch ([47b8ac2](https://github.com/ui-router/publish-scripts/commit/47b8ac2))
+* **util:** use --prefer-dedupe with npm installs ([25e08e1](https://github.com/ui-router/publish-scripts/commit/25e08e1))
+
 # 2.7.0 (2026-01-02)
 [Compare `@uirouter/publish-scripts` versions 2.6.8 and 2.7.0](https://github.com/ui-router/publish-scripts/compare/2.6.8...2.7.0)
 

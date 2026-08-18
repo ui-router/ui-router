@@ -55,7 +55,7 @@ function getPackageManagerCommands(pm) {
       lockfileName: 'yarn.lock',
     },
     npm: {
-      install: (flags) => `npm install${flags ? ' ' + flags : ''}`,
+      install: (flags) => `npm install --prefer-dedupe${flags ? ' ' + flags : ''}`,
       run: (script) => `npm run ${script}`,
       test: () => `npm test`,
       add: (pkg, flags) => `npm install ${pkg}${flags ? ' ' + flags : ''}`,

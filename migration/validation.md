@@ -18,15 +18,15 @@ This records rehearsal validation of the importer/verifier implementation from m
 - Node syntax checks passed for the migration library, importer, verifier, committed fixture harness, schema-ref checker, and work-graph validator; all ten schemas/refs are structurally present and the 26-task graph matches `SPEC.md` and is acyclic.
 - Manifest validation passed for 16 unique sources, 474 accepted tags, and 27 excluded tags.
 - Current-head path transformation produced 1,382 unique paths with no collisions.
-- `PATH="$PWD/.migration-work/bin:$PATH" node tools/test-history-migration.mjs` covered:
+- `node tools/test-history-migration.mjs` covered:
   - lightweight, annotated, and synthetic signature-bearing release objects, including preservation of an ordered `encoding` tag header
   - merge topology, a commit message containing an old object ID, executable mode, and symlink fidelity
   - an accepted tag-only history outside the default branch and a rejected non-release tag
   - an explicit post-import layout move
   - exact full-commit-header/tree, evidence, toolchain, and ref-namespace checks
-  - deterministic manifest-URL and retained-local-mirror runs
+  - deterministic locked remote, retained-mirror, and offline-bundle runs with identical HEADs, refs, import locks, and evidence trees
   - changed annotated and added source tags failing closed before target assembly while preserving workdirs
-  - rejection of nested output/work paths, an exact-toolchain mismatch, and retained-mirror replacement refs/grafts/alternates
+  - rejection of nested output/work paths; stale base/base-manifest and exact-toolchain mismatches; missing/extra contracts/evidence; filter artifact, wrapper, schema-validator, bundle, and mirror-ref substitution
   - pre-existing target tag/branch/reserved-evidence paths plus file-directory source-target and layout collisions failing closed with preserved diagnostic state and no generated merge/evidence commit
   - verifier rejection of replacement/extra refs, tampered evidence, and an omitted explicit source manifest
 - A full remote-source import, retained-local-mirror import, and independent verification of both passed:
@@ -57,7 +57,7 @@ The expanded fixture, full remote/mirror imports, independent verification of bo
 - Revalidate every pinned source ref immediately before the official run.
 - Resolve and record the then-current latest Node LTS and bundled npm; refresh every exact history-toolchain pin in one reviewed manifest commit if the execution environment changes.
 - Build and retain validated local source mirrors plus hashed complete Git bundles through milestone acceptance; record their digests in the execution lock.
-- Vendor and hash the exact filter-repo artifact, create the reviewed execution lock, and add the H01 importer/verifier assertions before H02.
+- Use the merged H01 interface to vendor/hash the exact filter-repo artifact, refresh the official manifest/mirrors/bundles, and create the reviewed execution lock; the official lock and artifacts do not exist yet.
 - Use the merged tooling commit—not the validation base above—as the explicit locked official target base.
 - Complete and validate the moved-path repair contract before the imported-history PR merges.
 - Repeat the remote, retained-mirror, and offline-bundle identity check plus independent verification before pushing any imported history.

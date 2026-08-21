@@ -16,7 +16,7 @@ This records rehearsal validation of the importer/verifier implementation from m
 ## Checks
 
 - Node syntax checks passed for the migration library, importer, verifier, committed fixture harness, schema-ref checker, and work-graph validator; all ten schemas/refs are structurally present and the 26-task graph matches `SPEC.md` and is acyclic.
-- Manifest validation passed for 16 unique sources, 474 accepted tags, and 27 excluded tags.
+- At this pre-H01 rehearsal snapshot, manifest validation passed for 16 unique sources, 474 accepted tags, and 27 excluded tags.
 - Current-head path transformation produced 1,382 unique paths with no collisions.
 - `node tools/test-history-migration.mjs` covered:
   - lightweight, annotated, and synthetic signature-bearing release objects, including preservation of an ordered `encoding` tag header
@@ -33,7 +33,7 @@ This records rehearsal validation of the importer/verifier implementation from m
   - 16 sources
   - 15,346 commits in selected default/tag history
   - 15,214 default-branch commits
-  - 474 release tags
+  - 474 release tags at the pre-H01 rehearsal snapshot
   - 5,987 signature-bearing default-branch commits recorded as provenance
 - The remote and mirror imports from the same base, manifest, and exact toolchain produced identical:
   - final HEAD: `e928851dbf4295d345780439b1b165b1338a89da`

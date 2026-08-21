@@ -152,10 +152,10 @@ Move commits contain path changes only. Reference/path repairs are separate comm
 - default-branch commit count
 - destination/tag namespace
 - every observed tag object, peeled commit/tree, historical root package version, reachability, and signature presence
-- 474 accepted release tags and 27 excluded tags
+- the complete reviewed accepted-release and excluded-tag sets from the official H01 refresh
 - current-head move operations
 
-New upstream refs never silently enter a locked run. If a pinned default ref/tag object moves, or any source tag name is added or removed before the official run, stop and review a manifest refresh. `H01` creates versioned `migration/execution-lock.json` on a single-owner control branch rooted at the exact target base; it contains that base object, source-manifest digest, all source ref/object inputs, complete toolchain, and retained-artifact hashes. B03/N00 contracts bind the execution-lock digest without being inputs to that digest. H02/H03 consume the reviewed control-tree files rather than recomputing a floating ref, and the importer copies their exact bytes into the final evidence commit. Any target `main`, source, manifest, or toolchain change invalidates the control branch and requires reviewed regeneration of dependent contracts plus a new H02 rehearsal.
+New upstream refs never silently enter a locked run. If a pinned default ref/tag object moves, or any source tag name is added or removed before the official run, stop and review a manifest refresh. For each source, the execution lock's `includedRefs` is exactly the default `sourceRef` plus every accepted and excluded tag `sourceRef`; the source `tagSnapshotSha256` authenticates the complete accepted/excluded tag-record set. `H01` creates versioned `migration/execution-lock.json` on a single-owner control branch rooted at the exact target base; it contains that base object, source-manifest digest, all source ref/object inputs, complete toolchain, and retained-artifact hashes. B03/N00 contracts bind the execution-lock digest without being inputs to that digest. H02/H03 consume the reviewed control-tree files rather than recomputing a floating ref, and the importer copies their exact bytes into the final evidence commit. Any target `main`, source, manifest, or toolchain change invalidates the control branch and requires reviewed regeneration of dependent contracts plus a new H02 rehearsal.
 
 `H01` also creates one retained local mirror and one complete Git bundle per source. The execution lock records each bundle's SHA-256, object format, included refs, and retention path/owner. It vendors the exact resolved `git-filter-repo` artifact with SHA-256 and execution path in addition to package/reported version and wrapper digest; the official wrapper executes only that local artifact and never resolves through `uvx`, a package registry, or a mutable cache. Remote, retained-mirror, and offline-bundle importer/verifier modes must be identical. Keep these artifacts through milestone acceptance and later source-repository archival.
 
@@ -404,7 +404,7 @@ All must be true:
 ### History and layout
 
 - [ ] 16 pinned sources imported in manifest order.
-- [ ] Exactly 474 accepted tags exist under their expected names; no rejected source tag is imported.
+- [ ] Every accepted tag in the official execution lock exists under its expected name, and no excluded source tag is imported.
 - [ ] Default and selected tag-only history have complete one-to-one commit maps; every mapped commit preserves the full prefixed tree and all non-signature headers/messages.
 - [ ] Tag trees match source paths/contents after prefix stripping.
 - [ ] Current embedded projects are moved only in explicit path-only commits, and every moved reference is covered by the validated repair contract before merge.

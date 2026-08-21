@@ -1,0 +1,37 @@
+{
+  "name": "@uirouter/sample-app-react",
+  "version": "1.0.0",
+  "description": "Architecture overview demo for UI-Router React",
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf docs",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "npx playwright install chromium && npm run build && playwright test",
+    "test:ui": "npx playwright install chromium && npm run build && playwright test --ui",
+    "test:report": "playwright show-report",
+    "gh-pages": "npm run build && git add docs && git commit -m 'update github pages' docs && git push"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@uirouter/react": "^1.0.8",
+    "@uirouter/visualizer": "^7.2.1",
+    "lodash": "^4.17.21",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "rimraf": "^6.1.2",
+    "serve": "^14.2.5",
+    "vite": "^7.3.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.54.0"
+  }
+}

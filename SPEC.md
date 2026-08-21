@@ -89,10 +89,11 @@ Root npm workspaces are exactly:
 
 - Published manifests retain ordinary semver dependency and peer ranges. Do not publish `file:` or workspace-only specs.
 - When a local package version satisfies an internal range, root installation must resolve that edge to the workspace package.
-- When it does not satisfy—currently including Angular Hybrid's Angular 21 peer range versus the local Angular 22 package—do not hide the mismatch with `--legacy-peer-deps`, a global override, or an untested range change.
+- When a local version does not satisfy a declared range, do not hide the mismatch with `--legacy-peer-deps`, a global override, or an untested range change.
 - `migration/package-classification.json` classifies every internal edge and records its declared range, expected package/version, allowed resolution mode, expected physical install path, and packed-lane provenance. The root lock cannot land until `npm ls --all` and filesystem checks prove those expectations with the pinned npm.
-- For the current Angular Hybrid baseline, first test whether npm can represent the declared Angular 21 dependency as an intentional nested registry resolution while the Angular 22 workspace remains local elsewhere. Its prospective source-linked lane may alias Angular 22. If both cannot coexist without force flags or ambiguity, move the incompatible baseline to an isolated locked project before creating the root lock.
-- Test declared incompatible versions in isolated integration projects. A separate source-linked lane may test a prospective local version.
+- The pinned Angular Hybrid source baseline remains `21.0.0` and is tested unchanged by `B02`. Chris approved one milestone-1 compatibility/version exception after that baseline: bump `@uirouter/angular-hybrid` to `22.0.0`, change its `@uirouter/angular` peer/dev dependency to `^22.0.0`, add Angular 22 to its `@angular/core`/`@angular/upgrade` peer support, and align its Angular dev packages, ng-packagr, TypeScript, and Zone.js with the Angular 22 workspace toolchain. Do not drop older declared Angular peer support in the same change without separate evidence and approval.
+- After this alignment, `@uirouter/angular` and `@uirouter/angular-hybrid` release majors stay in lockstep. The root/packed lanes must resolve the Hybrid-to-Angular edge locally with no registry fallback; isolated projects remain responsible for testing older published compatibility combinations.
+- Test any other declared incompatible versions in isolated integration projects. A separate source-linked lane may test a prospective local version.
 - Development/test aliases may map package names to live TypeScript source. Packed-package tests disable all such aliases.
 - `tools/verify-internal-deps.mjs` is separate from layout verification and classifies every internal edge as local-compatible, intentionally external compatibility, or erroneous.
 
@@ -204,7 +205,7 @@ Published packages are:
 
 During migration:
 
-- retain package name and current version
+- retain package name and current version, except for the approved Angular Hybrid `21.0.0` → `22.0.0` lockstep alignment
 - retain `engines`
 - retain versioned runtime/peer dependency intent
 - update repository/homepage/bugs/directory metadata to the monorepo
@@ -351,7 +352,7 @@ Gate coverage is machine-readable:
 | `B03` | Check in baseline/runtime manifest | `B02` | validated `migration/baselines.json` covers every inventory/CI lane, exact runtime/tool/browser environment, and evidence-backed waiver |
 | `N00` | Lock the package-classification contract | `H05` | coordinator-owned `migration/package-classification.json` covers every manifest and internal edge: unique name, workspace/lock owner, lane, expected version/path/provenance, resolution mode, and scoped override decision |
 | `N01` | Pin root Node/npm and npm workspaces | `N00` | exact pins, positive workspace globs, and root scripts; no root lock until classified edge behavior is proven |
-| `N02` | Normalize manifests in owned lanes | `N00` | published metadata preserved; private unique non-published projects; repo metadata updated without cross-lane classification drift |
+| `N02` | Normalize manifests in owned lanes | `N00` | published metadata preserved; approved Angular Hybrid 22 lockstep alignment applied and tested; private unique non-published projects; repo metadata updated without cross-lane classification drift |
 | `N03` | Convert lock and resolution policy | `N01`,`N02`,`B03` | root/local npm locks; `npm ls` plus physical-path/provenance assertions match every classified edge; each Yarn `resolutions` scope is explicitly translated/removed; no current Yarn/pnpm locks |
 | `N04` | Implement layout/dependency validators | `N02`,`N03` | `verify-layout` and `verify-internal-deps` fail with exact paths/edges |
 | `N05` | Remove active Yarn/pnpm assumptions | `N02`,`B03` | current CI, docs, metadata, scripts, and dependency automation are npm-only; static allowlist validator passes |
@@ -399,7 +400,7 @@ All must be true:
 - [ ] Workspace membership equals the positive path contract.
 - [ ] Every non-published project is private, uniquely named, and has the correct lock owner.
 - [ ] Current active CI, docs, metadata, scripts, dependency automation, and locks contain no unapproved Yarn/pnpm assumption or unexplained translated resolution.
-- [ ] Published package names, versions, `engines`, and dependency intent remain unchanged except separately approved fixes.
+- [ ] Published package names, versions, `engines`, and dependency intent remain unchanged except the approved Angular Hybrid 22 lockstep alignment and any later separately approved fix.
 
 ### Development, build, and packaging
 

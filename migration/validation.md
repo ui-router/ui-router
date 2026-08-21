@@ -16,7 +16,7 @@ This records validation of the importer/verifier implementation in draft PR #2. 
 - Node syntax checks passed for all three migration-tool modules.
 - Manifest validation passed for 16 unique sources, 474 accepted tags, and 27 excluded tags.
 - Current-head path transformation produced 1,382 unique paths with no collisions.
-- A controlled fixture covered:
+- `PATH="$PWD/.migration-work/bin:$PATH" node tools/test-history-migration.mjs` covered:
   - lightweight and annotated release tags
   - an accepted tag-only history outside the default branch
   - a rejected non-release tag

@@ -153,8 +153,10 @@ export function packageVersionAtCommit(repository, commit) {
 
 export function commitHasSignature(repository, commit) {
   const contents = git(repository, ['cat-file', 'commit', commit]).stdout;
-  return contents.includes('\ngpgsig ') || contents.startsWith('gpgsig ')
-    || contents.includes('\ngpgsig-sha256 ') || contents.startsWith('gpgsig-sha256 ');
+  const headerEnd = contents.indexOf('\n\n');
+  if (headerEnd < 0) fail(`Malformed commit object: ${commit}`);
+  const headers = `\n${contents.slice(0, headerEnd)}`;
+  return headers.includes('\ngpgsig ') || headers.includes('\ngpgsig-sha256 ');
 }
 
 export function tagObjectHasSignature(repository, objectId) {

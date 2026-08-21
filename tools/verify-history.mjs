@@ -382,8 +382,29 @@ async function main() {
   if (!(await pathExists(lockPath))) fail(`Import lock does not exist: ${lockPath}`);
   const lock = await readJson(lockPath);
   if (lock.schemaVersion !== 1) fail('Import lock schemaVersion must be 1');
+  if (lock.manifest !== path.basename(options.manifest)) fail('Import lock manifest filename differs');
   if (lock.manifestSha256 !== await sha256File(options.manifest)) fail('Import lock manifest digest differs');
+  if (lock.outputBranch !== manifest.target.outputBranch) fail('Import lock output branch differs');
   if (!isObjectId(lock.targetBaseCommit)) fail('Import lock target base is invalid');
+  if (git(options.repo, ['cat-file', '-t', lock.targetBaseCommit], { allowFailure: true }).stdout.trim() !== 'commit') {
+    fail('Import lock target base is not a commit in the assembled repository');
+  }
+  const targetMainRef = `refs/remotes/origin/${manifest.target.baseBranch}`;
+  if (git(options.repo, ['merge-base', '--is-ancestor', lock.targetBaseCommit, targetMainRef], {
+    allowFailure: true,
+  }).status !== 0) {
+    fail(`Import lock target base is not on ${targetMainRef}`);
+  }
+  if (git(options.repo, ['remote', 'get-url', 'origin']).stdout.trim() !== manifest.target.url) {
+    fail('Assembled repository origin differs from manifest target.url');
+  }
+  if (git(options.repo, ['symbolic-ref', '--short', 'HEAD']).stdout.trim() !== manifest.target.outputBranch) {
+    fail('Assembled repository is not on the manifest output branch');
+  }
+  if (!lock.tools || typeof lock.tools.node !== 'string' || typeof lock.tools.git !== 'string'
+    || lock.tools.gitFilterRepo !== manifest.historyToolchain.gitFilterRepoReportedVersion) {
+    fail('Import lock tool evidence is incomplete or differs from the manifest');
+  }
   if (git(options.repo, ['status', '--porcelain']).stdout !== '') fail('Assembled repository must be clean before verification');
   await findNestedGit(options.repo);
 
@@ -436,7 +457,21 @@ async function main() {
     for (let index = 0; index < manifest.sources.length; index += 1) {
       const source = manifest.sources[index];
       const importRecord = lock.imports[index];
+      const expectedImportKeys = [
+        'layoutCommit', 'mergeCommit', 'name', 'releaseTagCount', 'rewrittenHead', 'sourceHead',
+      ];
+      if (JSON.stringify(Object.keys(importRecord).sort()) !== JSON.stringify(expectedImportKeys)) {
+        fail(`${source.name} import-lock record has an unexpected schema`);
+      }
       if (importRecord.name !== source.name) fail(`Import order differs at index ${index}`);
+      if (importRecord.sourceHead !== source.defaultHead) fail(`${source.name} import lock source head differs`);
+      if (importRecord.releaseTagCount !== source.releaseTags.length) {
+        fail(`${source.name} import lock release-tag count differs`);
+      }
+      if (!isObjectId(importRecord.rewrittenHead) || !isObjectId(importRecord.mergeCommit)
+        || (importRecord.layoutCommit !== null && !isObjectId(importRecord.layoutCommit))) {
+        fail(`${source.name} import lock has invalid generated object IDs`);
+      }
       const sourceRepository = await clonePinnedSource(source, workdir);
       reportSources.push(await verifySource(source, sourceRepository, options.repo, importRecord));
 

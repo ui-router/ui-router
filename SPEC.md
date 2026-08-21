@@ -428,6 +428,8 @@ exec uvx --from git-filter-repo==2.47.0 git-filter-repo "$@"
 EOF
 chmod +x .migration-work/bin/git-filter-repo
 
+PATH="$PWD/.migration-work/bin:$PATH" node tools/test-history-migration.mjs
+
 BASE="$(git rev-parse origin/main)"
 PATH="$PWD/.migration-work/bin:$PATH" \
   node tools/import-history.mjs \

@@ -1,0 +1,62 @@
+{
+  "name": "@uirouter/dsr",
+  "description": "UI-Router Deep State Redirect: redirect to the most recently activated child state",
+  "version": "1.2.0",
+  "scripts": {
+    "clean": "shx rm -rf lib lib-esm _bundles",
+    "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
+    "compile": "npm run clean && tsgo && tsgo -m es6 --outDir lib-esm",
+    "test": "vitest run",
+    "test:downstream": "test_downstream_projects",
+    "watch": "run-p watch:*",
+    "watch:buildjs": "tsgo -w",
+    "watch:test": "vitest",
+    "changelog": "update_changelog",
+    "release": "release",
+    "prepublishOnly": "npm run build"
+  },
+  "homepage": "https://ui-router.github.io",
+  "contributors": [
+    {
+      "name": "Chris Thielen",
+      "web": "https://github.com/christopherthielen"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "UIRouter Team",
+      "web": "https://github.com/ui-router?tab=members"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/dsr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/dsr/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "jsnext:main": "lib-esm/index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "@uirouter/core": ">=5.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260101.1",
+    "@uirouter/core": "^6.1.0",
+    "@uirouter/publish-scripts": "^2.6.8",
+    "jsdom": "^26.1.0",
+    "lodash": "^4.17.21",
+    "prettier": "^3.4.0",
+    "rolldown": "^1.0.0-beta.58",
+    "vitest": "^3.2.4"
+  },
+  "checkPeerDependencies": {
+    "ignore": []
+  }
+}

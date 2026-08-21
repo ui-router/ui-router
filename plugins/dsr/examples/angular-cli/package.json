@@ -1,0 +1,43 @@
+{
+  "name": "angular-cli",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "postinstall": "npx playwright install chromium",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "npm run build && npx playwright test",
+    "test:ui": "npm run build && npx playwright test --ui"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "@uirouter/angular": "^13.0.0",
+    "@uirouter/core": "^6.1.0",
+    "@uirouter/dsr": "^1.0.2",
+    "@uirouter/rx": "^1.0.0",
+    "@uirouter/visualizer": "^7.0.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.6.0",
+    "zone.js": "^0.14.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.0.0",
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.0",
+    "@playwright/test": "^1.40.0",
+    "serve": "^14.2.0",
+    "typescript": "~5.2.0"
+  },
+  "checkPeerDependencies": {
+    "ignore": [
+      "ajv",
+      "terser"
+    ]
+  }
+}

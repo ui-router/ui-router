@@ -1,0 +1,56 @@
+{
+  "name": "@uirouter/rx",
+  "version": "1.0.0",
+  "description": "Reactive extensions for UI-Router",
+  "scripts": {
+    "prepare": "husky",
+    "clean": "shx rm -rf lib lib-esm _bundles yarn-error.log stats.html",
+    "compile": "npm run clean && tsgo && tsgo --outDir lib-esm --module es6",
+    "bundle": "rolldown -c rolldown.config.mjs",
+    "build": "run-s compile bundle fixmaps:*",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+    "fixmaps:bundle": "tweak_sourcemap_paths -p ../src --include '_bundles/**/*.js.map'",
+    "release": "release",
+    "prepublishOnly": "npm run build",
+    "precommit": "pretty-quick --staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/rx.git"
+  },
+  "keywords": [
+    "ui-router",
+    "reactive",
+    "rxjs"
+  ],
+  "main": "lib/index.js",
+  "module": "lib-esm/index.js",
+  "typings": "lib/index.d.ts",
+  "author": "Chris Thielen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ui-router/rx/issues"
+  },
+  "homepage": "https://github.com/ui-router/rx#readme",
+  "peerDependencies": {
+    "@uirouter/core": ">=6.0.1",
+    "rxjs": "^6.5.3 || ^7.0.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.29.1"
+  },
+  "devDependencies": {
+    "@typescript/native-preview": "^7.0.0-dev.20260102.1",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/publish-scripts": "^2.7.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4",
+    "pretty-quick": "^4.2.2",
+    "rolldown": "^1.0.0-beta.58",
+    "rxjs": "^6.5.3 || ^7.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}

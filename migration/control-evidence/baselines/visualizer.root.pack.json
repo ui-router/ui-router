@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "visualizer.root.pack",
+  "inputHashesAfterSha256": "10c7a0acde9d2a74a48de63e2ceb785a34ac2aceba7ab646b0805a95f6515240",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "visualizer",
+  "sourceCommit": "d95f266364aeba3ba082724cc33faa9fa9d82ac3",
+  "status": 0,
+  "stderrSha256": "74735a349acb12e16f04d9864a1e1f56abc984a8caea6f78399375febdf3df5d",
+  "stdoutSha256": "4f210da60f8fbb2711103acb492c655154cc59efd3af70f29aa8fa6d04c5e250"
+}

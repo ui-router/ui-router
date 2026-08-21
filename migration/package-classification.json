@@ -1,0 +1,3611 @@
+{
+  "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+  "edges": [
+    {
+      "consumerManifest": "core/package.json",
+      "declaredSpec": "^2.6.3",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.6.3",
+      "id": "edge-core-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:core",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "core/integration/typescript-3.9/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-core-integration-typescript-3-9-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:core/integration/typescript-3.9",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "core/integration/typescript-3.9/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-core-integration-typescript-3-9-legacy-injected-uirouter-core-other-typescript3-9",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:core/integration/typescript-3.9",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "core/integration/typescript-5.4/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-core-integration-typescript-5-4-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:core/integration/typescript-5.4",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "core/integration/typescript-5.4/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-core-integration-typescript-5-4-legacy-injected-uirouter-core-other-typescript5-4",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:core/integration/typescript-5.4",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/examples/sample-app/package.json",
+      "declaredSpec": "^21.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-examples-sample-app-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/examples/sample-app/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-examples-sample-app-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/examples/sample-app/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-framework-angular-examples-sample-app-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/examples/sample-app/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.2.1",
+      "id": "edge-framework-angular-examples-sample-app-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/examples/sample-app/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-examples-sample-app-legacy-injected-uirouter-angular-default-sample-app-angular",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": "^22.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular-hybrid/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angular-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/angular-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": "1.1.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "1.1.1",
+      "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular-hybrid/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-example-legacy-injected-uirouter-angular-hybrid-default-example",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "package": "@uirouter/angular-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "^22.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "^22.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular-hybrid/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angular-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/angular-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "^1.1.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.1",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "1.0.0",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.2.1",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/examples/sample-app/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular-hybrid/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-examples-sample-app-legacy-injected-uirouter-angular-hybrid-default-sample-app-angular-hybrid",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "package": "@uirouter/angular-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^22.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-router-devdependencies-uirouter-angular",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^1.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.0",
+      "id": "edge-framework-angular-hybrid-router-devdependencies-uirouter-angularjs",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-hybrid-router-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^2.8.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.8.0",
+      "id": "edge-framework-angular-hybrid-router-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-framework-angular-hybrid-router-devdependencies-uirouter-rx",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^22.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angular",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^1.0.30",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.0.30",
+      "id": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angularjs",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular-hybrid/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/rx@1.0.0",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "artifact:@uirouter/rx@1.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-legacy-injected-uirouter-angular-default-angular22",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-standalone",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-standalone",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/rx@1.0.0",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "artifact:@uirouter/rx@1.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-standalone",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-standalone-legacy-injected-uirouter-angular-default-angular22standalone",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-standalone",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-zoneless",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/core@6.1.2",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "artifact:@uirouter/core@6.1.2",
+      "id": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-zoneless",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/rx@1.0.0",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "artifact:@uirouter/rx@1.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-zoneless",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-angular-versions-v22-zoneless-legacy-injected-uirouter-angular-default-angular22zoneless",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-zoneless",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/typescript-versions/scaffold/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-typescript-versions-scaffold-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/typescript-versions/scaffold",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/typescript-versions/typescript6/package.json",
+      "declaredSpec": "*",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-typescript-versions-typescript6-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angular/integration/typescript-versions/typescript6",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/integration/typescript-versions/typescript6/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angular@22.0.0",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "artifact:@uirouter/angular@22.0.0",
+      "id": "edge-framework-angular-integration-typescript-versions-typescript6-legacy-injected-uirouter-angular-default-typescript6",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/angular/integration/typescript-versions/typescript6",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-router-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": "2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "2.7.0",
+      "id": "edge-framework-angular-router-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-framework-angular-router-devdependencies-uirouter-rx",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-router-legacy-injected-uirouter-core-angular-angular",
+      "manifestSection": "legacy-injected",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angular-router-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angular/router/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-framework-angular-router-peerdependencies-uirouter-rx",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angular/router",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": "^1.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.2",
+      "id": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": "^1.2.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.2.0",
+      "id": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-dsr",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": "^1.5.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-sticky-states",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.2.1",
+      "id": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/examples/sample-app/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.2",
+      "id": "edge-framework-angularjs-examples-sample-app-legacy-injected-uirouter-angularjs-default-sample-app-angularjs",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/integration/typescript-versions/3.9/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angularjs@1.1.2",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "artifact:@uirouter/angularjs@1.1.2",
+      "id": "edge-framework-angularjs-integration-typescript-versions-3-9-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angularjs/integration/typescript-versions/3.9",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angularjs/integration/typescript-versions/3.9/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angularjs@1.1.2",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "artifact:@uirouter/angularjs@1.1.2",
+      "id": "edge-framework-angularjs-integration-typescript-versions-3-9-legacy-injected-uirouter-angularjs-typescript-typescript3-9",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/angularjs/integration/typescript-versions/3.9",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angularjs/integration/typescript-versions/template/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/angularjs@1.1.2",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "artifact:@uirouter/angularjs@1.1.2",
+      "id": "edge-framework-angularjs-integration-typescript-versions-template-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/angularjs/integration/typescript-versions/template",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/angularjs/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angularjs-router-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angularjs/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/router/package.json",
+      "declaredSpec": "^2.6.4",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.6.4",
+      "id": "edge-framework-angularjs-router-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/angularjs/router",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/angularjs/router/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:framework/angularjs/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/examples/animating-transitions/package.json",
+      "declaredSpec": "^1.0.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.2",
+      "id": "edge-framework-react-examples-animating-transitions-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/react/examples/animating-transitions",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/examples/sample-app/package.json",
+      "declaredSpec": "^1.0.8",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.8",
+      "id": "edge-framework-react-examples-sample-app-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/react/examples/sample-app",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/examples/sample-app/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.2.1",
+      "id": "edge-framework-react-examples-sample-app-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/react/examples/sample-app",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/examples/sample-app/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.8",
+      "id": "edge-framework-react-examples-sample-app-legacy-injected-uirouter-react-default-sample-app-react",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:framework/react/examples/sample-app",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/examples/typescript/package.json",
+      "declaredSpec": "^1.0.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.2",
+      "id": "edge-framework-react-examples-typescript-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "example:framework/react/examples/typescript",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react16/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react16",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react16/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/visualizer@7.2.1",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "artifact:@uirouter/visualizer@7.2.1",
+      "id": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react16",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react16/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react-hybrid/integration/react16",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react17/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-react-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react17",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react17/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/visualizer@7.2.1",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "artifact:@uirouter/visualizer@7.2.1",
+      "id": "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react17",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react17/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react17-legacy-injected-uirouter-react-hybrid-integration-react17",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react-hybrid/integration/react17",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react18/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-react-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react18",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react18/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/visualizer@7.2.1",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "artifact:@uirouter/visualizer@7.2.1",
+      "id": "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react18",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react18/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react18-legacy-injected-uirouter-react-hybrid-integration-react18",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react-hybrid/integration/react18",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react19/package.json",
+      "declaredSpec": "latest",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-react-hybrid",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react19",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react19/package.json",
+      "declaredSpec": "^7.2.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/visualizer@7.2.1",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "artifact:@uirouter/visualizer@7.2.1",
+      "id": "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "integration:framework/react-hybrid/integration/react19",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/integration/react19/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react-hybrid@2.0.0",
+      "expectedVersion": "2.0.0",
+      "finalSpec": "artifact:@uirouter/react-hybrid@2.0.0",
+      "id": "edge-framework-react-hybrid-integration-react19-legacy-injected-uirouter-react-hybrid-integration-react19",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react-hybrid/integration/react19",
+      "package": "@uirouter/react-hybrid",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/router/package.json",
+      "declaredSpec": "1.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "1.1.2",
+      "id": "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "published-package:framework/react-hybrid/router",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/router/package.json",
+      "declaredSpec": "6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "6.1.2",
+      "id": "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "published-package:framework/react-hybrid/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/router/package.json",
+      "declaredSpec": "1.0.8",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "1.0.8",
+      "id": "edge-framework-react-hybrid-router-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "published-package:framework/react-hybrid/router",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react-hybrid/router/package.json",
+      "declaredSpec": "^2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.7.0",
+      "id": "edge-framework-react-hybrid-router-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/react-hybrid/router",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/integration/react17/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react@1.0.8",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "artifact:@uirouter/react@1.0.8",
+      "id": "edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react/integration/react17",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react/integration/react18/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react@1.0.8",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "artifact:@uirouter/react@1.0.8",
+      "id": "edge-framework-react-integration-react18-legacy-injected-uirouter-react-react-versions-react18",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react/integration/react18",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react/integration/react19/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "packed-artifact:@uirouter/react@1.0.8",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "artifact:@uirouter/react@1.0.8",
+      "id": "edge-framework-react-integration-react19-legacy-injected-uirouter-react-react-versions-react19",
+      "manifestSection": "legacy-injected",
+      "owningLane": "integration:framework/react/integration/react19",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "local-tarball"
+    },
+    {
+      "consumerManifest": "framework/react/router/package.json",
+      "declaredSpec": "6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "6.1.2",
+      "id": "edge-framework-react-router-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "published-package:framework/react/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/router/package.json",
+      "declaredSpec": "^2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.7.0",
+      "id": "edge-framework-react-router-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:framework/react/router",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "framework/react/router/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-framework-react-router-legacy-injected-uirouter-core-react-react",
+      "manifestSection": "legacy-injected",
+      "owningLane": "published-package:framework/react/router",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/package.json",
+      "declaredSpec": "^6.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.0",
+      "id": "edge-plugins-dsr-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/dsr",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/package.json",
+      "declaredSpec": "^2.6.8",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.6.8",
+      "id": "edge-plugins-dsr-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/dsr",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": "^13.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": "^6.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.0",
+      "id": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": "^1.0.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.0.2",
+      "id": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-dsr",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.2.0",
+      "id": "edge-plugins-dsr-examples-angular-cli-legacy-injected-uirouter-dsr-angular-angular-cli",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^1.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.0",
+      "id": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^6.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.0",
+      "id": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^1.0.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.0.2",
+      "id": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-dsr",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.2.0",
+      "id": "edge-plugins-dsr-examples-angularjs-webpack-legacy-injected-uirouter-dsr-angularjs-angularjs-webpack",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "declaredSpec": "^6.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.0",
+      "id": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-core",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "declaredSpec": "^1.0.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.0.2",
+      "id": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-dsr",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "declaredSpec": "^1.0.7",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.7",
+      "id": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/dsr/package.json",
+      "expectedVersion": "1.2.0",
+      "finalSpec": "^1.2.0",
+      "id": "edge-plugins-dsr-examples-react-vite-legacy-injected-uirouter-dsr-react-react-vite",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "package": "@uirouter/dsr",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/dsr/package.json",
+      "declaredSpec": ">=5.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": ">=5.0.0",
+      "id": "edge-plugins-dsr-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:plugins/dsr",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/redux/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-plugins-redux-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/redux",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/redux/package.json",
+      "declaredSpec": "^2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.7.0",
+      "id": "edge-plugins-redux-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/redux",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/redux/package.json",
+      "declaredSpec": "^1.0.8",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.8",
+      "id": "edge-plugins-redux-devdependencies-uirouter-react",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/redux",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/redux/package.json",
+      "declaredSpec": ">=5.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": ">=5.0.0",
+      "id": "edge-plugins-redux-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:plugins/redux",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/rx/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-plugins-rx-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/rx",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/rx/package.json",
+      "declaredSpec": "^2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.7.0",
+      "id": "edge-plugins-rx-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/rx",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/rx/package.json",
+      "declaredSpec": ">=6.0.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": ">=6.0.1",
+      "id": "edge-plugins-rx-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:plugins/rx",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-plugins-sticky-states-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/sticky-states",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "declaredSpec": "^2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "^2.7.0",
+      "id": "edge-plugins-sticky-states-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/sticky-states",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "declaredSpec": "^17.0.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angular/router/package.json",
+      "expectedVersion": "22.0.0",
+      "finalSpec": "^22.0.0",
+      "id": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-angular",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "package": "@uirouter/angular",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "declaredSpec": "^1.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/rx/package.json",
+      "expectedVersion": "1.0.0",
+      "finalSpec": "^1.0.0",
+      "id": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-rx",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "package": "@uirouter/rx",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "declaredSpec": "^1.5.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-sticky-states",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-angular-cli-legacy-injected-uirouter-sticky-states-angular-angular-cli",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^1.1.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/angularjs/router/package.json",
+      "expectedVersion": "1.1.2",
+      "finalSpec": "^1.1.0",
+      "id": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-angularjs",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angularjs-webpack",
+      "package": "@uirouter/angularjs",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^1.5.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-sticky-states",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angularjs-webpack",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/angularjs-webpack",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-angularjs-webpack-legacy-injected-uirouter-sticky-states-angularjs-angularjs-webpack",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/sticky-states/examples/angularjs-webpack",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "declaredSpec": "^1.0.7",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:framework/react/router/package.json",
+      "expectedVersion": "1.0.8",
+      "finalSpec": "^1.0.7",
+      "id": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-react",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/react-vite",
+      "package": "@uirouter/react",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "declaredSpec": "^1.5.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-sticky-states",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/react-vite",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "declaredSpec": "^7.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/visualizer/package.json",
+      "expectedVersion": "7.2.1",
+      "finalSpec": "^7.0.0",
+      "id": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-visualizer",
+      "manifestSection": "dependencies",
+      "owningLane": "example:plugins/sticky-states/examples/react-vite",
+      "package": "@uirouter/visualizer",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:plugins/sticky-states/package.json",
+      "expectedVersion": "1.5.1",
+      "finalSpec": "^1.5.1",
+      "id": "edge-plugins-sticky-states-examples-react-vite-legacy-injected-uirouter-sticky-states-react-react-vite",
+      "manifestSection": "legacy-injected",
+      "owningLane": "example:plugins/sticky-states/examples/react-vite",
+      "package": "@uirouter/sticky-states",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "declaredSpec": null,
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-plugins-sticky-states-legacy-injected-uirouter-core-other-sticky-states",
+      "manifestSection": "legacy-injected",
+      "owningLane": "published-package:plugins/sticky-states",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "declaredSpec": ">=5.0.1",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": ">=5.0.1",
+      "id": "edge-plugins-sticky-states-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:plugins/sticky-states",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/visualizer/package.json",
+      "declaredSpec": "^6.1.2",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": "^6.1.2",
+      "id": "edge-plugins-visualizer-devdependencies-uirouter-core",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/visualizer",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/visualizer/package.json",
+      "declaredSpec": "2.7.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:tools/publish-scripts/package.json",
+      "expectedVersion": "2.8.0",
+      "finalSpec": "2.7.0",
+      "id": "edge-plugins-visualizer-devdependencies-uirouter-publish-scripts",
+      "manifestSection": "devDependencies",
+      "owningLane": "published-package:plugins/visualizer",
+      "package": "@uirouter/publish-scripts",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    },
+    {
+      "consumerManifest": "plugins/visualizer/package.json",
+      "declaredSpec": ">=5.0.0",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedOrigin": "workspace:core/package.json",
+      "expectedVersion": "6.1.2",
+      "finalSpec": ">=5.0.0",
+      "id": "edge-plugins-visualizer-peerdependencies-uirouter-core",
+      "manifestSection": "peerDependencies",
+      "owningLane": "published-package:plugins/visualizer",
+      "package": "@uirouter/core",
+      "packedExpectation": "local-tarball",
+      "resolutionMode": "workspace"
+    }
+  ],
+  "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+  "inventoryManifestCount": 44,
+  "lifecycleHooks": [
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:core",
+      "hook": "prepublishOnly",
+      "id": "hook-core-prepublishonly",
+      "manifest": "core/package.json",
+      "owner": "published-package:core"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-framework-angular-hybrid-router-prepare",
+      "manifest": "framework/angular-hybrid/router/package.json",
+      "owner": "published-package:framework/angular-hybrid/router"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:framework/angular-hybrid/router",
+      "hook": "prepublishOnly",
+      "id": "hook-framework-angular-hybrid-router-prepublishonly",
+      "manifest": "framework/angular-hybrid/router/package.json",
+      "owner": "published-package:framework/angular-hybrid/router"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-framework-angular-router-prepare",
+      "manifest": "framework/angular/router/package.json",
+      "owner": "published-package:framework/angular/router"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepublishOnly",
+      "id": "hook-framework-angular-router-prepublishonly",
+      "manifest": "framework/angular/router/package.json",
+      "owner": "published-package:framework/angular/router"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-framework-angularjs-examples-sample-app-prepare",
+      "manifest": "framework/angularjs/examples/sample-app/package.json",
+      "owner": "example:framework/angularjs/examples/sample-app"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:framework/angularjs/router",
+      "hook": "prepublishOnly",
+      "id": "hook-framework-angularjs-router-prepublishonly",
+      "manifest": "framework/angularjs/router/package.json",
+      "owner": "published-package:framework/angularjs/router"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-framework-react-hybrid-router-prepare",
+      "manifest": "framework/react-hybrid/router/package.json",
+      "owner": "published-package:framework/react-hybrid/router"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:framework/react-hybrid/router",
+      "hook": "prepublishOnly",
+      "id": "hook-framework-react-hybrid-router-prepublishonly",
+      "manifest": "framework/react-hybrid/router/package.json",
+      "owner": "published-package:framework/react-hybrid/router"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-framework-react-router-prepare",
+      "manifest": "framework/react/router/package.json",
+      "owner": "published-package:framework/react/router"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:framework/react/router",
+      "hook": "prepublishOnly",
+      "id": "hook-framework-react-router-prepublishonly",
+      "manifest": "framework/react/router/package.json",
+      "owner": "published-package:framework/react/router"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "setup-browser:plugins/dsr/examples/angular-cli",
+      "hook": "postinstall",
+      "id": "hook-plugins-dsr-examples-angular-cli-postinstall",
+      "manifest": "plugins/dsr/examples/angular-cli/package.json",
+      "owner": "example:plugins/dsr/examples/angular-cli"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "setup-browser:plugins/dsr/examples/angularjs-webpack",
+      "hook": "postinstall",
+      "id": "hook-plugins-dsr-examples-angularjs-webpack-postinstall",
+      "manifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "owner": "example:plugins/dsr/examples/angularjs-webpack"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "setup-browser:plugins/dsr/examples/react-vite",
+      "hook": "postinstall",
+      "id": "hook-plugins-dsr-examples-react-vite-postinstall",
+      "manifest": "plugins/dsr/examples/react-vite/package.json",
+      "owner": "example:plugins/dsr/examples/react-vite"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:plugins/dsr",
+      "hook": "prepublishOnly",
+      "id": "hook-plugins-dsr-prepublishonly",
+      "manifest": "plugins/dsr/package.json",
+      "owner": "published-package:plugins/dsr"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-plugins-rx-prepare",
+      "manifest": "plugins/rx/package.json",
+      "owner": "published-package:plugins/rx"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:plugins/rx",
+      "hook": "prepublishOnly",
+      "id": "hook-plugins-rx-prepublishonly",
+      "manifest": "plugins/rx/package.json",
+      "owner": "published-package:plugins/rx"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:plugins/sticky-states",
+      "hook": "prepublishOnly",
+      "id": "hook-plugins-sticky-states-prepublishonly",
+      "manifest": "plugins/sticky-states/package.json",
+      "owner": "published-package:plugins/sticky-states"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-plugins-visualizer-prepare",
+      "manifest": "plugins/visualizer/package.json",
+      "owner": "published-package:plugins/visualizer"
+    },
+    {
+      "decision": "explicit-task",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": "build:plugins/visualizer",
+      "hook": "prepublishOnly",
+      "id": "hook-plugins-visualizer-prepublishonly",
+      "manifest": "plugins/visualizer/package.json",
+      "owner": "published-package:plugins/visualizer"
+    },
+    {
+      "decision": "disabled",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "explicitTask": null,
+      "hook": "prepare",
+      "id": "hook-tools-publish-scripts-prepare",
+      "manifest": "tools/publish-scripts/package.json",
+      "owner": "published-package:tools/publish-scripts"
+    }
+  ],
+  "manifests": [
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/core",
+      "id": "core",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "core/package.json"
+      ],
+      "owningLane": "published-package:core",
+      "path": "core/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-core-integration-typescript-3-9",
+      "id": "core/integration/typescript-3.9",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "core/integration/typescript-3.9/package.json"
+      ],
+      "owningLane": "integration:core/integration/typescript-3.9",
+      "path": "core/integration/typescript-3.9/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-core-integration-typescript-5-4",
+      "id": "core/integration/typescript-5.4",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "core/integration/typescript-5.4/package.json"
+      ],
+      "owningLane": "integration:core/integration/typescript-5.4",
+      "path": "core/integration/typescript-5.4/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-hybrid-examples-example",
+      "id": "framework/angular-hybrid/examples/example",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular-hybrid/examples/example/package.json"
+      ],
+      "owningLane": "example:framework/angular-hybrid/examples/example",
+      "path": "framework/angular-hybrid/examples/example/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-hybrid-examples-sample-app",
+      "id": "framework/angular-hybrid/examples/sample-app",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular-hybrid/examples/sample-app/package.json"
+      ],
+      "owningLane": "example:framework/angular-hybrid/examples/sample-app",
+      "path": "framework/angular-hybrid/examples/sample-app/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/angular-hybrid",
+      "id": "framework/angular-hybrid/router",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular-hybrid/router/package.json"
+      ],
+      "owningLane": "published-package:framework/angular-hybrid/router",
+      "path": "framework/angular-hybrid/router/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-examples-sample-app",
+      "id": "framework/angular/examples/sample-app",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/examples/sample-app/package.json"
+      ],
+      "owningLane": "example:framework/angular/examples/sample-app",
+      "path": "framework/angular/examples/sample-app/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-integration-angular-versions-v22",
+      "id": "framework/angular/integration/angular-versions/v22",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/integration/angular-versions/v22/package.json"
+      ],
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22",
+      "path": "framework/angular/integration/angular-versions/v22/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-integration-angular-versions-v22-standalone",
+      "id": "framework/angular/integration/angular-versions/v22-standalone",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/integration/angular-versions/v22-standalone/package.json"
+      ],
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-standalone",
+      "path": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-integration-angular-versions-v22-zoneless",
+      "id": "framework/angular/integration/angular-versions/v22-zoneless",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/integration/angular-versions/v22-zoneless/package.json"
+      ],
+      "owningLane": "integration:framework/angular/integration/angular-versions/v22-zoneless",
+      "path": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-integration-typescript-versions-scaffold",
+      "id": "framework/angular/integration/typescript-versions/scaffold",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/integration/typescript-versions/scaffold/package.json"
+      ],
+      "owningLane": "integration:framework/angular/integration/typescript-versions/scaffold",
+      "path": "framework/angular/integration/typescript-versions/scaffold/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angular-integration-typescript-versions-typescript6",
+      "id": "framework/angular/integration/typescript-versions/typescript6",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/integration/typescript-versions/typescript6/package.json"
+      ],
+      "owningLane": "integration:framework/angular/integration/typescript-versions/typescript6",
+      "path": "framework/angular/integration/typescript-versions/typescript6/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/angular",
+      "id": "framework/angular/router",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angular/router/package.json"
+      ],
+      "owningLane": "published-package:framework/angular/router",
+      "path": "framework/angular/router/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angularjs-examples-sample-app",
+      "id": "framework/angularjs/examples/sample-app",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angularjs/examples/sample-app/package.json"
+      ],
+      "owningLane": "example:framework/angularjs/examples/sample-app",
+      "path": "framework/angularjs/examples/sample-app/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angularjs-integration-typescript-versions-3-9",
+      "id": "framework/angularjs/integration/typescript-versions/3.9",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angularjs/integration/typescript-versions/3.9/package.json"
+      ],
+      "owningLane": "integration:framework/angularjs/integration/typescript-versions/3.9",
+      "path": "framework/angularjs/integration/typescript-versions/3.9/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-angularjs-integration-typescript-versions-template",
+      "id": "framework/angularjs/integration/typescript-versions/template",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angularjs/integration/typescript-versions/template/package.json"
+      ],
+      "owningLane": "integration:framework/angularjs/integration/typescript-versions/template",
+      "path": "framework/angularjs/integration/typescript-versions/template/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/angularjs",
+      "id": "framework/angularjs/router",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/angularjs/router/package.json"
+      ],
+      "owningLane": "published-package:framework/angularjs/router",
+      "path": "framework/angularjs/router/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-hybrid-integration-react16",
+      "id": "framework/react-hybrid/integration/react16",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react-hybrid/integration/react16/package.json"
+      ],
+      "owningLane": "integration:framework/react-hybrid/integration/react16",
+      "path": "framework/react-hybrid/integration/react16/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-hybrid-integration-react17",
+      "id": "framework/react-hybrid/integration/react17",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react-hybrid/integration/react17/package.json"
+      ],
+      "owningLane": "integration:framework/react-hybrid/integration/react17",
+      "path": "framework/react-hybrid/integration/react17/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-hybrid-integration-react18",
+      "id": "framework/react-hybrid/integration/react18",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react-hybrid/integration/react18/package.json"
+      ],
+      "owningLane": "integration:framework/react-hybrid/integration/react18",
+      "path": "framework/react-hybrid/integration/react18/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-hybrid-integration-react19",
+      "id": "framework/react-hybrid/integration/react19",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react-hybrid/integration/react19/package.json"
+      ],
+      "owningLane": "integration:framework/react-hybrid/integration/react19",
+      "path": "framework/react-hybrid/integration/react19/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/react-hybrid",
+      "id": "framework/react-hybrid/router",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react-hybrid/router/package.json"
+      ],
+      "owningLane": "published-package:framework/react-hybrid/router",
+      "path": "framework/react-hybrid/router/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-examples-animating-transitions",
+      "id": "framework/react/examples/animating-transitions",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/examples/animating-transitions/package.json"
+      ],
+      "owningLane": "example:framework/react/examples/animating-transitions",
+      "path": "framework/react/examples/animating-transitions/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-examples-sample-app",
+      "id": "framework/react/examples/sample-app",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/examples/sample-app/package.json"
+      ],
+      "owningLane": "example:framework/react/examples/sample-app",
+      "path": "framework/react/examples/sample-app/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-examples-typescript",
+      "id": "framework/react/examples/typescript",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/examples/typescript/package.json"
+      ],
+      "owningLane": "example:framework/react/examples/typescript",
+      "path": "framework/react/examples/typescript/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-integration-react17",
+      "id": "framework/react/integration/react17",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/integration/react17/package.json"
+      ],
+      "owningLane": "integration:framework/react/integration/react17",
+      "path": "framework/react/integration/react17/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-integration-react18",
+      "id": "framework/react/integration/react18",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/integration/react18/package.json"
+      ],
+      "owningLane": "integration:framework/react/integration/react18",
+      "path": "framework/react/integration/react18/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "integration",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-framework-react-integration-react19",
+      "id": "framework/react/integration/react19",
+      "internalResolutionMode": "local-tarball",
+      "lockOwner": "local",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/integration/react19/package.json"
+      ],
+      "owningLane": "integration:framework/react/integration/react19",
+      "path": "framework/react/integration/react19/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/react",
+      "id": "framework/react/router",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "framework/react/router/package.json"
+      ],
+      "owningLane": "published-package:framework/react/router",
+      "path": "framework/react/router/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/dsr",
+      "id": "plugins/dsr",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/dsr/package.json"
+      ],
+      "owningLane": "published-package:plugins/dsr",
+      "path": "plugins/dsr/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-dsr-examples-angular-cli",
+      "id": "plugins/dsr/examples/angular-cli",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/dsr/examples/angular-cli/package.json"
+      ],
+      "owningLane": "example:plugins/dsr/examples/angular-cli",
+      "path": "plugins/dsr/examples/angular-cli/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-dsr-examples-angularjs-webpack",
+      "id": "plugins/dsr/examples/angularjs-webpack",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/dsr/examples/angularjs-webpack/package.json"
+      ],
+      "owningLane": "example:plugins/dsr/examples/angularjs-webpack",
+      "path": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-dsr-examples-react-vite",
+      "id": "plugins/dsr/examples/react-vite",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/dsr/examples/react-vite/package.json"
+      ],
+      "owningLane": "example:plugins/dsr/examples/react-vite",
+      "path": "plugins/dsr/examples/react-vite/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/redux",
+      "id": "plugins/redux",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/redux/package.json"
+      ],
+      "owningLane": "published-package:plugins/redux",
+      "path": "plugins/redux/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-redux-examples-react",
+      "id": "plugins/redux/examples/react",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/redux/examples/react/package.json"
+      ],
+      "owningLane": "example:plugins/redux/examples/react",
+      "path": "plugins/redux/examples/react/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/rx",
+      "id": "plugins/rx",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/rx/package.json"
+      ],
+      "owningLane": "published-package:plugins/rx",
+      "path": "plugins/rx/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/sticky-states",
+      "id": "plugins/sticky-states",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/sticky-states/package.json"
+      ],
+      "owningLane": "published-package:plugins/sticky-states",
+      "path": "plugins/sticky-states/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-sticky-states-examples-angular-cli",
+      "id": "plugins/sticky-states/examples/angular-cli",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/sticky-states/examples/angular-cli/package.json"
+      ],
+      "owningLane": "example:plugins/sticky-states/examples/angular-cli",
+      "path": "plugins/sticky-states/examples/angular-cli/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-sticky-states-examples-angularjs-webpack",
+      "id": "plugins/sticky-states/examples/angularjs-webpack",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/sticky-states/examples/angularjs-webpack/package.json"
+      ],
+      "owningLane": "example:plugins/sticky-states/examples/angularjs-webpack",
+      "path": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "example",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-plugins-sticky-states-examples-react-vite",
+      "id": "plugins/sticky-states/examples/react-vite",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/sticky-states/examples/react-vite/package.json"
+      ],
+      "owningLane": "example:plugins/sticky-states/examples/react-vite",
+      "path": "plugins/sticky-states/examples/react-vite/package.json",
+      "private": true,
+      "published": false,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/visualizer",
+      "id": "plugins/visualizer",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "plugins/visualizer/package.json"
+      ],
+      "owningLane": "published-package:plugins/visualizer",
+      "path": "plugins/visualizer/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "published-package",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/publish-scripts",
+      "id": "tools/publish-scripts",
+      "internalResolutionMode": "workspace",
+      "lockOwner": "root",
+      "origin": "imported",
+      "ownedFiles": [
+        "tools/publish-scripts/package.json"
+      ],
+      "owningLane": "published-package:tools/publish-scripts",
+      "path": "tools/publish-scripts/package.json",
+      "private": false,
+      "published": true,
+      "workspace": true
+    },
+    {
+      "class": "nested-tool",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-tools-publish-scripts-actions-upgrade",
+      "id": "tools/publish-scripts/actions/upgrade",
+      "internalResolutionMode": "none",
+      "lockOwner": "none",
+      "origin": "imported",
+      "ownedFiles": [
+        "tools/publish-scripts/actions/upgrade/package.json"
+      ],
+      "owningLane": "nested-tool:tools/publish-scripts/actions/upgrade",
+      "path": "tools/publish-scripts/actions/upgrade/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    },
+    {
+      "class": "nested-tool",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "finalName": "@uirouter/internal-tools-publish-scripts-docgen",
+      "id": "tools/publish-scripts/docgen",
+      "internalResolutionMode": "none",
+      "lockOwner": "none",
+      "origin": "imported",
+      "ownedFiles": [
+        "tools/publish-scripts/docgen/package.json"
+      ],
+      "owningLane": "nested-tool:tools/publish-scripts/docgen",
+      "path": "tools/publish-scripts/docgen/package.json",
+      "private": true,
+      "published": false,
+      "workspace": false
+    }
+  ],
+  "resolutions": [
+    {
+      "affectedDependencyPaths": [
+        "chokidar"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "remove",
+      "directness": "transitive",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [],
+      "id": "resolution-core-resolutions-chokidar",
+      "originalScope": "resolutions",
+      "originalSelector": "chokidar",
+      "owner": "core/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "@uirouter/angular"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "direct-dependency",
+      "directness": "direct",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [
+        "@uirouter/angular"
+      ],
+      "id": "resolution-framework-angular-examples-sample-app-overrides-uirouter-angular",
+      "originalScope": "overrides",
+      "originalSelector": "@uirouter/angular",
+      "owner": "framework/angular/examples/sample-app/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "@uirouter/core"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "direct-dependency",
+      "directness": "direct",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [
+        "@uirouter/core"
+      ],
+      "id": "resolution-framework-angular-hybrid-router-resolutions-uirouter-core",
+      "originalScope": "resolutions",
+      "originalSelector": "@uirouter/core",
+      "owner": "framework/angular-hybrid/router/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "@uirouter/angular"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "isolated-integration",
+      "directness": "direct",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [
+        "@uirouter/angular"
+      ],
+      "id": "resolution-framework-angular-integration-angular-versions-v22-overrides-uirouter-angular",
+      "originalScope": "overrides",
+      "originalSelector": "@uirouter/angular",
+      "owner": "framework/angular/integration/angular-versions/v22/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "@uirouter/angular"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "isolated-integration",
+      "directness": "direct",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [
+        "@uirouter/angular"
+      ],
+      "id": "resolution-framework-angular-integration-angular-versions-v22-standalone-overrides-uirouter-angular",
+      "originalScope": "overrides",
+      "originalSelector": "@uirouter/angular",
+      "owner": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "@uirouter/angular"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "isolated-integration",
+      "directness": "direct",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [
+        "@uirouter/angular"
+      ],
+      "id": "resolution-framework-angular-integration-angular-versions-v22-zoneless-overrides-uirouter-angular",
+      "originalScope": "overrides",
+      "originalSelector": "@uirouter/angular",
+      "owner": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+      "rootScopeBroadens": false
+    },
+    {
+      "affectedDependencyPaths": [
+        "npm-packlist"
+      ],
+      "approval": "SPEC.md reviewed package-resolution policy",
+      "decision": "remove",
+      "directness": "transitive",
+      "evidence": {
+        "path": "migration/control-evidence/n00/inventory.json",
+        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+      },
+      "expectedLockEntries": [],
+      "id": "resolution-tools-publish-scripts-resolutions-npm-packlist",
+      "originalScope": "resolutions",
+      "originalSelector": "npm-packlist",
+      "owner": "tools/publish-scripts/package.json",
+      "rootScopeBroadens": false
+    }
+  ],
+  "schemaVersion": 1
+}

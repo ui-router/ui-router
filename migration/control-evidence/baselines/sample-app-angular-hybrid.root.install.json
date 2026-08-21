@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 54,
+  "expectedFailureReason": null,
+  "id": "sample-app-angular-hybrid.root.install",
+  "inputHashesAfterSha256": "d57bf7ed52594299b7f56d5ef4515485c8a96c9b40f4e99a15d3bd19e6ef8173",
+  "inputHashesBeforeSha256": "d57bf7ed52594299b7f56d5ef4515485c8a96c9b40f4e99a15d3bd19e6ef8173",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-angular-hybrid",
+  "sourceCommit": "8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+  "status": 0,
+  "stderrSha256": "79020dfe4c7e56f4359c79204e78b32f676db96c77b720b2290aef5664ac6fe4",
+  "stdoutSha256": "a1f137189dc7bc9ea0a61892456c4d9c87530c98e317da5a971342d3e6adf47a"
+}

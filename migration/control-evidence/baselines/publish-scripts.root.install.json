@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 12,
+  "expectedFailureReason": null,
+  "id": "publish-scripts.root.install",
+  "inputHashesAfterSha256": "8134a5f915fb2cdbfa5baa928ed49e0ff9607817fd1a24b7773055e304a9aff5",
+  "inputHashesBeforeSha256": "8134a5f915fb2cdbfa5baa928ed49e0ff9607817fd1a24b7773055e304a9aff5",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "publish-scripts",
+  "sourceCommit": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+  "status": 0,
+  "stderrSha256": "db050f235b8630686784c0fb0ef982f58b2e5976a48e2fe436849a7eeca0275b",
+  "stdoutSha256": "491bde6892ac43d032b5c314a51c1323a85c6422c0e03693c6228820ce56e925"
+}

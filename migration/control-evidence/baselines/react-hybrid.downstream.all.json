@@ -1,0 +1,21 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 75,
+  "expectedFailureReason": null,
+  "id": "react-hybrid.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: react16, react17, react18, react19 <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "react-hybrid",
+  "sourceCommit": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+  "status": 0,
+  "stderrSha256": "07070d887642c0f5261b960fdcf035078f056fafb792f0ff49261ea4a6be6df4",
+  "stdoutSha256": "994a9fa5af1430dfc1f685bd4838658aba5e04122ddf15aa2301c2b6256d2038"
+}

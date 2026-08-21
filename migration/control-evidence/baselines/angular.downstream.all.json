@@ -1,0 +1,21 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 145,
+  "expectedFailureReason": null,
+  "id": "angular.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: sample-app-angular, angular22, angular22standalone, angular22zoneless, typescript6 <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "angular",
+  "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+  "status": 0,
+  "stderrSha256": "9f4df2f903a90044d53c8a6e5c6a06b2a63afd39874c0a10f7019c3c6f52c838",
+  "stdoutSha256": "1d730866bc4d8657355538bfa6545574875a42ab3803008fd3ca63b0ba666212"
+}

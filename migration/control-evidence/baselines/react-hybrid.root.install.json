@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 6,
+  "expectedFailureReason": null,
+  "id": "react-hybrid.root.install",
+  "inputHashesAfterSha256": "169c6bbfdc2fe1e4be4e5b30ddd1a4011be3258ee98891e04793f75428bda1be",
+  "inputHashesBeforeSha256": "881ac892b07dc569137c8c49bed2969d775360f3a4994ef733715951f147b412",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react-hybrid",
+  "sourceCommit": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+  "status": 0,
+  "stderrSha256": "79020dfe4c7e56f4359c79204e78b32f676db96c77b720b2290aef5664ac6fe4",
+  "stdoutSha256": "fbc25311aa3d85b49ddf7269ec55ae62b2d7790b84a00d253da1b7367d0efac7"
+}

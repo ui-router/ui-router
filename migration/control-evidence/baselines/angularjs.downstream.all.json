@@ -1,0 +1,21 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 46,
+  "expectedFailureReason": null,
+  "id": "angularjs.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: typescript3.9, sample-app-angularjs <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "angularjs",
+  "sourceCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+  "status": 0,
+  "stderrSha256": "9e6437af128860d8fa7f876b7a76cb0a965075b8cd4844a456d1d9bee95f8437",
+  "stdoutSha256": "a7d414fa80b9e13811774d31854d630e9a636d9cf2ad9531bd03a9d80ef33118"
+}

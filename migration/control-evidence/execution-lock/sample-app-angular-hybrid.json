@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "name": "sample-app-angular-hybrid",
+  "defaultHead": "8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+  "refs": [
+    "refs/heads/master 8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+    "refs/tags/15.0.0 371c7120ffbd5a17d49d784a9c1f8b00a94806cb",
+    "refs/tags/angular-9.1.4 56a98857256a2a4424162311b856e3f9bd3fda94"
+  ],
+  "bundleSha256": "8aa9b6475fafd58a5276e300b14b1c6b4b29e4f4fdf5fdfc3fee7d82882ab491"
+}

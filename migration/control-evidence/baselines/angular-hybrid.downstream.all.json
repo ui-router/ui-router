@@ -1,0 +1,21 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 113,
+  "expectedFailureReason": null,
+  "id": "angular-hybrid.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: example, sample-app-angular-hybrid <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "angular-hybrid",
+  "sourceCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+  "status": 0,
+  "stderrSha256": "7203d7acc902526b7678782913b109ec242cf0ba60151b9e145ecbf495e37c46",
+  "stdoutSha256": "5e893746ac25e55a7f3fd4dc0f7d149d91dd9de7eb14ea4c1ec63768a0c510fd"
+}

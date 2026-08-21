@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "name": "sample-app-angularjs",
+  "defaultHead": "1c89cebc1e713f317ffd108dea2735c165568bd3",
+  "refs": [
+    "refs/heads/master 1c89cebc1e713f317ffd108dea2735c165568bd3"
+  ],
+  "bundleSha256": "1f106ed880c045054de5ed0cf95def8fbde8e0e1ca20f3a2ba12b2ef3bc7ddaa"
+}

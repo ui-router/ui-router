@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "durationSeconds": 4,
+  "expectedFailureReason": null,
+  "id": "dsr.root.install",
+  "inputHashesAfterSha256": "5d7c8005dd9cbc583aa27eecf6bb3dd0860ff8a54628062c9125856cfd96374e",
+  "inputHashesBeforeSha256": "92d05a415c336c26a1a8d5492989d8258352ff9d1b6ecb18ab92649a29c54fc6",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "dsr",
+  "sourceCommit": "0fc6644008842790681bc08f1887a530d7120cfb",
+  "status": 0,
+  "stderrSha256": "a478885c55a6cfb00ad346b3be19ec9881723c18024b32172f80e45c9b0bea20",
+  "stdoutSha256": "5e2843a7769719ae7cb0edb752d61d548ecd8df7e07fc156269eaf99ca79602c"
+}

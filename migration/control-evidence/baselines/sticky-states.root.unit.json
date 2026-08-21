@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": null,
+  "id": "sticky-states.root.unit",
+  "inputHashesAfterSha256": "2a1395f7aea6f784f0cbb76c2d9d42ae428d9ddeecb5c36b765e7adbc0472c9c",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sticky-states",
+  "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "status": 0,
+  "stderrSha256": "956e3694a6d154272e934fc05caff7768bd4e15b31fe26a855d48f9f4ee222e3",
+  "stdoutSha256": "efc84a7a6800e2b124807d1acea42619656b59e17cc4ef82cc4fc8680be62bef"
+}

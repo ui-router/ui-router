@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "build"
+  ],
+  "durationSeconds": 3,
+  "expectedFailureReason": null,
+  "id": "angular.root.build",
+  "inputHashesAfterSha256": "a9c3f2b54409367d49d83c0e1c3a7674a422df97a471d4d7f1add487f1e184e4",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angular",
+  "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+  "status": 0,
+  "stderrSha256": "e3999b700018baeb8b671be6b6c6c8ae36ed442e6f30d319b9276de12447da14",
+  "stdoutSha256": "19d96206af74b6beeaed2a9cab9ce287ecd386dafc4d2ed67012c3dc8a8fdde0"
+}

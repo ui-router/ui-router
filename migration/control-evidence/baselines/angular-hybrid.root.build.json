@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 3,
+  "expectedFailureReason": null,
+  "id": "angular-hybrid.root.build",
+  "inputHashesAfterSha256": "40fa88b73c9246e85e2631db693e79c03d5c67fdf591f2750a6e2b37f30094ca",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angular-hybrid",
+  "sourceCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+  "status": 0,
+  "stderrSha256": "b99b0ca213708440186abae15609732bfd8fa98146d6ab6b1b59b0046d5de422",
+  "stdoutSha256": "d790bf9399c478e49c92a7cb315047c3d3ecc66eef080ebac79ed042237c3409"
+}

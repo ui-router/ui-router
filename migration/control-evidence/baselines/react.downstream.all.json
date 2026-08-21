@@ -1,0 +1,21 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 83,
+  "expectedFailureReason": null,
+  "id": "react.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: react17, react18, react19, sample-app-react <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "react",
+  "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "status": 0,
+  "stderrSha256": "3a4382eaea63a86f11021433eafb65f4e64e421fe3b96bcd75293dbb02f1a21a",
+  "stdoutSha256": "5f2ba0de3e9226950f9ab5e7f51403d395b4a0e1feeaed2a57f88f96ef6e3cbf"
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "sticky-states.root.pack",
+  "inputHashesAfterSha256": "2a1395f7aea6f784f0cbb76c2d9d42ae428d9ddeecb5c36b765e7adbc0472c9c",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sticky-states",
+  "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "13f0abb2de7b02ea378f2891e8b53b432f2f3f2491e12b1b1c3dc114217c87a8"
+}

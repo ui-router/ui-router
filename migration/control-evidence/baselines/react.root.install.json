@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 16,
+  "expectedFailureReason": null,
+  "id": "react.root.install",
+  "inputHashesAfterSha256": "c63029b486b8128f4b34764d609de31e43c12a6d641ebe6c438910f7bbdaaefe",
+  "inputHashesBeforeSha256": "47f0775dfa5edc9bef04155836f94b210e0775a195f2af6cf46284b18785a1a9",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react",
+  "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "status": 0,
+  "stderrSha256": "79020dfe4c7e56f4359c79204e78b32f676db96c77b720b2290aef5664ac6fe4",
+  "stdoutSha256": "6b198fb2cd91b0eb723b1535129f162b76a5551603161e93faaaa3e404fe152c"
+}

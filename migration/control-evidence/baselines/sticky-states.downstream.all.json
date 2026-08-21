@@ -1,0 +1,19 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": "The source-native downstream command fails in its prerequisite build because unpinned tsgo resolves TypeScript 6, which rejects node10 moduleResolution and the missing rootDir.",
+  "id": "sticky-states.downstream.all",
+  "projectSummary": [],
+  "result": "waived-failure",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "sticky-states",
+  "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "status": 2,
+  "stderrSha256": "7bacb348579ff9cb95e937eded47cb050f8b763c755da9d344f4602792f6bf94",
+  "stdoutSha256": "bcf12d5aa083000b02c59fc572b8cfc2e9e15f0d2a37c4b6cbed505d0b0bec3e"
+}

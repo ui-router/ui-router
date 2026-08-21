@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 0,
+  "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package required by Vitest.",
+  "id": "rx.root.unit",
+  "inputHashesAfterSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "rx",
+  "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "status": 1,
+  "stderrSha256": "443f18b9a20fc7c4c0fba84607e7f97f7cca5b13cbe27ddcba1add6dbb4aba9b",
+  "stdoutSha256": "9ac82f2754b67e876e45ab92f28ddf85898a4e64cadc4d498d1541ed692eafce"
+}

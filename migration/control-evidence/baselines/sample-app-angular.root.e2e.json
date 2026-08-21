@@ -1,0 +1,27 @@
+{
+  "browser": {
+    "installerVersion": "@playwright/test@1.62.1",
+    "name": "chromium",
+    "revision": "1234",
+    "sha256": "e11fc9ce65c96313476f7ee9844b6fb6a9220fb048693cfe9eee00acf4170a9f"
+  },
+  "browserInstallerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "browserInstallerStdoutSha256": "c1c2b20ad62d78945f164e93718cf661096e8fd3b632d50d2dfaf5feb1d68994",
+  "browserRuntimeImageDigest": "sha256:11ccb69d8828b3d5d11c2e01c47da8c784b484451072c6d03f6a809b7a297982",
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 36,
+  "expectedFailureReason": null,
+  "id": "sample-app-angular.root.e2e",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-angular",
+  "sourceCommit": "9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "9d73f1154ac488e27781a06efbfb3051880906dcb8161d361993cad6285b42b0"
+}

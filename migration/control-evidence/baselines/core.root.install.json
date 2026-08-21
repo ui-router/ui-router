@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 11,
+  "expectedFailureReason": null,
+  "id": "core.root.install",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "core",
+  "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+  "status": 0,
+  "stderrSha256": "2694bef9f248a515bd19d54db8c2e8fa4a5239f9054f6122531dafe8a33c291b",
+  "stdoutSha256": "2a79b286b6fe3359785419a2f65ad2b59b9fef06c04b131aec927661572aa396"
+}

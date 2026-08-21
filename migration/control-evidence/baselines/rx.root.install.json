@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "durationSeconds": 10,
+  "expectedFailureReason": null,
+  "id": "rx.root.install",
+  "inputHashesAfterSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
+  "inputHashesBeforeSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "rx",
+  "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "67c953c88b79121c75a94edeab5b5b01106feb56c72591b72acc4ca206e9200f"
+}

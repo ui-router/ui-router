@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "react.root.pack",
+  "inputHashesAfterSha256": "47f0775dfa5edc9bef04155836f94b210e0775a195f2af6cf46284b18785a1a9",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react",
+  "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "status": 0,
+  "stderrSha256": "0ce280374bbe7faa12ae04a5c80428c737e609668d8e5715fd61344d3b79c057",
+  "stdoutSha256": "8fb308e2b6c907308eeece8459fa3e94fcef45f136f5bf2d44c98023a1f5c799"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "sticky-states",
+  "defaultHead": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "refs": [
+    "refs/heads/master 818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+    "refs/tags/1.0.0 e96604f90fc8da2a48830f6bf11404c83694ab4e",
+    "refs/tags/1.2.0 f69e01b3ee30a05dd4f8702d837cce06c0d74960",
+    "refs/tags/1.3.0 c85880bbfe8981fa72e9f0f631e4540c1638e605",
+    "refs/tags/1.4.0 b63a35ce2a82a1592f3a761a08a068c49d474bfd",
+    "refs/tags/1.4.1 6d749314b103c9fcf85d7e7719cd8d8241394630",
+    "refs/tags/1.5.0 d09ad57efe5252b0ef4738ba7751105e9091a06f",
+    "refs/tags/1.5.1 b02112bd4f426b46a9448f87e50f2713465320ee"
+  ],
+  "bundleSha256": "c09bc5a29f562fdfc7af07e78ab6acf1d7de96d3b5bb9f361048098e1ccf148c"
+}

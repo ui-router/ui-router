@@ -1,0 +1,27 @@
+{
+  "browser": {
+    "installerVersion": "@playwright/test@1.57.0",
+    "name": "chromium",
+    "revision": "1200",
+    "sha256": "20ffc88be1c6f7dc8351bebfaca965ff9a07617bddf696f0b67ef85e5868b29a"
+  },
+  "browserInstallerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "browserInstallerStdoutSha256": "407559863956ecf007c14eae3795dda60e1d0d1d12cddae548bf249480c5c13d",
+  "browserRuntimeImageDigest": "sha256:11ccb69d8828b3d5d11c2e01c47da8c784b484451072c6d03f6a809b7a297982",
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package, so the test command fails during its build step before browser launch.",
+  "id": "sample-app-react.root.e2e",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "sample-app-react",
+  "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
+  "status": 1,
+  "stderrSha256": "d48838d5771008cd446938d613ce8416d86f04bc3c10e251ba9ae2ebf2866587",
+  "stdoutSha256": "5608043381b84cad25df2cc6f396013dcac8d11c535c587f5ab66e9044fbca4f"
+}

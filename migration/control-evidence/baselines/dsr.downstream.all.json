@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 99,
+  "expectedFailureReason": null,
+  "id": "dsr.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: angular-cli, angularjs-webpack, react-vite <==="
+  ],
+  "result": "pass",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "dsr",
+  "sourceCommit": "0fc6644008842790681bc08f1887a530d7120cfb",
+  "status": 0,
+  "stderrSha256": "912a7950df64001856d8f342969733518299e6bad0975e8196cc3c867d1ed0a2",
+  "stdoutSha256": "3dd0412bb385e1184a07f9c08c12305e4ae9df3de1be1c0213455fb5205e67ed"
+}

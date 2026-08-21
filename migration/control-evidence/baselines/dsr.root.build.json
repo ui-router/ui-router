@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "build"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": null,
+  "id": "dsr.root.build",
+  "inputHashesAfterSha256": "92d05a415c336c26a1a8d5492989d8258352ff9d1b6ecb18ab92649a29c54fc6",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "dsr",
+  "sourceCommit": "0fc6644008842790681bc08f1887a530d7120cfb",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "9fec70d9e560f8a699427a1e655646dadbee46aa0b118b8b0b5c0a7bbb8af774"
+}

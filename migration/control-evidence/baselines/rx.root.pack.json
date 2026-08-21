@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "rx.root.pack",
+  "inputHashesAfterSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "rx",
+  "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "status": 0,
+  "stderrSha256": "938e07e7eb2439ce4a3d68f737630b547490d465afc528de9639029e6aac299e",
+  "stdoutSha256": "220e2b98374c741907553034c8c33a457195e1cbe44ac9a00b2a5d8a14de2d12"
+}

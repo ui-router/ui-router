@@ -1,0 +1,4748 @@
+{
+  "schemaVersion": 1,
+  "sourceManifestSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
+  "sources": [
+    {
+      "defaultHead": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+      "destinationPrefix": "framework/angular/router",
+      "downstreamProjects": {
+        "packageDir": "./dist",
+        "projects": {
+          "angular22": "./test-angular-versions/v22",
+          "angular22standalone": "./test-angular-versions/v22-standalone",
+          "angular22zoneless": "./test-angular-versions/v22-zoneless",
+          "sample-app-angular": "https://github.com/ui-router/sample-app-angular.git",
+          "typescript6": "./test-typescript-versions/typescript6"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 422,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 15,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22/tsconfig.app.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22/tsconfig.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22/tsconfig.spec.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-standalone/tsconfig.app.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-standalone/tsconfig.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-standalone/tsconfig.spec.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-zoneless/tsconfig.app.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-zoneless/tsconfig.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "test-angular-versions/v22-zoneless/tsconfig.spec.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 2094,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 7336,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 7338,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "0c209e337197663094d6ae55f7d75d93a12d200bce9e3702ab100a0c5a79e8a3"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "5854de158f9f9ad03986afe077e0b311558a4d15cf8a7b29205952844e37384f"
+        },
+        {
+          "path": "angular.json",
+          "sha256": "b62b8c855c99d53a89e9ba08505f5d3ffb81a0b6c4f489431264dac6d5748692"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "e7d9204c4f13992a851bd0e762138f052754094ee44c41594c575f5c81bb5253"
+        },
+        {
+          "path": "package.json",
+          "sha256": "df861314377fdb105357dfcedf951e7c7d8e6ad51e4bdb9e970bf10504ad5379"
+        },
+        {
+          "path": "test/tsconfig.spec.json",
+          "sha256": "2d7ba905bc3b6852234d06cd89a047918a9b345f0a4d21a8e36d412b7f19a532"
+        },
+        {
+          "path": "test-angular-versions/scaffold/playwright.config.ts",
+          "sha256": "85adbfe54eb145de8db1c76ae25a6aab30002e4d669449737c4ad50a8f7d405c"
+        },
+        {
+          "path": "test-angular-versions/v22/angular.json",
+          "sha256": "e213463b8ac0af7234f3fa55061e0d79d02e31f58fe40b89a93aacf73363e7aa"
+        },
+        {
+          "path": "test-angular-versions/v22/package.json",
+          "sha256": "99418ffe70762eb8012eab37b49c41b5fc2680b0280ed6fac700fc7097f3f253"
+        },
+        {
+          "path": "test-angular-versions/v22/playwright.config.ts",
+          "sha256": "85adbfe54eb145de8db1c76ae25a6aab30002e4d669449737c4ad50a8f7d405c"
+        },
+        {
+          "path": "test-angular-versions/v22/tsconfig.app.json",
+          "sha256": "7c030d64833de2975bdbc63e5fe2e7aff3177ca781b976840baff34a70be9eef"
+        },
+        {
+          "path": "test-angular-versions/v22/tsconfig.json",
+          "sha256": "e7582af56d3362e3b084283b18787c48031b90c4160ee32c05c9ebb0fd888b3a"
+        },
+        {
+          "path": "test-angular-versions/v22/tsconfig.spec.json",
+          "sha256": "c6ba2c144471c65b935adf89961dbc9b4e7ad235983556c3baf95b19de135a1c"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/angular.json",
+          "sha256": "8a47b34c46ef93b98fc81bb178e657c77d8e55b65b6f7a6384de548c7d965996"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/package.json",
+          "sha256": "91c1a5dba10ac8559420ca835c8d755a76a1b3bef9393a67bf6156e4b52f2844"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/playwright.config.ts",
+          "sha256": "85adbfe54eb145de8db1c76ae25a6aab30002e4d669449737c4ad50a8f7d405c"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/tsconfig.app.json",
+          "sha256": "21b049b4e709cacb358e3f1c4fe50d8440b4e554feb8f508a278cfabc6b7ab38"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/tsconfig.json",
+          "sha256": "e9946043dc87aef3ed24b8ffc62e83ee1a461f0fd9a03144a259f1eebf36e809"
+        },
+        {
+          "path": "test-angular-versions/v22-standalone/tsconfig.spec.json",
+          "sha256": "a65fb2949fe4c1ced35e50d7c0e9a2b8638e06ac570215eee1f783178466fd7f"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/angular.json",
+          "sha256": "65d44ff252b42b8a47855048c60468df106f0f8dfc3f5433addfa417784c6ca9"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/package.json",
+          "sha256": "3967f059353841242397cd61f034ebdfb3a6371bdb532aa07b865569691d6eee"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/playwright.config.ts",
+          "sha256": "85adbfe54eb145de8db1c76ae25a6aab30002e4d669449737c4ad50a8f7d405c"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/tsconfig.app.json",
+          "sha256": "21b049b4e709cacb358e3f1c4fe50d8440b4e554feb8f508a278cfabc6b7ab38"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/tsconfig.json",
+          "sha256": "e9946043dc87aef3ed24b8ffc62e83ee1a461f0fd9a03144a259f1eebf36e809"
+        },
+        {
+          "path": "test-angular-versions/v22-zoneless/tsconfig.spec.json",
+          "sha256": "c6ba2c144471c65b935adf89961dbc9b4e7ad235983556c3baf95b19de135a1c"
+        },
+        {
+          "path": "test-typescript-versions/scaffold/package.json",
+          "sha256": "37d056690e70274cf6503f48aca60a2a4c30cd241ce2dfa4417aa210eef77272"
+        },
+        {
+          "path": "test-typescript-versions/scaffold/tsconfig.json",
+          "sha256": "e477896aee48c971a1571bf9b5b8785abed11bb807a6d27b2335199a04127a3a"
+        },
+        {
+          "path": "test-typescript-versions/typescript6/package.json",
+          "sha256": "87b0a654cff0cc19b9614f2e0f8e2ac4ea77b307dbadd61fba2522119b498b07"
+        },
+        {
+          "path": "test-typescript-versions/typescript6/tsconfig.json",
+          "sha256": "7abdd8e2734d7e8ecec347642fe27571566a36bb6b9075dd1bbc1b013381a7f5"
+        },
+        {
+          "path": "test-typescript-versions/typescript6/yarn.lock",
+          "sha256": "5122488bc3689f871b4836a8450edb52b0d20ead56d58f765cff0ef852e861bd"
+        },
+        {
+          "path": "test-zoneless/tsconfig.spec.json",
+          "sha256": "cb752afc657a6857170c15ed901d6be4b9a8fbaa99035839f73b8c2119fc3d0f"
+        },
+        {
+          "path": "tsconfig.docgen.json",
+          "sha256": "60514b89f4a1b0b1fcecdaac6a559a55a258453ea18c903b77030fd9911c5b1e"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "af3def03f1149f66c1f48cc7cf35a395778160e7eef2f0db558f499c0436461b"
+        },
+        {
+          "path": "tsconfig.spec.json",
+          "sha256": "44737cdf27071e85d5203957e2b093e598129e2789ff5139e565ab204c8b4fd1"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "e06583da64aec9d8e7c60ec7d8f4cab7ca6b683631373cb9ef60179bf14bcdfe"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "bab1345db309754b8f83f67a27f4083c37cf92e7646a022e8104105ecf7d4d13"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "tslib": "^2.3.0"
+            },
+            "devDependencies": {
+              "@analogjs/vite-plugin-angular": "^2.2.0",
+              "@analogjs/vitest-angular": "^2.2.0",
+              "@angular-devkit/architect": "^0.2200.5",
+              "@angular/build": "^22.0.5",
+              "@angular/cli": "^22.0.5",
+              "@angular/common": "^22.0.5",
+              "@angular/compiler": "^22.0.5",
+              "@angular/compiler-cli": "^22.0.5",
+              "@angular/core": "^22.0.5",
+              "@angular/platform-browser": "^22.0.5",
+              "@eslint/js": "^9.28.0",
+              "@types/node": "^24.10.1",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "2.7.0",
+              "@uirouter/rx": "^1.0.0",
+              "chokidar": "^5.0.0",
+              "eslint": "^9.28.0",
+              "husky": "^9.0.0",
+              "jsdom": "^27.4.0",
+              "ng-packagr": "^22.0.1",
+              "prettier": "^3.4.0",
+              "pretty-quick": "^4.0.0",
+              "rxjs": "~7.8.2",
+              "typescript": "~6.0.3",
+              "typescript-eslint": "^8.33.0",
+              "vitest": "^4.0.8",
+              "zone.js": "~0.16.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@angular/common": "^22.0.0",
+              "@angular/core": "^22.0.0",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/rx": "^1.0.0"
+            }
+          },
+          "engines": {
+            "node": ">=6.0.0"
+          },
+          "finalPath": "framework/angular/router/package.json",
+          "importedPath": "framework/angular/router/package.json",
+          "name": "@uirouter/angular",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "changelog": "update_changelog --include-core",
+            "check-peer-dependencies": "check-peer-dependencies",
+            "clean": "shx rm -rf lib lib-esm _bundles _doc dist",
+            "compile": "npm run clean && ngc",
+            "docs": "generate_docs",
+            "docs:publish": "generate_docs && publish_docs",
+            "lint": "eslint src test",
+            "prepare": "husky",
+            "prepublishOnly": "echo && echo DO NOT RUN npm publish.  Instead, run npm run release && echo && echo && false",
+            "release": "release --deps @uirouter/core @uirouter/rx",
+            "test": "npm run test:zone && npm run test:zoneless",
+            "test:downstream": "test_downstream_projects",
+            "test:zone": "vitest run --project zone",
+            "test:zone:debug": "vitest --project zone --no-file-parallelism --inspect-brk",
+            "test:zone:watch": "vitest watch --project zone",
+            "test:zoneless": "vitest run --project zoneless",
+            "test:zoneless:watch": "vitest watch --project zoneless"
+          },
+          "sha256": "df861314377fdb105357dfcedf951e7c7d8e6ad51e4bdb9e970bf10504ad5379",
+          "sourcePath": "package.json",
+          "version": "22.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^22.0.7",
+              "@angular/compiler": "^22.0.7",
+              "@angular/core": "^22.0.7",
+              "@angular/platform-browser": "^22.0.7",
+              "@angular/platform-browser-dynamic": "^22.0.7",
+              "@uirouter/angular": "*",
+              "@uirouter/core": "*",
+              "@uirouter/rx": "*",
+              "rxjs": "~7.8.0",
+              "tslib": "^2.3.0",
+              "zone.js": "~0.15.0"
+            },
+            "devDependencies": {
+              "@angular/build": "^22.0.7",
+              "@angular/cli": "^22.0.7",
+              "@angular/compiler-cli": "^22.0.7",
+              "@playwright/test": "^1.49.0",
+              "istanbul-lib-instrument": "^6.0.3",
+              "serve": "^14.2.4",
+              "typescript": "~6.0.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/integration/angular-versions/v22/package.json",
+          "importedPath": "framework/angular/router/test-angular-versions/v22/package.json",
+          "name": "v22",
+          "overrides": {
+            "@uirouter/angular": {
+              "@angular/common": "$@angular/common",
+              "@angular/core": "$@angular/core"
+            }
+          },
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "ng": "ng",
+            "start": "ng serve",
+            "test": "playwright install chromium && npm run test:dev && npm run test:prod",
+            "test:dev": "ng build --configuration development && DIST_PATH=dist/v21/browser npx playwright test",
+            "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21/browser npx playwright test",
+            "watch": "ng build --watch --configuration development"
+          },
+          "sha256": "99418ffe70762eb8012eab37b49c41b5fc2680b0280ed6fac700fc7097f3f253",
+          "sourcePath": "test-angular-versions/v22/package.json",
+          "version": "0.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^22.0.8",
+              "@angular/compiler": "^22.0.8",
+              "@angular/core": "^22.0.8",
+              "@angular/platform-browser": "^22.0.8",
+              "@angular/platform-browser-dynamic": "^22.0.8",
+              "@uirouter/angular": "*",
+              "@uirouter/core": "*",
+              "@uirouter/rx": "*",
+              "rxjs": "~7.8.0",
+              "tslib": "^2.3.0",
+              "zone.js": "~0.15.0"
+            },
+            "devDependencies": {
+              "@angular/build": "^22.0.8",
+              "@angular/cli": "^22.0.8",
+              "@angular/compiler-cli": "^22.0.8",
+              "@playwright/test": "^1.49.0",
+              "istanbul-lib-instrument": "^6.0.3",
+              "serve": "^14.2.4",
+              "typescript": "~6.0.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/integration/angular-versions/v22-standalone/package.json",
+          "importedPath": "framework/angular/router/test-angular-versions/v22-standalone/package.json",
+          "name": "v22-standalone",
+          "overrides": {
+            "@uirouter/angular": {
+              "@angular/common": "$@angular/common",
+              "@angular/core": "$@angular/core"
+            }
+          },
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "ng": "ng",
+            "start": "ng serve",
+            "test": "playwright install chromium && npm run test:dev && npm run test:prod",
+            "test:dev": "ng build --configuration development && DIST_PATH=dist/v21-standalone/browser npx playwright test",
+            "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21-standalone/browser npx playwright test",
+            "watch": "ng build --watch --configuration development"
+          },
+          "sha256": "91c1a5dba10ac8559420ca835c8d755a76a1b3bef9393a67bf6156e4b52f2844",
+          "sourcePath": "test-angular-versions/v22-standalone/package.json",
+          "version": "0.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^22.0.8",
+              "@angular/compiler": "^22.0.8",
+              "@angular/core": "^22.0.8",
+              "@angular/platform-browser": "^22.0.8",
+              "@angular/platform-browser-dynamic": "^22.0.8",
+              "@uirouter/angular": "*",
+              "@uirouter/core": "*",
+              "@uirouter/rx": "*",
+              "rxjs": "~7.8.0",
+              "tslib": "^2.3.0"
+            },
+            "devDependencies": {
+              "@angular/build": "^22.0.8",
+              "@angular/cli": "^22.0.8",
+              "@angular/compiler-cli": "^22.0.8",
+              "@playwright/test": "^1.49.0",
+              "serve": "^14.2.4",
+              "typescript": "~6.0.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/integration/angular-versions/v22-zoneless/package.json",
+          "importedPath": "framework/angular/router/test-angular-versions/v22-zoneless/package.json",
+          "name": "v22-zoneless",
+          "overrides": {
+            "@uirouter/angular": {
+              "@angular/common": "$@angular/common",
+              "@angular/core": "$@angular/core"
+            }
+          },
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "ng": "ng",
+            "start": "ng serve",
+            "test": "playwright install chromium && npm run test:dev && npm run test:prod",
+            "test:dev": "ng build --configuration development && DIST_PATH=dist/v21-zoneless/browser npx playwright test",
+            "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21-zoneless/browser npx playwright test",
+            "watch": "ng build --watch --configuration development"
+          },
+          "sha256": "3967f059353841242397cd61f034ebdfb3a6371bdb532aa07b865569691d6eee",
+          "sourcePath": "test-angular-versions/v22-zoneless/package.json",
+          "version": "0.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^12",
+              "@angular/core": "^12",
+              "@uirouter/angular": "latest",
+              "rxjs": "^6.0.0",
+              "typescript": "4.0"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/integration/typescript-versions/scaffold/package.json",
+          "importedPath": "framework/angular/router/test-typescript-versions/scaffold/package.json",
+          "name": "@uirouter/angular-test-typescript3.9",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "37d056690e70274cf6503f48aca60a2a4c30cd241ce2dfa4417aa210eef77272",
+          "sourcePath": "test-typescript-versions/scaffold/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^22.0.7",
+              "@angular/core": "^22.0.7",
+              "@uirouter/angular": "*",
+              "rxjs": "~7.8.0",
+              "typescript": "~6.0.3"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/integration/typescript-versions/typescript6/package.json",
+          "importedPath": "framework/angular/router/test-typescript-versions/typescript6/package.json",
+          "name": "@uirouter/angular-test-typescript6",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "87b0a654cff0cc19b9614f2e0f8e2ac4ea77b307dbadd61fba2522119b498b07",
+          "sourcePath": "test-typescript-versions/typescript6/package.json",
+          "version": "1.0.0"
+        }
+      ],
+      "moves": [
+        {
+          "from": "framework/angular/router/test-angular-versions",
+          "to": "framework/angular/integration/angular-versions"
+        },
+        {
+          "from": "framework/angular/router/test-typescript-versions",
+          "to": "framework/angular/integration/typescript-versions"
+        }
+      ],
+      "name": "angular"
+    },
+    {
+      "defaultHead": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+      "destinationPrefix": "framework/angular-hybrid/router",
+      "downstreamProjects": {
+        "example": "./example",
+        "sample-app-angular-hybrid": "https://github.com/ui-router/sample-app-angular-hybrid.git"
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 661,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 10,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"npm run build && test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 812,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 3765,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 3767,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "4927871a978611cb51f6d26731c6b1be74458a84eb9dc3b6549efa2e45c5e93e"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "64cf37eaa51cd79db319f86c927b2df28f79e8dd9e6ec0749b8824fecf08818d"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "10265c8120ee885939642f4447c5cd50638a5715950336f538c18269aa3af064"
+        },
+        {
+          "path": "example/cypress.config.ts",
+          "sha256": "6c407f58c89d2b8d4d8d139f2d20ad7865a8793b17a12aa0e486931f0df238e5"
+        },
+        {
+          "path": "example/package.json",
+          "sha256": "608fd09a380d2c19d165325a0474c851cdde0528e3537c0a7c25555b7a229d3a"
+        },
+        {
+          "path": "example/tsconfig.json",
+          "sha256": "7896cdf0c521dd9d7addb5e32454cd12eb01ce95ff32047c4f609c7e497c661c"
+        },
+        {
+          "path": "example/webpack.config.js",
+          "sha256": "ca11ac5b6bd25c4b6273e47f28281409b8b99d56b003935bf93b7e25a3e132cb"
+        },
+        {
+          "path": "package.json",
+          "sha256": "18da219ada4823e84a9ee5b29dc5f3ed21e12b03056f5669f0e32f42a35dc7ae"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "bfc6c52c2bd79590d28c7de49edaf124d8667d89ac575e224a7848b0a5131f1b"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "b17b8e26524fb25e93734373d74920a32ce872428fca623c3d22f0e664a12585"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/animations": "^22.0.5",
+              "@angular/common": "^22.0.5",
+              "@angular/compiler": "^22.0.5",
+              "@angular/compiler-cli": "^22.0.5",
+              "@angular/core": "^22.0.5",
+              "@angular/platform-browser": "^22.0.5",
+              "@angular/platform-browser-dynamic": "^22.0.5",
+              "@angular/upgrade": "^22.0.5",
+              "@types/angular": "^1.8.9",
+              "@types/jquery": "^3.2.16",
+              "@uirouter/angular": "^22.0.0",
+              "@uirouter/angular-hybrid": "latest",
+              "@uirouter/angularjs": "1.1.1",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/rx": "^1.0.0",
+              "angular": "1.8.3",
+              "rxjs": "~7.8.2",
+              "tslib": "^2.8.1",
+              "typescript": "~6.0.3",
+              "zone.js": "~0.16.0"
+            },
+            "devDependencies": {
+              "@uirouter/cypress-runner": "^3.1.0",
+              "ts-loader": "9.4.2",
+              "webpack": "^5.77.0",
+              "webpack-cli": "^5.0.1",
+              "webpack-dev-server": "^4.13.2"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular-hybrid/examples/example/package.json",
+          "importedPath": "framework/angular-hybrid/router/example/package.json",
+          "name": null,
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "webpack",
+            "prebuild": "npx check-peer-dependencies --install",
+            "prestart": "npx check-peer-dependencies --install",
+            "start": "webpack serve --open",
+            "test": "npm run build && cypress-runner run --path .",
+            "test:ui": "npm run build && cypress-runner open --path ."
+          },
+          "sha256": "608fd09a380d2c19d165325a0474c851cdde0528e3537c0a7c25555b7a229d3a",
+          "sourcePath": "example/package.json",
+          "version": null
+        },
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@angular/animations": "^22.0.5",
+              "@angular/common": "^22.0.5",
+              "@angular/compiler": "^22.0.5",
+              "@angular/compiler-cli": "^22.0.5",
+              "@angular/core": "^22.0.5",
+              "@angular/platform-browser": "^22.0.5",
+              "@angular/platform-browser-dynamic": "^22.0.5",
+              "@angular/upgrade": "^22.0.5",
+              "@types/angular": "^1.8.9",
+              "@types/jquery": "^3.5.6",
+              "@uirouter/angular": "^22.0.0",
+              "@uirouter/angularjs": "^1.1.0",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "^2.8.0",
+              "@uirouter/rx": "^1.0.0",
+              "angular": "^1.8.3",
+              "husky": "^9.1.7",
+              "ng-packagr": "^22.0.1",
+              "prettier": "^3.6.2",
+              "pretty-quick": "^4.2.2",
+              "rxjs": "~7.8.2",
+              "rxjs-compat": "^6.5.4",
+              "shx": "^0.3.3",
+              "tslib": "^2.8.1",
+              "typescript": "~6.0.3",
+              "zone.js": "~0.16.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@angular/core": "^22.0.0",
+              "@angular/upgrade": "^22.0.0",
+              "@uirouter/angular": "^22.0.0",
+              "@uirouter/angularjs": "^1.0.30",
+              "@uirouter/core": "^6.1.2",
+              "angular": "^1.5.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "framework/angular-hybrid/router/package.json",
+          "importedPath": "framework/angular-hybrid/router/package.json",
+          "name": "@uirouter/angular-hybrid",
+          "overrides": {},
+          "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+          "private": null,
+          "resolutions": {
+            "@uirouter/core": "^6.1.2"
+          },
+          "scripts": {
+            "build": "npm run clean && ng-packagr -p ng-package.json",
+            "clean": "shx rm -rf lib _bundles dist",
+            "example": "cd example && npm i && npm start",
+            "prepare": "husky",
+            "prepublishOnly": "npm run build",
+            "release": "release --deps @uirouter/core @uirouter/angular @uirouter/angularjs",
+            "test": "npm run build",
+            "test:downstream": "npm run build && test_downstream_projects"
+          },
+          "sha256": "18da219ada4823e84a9ee5b29dc5f3ed21e12b03056f5669f0e32f42a35dc7ae",
+          "sourcePath": "package.json",
+          "version": "22.0.0"
+        }
+      ],
+      "moves": [
+        {
+          "from": "framework/angular-hybrid/router/example",
+          "to": "framework/angular-hybrid/examples/example"
+        }
+      ],
+      "name": "angular-hybrid"
+    },
+    {
+      "defaultHead": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+      "destinationPrefix": "framework/angularjs/router",
+      "downstreamProjects": {
+        "sample-app-angularjs": "https://github.com/ui-router/sample-app-angularjs.git",
+        "typescript": {
+          "typescript3.9": "./test/typescript/3.9"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 242,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 27,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 66,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: 'release/ui-router-angularjs' + extension,"
+            },
+            {
+              "line": 83,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: 'release/angular-ui-router' + extension,"
+            },
+            {
+              "line": 98,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: 'release/stateEvents' + extension,"
+            },
+            {
+              "line": 111,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: 'release/resolveService' + extension,"
+            }
+          ],
+          "path": "rollup.config.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 13788,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 19867,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.2/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 15535,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 22266,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.3/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 17375,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 24669,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.4/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 2328,
+              "needles": [
+                "file:"
+              ],
+              "text": "*  First, download the file:"
+            }
+          ],
+          "path": "test/angular/1.5/angular-mocks.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 1540,
+              "needles": [
+                "file:"
+              ],
+              "text": "case 'file:':"
+            },
+            {
+              "line": 19000,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 27160,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.5/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 2396,
+              "needles": [
+                "file:"
+              ],
+              "text": "*  First, download the file:"
+            }
+          ],
+          "path": "test/angular/1.6/angular-mocks.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 1687,
+              "needles": [
+                "file:"
+              ],
+              "text": "case 'file:':"
+            },
+            {
+              "line": 19863,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 28542,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.6/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 2629,
+              "needles": [
+                "file:"
+              ],
+              "text": "*  First, download the file:"
+            }
+          ],
+          "path": "test/angular/1.7/angular-mocks.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 1684,
+              "needles": [
+                "file:"
+              ],
+              "text": "case 'file:':"
+            },
+            {
+              "line": 20497,
+              "needles": [
+                "file:"
+              ],
+              "text": "* won't work on all browsers.  Also, loading templates from `file://` URL does not work on some"
+            },
+            {
+              "line": 29545,
+              "needles": [
+                "file:"
+              ],
+              "text": "* For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`"
+            }
+          ],
+          "path": "test/angular/1.7/angular.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 762,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 6069,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 6071,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "42d913c0b99f65eb42ec4dfe0465b359dd6e9958dca79ba4e46147e501c40287"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "2781cf898fb3c5b942fba8072637596b76fcbb65b1244bac4c964b0ba0f6f8bf"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "ad8616113f5636cd24f8ffb9dbea70adbe153684476ee2841c0700c8af6bc42e"
+        },
+        {
+          "path": "jest.config.js",
+          "sha256": "f373274dd6a4cb326a1ea81aebfd55d2ed4a0b04ce592cdf66a3df68fd6cd266"
+        },
+        {
+          "path": "karma.conf.js",
+          "sha256": "f514fc77f24aaf91b3bcec36d1cdd5855150f2a5876ecd0197680a137d7a056d"
+        },
+        {
+          "path": "package.json",
+          "sha256": "7986c6180a3c9ead7121c3d54c91d856f5409c7077ee2e67731aa9c8e9092b14"
+        },
+        {
+          "path": "test/tsconfig.json",
+          "sha256": "efbd60446dfd557a6955807a2620d0bfcf151a2a6bd5874ca615f1b2b1d90969"
+        },
+        {
+          "path": "test/typescript/3.9/package.json",
+          "sha256": "c71607216b12d958fa40dd38e57658b3d345174a525746ef457cb717e65ee3e4"
+        },
+        {
+          "path": "test/typescript/3.9/tsconfig.json",
+          "sha256": "e477896aee48c971a1571bf9b5b8785abed11bb807a6d27b2335199a04127a3a"
+        },
+        {
+          "path": "test/typescript/template/package.json",
+          "sha256": "a18d0ad9ef06d735139794a11b7529b21d43a31ea9a15c1f84773c9acc82ce78"
+        },
+        {
+          "path": "test/typescript/template/tsconfig.json",
+          "sha256": "e477896aee48c971a1571bf9b5b8785abed11bb807a6d27b2335199a04127a3a"
+        },
+        {
+          "path": "tsconfig.docgen.json",
+          "sha256": "2934929b6c260d606f3638c286e3b52cfc4c4622b34fa3452469c7fdeae9a21a"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "bbb16e7358259151f95a1624dec6ac08f068b75fe9f912e46973f3aa2c846564"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "065ad5447cae2896d05fc97d7a263b557b9a934d497d9dddbabf807c75ebc841"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@types/angular": "1.6.57",
+              "@types/angular-animate": "^1.5.10",
+              "@types/angular-mocks": "^1.7.0",
+              "@types/jest": "^26.0.5",
+              "@typescript-eslint/eslint-plugin": "^3.7.0",
+              "@typescript-eslint/parser": "^3.7.0",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "^2.6.4",
+              "angular": "1.8.0",
+              "dts-downlevel": "^0.4.0",
+              "eslint": "^7.5.0",
+              "eslint-config-prettier": "^6.11.0",
+              "husky": "^4.2.5",
+              "jest": "^26.0.1",
+              "lodash": "^4.17.19",
+              "prettier": "^2.0.5",
+              "pretty-quick": "^2.0.1",
+              "rollup": "^2.22.1",
+              "rollup-plugin-node-resolve": "^5.2.0",
+              "rollup-plugin-sourcemaps": "^0.6.2",
+              "rollup-plugin-terser": "^6.1.0",
+              "ts-jest": "^26.0.0",
+              "typescript": "^3.9.7"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@uirouter/core": "^6.1.2",
+              "angular": ">=1.2.0"
+            }
+          },
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "finalPath": "framework/angularjs/router/package.json",
+          "importedPath": "framework/angularjs/router/package.json",
+          "name": "@uirouter/angularjs",
+          "overrides": {},
+          "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "artifacts": "artifact_tagging",
+            "build": "npm run clean && npm run compile && npm run bundle && npm run fixmaps:lib && npm run fixmaps:bundle",
+            "bundle": "npm run bundle_router && npm run bundle_monolithic_router && npm run bundle_events && npm run bundle_resolve",
+            "bundle_events": "rollup -c --environment EVENTS  && rollup -c --environment EVENTS,MINIFY",
+            "bundle_monolithic_router": "rollup -c --environment ROUTER,MONOLITHIC  && rollup -c --environment ROUTER,MINIFY,MONOLITHIC",
+            "bundle_resolve": "rollup -c --environment RESOLVE && rollup -c --environment RESOLVE,MINIFY",
+            "bundle_router": "rollup -c --environment ROUTER  && rollup -c --environment ROUTER,MINIFY",
+            "clean": "shx rm -rf lib lib-esm _doc build release *.log",
+            "compile": "tsc && tsc -m es6 --outDir lib-esm && npm run fixdts",
+            "debug": "npm run test:debug",
+            "docs": "generate_docs",
+            "docs:publish": "generate_docs && publish_docs",
+            "fixdts": "dts-downlevel 'lib/**/*.d.ts' 'lib-esm/**/*.d.ts'",
+            "fixmaps:bundle": "tweak_sourcemap_paths -a --include 'release/**/*.js.map'",
+            "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+            "lint": "eslint src/**/*.ts",
+            "package": "npm run build",
+            "prepublishOnly": "npm run build",
+            "release": "release --deps @uirouter/core && node ./scripts/npm_angular_ui_router_release.js && node ./scripts/bower_release.js",
+            "test": "tsc && NG=1.7 jest && NG=1.6 jest && NG=1.5 jest && NG=1.4 jest && NG=1.3 jest && NG=1.2 jest",
+            "test:debug": "node --inspect ./node_modules/.bin/jest --runInBand --watch",
+            "test:downstream": "test_downstream_projects",
+            "test:ng12": "NG=1.2 jest",
+            "test:ng13": "NG=1.3 jest",
+            "test:ng14": "NG=1.4 jest",
+            "test:ng15": "NG=1.5 jest",
+            "test:ng16": "NG=1.6 jest",
+            "test:ng17": "NG=1.7 jest",
+            "watch": "jest --watch"
+          },
+          "sha256": "7986c6180a3c9ead7121c3d54c91d856f5409c7077ee2e67731aa9c8e9092b14",
+          "sourcePath": "package.json",
+          "version": "1.1.2"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@types/angular": "latest",
+              "@uirouter/angularjs": "latest",
+              "typescript": "3.9"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angularjs/integration/typescript-versions/3.9/package.json",
+          "importedPath": "framework/angularjs/router/test/typescript/3.9/package.json",
+          "name": null,
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "c71607216b12d958fa40dd38e57658b3d345174a525746ef457cb717e65ee3e4",
+          "sourcePath": "test/typescript/3.9/package.json",
+          "version": null
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@types/angular": "latest",
+              "@uirouter/angularjs": "latest",
+              "typescript": "VERSION"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angularjs/integration/typescript-versions/template/package.json",
+          "importedPath": "framework/angularjs/router/test/typescript/template/package.json",
+          "name": null,
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "a18d0ad9ef06d735139794a11b7529b21d43a31ea9a15c1f84773c9acc82ce78",
+          "sourcePath": "test/typescript/template/package.json",
+          "version": null
+        }
+      ],
+      "moves": [
+        {
+          "from": "framework/angularjs/router/test/typescript",
+          "to": "framework/angularjs/integration/typescript-versions"
+        }
+      ],
+      "name": "angularjs"
+    },
+    {
+      "defaultHead": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+      "destinationPrefix": "core",
+      "downstreamProjects": {
+        "angular": {
+          "angular": "https://github.com/ui-router/angular.git"
+        },
+        "angularjs": {
+          "angularjs": "https://github.com/angular-ui/ui-router.git"
+        },
+        "other": {
+          "sticky-states": "https://github.com/ui-router/sticky-states.git",
+          "typescript3.9": "./test/typescript3.9",
+          "typescript5.4": "./test/typescript5.4"
+        },
+        "react": {
+          "react": "https://github.com/ui-router/react.git"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 150,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 15,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 37,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-core' + extension,"
+            }
+          ],
+          "path": "rollup.config.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 358,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 4489,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 4491,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "c15beaefff6a821b6a246d3a7cb6c695c211631cd70ad7f2013deba58525b465"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "4961b39e0ff8443ceeb1fe23c29a205c99dcd086a8b609bf412fca44eb5c969e"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "084ba5b35b7847bb8b4ec30ce713a5cadf7eae2e9beab639564f9fa2def27b52"
+        },
+        {
+          "path": "karma.conf.js",
+          "sha256": "acb850a723d1348bfb936438001a6e7f5d4827c516ce28c3dff69c864464509f"
+        },
+        {
+          "path": "package.json",
+          "sha256": "f1b6737727b3ff414285a015444243bb23b80f1e4fbb456649b2c0d00cd1684f"
+        },
+        {
+          "path": "test/tsconfig.json",
+          "sha256": "efbd60446dfd557a6955807a2620d0bfcf151a2a6bd5874ca615f1b2b1d90969"
+        },
+        {
+          "path": "test/typescript3.9/package.json",
+          "sha256": "7ecaa8f804c0f126305b62eeb026e61483c420a0643c71d8481ff5fb82107d1f"
+        },
+        {
+          "path": "test/typescript3.9/tsconfig.json",
+          "sha256": "54f60ef4770647f568a9c9fcae8ee1481a789e87f4fbdb1c94d6901486f7eac5"
+        },
+        {
+          "path": "test/typescript5.4/package.json",
+          "sha256": "52542d6e28b14269994d261d4b4a7d33f69d4fe7f33b3dfdee697e47a3ef13b4"
+        },
+        {
+          "path": "test/typescript5.4/tsconfig.json",
+          "sha256": "54f60ef4770647f568a9c9fcae8ee1481a789e87f4fbdb1c94d6901486f7eac5"
+        },
+        {
+          "path": "tsconfig.docgen.json",
+          "sha256": "d6a45e1e8b50c04b3d3caef5e3e39feb98f94c7e7724f437b04a4c9dae901a1b"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "78c692db18046f49d12034f8f3f6443586da0ff42476e29189f777a0787c2034"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "3e9049846f839f481ef39f50d8af806565a0add56fac9b3c4544b986af9c4055"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@types/jasmine": "^5.1.4",
+              "@types/jquery": "^3.3.36",
+              "@typescript-eslint/eslint-plugin": "^7.16.0",
+              "@typescript-eslint/parser": "^7.16.0",
+              "@uirouter/publish-scripts": "^2.6.3",
+              "bufferutil": "4.0.2",
+              "dts-downlevel": "^0.4.0",
+              "eslint": "^8.57.0",
+              "fork-ts-checker-webpack-plugin": "^9.0.2",
+              "husky": "^4.2.5",
+              "jasmine-core": "^3.3.0",
+              "karma": "^5.0.4",
+              "karma-chrome-launcher": "^3.1.0",
+              "karma-firefox-launcher": "^2.1.0",
+              "karma-jasmine": "^4.0.1",
+              "karma-script-launcher": "^1.0.0",
+              "karma-sourcemap-loader": "^0.4.0",
+              "karma-webpack": "^5.0.1",
+              "prettier": "^2.0.5",
+              "pretty-quick": "^3.1.0",
+              "rollup": "1.32.1",
+              "rollup-plugin-node-resolve": "^5.0.2",
+              "rollup-plugin-sourcemaps": "^0.6.1",
+              "rollup-plugin-uglify": "^6.0.0",
+              "ts-loader": "^8.0.12",
+              "typescript": "~5.4.5",
+              "utf-8-validate": "5.0.3",
+              "webpack": "^5.92.1"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "finalPath": "core/package.json",
+          "importedPath": "core/package.json",
+          "name": "@uirouter/core",
+          "overrides": {},
+          "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+          "private": null,
+          "resolutions": {
+            "chokidar": "3.3.1"
+          },
+          "scripts": {
+            "build": "run-s compile fixdts bundle fixmaps:*",
+            "bundle": "rollup -c && rollup -c --environment MINIFY",
+            "changelog": "show_changelog",
+            "clean": "shx rm -rf lib lib-esm _bundles .cache _doc",
+            "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
+            "debug": "karma start --singleRun=false --autoWatch=true --autoWatchInterval=1 --browsers=ChromeCanary",
+            "docs": "generate_docs",
+            "docs:publish": "generate_docs && publish_docs",
+            "fixdts": "dts-downlevel --semver '>=2.2.0' 'lib/**/*.d.ts' 'lib-esm/**/*.d.ts'",
+            "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
+            "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+            "prepublishOnly": "npm run build",
+            "release": "release",
+            "test": "karma start",
+            "test:downstream": "test_downstream_projects",
+            "watch": "run-p watch:*",
+            "watch:buildesm": "tsc -w -m es6 --outDir lib-esm",
+            "watch:buildjs": "tsc -w",
+            "watch:dts-downlevel": "npm run fixdts",
+            "watch:test": "karma start --singleRun=false --autoWatch=true --autoWatchInterval=1"
+          },
+          "sha256": "f1b6737727b3ff414285a015444243bb23b80f1e4fbb456649b2c0d00cd1684f",
+          "sourcePath": "package.json",
+          "version": "6.1.2"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/core": "latest",
+              "typescript": "3.9"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "core/integration/typescript-3.9/package.json",
+          "importedPath": "core/test/typescript3.9/package.json",
+          "name": "@uirouter/core-test-typescript3.9",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "7ecaa8f804c0f126305b62eeb026e61483c420a0643c71d8481ff5fb82107d1f",
+          "sourcePath": "test/typescript3.9/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/core": "latest",
+              "typescript": "5.4.5"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "core/integration/typescript-5.4/package.json",
+          "importedPath": "core/test/typescript5.4/package.json",
+          "name": "@uirouter/core-test-typescript5.4",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "test": "tsc"
+          },
+          "sha256": "52542d6e28b14269994d261d4b4a7d33f69d4fe7f33b3dfdee697e47a3ef13b4",
+          "sourcePath": "test/typescript5.4/package.json",
+          "version": "1.0.0"
+        }
+      ],
+      "moves": [
+        {
+          "from": "core/test/typescript3.9",
+          "to": "core/integration/typescript-3.9"
+        },
+        {
+          "from": "core/test/typescript5.4",
+          "to": "core/integration/typescript-5.4"
+        }
+      ],
+      "name": "core"
+    },
+    {
+      "defaultHead": "0fc6644008842790681bc08f1887a530d7120cfb",
+      "destinationPrefix": "plugins/dsr",
+      "downstreamProjects": {
+        "angular": {
+          "angular-cli": "./examples/angular-cli"
+        },
+        "angularjs": {
+          "angularjs-webpack": "./examples/angularjs-webpack"
+        },
+        "react": {
+          "react-vite": "./examples/react-vite"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 1458,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"^1.0.0-pre.53\","
+            },
+            {
+              "line": 1467,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"publish_yalc_package\": \"publish_yalc_package.js\","
+            },
+            {
+              "line": 1470,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test_downstream_projects\": \"test_downstream_projects.js\","
+            },
+            {
+              "line": 6868,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc\": {"
+            },
+            {
+              "line": 6870,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"resolved\": \"https://registry.npmjs.org/yalc/-/yalc-1.0.0-pre.53.tgz\","
+            },
+            {
+              "line": 6885,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"src/yalc.js\""
+            },
+            {
+              "line": 6888,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/ansi-styles\": {"
+            },
+            {
+              "line": 6904,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/chalk\": {"
+            },
+            {
+              "line": 6921,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/cliui\": {"
+            },
+            {
+              "line": 6933,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/color-convert\": {"
+            },
+            {
+              "line": 6946,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/color-name\": {"
+            },
+            {
+              "line": 6953,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/has-flag\": {"
+            },
+            {
+              "line": 6963,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/ini\": {"
+            },
+            {
+              "line": 6973,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/supports-color\": {"
+            },
+            {
+              "line": 6986,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/yargs\": {"
+            }
+          ],
+          "path": "package-lock.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 10,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 24,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-dsr' + extension,"
+            }
+          ],
+          "path": "rolldown.config.mjs"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "e91e54ac1e6d90a99427729fb194759156f18383cb9a951c5748cc7d4b6abe90"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "370583b7526e2e06677e0288937e0dab4a1347c999c4897aa2690076b4c2ca1f"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "230139965af6bfc2c08d0a68a607f6942d73ce540e2474c91fc0027e9fc58734"
+        },
+        {
+          "path": "examples/angular-cli/angular.json",
+          "sha256": "b8d34d0b4298e936097da3337ac81467a380b864864f14acc400696a0a692244"
+        },
+        {
+          "path": "examples/angular-cli/package.json",
+          "sha256": "35f7f751ee697ed568aab49525044e492698e91a1bb0064c3560b957404d8af0"
+        },
+        {
+          "path": "examples/angular-cli/playwright.config.js",
+          "sha256": "04df7c3af198e36bc4800cc597484e36cc3c4fb3c89b9e5a1909e0e6c8a6881f"
+        },
+        {
+          "path": "examples/angular-cli/tsconfig.app.json",
+          "sha256": "5f4183f0947c9a412d936e7ae2a5967d5692a0c9952325f9e8050fccb135d82a"
+        },
+        {
+          "path": "examples/angular-cli/tsconfig.json",
+          "sha256": "c9c57c0ba169a19f85262940e27913f7ae3d57c65531fccc8585d685956e8679"
+        },
+        {
+          "path": "examples/angularjs-webpack/package.json",
+          "sha256": "de1e1a36cf46d4b82a3a0aec9ccc8b6c9c5f5178dd6e055f050f86a7d892c140"
+        },
+        {
+          "path": "examples/angularjs-webpack/playwright.config.js",
+          "sha256": "b4b43a2a719062a39cf130776ed9ee489d241e71f864c2c1470bdf9263c38efd"
+        },
+        {
+          "path": "examples/angularjs-webpack/webpack.config.js",
+          "sha256": "e0cbf35deb98759ef8f2d49afe017bb0fe5ca26ba16e626af17f356de594f6c0"
+        },
+        {
+          "path": "examples/react-vite/package.json",
+          "sha256": "35d3c8193beced6763071532aa1830214bb7dca611d980b2fdc7ec3b598f1027"
+        },
+        {
+          "path": "examples/react-vite/playwright.config.js",
+          "sha256": "172e1cc733650983d753bc3fa1a99c2eae042044ef8a770ee4107266a136dca6"
+        },
+        {
+          "path": "examples/react-vite/vite.config.js",
+          "sha256": "0709465427668ae85ef999f63762d7a06fd92962363fe8cc142ad656d3548115"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "bde04749d9f87f5db5a60246ca577e6a887db1d2ca8969be81c1f01d3dda44ae"
+        },
+        {
+          "path": "package.json",
+          "sha256": "636a0bb8fb939534bc395b0fdbdad99402fd8917391f2f66e9e1abc8c0c1c9a3"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "b97c1b7161a9158f5543e747a8488520a1531542a8328d6c2ef0e95ae63102d2"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "8d62adba808fb03a27aab7f2fcf5323748438a4b04d89b20aaadf9ef6450f0e1"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^17.0.0",
+              "@angular/compiler": "^17.0.0",
+              "@angular/core": "^17.0.0",
+              "@angular/platform-browser": "^17.0.0",
+              "@angular/platform-browser-dynamic": "^17.0.0",
+              "@uirouter/angular": "^13.0.0",
+              "@uirouter/core": "^6.1.0",
+              "@uirouter/dsr": "^1.0.2",
+              "@uirouter/rx": "^1.0.0",
+              "@uirouter/visualizer": "^7.0.0",
+              "rxjs": "^7.8.0",
+              "tslib": "^2.6.0",
+              "zone.js": "^0.14.0"
+            },
+            "devDependencies": {
+              "@angular-devkit/build-angular": "^17.0.0",
+              "@angular/cli": "^17.0.0",
+              "@angular/compiler-cli": "^17.0.0",
+              "@playwright/test": "^1.40.0",
+              "serve": "^14.2.0",
+              "typescript": "~5.2.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/dsr/examples/angular-cli/package.json",
+          "importedPath": "plugins/dsr/examples/angular-cli/package.json",
+          "name": "angular-cli",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "ng": "ng",
+            "postinstall": "npx playwright install chromium",
+            "start": "ng serve",
+            "test": "npm run build && npx playwright test",
+            "test:ui": "npm run build && npx playwright test --ui"
+          },
+          "sha256": "35f7f751ee697ed568aab49525044e492698e91a1bb0064c3560b957404d8af0",
+          "sourcePath": "examples/angular-cli/package.json",
+          "version": "0.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/angularjs": "^1.1.0",
+              "@uirouter/core": "^6.1.0",
+              "@uirouter/dsr": "^1.0.2",
+              "@uirouter/visualizer": "^7.0.0",
+              "angular": "^1.8.3"
+            },
+            "devDependencies": {
+              "@babel/core": "^7.24.0",
+              "@babel/preset-env": "^7.24.0",
+              "@playwright/test": "^1.40.0",
+              "babel-loader": "^9.1.3",
+              "serve": "^14.2.0",
+              "webpack": "^5.90.0",
+              "webpack-cli": "^5.1.4",
+              "webpack-dev-server": "^5.0.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/dsr/examples/angularjs-webpack/package.json",
+          "importedPath": "plugins/dsr/examples/angularjs-webpack/package.json",
+          "name": "angularjs-webpack",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "webpack --mode production",
+            "postinstall": "npx playwright install chromium",
+            "start": "webpack serve --mode development --open",
+            "test": "npm run build && npx playwright test",
+            "test:ui": "npm run build && npx playwright test --ui"
+          },
+          "sha256": "de1e1a36cf46d4b82a3a0aec9ccc8b6c9c5f5178dd6e055f050f86a7d892c140",
+          "sourcePath": "examples/angularjs-webpack/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/core": "^6.1.0",
+              "@uirouter/dsr": "^1.0.2",
+              "@uirouter/react": "^1.0.7",
+              "@uirouter/visualizer": "^7.0.0",
+              "react": "^18.2.0",
+              "react-dom": "^18.2.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.40.0",
+              "@vitejs/plugin-react": "^4.2.0",
+              "serve": "^14.2.0",
+              "vite": "^5.0.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/dsr/examples/react-vite/package.json",
+          "importedPath": "plugins/dsr/examples/react-vite/package.json",
+          "name": "react-example",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "postinstall": "npx playwright install chromium",
+            "preview": "vite preview",
+            "start": "vite",
+            "test": "npm run build && npx playwright test",
+            "test:ui": "npm run build && npx playwright test --ui"
+          },
+          "sha256": "35d3c8193beced6763071532aa1830214bb7dca611d980b2fdc7ec3b598f1027",
+          "sourcePath": "examples/react-vite/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@types/lodash": "^4.17.0",
+              "@typescript/native-preview": "^7.0.0-dev.20260101.1",
+              "@uirouter/core": "^6.1.0",
+              "@uirouter/publish-scripts": "^2.6.8",
+              "jsdom": "^26.1.0",
+              "lodash": "^4.17.21",
+              "prettier": "^3.4.0",
+              "rolldown": "^1.0.0-beta.58",
+              "vitest": "^3.2.4"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@uirouter/core": ">=5.0.0"
+            }
+          },
+          "engines": {
+            "node": ">=18.0.0"
+          },
+          "finalPath": "plugins/dsr/package.json",
+          "importedPath": "plugins/dsr/package.json",
+          "name": "@uirouter/dsr",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
+            "changelog": "update_changelog",
+            "clean": "shx rm -rf lib lib-esm _bundles",
+            "compile": "npm run clean && tsgo && tsgo -m es6 --outDir lib-esm",
+            "prepublishOnly": "npm run build",
+            "release": "release",
+            "test": "vitest run",
+            "test:downstream": "test_downstream_projects",
+            "watch": "run-p watch:*",
+            "watch:buildjs": "tsgo -w",
+            "watch:test": "vitest"
+          },
+          "sha256": "636a0bb8fb939534bc395b0fdbdad99402fd8917391f2f66e9e1abc8c0c1c9a3",
+          "sourcePath": "package.json",
+          "version": "1.2.0"
+        }
+      ],
+      "moves": [],
+      "name": "dsr"
+    },
+    {
+      "defaultHead": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+      "destinationPrefix": "tools/publish-scripts",
+      "downstreamProjects": null,
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 50,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **yalc:** exclude yarn.lock deletion when rsync'ing from src to dest ([8eceed5](https://github.com/ui-router/publish-scripts/commit/8eceed5))"
+            },
+            {
+              "line": 57,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **yalc:** Use rsync to copy downstream tests to the .downstream_cache directory ([6532304](https://github.com/ui-router/publish-scripts/commit/6532304))"
+            },
+            {
+              "line": 74,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* fix yalc detection ([625b279](https://github.com/christopherthielen/check-peer-dependencies/commit/625b279))"
+            },
+            {
+              "line": 94,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* fix yalc detection ([625b279](https://github.com/christopherthielen/check-peer-dependencies/commit/625b279))"
+            },
+            {
+              "line": 279,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc_package:** Do not double build (rely on yalc publish calling prepublishOnly script) ([75ce2fe](https://github.com/ui-router/publish-scripts/commit/75ce2fe))"
+            },
+            {
+              "line": 280,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** support testing of branches.  Do not revert changes after running tests to improve debugging of failed runs ([a35785f](https://github.com/ui-router/publish-scripts/commit/a35785f))"
+            },
+            {
+              "line": 309,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** add branch selection support for downstream git repositories ([6017917](https://github.com/ui-router/publish-scripts/commit/6017917))"
+            },
+            {
+              "line": 347,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** When supplying --group to test_downstream_projects, only apply the --group to the top level project.  However, parse all downstream_projects.json with group support. ([4aeac16](https://github.com/ui-router/publish-scripts/commit/4aeac16))"
+            },
+            {
+              "line": 384,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** push the full name to the success log (not just the project key to the success log. ([8cd2585](https://github.com/ui-router/publish-scripts/commit/8cd2585))"
+            },
+            {
+              "line": 417,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** read nested config projects correctly when projects property is defined inside downstream_projects.json config ([ef80552](https://github.com/ui-router/publish-scripts/commit/ef80552))"
+            },
+            {
+              "line": 526,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc_package:** move pkgJson parsing out of conditional block ([1d4bb2d](https://github.com/ui-router/publish-scripts/commit/1d4bb2d))"
+            },
+            {
+              "line": 552,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **check_peer_dependencies:** when checking peer deps, ignore package if it's been installed using yalc ([fc62d5b](https://github.com/ui-router/publish-scripts/commit/fc62d5b))"
+            },
+            {
+              "line": 553,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Install peer dependencies in downstream projects ([153c024](https://github.com/ui-router/publish-scripts/commit/153c024))"
+            },
+            {
+              "line": 595,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **package): (package:** update dependencies conventional-changelog[@3](https://github.com/3).1.10, git-semver-tags[@3](https://github.com/3).0.0, lodash[@4](https://github.com/4).17.15, open[@6](https://github.com/6).4.0, readline-sync[@1](https://github.com/1).4.10, tmp[@0](https://github.com/0).1.0, typedoc[@0](https://github.com/0).15.0, typedoc-plugin-external-module-name[@2](https://github.com/2).1.0, typedoc-plugin-internal-external[@2](https://github.com/2).0.2, yalc[@1](https://github."
+            },
+            {
+              "line": 610,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Fix for packages with only dependencies or devDependencies block ([93bf0aa](https://github.com/ui-router/publish-scripts/commit/93bf0aa))"
+            },
+            {
+              "line": 620,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** hopefully fix travis folding by not emitting whitespaces ([0a9c74f](https://github.com/ui-router/publish-scripts/commit/0a9c74f))"
+            },
+            {
+              "line": 655,
+              "needles": [
+                "yalc",
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Fix testing multiple levels of yalc'd packages by deyalcing the package.json before yalc publish. ([dc83c7c](https://github.com/ui-router/publish-scripts/commit/dc83c7c))"
+            },
+            {
+              "line": 665,
+              "needles": [
+                "yalc",
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Use yarn resolution rules to avoid duplicate dependencies of UPSTREAM_PKGS installed via yalc ([0e8891c](https://github.com/ui-router/publish-scripts/commit/0e8891c))"
+            },
+            {
+              "line": 690,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** run 'yarn' after installing upstreams to get updated upstream dependencies ([9c711ee](https://github.com/ui-router/publish-scripts/commit/9c711ee))"
+            },
+            {
+              "line": 710,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Do not 'yarn upgrade' downstream projects ([05ec93b](https://github.com/ui-router/publish-scripts/commit/05ec93b))"
+            },
+            {
+              "line": 720,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **generate_docs:** fix travis: support yalc versions by matching and stripping the '-ha5hcod3' suffix ([2e9d9d7](https://github.com/ui-router/publish-scripts/commit/2e9d9d7))"
+            },
+            {
+              "line": 790,
+              "needles": [
+                "yalc",
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** make yalc a dependency of publish-scripts, use npx to call it ([de59d18](https://github.com/ui-router/publish-scripts/commit/de59d18))"
+            },
+            {
+              "line": 796,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc_package:** do not move to temp dir when unnecessary ([05b7f6e](https://github.com/ui-router/publish-scripts/commit/05b7f6e))"
+            },
+            {
+              "line": 806,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Support 'projects' and 'nohoist' keys in downstream_projects.json ([f860f61](https://github.com/ui-router/publish-scripts/commit/f860f61))"
+            },
+            {
+              "line": 816,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Add command line toggle for yarn workspaces ([a6ce2ce](https://github.com/ui-router/publish-scripts/commit/a6ce2ce))"
+            },
+            {
+              "line": 817,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Support yarn workspaces ([dc56ebb](https://github.com/ui-router/publish-scripts/commit/dc56ebb))"
+            },
+            {
+              "line": 858,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** Run tests and downstream tests separately.  Switch back to .downstream_cache dir before prepping nested downstream projects ([742ffe4](https://github.com/ui-router/publish-scripts/commit/742ffe4))"
+            },
+            {
+              "line": 868,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** fix null pointer when skipping downstream projects ([7cd497b](https://github.com/ui-router/publish-scripts/commit/7cd497b))"
+            },
+            {
+              "line": 878,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc_package:** Build packages in temp directory before publishing ([8df5b99](https://github.com/ui-router/publish-scripts/commit/8df5b99))"
+            },
+            {
+              "line": 908,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc:** Support fetching from local directories (not github) and wire publish_yalc logic into test downstream script ([8a38dfb](https://github.com/ui-router/publish-scripts/commit/8a38dfb))"
+            },
+            {
+              "line": 923,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **publish_yalc:** Check if directory/.git exists, not just directory. ([0db29b7](https://github.com/ui-router/publish-scripts/commit/0db29b7))"
+            },
+            {
+              "line": 943,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **yalc:** Add publish_yalc_package script for travis scripts ([349cc57](https://github.com/ui-router/publish-scripts/commit/349cc57))"
+            },
+            {
+              "line": 963,
+              "needles": [
+                "yalc"
+              ],
+              "text": "* **downstream:** enable yalc add of grandparent upstream (core -> angular -> sample-app-angular) ([6c12618](https://github.com/ui-router/publish-scripts/commit/6c12618))"
+            },
+            {
+              "line": 973,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test:** add test_downstream_projects script ([c8790a8](https://github.com/ui-router/publish-scripts/commit/c8790a8))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 27,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"publish_yalc_package\": \"./publish_yalc_package.js\","
+            },
+            {
+              "line": 30,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test_downstream_projects\": \"./test_downstream_projects.js\","
+            },
+            {
+              "line": 48,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"^1.0.0-pre.53\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 3,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const publishYalcPackage = require('./publish_yalc_package');"
+            }
+          ],
+          "path": "publish_docs.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 3,
+              "needles": [
+                "yalc"
+              ],
+              "text": "// This script is intended to fetch a package from a git url and publish it locally using the npm package `yalc`."
+            },
+            {
+              "line": 4,
+              "needles": [
+                "yalc"
+              ],
+              "text": "// That package can then be installed from the local yalc registry an tested against by some downstream project."
+            },
+            {
+              "line": 24,
+              "needles": [
+                "yalc"
+              ],
+              "text": "throw new Error('Usage: publish_yalc_package [INSTALL_DIR] [GITHUB_URL|LOCAL_DIR]');"
+            },
+            {
+              "line": 61,
+              "needles": [
+                "yalc"
+              ],
+              "text": "`--exclude='/yalc.lock' ` +"
+            },
+            {
+              "line": 98,
+              "needles": [
+                "yalc"
+              ],
+              "text": "// Publish to local yalc registry"
+            },
+            {
+              "line": 99,
+              "needles": [
+                "yalc"
+              ],
+              "text": "util._exec('npx yalc publish');"
+            }
+          ],
+          "path": "publish_yalc_package.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 85,
+              "needles": [
+                "file:"
+              ],
+              "text": "console.log(`Wrote changelog to temp file: ${tempChangelogFile}`);"
+            }
+          ],
+          "path": "release.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 22,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const publishYalcPackage = require('./publish_yalc_package');"
+            },
+            {
+              "line": 87,
+              "needles": [
+                "yalc"
+              ],
+              "text": "console.log(`           ===> Building ${packageDir} and publishing using yalc... <===`);"
+            },
+            {
+              "line": 89,
+              "needles": [
+                "yalc"
+              ],
+              "text": "// Un-yalc any deps in the package.json (after building, but before yalc publishing)"
+            },
+            {
+              "line": 95,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const yalcLockfile = fs.existsSync('yalc.lock') ? JSON.parse(fs.readFileSync('yalc.lock')) : {};"
+            },
+            {
+              "line": 96,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const yalcPackages = Object.keys(yalcLockfile.packages || {});"
+            },
+            {
+              "line": 98,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalcPackages.forEach((pkg) => {"
+            },
+            {
+              "line": 102,
+              "needles": [
+                "yalc"
+              ],
+              "text": "dependencies[pkg] = yalcLockfile.packages[pkg].replaced;"
+            },
+            {
+              "line": 106,
+              "needles": [
+                "yalc"
+              ],
+              "text": "devDependencies[pkg] = yalcLockfile.packages[pkg].replaced;"
+            },
+            {
+              "line": 110,
+              "needles": [
+                "yalc"
+              ],
+              "text": "if (yalcPackages.length) {"
+            },
+            {
+              "line": 113,
+              "needles": [
+                "yalc"
+              ],
+              "text": "`           ===> De-yalc'ed ${yalcPackages.join(', ')} from ${packageDir}/package.json using ${packageDir}/${lockfileName} <===`,"
+            },
+            {
+              "line": 123,
+              "needles": [
+                "yalc"
+              ],
+              "text": "util._exec('npx yalc publish');"
+            },
+            {
+              "line": 126,
+              "needles": [
+                "yalc"
+              ],
+              "text": "if (yalcPackages.length) {"
+            },
+            {
+              "line": 127,
+              "needles": [
+                "yalc"
+              ],
+              "text": "console.log(`           ===> Restoring yalc'd manifest ${packageDir}/package.json <===`);"
+            },
+            {
+              "line": 134,
+              "needles": [
+                "yalc"
+              ],
+              "text": "util._exec('npx yalc add ' + upstream);"
+            },
+            {
+              "line": 141,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const yalcDep = (package.dependencies || {})[upstream] || (package.devDependencies || {})[upstream];"
+            },
+            {
+              "line": 143,
+              "needles": [
+                "yalc"
+              ],
+              "text": "package.resolutions[upstream] = yalcDep;"
+            },
+            {
+              "line": 150,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const yalcDep = (package.dependencies || {})[upstream] || (package.devDependencies || {})[upstream];"
+            },
+            {
+              "line": 153,
+              "needles": [
+                "yalc"
+              ],
+              "text": "package.pnpm.overrides[upstream] = yalcDep;"
+            },
+            {
+              "line": 160,
+              "needles": [
+                "yalc"
+              ],
+              "text": "const yalcDep = (package.dependencies || {})[upstream] || (package.devDependencies || {})[upstream];"
+            },
+            {
+              "line": 162,
+              "needles": [
+                "yalc"
+              ],
+              "text": "package.overrides[upstream] = yalcDep;"
+            },
+            {
+              "line": 294,
+              "needles": [
+                "yalc"
+              ],
+              "text": "foldEnd = foldStart(`Publishing ${pkgjson.name} to yalc registry`);"
+            }
+          ],
+          "path": "test_downstream_projects.js"
+        },
+        {
+          "matches": [
+            {
+              "line": 1801,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 1803,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": "actions/upgrade/package.json",
+          "sha256": "37a1b555b87cb32d994077e79f81f2b8cb32ad75471807418c2bfcb7966a8940"
+        },
+        {
+          "path": "docgen/package.json",
+          "sha256": "3c5617aebcd06f000f2338651aa74cf3e8393d442593b2d76c45c9d823d3a80e"
+        },
+        {
+          "path": "package.json",
+          "sha256": "59fe2c3e27bf312cc17960e84d09dbdef302ae47e223b8cb63b882f078ea0557"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "3893e9183a86b395c0526b75410e003e078fb664e152150bab27866c8078774e"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@yarnpkg/lockfile": "^1.1.0"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "tools/publish-scripts/actions/upgrade/package.json",
+          "importedPath": "tools/publish-scripts/actions/upgrade/package.json",
+          "name": "upgrade",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {},
+          "sha256": "37a1b555b87cb32d994077e79f81f2b8cb32ad75471807418c2bfcb7966a8940",
+          "sourcePath": "actions/upgrade/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "typedoc": "0.17.8",
+              "typedoc-plugin-ui-router": "4.0.1",
+              "typescript": "3.9.7"
+            },
+            "devDependencies": {},
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "tools/publish-scripts/docgen/package.json",
+          "importedPath": "tools/publish-scripts/docgen/package.json",
+          "name": null,
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {},
+          "sha256": "3c5617aebcd06f000f2338651aa74cf3e8393d442593b2d76c45c9d823d3a80e",
+          "sourcePath": "docgen/package.json",
+          "version": null
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "check-peer-dependencies": "^4.3.4",
+              "conventional-changelog": "^3.1.24",
+              "conventional-changelog-ui-router-core": "^1.4.2",
+              "find-parent-dir": "^0.3.1",
+              "git-semver-tags": "^4.1.1",
+              "lodash": "^4.17.21",
+              "node-cleanup": "^2.1.2",
+              "npm-run-all": "^4.1.5",
+              "open": "^8.4.0",
+              "readline-sync": "^1.4.10",
+              "shelljs": "^0.8.4",
+              "shx": "^0.3.3",
+              "tmp": "^0.2.1",
+              "tweak-sourcemap-paths": "0.0.4",
+              "yalc": "^1.0.0-pre.53",
+              "yargs": "^17.3.0"
+            },
+            "devDependencies": {
+              "husky": "^9.1.7",
+              "prettier": "^3.7.4"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "tools/publish-scripts/package.json",
+          "importedPath": "tools/publish-scripts/package.json",
+          "name": "@uirouter/publish-scripts",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {
+            "npm-packlist": "1.4.6"
+          },
+          "scripts": {
+            "format": "prettier --write \"*.js\" \"actions/**/*.js\" \"docgen/*.js\"",
+            "prepare": "husky",
+            "release": "node ./release.js --deps check-peer-dependencies"
+          },
+          "sha256": "59fe2c3e27bf312cc17960e84d09dbdef302ae47e223b8cb63b882f078ea0557",
+          "sourcePath": "package.json",
+          "version": "2.8.0"
+        }
+      ],
+      "moves": [],
+      "name": "publish-scripts"
+    },
+    {
+      "defaultHead": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+      "destinationPrefix": "framework/react/router",
+      "downstreamProjects": {
+        "react-versions": {
+          "react17": "./integration/react17",
+          "react18": "./integration/react18",
+          "react19": "./integration/react19"
+        },
+        "sample-app-react": "https://github.com/ui-router/sample-app-react.git"
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 293,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 13,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"npm run build && test_downstream_projects\","
+            },
+            {
+              "line": 14,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:integration\": \"npm run build && test_downstream_projects --group=react-versions\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 779,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 5266,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 5268,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "384ecb5452369e032ef7ebd5c50fd4e5a9ae8b423b2711f6d82abc25a062cbc4"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "bc7552cc7ba5110fbfe8ac3ccfb95827498476defdda3d7ae7f2ab35abb11853"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "eee6d5437d8242c97fe6636b7f7395ac2e805a82e18c82c66c668b2a12476fd1"
+        },
+        {
+          "path": "examples/animating-transitions/package.json",
+          "sha256": "fcec01f63da0e00c1b47c1ccdffea9e479689c9b7d30b05d622f8391f0691d49"
+        },
+        {
+          "path": "examples/animating-transitions/yarn.lock",
+          "sha256": "cc82a40501095ab6051117a45a6635b035e1e9368fdf2b405c806320d795ca59"
+        },
+        {
+          "path": "examples/typescript/package.json",
+          "sha256": "1babcbad4b34de84964e46a53b82b1c84b9b2a2e9602b8342eacdd6fe72a9a9d"
+        },
+        {
+          "path": "examples/typescript/tsconfig.json",
+          "sha256": "c5bd095e625bb3e684fc8282e4c081f6e80b29ecb3aceb1bf818c9df9c311288"
+        },
+        {
+          "path": "examples/typescript/webpack.config.js",
+          "sha256": "51e84ad01204eb80f767064a5748d24c5a216b928f4211b77b0b7bae7bf235ce"
+        },
+        {
+          "path": "examples/typescript/yarn.lock",
+          "sha256": "c62df02932ed682bdbaf13bff155fe986d13c0a1dbaa0933a26c8190bd48e60a"
+        },
+        {
+          "path": "integration/react17/package.json",
+          "sha256": "6da43db89ff313bf996037c04c84f6a38427f00ec16107a3c45f456d0d102aab"
+        },
+        {
+          "path": "integration/react17/playwright.config.ts",
+          "sha256": "fb7b5974b9b74358f9728f67a31406a00303778d8a6e809ecfadc7c567615ae5"
+        },
+        {
+          "path": "integration/react17/tsconfig.json",
+          "sha256": "f31d29f062d8a63d77563695bcac74f74dffcbcc3eb858842d810a7ad82632dd"
+        },
+        {
+          "path": "integration/react17/vite.config.ts",
+          "sha256": "0709465427668ae85ef999f63762d7a06fd92962363fe8cc142ad656d3548115"
+        },
+        {
+          "path": "integration/react17/vitest.config.ts",
+          "sha256": "5208dc625fd84e908435c9f067649310ba021a0bb019b7063e2aa663f9891972"
+        },
+        {
+          "path": "integration/react18/package.json",
+          "sha256": "9bce104d827c6b699563f1d8697e95ff29cdaffb9ebb57e854059734604bc9f2"
+        },
+        {
+          "path": "integration/react18/playwright.config.ts",
+          "sha256": "fb7b5974b9b74358f9728f67a31406a00303778d8a6e809ecfadc7c567615ae5"
+        },
+        {
+          "path": "integration/react18/tsconfig.json",
+          "sha256": "f31d29f062d8a63d77563695bcac74f74dffcbcc3eb858842d810a7ad82632dd"
+        },
+        {
+          "path": "integration/react18/vite.config.ts",
+          "sha256": "0709465427668ae85ef999f63762d7a06fd92962363fe8cc142ad656d3548115"
+        },
+        {
+          "path": "integration/react18/vitest.config.ts",
+          "sha256": "5208dc625fd84e908435c9f067649310ba021a0bb019b7063e2aa663f9891972"
+        },
+        {
+          "path": "integration/react19/package.json",
+          "sha256": "b428ae77224f97ee9c8c3e7663435994a23ee56513bc6cd14fc1ec70d0620c8f"
+        },
+        {
+          "path": "integration/react19/playwright.config.ts",
+          "sha256": "fb7b5974b9b74358f9728f67a31406a00303778d8a6e809ecfadc7c567615ae5"
+        },
+        {
+          "path": "integration/react19/tsconfig.json",
+          "sha256": "f31d29f062d8a63d77563695bcac74f74dffcbcc3eb858842d810a7ad82632dd"
+        },
+        {
+          "path": "integration/react19/vite.config.ts",
+          "sha256": "0709465427668ae85ef999f63762d7a06fd92962363fe8cc142ad656d3548115"
+        },
+        {
+          "path": "integration/react19/vitest.config.ts",
+          "sha256": "5208dc625fd84e908435c9f067649310ba021a0bb019b7063e2aa663f9891972"
+        },
+        {
+          "path": "package.json",
+          "sha256": "feb0c443485791a42086a2ecaf58d561c4789cd5fa5d78fe9f49017e3c89f4f8"
+        },
+        {
+          "path": "tsconfig.docgen.json",
+          "sha256": "043f98beee01be2f2ebacebf092b763ce748eab8ea1a9cbb9a6f89938fa76e42"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "3b4c41419007cdcbaa62079c36351cc7553487fec5dc902c064f3992429ee897"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "7cb1ed78b5f7492a027be762173701e7f206fc8b2fa31996fd45b2c0e23c6227"
+        },
+        {
+          "path": "webpack.config.js",
+          "sha256": "433885da667773e0ae58ffea0d06c555b52d7e0120b3a0b90699901d41196c7c"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "855384f776c80b2d00d0fadba424b4ad3c770aa0e38768b6469fbcad203c149c"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react": "^1.0.2",
+              "react": "^16.13.1",
+              "react-dom": "^16.13.1",
+              "react-scripts": "1.1.4",
+              "react-transition-group": "^4.3.0"
+            },
+            "devDependencies": {
+              "@types/react-transition-group": "^4.2.4"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/examples/animating-transitions/package.json",
+          "importedPath": "framework/react/router/examples/animating-transitions/package.json",
+          "name": "test-uirouter",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "react-scripts build",
+            "eject": "react-scripts eject",
+            "start": "react-scripts start",
+            "test": "react-scripts test --env=jsdom"
+          },
+          "sha256": "fcec01f63da0e00c1b47c1ccdffea9e479689c9b7d30b05d622f8391f0691d49",
+          "sourcePath": "examples/animating-transitions/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react": "^1.0.2",
+              "react": "16.12.0",
+              "react-dom": "16.12.0"
+            },
+            "devDependencies": {
+              "cross-env": "^7.0.0",
+              "prop-types": "^15.7.2",
+              "ts-loader": "^6.2.1",
+              "tsconfig-paths-webpack-plugin": "^3.2.0",
+              "typescript": "3.8.2",
+              "webpack": "^4.41.6",
+              "webpack-dev-server": "3.10.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/examples/typescript/package.json",
+          "importedPath": "framework/react/router/examples/typescript/package.json",
+          "name": "@uirouter/react-simple-example",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 8000 --history-api-fallback"
+          },
+          "sha256": "1babcbad4b34de84964e46a53b82b1c84b9b2a2e9602b8342eacdd6fe72a9a9d",
+          "sourcePath": "examples/typescript/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "react": "^17.0.2",
+              "react-dom": "^17.0.2"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.49.1",
+              "@testing-library/react": "^12.1.5",
+              "@types/react": "^17.0.80",
+              "@types/react-dom": "^17.0.25",
+              "@vitejs/plugin-react": "^4.3.4",
+              "jsdom": "^27.4.0",
+              "typescript": "^5.9.3",
+              "vite": "^6.0.7",
+              "vitest": "^4.0.16"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/integration/react17/package.json",
+          "importedPath": "framework/react/router/integration/react17/package.json",
+          "name": "integration-test-react17",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "preview": "vite preview",
+            "test": "vitest run && npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "6da43db89ff313bf996037c04c84f6a38427f00ec16107a3c45f456d0d102aab",
+          "sourcePath": "integration/react17/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "react": "^18.3.1",
+              "react-dom": "^18.3.1"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.49.1",
+              "@testing-library/react": "^14.3.1",
+              "@types/react": "^18.3.18",
+              "@types/react-dom": "^18.3.5",
+              "@vitejs/plugin-react": "^4.3.4",
+              "jsdom": "^27.4.0",
+              "typescript": "^5.9.3",
+              "vite": "^6.0.7",
+              "vitest": "^4.0.16"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/integration/react18/package.json",
+          "importedPath": "framework/react/router/integration/react18/package.json",
+          "name": "integration-test-react18",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "preview": "vite preview",
+            "test": "vitest run && npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "9bce104d827c6b699563f1d8697e95ff29cdaffb9ebb57e854059734604bc9f2",
+          "sourcePath": "integration/react18/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "react": "^19.0.0",
+              "react-dom": "^19.0.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.49.1",
+              "@testing-library/react": "^16.2.0",
+              "@types/react": "^19.0.7",
+              "@types/react-dom": "^19.0.3",
+              "@vitejs/plugin-react": "^4.3.4",
+              "jsdom": "^27.4.0",
+              "typescript": "^5.9.3",
+              "vite": "^6.0.7",
+              "vitest": "^4.0.16"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/integration/react19/package.json",
+          "importedPath": "framework/react/router/integration/react19/package.json",
+          "name": "integration-test-react19",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "preview": "vite preview",
+            "test": "vitest run && npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "b428ae77224f97ee9c8c3e7663435994a23ee56513bc6cd14fc1ec70d0620c8f",
+          "sourcePath": "integration/react19/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/core": "6.1.2",
+              "classnames": "^2.5.1",
+              "prop-types": "^15.8.1"
+            },
+            "devDependencies": {
+              "@testing-library/dom": "^10",
+              "@testing-library/jest-dom": "^6.9.1",
+              "@testing-library/react": "^16",
+              "@types/prop-types": "^15.7.15",
+              "@types/react": "^19",
+              "@types/react-dom": "^19",
+              "@uirouter/publish-scripts": "^2.7.0",
+              "@vitest/ui": "^4.0.16",
+              "cross-env": "^10.1.0",
+              "husky": "^9.1.7",
+              "jsdom": "^27.4.0",
+              "prettier": "^3.7.4",
+              "pretty-quick": "^4.2.2",
+              "react": "^19",
+              "react-dom": "^19",
+              "ts-loader": "^9.5.4",
+              "tsconfig-paths-webpack-plugin": "^4.2.0",
+              "typescript": "^5.9.3",
+              "vitest": "^4.0.16",
+              "webpack": "^5.104.1",
+              "webpack-cli": "^6.0.1",
+              "webpack-dev-server": "^5.2.2"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "framework/react/router/package.json",
+          "importedPath": "framework/react/router/package.json",
+          "name": "@uirouter/react",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "artifacts": "artifact_tagging",
+            "build": "run-s compile bundle fixmaps:*",
+            "bundle": "cross-env NODE_ENV=production webpack",
+            "clean": "shx rm -rf _bundles lib lib-esm build _doc",
+            "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
+            "docs": "generate_docs",
+            "docs:publish": "generate_docs && publish_docs",
+            "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
+            "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+            "prepare": "husky",
+            "prepublishOnly": "npm run build",
+            "prettier": "npx prettier --write src/**/*.[jt]s src/**/*.[jt]sx",
+            "release": "release --deps @uirouter/core",
+            "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 8000 --config ./examples/typescript/webpack.config.js --history-api-fallback",
+            "test": "vitest run",
+            "test:downstream": "npm run build && test_downstream_projects",
+            "test:integration": "npm run build && test_downstream_projects --group=react-versions",
+            "test:ui": "vitest --ui",
+            "test:watch": "vitest"
+          },
+          "sha256": "feb0c443485791a42086a2ecaf58d561c4789cd5fa5d78fe9f49017e3c89f4f8",
+          "sourcePath": "package.json",
+          "version": "1.0.8"
+        }
+      ],
+      "moves": [
+        {
+          "from": "framework/react/router/examples",
+          "to": "framework/react/examples"
+        },
+        {
+          "from": "framework/react/router/integration",
+          "to": "framework/react/integration"
+        }
+      ],
+      "name": "react"
+    },
+    {
+      "defaultHead": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+      "destinationPrefix": "framework/react-hybrid/router",
+      "downstreamProjects": {
+        "integration": {
+          "react16": "./integration/react16",
+          "react17": "./integration/react17",
+          "react18": "./integration/react18",
+          "react19": "./integration/react19"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 7,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc.lock"
+            },
+            {
+              "line": 8,
+              "needles": [
+                "yalc"
+              ],
+              "text": ".yalc"
+            }
+          ],
+          "path": ".gitignore"
+        },
+        {
+          "matches": [
+            {
+              "line": 4,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc.*"
+            }
+          ],
+          "path": ".npmignore"
+        },
+        {
+          "matches": [
+            {
+              "line": 410,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "* **test_downstream_projects:** don't double build core while testing downstreams ([148b16b](https://github.com/ui-router/core/commit/148b16b))"
+            }
+          ],
+          "path": "CHANGELOG.md"
+        },
+        {
+          "matches": [
+            {
+              "line": 12,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 81,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-react-hybrid' + extension,"
+            },
+            {
+              "line": 98,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-react-hybrid-legacy' + extension,"
+            }
+          ],
+          "path": "rollup.config.mjs"
+        },
+        {
+          "matches": [
+            {
+              "line": 342,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 2529,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 2531,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "e5726bb55c1bdc84e5bfef0916c476d840e933c572967d1a2118dddf3d1b02db"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "1f3aa5e964473d120ab73dc2a565fa1b2707960e7550b9c312cbb84236fc38b4"
+        },
+        {
+          "path": "integration/react16/package.json",
+          "sha256": "d69fcb35842a5d3df6dc09ebcfc5359f3b155ebd6ef67e08fb2779bd73661c5b"
+        },
+        {
+          "path": "integration/react16/playwright.config.js",
+          "sha256": "c025b6d294e2b36739674bce9cfa8e5d63d99c16eac59b2968e7f34338b68f56"
+        },
+        {
+          "path": "integration/react17/package.json",
+          "sha256": "f86093c00302a125cbc072ce131fc9a64922fe171b92856f129590d05054dca2"
+        },
+        {
+          "path": "integration/react17/playwright.config.js",
+          "sha256": "c025b6d294e2b36739674bce9cfa8e5d63d99c16eac59b2968e7f34338b68f56"
+        },
+        {
+          "path": "integration/react18/package.json",
+          "sha256": "fffed41cc5e838b0cb6c4d1f8d32833dd57c6a03d809abed2750916adf550adc"
+        },
+        {
+          "path": "integration/react18/playwright.config.js",
+          "sha256": "c025b6d294e2b36739674bce9cfa8e5d63d99c16eac59b2968e7f34338b68f56"
+        },
+        {
+          "path": "integration/react19/package.json",
+          "sha256": "7d72b6d583d643fa1295c69a786e8200645e9ecaf7b3d026d68eb881434bb4ab"
+        },
+        {
+          "path": "integration/react19/playwright.config.js",
+          "sha256": "c025b6d294e2b36739674bce9cfa8e5d63d99c16eac59b2968e7f34338b68f56"
+        },
+        {
+          "path": "package.json",
+          "sha256": "4ef17265538b3571b1a394d88fdb0190ac75a0044a3a799c87c208c516fac868"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "6409ae13e227bb947cdce8f43cd62528077e072749609d02467ba33ac97b124f"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "1d963c47efb94e54c024ec770c99a63da56911e17de7d7050ae5268bce99bbb7"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react-hybrid": "latest",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "1.7.0",
+              "prop-types": "15.6.1",
+              "react": "^16.14.0",
+              "react-dom": "^16.14.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.40.0",
+              "@rspack/cli": "^1.0.0",
+              "@rspack/core": "^1.0.0",
+              "serve": "^14.2.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react-hybrid/integration/react16/package.json",
+          "importedPath": "framework/react-hybrid/router/integration/react16/package.json",
+          "name": "ui-router-react-hybrid-react16",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "rspack build --mode production",
+            "start": "rspack serve --mode development",
+            "test": "npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "d69fcb35842a5d3df6dc09ebcfc5359f3b155ebd6ef67e08fb2779bd73661c5b",
+          "sourcePath": "integration/react16/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react-hybrid": "latest",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "1.7.0",
+              "prop-types": "15.6.1",
+              "react": "^17.0.2",
+              "react-dom": "^17.0.2"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.40.0",
+              "@rspack/cli": "^1.0.0",
+              "@rspack/core": "^1.0.0",
+              "serve": "^14.2.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react-hybrid/integration/react17/package.json",
+          "importedPath": "framework/react-hybrid/router/integration/react17/package.json",
+          "name": "ui-router-react-hybrid-react17",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "rspack build --mode production",
+            "start": "rspack serve --mode development",
+            "test": "npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "f86093c00302a125cbc072ce131fc9a64922fe171b92856f129590d05054dca2",
+          "sourcePath": "integration/react17/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react-hybrid": "latest",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "1.7.0",
+              "prop-types": "15.6.1",
+              "react": "^18.2.0",
+              "react-dom": "^18.2.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.40.0",
+              "@rspack/cli": "^1.0.0",
+              "@rspack/core": "^1.0.0",
+              "serve": "^14.2.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react-hybrid/integration/react18/package.json",
+          "importedPath": "framework/react-hybrid/router/integration/react18/package.json",
+          "name": "ui-router-react-hybrid-react18",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "rspack build --mode production",
+            "start": "rspack serve --mode development",
+            "test": "npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "fffed41cc5e838b0cb6c4d1f8d32833dd57c6a03d809abed2750916adf550adc",
+          "sourcePath": "integration/react18/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react-hybrid": "latest",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "1.7.0",
+              "prop-types": "15.6.1",
+              "react": "^19.0.0",
+              "react-dom": "^19.0.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.40.0",
+              "@rspack/cli": "^1.0.0",
+              "@rspack/core": "^1.0.0",
+              "serve": "^14.2.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react-hybrid/integration/react19/package.json",
+          "importedPath": "framework/react-hybrid/router/integration/react19/package.json",
+          "name": "ui-router-react-hybrid-react19",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "rspack build --mode production",
+            "start": "rspack serve --mode development",
+            "test": "npm run build && npx playwright install chromium && npx playwright test"
+          },
+          "sha256": "7d72b6d583d643fa1295c69a786e8200645e9ecaf7b3d026d68eb881434bb4ab",
+          "sourcePath": "integration/react19/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/angularjs": "1.1.2",
+              "@uirouter/core": "6.1.2",
+              "@uirouter/react": "1.0.8"
+            },
+            "devDependencies": {
+              "@rollup/plugin-commonjs": "^29.0.0",
+              "@rollup/plugin-node-resolve": "^16.0.3",
+              "@rollup/plugin-terser": "^0.4.4",
+              "@types/angular": "^1.8.2",
+              "@types/jquery": "^3.5.6",
+              "@types/node": "^20.0.0",
+              "@types/react": "^18.2.0",
+              "@types/react-dom": "^18.2.0",
+              "@uirouter/publish-scripts": "^2.7.0",
+              "angular": "^1.8.3",
+              "husky": "^9.1.7",
+              "prettier": "^3.7.4",
+              "pretty-quick": "^4.2.2",
+              "react": "^18.2.0",
+              "react-dom": "^18.2.0",
+              "rollup": "^4.55.1",
+              "rollup-plugin-sourcemaps2": "^0.5.4",
+              "typescript": "^5.3.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "angular": "^1.5.0",
+              "react": ">=16.8.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "framework/react-hybrid/router/package.json",
+          "importedPath": "framework/react-hybrid/router/package.json",
+          "name": "@uirouter/react-hybrid",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "run-s compile bundle fixmaps:*",
+            "bundle": "rollup -c && rollup -c --environment MINIFY",
+            "clean": "shx rm -rf lib lib-esm _bundles",
+            "compile": "npm run clean && tsc && tsc --module es6 --outDir lib-esm",
+            "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
+            "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+            "prepare": "husky",
+            "prepublishOnly": "npm run build",
+            "release": "release --deps @uirouter/core @uirouter/react @uirouter/angularjs",
+            "test": "npm run build",
+            "test:downstream": "test_downstream_projects"
+          },
+          "sha256": "4ef17265538b3571b1a394d88fdb0190ac75a0044a3a799c87c208c516fac868",
+          "sourcePath": "package.json",
+          "version": "2.0.0"
+        }
+      ],
+      "moves": [
+        {
+          "from": "framework/react-hybrid/router/integration",
+          "to": "framework/react-hybrid/integration"
+        }
+      ],
+      "name": "react-hybrid"
+    },
+    {
+      "defaultHead": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+      "destinationPrefix": "plugins/redux",
+      "downstreamProjects": null,
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 710,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc \"^1.0.0-pre.53\""
+            },
+            {
+              "line": 3543,
+              "needles": [
+                "yalc"
+              ],
+              "text": "yalc@^1.0.0-pre.53:"
+            },
+            {
+              "line": 3545,
+              "needles": [
+                "yalc"
+              ],
+              "text": "resolved \"https://registry.yarnpkg.com/yalc/-/yalc-1.0.0-pre.53.tgz#c51db2bb924a6908f4cb7e82af78f7e5606810bc\""
+            }
+          ],
+          "path": "yarn.lock"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": "examples/react/package.json",
+          "sha256": "58be638dd5f8bb1951fe841dec8212db545be53bef5a8c37cc25cd46f2b312dd"
+        },
+        {
+          "path": "examples/react/tsconfig.json",
+          "sha256": "874f84a3098d21e5e5e35cb4a5e7e7bef8c769adc0edbd7b6a41a202b9d7c1c3"
+        },
+        {
+          "path": "examples/react/vite.config.ts",
+          "sha256": "fc9bcc2c543f2f50b4812f37ff3835fb4abfea7084af2069c459603f7e9d1448"
+        },
+        {
+          "path": "package.json",
+          "sha256": "4d0f67b147d683d21074c84e4181940ed29b9c3ce8de752bbece0e44894868d9"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "6d424dab35c8bac7cfda4f2ebd195f71069d0e63d50e63885c3db23e97d27da8"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "2b605fa1019374babd375f0bde3c9a2084d1bb3f45fbb359187695a04325be0c"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "8a2fcb714d3522578d6ca5f279614d83d84c22624b64efbba9b9928e24073fed"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "react": "^18.3.1",
+              "react-dom": "^18.3.1",
+              "react-redux": "^9.2.0",
+              "redux": "^5.0.1",
+              "redux-logger": "^3.0.6"
+            },
+            "devDependencies": {
+              "@types/react": "^18.3.21",
+              "@types/react-dom": "^18.3.7",
+              "@vitejs/plugin-react": "^4.5.2",
+              "typescript": "^5.8.3",
+              "vite": "^6.3.5"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/redux/examples/react/package.json",
+          "importedPath": "plugins/redux/examples/react/package.json",
+          "name": "@uirouter/redux-example",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "preview": "vite preview"
+          },
+          "sha256": "58be638dd5f8bb1951fe841dec8212db545be53bef5a8c37cc25cd46f2b312dd",
+          "sourcePath": "examples/react/package.json",
+          "version": null
+        },
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@testing-library/dom": "^10.4.1",
+              "@testing-library/react": "^16.3.2",
+              "@types/react": "^18.3.21",
+              "@types/react-dom": "^18.3.7",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "^2.7.0",
+              "@uirouter/react": "^1.0.8",
+              "jsdom": "^26.1.0",
+              "oxfmt": "^0.27.0",
+              "oxlint": "^1.42.0",
+              "prop-types": "^15.8.1",
+              "react": "^18.3.1",
+              "react-dom": "^18.3.1",
+              "react-redux": "^9.2.0",
+              "redux": "^5.0.1",
+              "shx": "^0.3.4",
+              "tsdown": "^0.20.1",
+              "typescript": "^5.8.3",
+              "vitest": "^3.2.4"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@uirouter/core": ">=5.0.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "plugins/redux/package.json",
+          "importedPath": "plugins/redux/package.json",
+          "name": "@uirouter/redux",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "npm run clean && tsdown",
+            "clean": "shx rm -rf dist",
+            "format": "oxfmt --write core react",
+            "format:check": "oxfmt --check core react",
+            "lint": "oxlint -c oxlint.json core react",
+            "lint:fix": "oxlint -c oxlint.json --fix core react",
+            "release": "release",
+            "start": "npm run dev --prefix examples/react",
+            "test": "vitest run",
+            "test:ci": "vitest run"
+          },
+          "sha256": "4d0f67b147d683d21074c84e4181940ed29b9c3ce8de752bbece0e44894868d9",
+          "sourcePath": "package.json",
+          "version": "1.0.0"
+        }
+      ],
+      "moves": [],
+      "name": "redux"
+    },
+    {
+      "defaultHead": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+      "destinationPrefix": "plugins/rx",
+      "downstreamProjects": null,
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 228,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"^1.0.0-pre.53\","
+            },
+            {
+              "line": 237,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"publish_yalc_package\": \"publish_yalc_package.js\","
+            },
+            {
+              "line": 240,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test_downstream_projects\": \"test_downstream_projects.js\","
+            },
+            {
+              "line": 3960,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc\": {"
+            },
+            {
+              "line": 3975,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"src/yalc.js\""
+            },
+            {
+              "line": 3978,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/chalk\": {"
+            },
+            {
+              "line": 3993,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/has-flag\": {"
+            },
+            {
+              "line": 4001,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/ignore\": {"
+            },
+            {
+              "line": 4009,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/supports-color\": {"
+            }
+          ],
+          "path": "package-lock.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 15,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-rx.js',"
+            }
+          ],
+          "path": "rolldown.config.mjs"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "876589d9aa7d989beac0ecebdb7ad03f89155c3e1a85f11969caadaf216483a9"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "e63fa4bdb804c407bb8492d7768ab80bc07ab8ea310efbb92026c6cedf321c13"
+        },
+        {
+          "path": "package.json",
+          "sha256": "335dc0199abee21402e38fafbe6538938177b3a4670f04d7a8823c7d870ab1e1"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "4a5bcf219440593a08758d82cbfc782a7ab91958ee515c3ce9c4306b98c7509f"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "b515baa77a4c73b82c040e9ad50f5c8e6f5a4ea94a4e51d2de0fec3a310e314e"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@typescript/native-preview": "^7.0.0-dev.20260102.1",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "^2.7.0",
+              "husky": "^9.1.7",
+              "prettier": "^3.7.4",
+              "pretty-quick": "^4.2.2",
+              "rolldown": "^1.0.0-beta.58",
+              "rxjs": "^6.5.3 || ^7.4.0",
+              "typescript": "^5.9.3",
+              "vitest": "^4.0.16"
+            },
+            "optionalDependencies": {
+              "@rollup/rollup-linux-x64-gnu": "^4.29.1"
+            },
+            "peerDependencies": {
+              "@uirouter/core": ">=6.0.1",
+              "rxjs": "^6.5.3 || ^7.0.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "plugins/rx/package.json",
+          "importedPath": "plugins/rx/package.json",
+          "name": "@uirouter/rx",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "run-s compile bundle fixmaps:*",
+            "bundle": "rolldown -c rolldown.config.mjs",
+            "clean": "shx rm -rf lib lib-esm _bundles yarn-error.log stats.html",
+            "compile": "npm run clean && tsgo && tsgo --outDir lib-esm --module es6",
+            "fixmaps:bundle": "tweak_sourcemap_paths -p ../src --include '_bundles/**/*.js.map'",
+            "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+            "precommit": "pretty-quick --staged",
+            "prepare": "husky",
+            "prepublishOnly": "npm run build",
+            "release": "release",
+            "test": "vitest run",
+            "test:watch": "vitest"
+          },
+          "sha256": "335dc0199abee21402e38fafbe6538938177b3a4670f04d7a8823c7d870ab1e1",
+          "sourcePath": "package.json",
+          "version": "1.0.0"
+        }
+      ],
+      "moves": [],
+      "name": "rx"
+    },
+    {
+      "defaultHead": "9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+      "destinationPrefix": "framework/angular/examples/sample-app",
+      "downstreamProjects": null,
+      "injectionMatches": [],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "ae998eeb67df0a942c62fbacc852d76090efa41fcf1ac1f74114eb935a6b2a4e"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "3e79f4f12cc01fe5d090583027e5052690a621413dc9e18544ac4f06cfe8ca87"
+        },
+        {
+          "path": "angular.json",
+          "sha256": "c2b2787124490c2fbebc889769784575bb86254785f15b4f7025a2d21e342b49"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "26247f4664c9ecc8abaa4beb0b089fe573943c284a6a045a91ad4c973344dcf6"
+        },
+        {
+          "path": "package.json",
+          "sha256": "fbeefc13843ead1d1d969c972b25fce4c313523eea4efa82ff8dcc45ff5ea951"
+        },
+        {
+          "path": "playwright.config.ts",
+          "sha256": "b01c16c0a0d11bfacafc5e1d4cafe2bc5846c4b71281092576a0c23467e58a19"
+        },
+        {
+          "path": "src/tsconfig.json",
+          "sha256": "405d707fed21422ddda85e1839dd28b53a878c0cfc9d6a4702e52151918e10f2"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "6f84da38165e15327d507f39ae720f9c42cc6b454073d7df9a13729862f5120d"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^22.1.0",
+              "@angular/compiler": "^22.1.0",
+              "@angular/core": "^22.1.0",
+              "@angular/forms": "^22.1.0",
+              "@angular/platform-browser": "^22.1.0",
+              "@uirouter/angular": "^21.0.0",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/rx": "^1.0.0",
+              "@uirouter/visualizer": "^7.2.1",
+              "rxjs": "^7.8.0",
+              "zone.js": "~0.16.2"
+            },
+            "devDependencies": {
+              "@angular/build": "^22.1.3",
+              "@angular/cli": "^22.1.3",
+              "@angular/compiler-cli": "^22.1.0",
+              "@playwright/test": "^1.62.1",
+              "serve": "^14.2.5",
+              "typescript": "~6.0.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular/examples/sample-app/package.json",
+          "importedPath": "framework/angular/examples/sample-app/package.json",
+          "name": "sample-app-angular",
+          "overrides": {
+            "@uirouter/angular": {
+              "@angular/common": "$@angular/common",
+              "@angular/core": "$@angular/core"
+            }
+          },
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build --configuration production",
+            "e2e": "npm run test",
+            "gh-pages": "ng build --base-href=/sample-app-angular/ && shx rm -rf pages && shx mkdir pages && cd pages && git init && git remote add pages git@github.com:ui-router/sample-app-angular.git && git fetch pages && git checkout gh-pages && git rm -rf * && shx mv ../dist/browser/* . && git add . && git commit -m 'Update gh-pages' . && git push && cd .. && shx rm -rf pages",
+            "ng": "ng",
+            "start": "ng serve --configuration production",
+            "test": "playwright install chromium && npm run build && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "fbeefc13843ead1d1d969c972b25fce4c313523eea4efa82ff8dcc45ff5ea951",
+          "sourcePath": "package.json",
+          "version": "0.0.0"
+        }
+      ],
+      "moves": [],
+      "name": "sample-app-angular"
+    },
+    {
+      "defaultHead": "8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+      "destinationPrefix": "framework/angular-hybrid/examples/sample-app",
+      "downstreamProjects": null,
+      "injectionMatches": [],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "1b20803d767c0155c1bf1ea4199aedd6e94db87e3c6a0fb75b26737dd6cb8ffd"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "81122f1445ed5e2138ecd4fb235d7a0339b4baca7bd2d50285ac623b22cff810"
+        },
+        {
+          "path": "angular.json",
+          "sha256": "a18f9e82445696afdbc1d874d62cffeaae10d946ac4189811610dbf147a4b7db"
+        },
+        {
+          "path": "cypress.config.ts",
+          "sha256": "e684853f7729430267d425815524163969179e9ca5086f7bcd40ede2cdc45e23"
+        },
+        {
+          "path": "package.json",
+          "sha256": "c7bb90c6921617f272d9bd077165b605b42312e3f5745d949f8a630c7d134b84"
+        },
+        {
+          "path": "playwright.config.js",
+          "sha256": "c6082e7fb908d7dfdf081822d1f3fbcf9ab55bee9afae8c11684ecb370f8c114"
+        },
+        {
+          "path": "src/tsconfig.app.json",
+          "sha256": "bb1908848ad55cfcd5d5acf499d6fe3e0c7b02e627313813a031782d72e0cdce"
+        },
+        {
+          "path": "src/tsconfig.spec.json",
+          "sha256": "1f72af709cdccb1f22455e4ba73caab1ccff0592e8629a4962bcdc5451f1921a"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "14c8c39d283c3b98242f04d4d0233cdde4765ce07eb8a943b6ba0edc80ce8285"
+        },
+        {
+          "path": "yarn.lock",
+          "sha256": "7cdbf957f7e79f5b8a8bfff55ab7c62d7eb1deca84463fdbe77083c5e3920b69"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/animations": "^22.0.0",
+              "@angular/common": "^22.0.0",
+              "@angular/compiler": "^22.0.0",
+              "@angular/core": "^22.0.0",
+              "@angular/forms": "^22.0.0",
+              "@angular/platform-browser": "^22.0.0",
+              "@angular/platform-browser-dynamic": "^22.0.0",
+              "@angular/router": "^22.0.0",
+              "@angular/upgrade": "^22.0.0",
+              "@uirouter/angular": "^22.0.0",
+              "@uirouter/angular-hybrid": "^22.0.0",
+              "@uirouter/angularjs": "^1.1.1",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/rx": "1.0.0",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "1.8.3",
+              "core-js": "^2.4.1",
+              "postcss": "8.4.4",
+              "rxjs": "~7.8.2",
+              "rxjs-compat": "^6.6.7",
+              "tslib": "^2.8.1",
+              "zone.js": "~0.16.0"
+            },
+            "devDependencies": {
+              "@angular-devkit/build-angular": "^22.0.0",
+              "@angular/cli": "^22.0.0",
+              "@angular/compiler-cli": "^22.0.0",
+              "@angular/language-service": "^22.0.0",
+              "@playwright/test": "^1.49.0",
+              "@types/angular": "^1.8.9",
+              "@types/jasmine": "~3.10.2",
+              "@types/jasminewd2": "~2.0.10",
+              "@types/node": "^16.11.11",
+              "jasmine-core": "~3.10.1",
+              "jasmine-spec-reporter": "~7.0.0",
+              "karma": "~6.3.9",
+              "karma-chrome-launcher": "~3.1.0",
+              "karma-coverage-istanbul-reporter": "~3.0.2",
+              "karma-jasmine": "~4.0.0",
+              "karma-jasmine-html-reporter": "^1.7.0",
+              "serve": "^14.2.0",
+              "shx": "0.3.3",
+              "ts-node": "~10.9.2",
+              "tslint": "~6.1.0",
+              "typescript": "~6.0.3"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angular-hybrid/examples/sample-app/package.json",
+          "importedPath": "framework/angular-hybrid/examples/sample-app/package.json",
+          "name": "sample-app-angular-hybrid",
+          "overrides": {},
+          "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build --configuration production",
+            "lint": "ng lint",
+            "ng": "ng",
+            "start": "ng serve --port 4000",
+            "test": "npm run build && playwright install chromium && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "c7bb90c6921617f272d9bd077165b605b42312e3f5745d949f8a630c7d134b84",
+          "sourcePath": "package.json",
+          "version": "1.0.2"
+        }
+      ],
+      "moves": [],
+      "name": "sample-app-angular-hybrid"
+    },
+    {
+      "defaultHead": "1c89cebc1e713f317ffd108dea2735c165568bd3",
+      "destinationPrefix": "framework/angularjs/examples/sample-app",
+      "downstreamProjects": null,
+      "injectionMatches": [],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "bf799d776b4fd42cc28d7160564e1b111893fa27eee74e2c70d480a74b42506d"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "be5aefe77e06b7444be21582fc5cf949a52db29d1710858b1e0f87c80fcea25e"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "7240749ce87c5c9b2050d61271abacec32b1a92ecfabe2752e7f526e72101d2e"
+        },
+        {
+          "path": "package.json",
+          "sha256": "8bf100dcd37ea8afd8128a7ec33410c2e9b364a85d31ac82f7e7c9716d9dc534"
+        },
+        {
+          "path": "playwright.config.js",
+          "sha256": "e2d6f61ba4f64b905989cb0a7d6eabbd5d75412aebffd5abc7ab5a290a16008f"
+        },
+        {
+          "path": "webpack.config.js",
+          "sha256": "6ce65d272bc6ab0cb197c6aaf5408c4ac05c8847368b5b22b198c282856f9aee"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/angularjs": "^1.1.2",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/dsr": "^1.2.0",
+              "@uirouter/sticky-states": "^1.5.1",
+              "@uirouter/visualizer": "^7.2.1",
+              "angular": "^1.8.3",
+              "oclazyload": "^1.1.0"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.57.0",
+              "copy-webpack-plugin": "^13.0.1",
+              "html-webpack-plugin": "^5.6.5",
+              "husky": "^9.1.7",
+              "prettier": "^3.7.4",
+              "serve": "^14.2.5",
+              "shx": "^0.4.0",
+              "webpack": "^5.104.1",
+              "webpack-cli": "^6.0.1",
+              "webpack-dev-server": "^5.2.2"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/angularjs/examples/sample-app/package.json",
+          "importedPath": "framework/angularjs/examples/sample-app/package.json",
+          "name": "sample-app-angularjs",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "webpack",
+            "clean": "shx rm -rf dist test-results",
+            "e2e": "npm run test",
+            "format": "prettier --write \"app/**/*.js\" \"tests/**/*.js\" \"*.js\" \"*.json\"",
+            "gh-pages": "git checkout gh-pages && git rebase master && npm install && npm run build && git add -f dist && git commit -m 'publish gh-pages' && git push origin gh-pages:gh-pages --force && git checkout master",
+            "prepare": "husky",
+            "start": "webpack-dev-server --progress --open",
+            "test": "playwright install chromium && npm run build && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "8bf100dcd37ea8afd8128a7ec33410c2e9b364a85d31ac82f7e7c9716d9dc534",
+          "sourcePath": "package.json",
+          "version": "1.0.2"
+        }
+      ],
+      "moves": [],
+      "name": "sample-app-angularjs"
+    },
+    {
+      "defaultHead": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
+      "destinationPrefix": "framework/react/examples/sample-app",
+      "downstreamProjects": null,
+      "injectionMatches": [],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "c48cc1ac4bda38efe21e1b1a5937d3bdee7a80239e3e009938b09d4fe9f5a486"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "be5aefe77e06b7444be21582fc5cf949a52db29d1710858b1e0f87c80fcea25e"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "d2ea62811c6c78e15ab69bcdf6c8088c0587523c1894b1b09ae63e12c7c65f96"
+        },
+        {
+          "path": "package.json",
+          "sha256": "51c7eeef986e3982c4441c2fe05fc34d2221054e8b833698a798608a63c77391"
+        },
+        {
+          "path": "playwright.config.js",
+          "sha256": "25b4a947498e3b38dee05dead41dce687e49c668896324ecf2d8aca00ac0f28e"
+        },
+        {
+          "path": "vite.config.js",
+          "sha256": "9a31af9b69dec509e8463c9e35be9a740895ce73fd1b7cfcc09fb08630c26eb6"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react": "^1.0.8",
+              "@uirouter/visualizer": "^7.2.1",
+              "lodash": "^4.17.21",
+              "react": "^19.2.3",
+              "react-dom": "^19.2.3"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.57.0",
+              "@vitejs/plugin-react": "^5.1.2",
+              "autoprefixer": "^10.4.23",
+              "postcss": "^8.5.6",
+              "rimraf": "^6.1.2",
+              "serve": "^14.2.5",
+              "vite": "^7.3.0"
+            },
+            "optionalDependencies": {
+              "@rollup/rollup-linux-x64-gnu": "^4.54.0"
+            },
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "framework/react/examples/sample-app/package.json",
+          "importedPath": "framework/react/examples/sample-app/package.json",
+          "name": "@uirouter/sample-app-react",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "clean": "rimraf docs",
+            "gh-pages": "npm run build && git add docs && git commit -m 'update github pages' docs && git push",
+            "preview": "vite preview",
+            "start": "vite",
+            "test": "npx playwright install chromium && npm run build && playwright test",
+            "test:report": "playwright show-report",
+            "test:ui": "npx playwright install chromium && npm run build && playwright test --ui"
+          },
+          "sha256": "51c7eeef986e3982c4441c2fe05fc34d2221054e8b833698a798608a63c77391",
+          "sourcePath": "package.json",
+          "version": "1.0.0"
+        }
+      ],
+      "moves": [],
+      "name": "sample-app-react"
+    },
+    {
+      "defaultHead": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+      "destinationPrefix": "plugins/sticky-states",
+      "downstreamProjects": {
+        "angular": {
+          "angular-cli": "./examples/angular-cli"
+        },
+        "angularjs": {
+          "angularjs-webpack": "./examples/angularjs-webpack"
+        },
+        "react": {
+          "react-vite": "./examples/react-vite"
+        }
+      },
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "examples/angular-cli/tsconfig.app.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "examples/angular-cli/tsconfig.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 1,
+              "needles": [
+                "file:"
+              ],
+              "text": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */"
+            }
+          ],
+          "path": "examples/angular-cli/tsconfig.spec.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 664,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"^1.0.0-pre.53\","
+            },
+            {
+              "line": 673,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"publish_yalc_package\": \"publish_yalc_package.js\","
+            },
+            {
+              "line": 676,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test_downstream_projects\": \"test_downstream_projects.js\","
+            },
+            {
+              "line": 5775,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc\": {"
+            },
+            {
+              "line": 5790,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"src/yalc.js\""
+            }
+          ],
+          "path": "package-lock.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 12,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test:downstream\": \"npm run build && test_downstream_projects\","
+            }
+          ],
+          "path": "package.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 15,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-sticky-states.js',"
+            }
+          ],
+          "path": "rolldown.config.mjs"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "7e69697d3e346c65d731a698c11e0989f2ce885d07b848603dd2d08b1dbfcfaa"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a"
+        },
+        {
+          "path": "downstream_projects.json",
+          "sha256": "230139965af6bfc2c08d0a68a607f6942d73ce540e2474c91fc0027e9fc58734"
+        },
+        {
+          "path": "examples/angular-cli/angular.json",
+          "sha256": "38ae43ed0aa8c05b702b82d8c90a73630c9c67f6addf059c4a32e51c7fcefe19"
+        },
+        {
+          "path": "examples/angular-cli/package.json",
+          "sha256": "d8b1f0ea57fd8404125abe1e6adcdd0c5b04fa4441ec2f9df1c569188e8cc08c"
+        },
+        {
+          "path": "examples/angular-cli/playwright.config.js",
+          "sha256": "1ee5c7ff36657ec2a8735d14b2c8a46d06f920db2ac6e3af0d5451cfad0f0a51"
+        },
+        {
+          "path": "examples/angular-cli/tsconfig.app.json",
+          "sha256": "d89269f457ae56f3c9808c3c1980a78053284e1968513070a8da8614d56fd967"
+        },
+        {
+          "path": "examples/angular-cli/tsconfig.json",
+          "sha256": "b6445b51aafffbe2fed1026bbe83c8bdf1f9194c928f6bad0db9bad66fa10b4a"
+        },
+        {
+          "path": "examples/angular-cli/tsconfig.spec.json",
+          "sha256": "6e4739692d45dec5f69346358b09fcf02f1a6c789a47bee654f773ea9af1f234"
+        },
+        {
+          "path": "examples/angularjs-webpack/package.json",
+          "sha256": "2bfb6980d3f6c8af0a731120c8f1402b3068b2d9e435fa0f0c60391ce515a062"
+        },
+        {
+          "path": "examples/angularjs-webpack/playwright.config.js",
+          "sha256": "a21722b9951fb051fc44ea7e304f02f0726e3133e44018541e7752b95c0042f9"
+        },
+        {
+          "path": "examples/angularjs-webpack/webpack.config.js",
+          "sha256": "e1008877e2412f3c54427899376279539730c6ab6a850ae50eb2750b3e0fdca3"
+        },
+        {
+          "path": "examples/react-vite/package.json",
+          "sha256": "edea0bbf8d18abd65c2258e382f3d88a50d15b2420aab2fc4b639716b43f6993"
+        },
+        {
+          "path": "examples/react-vite/playwright.config.js",
+          "sha256": "c6082e7fb908d7dfdf081822d1f3fbcf9ab55bee9afae8c11684ecb370f8c114"
+        },
+        {
+          "path": "examples/react-vite/vite.config.js",
+          "sha256": "0709465427668ae85ef999f63762d7a06fd92962363fe8cc142ad656d3548115"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "a5093a91db2673d59f0fe7930e8b551d9cf79d839fa7a857bccda10ad395ce39"
+        },
+        {
+          "path": "package.json",
+          "sha256": "24f793c64293cf90725f8b0e48118c75ecd2b02d490e7ae747fe34a38d702ee4"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "b3e080388c00b5e106815e6263bfb817d5bfd38b98fc7c708aa12e56a45c139f"
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "011388ae9da94789a9958415d2f9a2bfc576b8ea0b6ea4ba317b86342e35ce94"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "@angular/common": "^20.0.0",
+              "@angular/compiler": "^20.0.0",
+              "@angular/core": "^20.0.0",
+              "@angular/forms": "^20.0.0",
+              "@angular/platform-browser": "^20.0.0",
+              "@uirouter/angular": "^17.0.1",
+              "@uirouter/rx": "^1.0.0",
+              "@uirouter/sticky-states": "^1.5.1",
+              "@uirouter/visualizer": "^7.0.0",
+              "rxjs": "~7.8.0",
+              "tslib": "^2.3.0",
+              "zone.js": "~0.15.0"
+            },
+            "devDependencies": {
+              "@angular/build": "^20.0.0",
+              "@angular/cli": "^20.0.0",
+              "@angular/compiler-cli": "^20.0.0",
+              "@playwright/test": "^1.49.0",
+              "serve": "^14.2.0",
+              "typescript": "~5.8.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/sticky-states/examples/angular-cli/package.json",
+          "importedPath": "plugins/sticky-states/examples/angular-cli/package.json",
+          "name": "angular-cli",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "ng build",
+            "ng": "ng",
+            "start": "ng serve",
+            "test": "npm run build && playwright install chromium && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "d8b1f0ea57fd8404125abe1e6adcdd0c5b04fa4441ec2f9df1c569188e8cc08c",
+          "sourcePath": "examples/angular-cli/package.json",
+          "version": "0.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/angularjs": "^1.1.0",
+              "@uirouter/sticky-states": "^1.5.1",
+              "@uirouter/visualizer": "^7.0.0",
+              "angular": "^1.8.3"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.49.0",
+              "serve": "^14.2.0",
+              "webpack": "^5.93.0",
+              "webpack-cli": "^5.1.4",
+              "webpack-dev-server": "^5.0.4"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+          "importedPath": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+          "name": "angularjs-webpack",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "webpack --progress",
+            "start": "webpack serve --progress --open",
+            "test": "npm run build && playwright install chromium && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "2bfb6980d3f6c8af0a731120c8f1402b3068b2d9e435fa0f0c60391ce515a062",
+          "sourcePath": "examples/angularjs-webpack/package.json",
+          "version": "1.0.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {
+              "@uirouter/react": "^1.0.7",
+              "@uirouter/sticky-states": "^1.5.1",
+              "@uirouter/visualizer": "^7.0.0",
+              "react": "^18.3.1",
+              "react-dom": "^18.3.1"
+            },
+            "devDependencies": {
+              "@playwright/test": "^1.49.0",
+              "@vitejs/plugin-react": "^4.3.4",
+              "serve": "^14.2.0",
+              "vite": "^6.0.0"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {}
+          },
+          "engines": {},
+          "finalPath": "plugins/sticky-states/examples/react-vite/package.json",
+          "importedPath": "plugins/sticky-states/examples/react-vite/package.json",
+          "name": "react-vite-app",
+          "overrides": {},
+          "packageManager": null,
+          "private": true,
+          "resolutions": {},
+          "scripts": {
+            "build": "vite build",
+            "dev": "vite",
+            "preview": "vite preview",
+            "start": "vite",
+            "test": "npm run build && playwright install chromium && playwright test",
+            "test:ui": "npm run build && playwright test --ui"
+          },
+          "sha256": "edea0bbf8d18abd65c2258e382f3d88a50d15b2420aab2fc4b639716b43f6993",
+          "sourcePath": "examples/react-vite/package.json",
+          "version": "0.1.0"
+        },
+        {
+          "dependencies": {
+            "dependencies": {},
+            "devDependencies": {
+              "@types/lodash": "4.17.21",
+              "@typescript/native-preview": "^7.0.0-dev.20260103.1",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "^2.7.0",
+              "eslint": "^9.19.0",
+              "husky": "^9.1.7",
+              "lodash": "^4.17.21",
+              "prettier": "^3.7.4",
+              "pretty-quick": "^4.2.2",
+              "rolldown": "^1.0.0-beta.58",
+              "shx": "^0.4.0",
+              "typescript": "^5.9.3",
+              "typescript-eslint": "^8.51.0",
+              "vitest": "^4.0.16"
+            },
+            "optionalDependencies": {},
+            "peerDependencies": {
+              "@uirouter/core": ">=5.0.1"
+            }
+          },
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "finalPath": "plugins/sticky-states/package.json",
+          "importedPath": "plugins/sticky-states/package.json",
+          "name": "@uirouter/sticky-states",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "npm run clean && tsgo && tsgo -m es6 -outDir lib-esm && npm run bundle",
+            "build:tsc": "npm run clean && tsc && tsc -m es6 -outDir lib-esm && npm run bundle",
+            "bundle": "rolldown -c rolldown.config.mjs",
+            "clean": "shx rm -rf lib lib-esm _bundles",
+            "lint": "eslint src test",
+            "lint:fix": "eslint src test --fix",
+            "prepublishOnly": "npm run build",
+            "release": "release",
+            "test": "vitest run",
+            "test:downstream": "npm run build && test_downstream_projects",
+            "test:watch": "vitest",
+            "watch": "run-p watch:*",
+            "watch:buildjs": "tsc -w",
+            "watch:test": "vitest"
+          },
+          "sha256": "24f793c64293cf90725f8b0e48118c75ecd2b02d490e7ae747fe34a38d702ee4",
+          "sourcePath": "package.json",
+          "version": "1.5.1"
+        }
+      ],
+      "moves": [],
+      "name": "sticky-states"
+    },
+    {
+      "defaultHead": "d95f266364aeba3ba082724cc33faa9fa9d82ac3",
+      "destinationPrefix": "plugins/visualizer",
+      "downstreamProjects": null,
+      "injectionMatches": [
+        {
+          "matches": [
+            {
+              "line": 920,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"^1.0.0-pre.53\","
+            },
+            {
+              "line": 929,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"publish_yalc_package\": \"publish_yalc_package.js\","
+            },
+            {
+              "line": 932,
+              "needles": [
+                "test_downstream_projects"
+              ],
+              "text": "\"test_downstream_projects\": \"test_downstream_projects.js\","
+            },
+            {
+              "line": 6516,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc\": {"
+            },
+            {
+              "line": 6531,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"yalc\": \"src/yalc.js\""
+            },
+            {
+              "line": 6534,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/chalk\": {"
+            },
+            {
+              "line": 6549,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/fs-extra\": {"
+            },
+            {
+              "line": 6562,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/ignore\": {"
+            },
+            {
+              "line": 6570,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/ini\": {"
+            },
+            {
+              "line": 6578,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/jsonfile\": {"
+            },
+            {
+              "line": 6586,
+              "needles": [
+                "yalc"
+              ],
+              "text": "\"node_modules/yalc/node_modules/universalify\": {"
+            }
+          ],
+          "path": "package-lock.json"
+        },
+        {
+          "matches": [
+            {
+              "line": 22,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-visualizer.js',"
+            },
+            {
+              "line": 28,
+              "needles": [
+                "file:"
+              ],
+              "text": "file: '_bundles/ui-router-visualizer.esm.js',"
+            }
+          ],
+          "path": "rolldown.config.mjs"
+        }
+      ],
+      "interestingFiles": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "c5b9549aa6bc62067371c44bfececeaa182e663fcefcbed39895a853c6ab939e"
+        },
+        {
+          "path": ".github/workflows/update_dependencies.yml",
+          "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "223f9e7a792d06e5810e5a08b7c1a707404268e12b2fa9c070f3dccf0c3f97f1"
+        },
+        {
+          "path": "package.json",
+          "sha256": "614ed4ca00b837eeec53b04ed18984953140723415a5b6db64ebdfcc29fd74bf"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "35bcc265a33532517d1d76581d80d2563a8c2fb36746f293a1a01e4bcc05032b"
+        }
+      ],
+      "manifests": [
+        {
+          "dependencies": {
+            "dependencies": {
+              "d3-hierarchy": "^3.1.2",
+              "d3-interpolate": "=3.0.1",
+              "preact": "^10.28.1"
+            },
+            "devDependencies": {
+              "@types/d3-hierarchy": "^3.1.7",
+              "@types/d3-interpolate": "^3.0.4",
+              "@typescript/native-preview": "^7.0.0-dev.20250701",
+              "@uirouter/core": "^6.1.2",
+              "@uirouter/publish-scripts": "2.7.0",
+              "husky": "^9.1.7",
+              "prettier": "^3.7.4",
+              "pretty-quick": "^4.2.2",
+              "rolldown": "^1.0.0-beta.58",
+              "rollup-plugin-styles": "^4.0.0",
+              "serve": "^14.2.5",
+              "shx": "^0.4.0",
+              "tslib": "^2.8.1",
+              "typescript": "^5.9.3"
+            },
+            "optionalDependencies": {
+              "@rolldown/binding-linux-x64-gnu": "1.0.0-beta.58",
+              "@typescript/native-preview-linux-x64": "^7.0.0-dev.20250701"
+            },
+            "peerDependencies": {
+              "@uirouter/core": ">=5.0.0"
+            }
+          },
+          "engines": {},
+          "finalPath": "plugins/visualizer/package.json",
+          "importedPath": "plugins/visualizer/package.json",
+          "name": "@uirouter/visualizer",
+          "overrides": {},
+          "packageManager": null,
+          "private": null,
+          "resolutions": {},
+          "scripts": {
+            "build": "npm run clean && npm run compile && npm run bundle",
+            "bundle": "rolldown -c rolldown.config.mjs",
+            "clean": "shx rm -rf lib lib-esm _bundles",
+            "compile": "tsgo --outdir lib && tsgo -m es6 --outdir lib-esm",
+            "prepare": "husky",
+            "prepublishOnly": "npm run build",
+            "release": "release",
+            "start": "npm run bundle && serve . --open /example"
+          },
+          "sha256": "614ed4ca00b837eeec53b04ed18984953140723415a5b6db64ebdfcc29fd74bf",
+          "sourcePath": "package.json",
+          "version": "7.2.1"
+        }
+      ],
+      "moves": [
+        {
+          "from": "plugins/visualizer/example",
+          "to": "plugins/visualizer/examples/example"
+        }
+      ],
+      "name": "visualizer"
+    }
+  ]
+}

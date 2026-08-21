@@ -1,0 +1,23 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream"
+  ],
+  "durationSeconds": 362,
+  "expectedFailureReason": "The recursive source-native helper passes Angular, AngularJS, their nested projects, and React, then Yarn 1.22.22 fails linking Vite in the nested React 17 integration; later projects are skipped by the fail-fast helper.",
+  "id": "core.downstream.all",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: angular, angular.sample-app-angular, angular.angular22, angular.angular22standalone, angular.angular22zoneless, angular.typescript6, angularjs, angularjs.typescript3.9, angularjs.sample-app-angularjs, react <===",
+    "===> Failed to run downstream tests for: react.react17 <===",
+    "===> Did not try to run downstream tests for: typescript5.4, typescript3.9, sticky-states, react.react18, react.react19, react.sample-app-react, sticky-states.angular-cli, sticky-states.angularjs-webpack, sticky-states.react-vite <==="
+  ],
+  "result": "waived-failure",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "core",
+  "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+  "status": 1,
+  "stderrSha256": "6b4e38fe865951a39890d762b3164fea4332d427e824698ac9b41174c6fc4362",
+  "stdoutSha256": "40b3c40b288d117457ed79bc5b878f28e0aa77c478ddc7675b573a9c082718f2"
+}

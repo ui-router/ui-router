@@ -1,0 +1,27 @@
+{
+  "browser": {
+    "installerVersion": "@playwright/test@1.57.0",
+    "name": "chromium",
+    "revision": "1200",
+    "sha256": "20ffc88be1c6f7dc8351bebfaca965ff9a07617bddf696f0b67ef85e5868b29a"
+  },
+  "browserInstallerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "browserInstallerStdoutSha256": "407559863956ecf007c14eae3795dda60e1d0d1d12cddae548bf249480c5c13d",
+  "browserRuntimeImageDigest": "sha256:11ccb69d8828b3d5d11c2e01c47da8c784b484451072c6d03f6a809b7a297982",
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 11,
+  "expectedFailureReason": null,
+  "id": "sample-app-angularjs.root.e2e",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-angularjs",
+  "sourceCommit": "1c89cebc1e713f317ffd108dea2735c165568bd3",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "5e89063c31b1a4e691b01972048011a0ffa4a583a388dd12d006374104616914"
+}

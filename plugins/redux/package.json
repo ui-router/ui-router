@@ -1,0 +1,80 @@
+{
+  "name": "@uirouter/redux",
+  "version": "1.0.0",
+  "description": "Redux bindings for UI-Router",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ui-router/redux.git"
+  },
+  "author": "Marco Botto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ui-router/redux/issues"
+  },
+  "homepage": "https://github.com/ui-router/redux#readme",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./react": {
+      "import": {
+        "types": "./dist/react.d.mts",
+        "default": "./dist/react.mjs"
+      },
+      "require": {
+        "types": "./dist/react.d.cts",
+        "default": "./dist/react.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "npm run dev --prefix examples/react",
+    "test": "vitest run",
+    "test:ci": "vitest run",
+    "lint": "oxlint -c oxlint.json core react",
+    "lint:fix": "oxlint -c oxlint.json --fix core react",
+    "format": "oxfmt --write core react",
+    "format:check": "oxfmt --check core react",
+    "clean": "shx rm -rf dist",
+    "build": "npm run clean && tsdown",
+    "release": "release"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.7",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/publish-scripts": "^2.7.0",
+    "@uirouter/react": "^1.0.8",
+    "jsdom": "^26.1.0",
+    "oxfmt": "^0.27.0",
+    "oxlint": "^1.42.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "shx": "^0.3.4",
+    "tsdown": "^0.20.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "@uirouter/core": ">=5.0.0"
+  },
+  "dependencies": {}
+}

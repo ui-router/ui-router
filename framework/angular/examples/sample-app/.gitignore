@@ -1,0 +1,34 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+yarn-error.log
+
+# compiled output
+/dist
+/tmp
+.*
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+*.launch
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.angular/cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+#System Files
+Thumbs.db
+playwright-report/
+test-results/

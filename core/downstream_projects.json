@@ -1,0 +1,16 @@
+{
+  "angular": {
+    "angular": "https://github.com/ui-router/angular.git"
+  },
+  "angularjs": {
+    "angularjs": "https://github.com/angular-ui/ui-router.git"
+  },
+  "react": {
+    "react": "https://github.com/ui-router/react.git"
+  },
+  "other": {
+    "typescript5.4": "./test/typescript5.4",
+    "typescript3.9": "./test/typescript3.9",
+    "sticky-states": "https://github.com/ui-router/sticky-states.git"
+  }
+}

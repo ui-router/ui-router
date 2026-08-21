@@ -1,0 +1,19 @@
+pull_request_rules:
+  - name: 'Auto Squash and Merge'
+    conditions:
+      - base=master
+      - check-success=ci
+      - label=ready to squash and merge
+    actions:
+      delete_head_branch:
+      merge:
+        method: squash
+  - name: 'Auto Rebase and Merge'
+    conditions:
+      - base=master
+      - check-success=ci
+      - label=ready to rebase and merge
+    actions:
+      delete_head_branch:
+      merge:
+        method: rebase

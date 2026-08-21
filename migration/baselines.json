@@ -3,6 +3,61 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/angular-hybrid/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/angular-hybrid.downstream.all.json",
+        "sha256": "85941bcc5ef59557b4ce7e690d72a75d4ba7699d677b6611140ef9e9bb847d48"
+      },
+      "expectedFailureReason": null,
+      "id": "angular-hybrid.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/angular-hybrid->./example",
+        "yalc:@uirouter/angular-hybrid->https://github.com/ui-router/sample-app-angular-hybrid.git"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "angular-hybrid",
+      "sourceCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -26,7 +81,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular-hybrid.downstream.default.example.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular-hybrid->./example"
       ],
@@ -78,7 +133,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular-hybrid.downstream.default.sample-app-angular-hybrid.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular-hybrid->https://github.com/ui-router/sample-app-angular-hybrid.git"
       ],
@@ -283,7 +338,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/angular-hybrid.root.install.json",
-        "sha256": "9746be81f82ca2f3effc711fd2df61045b8376a38819fca60859a11600a2b364"
+        "sha256": "f9f052f0c73145ec0c85fa29bc50c75cba19f66d02efe2b626663b657742c4ef"
       },
       "expectedFailureReason": null,
       "id": "angular-hybrid.root.install",
@@ -531,6 +586,64 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/angular/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/angular.downstream.all.json",
+        "sha256": "c1f770d8ecbd552aa547d6786663870b6d3c4de6604926453d27ca3a774e2cc8"
+      },
+      "expectedFailureReason": null,
+      "id": "angular.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/angular->./test-angular-versions/v22",
+        "yalc:@uirouter/angular->./test-angular-versions/v22-standalone",
+        "yalc:@uirouter/angular->./test-angular-versions/v22-zoneless",
+        "yalc:@uirouter/angular->https://github.com/ui-router/sample-app-angular.git",
+        "yalc:@uirouter/angular->./test-typescript-versions/typescript6"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "angular",
+      "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -554,7 +667,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular.downstream.default.angular22.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular->./test-angular-versions/v22"
       ],
@@ -606,7 +719,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular.downstream.default.angular22standalone.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular->./test-angular-versions/v22-standalone"
       ],
@@ -658,7 +771,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular.downstream.default.angular22zoneless.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular->./test-angular-versions/v22-zoneless"
       ],
@@ -710,7 +823,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular.downstream.default.sample-app-angular.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular->https://github.com/ui-router/sample-app-angular.git"
       ],
@@ -762,7 +875,7 @@
       },
       "expectedFailureReason": null,
       "id": "angular.downstream.default.typescript6.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angular->./test-typescript-versions/typescript6"
       ],
@@ -1219,7 +1332,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/angular.root.install.json",
-        "sha256": "e7b640c254054acc7a812d5ed996baf4305db11420298e96b4ace32e6729b43f"
+        "sha256": "d74d2228412d0e0078e46d43528cdc16d9a77efba4ed7eba16a1cf71c5a56624"
       },
       "expectedFailureReason": null,
       "id": "angular.root.install",
@@ -1356,6 +1469,61 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/angularjs/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/angularjs.downstream.all.json",
+        "sha256": "c266989781cb6bf17ad9a748c9c74b03ded3e98eb0dc5a611d6071ddd4aad528"
+      },
+      "expectedFailureReason": null,
+      "id": "angularjs.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/angularjs->https://github.com/ui-router/sample-app-angularjs.git",
+        "yalc:@uirouter/angularjs->./test/typescript/3.9"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "angularjs",
+      "sourceCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -1379,7 +1547,7 @@
       },
       "expectedFailureReason": null,
       "id": "angularjs.downstream.default.sample-app-angularjs.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angularjs->https://github.com/ui-router/sample-app-angularjs.git"
       ],
@@ -1431,7 +1599,7 @@
       },
       "expectedFailureReason": null,
       "id": "angularjs.downstream.typescript.typescript3.9.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/angularjs->./test/typescript/3.9"
       ],
@@ -1738,7 +1906,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/angularjs.root.install.json",
-        "sha256": "60d1727ce7c857fb0d8329007b803bd037222b98de2afa5e1019f2abdca4d78d"
+        "sha256": "cde8cf1e5a14c5c83bbedfe18bb40714e1136e3b5fa6a4b0ec887451d3b2c34f"
       },
       "expectedFailureReason": null,
       "id": "angularjs.root.install",
@@ -1875,6 +2043,65 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/core/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 1
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/core.downstream.all.json",
+        "sha256": "83cdd65fd12f45257b560b5f4ae71278cf2364608c82fa55813c9b4ff04608c3"
+      },
+      "expectedFailureReason": "The recursive source-native helper passes Angular, AngularJS, their nested projects, and React, then Yarn 1.22.22 fails linking Vite in the nested React 17 integration; later projects are skipped by the fail-fast helper.",
+      "id": "core.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/core->https://github.com/ui-router/angular.git",
+        "yalc:@uirouter/core->https://github.com/angular-ui/ui-router.git",
+        "yalc:@uirouter/core->https://github.com/ui-router/sticky-states.git",
+        "yalc:@uirouter/core->./test/typescript3.9",
+        "yalc:@uirouter/core->./test/typescript5.4",
+        "yalc:@uirouter/core->https://github.com/ui-router/react.git"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "expected-failure",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "core",
+      "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -1898,7 +2125,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.angular.angular.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->https://github.com/ui-router/angular.git"
       ],
@@ -1950,7 +2177,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.angularjs.angularjs.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->https://github.com/angular-ui/ui-router.git"
       ],
@@ -1979,6 +2206,65 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream",
+          "--",
+          "--group",
+          "other"
+        ],
+        "cwd": ".migration-work/baselines/runs/core/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 1
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "other",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/core.downstream.other.json",
+        "sha256": "4bf956bbbdc22ddfe1f6bc0a191012cc00a6ca55b912ba2ff368128e8da3ea22"
+      },
+      "expectedFailureReason": "The Core-injected TypeScript 3.9/5.4 and Sticky States parent lanes pass, then publishing the nested Sticky States package fails because its unpinned tsgo resolves TypeScript 6 and rejects the retained tsconfig.",
+      "id": "core.downstream.other",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/core->https://github.com/ui-router/sticky-states.git",
+        "yalc:@uirouter/core->./test/typescript3.9",
+        "yalc:@uirouter/core->./test/typescript5.4"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "expected-failure",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "core",
+      "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "other"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -2002,7 +2288,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.other.sticky-states.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->https://github.com/ui-router/sticky-states.git"
       ],
@@ -2054,7 +2340,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.other.typescript3.9.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->./test/typescript3.9"
       ],
@@ -2106,7 +2392,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.other.typescript5.4.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->./test/typescript5.4"
       ],
@@ -2158,7 +2444,7 @@
       },
       "expectedFailureReason": null,
       "id": "core.downstream.react.react.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/core->https://github.com/ui-router/react.git"
       ],
@@ -2607,6 +2893,62 @@
     {
       "command": {
         "argv": [
+          "npm",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/dsr/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/dsr.downstream.all.json",
+        "sha256": "24a50656027f83a3a5d5d402e0e275bd188a3981159dd356d0c1339a0bbdea38"
+      },
+      "expectedFailureReason": null,
+      "id": "dsr.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/dsr->./examples/angular-cli",
+        "yalc:@uirouter/dsr->./examples/angularjs-webpack",
+        "yalc:@uirouter/dsr->./examples/react-vite"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "npm-ci",
+        "name": "npm",
+        "version": "10.9.8"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "dsr",
+      "sourceCommit": "0fc6644008842790681bc08f1887a530d7120cfb",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -2630,7 +2972,7 @@
       },
       "expectedFailureReason": null,
       "id": "dsr.downstream.angular.angular-cli.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/dsr->./examples/angular-cli"
       ],
@@ -2682,7 +3024,7 @@
       },
       "expectedFailureReason": null,
       "id": "dsr.downstream.angularjs.angularjs-webpack.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/dsr->./examples/angularjs-webpack"
       ],
@@ -2734,7 +3076,7 @@
       },
       "expectedFailureReason": null,
       "id": "dsr.downstream.react.react-vite.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/dsr->./examples/react-vite"
       ],
@@ -3039,7 +3381,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/dsr.root.install.json",
-        "sha256": "3dd559a4f300533f0afd2324d38dc88bbf79f8a3a78ecef88d1e61065882b347"
+        "sha256": "64317084d9d1769141f47a439963df2438e51bf10c7a8f16f6b6d4cb24c1cdae"
       },
       "expectedFailureReason": null,
       "id": "dsr.root.install",
@@ -3435,6 +3777,63 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/react-hybrid/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/react-hybrid.downstream.all.json",
+        "sha256": "e696f05ee6a45c2bb56f8357fc9d5f3ed6d1f799fbab7b48e4eba021f09e99b3"
+      },
+      "expectedFailureReason": null,
+      "id": "react-hybrid.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/react-hybrid->./integration/react16",
+        "yalc:@uirouter/react-hybrid->./integration/react17",
+        "yalc:@uirouter/react-hybrid->./integration/react18",
+        "yalc:@uirouter/react-hybrid->./integration/react19"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "react-hybrid",
+      "sourceCommit": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -3458,7 +3857,7 @@
       },
       "expectedFailureReason": null,
       "id": "react-hybrid.downstream.integration.react16.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react-hybrid->./integration/react16"
       ],
@@ -3510,7 +3909,7 @@
       },
       "expectedFailureReason": null,
       "id": "react-hybrid.downstream.integration.react17.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react-hybrid->./integration/react17"
       ],
@@ -3562,7 +3961,7 @@
       },
       "expectedFailureReason": null,
       "id": "react-hybrid.downstream.integration.react18.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react-hybrid->./integration/react18"
       ],
@@ -3614,7 +4013,7 @@
       },
       "expectedFailureReason": null,
       "id": "react-hybrid.downstream.integration.react19.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react-hybrid->./integration/react19"
       ],
@@ -3969,7 +4368,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/react-hybrid.root.install.json",
-        "sha256": "37740705eca385099db1b3f7fd9cd4ac4419036c432f1de923abacffbf700767"
+        "sha256": "1936b153dc937080856b321873cfdedd3424daaf22a2ee9e88f5ad78dd31d765"
       },
       "expectedFailureReason": null,
       "id": "react-hybrid.root.install",
@@ -4054,6 +4453,63 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/react/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/react.downstream.all.json",
+        "sha256": "189b8359380256e0f3958ab638e863aa65fea370b872df833ba0beb1f88f9d60"
+      },
+      "expectedFailureReason": null,
+      "id": "react.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/react->./integration/react17",
+        "yalc:@uirouter/react->./integration/react18",
+        "yalc:@uirouter/react->./integration/react19",
+        "yalc:@uirouter/react->https://github.com/ui-router/sample-app-react.git"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "yarn-frozen-lockfile",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "pass",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "react",
+      "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -4077,7 +4533,7 @@
       },
       "expectedFailureReason": null,
       "id": "react.downstream.default.sample-app-react.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react->https://github.com/ui-router/sample-app-react.git"
       ],
@@ -4129,7 +4585,7 @@
       },
       "expectedFailureReason": null,
       "id": "react.downstream.react-versions.react17.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react->./integration/react17"
       ],
@@ -4181,7 +4637,7 @@
       },
       "expectedFailureReason": null,
       "id": "react.downstream.react-versions.react18.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react->./integration/react18"
       ],
@@ -4233,7 +4689,7 @@
       },
       "expectedFailureReason": null,
       "id": "react.downstream.react-versions.react19.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/react->./integration/react19"
       ],
@@ -4690,7 +5146,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/react.root.install.json",
-        "sha256": "5ea9cf16ecbacec19a9ca8a99e7b417ddbedf48ba53ec1b199cb9bf1bb70f9f0"
+        "sha256": "0b44e15b6f6f261d546f9d50da848c03abe01e02115d10393afde3e6d9aaa36b"
       },
       "expectedFailureReason": null,
       "id": "react.root.install",
@@ -6315,6 +6771,62 @@
     {
       "command": {
         "argv": [
+          "yarn",
+          "run",
+          "test:downstream"
+        ],
+        "cwd": ".migration-work/baselines/runs/sticky-states/root-install/work",
+        "environment": {
+          "CI": "1",
+          "HUSKY": "0",
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 2
+      },
+      "discoveredFrom": [
+        "downstream_projects.json",
+        "package.json"
+      ],
+      "downstreamGroup": "all",
+      "downstreamProject": null,
+      "evidence": {
+        "path": "migration/control-evidence/baselines/sticky-states.downstream.all.json",
+        "sha256": "ac369f66be212cc049147d95f8735d25ae114839d739deca3d0917da4e059da2"
+      },
+      "expectedFailureReason": "The source-native downstream command fails in its prerequisite build because unpinned tsgo resolves TypeScript 6, which rejects node10 moduleResolution and the missing rootDir.",
+      "id": "sticky-states.downstream.all",
+      "lane": "downstream",
+      "legacyInjectedEdges": [
+        "yalc:@uirouter/sticky-states->./examples/angular-cli",
+        "yalc:@uirouter/sticky-states->./examples/angularjs-webpack",
+        "yalc:@uirouter/sticky-states->./examples/react-vite"
+      ],
+      "lifecycleReview": "safe-explicit",
+      "owner": "ui-router-maintainers",
+      "packageManager": {
+        "lockPolicy": "no-lock-reviewed",
+        "name": "yarn",
+        "version": "1.22.22"
+      },
+      "result": "expected-failure",
+      "runtime": {
+        "architecture": "x64",
+        "browser": null,
+        "locale": "C",
+        "node": "v24.19.0",
+        "osImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+        "timezone": "UTC"
+      },
+      "source": "sticky-states",
+      "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+      "sourcePath": ".",
+      "waiver": null,
+      "workflowMatrixKey": "all"
+    },
+    {
+      "command": {
+        "argv": [
           "/usr/bin/python3.11",
           ".migration-work/baselines/inventory.py"
         ],
@@ -6338,7 +6850,7 @@
       },
       "expectedFailureReason": null,
       "id": "sticky-states.downstream.angular.angular-cli.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/sticky-states->./examples/angular-cli"
       ],
@@ -6390,7 +6902,7 @@
       },
       "expectedFailureReason": null,
       "id": "sticky-states.downstream.angularjs.angularjs-webpack.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/sticky-states->./examples/angularjs-webpack"
       ],
@@ -6442,7 +6954,7 @@
       },
       "expectedFailureReason": null,
       "id": "sticky-states.downstream.react.react-vite.discovery",
-      "lane": "downstream",
+      "lane": "static",
       "legacyInjectedEdges": [
         "yalc:@uirouter/sticky-states->./examples/react-vite"
       ],
@@ -6747,7 +7259,7 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/sticky-states.root.install.json",
-        "sha256": "a31dcca0ee5d5f9ac0fdbc991536356b026350bb2a1b2ee35dff1ef18cd0ec52"
+        "sha256": "50537c25d412d542f87d7bd38de888d80f58f778f41511d4be03fd7de787a635"
       },
       "expectedFailureReason": null,
       "id": "sticky-states.root.install",

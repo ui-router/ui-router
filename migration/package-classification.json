@@ -1,5 +1,5 @@
 {
-  "baselinesSha256": "7bf1771551974624da9cf08562e661c9f8e2c8f75e88dbc3fcc4f8dd8f41af19",
+  "baselinesSha256": "18c06ef9ad41f06f6dc20219fb46ea1393f2d0d82800d21ba06e4cd52a0175f3",
   "edges": [
     {
       "consumerManifest": "core/package.json",

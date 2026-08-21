@@ -7,10 +7,10 @@
     "--ignore-scripts",
     "--non-interactive"
   ],
-  "durationSeconds": 43,
+  "durationSeconds": 18,
   "expectedFailureReason": null,
   "id": "angular-hybrid.root.install",
-  "inputHashesAfterSha256": "0cc071977879a0f143e791c1136860f6fb5cc93dd45ecd5d7b8d38ab6f6bf468",
+  "inputHashesAfterSha256": "7224fe568898cd27616556c1fe3b7cdf2b27ba4bb2a572a0d3eba35246732bfc",
   "inputHashesBeforeSha256": "0cc071977879a0f143e791c1136860f6fb5cc93dd45ecd5d7b8d38ab6f6bf468",
   "result": "pass",
   "schemaVersion": 1,
@@ -18,5 +18,5 @@
   "sourceCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
   "status": 0,
   "stderrSha256": "79020dfe4c7e56f4359c79204e78b32f676db96c77b720b2290aef5664ac6fe4",
-  "stdoutSha256": "29d10a8614efddbc0f44d1e3aab7a13e6fdafcc7dba7304e5449f194b51bad14"
+  "stdoutSha256": "2c049c48bd5dfcdcf993f1832455bb4b7883b7f02cb04dd3d4e3f4814f00db7e"
 }

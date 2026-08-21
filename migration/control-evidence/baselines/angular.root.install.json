@@ -7,10 +7,10 @@
     "--ignore-scripts",
     "--non-interactive"
   ],
-  "durationSeconds": 57,
+  "durationSeconds": 32,
   "expectedFailureReason": null,
   "id": "angular.root.install",
-  "inputHashesAfterSha256": "8eb1bdf73439e4cee58f124eeae9cf5510964e6b5f717d5d5fe451cf62f9451b",
+  "inputHashesAfterSha256": "367ed3f337f0b6cfab674268de04bfb59bfcd360ef941ad6db40683cd905d6f8",
   "inputHashesBeforeSha256": "8eb1bdf73439e4cee58f124eeae9cf5510964e6b5f717d5d5fe451cf62f9451b",
   "result": "pass",
   "schemaVersion": 1,
@@ -18,5 +18,5 @@
   "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
   "status": 0,
   "stderrSha256": "1af6b18d0370a38964a53697915907d1f16d07f3eefa8ad3e6dee1fff40bd9ca",
-  "stdoutSha256": "a4ad5a9c52d4a8ccc6e9830c41e07af3db036f555455638caaa2acb0fd98c3bd"
+  "stdoutSha256": "31cedd19e3ac63c246a290622682d320afdf4e4d0d850a24726c770c3ffc3963"
 }

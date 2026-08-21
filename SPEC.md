@@ -27,7 +27,6 @@ Do not:
 - modernize published `engines`
 - silently widen peer dependency ranges
 - add remote Turbo caching
-- make ordinary examples root npm workspaces
 - preserve rewritten Git object IDs or claim that rewritten signatures remain valid
 - execute package scripts until their commands and lifecycle hooks have been statically reviewed
 
@@ -75,14 +74,16 @@ Root npm workspaces are exactly:
 [
   "core",
   "plugins/*",
+  "plugins/*/examples/*",
   "framework/*/router",
+  "framework/*/examples/*",
   "tools/*"
 ]
 ```
 
-- `integration/` projects are private, excluded from root workspaces, and own npm locks.
-- Ordinary `examples/` are private and excluded from root workspaces in milestone 1. They run as separate locked projects.
-- The repository has one root npm lock. No Yarn or pnpm lock remains on current `main` after npm conversion.
+- All ordinary current-version examples and sample apps are private root workspaces. They use the root lock and linked local workspace packages for normal development; they are behavioral/developer tests, not consumer-install evidence.
+- `integration/` compatibility/version-matrix projects are private, excluded from root workspaces, and own npm locks. Any project that intentionally requires an older incompatible internal version is an integration project, not an ordinary example.
+- The repository has one root npm lock plus one local npm lock per classified integration project. No workspace has a nested lock. No Yarn or pnpm lock remains on current `main` after npm conversion.
 - Historical commits and imported tags retain their original lockfiles and contents.
 
 ### 3.5 Internal dependencies
@@ -101,10 +102,10 @@ Root npm workspaces are exactly:
 
 One small integration runner provides:
 
-- **Clean gate (`--clean`):** CI/final acceptance builds and packs all intended internal packages, installs content-hashed tarballs into a fresh fixture through a temporary lock and one `npm ci`, proves internal packages came from those tarballs, and preserves a compact failure repro bundle.
-- **Persistent development loop (`--reuse`, local default):** retains `.integration-cache/<fixture>` and its installed tree, records fixture/toolchain/revision/tarball state, rebuilds and repacks the affected internal graph, force-installs changed content-hashed tarballs without changing the committed fixture lock, and reruns the selected test.
+- **Clean gate (`--clean`):** a producer job builds and packs all intended internal packages. A separate clean consumer job copies the complete fixture tree and downloaded content-hashed tarballs into a fresh sandbox whose realpath is outside checkout/repository ancestry, then installs through a temporary lock and one `npm ci`. The runner unsets `NODE_PATH`, uses no source symlink/hard-link back into the checkout, verifies installed versions/origins/content hashes, creates a controlled sentinel package only under the checkout's root `node_modules`, proves the external sandbox cannot resolve it, and preserves a compact failure repro bundle.
+- **Persistent development loop (`--reuse`, opt-in local debugging):** uses a configurable cache root whose realpath is outside repository ancestry. It populates an independent fixture tree with copy-on-write copies when available and incremental ordinary copies otherwise; source, manifests, locks, snapshots, generated output, and `node_modules` are never hard-linked or symlinked to the repository. State records the complete fixture-tree/lock hash, repository revision, platform/architecture, Node/npm versions and configuration, internal tarball hashes, and last command. Any mismatch resets the sandbox; otherwise the runner rebuilds and repacks the affected internal graph, force-installs changed content-hashed tarballs without changing the committed fixture lock, and reruns the selected test.
 
-A clean packed run is always required for acceptance. A later source-linked integration mode may shorten diagnosis but cannot replace it.
+All non-builtin module resolutions in an isolated lane must remain inside the consumer sandbox and match the matrix's expected registry or local-tarball origin. A clean packed run is always required for acceptance. A later source-linked integration mode may shorten diagnosis but cannot replace it.
 
 ## 4. Source and layout map
 
@@ -221,7 +222,7 @@ Every example, integration, scaffold, and test fixture must have:
 - `private: true`
 - a classification (`example`, `integration`, `fixture`, or nested tool)
 - an explicit lock owner: root lock or local npm lock
-- no accidental match in the root workspace set
+- workspace membership that exactly matches its classification: ordinary examples use the root workspace/lock; integrations and non-installed fixtures must not match a positive workspace glob
 
 Duplicate current names such as `angular-cli` and `angularjs-webpack` must be made unique without changing application/test logic. The classification file also owns the exhaustive internal-edge table and every package-local Yarn `resolutions` decision: original scope, affected dependency paths, npm equivalent or removal, whether scope broadens at root, and expected lock entries.
 
@@ -231,7 +232,7 @@ Keep `tools/verify-layout.mjs` narrow. It must:
 
 - recursively classify every `package.json`
 - ask npm for the resolved workspace set and compare it with the path contract
-- reject any workspace path containing `/integration/` or milestone-1 `/examples/`
+- reject any workspace path containing `/integration/`; require every classified ordinary `/examples/` project to resolve as a workspace
 - require unique workspace names
 - require `private: true` for non-published projects
 - enforce root-versus-local npm lock placement
@@ -312,7 +313,7 @@ Required gates:
 6. **Source-linked tests:** package/unit/cross-package lanes with upstream-source invalidation evidence.
 7. **Production builds:** topological clean builds and output checks.
 8. **Packed consumers:** tarball contents, entrypoints, types, internal tarball provenance, and peer behavior.
-9. **Isolated matrix:** compatibility/version/downstream/browser/e2e projects with local locks.
+9. **Isolated matrix:** classified compatibility/version/packed-downstream projects with local locks, external-sandbox resolution audits, and the root-only sentinel probe; ordinary workspace browser/e2e lanes remain in their owning source/test gates.
 10. **Docs:** every source docs lane that was green at its pinned baseline.
 
 No required source-repository lane may disappear. A pre-existing failure needs a checked-in waiver with source commit, command, failure evidence, owner, reason, tracking issue, and review/expiry date.
@@ -320,7 +321,7 @@ No required source-repository lane may disappear. A pre-existing failure needs a
 Gate coverage is machine-readable:
 
 - `migration/baselines.json` records the final H01 manifest digest, repository/source commit, lane and exact command, install/lifecycle review, Node/npm/browser/tool versions, environment, result, evidence artifact, and waiver. A validator compares it with H01's retained mirrors/toolchain plus every required inventory/CI lane and fails on stale inputs or omissions.
-- `migration/integration-matrix.json` records fixture, package graph, expected local/external edges, lock owner, runtime/browser, clean/reuse commands, and provenance assertions. It defines temporary-lock generation and reset semantics explicitly; validators reject registry fallback or a changed committed fixture lock.
+- `migration/integration-matrix.json` records fixture, package graph, expected local/external edges, lock owner, runtime/browser, clean/reuse commands, external cache/sandbox policy, sentinel probe, and version/origin/content-hash assertions. It defines temporary-lock generation and reset semantics explicitly; validators reject repository-ancestor sandboxes, source/node_modules symlinks or mutable hard links, unexpected registry fallback, out-of-sandbox module resolution, stale reuse state, or a changed committed fixture lock.
 - `migration/path-repairs.json` and `migration/source-aliases.json` cover moved references and resolver adapters as defined above. Their validators fail on undeclared stale paths or unowned aliases.
 - `migration/package-classification.json` is the authority for workspace/lock ownership, internal-edge physical resolution, and scoped npm override decisions.
 
@@ -359,8 +360,8 @@ Gate coverage is machine-readable:
 | `S01` | Standardize package build/test interfaces | `N03`,`B03` | package scripts independently reproduce required baseline lanes |
 | `S02` | Add centralized source aliases/watch | `S01`,`N04` | validated `migration/source-aliases.json` drives all required resolver adapters; each upstream edit retriggers declared consumers; production/pack outputs are alias-free |
 | `S03` | Add Turbo graph | `S01`,`S02` | topological tasks, explicit inputs/outputs, safe cache boundaries |
-| `I01` | Finalize isolated projects after `H03R` | `N03`,`B03` | repaired projects have local locks, private unique names, and baseline-parity commands without further silent path moves |
-| `I02` | Implement integration runner and matrix | `S03`,`I01` | validated `migration/integration-matrix.json`; clean/persistent algorithms, temporary-lock provenance, state validation, and exact rerun/reset commands |
+| `I01` | Finalize isolated projects after `H03R` | `N03`,`B03` | only classified compatibility/integration projects have local locks; ordinary examples are private root workspaces; all retain baseline-parity commands without further silent path moves |
+| `I02` | Implement integration runner and matrix | `S03`,`I01` | validated `migration/integration-matrix.json`; clean consumer job/external sandbox and opt-in persistent external-cache algorithms; resolution/sentinel probes, temporary-lock origin, state invalidation, and exact rerun/reset commands |
 | `P01` | Implement pack/consumer checks | `S03`,`N04` | content-hashed tarballs, contents/exports/types/provenance checks |
 | `C01` | Build CI gates/matrices | `S03`,`I02`,`P01`,`B03`,`N05` | machine-readable contracts prove every required gate/lane is represented with compact failure artifacts |
 | `C02` | Prove clean reproducibility | `C01` | repeated `npm ci`, build, test, pack runs; no source/lock diff |
@@ -397,8 +398,8 @@ All must be true:
 
 - [ ] Exact Node/npm pins are documented and CI-enforced.
 - [ ] Clean root `npm ci` succeeds without lock changes; every internal edge resolves to its classified version, physical path, and local-tarball/registry provenance without force flags.
-- [ ] Workspace membership equals the positive path contract.
-- [ ] Every non-published project is private, uniquely named, and has the correct lock owner.
+- [ ] Workspace membership equals the positive path contract: every ordinary current-version example is a private root workspace; no integration project is a workspace.
+- [ ] Every non-published project is private, uniquely named, and has the correct lock owner; no workspace has a nested lock.
 - [ ] Current active CI, docs, metadata, scripts, dependency automation, and locks contain no unapproved Yarn/pnpm assumption or unexplained translated resolution.
 - [ ] Published package names, versions, `engines`, and dependency intent remain unchanged except the approved Angular Hybrid 22 lockstep alignment and any later separately approved fix.
 
@@ -407,8 +408,8 @@ All must be true:
 - [ ] Every declared source-linked upstream change invalidates/retriggers its consumer matrix without an upstream build across all required resolver adapters.
 - [ ] Production builds are topological and clean; bundles, declarations, source maps, and packs are alias-free.
 - [ ] Packed tarballs pass contents, exports, runtime, type, peer, and local-provenance tests.
-- [ ] Persistent integration reruns avoid clean reinstall and retain failed sandboxes.
-- [ ] Clean integration mode passes from fresh local tarballs and produces a usable failure bundle when forced to fail.
+- [ ] Opt-in persistent integration reruns use an external cache, reject stale state, avoid clean reinstall when state matches, and retain failed sandboxes.
+- [ ] Clean integration mode passes from fresh local tarballs in a clean consumer job or sandbox outside repository ancestry; all non-builtin resolutions remain inside it, the root-only sentinel cannot resolve, and a usable failure bundle is produced when forced to fail.
 
 ### CI parity
 
@@ -489,7 +490,6 @@ Review the output and verification report before any push. Open all migration PR
 After milestone 1:
 
 - modernize and honestly test published Node `engines`
-- decide whether examples should become root workspaces
 - replace/decompose `@uirouter/publish-scripts`
 - choose versioning/changelog/release tooling
 - design package publishing provenance and dry-run promotion

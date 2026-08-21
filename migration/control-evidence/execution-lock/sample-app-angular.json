@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "name": "sample-app-angular",
+  "defaultHead": "9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+  "refs": [
+    "refs/heads/master 9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+    "refs/tags/angular-2.x fa0d13b844fdcf209ab06f3be87e2f905742ded6",
+    "refs/tags/angular-9.1.4 4710c45c9eab09ce9127034f1f1830f009986605"
+  ],
+  "bundleSha256": "fe7fec14c0356f1d0593576c98027611dee96ba59e39044678397678adca4dc0"
+}

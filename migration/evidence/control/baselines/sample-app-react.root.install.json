@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "durationSeconds": 10,
+  "expectedFailureReason": null,
+  "id": "sample-app-react.root.install",
+  "inputHashesAfterSha256": "e38e6b418a8595da1977956575bd5f0d0b3fb689baf78cd180e7841aa29d8aff",
+  "inputHashesBeforeSha256": "e38e6b418a8595da1977956575bd5f0d0b3fb689baf78cd180e7841aa29d8aff",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-react",
+  "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "b54df042bf659855b850162357e13069077ad6f054d7451eed4adb27f97e9b68"
+}

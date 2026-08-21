@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "dsr",
+  "defaultHead": "0fc6644008842790681bc08f1887a530d7120cfb",
+  "refs": [
+    "refs/heads/master 0fc6644008842790681bc08f1887a530d7120cfb",
+    "refs/tags/1.0.0 8a1334db3fd804dfead566784519f070601bc00b",
+    "refs/tags/1.0.1 a1061565ce9b07144d84e80d40afd57296bd1b13",
+    "refs/tags/1.0.2 9ace6baf172ad7072e44ea11862c22401cc219dd",
+    "refs/tags/1.0.3 7233bd3e39dd5c08b80742d9d8442cba5429a5f8",
+    "refs/tags/1.1.0 9c96c88c459332e54e2adbb39e3e32196263607b",
+    "refs/tags/1.1.1 41fc421310fcdd597c33e1bd4c74236dddf11c52",
+    "refs/tags/1.2.0 dd2482d051691ed23946ae50180957158e0de8a8"
+  ],
+  "bundleSha256": "aa1eda3ea2c68e30ce15b70b667160ad8cebfaa0c9cebd634b27a1867199509d"
+}

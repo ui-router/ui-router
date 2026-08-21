@@ -1,0 +1,710 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "7e99fcbfa6aa71857866a0d10f54ca22f76d8433",
+  "manifestSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
+  "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+  "targetRefsBeforeImport": [
+    "refs/heads/main 7e99fcbfa6aa71857866a0d10f54ca22f76d8433",
+    "refs/remotes/origin/HEAD 7e99fcbfa6aa71857866a0d10f54ca22f76d8433",
+    "refs/remotes/origin/main 7e99fcbfa6aa71857866a0d10f54ca22f76d8433"
+  ],
+  "outputBranch": "migration/history-import",
+  "controlFiles": [
+    {
+      "id": "sources",
+      "source": "migration/sources.json",
+      "destination": "migration/sources.json",
+      "sha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9"
+    },
+    {
+      "id": "execution-lock",
+      "source": "migration/execution-lock.json",
+      "destination": "migration/execution-lock.json",
+      "sha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
+    },
+    {
+      "id": "baselines",
+      "source": "migration/baselines.json",
+      "destination": "migration/baselines.json",
+      "sha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9"
+    },
+    {
+      "id": "package-classification",
+      "source": "migration/package-classification.json",
+      "destination": "migration/package-classification.json",
+      "sha256": "3b96ab6740f4511c4afeb63e184f29ef4089583dedb48fbfbedde87143cdbc18"
+    }
+  ],
+  "controlEvidence": [
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.downstream.all.json",
+      "sha256": "85941bcc5ef59557b4ce7e690d72a75d4ba7699d677b6611140ef9e9bb847d48"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.root.build.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.root.build.json",
+      "sha256": "9102c6ddbf6dfda67313a80c4d5f881a9acac4810bbb3e1901177efd69e1dafe"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.root.install.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.root.install.json",
+      "sha256": "f9f052f0c73145ec0c85fa29bc50c75cba19f66d02efe2b626663b657742c4ef"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.root.pack.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.root.pack.json",
+      "sha256": "e287d4f4df06ae4809d911ca3723c58b8899ecde59ae0cf4480a3ec02553e59d"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.v21.build.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.v21.build.json",
+      "sha256": "c11735f81a05a7c3a3d5772f7c880461f3acd6eaace60a49e12bf59a0037fb2f"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.v21.install.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.v21.install.json",
+      "sha256": "de203856c10a90cb1c600e6c86a0a54914e171ae3ac0f400c38513908d532dcf"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular-hybrid.v21.pack.json",
+      "destination": "migration/evidence/control/baselines/angular-hybrid.v21.pack.json",
+      "sha256": "e03eee56097502a0fec586e37893a6e21de0919974af3c27f5585c4c1dd3e62c"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/angular.downstream.all.json",
+      "sha256": "c1f770d8ecbd552aa547d6786663870b6d3c4de6604926453d27ca3a774e2cc8"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.root.build.json",
+      "destination": "migration/evidence/control/baselines/angular.root.build.json",
+      "sha256": "cbc3e3e8d75f6d1b7e783fd3c41fe25737de548cf47f3f369d76b23b58ac9f33"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.root.docs.json",
+      "destination": "migration/evidence/control/baselines/angular.root.docs.json",
+      "sha256": "38953398097cb10038a3cb8b77c5388dde1156c18a1d71678204e2fa93160050"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.root.install.json",
+      "destination": "migration/evidence/control/baselines/angular.root.install.json",
+      "sha256": "d74d2228412d0e0078e46d43528cdc16d9a77efba4ed7eba16a1cf71c5a56624"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.root.pack.json",
+      "destination": "migration/evidence/control/baselines/angular.root.pack.json",
+      "sha256": "16c1e0134e7e7304e695c74677063b5d4ac0c578962206cbca8418219eaa9bf8"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angular.root.unit.json",
+      "destination": "migration/evidence/control/baselines/angular.root.unit.json",
+      "sha256": "ef6516ab59ee3c2c098890f3d698af97e7e3049382f52ad585d82b39cb4cc04a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/angularjs.downstream.all.json",
+      "sha256": "c266989781cb6bf17ad9a748c9c74b03ded3e98eb0dc5a611d6071ddd4aad528"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.root.build.json",
+      "destination": "migration/evidence/control/baselines/angularjs.root.build.json",
+      "sha256": "e79ebc46e405e31bc24a44cce91c42ed6274ac5518eb726356ad44d501f8bc7e"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.root.docs.json",
+      "destination": "migration/evidence/control/baselines/angularjs.root.docs.json",
+      "sha256": "c49b955ce0152f418355379b86e40d57e7e812a8de7122a290022ebe3ee837a7"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.root.install.json",
+      "destination": "migration/evidence/control/baselines/angularjs.root.install.json",
+      "sha256": "cde8cf1e5a14c5c83bbedfe18bb40714e1136e3b5fa6a4b0ec887451d3b2c34f"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.root.pack.json",
+      "destination": "migration/evidence/control/baselines/angularjs.root.pack.json",
+      "sha256": "b38082693e1cf9e0f6a0b6189ebbb8aaf703486f56f69f9a7247869c8fe03ff5"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/angularjs.root.unit.json",
+      "destination": "migration/evidence/control/baselines/angularjs.root.unit.json",
+      "sha256": "a966baf6a2777f760e8514dec1a72a52d75b0460a54c1c2246ba741885497c09"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/core.downstream.all.json",
+      "sha256": "a6fede209f3f94a14132364d554e68f133b5fbbdb9178e786bff61b3f58c38ed"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.downstream.other.json",
+      "destination": "migration/evidence/control/baselines/core.downstream.other.json",
+      "sha256": "e44e21a4367ac8106b69b09eec79d74e7f6a3880acd921ce65c25d16ccd6af93"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.root.build.json",
+      "destination": "migration/evidence/control/baselines/core.root.build.json",
+      "sha256": "396d3ba042ed84357ad484256d81da978564cd2e04d636bc5b31d6e825f5adac"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.root.docs.json",
+      "destination": "migration/evidence/control/baselines/core.root.docs.json",
+      "sha256": "66b6bf387f39b2d7bb58c33a993e4dfbb805e784bef55c57440f6abba78968f3"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.root.install.json",
+      "destination": "migration/evidence/control/baselines/core.root.install.json",
+      "sha256": "b5eec102f5fb5dcd8a1776aec032ed223a97e97b825add8ea848ab745c526cd4"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.root.pack.json",
+      "destination": "migration/evidence/control/baselines/core.root.pack.json",
+      "sha256": "9fef8e2e71e3ea079ba945860220c87d8532c1b3cbe25ea60f51896328f07611"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/core.root.unit.json",
+      "destination": "migration/evidence/control/baselines/core.root.unit.json",
+      "sha256": "ddb61d2eee705c35500831dd4662100f90db9a705edc7ba7d90f6fedb0fea70a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/discovery.json",
+      "destination": "migration/evidence/control/baselines/discovery.json",
+      "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/dsr.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/dsr.downstream.all.json",
+      "sha256": "24a50656027f83a3a5d5d402e0e275bd188a3981159dd356d0c1339a0bbdea38"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/dsr.root.build.json",
+      "destination": "migration/evidence/control/baselines/dsr.root.build.json",
+      "sha256": "9fb8e6a990e9c16d1fdb28833274b5eb739102a9710ae4c23d4b70bab26ab874"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/dsr.root.install.json",
+      "destination": "migration/evidence/control/baselines/dsr.root.install.json",
+      "sha256": "64317084d9d1769141f47a439963df2438e51bf10c7a8f16f6b6d4cb24c1cdae"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/dsr.root.pack.json",
+      "destination": "migration/evidence/control/baselines/dsr.root.pack.json",
+      "sha256": "3826ce7ce7fd751c39b1b6743aa2eef837a732329e6c94ef5d25da99aee9baaa"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/dsr.root.unit.json",
+      "destination": "migration/evidence/control/baselines/dsr.root.unit.json",
+      "sha256": "09b5d85be154a2bd47ff7ad4dc815f694ce476569468330c188d8c2b49eb58de"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/publish-scripts.root.install.json",
+      "destination": "migration/evidence/control/baselines/publish-scripts.root.install.json",
+      "sha256": "24da43dc3357797b3a569b080d7f8bd1b3b1010c46e75417841a9584c173a123"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/publish-scripts.root.pack.json",
+      "destination": "migration/evidence/control/baselines/publish-scripts.root.pack.json",
+      "sha256": "22e22571383639f984381babdd319149ffe99cbac97f592066bfe3dfd05d0156"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react-hybrid.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/react-hybrid.downstream.all.json",
+      "sha256": "e696f05ee6a45c2bb56f8357fc9d5f3ed6d1f799fbab7b48e4eba021f09e99b3"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react-hybrid.root.build.json",
+      "destination": "migration/evidence/control/baselines/react-hybrid.root.build.json",
+      "sha256": "fc8757de0e6e6dd5dc4fab5eecca8fa232933c3884dc621aad177c0bc816af2c"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react-hybrid.root.install.json",
+      "destination": "migration/evidence/control/baselines/react-hybrid.root.install.json",
+      "sha256": "1936b153dc937080856b321873cfdedd3424daaf22a2ee9e88f5ad78dd31d765"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react-hybrid.root.pack.json",
+      "destination": "migration/evidence/control/baselines/react-hybrid.root.pack.json",
+      "sha256": "211e228e24f8fbbbd89b6c699c11334728e1320ca41b8d5522661ad8ad4205f7"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/react.downstream.all.json",
+      "sha256": "189b8359380256e0f3958ab638e863aa65fea370b872df833ba0beb1f88f9d60"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.root.build.json",
+      "destination": "migration/evidence/control/baselines/react.root.build.json",
+      "sha256": "ec0969c93c16fe51f13ddbf480cf897f7220c9355c3ebb06c851005f2d0db019"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.root.docs.json",
+      "destination": "migration/evidence/control/baselines/react.root.docs.json",
+      "sha256": "a3c3a895df4b14c6a666b978855f06557dd5c62a82cb63ac432ba4337fe6b38b"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.root.install.json",
+      "destination": "migration/evidence/control/baselines/react.root.install.json",
+      "sha256": "0b44e15b6f6f261d546f9d50da848c03abe01e02115d10393afde3e6d9aaa36b"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.root.pack.json",
+      "destination": "migration/evidence/control/baselines/react.root.pack.json",
+      "sha256": "f5f6f94346ab95cad7ccc9a4ead9d5e36438e74848551a14fffbf0ce63471d8e"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/react.root.unit.json",
+      "destination": "migration/evidence/control/baselines/react.root.unit.json",
+      "sha256": "a6f4e22fb9da1bb85cdf9f059ce1cd8474cd004f7fb583a0a044cdb143684a62"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/redux.root.build.json",
+      "destination": "migration/evidence/control/baselines/redux.root.build.json",
+      "sha256": "741796effb03b0a21d57a577b707a0b43e7a1518655a33cf90ee8e68b5fcead6"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/redux.root.install.json",
+      "destination": "migration/evidence/control/baselines/redux.root.install.json",
+      "sha256": "e83f854e1f7985059a8341e14c43239c5c63138ec888ae51cf0d5450a97d57dd"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/redux.root.install.node10.json",
+      "destination": "migration/evidence/control/baselines/redux.root.install.node10.json",
+      "sha256": "10ea98de4c1ee71c9d0b0f503bf1fd413d065fe73821ff2d4c0ea5a339a2bcc0"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/redux.root.pack.json",
+      "destination": "migration/evidence/control/baselines/redux.root.pack.json",
+      "sha256": "b4ed7427cfb75abade457e680461815543f198cda8eefbf2a11fce52df0c207e"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/redux.root.unit.json",
+      "destination": "migration/evidence/control/baselines/redux.root.unit.json",
+      "sha256": "a191582d72d739bb6120dcd7ad8a7c2cc2a071dc0c863fc37ae73b90e81aca3a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/rx.root.build.json",
+      "destination": "migration/evidence/control/baselines/rx.root.build.json",
+      "sha256": "ca69e8995508d71fa612d74d069f373384ff7555fe8e3c4cbfd15542790ae4d6"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/rx.root.install.json",
+      "destination": "migration/evidence/control/baselines/rx.root.install.json",
+      "sha256": "c7064fe57242480e2a0d33d5297a8bcc08d52157d1416dddf49d1738a255ba4a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/rx.root.pack.json",
+      "destination": "migration/evidence/control/baselines/rx.root.pack.json",
+      "sha256": "a2c84887f7ed51bbe68f7cc4470a0ffa6871eee444cb55c4840fe781c0710e9a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/rx.root.unit.json",
+      "destination": "migration/evidence/control/baselines/rx.root.unit.json",
+      "sha256": "39d5f8a6061a467c9c65136cdaae8f696936f7824a41214add7eba6cd4384275"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular-hybrid.root.build.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular-hybrid.root.build.json",
+      "sha256": "70fec9b6f10f278df2433ad4d26f290369c8620b41efa1e7dabb5abb49ef6454"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular-hybrid.root.e2e.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular-hybrid.root.e2e.json",
+      "sha256": "9bda478213de665fa8de7ff1a84bf99035d52f4c0f56ac423e70294efefdb77d"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular-hybrid.root.install.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular-hybrid.root.install.json",
+      "sha256": "29d45012fa6129eaa618547b2653626c11020fe05c57cd73e2526c3f3a617bd7"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular.root.build.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular.root.build.json",
+      "sha256": "5ee672bc754e7051ff299ae9e6cb9d4d42a445a8bdffc1149d6ed8c0e76ac7b7"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular.root.e2e.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular.root.e2e.json",
+      "sha256": "9495e24df3b104bb955bd1d3a5027af5f4db3780d3cbbbfba2884736b76aa935"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angular.root.install.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angular.root.install.json",
+      "sha256": "72a1d2b9fe3644f5f6f2f5a73a09fc30fd97f1980b425e33fd0d10f1a2ea2072"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angularjs.root.build.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angularjs.root.build.json",
+      "sha256": "88f74d91a8b01984971a90f09f092f59f36950cc7b1e88c688d94591d559e865"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angularjs.root.e2e.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angularjs.root.e2e.json",
+      "sha256": "2549adbe4f888e4d403c622df1a3f0fc03770c918ae6a381c3ec34b37d1aff2b"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-angularjs.root.install.json",
+      "destination": "migration/evidence/control/baselines/sample-app-angularjs.root.install.json",
+      "sha256": "71febed8bdc312971c2463d64c4ed32ba3eef42d780bb7adb8ea7161500ff9c5"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-react.root.build.json",
+      "destination": "migration/evidence/control/baselines/sample-app-react.root.build.json",
+      "sha256": "250f8b6a7ca87b9bbe37e9a384bb0e7dff9f475c76298330154e41e71c787ec6"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-react.root.e2e.json",
+      "destination": "migration/evidence/control/baselines/sample-app-react.root.e2e.json",
+      "sha256": "685aaff3acc9910288f127aa972bafba9221230bcd9b5d56d8e16308fd30b939"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sample-app-react.root.install.json",
+      "destination": "migration/evidence/control/baselines/sample-app-react.root.install.json",
+      "sha256": "1f1bb8b22b781d4d8d6685592fafad1fb13536ebfd361168a982ee69fc577564"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sticky-states.downstream.all.json",
+      "destination": "migration/evidence/control/baselines/sticky-states.downstream.all.json",
+      "sha256": "71c4462f9dbb62e0e4da4b0e53c3abca9730be07a68ed476d934ed9ce8009d89"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sticky-states.root.build.json",
+      "destination": "migration/evidence/control/baselines/sticky-states.root.build.json",
+      "sha256": "500f50e018362c8c72f67afc8a2f50b9ab108ffcaca3c4ad20690252216c7f88"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sticky-states.root.install.json",
+      "destination": "migration/evidence/control/baselines/sticky-states.root.install.json",
+      "sha256": "50537c25d412d542f87d7bd38de888d80f58f778f41511d4be03fd7de787a635"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sticky-states.root.pack.json",
+      "destination": "migration/evidence/control/baselines/sticky-states.root.pack.json",
+      "sha256": "971b7cc0f1ce59ccd1a4761061b6e5d723d342499e547205d3c57e46e0d3fed7"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/sticky-states.root.unit.json",
+      "destination": "migration/evidence/control/baselines/sticky-states.root.unit.json",
+      "sha256": "93b71be22e06989e524fbf187c7cce598d2d1a9ac2c367f9623d7ce8a0b2126a"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/visualizer.root.build.json",
+      "destination": "migration/evidence/control/baselines/visualizer.root.build.json",
+      "sha256": "dafbffaf7dad01683fd85cd5b364b1127c538377810ec1ae6d4edb4090d94fc5"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/visualizer.root.install.json",
+      "destination": "migration/evidence/control/baselines/visualizer.root.install.json",
+      "sha256": "b37ce3f43af5f1c0ad000b88c5274c53385d04d3d9cf91bf4a4bd89efc46d4ec"
+    },
+    {
+      "ownerContract": "baselines",
+      "source": "migration/control-evidence/baselines/visualizer.root.pack.json",
+      "destination": "migration/evidence/control/baselines/visualizer.root.pack.json",
+      "sha256": "5f118563643ee4658e1974c84fe22d23559c5a9c7e3f63299f23dfdae999e0ac"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/angular-hybrid.json",
+      "destination": "migration/evidence/control/execution-lock/angular-hybrid.json",
+      "sha256": "83565050ecf342888bf9e85f6350cb22efb3980ac5e212181eebb067a89d5fb5"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/angular.json",
+      "destination": "migration/evidence/control/execution-lock/angular.json",
+      "sha256": "eef36124691aaf936c26afee4c287c0d75a3a0ac92a47f3bdf947b59b4266320"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/angularjs.json",
+      "destination": "migration/evidence/control/execution-lock/angularjs.json",
+      "sha256": "6cfb47e41cae3e680d1f0bda3edd5c987b58c0c29035e4b0cbb3187a8f1bd88b"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/core.json",
+      "destination": "migration/evidence/control/execution-lock/core.json",
+      "sha256": "b38b277eb0abb2079fc73cfd6bc651e635e0755e692914561fa7c180e1d0deb7"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/dsr.json",
+      "destination": "migration/evidence/control/execution-lock/dsr.json",
+      "sha256": "fb05e85c63b2621a9b6c7195108c7fda1aa6f7c9042ada1d70f425bde73e18df"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/publish-scripts.json",
+      "destination": "migration/evidence/control/execution-lock/publish-scripts.json",
+      "sha256": "52597ea08555622f573107ec2ce55b8290932de7b41d80c61882de1b8d9b4559"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/react-hybrid.json",
+      "destination": "migration/evidence/control/execution-lock/react-hybrid.json",
+      "sha256": "94cb2ada87acebd22a1c54c2f1406f124b18704b83ed1b1d656064a59872a44d"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/react.json",
+      "destination": "migration/evidence/control/execution-lock/react.json",
+      "sha256": "542c328f05f3be1c7b7a4fb6ee93b60ccd83a27c03253dc902c7f442012d63d6"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/redux.json",
+      "destination": "migration/evidence/control/execution-lock/redux.json",
+      "sha256": "8cfc8d3fe9eb6853918ef49750e056b71c2a0056e14c67954803cb2a07bbedfa"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/rx.json",
+      "destination": "migration/evidence/control/execution-lock/rx.json",
+      "sha256": "53df52663b70279a6b49caa3e684d89a79bec7fb8bcb729a3edb6b08492d6f55"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/sample-app-angular-hybrid.json",
+      "destination": "migration/evidence/control/execution-lock/sample-app-angular-hybrid.json",
+      "sha256": "0ca7ff4e8c62b200277d31613c4beee96f1296e95ba160045791f765e43b3165"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/sample-app-angular.json",
+      "destination": "migration/evidence/control/execution-lock/sample-app-angular.json",
+      "sha256": "0513b3402939bfb4cb800a5382fd906e44844c798f1403ce86959f713e6caee5"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/sample-app-angularjs.json",
+      "destination": "migration/evidence/control/execution-lock/sample-app-angularjs.json",
+      "sha256": "bd0b8e1f7b72af634c548945f87a9d71dabbb9e8d395e2ecf1dcf2ca2c5f4d2c"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/sample-app-react.json",
+      "destination": "migration/evidence/control/execution-lock/sample-app-react.json",
+      "sha256": "1fa513edccbd15ebf2374d60c473e5ec850608435d9fd1b3c4bb5dcc31128c0b"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/sticky-states.json",
+      "destination": "migration/evidence/control/execution-lock/sticky-states.json",
+      "sha256": "4bc5977dda13fb1cb59df41be42ee36a1f3a840adacf96313ac15f57eac3e4b4"
+    },
+    {
+      "ownerContract": "execution-lock",
+      "source": "migration/control-evidence/execution-lock/visualizer.json",
+      "destination": "migration/evidence/control/execution-lock/visualizer.json",
+      "sha256": "cf40717dabee79365501d795fe1f576e9defb2149d2af4df1aeb1594459b22db"
+    },
+    {
+      "ownerContract": "package-classification",
+      "source": "migration/control-evidence/n00/inventory.json",
+      "destination": "migration/evidence/control/n00/inventory.json",
+      "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+    }
+  ],
+  "imports": [
+    {
+      "name": "core",
+      "sourceHead": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+      "rewrittenHead": "73ff5c9f22139b3161d30894bfb6ca3211d9cce7",
+      "mergeCommit": "4c0e943f218e04608fdb061083f6fd562c2fd98f",
+      "layoutCommit": "9b0e1b9aeed494dd21279b9a70fb6f09a72fe4af",
+      "releaseTagCount": 54
+    },
+    {
+      "name": "dsr",
+      "sourceHead": "0fc6644008842790681bc08f1887a530d7120cfb",
+      "rewrittenHead": "69085dca493a957ac2a37d94b05b80e8566b97ff",
+      "mergeCommit": "80a97bd37c6bda0e87b38662390f582c46f2e371",
+      "layoutCommit": null,
+      "releaseTagCount": 7
+    },
+    {
+      "name": "rx",
+      "sourceHead": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+      "rewrittenHead": "b814d43dc7a6921ff23b260c25a6d1b7e5ebef01",
+      "mergeCommit": "3d366687b571fdb0ab608a7062477258103d18b6",
+      "layoutCommit": null,
+      "releaseTagCount": 14
+    },
+    {
+      "name": "redux",
+      "sourceHead": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+      "rewrittenHead": "9e9f5ebcc2aba6a5360acda0c2783f0afb436334",
+      "mergeCommit": "28f944a7035edd0402354a4bb15cb4b4c0dea18e",
+      "layoutCommit": null,
+      "releaseTagCount": 1
+    },
+    {
+      "name": "sticky-states",
+      "sourceHead": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+      "rewrittenHead": "725bfcc947c8b4dbce9f847d39d81ba830193392",
+      "mergeCommit": "ee827fb76f4937542262d4826a988290b7204032",
+      "layoutCommit": null,
+      "releaseTagCount": 7
+    },
+    {
+      "name": "visualizer",
+      "sourceHead": "d95f266364aeba3ba082724cc33faa9fa9d82ac3",
+      "rewrittenHead": "ec4a913d3eaa9e3d4675401d7b1c35dcb89930c9",
+      "mergeCommit": "66af49f1d55f5b61b29ab11478a4cd31f8dbe1a0",
+      "layoutCommit": "05d111fe0d74272158aafd386d05f6947032470c",
+      "releaseTagCount": 40
+    },
+    {
+      "name": "angularjs",
+      "sourceHead": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+      "rewrittenHead": "9fc06b45f0bd24f6403e1226344c452b1e8d7879",
+      "mergeCommit": "33fc747baa6231f042047baeb2cc547fdd733891",
+      "layoutCommit": "19f9e11477b54d113f1d4bea6c7ae1267dd9020b",
+      "releaseTagCount": 68
+    },
+    {
+      "name": "sample-app-angularjs",
+      "sourceHead": "1c89cebc1e713f317ffd108dea2735c165568bd3",
+      "rewrittenHead": "4bdb94ec1482aec15b08cb73b6f70d11fb22f538",
+      "mergeCommit": "5939465771e2f6c41453d098133700744263dddf",
+      "layoutCommit": null,
+      "releaseTagCount": 0
+    },
+    {
+      "name": "angular",
+      "sourceHead": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+      "rewrittenHead": "a9e4295a5f848f5ca6768b182149a297b586bf96",
+      "mergeCommit": "0ec72fd9bfc00b98bbf4f35e6f669433079480b3",
+      "layoutCommit": "cda082bcedf05fb9bc7f708dd87b504cdcce9a1a",
+      "releaseTagCount": 51
+    },
+    {
+      "name": "sample-app-angular",
+      "sourceHead": "9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+      "rewrittenHead": "580cc329ce52ef785c82c43c430a2e93eabdbb62",
+      "mergeCommit": "3d24f7b0283b54de485c5356f45848f39313f97d",
+      "layoutCommit": null,
+      "releaseTagCount": 0
+    },
+    {
+      "name": "angular-hybrid",
+      "sourceHead": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+      "rewrittenHead": "5d942015ccd41afaa6145663e51ec4a14f175d61",
+      "mergeCommit": "b924fff11ba407f46770465d244cc48790855339",
+      "layoutCommit": "eefa531516da668bfba7d6b992795fb94e5f48c9",
+      "releaseTagCount": 55
+    },
+    {
+      "name": "sample-app-angular-hybrid",
+      "sourceHead": "8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+      "rewrittenHead": "6c6c0d7f99c7fa1f21ad65968b74337b86a111a6",
+      "mergeCommit": "dbbc530a2e06952dfc1ae9378f5209afe4344c17",
+      "layoutCommit": null,
+      "releaseTagCount": 0
+    },
+    {
+      "name": "react",
+      "sourceHead": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+      "rewrittenHead": "aa68badbf19096a09d032c638dc212fc36f8ba05",
+      "mergeCommit": "46a3be438c411899a4488b5566fe33d8f90e62f1",
+      "layoutCommit": "80a8ece0478294bffb4a472901c90cc282c88b09",
+      "releaseTagCount": 35
+    },
+    {
+      "name": "sample-app-react",
+      "sourceHead": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
+      "rewrittenHead": "0075e7d0c5104479ea614998804da4872c30924a",
+      "mergeCommit": "a2447c1df7583ce5349df1e5747383d58f0bbcff",
+      "layoutCommit": null,
+      "releaseTagCount": 0
+    },
+    {
+      "name": "react-hybrid",
+      "sourceHead": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+      "rewrittenHead": "292de7b28594778e1da8d48dacc58fe344c80eb1",
+      "mergeCommit": "e07a1ffba4690a933885e81febfe3d9d147bdee3",
+      "layoutCommit": "6eec38d6b3a8ff21b71ab6152e35ff56e7e5a68f",
+      "releaseTagCount": 37
+    },
+    {
+      "name": "publish-scripts",
+      "sourceHead": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+      "rewrittenHead": "5b28b06ddb766e046ca6d1924ba72e9b12e0ea66",
+      "mergeCommit": "a4af2f0803f9c8fb5fdb349095e83c994edd8d44",
+      "layoutCommit": null,
+      "releaseTagCount": 106
+    }
+  ]
+}

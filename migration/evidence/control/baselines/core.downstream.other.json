@@ -1,0 +1,25 @@
+{
+  "command": [
+    "yarn",
+    "run",
+    "test:downstream",
+    "--",
+    "--group",
+    "other"
+  ],
+  "durationSeconds": 40,
+  "expectedFailureReason": "The Core-injected TypeScript 3.9/5.4 and Sticky States parent lanes pass, then publishing the nested Sticky States package fails because its unpinned tsgo resolves TypeScript 6 and rejects the retained tsconfig.",
+  "id": "core.downstream.other",
+  "projectSummary": [
+    "===> Successfully ran downstream tests for: typescript5.4, typescript3.9, sticky-states <===",
+    "===> Did not try to run downstream tests for: sticky-states.angular-cli, sticky-states.angularjs-webpack, sticky-states.react-vite <==="
+  ],
+  "result": "waived-failure",
+  "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
+  "schemaVersion": 1,
+  "source": "core",
+  "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+  "status": 1,
+  "stderrSha256": "e416e7bc7a38873242ec720ec31bc6fe3ea8452db4872ad10a1cb85d7bc14d5e",
+  "stdoutSha256": "0504e0093e5e4ffb36995a08744d3b17ba0c26c08d06bcebedecc35a13de1f2b"
+}

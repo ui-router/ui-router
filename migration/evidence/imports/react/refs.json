@@ -1,0 +1,286 @@
+{
+  "sourceHead": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "rewrittenHead": "aa68badbf19096a09d032c638dc212fc36f8ba05",
+  "tags": [
+    {
+      "originalName": "0.1.0",
+      "targetName": "react@0.1.0",
+      "originalObject": "9f78a20b45bed8fd24670f21d55b3752f252d07d",
+      "originalCommit": "9f78a20b45bed8fd24670f21d55b3752f252d07d",
+      "rewrittenObject": "e3780bf60b278c2578a704047b38a118bceca83c",
+      "rewrittenCommit": "e3780bf60b278c2578a704047b38a118bceca83c"
+    },
+    {
+      "originalName": "0.2.0",
+      "targetName": "react@0.2.0",
+      "originalObject": "646caf4f54533434957c946a6e917f29c37c9685",
+      "originalCommit": "646caf4f54533434957c946a6e917f29c37c9685",
+      "rewrittenObject": "c28d352b5a1015c43e758d59311518ba8d6fb136",
+      "rewrittenCommit": "c28d352b5a1015c43e758d59311518ba8d6fb136"
+    },
+    {
+      "originalName": "0.2.2",
+      "targetName": "react@0.2.2",
+      "originalObject": "0dc4e61efec4233ab8b0ce2d3377579b47a4cd8a",
+      "originalCommit": "0dc4e61efec4233ab8b0ce2d3377579b47a4cd8a",
+      "rewrittenObject": "9fa960bb92f029b7d6b215396b75bf70fb6f60e8",
+      "rewrittenCommit": "9fa960bb92f029b7d6b215396b75bf70fb6f60e8"
+    },
+    {
+      "originalName": "0.3.0",
+      "targetName": "react@0.3.0",
+      "originalObject": "c685556caff6978e97f985915e67ebf5dcfef7bc",
+      "originalCommit": "c685556caff6978e97f985915e67ebf5dcfef7bc",
+      "rewrittenObject": "1c0bd7ef0ce0b42ecf8b88240e236fbebe981f0f",
+      "rewrittenCommit": "1c0bd7ef0ce0b42ecf8b88240e236fbebe981f0f"
+    },
+    {
+      "originalName": "0.4.0",
+      "targetName": "react@0.4.0",
+      "originalObject": "753c598306ebd4d551584b6117368bdf44dda856",
+      "originalCommit": "753c598306ebd4d551584b6117368bdf44dda856",
+      "rewrittenObject": "e136335d0031319f9f803cf518129feb093767eb",
+      "rewrittenCommit": "e136335d0031319f9f803cf518129feb093767eb"
+    },
+    {
+      "originalName": "0.5.0",
+      "targetName": "react@0.5.0",
+      "originalObject": "f4b559c8f28d5db594b9a585d9c24022170a3d09",
+      "originalCommit": "f4b559c8f28d5db594b9a585d9c24022170a3d09",
+      "rewrittenObject": "9339e381b001f21e3a2be93556f9ae7fc9b4a564",
+      "rewrittenCommit": "9339e381b001f21e3a2be93556f9ae7fc9b4a564"
+    },
+    {
+      "originalName": "0.5.0-react-hybrid-0.0.1",
+      "targetName": "react@0.5.0-react-hybrid-0.0.1",
+      "originalObject": "75c7efb4c475a591d3b451053b20601a83e3fc8c",
+      "originalCommit": "75c7efb4c475a591d3b451053b20601a83e3fc8c",
+      "rewrittenObject": "a26b19b451b2caa3c7fc571b2cc9ad8f9fe4202f",
+      "rewrittenCommit": "a26b19b451b2caa3c7fc571b2cc9ad8f9fe4202f"
+    },
+    {
+      "originalName": "0.5.1",
+      "targetName": "react@0.5.1",
+      "originalObject": "b001a41a9a165caf4d2cf1c8cb421ae351658ee2",
+      "originalCommit": "b001a41a9a165caf4d2cf1c8cb421ae351658ee2",
+      "rewrittenObject": "4d097eda1dc4f088a8bd73b4adeb53155d110721",
+      "rewrittenCommit": "4d097eda1dc4f088a8bd73b4adeb53155d110721"
+    },
+    {
+      "originalName": "0.5.2",
+      "targetName": "react@0.5.2",
+      "originalObject": "68deaa79c0b34b0d3cb113100651720dcc48bf01",
+      "originalCommit": "68deaa79c0b34b0d3cb113100651720dcc48bf01",
+      "rewrittenObject": "46810c93f17f7f8674d623eb3146e89d5cd9089e",
+      "rewrittenCommit": "46810c93f17f7f8674d623eb3146e89d5cd9089e"
+    },
+    {
+      "originalName": "0.5.3",
+      "targetName": "react@0.5.3",
+      "originalObject": "17e692b4f8f79fa621a4e64cbb2a4d44c5605663",
+      "originalCommit": "17e692b4f8f79fa621a4e64cbb2a4d44c5605663",
+      "rewrittenObject": "42d761ddc14470aa7a6482edae4743f74bcf52cb",
+      "rewrittenCommit": "42d761ddc14470aa7a6482edae4743f74bcf52cb"
+    },
+    {
+      "originalName": "0.5.4",
+      "targetName": "react@0.5.4",
+      "originalObject": "0df1a9c26240097b2a1071784e8f4d1f9a134288",
+      "originalCommit": "0df1a9c26240097b2a1071784e8f4d1f9a134288",
+      "rewrittenObject": "8ef24b88a7f1d6a3fb14997eee3cfd38b247d891",
+      "rewrittenCommit": "8ef24b88a7f1d6a3fb14997eee3cfd38b247d891"
+    },
+    {
+      "originalName": "0.5.5",
+      "targetName": "react@0.5.5",
+      "originalObject": "cc097b6bbcdbfbd435c710276089e03e9c28e295",
+      "originalCommit": "cc097b6bbcdbfbd435c710276089e03e9c28e295",
+      "rewrittenObject": "84381d5fc97c9bc49fdaee1065d39af96a5b7bc6",
+      "rewrittenCommit": "84381d5fc97c9bc49fdaee1065d39af96a5b7bc6"
+    },
+    {
+      "originalName": "0.6.0",
+      "targetName": "react@0.6.0",
+      "originalObject": "daefe7f9e5bce93fc0c050704713fdcf03dac57d",
+      "originalCommit": "daefe7f9e5bce93fc0c050704713fdcf03dac57d",
+      "rewrittenObject": "20f306bec405e1f980e64133439c21331cdf4521",
+      "rewrittenCommit": "20f306bec405e1f980e64133439c21331cdf4521"
+    },
+    {
+      "originalName": "0.6.1",
+      "targetName": "react@0.6.1",
+      "originalObject": "e006cb41284bfed690ecb452e760fd610a79dc21",
+      "originalCommit": "e006cb41284bfed690ecb452e760fd610a79dc21",
+      "rewrittenObject": "8061c8f8784c84a43b4b33333b7086d9cf5d85d2",
+      "rewrittenCommit": "8061c8f8784c84a43b4b33333b7086d9cf5d85d2"
+    },
+    {
+      "originalName": "0.6.2",
+      "targetName": "react@0.6.2",
+      "originalObject": "99695eae93333f1c8b840f9494823052420d2ee5",
+      "originalCommit": "99695eae93333f1c8b840f9494823052420d2ee5",
+      "rewrittenObject": "b9a35a54963d9302036249b3e99deafbaf738f29",
+      "rewrittenCommit": "b9a35a54963d9302036249b3e99deafbaf738f29"
+    },
+    {
+      "originalName": "0.7.0",
+      "targetName": "react@0.7.0",
+      "originalObject": "f16aed3c1d5493c3f45022f19449f1666b9272b4",
+      "originalCommit": "f16aed3c1d5493c3f45022f19449f1666b9272b4",
+      "rewrittenObject": "b76b1ba37c3b0eeb03a191be2873690d6dd3c364",
+      "rewrittenCommit": "b76b1ba37c3b0eeb03a191be2873690d6dd3c364"
+    },
+    {
+      "originalName": "0.8.0",
+      "targetName": "react@0.8.0",
+      "originalObject": "d81221bf2397c81d2834e3c03511a8836dd5785d",
+      "originalCommit": "d81221bf2397c81d2834e3c03511a8836dd5785d",
+      "rewrittenObject": "6364307d4d5c5fdfdbad7b6de3be37d3540d206d",
+      "rewrittenCommit": "6364307d4d5c5fdfdbad7b6de3be37d3540d206d"
+    },
+    {
+      "originalName": "0.8.1",
+      "targetName": "react@0.8.1",
+      "originalObject": "480a319caad320cce3ddc52cc854736d88562b76",
+      "originalCommit": "480a319caad320cce3ddc52cc854736d88562b76",
+      "rewrittenObject": "a0f5072b57c0e064792d954bdc9bef89c63c5469",
+      "rewrittenCommit": "a0f5072b57c0e064792d954bdc9bef89c63c5469"
+    },
+    {
+      "originalName": "0.8.10",
+      "targetName": "react@0.8.10",
+      "originalObject": "dcfef7664494a5f6840d6e20dacc5f3d8c71a12b",
+      "originalCommit": "dcfef7664494a5f6840d6e20dacc5f3d8c71a12b",
+      "rewrittenObject": "2191ec4c8ec8f8089c1670233038a6d8ace1373b",
+      "rewrittenCommit": "2191ec4c8ec8f8089c1670233038a6d8ace1373b"
+    },
+    {
+      "originalName": "0.8.2",
+      "targetName": "react@0.8.2",
+      "originalObject": "83b0d8ef6150622ae1151587dc3d745902b7a9b6",
+      "originalCommit": "83b0d8ef6150622ae1151587dc3d745902b7a9b6",
+      "rewrittenObject": "9c2bfabe64a46dc056f934d86647869df8bc1612",
+      "rewrittenCommit": "9c2bfabe64a46dc056f934d86647869df8bc1612"
+    },
+    {
+      "originalName": "0.8.3",
+      "targetName": "react@0.8.3",
+      "originalObject": "50d572e6ea3954878afbf9996a3d1d8594e649f5",
+      "originalCommit": "50d572e6ea3954878afbf9996a3d1d8594e649f5",
+      "rewrittenObject": "13659528fd8176e80bf9c3c52065497b4fb60bfa",
+      "rewrittenCommit": "13659528fd8176e80bf9c3c52065497b4fb60bfa"
+    },
+    {
+      "originalName": "0.8.4",
+      "targetName": "react@0.8.4",
+      "originalObject": "6da446135620ee498db61ed735bd097e70d23697",
+      "originalCommit": "6da446135620ee498db61ed735bd097e70d23697",
+      "rewrittenObject": "c96d3cac26075f9957e39e73ff0b8e54a98cb9ab",
+      "rewrittenCommit": "c96d3cac26075f9957e39e73ff0b8e54a98cb9ab"
+    },
+    {
+      "originalName": "0.8.5",
+      "targetName": "react@0.8.5",
+      "originalObject": "e0478c12701767071b352bda8e8480c86ced9b23",
+      "originalCommit": "e0478c12701767071b352bda8e8480c86ced9b23",
+      "rewrittenObject": "395e511d5e95a42accca4ff385696100714d5302",
+      "rewrittenCommit": "395e511d5e95a42accca4ff385696100714d5302"
+    },
+    {
+      "originalName": "0.8.7",
+      "targetName": "react@0.8.7",
+      "originalObject": "ff775dac5925954f1d33106363340e910153388f",
+      "originalCommit": "ff775dac5925954f1d33106363340e910153388f",
+      "rewrittenObject": "f26b5980e715ffd80b52f156bc04568fb8be4ab7",
+      "rewrittenCommit": "f26b5980e715ffd80b52f156bc04568fb8be4ab7"
+    },
+    {
+      "originalName": "0.8.8",
+      "targetName": "react@0.8.8",
+      "originalObject": "a5674a48876d57b692d8f87018580940de603ede",
+      "originalCommit": "a5674a48876d57b692d8f87018580940de603ede",
+      "rewrittenObject": "26159f21ec9cef5ffa5d20340d6dc465a0644b93",
+      "rewrittenCommit": "26159f21ec9cef5ffa5d20340d6dc465a0644b93"
+    },
+    {
+      "originalName": "0.8.9",
+      "targetName": "react@0.8.9",
+      "originalObject": "8df704445ef514dc1e995738bcc382cfacd52dda",
+      "originalCommit": "8df704445ef514dc1e995738bcc382cfacd52dda",
+      "rewrittenObject": "b18c0055ea9501f1225ee4ef4bd2440f51832176",
+      "rewrittenCommit": "b18c0055ea9501f1225ee4ef4bd2440f51832176"
+    },
+    {
+      "originalName": "1.0.0",
+      "targetName": "react@1.0.0",
+      "originalObject": "f50e812bb9bf865cce5b1fc2b82c3f09fab09721",
+      "originalCommit": "f50e812bb9bf865cce5b1fc2b82c3f09fab09721",
+      "rewrittenObject": "87a239dcbaabd233b4e4eb8bc845ef9a805e0d22",
+      "rewrittenCommit": "87a239dcbaabd233b4e4eb8bc845ef9a805e0d22"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "react@1.0.1",
+      "originalObject": "0a021d8217adde26b01386da209082b50fddcf42",
+      "originalCommit": "0a021d8217adde26b01386da209082b50fddcf42",
+      "rewrittenObject": "d40761b9dcf0a4d0777981186fd5532bd267e833",
+      "rewrittenCommit": "d40761b9dcf0a4d0777981186fd5532bd267e833"
+    },
+    {
+      "originalName": "1.0.2",
+      "targetName": "react@1.0.2",
+      "originalObject": "dee972a6c2b03a87338ef2d070f2747348e74048",
+      "originalCommit": "dee972a6c2b03a87338ef2d070f2747348e74048",
+      "rewrittenObject": "32972799c7e79eb42ba9dfce2b8efa7278718083",
+      "rewrittenCommit": "32972799c7e79eb42ba9dfce2b8efa7278718083"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "react@1.0.3",
+      "originalObject": "7ba94ee630b50b5f7b6799e075adb8c463015266",
+      "originalCommit": "7ba94ee630b50b5f7b6799e075adb8c463015266",
+      "rewrittenObject": "1c8dbeb46389dd13cd852f716dfd96a356db3ce6",
+      "rewrittenCommit": "1c8dbeb46389dd13cd852f716dfd96a356db3ce6"
+    },
+    {
+      "originalName": "1.0.4",
+      "targetName": "react@1.0.4",
+      "originalObject": "f65ac14a3741b74f64a6fedff9ddaa1a5e1a1518",
+      "originalCommit": "f65ac14a3741b74f64a6fedff9ddaa1a5e1a1518",
+      "rewrittenObject": "20f785b9f04628633d511aa1a0afa8e70f798951",
+      "rewrittenCommit": "20f785b9f04628633d511aa1a0afa8e70f798951"
+    },
+    {
+      "originalName": "1.0.5",
+      "targetName": "react@1.0.5",
+      "originalObject": "27610e86f206a4746d73be20b43cd546d7ddf646",
+      "originalCommit": "27610e86f206a4746d73be20b43cd546d7ddf646",
+      "rewrittenObject": "c7aca962beae6468eaed39cfaa54efcc9525abcc",
+      "rewrittenCommit": "c7aca962beae6468eaed39cfaa54efcc9525abcc"
+    },
+    {
+      "originalName": "1.0.6",
+      "targetName": "react@1.0.6",
+      "originalObject": "19353106afcd01c5d124fc6507fce74231e12062",
+      "originalCommit": "19353106afcd01c5d124fc6507fce74231e12062",
+      "rewrittenObject": "04434219a74ad4ef0a0952b0f599b9a1050194aa",
+      "rewrittenCommit": "04434219a74ad4ef0a0952b0f599b9a1050194aa"
+    },
+    {
+      "originalName": "1.0.7",
+      "targetName": "react@1.0.7",
+      "originalObject": "bc4fb2cbae4482c9264b534100f3b82d39ae052e",
+      "originalCommit": "bc4fb2cbae4482c9264b534100f3b82d39ae052e",
+      "rewrittenObject": "4067018c5ee518cd048073b0a70f52bd7fc34705",
+      "rewrittenCommit": "4067018c5ee518cd048073b0a70f52bd7fc34705"
+    },
+    {
+      "originalName": "1.0.8",
+      "targetName": "react@1.0.8",
+      "originalObject": "9202bdf4b7d2951c9432718a91d8b4555d8e1065",
+      "originalCommit": "9202bdf4b7d2951c9432718a91d8b4555d8e1065",
+      "rewrittenObject": "33b894bb5af2c982aed91dd7292976e38703780e",
+      "rewrittenCommit": "33b894bb5af2c982aed91dd7292976e38703780e"
+    }
+  ]
+}

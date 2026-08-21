@@ -1,0 +1,118 @@
+{
+  "sourceHead": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "rewrittenHead": "b814d43dc7a6921ff23b260c25a6d1b7e5ebef01",
+  "tags": [
+    {
+      "originalName": "0.2.0",
+      "targetName": "rx@0.2.0",
+      "originalObject": "2e254d27eaeab4b89c38ad0f9109b5fcd635124d",
+      "originalCommit": "2e254d27eaeab4b89c38ad0f9109b5fcd635124d",
+      "rewrittenObject": "1e80e7132c4d68d18814fd1e8f20372e7030305d",
+      "rewrittenCommit": "1e80e7132c4d68d18814fd1e8f20372e7030305d"
+    },
+    {
+      "originalName": "0.2.1",
+      "targetName": "rx@0.2.1",
+      "originalObject": "732cfc7bca62be3659f15ae3efbc8cff025c4662",
+      "originalCommit": "732cfc7bca62be3659f15ae3efbc8cff025c4662",
+      "rewrittenObject": "ad7acaa067aae148a69cdaf5e3dcd32ced2ee05c",
+      "rewrittenCommit": "ad7acaa067aae148a69cdaf5e3dcd32ced2ee05c"
+    },
+    {
+      "originalName": "0.3.0",
+      "targetName": "rx@0.3.0",
+      "originalObject": "9e19bda4fe44a0b9d2d8ca029d296a7593a670c7",
+      "originalCommit": "9e19bda4fe44a0b9d2d8ca029d296a7593a670c7",
+      "rewrittenObject": "d3cd223c220d4be6d03e89c972a8c0512854b75c",
+      "rewrittenCommit": "d3cd223c220d4be6d03e89c972a8c0512854b75c"
+    },
+    {
+      "originalName": "0.3.1",
+      "targetName": "rx@0.3.1",
+      "originalObject": "f8c011dbefb35164350e1ce95fab20c7497d8cba",
+      "originalCommit": "f8c011dbefb35164350e1ce95fab20c7497d8cba",
+      "rewrittenObject": "24e026866b82902988b535423de8af080c21bedb",
+      "rewrittenCommit": "24e026866b82902988b535423de8af080c21bedb"
+    },
+    {
+      "originalName": "0.3.2",
+      "targetName": "rx@0.3.2",
+      "originalObject": "6a9e9aa40efdc53ab793b9d691f2dff79c6f7900",
+      "originalCommit": "6a9e9aa40efdc53ab793b9d691f2dff79c6f7900",
+      "rewrittenObject": "738c17ea2a2f7483522b17a66ac7c3f6f4864828",
+      "rewrittenCommit": "738c17ea2a2f7483522b17a66ac7c3f6f4864828"
+    },
+    {
+      "originalName": "0.4.1",
+      "targetName": "rx@0.4.1",
+      "originalObject": "2e6d37dd734a9a0bf3eb8733f67a83aa3f2d877c",
+      "originalCommit": "2e6d37dd734a9a0bf3eb8733f67a83aa3f2d877c",
+      "rewrittenObject": "2863f05ad9a86a8dc0fba42ecce968625e1cb3d8",
+      "rewrittenCommit": "2863f05ad9a86a8dc0fba42ecce968625e1cb3d8"
+    },
+    {
+      "originalName": "0.4.2",
+      "targetName": "rx@0.4.2",
+      "originalObject": "d55966dbafcbdbfa09dbb87dff7dfa9911b29e20",
+      "originalCommit": "d55966dbafcbdbfa09dbb87dff7dfa9911b29e20",
+      "rewrittenObject": "5d8d1b5cc98127e998a65b826a0d74592cc66ef7",
+      "rewrittenCommit": "5d8d1b5cc98127e998a65b826a0d74592cc66ef7"
+    },
+    {
+      "originalName": "0.4.4",
+      "targetName": "rx@0.4.4",
+      "originalObject": "416288f0f71801d7b0880b435fc3ca992715782e",
+      "originalCommit": "416288f0f71801d7b0880b435fc3ca992715782e",
+      "rewrittenObject": "187204238254be851c9e46f1b17322ad9a2e7fde",
+      "rewrittenCommit": "187204238254be851c9e46f1b17322ad9a2e7fde"
+    },
+    {
+      "originalName": "0.4.5",
+      "targetName": "rx@0.4.5",
+      "originalObject": "a5897dfbc25f177eaac35c2ecb47e6523ed20079",
+      "originalCommit": "a5897dfbc25f177eaac35c2ecb47e6523ed20079",
+      "rewrittenObject": "f572363929a2f370a51594b2804daf39e225b580",
+      "rewrittenCommit": "f572363929a2f370a51594b2804daf39e225b580"
+    },
+    {
+      "originalName": "0.5.0",
+      "targetName": "rx@0.5.0",
+      "originalObject": "6cd4c791f73c05e798cedf033330fba8eef71958",
+      "originalCommit": "6cd4c791f73c05e798cedf033330fba8eef71958",
+      "rewrittenObject": "7135aa6f9b40b87ff0851c4becd9549565fca660",
+      "rewrittenCommit": "7135aa6f9b40b87ff0851c4becd9549565fca660"
+    },
+    {
+      "originalName": "0.6.0",
+      "targetName": "rx@0.6.0",
+      "originalObject": "02dd065c278ce22fb14786070f04b5e762db71aa",
+      "originalCommit": "02dd065c278ce22fb14786070f04b5e762db71aa",
+      "rewrittenObject": "7b6059f888ac38d180e0d23ac86590778b547fc5",
+      "rewrittenCommit": "7b6059f888ac38d180e0d23ac86590778b547fc5"
+    },
+    {
+      "originalName": "0.6.4",
+      "targetName": "rx@0.6.4",
+      "originalObject": "398e109c040f7337a276a2bfe5dd2625f5c2b040",
+      "originalCommit": "398e109c040f7337a276a2bfe5dd2625f5c2b040",
+      "rewrittenObject": "01a8968eea8a08a4a11276d4f20784ce4c48f568",
+      "rewrittenCommit": "01a8968eea8a08a4a11276d4f20784ce4c48f568"
+    },
+    {
+      "originalName": "0.6.5",
+      "targetName": "rx@0.6.5",
+      "originalObject": "739a6714b25a83b41f4514845fdfd8b2c5b00c57",
+      "originalCommit": "739a6714b25a83b41f4514845fdfd8b2c5b00c57",
+      "rewrittenObject": "f626d4397f237e73604e63e5a0437bd5699e9f60",
+      "rewrittenCommit": "f626d4397f237e73604e63e5a0437bd5699e9f60"
+    },
+    {
+      "originalName": "1.0.0",
+      "targetName": "rx@1.0.0",
+      "originalObject": "62278a80371db3cd24f1013fc209efbc3d43a6f2",
+      "originalCommit": "62278a80371db3cd24f1013fc209efbc3d43a6f2",
+      "rewrittenObject": "7cab229bcc7e9d96a5cc78d6b2aa7dfbfdb5c734",
+      "rewrittenCommit": "7cab229bcc7e9d96a5cc78d6b2aa7dfbfdb5c734"
+    }
+  ]
+}

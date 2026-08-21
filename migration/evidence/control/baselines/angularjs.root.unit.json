@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 38,
+  "expectedFailureReason": null,
+  "id": "angularjs.root.unit",
+  "inputHashesAfterSha256": "c291b0fddc67af1f9ecea777c6b50de0792d4ab7107f78d2bfdccfcc24cc8244",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angularjs",
+  "sourceCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+  "status": 0,
+  "stderrSha256": "5e8d5342a70a4eda548c67dea220041085f8151a706d45d2b54e4a0cf7fc6509",
+  "stdoutSha256": "56df160099a1946489ec62556e2942d8968bfc81f0575406b7ef228c597b1093"
+}

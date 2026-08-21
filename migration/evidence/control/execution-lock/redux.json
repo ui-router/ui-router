@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "name": "redux",
+  "defaultHead": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "refs": [
+    "refs/heads/master 61610a4df2fc191e079ee3cc8c81a651aa86341a",
+    "refs/tags/1.0.0 a90e709c2ed875367f694a915bc4cd84b486dcd5"
+  ],
+  "bundleSha256": "ed31f06d2dd10db88c6a86e776c14ab22d51bbc7d8e499161f405551d2a8606b"
+}

@@ -1,0 +1,854 @@
+{
+  "sourceHead": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+  "rewrittenHead": "5b28b06ddb766e046ca6d1924ba72e9b12e0ea66",
+  "tags": [
+    {
+      "originalName": "1.0.0",
+      "targetName": "publish-scripts@1.0.0",
+      "originalObject": "c1ab06c4c1238659e438e114a64224c993cb31f7",
+      "originalCommit": "c1ab06c4c1238659e438e114a64224c993cb31f7",
+      "rewrittenObject": "55b82656fa84fc0932cc0a2c7e4514067d8276a4",
+      "rewrittenCommit": "55b82656fa84fc0932cc0a2c7e4514067d8276a4"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "publish-scripts@1.0.1",
+      "originalObject": "6917f16e48dd9c9cdc2efad1c7523fcc203c750c",
+      "originalCommit": "6917f16e48dd9c9cdc2efad1c7523fcc203c750c",
+      "rewrittenObject": "c980d8b8e47148f8f08960baa1c535ef8c033ba6",
+      "rewrittenCommit": "c980d8b8e47148f8f08960baa1c535ef8c033ba6"
+    },
+    {
+      "originalName": "1.0.2",
+      "targetName": "publish-scripts@1.0.2",
+      "originalObject": "44944e0167c5c27b2159c809d58d318f98e406d9",
+      "originalCommit": "44944e0167c5c27b2159c809d58d318f98e406d9",
+      "rewrittenObject": "95057c348050c0b32edc5708f362c6994f83fbeb",
+      "rewrittenCommit": "95057c348050c0b32edc5708f362c6994f83fbeb"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "publish-scripts@1.0.3",
+      "originalObject": "a54a3ee63d20b5ebaf1b6b2c2453cc69bf2b8f8f",
+      "originalCommit": "a54a3ee63d20b5ebaf1b6b2c2453cc69bf2b8f8f",
+      "rewrittenObject": "15cfe3c46f769158e13297bc96f53d5a5e29c1d4",
+      "rewrittenCommit": "15cfe3c46f769158e13297bc96f53d5a5e29c1d4"
+    },
+    {
+      "originalName": "1.0.4",
+      "targetName": "publish-scripts@1.0.4",
+      "originalObject": "069c7e914f3bdf6fe94964c9c4b858ede82f02f9",
+      "originalCommit": "069c7e914f3bdf6fe94964c9c4b858ede82f02f9",
+      "rewrittenObject": "ca4e115e89489ba5078bc4036aaf170156ff6288",
+      "rewrittenCommit": "ca4e115e89489ba5078bc4036aaf170156ff6288"
+    },
+    {
+      "originalName": "1.0.5",
+      "targetName": "publish-scripts@1.0.5",
+      "originalObject": "8d1ef9d464ada611a0d01e8a71f5bde05a98a133",
+      "originalCommit": "8d1ef9d464ada611a0d01e8a71f5bde05a98a133",
+      "rewrittenObject": "2f0c9fc152ea39f4516e85870ce64884841b81b5",
+      "rewrittenCommit": "2f0c9fc152ea39f4516e85870ce64884841b81b5"
+    },
+    {
+      "originalName": "1.0.6",
+      "targetName": "publish-scripts@1.0.6",
+      "originalObject": "9f9ef15f79442a6558f1160cded2a88503478cfe",
+      "originalCommit": "9f9ef15f79442a6558f1160cded2a88503478cfe",
+      "rewrittenObject": "f75733d277ae6a121af9b6f06fe69b4aff7fb173",
+      "rewrittenCommit": "f75733d277ae6a121af9b6f06fe69b4aff7fb173"
+    },
+    {
+      "originalName": "1.0.7",
+      "targetName": "publish-scripts@1.0.7",
+      "originalObject": "271e70462de9c1da5343c76cca79eb322169dc86",
+      "originalCommit": "271e70462de9c1da5343c76cca79eb322169dc86",
+      "rewrittenObject": "38458cefa275aeb3784bc6015b1914d44ec3a64f",
+      "rewrittenCommit": "38458cefa275aeb3784bc6015b1914d44ec3a64f"
+    },
+    {
+      "originalName": "1.0.8",
+      "targetName": "publish-scripts@1.0.8",
+      "originalObject": "bba4be27fa36989dd16d78439858517ae2c37518",
+      "originalCommit": "bba4be27fa36989dd16d78439858517ae2c37518",
+      "rewrittenObject": "3850b66837715faf247ce5106adefc4a83a03dc1",
+      "rewrittenCommit": "3850b66837715faf247ce5106adefc4a83a03dc1"
+    },
+    {
+      "originalName": "1.0.9",
+      "targetName": "publish-scripts@1.0.9",
+      "originalObject": "abf3574b16eb893939fe0507c34ee18e8c713e0f",
+      "originalCommit": "abf3574b16eb893939fe0507c34ee18e8c713e0f",
+      "rewrittenObject": "48af1bd6dc7aee56ccc7faaa30b8f630e1c1856d",
+      "rewrittenCommit": "48af1bd6dc7aee56ccc7faaa30b8f630e1c1856d"
+    },
+    {
+      "originalName": "1.1.0",
+      "targetName": "publish-scripts@1.1.0",
+      "originalObject": "065fbc2ec22e11d0ce33a1a8b83cc9e18cfc1482",
+      "originalCommit": "065fbc2ec22e11d0ce33a1a8b83cc9e18cfc1482",
+      "rewrittenObject": "959504b3c9c3ffb626399393264052081e17f4fd",
+      "rewrittenCommit": "959504b3c9c3ffb626399393264052081e17f4fd"
+    },
+    {
+      "originalName": "1.1.1",
+      "targetName": "publish-scripts@1.1.1",
+      "originalObject": "51f3a88c1169072db8df2daee15d7a6964e71645",
+      "originalCommit": "51f3a88c1169072db8df2daee15d7a6964e71645",
+      "rewrittenObject": "ca0f2bf29aeb749c4db1eac88bf01c8908e3f9ec",
+      "rewrittenCommit": "ca0f2bf29aeb749c4db1eac88bf01c8908e3f9ec"
+    },
+    {
+      "originalName": "2.0.0",
+      "targetName": "publish-scripts@2.0.0",
+      "originalObject": "a939aeedc81a947aea5b71effd78a6b1ef4de7e0",
+      "originalCommit": "a939aeedc81a947aea5b71effd78a6b1ef4de7e0",
+      "rewrittenObject": "143a0380137eb5b00796375c0eb71a828360534c",
+      "rewrittenCommit": "143a0380137eb5b00796375c0eb71a828360534c"
+    },
+    {
+      "originalName": "2.0.1",
+      "targetName": "publish-scripts@2.0.1",
+      "originalObject": "dabb5a1331e8631bd1133fb6d39acdeeddc1ce9f",
+      "originalCommit": "dabb5a1331e8631bd1133fb6d39acdeeddc1ce9f",
+      "rewrittenObject": "dcee5b4b2b4f99ce973e5ca881d0d5dd94d974a4",
+      "rewrittenCommit": "dcee5b4b2b4f99ce973e5ca881d0d5dd94d974a4"
+    },
+    {
+      "originalName": "2.0.2",
+      "targetName": "publish-scripts@2.0.2",
+      "originalObject": "307bda6ad34195ada7314b67c29bac8af9834008",
+      "originalCommit": "307bda6ad34195ada7314b67c29bac8af9834008",
+      "rewrittenObject": "875e37bdc88ad102f2ee2b26619aaaafc0ec9158",
+      "rewrittenCommit": "875e37bdc88ad102f2ee2b26619aaaafc0ec9158"
+    },
+    {
+      "originalName": "2.0.3",
+      "targetName": "publish-scripts@2.0.3",
+      "originalObject": "cf32272f34c85258db307d46b1700726a579ea76",
+      "originalCommit": "cf32272f34c85258db307d46b1700726a579ea76",
+      "rewrittenObject": "50c17f169a638bafecb5158ec7fed7595b02d414",
+      "rewrittenCommit": "50c17f169a638bafecb5158ec7fed7595b02d414"
+    },
+    {
+      "originalName": "2.0.4",
+      "targetName": "publish-scripts@2.0.4",
+      "originalObject": "d56682aad163912aee6f9162ff248fad83a723a9",
+      "originalCommit": "d56682aad163912aee6f9162ff248fad83a723a9",
+      "rewrittenObject": "ab7a85b5734ef9e5fac4188b8c8998ee90c5c039",
+      "rewrittenCommit": "ab7a85b5734ef9e5fac4188b8c8998ee90c5c039"
+    },
+    {
+      "originalName": "2.0.5",
+      "targetName": "publish-scripts@2.0.5",
+      "originalObject": "1bf5bf8ff518be8c92b1b3f5f180dd5edaa229e1",
+      "originalCommit": "1bf5bf8ff518be8c92b1b3f5f180dd5edaa229e1",
+      "rewrittenObject": "2cad946a79d92edaed6523f0333ce78501bde07e",
+      "rewrittenCommit": "2cad946a79d92edaed6523f0333ce78501bde07e"
+    },
+    {
+      "originalName": "2.0.6",
+      "targetName": "publish-scripts@2.0.6",
+      "originalObject": "8601162f825d780113f76a91c629d2fc13baa09d",
+      "originalCommit": "8601162f825d780113f76a91c629d2fc13baa09d",
+      "rewrittenObject": "dfc45b4db51f05b6094ca425777816aba695ae31",
+      "rewrittenCommit": "dfc45b4db51f05b6094ca425777816aba695ae31"
+    },
+    {
+      "originalName": "2.0.7",
+      "targetName": "publish-scripts@2.0.7",
+      "originalObject": "dddef2c02b31f0af2e9315b17972ed2d890f98db",
+      "originalCommit": "dddef2c02b31f0af2e9315b17972ed2d890f98db",
+      "rewrittenObject": "c53b4a7fde3115c9fa5ba11fea2fb8e5d6af2e38",
+      "rewrittenCommit": "c53b4a7fde3115c9fa5ba11fea2fb8e5d6af2e38"
+    },
+    {
+      "originalName": "2.0.8",
+      "targetName": "publish-scripts@2.0.8",
+      "originalObject": "2cd32266f03eb0f3816ac1df76cd5f6a065b1207",
+      "originalCommit": "2cd32266f03eb0f3816ac1df76cd5f6a065b1207",
+      "rewrittenObject": "838d6adaccf622b6ad48486ef89174d61909076d",
+      "rewrittenCommit": "838d6adaccf622b6ad48486ef89174d61909076d"
+    },
+    {
+      "originalName": "2.1.0",
+      "targetName": "publish-scripts@2.1.0",
+      "originalObject": "96d813d66ac89f5ec1f2e9b0ae66d9af20ade901",
+      "originalCommit": "96d813d66ac89f5ec1f2e9b0ae66d9af20ade901",
+      "rewrittenObject": "011c20fcf000f94cc30589867773fec30cbe8a3f",
+      "rewrittenCommit": "011c20fcf000f94cc30589867773fec30cbe8a3f"
+    },
+    {
+      "originalName": "2.1.1",
+      "targetName": "publish-scripts@2.1.1",
+      "originalObject": "1fc370c73218ae7ad3a3a99070e96e3ff72b722f",
+      "originalCommit": "1fc370c73218ae7ad3a3a99070e96e3ff72b722f",
+      "rewrittenObject": "a3a1086caa9fad49a26706271c1884aeb56bc32c",
+      "rewrittenCommit": "a3a1086caa9fad49a26706271c1884aeb56bc32c"
+    },
+    {
+      "originalName": "2.1.2",
+      "targetName": "publish-scripts@2.1.2",
+      "originalObject": "8b05e84b8fb45dfbf8b085d87cc3fbc1e88a431d",
+      "originalCommit": "8b05e84b8fb45dfbf8b085d87cc3fbc1e88a431d",
+      "rewrittenObject": "35fcf46baae5a3284878361a0793f81a7c358d69",
+      "rewrittenCommit": "35fcf46baae5a3284878361a0793f81a7c358d69"
+    },
+    {
+      "originalName": "2.2.0",
+      "targetName": "publish-scripts@2.2.0",
+      "originalObject": "9e782ec791a50f63945d25a8133aa9d7ccc32ea7",
+      "originalCommit": "9e782ec791a50f63945d25a8133aa9d7ccc32ea7",
+      "rewrittenObject": "058941e3456692dbe248f7c96711ff914664a469",
+      "rewrittenCommit": "058941e3456692dbe248f7c96711ff914664a469"
+    },
+    {
+      "originalName": "2.2.1",
+      "targetName": "publish-scripts@2.2.1",
+      "originalObject": "3710c6add50202a438cd03bda0098f8f0f77d6c8",
+      "originalCommit": "3710c6add50202a438cd03bda0098f8f0f77d6c8",
+      "rewrittenObject": "e644b5aaeab063d643bdcbd6f7418aab79e07ee0",
+      "rewrittenCommit": "e644b5aaeab063d643bdcbd6f7418aab79e07ee0"
+    },
+    {
+      "originalName": "2.2.10",
+      "targetName": "publish-scripts@2.2.10",
+      "originalObject": "b13b0a4ae3bfb939cf016032e8547f6ca95f7d4b",
+      "originalCommit": "b13b0a4ae3bfb939cf016032e8547f6ca95f7d4b",
+      "rewrittenObject": "8b42090046c8db21714834d32e05367d83002274",
+      "rewrittenCommit": "8b42090046c8db21714834d32e05367d83002274"
+    },
+    {
+      "originalName": "2.2.2",
+      "targetName": "publish-scripts@2.2.2",
+      "originalObject": "9c88536c56f1072d3957808017e7090369bd2b47",
+      "originalCommit": "9c88536c56f1072d3957808017e7090369bd2b47",
+      "rewrittenObject": "427cea7be573d4d5ca131d1794bd7374a6576a45",
+      "rewrittenCommit": "427cea7be573d4d5ca131d1794bd7374a6576a45"
+    },
+    {
+      "originalName": "2.2.3",
+      "targetName": "publish-scripts@2.2.3",
+      "originalObject": "030e30c68a973a16258f8517c082ff0c5c89f9a1",
+      "originalCommit": "030e30c68a973a16258f8517c082ff0c5c89f9a1",
+      "rewrittenObject": "eb313ae4bb14f151bd375c3216667fbe4439e62d",
+      "rewrittenCommit": "eb313ae4bb14f151bd375c3216667fbe4439e62d"
+    },
+    {
+      "originalName": "2.2.4",
+      "targetName": "publish-scripts@2.2.4",
+      "originalObject": "40ce48b3ea1dbdd7dba07276a2330bceadf4940c",
+      "originalCommit": "40ce48b3ea1dbdd7dba07276a2330bceadf4940c",
+      "rewrittenObject": "5c2f977e9d10a30b867348eca26f995566e028a6",
+      "rewrittenCommit": "5c2f977e9d10a30b867348eca26f995566e028a6"
+    },
+    {
+      "originalName": "2.2.5",
+      "targetName": "publish-scripts@2.2.5",
+      "originalObject": "91402de912a328ab99c14ba2e3b74bcf0456d03b",
+      "originalCommit": "91402de912a328ab99c14ba2e3b74bcf0456d03b",
+      "rewrittenObject": "c3584216742a9feee548d1a1060ccae1f9f2e157",
+      "rewrittenCommit": "c3584216742a9feee548d1a1060ccae1f9f2e157"
+    },
+    {
+      "originalName": "2.2.6",
+      "targetName": "publish-scripts@2.2.6",
+      "originalObject": "38cf7b20d2fe41e0f19e7ad5474b0645f2639b5c",
+      "originalCommit": "38cf7b20d2fe41e0f19e7ad5474b0645f2639b5c",
+      "rewrittenObject": "82ca2678260abdc34037e3940f3a15f954bf21ce",
+      "rewrittenCommit": "82ca2678260abdc34037e3940f3a15f954bf21ce"
+    },
+    {
+      "originalName": "2.2.7",
+      "targetName": "publish-scripts@2.2.7",
+      "originalObject": "a60488b8a55b1fce1266824c6f87bce7017c74b7",
+      "originalCommit": "a60488b8a55b1fce1266824c6f87bce7017c74b7",
+      "rewrittenObject": "c11499d7f4412ba08dfe8a2e443c817879f7c665",
+      "rewrittenCommit": "c11499d7f4412ba08dfe8a2e443c817879f7c665"
+    },
+    {
+      "originalName": "2.2.8",
+      "targetName": "publish-scripts@2.2.8",
+      "originalObject": "ccb2c30f2789c18345766f399a33bf1c107c73a4",
+      "originalCommit": "ccb2c30f2789c18345766f399a33bf1c107c73a4",
+      "rewrittenObject": "7167ef0e7babbb61d5227f357a3d433c1f80e074",
+      "rewrittenCommit": "7167ef0e7babbb61d5227f357a3d433c1f80e074"
+    },
+    {
+      "originalName": "2.2.9",
+      "targetName": "publish-scripts@2.2.9",
+      "originalObject": "6664a70c26a0bb0c77d2193ed9a3058b577f6ab2",
+      "originalCommit": "6664a70c26a0bb0c77d2193ed9a3058b577f6ab2",
+      "rewrittenObject": "34d91d78655f9d12adb3677632f5ddbb679dff05",
+      "rewrittenCommit": "34d91d78655f9d12adb3677632f5ddbb679dff05"
+    },
+    {
+      "originalName": "2.3.0",
+      "targetName": "publish-scripts@2.3.0",
+      "originalObject": "823da7a393dfc6fcdedf024cba60ae3da2b9e086",
+      "originalCommit": "823da7a393dfc6fcdedf024cba60ae3da2b9e086",
+      "rewrittenObject": "5f06c9a900ea633231940786455fe093d385cbb2",
+      "rewrittenCommit": "5f06c9a900ea633231940786455fe093d385cbb2"
+    },
+    {
+      "originalName": "2.3.1",
+      "targetName": "publish-scripts@2.3.1",
+      "originalObject": "1cc57ef9aef4641ec1b3a5d4e55d2ee5f0f4cd21",
+      "originalCommit": "1cc57ef9aef4641ec1b3a5d4e55d2ee5f0f4cd21",
+      "rewrittenObject": "2f659b86b6a32f6f07740b61a4831c3cbe7b14a4",
+      "rewrittenCommit": "2f659b86b6a32f6f07740b61a4831c3cbe7b14a4"
+    },
+    {
+      "originalName": "2.3.10",
+      "targetName": "publish-scripts@2.3.10",
+      "originalObject": "74217d6d162f05337b81f8f99c75d48b96081c07",
+      "originalCommit": "74217d6d162f05337b81f8f99c75d48b96081c07",
+      "rewrittenObject": "cc1ae1b60fac874631c2bdf689fb29a18dbd2333",
+      "rewrittenCommit": "cc1ae1b60fac874631c2bdf689fb29a18dbd2333"
+    },
+    {
+      "originalName": "2.3.11",
+      "targetName": "publish-scripts@2.3.11",
+      "originalObject": "a11f7f23e939fbcf43690489461077279bd4a9f5",
+      "originalCommit": "a11f7f23e939fbcf43690489461077279bd4a9f5",
+      "rewrittenObject": "826b4d8b19433a3acde3a46bbbb98a380542b20f",
+      "rewrittenCommit": "826b4d8b19433a3acde3a46bbbb98a380542b20f"
+    },
+    {
+      "originalName": "2.3.12",
+      "targetName": "publish-scripts@2.3.12",
+      "originalObject": "fd9f08a9395bf4a72a908c1cf9f261beb495a186",
+      "originalCommit": "fd9f08a9395bf4a72a908c1cf9f261beb495a186",
+      "rewrittenObject": "77d24306733d554b5420f88d4a93f2a9872a312a",
+      "rewrittenCommit": "77d24306733d554b5420f88d4a93f2a9872a312a"
+    },
+    {
+      "originalName": "2.3.13",
+      "targetName": "publish-scripts@2.3.13",
+      "originalObject": "742a8370db147be69e130246c2140c820d9f2b9e",
+      "originalCommit": "742a8370db147be69e130246c2140c820d9f2b9e",
+      "rewrittenObject": "44a602ef426a2f065165fbea1caf2f280969a430",
+      "rewrittenCommit": "44a602ef426a2f065165fbea1caf2f280969a430"
+    },
+    {
+      "originalName": "2.3.14",
+      "targetName": "publish-scripts@2.3.14",
+      "originalObject": "a07cb68f55946055a7390b0eed7e30dbecaa7f37",
+      "originalCommit": "a07cb68f55946055a7390b0eed7e30dbecaa7f37",
+      "rewrittenObject": "8e275b77e7aa9a913d69a0a038f641e762963e37",
+      "rewrittenCommit": "8e275b77e7aa9a913d69a0a038f641e762963e37"
+    },
+    {
+      "originalName": "2.3.15",
+      "targetName": "publish-scripts@2.3.15",
+      "originalObject": "f2fcac7e6b68920770026b4999c87973c03d10e2",
+      "originalCommit": "f2fcac7e6b68920770026b4999c87973c03d10e2",
+      "rewrittenObject": "737ad0ac5fb2406efa3948663ef64a15a9386a04",
+      "rewrittenCommit": "737ad0ac5fb2406efa3948663ef64a15a9386a04"
+    },
+    {
+      "originalName": "2.3.16",
+      "targetName": "publish-scripts@2.3.16",
+      "originalObject": "c6a699aceb9e73613adc6f0a882722bb76494721",
+      "originalCommit": "c6a699aceb9e73613adc6f0a882722bb76494721",
+      "rewrittenObject": "a044d1c9004010538355a92d70f712251d0c38fe",
+      "rewrittenCommit": "a044d1c9004010538355a92d70f712251d0c38fe"
+    },
+    {
+      "originalName": "2.3.17",
+      "targetName": "publish-scripts@2.3.17",
+      "originalObject": "de753b3c2ca203df8c121400a16abc6d5b631413",
+      "originalCommit": "de753b3c2ca203df8c121400a16abc6d5b631413",
+      "rewrittenObject": "afc385e13f61ae6d0af1a72a432bec47e139a0e9",
+      "rewrittenCommit": "afc385e13f61ae6d0af1a72a432bec47e139a0e9"
+    },
+    {
+      "originalName": "2.3.18",
+      "targetName": "publish-scripts@2.3.18",
+      "originalObject": "bc4d22d2a57185b68a3e2f62d78614928fb6ad81",
+      "originalCommit": "bc4d22d2a57185b68a3e2f62d78614928fb6ad81",
+      "rewrittenObject": "cf029934cb44894e63278e46239156555a9cd065",
+      "rewrittenCommit": "cf029934cb44894e63278e46239156555a9cd065"
+    },
+    {
+      "originalName": "2.3.19",
+      "targetName": "publish-scripts@2.3.19",
+      "originalObject": "627d9605f8b149714822436f61fc0d0cb923a78f",
+      "originalCommit": "627d9605f8b149714822436f61fc0d0cb923a78f",
+      "rewrittenObject": "374b711f72476df8dda902a245f31235f228da18",
+      "rewrittenCommit": "374b711f72476df8dda902a245f31235f228da18"
+    },
+    {
+      "originalName": "2.3.2",
+      "targetName": "publish-scripts@2.3.2",
+      "originalObject": "6f48591aa8b0c242c8e733087d88dec6e3ea0248",
+      "originalCommit": "6f48591aa8b0c242c8e733087d88dec6e3ea0248",
+      "rewrittenObject": "887e484bce05e927ada3ae04b404cbbb5ed540b4",
+      "rewrittenCommit": "887e484bce05e927ada3ae04b404cbbb5ed540b4"
+    },
+    {
+      "originalName": "2.3.20",
+      "targetName": "publish-scripts@2.3.20",
+      "originalObject": "30f1f616dc52d26522f7b9ca5b16b07bd3159429",
+      "originalCommit": "30f1f616dc52d26522f7b9ca5b16b07bd3159429",
+      "rewrittenObject": "1ac747b610f49eca2425fc4cc65acd5907f42d7b",
+      "rewrittenCommit": "1ac747b610f49eca2425fc4cc65acd5907f42d7b"
+    },
+    {
+      "originalName": "2.3.21",
+      "targetName": "publish-scripts@2.3.21",
+      "originalObject": "df92ad7601d50c12463f235c34849385418c0a7c",
+      "originalCommit": "df92ad7601d50c12463f235c34849385418c0a7c",
+      "rewrittenObject": "4c05cd9c5ffcd55b6300e3ce7a9fd15d2b95930d",
+      "rewrittenCommit": "4c05cd9c5ffcd55b6300e3ce7a9fd15d2b95930d"
+    },
+    {
+      "originalName": "2.3.22",
+      "targetName": "publish-scripts@2.3.22",
+      "originalObject": "8c24f0f67ce4ea24df495cd9b47ac4510907a271",
+      "originalCommit": "8c24f0f67ce4ea24df495cd9b47ac4510907a271",
+      "rewrittenObject": "c49c72d3963d7f76940a8128498071039eff2299",
+      "rewrittenCommit": "c49c72d3963d7f76940a8128498071039eff2299"
+    },
+    {
+      "originalName": "2.3.23",
+      "targetName": "publish-scripts@2.3.23",
+      "originalObject": "0c0a336bb5f7e9a01d3364cb8bfb72fe4aa256ba",
+      "originalCommit": "0c0a336bb5f7e9a01d3364cb8bfb72fe4aa256ba",
+      "rewrittenObject": "f87dbea11d6c17570923195ce156c0809f9e8e23",
+      "rewrittenCommit": "f87dbea11d6c17570923195ce156c0809f9e8e23"
+    },
+    {
+      "originalName": "2.3.24",
+      "targetName": "publish-scripts@2.3.24",
+      "originalObject": "891335f6e832d00696c1ac5589c4cb20b6f6d973",
+      "originalCommit": "891335f6e832d00696c1ac5589c4cb20b6f6d973",
+      "rewrittenObject": "016d41ecc12f4d423d9be69c79c3808fd8a70e53",
+      "rewrittenCommit": "016d41ecc12f4d423d9be69c79c3808fd8a70e53"
+    },
+    {
+      "originalName": "2.3.25",
+      "targetName": "publish-scripts@2.3.25",
+      "originalObject": "23ef5e16f16926d3547494c3ca1a7cca1ba03d3d",
+      "originalCommit": "23ef5e16f16926d3547494c3ca1a7cca1ba03d3d",
+      "rewrittenObject": "f528d3f4c6e80e84510bdd802798ab6202e270b0",
+      "rewrittenCommit": "f528d3f4c6e80e84510bdd802798ab6202e270b0"
+    },
+    {
+      "originalName": "2.3.26",
+      "targetName": "publish-scripts@2.3.26",
+      "originalObject": "60f811ce89cac50c1ab46c8292cb845594000d74",
+      "originalCommit": "60f811ce89cac50c1ab46c8292cb845594000d74",
+      "rewrittenObject": "006a28ded7d5d890c5086952902bde659c3feeed",
+      "rewrittenCommit": "006a28ded7d5d890c5086952902bde659c3feeed"
+    },
+    {
+      "originalName": "2.3.27",
+      "targetName": "publish-scripts@2.3.27",
+      "originalObject": "f9ce4c37dfa436d47df2089a641495af1ebeb30b",
+      "originalCommit": "f9ce4c37dfa436d47df2089a641495af1ebeb30b",
+      "rewrittenObject": "8ce9eee44d655a33e4f4e0b8f42526c72610088a",
+      "rewrittenCommit": "8ce9eee44d655a33e4f4e0b8f42526c72610088a"
+    },
+    {
+      "originalName": "2.3.28",
+      "targetName": "publish-scripts@2.3.28",
+      "originalObject": "6739e701d07d87eeb8a25f93da92f72e429ffe95",
+      "originalCommit": "6739e701d07d87eeb8a25f93da92f72e429ffe95",
+      "rewrittenObject": "350e703a08292fbfa83daa1c3ac1da69f7742b40",
+      "rewrittenCommit": "350e703a08292fbfa83daa1c3ac1da69f7742b40"
+    },
+    {
+      "originalName": "2.3.29",
+      "targetName": "publish-scripts@2.3.29",
+      "originalObject": "a3574bdafe3d429d8e7805430a9f60a05f4838bd",
+      "originalCommit": "a3574bdafe3d429d8e7805430a9f60a05f4838bd",
+      "rewrittenObject": "000b65e9d5819fbd3c5857a829fdff3823eb560b",
+      "rewrittenCommit": "000b65e9d5819fbd3c5857a829fdff3823eb560b"
+    },
+    {
+      "originalName": "2.3.3",
+      "targetName": "publish-scripts@2.3.3",
+      "originalObject": "a02da4e5a6c647a9d67dcc38d76072fd18461ba7",
+      "originalCommit": "a02da4e5a6c647a9d67dcc38d76072fd18461ba7",
+      "rewrittenObject": "1fbaf15a9f7e4ee0b28b9c84d020acec040d160d",
+      "rewrittenCommit": "1fbaf15a9f7e4ee0b28b9c84d020acec040d160d"
+    },
+    {
+      "originalName": "2.3.30",
+      "targetName": "publish-scripts@2.3.30",
+      "originalObject": "76ad10b14b7a14b7afada4cac1ddfb1a521576b3",
+      "originalCommit": "76ad10b14b7a14b7afada4cac1ddfb1a521576b3",
+      "rewrittenObject": "bff2a33562dfb98e1b37c8892f70f4ae309100a8",
+      "rewrittenCommit": "bff2a33562dfb98e1b37c8892f70f4ae309100a8"
+    },
+    {
+      "originalName": "2.3.31",
+      "targetName": "publish-scripts@2.3.31",
+      "originalObject": "41cbd855037263f0d154a17f56038d4f140c7f5a",
+      "originalCommit": "41cbd855037263f0d154a17f56038d4f140c7f5a",
+      "rewrittenObject": "5f43e75c72d1699ae13b8e922111efc55bfb33b5",
+      "rewrittenCommit": "5f43e75c72d1699ae13b8e922111efc55bfb33b5"
+    },
+    {
+      "originalName": "2.3.32",
+      "targetName": "publish-scripts@2.3.32",
+      "originalObject": "b6705cdc503385ada173d0e0d8794a1de1f5bd27",
+      "originalCommit": "b6705cdc503385ada173d0e0d8794a1de1f5bd27",
+      "rewrittenObject": "a64e436d3e742e321bda4618e500a676341cab25",
+      "rewrittenCommit": "a64e436d3e742e321bda4618e500a676341cab25"
+    },
+    {
+      "originalName": "2.3.33",
+      "targetName": "publish-scripts@2.3.33",
+      "originalObject": "42114d45a49b59e0db9be9cd1013af9e4b653b18",
+      "originalCommit": "42114d45a49b59e0db9be9cd1013af9e4b653b18",
+      "rewrittenObject": "d8837d1470a588113ac7145eae9322495dfcb3d8",
+      "rewrittenCommit": "d8837d1470a588113ac7145eae9322495dfcb3d8"
+    },
+    {
+      "originalName": "2.3.34",
+      "targetName": "publish-scripts@2.3.34",
+      "originalObject": "ae591a0d92a5e4218fded9573f3a467a600d5fc7",
+      "originalCommit": "ae591a0d92a5e4218fded9573f3a467a600d5fc7",
+      "rewrittenObject": "e05c9311fc7e09984c4fa0202c27577cfe31f8e6",
+      "rewrittenCommit": "e05c9311fc7e09984c4fa0202c27577cfe31f8e6"
+    },
+    {
+      "originalName": "2.3.35",
+      "targetName": "publish-scripts@2.3.35",
+      "originalObject": "40b28597ff8ea6fa72681ea8386570d8530b6a92",
+      "originalCommit": "40b28597ff8ea6fa72681ea8386570d8530b6a92",
+      "rewrittenObject": "ff289161092b20830815e05d55ec52b07c8f428b",
+      "rewrittenCommit": "ff289161092b20830815e05d55ec52b07c8f428b"
+    },
+    {
+      "originalName": "2.3.36",
+      "targetName": "publish-scripts@2.3.36",
+      "originalObject": "e08fd37c9286b328db9a19dd4c80d216d697f1cc",
+      "originalCommit": "e08fd37c9286b328db9a19dd4c80d216d697f1cc",
+      "rewrittenObject": "d9a974bbc7e8784ba880566871b277dc4f001d8c",
+      "rewrittenCommit": "d9a974bbc7e8784ba880566871b277dc4f001d8c"
+    },
+    {
+      "originalName": "2.3.37",
+      "targetName": "publish-scripts@2.3.37",
+      "originalObject": "c82a09d5c0b71344a65085f4415e01287d78d228",
+      "originalCommit": "c82a09d5c0b71344a65085f4415e01287d78d228",
+      "rewrittenObject": "d9138734aa6af2314b1cb0a3b356483f66d4dbcb",
+      "rewrittenCommit": "d9138734aa6af2314b1cb0a3b356483f66d4dbcb"
+    },
+    {
+      "originalName": "2.3.38",
+      "targetName": "publish-scripts@2.3.38",
+      "originalObject": "97caff7f28674b36a2e4d67728532a22d9e9a2b8",
+      "originalCommit": "97caff7f28674b36a2e4d67728532a22d9e9a2b8",
+      "rewrittenObject": "2c8ebd2ba17de7962bad41eaa29613599be51bfd",
+      "rewrittenCommit": "2c8ebd2ba17de7962bad41eaa29613599be51bfd"
+    },
+    {
+      "originalName": "2.3.39",
+      "targetName": "publish-scripts@2.3.39",
+      "originalObject": "d246c0dc10ff0b2d5748c5a268acad0dcaaa4956",
+      "originalCommit": "d246c0dc10ff0b2d5748c5a268acad0dcaaa4956",
+      "rewrittenObject": "c9d15b59b15d7274f6441cd3e96ee85c4a30e05a",
+      "rewrittenCommit": "c9d15b59b15d7274f6441cd3e96ee85c4a30e05a"
+    },
+    {
+      "originalName": "2.3.4",
+      "targetName": "publish-scripts@2.3.4",
+      "originalObject": "b56d048b2e31eece97289efaad7de87a33c8f82a",
+      "originalCommit": "b56d048b2e31eece97289efaad7de87a33c8f82a",
+      "rewrittenObject": "f8ff341dec42b78478cbd061f69cd506b55a4374",
+      "rewrittenCommit": "f8ff341dec42b78478cbd061f69cd506b55a4374"
+    },
+    {
+      "originalName": "2.3.40",
+      "targetName": "publish-scripts@2.3.40",
+      "originalObject": "7192553854f1fd498a862747d4eb208ec5f9ad3e",
+      "originalCommit": "7192553854f1fd498a862747d4eb208ec5f9ad3e",
+      "rewrittenObject": "12e6b7f0c11194debb16f2a3de612bf1cfdc3ea6",
+      "rewrittenCommit": "12e6b7f0c11194debb16f2a3de612bf1cfdc3ea6"
+    },
+    {
+      "originalName": "2.3.41",
+      "targetName": "publish-scripts@2.3.41",
+      "originalObject": "56687b5ccd7f89ec99a98ac9fae74ca9d63525c6",
+      "originalCommit": "56687b5ccd7f89ec99a98ac9fae74ca9d63525c6",
+      "rewrittenObject": "00b0d6aa5d31bbefbc8c9407bdf03a42151c9415",
+      "rewrittenCommit": "00b0d6aa5d31bbefbc8c9407bdf03a42151c9415"
+    },
+    {
+      "originalName": "2.3.42",
+      "targetName": "publish-scripts@2.3.42",
+      "originalObject": "e06f20a37267a5848c3478c6d3a82e6811d0f419",
+      "originalCommit": "e06f20a37267a5848c3478c6d3a82e6811d0f419",
+      "rewrittenObject": "30025208126876ee6b4ca79820d349b0181e6430",
+      "rewrittenCommit": "30025208126876ee6b4ca79820d349b0181e6430"
+    },
+    {
+      "originalName": "2.3.43",
+      "targetName": "publish-scripts@2.3.43",
+      "originalObject": "f7d1fdafa5cbd2062a7644e4f5fde45e6e12d665",
+      "originalCommit": "f7d1fdafa5cbd2062a7644e4f5fde45e6e12d665",
+      "rewrittenObject": "25b1f3eeae2841bf99cd89db4c4bcabf374e22d3",
+      "rewrittenCommit": "25b1f3eeae2841bf99cd89db4c4bcabf374e22d3"
+    },
+    {
+      "originalName": "2.3.44",
+      "targetName": "publish-scripts@2.3.44",
+      "originalObject": "c7c7a09cfabd25ea4ea8eac0acd3e35ff5b9d77e",
+      "originalCommit": "c7c7a09cfabd25ea4ea8eac0acd3e35ff5b9d77e",
+      "rewrittenObject": "0eea8d300ab298fbaa865d823f55c0d62b7f7e14",
+      "rewrittenCommit": "0eea8d300ab298fbaa865d823f55c0d62b7f7e14"
+    },
+    {
+      "originalName": "2.3.45",
+      "targetName": "publish-scripts@2.3.45",
+      "originalObject": "4a957d9243a744912023eee5f3a089038c36bd1e",
+      "originalCommit": "4a957d9243a744912023eee5f3a089038c36bd1e",
+      "rewrittenObject": "97499f1b5ee863abc2971b796fdb2c9036c7213a",
+      "rewrittenCommit": "97499f1b5ee863abc2971b796fdb2c9036c7213a"
+    },
+    {
+      "originalName": "2.3.46",
+      "targetName": "publish-scripts@2.3.46",
+      "originalObject": "211fb63e08470b072964ffdb1207a8a6b96360f8",
+      "originalCommit": "211fb63e08470b072964ffdb1207a8a6b96360f8",
+      "rewrittenObject": "eb8a41577076922ecde4ff21ee1c80fdaca5952f",
+      "rewrittenCommit": "eb8a41577076922ecde4ff21ee1c80fdaca5952f"
+    },
+    {
+      "originalName": "2.3.47",
+      "targetName": "publish-scripts@2.3.47",
+      "originalObject": "15a89b5e334c8f45077cd72ce8cfb64841d40ddd",
+      "originalCommit": "15a89b5e334c8f45077cd72ce8cfb64841d40ddd",
+      "rewrittenObject": "cc7b85701b607fb8a8635ef0b1c2d6d8998236a8",
+      "rewrittenCommit": "cc7b85701b607fb8a8635ef0b1c2d6d8998236a8"
+    },
+    {
+      "originalName": "2.3.48",
+      "targetName": "publish-scripts@2.3.48",
+      "originalObject": "53656616953ea70c5461f6531abd9cc1ff7371af",
+      "originalCommit": "53656616953ea70c5461f6531abd9cc1ff7371af",
+      "rewrittenObject": "d51ddc359ce556e2810484ab335fb60d2febd64e",
+      "rewrittenCommit": "d51ddc359ce556e2810484ab335fb60d2febd64e"
+    },
+    {
+      "originalName": "2.3.49",
+      "targetName": "publish-scripts@2.3.49",
+      "originalObject": "e17c9e10be2d26293aad86b2cf3bc05bb6441485",
+      "originalCommit": "e17c9e10be2d26293aad86b2cf3bc05bb6441485",
+      "rewrittenObject": "9067f7ed48e6585033163f2b7c24e4db145d2276",
+      "rewrittenCommit": "9067f7ed48e6585033163f2b7c24e4db145d2276"
+    },
+    {
+      "originalName": "2.3.5",
+      "targetName": "publish-scripts@2.3.5",
+      "originalObject": "737101b4db7fadcddf46d69f3bfa9d93bdc7200f",
+      "originalCommit": "737101b4db7fadcddf46d69f3bfa9d93bdc7200f",
+      "rewrittenObject": "1dd5fbf46c3554b2080809d51d025be211fd5663",
+      "rewrittenCommit": "1dd5fbf46c3554b2080809d51d025be211fd5663"
+    },
+    {
+      "originalName": "2.3.6",
+      "targetName": "publish-scripts@2.3.6",
+      "originalObject": "c2a78b79fe890bca4d2c7e67ad526e0985b6af4e",
+      "originalCommit": "c2a78b79fe890bca4d2c7e67ad526e0985b6af4e",
+      "rewrittenObject": "e471d10f02479a2358dfa8105d3beb31b4210ef2",
+      "rewrittenCommit": "e471d10f02479a2358dfa8105d3beb31b4210ef2"
+    },
+    {
+      "originalName": "2.3.7",
+      "targetName": "publish-scripts@2.3.7",
+      "originalObject": "36c8108afe3d43918b419a3f3678f75331b08de4",
+      "originalCommit": "36c8108afe3d43918b419a3f3678f75331b08de4",
+      "rewrittenObject": "a331bc16a53bc80b267ca9e62cf32bf982d3addf",
+      "rewrittenCommit": "a331bc16a53bc80b267ca9e62cf32bf982d3addf"
+    },
+    {
+      "originalName": "2.3.8",
+      "targetName": "publish-scripts@2.3.8",
+      "originalObject": "2d3107ed9333a7e7cbe8387eab06a991cabf4ed1",
+      "originalCommit": "2d3107ed9333a7e7cbe8387eab06a991cabf4ed1",
+      "rewrittenObject": "8f16d9edc023236ca43009cfc3f5e9ddf3487307",
+      "rewrittenCommit": "8f16d9edc023236ca43009cfc3f5e9ddf3487307"
+    },
+    {
+      "originalName": "2.3.9",
+      "targetName": "publish-scripts@2.3.9",
+      "originalObject": "f1acc1a017bed2a950d46006ad7f1e31d130664f",
+      "originalCommit": "f1acc1a017bed2a950d46006ad7f1e31d130664f",
+      "rewrittenObject": "964c07b45d9eb9f51f3f0bcea4d8802aa06162f9",
+      "rewrittenCommit": "964c07b45d9eb9f51f3f0bcea4d8802aa06162f9"
+    },
+    {
+      "originalName": "2.4.0",
+      "targetName": "publish-scripts@2.4.0",
+      "originalObject": "03f204bd84d3fc489198d8717560b5dc5a3b920d",
+      "originalCommit": "03f204bd84d3fc489198d8717560b5dc5a3b920d",
+      "rewrittenObject": "bcf012255fd05d8b4bccdb057bcd5fe14b2c0868",
+      "rewrittenCommit": "bcf012255fd05d8b4bccdb057bcd5fe14b2c0868"
+    },
+    {
+      "originalName": "2.4.1",
+      "targetName": "publish-scripts@2.4.1",
+      "originalObject": "bf488d7a96077cd055e1481f07a4d3cc2d54e3c2",
+      "originalCommit": "bf488d7a96077cd055e1481f07a4d3cc2d54e3c2",
+      "rewrittenObject": "e88b4295549a3e8b99662040baaa83b08280a3e9",
+      "rewrittenCommit": "e88b4295549a3e8b99662040baaa83b08280a3e9"
+    },
+    {
+      "originalName": "2.4.2",
+      "targetName": "publish-scripts@2.4.2",
+      "originalObject": "4e8d351f5424b3df9c3f43a19031b207dc9a2f30",
+      "originalCommit": "4e8d351f5424b3df9c3f43a19031b207dc9a2f30",
+      "rewrittenObject": "490317191d382518d5778b4a65e1002856ed64bc",
+      "rewrittenCommit": "490317191d382518d5778b4a65e1002856ed64bc"
+    },
+    {
+      "originalName": "2.4.3",
+      "targetName": "publish-scripts@2.4.3",
+      "originalObject": "e3c5247865ce95e2f19db54c3781b8ae5776ed53",
+      "originalCommit": "e3c5247865ce95e2f19db54c3781b8ae5776ed53",
+      "rewrittenObject": "4150bc093e21c2fe72d71fd272e1672b682ac780",
+      "rewrittenCommit": "4150bc093e21c2fe72d71fd272e1672b682ac780"
+    },
+    {
+      "originalName": "2.5.0",
+      "targetName": "publish-scripts@2.5.0",
+      "originalObject": "67d47082c98144e924ff304ca9ee56b0319be080",
+      "originalCommit": "67d47082c98144e924ff304ca9ee56b0319be080",
+      "rewrittenObject": "2b6ab8c3137e101b11ad0bc9640deef7a8fe2ba2",
+      "rewrittenCommit": "2b6ab8c3137e101b11ad0bc9640deef7a8fe2ba2"
+    },
+    {
+      "originalName": "2.5.1",
+      "targetName": "publish-scripts@2.5.1",
+      "originalObject": "e7d6fa0efea34db87dd44f93ef704312b520df0a",
+      "originalCommit": "e7d6fa0efea34db87dd44f93ef704312b520df0a",
+      "rewrittenObject": "e9812ec00c89bb53221476c82356dfb8431ce1b0",
+      "rewrittenCommit": "e9812ec00c89bb53221476c82356dfb8431ce1b0"
+    },
+    {
+      "originalName": "2.5.2",
+      "targetName": "publish-scripts@2.5.2",
+      "originalObject": "af79e6573c0a35d7271e161e894f4dedb7df54ed",
+      "originalCommit": "af79e6573c0a35d7271e161e894f4dedb7df54ed",
+      "rewrittenObject": "79042acd3d420d569da14a11106ec1dedb802ebb",
+      "rewrittenCommit": "79042acd3d420d569da14a11106ec1dedb802ebb"
+    },
+    {
+      "originalName": "2.5.3",
+      "targetName": "publish-scripts@2.5.3",
+      "originalObject": "68bb3eab2e2b1964a4d82a77d6e05be20604920f",
+      "originalCommit": "68bb3eab2e2b1964a4d82a77d6e05be20604920f",
+      "rewrittenObject": "c0386737572cb121ac4bff0db770f8a980f78272",
+      "rewrittenCommit": "c0386737572cb121ac4bff0db770f8a980f78272"
+    },
+    {
+      "originalName": "2.5.4",
+      "targetName": "publish-scripts@2.5.4",
+      "originalObject": "997802b2fb745624e87d7afd30917f49140df1a5",
+      "originalCommit": "997802b2fb745624e87d7afd30917f49140df1a5",
+      "rewrittenObject": "38546509002a694aee90a48b97b11f8b6d5819ae",
+      "rewrittenCommit": "38546509002a694aee90a48b97b11f8b6d5819ae"
+    },
+    {
+      "originalName": "2.5.5",
+      "targetName": "publish-scripts@2.5.5",
+      "originalObject": "3a228c2a3281a83cdaf2c39f9cd591179d4c976a",
+      "originalCommit": "3a228c2a3281a83cdaf2c39f9cd591179d4c976a",
+      "rewrittenObject": "f0d32d0048f21a9ebf96396f069eec3a44b2d59a",
+      "rewrittenCommit": "f0d32d0048f21a9ebf96396f069eec3a44b2d59a"
+    },
+    {
+      "originalName": "2.6.0",
+      "targetName": "publish-scripts@2.6.0",
+      "originalObject": "7a30122677694a7cc9562007805850c7649f2ec8",
+      "originalCommit": "7a30122677694a7cc9562007805850c7649f2ec8",
+      "rewrittenObject": "e715bd51da4f1c72b25789848ef75e05a1210063",
+      "rewrittenCommit": "e715bd51da4f1c72b25789848ef75e05a1210063"
+    },
+    {
+      "originalName": "2.6.1",
+      "targetName": "publish-scripts@2.6.1",
+      "originalObject": "4cb41993a16cf27f54635884c5890e5c91556353",
+      "originalCommit": "4cb41993a16cf27f54635884c5890e5c91556353",
+      "rewrittenObject": "3c66cea94dfed08d112f4e8f5ef7376d7699631b",
+      "rewrittenCommit": "3c66cea94dfed08d112f4e8f5ef7376d7699631b"
+    },
+    {
+      "originalName": "2.6.2",
+      "targetName": "publish-scripts@2.6.2",
+      "originalObject": "86b57abb1c9d98894fd71cb30e3d93b7f338b4ca",
+      "originalCommit": "86b57abb1c9d98894fd71cb30e3d93b7f338b4ca",
+      "rewrittenObject": "9f678f5282019cb3ece10e94f22139b5a9b078f8",
+      "rewrittenCommit": "9f678f5282019cb3ece10e94f22139b5a9b078f8"
+    },
+    {
+      "originalName": "2.6.3",
+      "targetName": "publish-scripts@2.6.3",
+      "originalObject": "c7d225574fbec25048ca0e31229b9d8fcc0eb182",
+      "originalCommit": "c7d225574fbec25048ca0e31229b9d8fcc0eb182",
+      "rewrittenObject": "b6475856582c00c87ef1bf7c64975aa39f748c9b",
+      "rewrittenCommit": "b6475856582c00c87ef1bf7c64975aa39f748c9b"
+    },
+    {
+      "originalName": "2.6.5",
+      "targetName": "publish-scripts@2.6.5",
+      "originalObject": "a5743d5e84814de0a1ebbb97527e98977c460a3e",
+      "originalCommit": "a5743d5e84814de0a1ebbb97527e98977c460a3e",
+      "rewrittenObject": "0352ce1f4de9c154d61ea6f332db22e539947efc",
+      "rewrittenCommit": "0352ce1f4de9c154d61ea6f332db22e539947efc"
+    },
+    {
+      "originalName": "2.6.6",
+      "targetName": "publish-scripts@2.6.6",
+      "originalObject": "194e3f663fc3f1fe7e70e9d22d026a6b466a08a9",
+      "originalCommit": "194e3f663fc3f1fe7e70e9d22d026a6b466a08a9",
+      "rewrittenObject": "2cd519ff377fce116ee57ff0d639796f9ccd466b",
+      "rewrittenCommit": "2cd519ff377fce116ee57ff0d639796f9ccd466b"
+    },
+    {
+      "originalName": "2.6.7",
+      "targetName": "publish-scripts@2.6.7",
+      "originalObject": "69472c9ef46fc5a4c940039ed6e9252e9394a69f",
+      "originalCommit": "69472c9ef46fc5a4c940039ed6e9252e9394a69f",
+      "rewrittenObject": "f6e45bc0216dbb52178485ebf08515f6a3d5bc4a",
+      "rewrittenCommit": "f6e45bc0216dbb52178485ebf08515f6a3d5bc4a"
+    },
+    {
+      "originalName": "2.6.8",
+      "targetName": "publish-scripts@2.6.8",
+      "originalObject": "1c5234b94be589b99f9aa2208c766bcb6b805924",
+      "originalCommit": "1c5234b94be589b99f9aa2208c766bcb6b805924",
+      "rewrittenObject": "5e12c36c7ec9b73973a28446fbe770f5365b9e0f",
+      "rewrittenCommit": "5e12c36c7ec9b73973a28446fbe770f5365b9e0f"
+    },
+    {
+      "originalName": "2.7.0",
+      "targetName": "publish-scripts@2.7.0",
+      "originalObject": "c4599701151afd7b55556962e993ba16ffb52bd9",
+      "originalCommit": "c4599701151afd7b55556962e993ba16ffb52bd9",
+      "rewrittenObject": "33f697d818791199edb899d88b0bb09db3fe1736",
+      "rewrittenCommit": "33f697d818791199edb899d88b0bb09db3fe1736"
+    },
+    {
+      "originalName": "2.8.0",
+      "targetName": "publish-scripts@2.8.0",
+      "originalObject": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+      "originalCommit": "8e344ea89f50207152c7bc0c087ec5a8423dc6f6",
+      "rewrittenObject": "5b28b06ddb766e046ca6d1924ba72e9b12e0ea66",
+      "rewrittenCommit": "5b28b06ddb766e046ca6d1924ba72e9b12e0ea66"
+    },
+    {
+      "originalName": "v2.6.3",
+      "targetName": "publish-scripts@v2.6.3",
+      "originalObject": "adb8b6cca34beec03f4b22b96bc52ec7869a1ad9",
+      "originalCommit": "550c5c86515b919212636c0f2d782fddd34501fc",
+      "rewrittenObject": "c924101644c6b63e554029958c391cc1fb2f4f3e",
+      "rewrittenCommit": "62601c89632e4183ba2b08becf477d70856e90f4"
+    }
+  ]
+}

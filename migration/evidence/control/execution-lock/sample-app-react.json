@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "name": "sample-app-react",
+  "defaultHead": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
+  "refs": [
+    "refs/heads/master 64ed979799b70dcf44cbb725b72351ef6c8afe1d"
+  ],
+  "bundleSha256": "bee4f6e726cf7fc30ee4d20ad17402ab3f4a262bb0bca3d1126b1502e24ded6e"
+}

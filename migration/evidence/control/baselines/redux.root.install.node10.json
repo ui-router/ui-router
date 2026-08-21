@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 17,
+  "expectedFailureReason": "The locked dependency graph contains @testing-library/dom@10.4.1, which requires Node >=18 while the retained Travis baseline pins Node 10.",
+  "id": "redux.root.install.node10",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "redux",
+  "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "status": 1,
+  "stderrSha256": "a507f9723b6f04c2e28f144cb2611259de9f0a744a06def8f60bd027d52cf180",
+  "stdoutSha256": "5b38c653128d8255bef7ea1369a899b9863196feb6f4ed26b5f94496307dbf76"
+}

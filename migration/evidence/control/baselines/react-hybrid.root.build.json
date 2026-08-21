@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 6,
+  "expectedFailureReason": null,
+  "id": "react-hybrid.root.build",
+  "inputHashesAfterSha256": "881ac892b07dc569137c8c49bed2969d775360f3a4994ef733715951f147b412",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react-hybrid",
+  "sourceCommit": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+  "status": 0,
+  "stderrSha256": "cc9358eb72a7fc9f478123af0f0319eac71f6a45cde8c08ca4d3e6c9ab6a82d2",
+  "stdoutSha256": "06e7d4b5a174fc6fdb4a7e54704c479e639b2df2685c9c5c40159f56c7d98d6a"
+}

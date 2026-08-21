@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "run",
+    "build"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": "The source package-lock omits @typescript/native-preview-linux-x64 required by tsgo.",
+  "id": "rx.root.build",
+  "inputHashesAfterSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "rx",
+  "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "status": 1,
+  "stderrSha256": "457151ad21c0225b0571948426c6f3b7438e4ac49616011d008192c585cd639f",
+  "stdoutSha256": "b064ea63da612f72cb662318a47dfbdd6873d7d3d942fc39333c89c0cf159298"
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "durationSeconds": 10,
+  "expectedFailureReason": null,
+  "id": "visualizer.root.install",
+  "inputHashesAfterSha256": "10c7a0acde9d2a74a48de63e2ceb785a34ac2aceba7ab646b0805a95f6515240",
+  "inputHashesBeforeSha256": "10c7a0acde9d2a74a48de63e2ceb785a34ac2aceba7ab646b0805a95f6515240",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "visualizer",
+  "sourceCommit": "d95f266364aeba3ba082724cc33faa9fa9d82ac3",
+  "status": 0,
+  "stderrSha256": "9db32bcda1c6fee4b203673972ec7d8ed03482a981336c3a095bd27a226d305e",
+  "stdoutSha256": "5ba631f4e753ae44bf0be389635eec482deeeca1e497b0079427b847b84fa975"
+}

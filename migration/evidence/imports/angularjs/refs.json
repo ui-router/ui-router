@@ -1,0 +1,550 @@
+{
+  "sourceHead": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+  "rewrittenHead": "9fc06b45f0bd24f6403e1226344c452b1e8d7879",
+  "tags": [
+    {
+      "originalName": "0.0.1",
+      "targetName": "angularjs@0.0.1",
+      "originalObject": "18af2c4404b5cdc435c427bbd668d075b4830bc0",
+      "originalCommit": "18af2c4404b5cdc435c427bbd668d075b4830bc0",
+      "rewrittenObject": "7a61b0f1afb71841e8b499131ec60edf27fd96d0",
+      "rewrittenCommit": "7a61b0f1afb71841e8b499131ec60edf27fd96d0"
+    },
+    {
+      "originalName": "0.2.0",
+      "targetName": "angularjs@0.2.0",
+      "originalObject": "818b0d69d2063064ca6d2e3b05252200439862d3",
+      "originalCommit": "818b0d69d2063064ca6d2e3b05252200439862d3",
+      "rewrittenObject": "381b4725029b1b1e3e1b2c8d48e401f52d160eb4",
+      "rewrittenCommit": "381b4725029b1b1e3e1b2c8d48e401f52d160eb4"
+    },
+    {
+      "originalName": "0.2.10",
+      "targetName": "angularjs@0.2.10",
+      "originalObject": "4f509d6393452c933aa5908939d0a17e47b59388",
+      "originalCommit": "4f509d6393452c933aa5908939d0a17e47b59388",
+      "rewrittenObject": "fa552a086d0ba1721d1a4e836590d39d3f56f7b4",
+      "rewrittenCommit": "fa552a086d0ba1721d1a4e836590d39d3f56f7b4"
+    },
+    {
+      "originalName": "0.2.11",
+      "targetName": "angularjs@0.2.11",
+      "originalObject": "8ee633f45dfac9f809344edd0c89d6e018887e4f",
+      "originalCommit": "8ee633f45dfac9f809344edd0c89d6e018887e4f",
+      "rewrittenObject": "dd48c4e78fe55feb12bb9d31ee75d654ca05418c",
+      "rewrittenCommit": "dd48c4e78fe55feb12bb9d31ee75d654ca05418c"
+    },
+    {
+      "originalName": "0.2.12",
+      "targetName": "angularjs@0.2.12",
+      "originalObject": "3d0b121a664dec9cb74c9615195347a94be328dc",
+      "originalCommit": "3d0b121a664dec9cb74c9615195347a94be328dc",
+      "rewrittenObject": "8a14bfa0008d4a12cfc8cd1afd476f9aea455abf",
+      "rewrittenCommit": "8a14bfa0008d4a12cfc8cd1afd476f9aea455abf"
+    },
+    {
+      "originalName": "0.2.12-pre1",
+      "targetName": "angularjs@0.2.12-pre1",
+      "originalObject": "cdb24225bf678a39c604ac7cc736b2b5dfbed141",
+      "originalCommit": "cdb24225bf678a39c604ac7cc736b2b5dfbed141",
+      "rewrittenObject": "b9e3eedb98c930c4c0cb1548876a0c5ff3b47cea",
+      "rewrittenCommit": "b9e3eedb98c930c4c0cb1548876a0c5ff3b47cea"
+    },
+    {
+      "originalName": "0.2.13",
+      "targetName": "angularjs@0.2.13",
+      "originalObject": "c3d543aae43d4600512520a0d70723ac31f2cb62",
+      "originalCommit": "c3d543aae43d4600512520a0d70723ac31f2cb62",
+      "rewrittenObject": "372e25dba8b2c2708cd6dd2904b4b6d77d69864e",
+      "rewrittenCommit": "372e25dba8b2c2708cd6dd2904b4b6d77d69864e"
+    },
+    {
+      "originalName": "0.2.14",
+      "targetName": "angularjs@0.2.14",
+      "originalObject": "da63b27b7bbd13d2633b68fa74606f977e6d4147",
+      "originalCommit": "da63b27b7bbd13d2633b68fa74606f977e6d4147",
+      "rewrittenObject": "ea06a2970a64e0455917d00a69d89cb651d17b42",
+      "rewrittenCommit": "ea06a2970a64e0455917d00a69d89cb651d17b42"
+    },
+    {
+      "originalName": "0.2.15",
+      "targetName": "angularjs@0.2.15",
+      "originalObject": "805e69bae319e922e4d3265b7ef565058aaff850",
+      "originalCommit": "805e69bae319e922e4d3265b7ef565058aaff850",
+      "rewrittenObject": "eee5ea02a8ded918f5d25bffb14e2a391ec4c0e2",
+      "rewrittenCommit": "eee5ea02a8ded918f5d25bffb14e2a391ec4c0e2"
+    },
+    {
+      "originalName": "0.2.16",
+      "targetName": "angularjs@0.2.16",
+      "originalObject": "6ab44725ea1c58d096fd24e481ef92e3174bb058",
+      "originalCommit": "6ab44725ea1c58d096fd24e481ef92e3174bb058",
+      "rewrittenObject": "5081898c69fad4f09eac5e02d299a84efe66961b",
+      "rewrittenCommit": "5081898c69fad4f09eac5e02d299a84efe66961b"
+    },
+    {
+      "originalName": "0.2.17",
+      "targetName": "angularjs@0.2.17",
+      "originalObject": "87f10dfc9c4b0420ae6128bb46499deb75f3e705",
+      "originalCommit": "87f10dfc9c4b0420ae6128bb46499deb75f3e705",
+      "rewrittenObject": "f7249f9b6a8a9f4b5b2ee2d25a826f355d11ddcf",
+      "rewrittenCommit": "f7249f9b6a8a9f4b5b2ee2d25a826f355d11ddcf"
+    },
+    {
+      "originalName": "0.2.18",
+      "targetName": "angularjs@0.2.18",
+      "originalObject": "ec6ca36b625e578e59e631b3c9e786a6ac70678c",
+      "originalCommit": "ec6ca36b625e578e59e631b3c9e786a6ac70678c",
+      "rewrittenObject": "dcb90a6a4157dab1a0173263570db5ff130f579c",
+      "rewrittenCommit": "dcb90a6a4157dab1a0173263570db5ff130f579c"
+    },
+    {
+      "originalName": "0.2.5",
+      "targetName": "angularjs@0.2.5",
+      "originalObject": "4f5bd906ad5038a84bc3fcfd525cdce3e992b30b",
+      "originalCommit": "4f5bd906ad5038a84bc3fcfd525cdce3e992b30b",
+      "rewrittenObject": "7ed26dac487a47747d4bb0d9dd5498efb290f8c9",
+      "rewrittenCommit": "7ed26dac487a47747d4bb0d9dd5498efb290f8c9"
+    },
+    {
+      "originalName": "0.2.6",
+      "targetName": "angularjs@0.2.6",
+      "originalObject": "ea03a1483d790c7d87e02736051aba172a6c82b9",
+      "originalCommit": "ea03a1483d790c7d87e02736051aba172a6c82b9",
+      "rewrittenObject": "9c6b821a5c7322c517226efc86857adeaf2e5017",
+      "rewrittenCommit": "9c6b821a5c7322c517226efc86857adeaf2e5017"
+    },
+    {
+      "originalName": "0.2.7",
+      "targetName": "angularjs@0.2.7",
+      "originalObject": "20fcbf8384090a092c7c91a26443e3c818438120",
+      "originalCommit": "20fcbf8384090a092c7c91a26443e3c818438120",
+      "rewrittenObject": "0bcd8262cd8c02a412b79812ed1bb3684496dcb7",
+      "rewrittenCommit": "0bcd8262cd8c02a412b79812ed1bb3684496dcb7"
+    },
+    {
+      "originalName": "0.2.8",
+      "targetName": "angularjs@0.2.8",
+      "originalObject": "aa0355567b60b2b07dadc5efa42cc4c212b99f2b",
+      "originalCommit": "aa0355567b60b2b07dadc5efa42cc4c212b99f2b",
+      "rewrittenObject": "e1e03d99fb4e24941fc6bb94f0d7c8c54d8ec3ad",
+      "rewrittenCommit": "e1e03d99fb4e24941fc6bb94f0d7c8c54d8ec3ad"
+    },
+    {
+      "originalName": "0.3.0",
+      "targetName": "angularjs@0.3.0",
+      "originalObject": "d2a0feb9827e79f4dca6f30e67a37535c6841386",
+      "originalCommit": "d2a0feb9827e79f4dca6f30e67a37535c6841386",
+      "rewrittenObject": "c42e81ce28e2baaf1e35f346595ce961995204b1",
+      "rewrittenCommit": "c42e81ce28e2baaf1e35f346595ce961995204b1"
+    },
+    {
+      "originalName": "0.3.1",
+      "targetName": "angularjs@0.3.1",
+      "originalObject": "6ac1c61991121f5324f99089003314bba3bc6a95",
+      "originalCommit": "6ac1c61991121f5324f99089003314bba3bc6a95",
+      "rewrittenObject": "77fa111cd6b32ea92b9c6dcdeaa1d9b86ba1212b",
+      "rewrittenCommit": "77fa111cd6b32ea92b9c6dcdeaa1d9b86ba1212b"
+    },
+    {
+      "originalName": "0.3.2",
+      "targetName": "angularjs@0.3.2",
+      "originalObject": "c1989bcd4185a0f5e206646b267024f45a905c06",
+      "originalCommit": "c1989bcd4185a0f5e206646b267024f45a905c06",
+      "rewrittenObject": "8f301ac24e77a89b060518aa3b61c8edb0342374",
+      "rewrittenCommit": "8f301ac24e77a89b060518aa3b61c8edb0342374"
+    },
+    {
+      "originalName": "0.4.0",
+      "targetName": "angularjs@0.4.0",
+      "originalObject": "25614eec9abbb0a89a27bb04aeeb803e7b8fe287",
+      "originalCommit": "25614eec9abbb0a89a27bb04aeeb803e7b8fe287",
+      "rewrittenObject": "63c91e373c83bbd80253d1446e588ca8a1f406bf",
+      "rewrittenCommit": "63c91e373c83bbd80253d1446e588ca8a1f406bf"
+    },
+    {
+      "originalName": "0.4.1",
+      "targetName": "angularjs@0.4.1",
+      "originalObject": "326980bed36d0e83a90c793ae96ad8d3b62aa991",
+      "originalCommit": "326980bed36d0e83a90c793ae96ad8d3b62aa991",
+      "rewrittenObject": "a71497951a12e9cae759698df0ba5c754f0f34bf",
+      "rewrittenCommit": "a71497951a12e9cae759698df0ba5c754f0f34bf"
+    },
+    {
+      "originalName": "0.4.2",
+      "targetName": "angularjs@0.4.2",
+      "originalObject": "ef5ce80fa6ec8a2c6a87cf1cf1c5809e1950af11",
+      "originalCommit": "ef5ce80fa6ec8a2c6a87cf1cf1c5809e1950af11",
+      "rewrittenObject": "b35b0f5a0f0ed7fae9bb4b5042fc54212d2e98f2",
+      "rewrittenCommit": "b35b0f5a0f0ed7fae9bb4b5042fc54212d2e98f2"
+    },
+    {
+      "originalName": "0.4.3",
+      "targetName": "angularjs@0.4.3",
+      "originalObject": "ef38bc78495ec7719dcd6876886cf5a27420f330",
+      "originalCommit": "ef38bc78495ec7719dcd6876886cf5a27420f330",
+      "rewrittenObject": "3b372938d99ff72bde940d7c3c8769e67793db1b",
+      "rewrittenCommit": "3b372938d99ff72bde940d7c3c8769e67793db1b"
+    },
+    {
+      "originalName": "1.0.0",
+      "targetName": "angularjs@1.0.0",
+      "originalObject": "ea443d8300819839cd2da7a30e3d006d52065fee",
+      "originalCommit": "ea443d8300819839cd2da7a30e3d006d52065fee",
+      "rewrittenObject": "d383dca7068a521efe7164dc4e1b3d58934c93ab",
+      "rewrittenCommit": "d383dca7068a521efe7164dc4e1b3d58934c93ab"
+    },
+    {
+      "originalName": "1.0.0-alpha.1",
+      "targetName": "angularjs@1.0.0-alpha.1",
+      "originalObject": "d0009190ee6dc7f2488e6e5ea1ec1a48c50c2257",
+      "originalCommit": "d0009190ee6dc7f2488e6e5ea1ec1a48c50c2257",
+      "rewrittenObject": "c4f4034ef002b3f93cd606bcaa414bab887100e2",
+      "rewrittenCommit": "c4f4034ef002b3f93cd606bcaa414bab887100e2"
+    },
+    {
+      "originalName": "1.0.0-alpha.2",
+      "targetName": "angularjs@1.0.0-alpha.2",
+      "originalObject": "727090cff7053d6536bbe68a516bd0a09fc98660",
+      "originalCommit": "727090cff7053d6536bbe68a516bd0a09fc98660",
+      "rewrittenObject": "535f506ede8eb6ab9df44294bb7b4b897e3b2971",
+      "rewrittenCommit": "535f506ede8eb6ab9df44294bb7b4b897e3b2971"
+    },
+    {
+      "originalName": "1.0.0-alpha.3",
+      "targetName": "angularjs@1.0.0-alpha.3",
+      "originalObject": "3fc2012260f98a5dee0d145e21956c022566b1ed",
+      "originalCommit": "3fc2012260f98a5dee0d145e21956c022566b1ed",
+      "rewrittenObject": "d802dedbdb494ac3415ec7e02a43e65f2b0af5f8",
+      "rewrittenCommit": "d802dedbdb494ac3415ec7e02a43e65f2b0af5f8"
+    },
+    {
+      "originalName": "1.0.0-alpha.4",
+      "targetName": "angularjs@1.0.0-alpha.4",
+      "originalObject": "9a21cc1a85d45a61cfdbf7a5e08bdbb5f9a574e2",
+      "originalCommit": "9a21cc1a85d45a61cfdbf7a5e08bdbb5f9a574e2",
+      "rewrittenObject": "3d840066bf85539f98578c499f7fc7d425aa77a1",
+      "rewrittenCommit": "3d840066bf85539f98578c499f7fc7d425aa77a1"
+    },
+    {
+      "originalName": "1.0.0-alpha.5",
+      "targetName": "angularjs@1.0.0-alpha.5",
+      "originalObject": "699f3c8e6a079489d0d577c155759c12a0df6232",
+      "originalCommit": "699f3c8e6a079489d0d577c155759c12a0df6232",
+      "rewrittenObject": "bad7d34455ed8a95522a7128531079e47741d7e4",
+      "rewrittenCommit": "bad7d34455ed8a95522a7128531079e47741d7e4"
+    },
+    {
+      "originalName": "1.0.0-beta.1",
+      "targetName": "angularjs@1.0.0-beta.1",
+      "originalObject": "70a237a55ae45c0e4cdbc463dd56825305e9593f",
+      "originalCommit": "70a237a55ae45c0e4cdbc463dd56825305e9593f",
+      "rewrittenObject": "1f54eaedfe38cf54f723c7569abf9820620bf627",
+      "rewrittenCommit": "1f54eaedfe38cf54f723c7569abf9820620bf627"
+    },
+    {
+      "originalName": "1.0.0-beta.2",
+      "targetName": "angularjs@1.0.0-beta.2",
+      "originalObject": "b13f29f006de4567fb98d9dc7e134c0b0ccbfa22",
+      "originalCommit": "b13f29f006de4567fb98d9dc7e134c0b0ccbfa22",
+      "rewrittenObject": "f616c87a5dc2c9dda6a6754728a6ea4cd07a697d",
+      "rewrittenCommit": "f616c87a5dc2c9dda6a6754728a6ea4cd07a697d"
+    },
+    {
+      "originalName": "1.0.0-beta.3",
+      "targetName": "angularjs@1.0.0-beta.3",
+      "originalObject": "cd6a2a2d9d339e8621c03345f492edad0559dfc4",
+      "originalCommit": "cd6a2a2d9d339e8621c03345f492edad0559dfc4",
+      "rewrittenObject": "4e5cde77cc263d5d0f4c31d74f7cd6a18aef818c",
+      "rewrittenCommit": "4e5cde77cc263d5d0f4c31d74f7cd6a18aef818c"
+    },
+    {
+      "originalName": "1.0.0-rc.1",
+      "targetName": "angularjs@1.0.0-rc.1",
+      "originalObject": "724ca0aa25bae2347fe51a94b00a90344a6cc5eb",
+      "originalCommit": "724ca0aa25bae2347fe51a94b00a90344a6cc5eb",
+      "rewrittenObject": "74f75ce81d00c04b849bd5f8fcdd90e2a94d6122",
+      "rewrittenCommit": "74f75ce81d00c04b849bd5f8fcdd90e2a94d6122"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "angularjs@1.0.1",
+      "originalObject": "083d34287b0a47ccb5e7da53bc307fd27cfdaad9",
+      "originalCommit": "083d34287b0a47ccb5e7da53bc307fd27cfdaad9",
+      "rewrittenObject": "8d4e9465f8bec6e419123384376afeb2ff5976fc",
+      "rewrittenCommit": "8d4e9465f8bec6e419123384376afeb2ff5976fc"
+    },
+    {
+      "originalName": "1.0.10",
+      "targetName": "angularjs@1.0.10",
+      "originalObject": "d4acd8463674da09929f25c24ae73d2565458198",
+      "originalCommit": "d4acd8463674da09929f25c24ae73d2565458198",
+      "rewrittenObject": "b5837620ff804c8b86558ad7b170229aa4c0122d",
+      "rewrittenCommit": "b5837620ff804c8b86558ad7b170229aa4c0122d"
+    },
+    {
+      "originalName": "1.0.11",
+      "targetName": "angularjs@1.0.11",
+      "originalObject": "5b54cbf89db3a908fae55485d2796ce79f4dea2e",
+      "originalCommit": "5b54cbf89db3a908fae55485d2796ce79f4dea2e",
+      "rewrittenObject": "325bdf77fb1b9a0b27e97efa9fd42a5be23ce9f6",
+      "rewrittenCommit": "325bdf77fb1b9a0b27e97efa9fd42a5be23ce9f6"
+    },
+    {
+      "originalName": "1.0.12",
+      "targetName": "angularjs@1.0.12",
+      "originalObject": "94885526c18b48807f33af92de87f85c037f120f",
+      "originalCommit": "94885526c18b48807f33af92de87f85c037f120f",
+      "rewrittenObject": "107237e43f8e0fe8f0325763520a69443111f18a",
+      "rewrittenCommit": "107237e43f8e0fe8f0325763520a69443111f18a"
+    },
+    {
+      "originalName": "1.0.13",
+      "targetName": "angularjs@1.0.13",
+      "originalObject": "e09ac3172ee9b73e86e9e02c8ed1ef724d7f6e55",
+      "originalCommit": "e09ac3172ee9b73e86e9e02c8ed1ef724d7f6e55",
+      "rewrittenObject": "917458a942dabe8399377baf5f1b1569238b1ef0",
+      "rewrittenCommit": "917458a942dabe8399377baf5f1b1569238b1ef0"
+    },
+    {
+      "originalName": "1.0.14",
+      "targetName": "angularjs@1.0.14",
+      "originalObject": "032c67da970b46d981d215d3ccbb716841f6ba17",
+      "originalCommit": "032c67da970b46d981d215d3ccbb716841f6ba17",
+      "rewrittenObject": "d9d662ca790d746ab726ea2ee1a525b35438a59f",
+      "rewrittenCommit": "d9d662ca790d746ab726ea2ee1a525b35438a59f"
+    },
+    {
+      "originalName": "1.0.15",
+      "targetName": "angularjs@1.0.15",
+      "originalObject": "3521ce1f1184297ac777309245ad73360df4f194",
+      "originalCommit": "3521ce1f1184297ac777309245ad73360df4f194",
+      "rewrittenObject": "9c469415ec49ce64fa8e16a8d6f95ceb7a9af751",
+      "rewrittenCommit": "9c469415ec49ce64fa8e16a8d6f95ceb7a9af751"
+    },
+    {
+      "originalName": "1.0.16",
+      "targetName": "angularjs@1.0.16",
+      "originalObject": "884437459fd6aed17f3e1fa9c51b1a6678557d88",
+      "originalCommit": "884437459fd6aed17f3e1fa9c51b1a6678557d88",
+      "rewrittenObject": "57e819d100c2a660ab7a3f404d69e2bf52319973",
+      "rewrittenCommit": "57e819d100c2a660ab7a3f404d69e2bf52319973"
+    },
+    {
+      "originalName": "1.0.17",
+      "targetName": "angularjs@1.0.17",
+      "originalObject": "2a3002429814e0694a40180ce8a4e98f4b82c005",
+      "originalCommit": "2a3002429814e0694a40180ce8a4e98f4b82c005",
+      "rewrittenObject": "51f7b38203169ab62e1ecfc66bda85fd4b0fe34c",
+      "rewrittenCommit": "51f7b38203169ab62e1ecfc66bda85fd4b0fe34c"
+    },
+    {
+      "originalName": "1.0.18",
+      "targetName": "angularjs@1.0.18",
+      "originalObject": "b3157ad55e060499abd990729f8dc9e4b3fd021f",
+      "originalCommit": "b3157ad55e060499abd990729f8dc9e4b3fd021f",
+      "rewrittenObject": "ac6aa58ed35d431c1ccf324fc692dde42679859b",
+      "rewrittenCommit": "ac6aa58ed35d431c1ccf324fc692dde42679859b"
+    },
+    {
+      "originalName": "1.0.19",
+      "targetName": "angularjs@1.0.19",
+      "originalObject": "7141abbba954da6c605372f4f8904ec2b0a65f4a",
+      "originalCommit": "7141abbba954da6c605372f4f8904ec2b0a65f4a",
+      "rewrittenObject": "50a497637c50125b8b279f0a87daf4877f6be6f9",
+      "rewrittenCommit": "50a497637c50125b8b279f0a87daf4877f6be6f9"
+    },
+    {
+      "originalName": "1.0.20",
+      "targetName": "angularjs@1.0.20",
+      "originalObject": "58637d91101f80aa73ca1cbf01fbca91612c2d67",
+      "originalCommit": "58637d91101f80aa73ca1cbf01fbca91612c2d67",
+      "rewrittenObject": "6a637f2b0d45689142516f260fe427f50fc3b439",
+      "rewrittenCommit": "6a637f2b0d45689142516f260fe427f50fc3b439"
+    },
+    {
+      "originalName": "1.0.21",
+      "targetName": "angularjs@1.0.21",
+      "originalObject": "3faa977705056b7884d97d41ffb3aed5a173f44e",
+      "originalCommit": "3faa977705056b7884d97d41ffb3aed5a173f44e",
+      "rewrittenObject": "1eec6614d051014a59e93b4523687ae45e0d0f1c",
+      "rewrittenCommit": "1eec6614d051014a59e93b4523687ae45e0d0f1c"
+    },
+    {
+      "originalName": "1.0.22",
+      "targetName": "angularjs@1.0.22",
+      "originalObject": "1b116e1dc2b46cac57e86e66604680fc783694f6",
+      "originalCommit": "1b116e1dc2b46cac57e86e66604680fc783694f6",
+      "rewrittenObject": "0e92ca01d45b2fb927298427daebaf4b56adfa02",
+      "rewrittenCommit": "0e92ca01d45b2fb927298427daebaf4b56adfa02"
+    },
+    {
+      "originalName": "1.0.23",
+      "targetName": "angularjs@1.0.23",
+      "originalObject": "f2c7d809703ff58929d42d2dd146c6528bcf6b8a",
+      "originalCommit": "f2c7d809703ff58929d42d2dd146c6528bcf6b8a",
+      "rewrittenObject": "06d661e857bb636e5340d5a3c7396d43cd37f952",
+      "rewrittenCommit": "06d661e857bb636e5340d5a3c7396d43cd37f952"
+    },
+    {
+      "originalName": "1.0.24",
+      "targetName": "angularjs@1.0.24",
+      "originalObject": "c1fadac1f7adaa6dc758431c435f7d27de61191c",
+      "originalCommit": "c1fadac1f7adaa6dc758431c435f7d27de61191c",
+      "rewrittenObject": "87e164ff4a0b4993207d14914375e26755fa2411",
+      "rewrittenCommit": "87e164ff4a0b4993207d14914375e26755fa2411"
+    },
+    {
+      "originalName": "1.0.25",
+      "targetName": "angularjs@1.0.25",
+      "originalObject": "dbf41d737b7642cd2503a9db826b496c8b5bdfa0",
+      "originalCommit": "dbf41d737b7642cd2503a9db826b496c8b5bdfa0",
+      "rewrittenObject": "2313b90e02ba66c8dddc3f59a4fe953a5a1d353b",
+      "rewrittenCommit": "2313b90e02ba66c8dddc3f59a4fe953a5a1d353b"
+    },
+    {
+      "originalName": "1.0.26",
+      "targetName": "angularjs@1.0.26",
+      "originalObject": "2540e82764587aa133c61d73dcd52e8691444dae",
+      "originalCommit": "2540e82764587aa133c61d73dcd52e8691444dae",
+      "rewrittenObject": "198ebd30d01857bafb14cbab5a8ceb8c2aab7d45",
+      "rewrittenCommit": "198ebd30d01857bafb14cbab5a8ceb8c2aab7d45"
+    },
+    {
+      "originalName": "1.0.27",
+      "targetName": "angularjs@1.0.27",
+      "originalObject": "cd9f4840122526e02b6c629c8e7a3b296ac76847",
+      "originalCommit": "cd9f4840122526e02b6c629c8e7a3b296ac76847",
+      "rewrittenObject": "14ac27c2462aa20c093597d8fe84923ae5ae34ac",
+      "rewrittenCommit": "14ac27c2462aa20c093597d8fe84923ae5ae34ac"
+    },
+    {
+      "originalName": "1.0.28",
+      "targetName": "angularjs@1.0.28",
+      "originalObject": "f9bbea46dcff98534054ee2c6ba0e340f22714a7",
+      "originalCommit": "f9bbea46dcff98534054ee2c6ba0e340f22714a7",
+      "rewrittenObject": "0cc23b16de6690f57bca2f6ba3d9a01cc5c40b53",
+      "rewrittenCommit": "0cc23b16de6690f57bca2f6ba3d9a01cc5c40b53"
+    },
+    {
+      "originalName": "1.0.29",
+      "targetName": "angularjs@1.0.29",
+      "originalObject": "c5de135dac27532dfc6376f2c6c15ae36d60b847",
+      "originalCommit": "c5de135dac27532dfc6376f2c6c15ae36d60b847",
+      "rewrittenObject": "3d50487562f1432ef37aa962b1b5e534e267149b",
+      "rewrittenCommit": "3d50487562f1432ef37aa962b1b5e534e267149b"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "angularjs@1.0.3",
+      "originalObject": "db9398e13e9bab6bae4784b4edcbd7870926c78c",
+      "originalCommit": "db9398e13e9bab6bae4784b4edcbd7870926c78c",
+      "rewrittenObject": "1d17f59da7f06aecf74c58d0bca75c926a7c9356",
+      "rewrittenCommit": "1d17f59da7f06aecf74c58d0bca75c926a7c9356"
+    },
+    {
+      "originalName": "1.0.3+hybrid-2.0.0-3",
+      "targetName": "angularjs@1.0.3+hybrid-2.0.0-3",
+      "originalObject": "73e1e3ee4980c3cc050afac18fce371b190ba8d8",
+      "originalCommit": "73e1e3ee4980c3cc050afac18fce371b190ba8d8",
+      "rewrittenObject": "ec56db18fd219abb78cc1953fc2d2e85cdf7e104",
+      "rewrittenCommit": "ec56db18fd219abb78cc1953fc2d2e85cdf7e104"
+    },
+    {
+      "originalName": "1.0.3+hybrid-2.0.0-4",
+      "targetName": "angularjs@1.0.3+hybrid-2.0.0-4",
+      "originalObject": "e0176b59cbcab100630ea58bd7c4701158c5ff47",
+      "originalCommit": "e0176b59cbcab100630ea58bd7c4701158c5ff47",
+      "rewrittenObject": "85d2ef2b02c72e5d6b60dc1bf6961f1a92fd2650",
+      "rewrittenCommit": "85d2ef2b02c72e5d6b60dc1bf6961f1a92fd2650"
+    },
+    {
+      "originalName": "1.0.3-hybrid-2.0.0-5",
+      "targetName": "angularjs@1.0.3-hybrid-2.0.0-5",
+      "originalObject": "f429ea3b40fdc85dfdd9e2808ef14c73c071184a",
+      "originalCommit": "f429ea3b40fdc85dfdd9e2808ef14c73c071184a",
+      "rewrittenObject": "12bbb9a9d736615232a736ee6b7f7557f7e78eb8",
+      "rewrittenCommit": "12bbb9a9d736615232a736ee6b7f7557f7e78eb8"
+    },
+    {
+      "originalName": "1.0.30",
+      "targetName": "angularjs@1.0.30",
+      "originalObject": "e2416f1dbdf4cba0046cb34b072e42a779fe5c04",
+      "originalCommit": "e2416f1dbdf4cba0046cb34b072e42a779fe5c04",
+      "rewrittenObject": "379e73639d1635bbbe3bd5a278e92fb3dec8ca82",
+      "rewrittenCommit": "379e73639d1635bbbe3bd5a278e92fb3dec8ca82"
+    },
+    {
+      "originalName": "1.0.4",
+      "targetName": "angularjs@1.0.4",
+      "originalObject": "0ac932a285a7a99ef195b44c2a50c026c36bb338",
+      "originalCommit": "0ac932a285a7a99ef195b44c2a50c026c36bb338",
+      "rewrittenObject": "6524d65567f9ae9dd8bb642b37d6aa75f771ba2b",
+      "rewrittenCommit": "6524d65567f9ae9dd8bb642b37d6aa75f771ba2b"
+    },
+    {
+      "originalName": "1.0.5",
+      "targetName": "angularjs@1.0.5",
+      "originalObject": "1d98ab8fe4a311aed86ee4a0d0e4d8cbb2f895b6",
+      "originalCommit": "1d98ab8fe4a311aed86ee4a0d0e4d8cbb2f895b6",
+      "rewrittenObject": "c924d70e7a945b204956d75e5736a55b46488821",
+      "rewrittenCommit": "c924d70e7a945b204956d75e5736a55b46488821"
+    },
+    {
+      "originalName": "1.0.6",
+      "targetName": "angularjs@1.0.6",
+      "originalObject": "3ab38264672cc820af539ead89e7a52370c68503",
+      "originalCommit": "3ab38264672cc820af539ead89e7a52370c68503",
+      "rewrittenObject": "c79a77ebe578da2eefc545f271a88ddbfbba3983",
+      "rewrittenCommit": "c79a77ebe578da2eefc545f271a88ddbfbba3983"
+    },
+    {
+      "originalName": "1.0.7",
+      "targetName": "angularjs@1.0.7",
+      "originalObject": "03d9234ea9a496565da4e3e36ba904865aba86a0",
+      "originalCommit": "03d9234ea9a496565da4e3e36ba904865aba86a0",
+      "rewrittenObject": "0ea3bedfdc8eefb8349cd7f76e5ee95d1e21824a",
+      "rewrittenCommit": "0ea3bedfdc8eefb8349cd7f76e5ee95d1e21824a"
+    },
+    {
+      "originalName": "1.0.8",
+      "targetName": "angularjs@1.0.8",
+      "originalObject": "ce40527a062b50c0e5702589d29c61d3df723abe",
+      "originalCommit": "ce40527a062b50c0e5702589d29c61d3df723abe",
+      "rewrittenObject": "1c859e40fef92d80f3dded9dede3f38e22d7aabd",
+      "rewrittenCommit": "1c859e40fef92d80f3dded9dede3f38e22d7aabd"
+    },
+    {
+      "originalName": "1.0.9",
+      "targetName": "angularjs@1.0.9",
+      "originalObject": "1c00ffd74b74c8956b213992356c44fb9dc7faaf",
+      "originalCommit": "1c00ffd74b74c8956b213992356c44fb9dc7faaf",
+      "rewrittenObject": "8dc9ba5759bf02c26e07876613d168d312697aaf",
+      "rewrittenCommit": "8dc9ba5759bf02c26e07876613d168d312697aaf"
+    },
+    {
+      "originalName": "1.1.0",
+      "targetName": "angularjs@1.1.0",
+      "originalObject": "b2731a76f5ef96060352934b1ec8d0b1ae8e59c7",
+      "originalCommit": "b2731a76f5ef96060352934b1ec8d0b1ae8e59c7",
+      "rewrittenObject": "29c8cbf3e4a0c778409b57ee1be0da06060300f3",
+      "rewrittenCommit": "29c8cbf3e4a0c778409b57ee1be0da06060300f3"
+    },
+    {
+      "originalName": "1.1.1",
+      "targetName": "angularjs@1.1.1",
+      "originalObject": "08b7d0633ccf9bc6d453ddd90ee6cf4b64699155",
+      "originalCommit": "08b7d0633ccf9bc6d453ddd90ee6cf4b64699155",
+      "rewrittenObject": "6e89f53ac6de34f353a49ea7016b824e05167f36",
+      "rewrittenCommit": "6e89f53ac6de34f353a49ea7016b824e05167f36"
+    },
+    {
+      "originalName": "1.1.2",
+      "targetName": "angularjs@1.1.2",
+      "originalObject": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+      "originalCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+      "rewrittenObject": "9fc06b45f0bd24f6403e1226344c452b1e8d7879",
+      "rewrittenCommit": "9fc06b45f0bd24f6403e1226344c452b1e8d7879"
+    }
+  ]
+}

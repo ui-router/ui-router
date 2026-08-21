@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test:ci"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": null,
+  "id": "redux.root.unit",
+  "inputHashesAfterSha256": "d0ae0f81ff9f227dd009f6489b7253b4411c226de854518d2443ea4d613f1446",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "redux",
+  "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "status": 0,
+  "stderrSha256": "e9044e8e5bab5496ace1c47cf9499b54a18cd6658cab5786d06ff3670bb33df6",
+  "stdoutSha256": "b0076352d7c159f6461fa0ba7180bdf17d0eb0828eb987cfd9cac604a49b2a2e"
+}

@@ -1,0 +1,446 @@
+{
+  "sourceHead": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+  "rewrittenHead": "5d942015ccd41afaa6145663e51ec4a14f175d61",
+  "tags": [
+    {
+      "originalName": "1.0.0",
+      "targetName": "angular-hybrid@1.0.0",
+      "originalObject": "77686aec864ebec947989876a7d72edbd42fa452",
+      "originalCommit": "77686aec864ebec947989876a7d72edbd42fa452",
+      "rewrittenObject": "a068f06ef0c148d054793c5e7b85ae351c85ef74",
+      "rewrittenCommit": "a068f06ef0c148d054793c5e7b85ae351c85ef74"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "angular-hybrid@1.0.1",
+      "originalObject": "1a9c87e1fed8e72448a451faed768d78ba60e9eb",
+      "originalCommit": "1a9c87e1fed8e72448a451faed768d78ba60e9eb",
+      "rewrittenObject": "14d69d05e237c572ce2405b15716410f53b94368",
+      "rewrittenCommit": "14d69d05e237c572ce2405b15716410f53b94368"
+    },
+    {
+      "originalName": "1.0.10",
+      "targetName": "angular-hybrid@1.0.10",
+      "originalObject": "519f9543d7524d4170fcc0f0e102b8a95a504dbf",
+      "originalCommit": "519f9543d7524d4170fcc0f0e102b8a95a504dbf",
+      "rewrittenObject": "c00c2b05b92ee473968c7fab1dc453d0d7fb3ed1",
+      "rewrittenCommit": "c00c2b05b92ee473968c7fab1dc453d0d7fb3ed1"
+    },
+    {
+      "originalName": "1.0.11",
+      "targetName": "angular-hybrid@1.0.11",
+      "originalObject": "391bee6687f9ee8a6b94f85a77f6e1b778a64e80",
+      "originalCommit": "391bee6687f9ee8a6b94f85a77f6e1b778a64e80",
+      "rewrittenObject": "d90ccf3388c3b1e4c4e4c9cc6302af05797f4474",
+      "rewrittenCommit": "d90ccf3388c3b1e4c4e4c9cc6302af05797f4474"
+    },
+    {
+      "originalName": "1.0.12",
+      "targetName": "angular-hybrid@1.0.12",
+      "originalObject": "2e6c4f7fa54bb27ca10d95ad028456a00dee820b",
+      "originalCommit": "2e6c4f7fa54bb27ca10d95ad028456a00dee820b",
+      "rewrittenObject": "e3278a581cac222b3dcbea61de11f289b054d19f",
+      "rewrittenCommit": "e3278a581cac222b3dcbea61de11f289b054d19f"
+    },
+    {
+      "originalName": "1.0.13",
+      "targetName": "angular-hybrid@1.0.13",
+      "originalObject": "3ad6b308ad62aa4356fcd31341afac8c41bb3cac",
+      "originalCommit": "3ad6b308ad62aa4356fcd31341afac8c41bb3cac",
+      "rewrittenObject": "83bb5ce2e6396b249faf8cc8c9123ffca9029524",
+      "rewrittenCommit": "83bb5ce2e6396b249faf8cc8c9123ffca9029524"
+    },
+    {
+      "originalName": "1.0.14",
+      "targetName": "angular-hybrid@1.0.14",
+      "originalObject": "5d9a752bf76fa20556ad0e99e7dc17e9da579a72",
+      "originalCommit": "5d9a752bf76fa20556ad0e99e7dc17e9da579a72",
+      "rewrittenObject": "80010e41600146cf21bd507ee02b83a5b0953144",
+      "rewrittenCommit": "80010e41600146cf21bd507ee02b83a5b0953144"
+    },
+    {
+      "originalName": "1.0.15",
+      "targetName": "angular-hybrid@1.0.15",
+      "originalObject": "9d94cd6b941c4f76fe4a8a0ad17967ededddd794",
+      "originalCommit": "9d94cd6b941c4f76fe4a8a0ad17967ededddd794",
+      "rewrittenObject": "64ac2528a1858c232c924772ffdacec19fef5aae",
+      "rewrittenCommit": "64ac2528a1858c232c924772ffdacec19fef5aae"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "angular-hybrid@1.0.3",
+      "originalObject": "0a33456e85a40c2481ddc2c235d9a7c76701146f",
+      "originalCommit": "0a33456e85a40c2481ddc2c235d9a7c76701146f",
+      "rewrittenObject": "afd96ea145d37eff29f0a1394faa93ed5244e5fd",
+      "rewrittenCommit": "afd96ea145d37eff29f0a1394faa93ed5244e5fd"
+    },
+    {
+      "originalName": "1.0.5",
+      "targetName": "angular-hybrid@1.0.5",
+      "originalObject": "bfa8c972b75ea7c5753219bdfaddce9a1d267095",
+      "originalCommit": "bfa8c972b75ea7c5753219bdfaddce9a1d267095",
+      "rewrittenObject": "2fe6c756d5be4e01b15e30e11f539281f734d8c2",
+      "rewrittenCommit": "2fe6c756d5be4e01b15e30e11f539281f734d8c2"
+    },
+    {
+      "originalName": "1.0.6",
+      "targetName": "angular-hybrid@1.0.6",
+      "originalObject": "f3e5661aa678992c0e6829361e5e2d5996f8d5b2",
+      "originalCommit": "f3e5661aa678992c0e6829361e5e2d5996f8d5b2",
+      "rewrittenObject": "ca58096a8af15ec801f2dd1e6207c81cd9e9fbf2",
+      "rewrittenCommit": "ca58096a8af15ec801f2dd1e6207c81cd9e9fbf2"
+    },
+    {
+      "originalName": "1.0.7",
+      "targetName": "angular-hybrid@1.0.7",
+      "originalObject": "98f0b83008706a8abbe1965cf610b87d02b57d3b",
+      "originalCommit": "98f0b83008706a8abbe1965cf610b87d02b57d3b",
+      "rewrittenObject": "a044aa00daa237cec809990ac2cc3566898120be",
+      "rewrittenCommit": "a044aa00daa237cec809990ac2cc3566898120be"
+    },
+    {
+      "originalName": "1.0.8",
+      "targetName": "angular-hybrid@1.0.8",
+      "originalObject": "a2ce4a864bced4f39b933e36f457bdff16fc1d0a",
+      "originalCommit": "a2ce4a864bced4f39b933e36f457bdff16fc1d0a",
+      "rewrittenObject": "5ae0ace93238c6e4b870e2b6b5b8d326aa77b9d9",
+      "rewrittenCommit": "5ae0ace93238c6e4b870e2b6b5b8d326aa77b9d9"
+    },
+    {
+      "originalName": "10.0.0",
+      "targetName": "angular-hybrid@10.0.0",
+      "originalObject": "caac617176a51935ce8ca06356c4c48fed5a2397",
+      "originalCommit": "caac617176a51935ce8ca06356c4c48fed5a2397",
+      "rewrittenObject": "ae6e314248711574ef167a2fa38e87e88e3e3b80",
+      "rewrittenCommit": "ae6e314248711574ef167a2fa38e87e88e3e3b80"
+    },
+    {
+      "originalName": "10.0.1",
+      "targetName": "angular-hybrid@10.0.1",
+      "originalObject": "70d111cda0c8107e11f305ea3d4fecbc2945ec21",
+      "originalCommit": "70d111cda0c8107e11f305ea3d4fecbc2945ec21",
+      "rewrittenObject": "aa746cd67aafbab639a86b16d76ff00adaeaa192",
+      "rewrittenCommit": "aa746cd67aafbab639a86b16d76ff00adaeaa192"
+    },
+    {
+      "originalName": "11.0.0",
+      "targetName": "angular-hybrid@11.0.0",
+      "originalObject": "2a0cc22c92c99b6becedf824800cb143c9f501c4",
+      "originalCommit": "2a0cc22c92c99b6becedf824800cb143c9f501c4",
+      "rewrittenObject": "d39a102732356d709ef605ec5277e64c57b3a285",
+      "rewrittenCommit": "d39a102732356d709ef605ec5277e64c57b3a285"
+    },
+    {
+      "originalName": "11.0.1",
+      "targetName": "angular-hybrid@11.0.1",
+      "originalObject": "6ad37d95c4d378b0d3829738a47a904cd008c636",
+      "originalCommit": "6ad37d95c4d378b0d3829738a47a904cd008c636",
+      "rewrittenObject": "3fc9e6ed3edc0810b8ec5453daf61599089428f6",
+      "rewrittenCommit": "3fc9e6ed3edc0810b8ec5453daf61599089428f6"
+    },
+    {
+      "originalName": "11.0.2",
+      "targetName": "angular-hybrid@11.0.2",
+      "originalObject": "72846488e3a868d9d194fa7f363b5f33d7e6d459",
+      "originalCommit": "72846488e3a868d9d194fa7f363b5f33d7e6d459",
+      "rewrittenObject": "b036e519b90a05b5ab98de02b34db8429083ee48",
+      "rewrittenCommit": "b036e519b90a05b5ab98de02b34db8429083ee48"
+    },
+    {
+      "originalName": "12.0.0",
+      "targetName": "angular-hybrid@12.0.0",
+      "originalObject": "7353ba1a74bf611d50911b2122202197551196fc",
+      "originalCommit": "7353ba1a74bf611d50911b2122202197551196fc",
+      "rewrittenObject": "ec8558f48ce963ade875bccc7110b4a921806962",
+      "rewrittenCommit": "ec8558f48ce963ade875bccc7110b4a921806962"
+    },
+    {
+      "originalName": "13.0.0",
+      "targetName": "angular-hybrid@13.0.0",
+      "originalObject": "581127dc1d4744657617945294daa9fdc8e771ea",
+      "originalCommit": "581127dc1d4744657617945294daa9fdc8e771ea",
+      "rewrittenObject": "ec7b371f764c010503c761752b764c727479d9b6",
+      "rewrittenCommit": "ec7b371f764c010503c761752b764c727479d9b6"
+    },
+    {
+      "originalName": "14.0.0",
+      "targetName": "angular-hybrid@14.0.0",
+      "originalObject": "f6eecb1b59c9cb9180c53230dea45faa1546b2ee",
+      "originalCommit": "f6eecb1b59c9cb9180c53230dea45faa1546b2ee",
+      "rewrittenObject": "92aa92213bf493d4105f43306c08b089b8303457",
+      "rewrittenCommit": "92aa92213bf493d4105f43306c08b089b8303457"
+    },
+    {
+      "originalName": "15.0.1",
+      "targetName": "angular-hybrid@15.0.1",
+      "originalObject": "e2ec5900c3272b51e32435c616da3ab438c87551",
+      "originalCommit": "e2ec5900c3272b51e32435c616da3ab438c87551",
+      "rewrittenObject": "f13cef2885f5a4b9ea67d18d42ef6a5c97699928",
+      "rewrittenCommit": "f13cef2885f5a4b9ea67d18d42ef6a5c97699928"
+    },
+    {
+      "originalName": "15.0.2",
+      "targetName": "angular-hybrid@15.0.2",
+      "originalObject": "f3b9a2bebdb117232ddf93ac9b7de006437c77cf",
+      "originalCommit": "f3b9a2bebdb117232ddf93ac9b7de006437c77cf",
+      "rewrittenObject": "f56e46e37eed34b4a89c58b85641bce749b3fc85",
+      "rewrittenCommit": "f56e46e37eed34b4a89c58b85641bce749b3fc85"
+    },
+    {
+      "originalName": "16.0.0",
+      "targetName": "angular-hybrid@16.0.0",
+      "originalObject": "5e88223eedce005a5db4aa143787b3f48d031a98",
+      "originalCommit": "5e88223eedce005a5db4aa143787b3f48d031a98",
+      "rewrittenObject": "ef4487b436ff825c3a065de289db77764c5155d5",
+      "rewrittenCommit": "ef4487b436ff825c3a065de289db77764c5155d5"
+    },
+    {
+      "originalName": "17.1.0",
+      "targetName": "angular-hybrid@17.1.0",
+      "originalObject": "a509b2a00dd35a3de6f5858824ccdd62b830dfbc",
+      "originalCommit": "a509b2a00dd35a3de6f5858824ccdd62b830dfbc",
+      "rewrittenObject": "b0c7e7a625efb83dd0a7dcb4ae5a536cad1ae149",
+      "rewrittenCommit": "b0c7e7a625efb83dd0a7dcb4ae5a536cad1ae149"
+    },
+    {
+      "originalName": "18.0.0",
+      "targetName": "angular-hybrid@18.0.0",
+      "originalObject": "597600cf41b77a7b7ab1fdb582c4c8c6ce20a8c8",
+      "originalCommit": "597600cf41b77a7b7ab1fdb582c4c8c6ce20a8c8",
+      "rewrittenObject": "8cb711d78aaa781071f0f3d654b8b4298de555b7",
+      "rewrittenCommit": "8cb711d78aaa781071f0f3d654b8b4298de555b7"
+    },
+    {
+      "originalName": "19.0.0",
+      "targetName": "angular-hybrid@19.0.0",
+      "originalObject": "0cac4cfa4da13974a3e7b840ce75db131af4dbbe",
+      "originalCommit": "0cac4cfa4da13974a3e7b840ce75db131af4dbbe",
+      "rewrittenObject": "6357c33d017963fe41e1e4c533ac957539b97edd",
+      "rewrittenCommit": "6357c33d017963fe41e1e4c533ac957539b97edd"
+    },
+    {
+      "originalName": "2.0.0",
+      "targetName": "angular-hybrid@2.0.0",
+      "originalObject": "b775573c4fda3b10396f75dd8111e54a9f595674",
+      "originalCommit": "b775573c4fda3b10396f75dd8111e54a9f595674",
+      "rewrittenObject": "2d4c97cb70268243091439da57ea1a3fd8b5774e",
+      "rewrittenCommit": "2d4c97cb70268243091439da57ea1a3fd8b5774e"
+    },
+    {
+      "originalName": "20.0.0",
+      "targetName": "angular-hybrid@20.0.0",
+      "originalObject": "dabb8005abe678a8cf4344a7097e0abfa1fc207f",
+      "originalCommit": "dabb8005abe678a8cf4344a7097e0abfa1fc207f",
+      "rewrittenObject": "f3c0110402b12297f5d6048fabba91d9a5497beb",
+      "rewrittenCommit": "f3c0110402b12297f5d6048fabba91d9a5497beb"
+    },
+    {
+      "originalName": "21.0.0",
+      "targetName": "angular-hybrid@21.0.0",
+      "originalObject": "b74f7282a1a0291b63248bf8e7decbf7e237d688",
+      "originalCommit": "b74f7282a1a0291b63248bf8e7decbf7e237d688",
+      "rewrittenObject": "23e257d9b67d45c83a724cea46fdf3c6367c4b7e",
+      "rewrittenCommit": "23e257d9b67d45c83a724cea46fdf3c6367c4b7e"
+    },
+    {
+      "originalName": "22.0.0",
+      "targetName": "angular-hybrid@22.0.0",
+      "originalObject": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+      "originalCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+      "rewrittenObject": "5d942015ccd41afaa6145663e51ec4a14f175d61",
+      "rewrittenCommit": "5d942015ccd41afaa6145663e51ec4a14f175d61"
+    },
+    {
+      "originalName": "3.0.0",
+      "targetName": "angular-hybrid@3.0.0",
+      "originalObject": "e924c5d76ce7576b732995b890e2f5b3ca6d35df",
+      "originalCommit": "e924c5d76ce7576b732995b890e2f5b3ca6d35df",
+      "rewrittenObject": "4870da0135b5b189ec3e014701326628a88e7894",
+      "rewrittenCommit": "4870da0135b5b189ec3e014701326628a88e7894"
+    },
+    {
+      "originalName": "3.0.1",
+      "targetName": "angular-hybrid@3.0.1",
+      "originalObject": "791945b6c495937d020a93cfd08866a5bd2b151a",
+      "originalCommit": "791945b6c495937d020a93cfd08866a5bd2b151a",
+      "rewrittenObject": "a064fc1c7020285a086938e7e1fb3bbe85d21a76",
+      "rewrittenCommit": "a064fc1c7020285a086938e7e1fb3bbe85d21a76"
+    },
+    {
+      "originalName": "3.1.0",
+      "targetName": "angular-hybrid@3.1.0",
+      "originalObject": "4e74848c6050ab3a9a143cafdcb6d82fc2f9fdba",
+      "originalCommit": "4e74848c6050ab3a9a143cafdcb6d82fc2f9fdba",
+      "rewrittenObject": "a561c59ab18c9af7079352b5246d4af5d8437ea7",
+      "rewrittenCommit": "a561c59ab18c9af7079352b5246d4af5d8437ea7"
+    },
+    {
+      "originalName": "3.1.1",
+      "targetName": "angular-hybrid@3.1.1",
+      "originalObject": "441ba7ad011a11e489aade5091c7e7433b313a9b",
+      "originalCommit": "441ba7ad011a11e489aade5091c7e7433b313a9b",
+      "rewrittenObject": "4ab134d77b3bf9379ed42e5190723d1b57ad2a66",
+      "rewrittenCommit": "4ab134d77b3bf9379ed42e5190723d1b57ad2a66"
+    },
+    {
+      "originalName": "3.1.10",
+      "targetName": "angular-hybrid@3.1.10",
+      "originalObject": "7e9aabf5abeeb8ca7a5f35066f384f3a0bf82f10",
+      "originalCommit": "7e9aabf5abeeb8ca7a5f35066f384f3a0bf82f10",
+      "rewrittenObject": "a37038a3aa79aa5f2baae3ec53ee4d284f8b4669",
+      "rewrittenCommit": "a37038a3aa79aa5f2baae3ec53ee4d284f8b4669"
+    },
+    {
+      "originalName": "3.1.2",
+      "targetName": "angular-hybrid@3.1.2",
+      "originalObject": "cf1f2fa4e197181bce53fd1586a1411b0375659c",
+      "originalCommit": "cf1f2fa4e197181bce53fd1586a1411b0375659c",
+      "rewrittenObject": "8b272f4dd9ac3380b76068d3b51a42da9cec12dd",
+      "rewrittenCommit": "8b272f4dd9ac3380b76068d3b51a42da9cec12dd"
+    },
+    {
+      "originalName": "3.1.3",
+      "targetName": "angular-hybrid@3.1.3",
+      "originalObject": "e283d1f82b49b3d8344a75d87579436e7a7e1b0b",
+      "originalCommit": "e283d1f82b49b3d8344a75d87579436e7a7e1b0b",
+      "rewrittenObject": "23b034e8904adfecbaa6d94e57b6e63c26b0508a",
+      "rewrittenCommit": "23b034e8904adfecbaa6d94e57b6e63c26b0508a"
+    },
+    {
+      "originalName": "3.1.4",
+      "targetName": "angular-hybrid@3.1.4",
+      "originalObject": "ae9b597902408438e2ebf933c331e3f06c1b309e",
+      "originalCommit": "ae9b597902408438e2ebf933c331e3f06c1b309e",
+      "rewrittenObject": "90b4cf2db9e5ab4dad3b9ba5d7f59cf6ffb204da",
+      "rewrittenCommit": "90b4cf2db9e5ab4dad3b9ba5d7f59cf6ffb204da"
+    },
+    {
+      "originalName": "3.1.5",
+      "targetName": "angular-hybrid@3.1.5",
+      "originalObject": "1dc46bf3fe253ff3b5e4c2dbe17dfe3ee6377450",
+      "originalCommit": "1dc46bf3fe253ff3b5e4c2dbe17dfe3ee6377450",
+      "rewrittenObject": "aaeb6774cf7afe1f87d614e7e1d5485947cf0f21",
+      "rewrittenCommit": "aaeb6774cf7afe1f87d614e7e1d5485947cf0f21"
+    },
+    {
+      "originalName": "3.1.7",
+      "targetName": "angular-hybrid@3.1.7",
+      "originalObject": "7fbe986d56f45b1314cbc3e2a561de310e5ea6a5",
+      "originalCommit": "7fbe986d56f45b1314cbc3e2a561de310e5ea6a5",
+      "rewrittenObject": "fc4b1cddb84539ed9a63fe649e3fd41c94c319de",
+      "rewrittenCommit": "fc4b1cddb84539ed9a63fe649e3fd41c94c319de"
+    },
+    {
+      "originalName": "3.1.8",
+      "targetName": "angular-hybrid@3.1.8",
+      "originalObject": "22c2c954cd8eaa77ef6326a60968944dfe1af35b",
+      "originalCommit": "22c2c954cd8eaa77ef6326a60968944dfe1af35b",
+      "rewrittenObject": "2cc96a50d029c6bdf29f5f9221aa64af4236a6f8",
+      "rewrittenCommit": "2cc96a50d029c6bdf29f5f9221aa64af4236a6f8"
+    },
+    {
+      "originalName": "3.1.9",
+      "targetName": "angular-hybrid@3.1.9",
+      "originalObject": "9924e13c03e630dc2d00b22adf2e424397aa46f3",
+      "originalCommit": "9924e13c03e630dc2d00b22adf2e424397aa46f3",
+      "rewrittenObject": "44f1d44e357361667dd3b74570801684f82b4953",
+      "rewrittenCommit": "44f1d44e357361667dd3b74570801684f82b4953"
+    },
+    {
+      "originalName": "4.0.0",
+      "targetName": "angular-hybrid@4.0.0",
+      "originalObject": "83f7c9b9ff71270c6ff5393b6975cf7e9ecf9fff",
+      "originalCommit": "83f7c9b9ff71270c6ff5393b6975cf7e9ecf9fff",
+      "rewrittenObject": "d2adf42ae9cc57f7af6756815477603fda408f92",
+      "rewrittenCommit": "d2adf42ae9cc57f7af6756815477603fda408f92"
+    },
+    {
+      "originalName": "4.0.1",
+      "targetName": "angular-hybrid@4.0.1",
+      "originalObject": "fb56c32911f9de840dff9b00fe423051b38830d6",
+      "originalCommit": "fb56c32911f9de840dff9b00fe423051b38830d6",
+      "rewrittenObject": "adb60cbdb429ac8bf26331947a2c2c5143d1c0d8",
+      "rewrittenCommit": "adb60cbdb429ac8bf26331947a2c2c5143d1c0d8"
+    },
+    {
+      "originalName": "5.0.0",
+      "targetName": "angular-hybrid@5.0.0",
+      "originalObject": "5b433859d5d4048154684cc639a5d4e1ed4d4be2",
+      "originalCommit": "5b433859d5d4048154684cc639a5d4e1ed4d4be2",
+      "rewrittenObject": "4ee4b95bc178a41bc11c9799bffa50cc8d60407f",
+      "rewrittenCommit": "4ee4b95bc178a41bc11c9799bffa50cc8d60407f"
+    },
+    {
+      "originalName": "6.0.0",
+      "targetName": "angular-hybrid@6.0.0",
+      "originalObject": "ec69628453d9cc491842cd39b12eda5ef379c2c2",
+      "originalCommit": "ec69628453d9cc491842cd39b12eda5ef379c2c2",
+      "rewrittenObject": "d105c93f1af5300616ce99604f1043f4b46a9a44",
+      "rewrittenCommit": "d105c93f1af5300616ce99604f1043f4b46a9a44"
+    },
+    {
+      "originalName": "6.0.1",
+      "targetName": "angular-hybrid@6.0.1",
+      "originalObject": "d55174426e7aa243707383cb56b4c89a140910a1",
+      "originalCommit": "d55174426e7aa243707383cb56b4c89a140910a1",
+      "rewrittenObject": "d4eaf6eaf16a3e7fd1b2fa83f472878098738d80",
+      "rewrittenCommit": "d4eaf6eaf16a3e7fd1b2fa83f472878098738d80"
+    },
+    {
+      "originalName": "6.0.2",
+      "targetName": "angular-hybrid@6.0.2",
+      "originalObject": "e1d089ffde2161132bf5fe2300105173c7f0ebd6",
+      "originalCommit": "e1d089ffde2161132bf5fe2300105173c7f0ebd6",
+      "rewrittenObject": "d076ac328097d048330d6976342651ce8d5d9288",
+      "rewrittenCommit": "d076ac328097d048330d6976342651ce8d5d9288"
+    },
+    {
+      "originalName": "6.0.3",
+      "targetName": "angular-hybrid@6.0.3",
+      "originalObject": "6f561c81a8279bf2ab00f1c5b6b16fc583694a8b",
+      "originalCommit": "6f561c81a8279bf2ab00f1c5b6b16fc583694a8b",
+      "rewrittenObject": "8510638781f2b7a38b480d44b6051a49bba3f29c",
+      "rewrittenCommit": "8510638781f2b7a38b480d44b6051a49bba3f29c"
+    },
+    {
+      "originalName": "7.0.0",
+      "targetName": "angular-hybrid@7.0.0",
+      "originalObject": "513f2518d4ff51967b852db23b2a4bbf9b4bf2cc",
+      "originalCommit": "513f2518d4ff51967b852db23b2a4bbf9b4bf2cc",
+      "rewrittenObject": "69327475aaab6f733074ee900fc31a9fd029ff73",
+      "rewrittenCommit": "69327475aaab6f733074ee900fc31a9fd029ff73"
+    },
+    {
+      "originalName": "8.0.0",
+      "targetName": "angular-hybrid@8.0.0",
+      "originalObject": "7cac384ebea970467c8a8fa4147cbfed0e58a530",
+      "originalCommit": "7cac384ebea970467c8a8fa4147cbfed0e58a530",
+      "rewrittenObject": "f8d6362306cabe1e575bf895024d5103cbcdeae6",
+      "rewrittenCommit": "f8d6362306cabe1e575bf895024d5103cbcdeae6"
+    },
+    {
+      "originalName": "9.0.0",
+      "targetName": "angular-hybrid@9.0.0",
+      "originalObject": "6ae76a6b1921315bb7cdb6d21e2e0db756b5910d",
+      "originalCommit": "6ae76a6b1921315bb7cdb6d21e2e0db756b5910d",
+      "rewrittenObject": "501714890ec4e7df9373744a895690c954a07a6c",
+      "rewrittenCommit": "501714890ec4e7df9373744a895690c954a07a6c"
+    },
+    {
+      "originalName": "v15.0.1",
+      "targetName": "angular-hybrid@v15.0.1",
+      "originalObject": "49ff812577f98fe3b52ea3aa4dd8925eb8149778",
+      "originalCommit": "e2ec5900c3272b51e32435c616da3ab438c87551",
+      "rewrittenObject": "633f84203308b3230025814ec83ac8119f1980b4",
+      "rewrittenCommit": "f13cef2885f5a4b9ea67d18d42ef6a5c97699928"
+    },
+    {
+      "originalName": "v15.0.2",
+      "targetName": "angular-hybrid@v15.0.2",
+      "originalObject": "6b75e3123e63d7fdbb198fd3c9a3c9dade214476",
+      "originalCommit": "f3b9a2bebdb117232ddf93ac9b7de006437c77cf",
+      "rewrittenObject": "eb90c2efd6059edcf84c7199a6a70583e1dffd2e",
+      "rewrittenCommit": "f56e46e37eed34b4a89c58b85641bce749b3fc85"
+    }
+  ]
+}

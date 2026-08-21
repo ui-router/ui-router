@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "redux.root.pack",
+  "inputHashesAfterSha256": "d0ae0f81ff9f227dd009f6489b7253b4411c226de854518d2443ea4d613f1446",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "redux",
+  "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "4615a93b1b5f617115b9747877fc5db8e1860f7cf611c0de0a0ee3560b9b3669"
+}

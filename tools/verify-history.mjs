@@ -14,6 +14,7 @@ import {
   readJson,
   sha256File,
   validateManifest,
+  validatePinnedSource,
   writeJson,
 } from './history-migration-lib.mjs';
 
@@ -231,7 +232,16 @@ function verifyRewrittenCommitMetadata(sourceRepository, targetRepository, expec
   }
 }
 
-function verifyAnnotatedTag(sourceRepository, targetRepository, sourceTag, targetTag) {
+function splitTagSignature(message) {
+  const marker = Buffer.from('-----BEGIN PGP SIGNATURE-----');
+  const markerOffset = message.indexOf(marker);
+  if (markerOffset < 0) return { unsignedMessage: message, signed: false };
+  let unsignedEnd = markerOffset;
+  while (unsignedEnd > 0 && message[unsignedEnd - 1] === 0x0a) unsignedEnd -= 1;
+  return { unsignedMessage: message.subarray(0, unsignedEnd), signed: true };
+}
+
+function verifyAnnotatedTag(sourceRepository, targetRepository, sourceTag, targetTag, expectedRewrittenCommit) {
   const sourceObject = catFileBatch(sourceRepository, [sourceTag.objectId]).get(sourceTag.objectId);
   const targetObjectId = git(targetRepository, ['rev-parse', `refs/tags/${targetTag}`]).stdout.trim();
   const targetObject = catFileBatch(targetRepository, [targetObjectId]).get(targetObjectId);
@@ -240,14 +250,24 @@ function verifyAnnotatedTag(sourceRepository, targetRepository, sourceTag, targe
   }
   const sourceParsed = parseGitObject(sourceObject.contents);
   const targetParsed = parseGitObject(targetObject.contents);
+  if (onlyHeader(sourceParsed, 'object') !== sourceTag.targetCommit
+    || onlyHeader(sourceParsed, 'type') !== 'commit'
+    || onlyHeader(sourceParsed, 'tag') !== sourceTag.name) {
+    fail(`${sourceTag.name} source annotation has an unexpected direct target or name`);
+  }
+  if (onlyHeader(targetParsed, 'object') !== expectedRewrittenCommit
+    || onlyHeader(targetParsed, 'type') !== 'commit'
+    || onlyHeader(targetParsed, 'tag') !== targetTag) {
+    fail(`${targetTag} annotation has the wrong direct target, type, or name`);
+  }
   if (onlyHeader(sourceParsed, 'tagger') !== onlyHeader(targetParsed, 'tagger')) {
     fail(`${targetTag} tagger metadata differs`);
   }
-  if (onlyHeader(targetParsed, 'tag') !== targetTag) fail(`${targetTag} annotation contains the wrong tag name`);
-  compareBuffers(sourceParsed.message, targetParsed.message, `${targetTag} annotation message`);
-  if (sourceTag.tagObjectSigned && headerValues(targetParsed, 'gpgsig').length > 0) {
-    fail(`${targetTag} retained an invalid tag signature`);
-  }
+  const sourceMessage = splitTagSignature(sourceParsed.message);
+  const targetMessage = splitTagSignature(targetParsed.message);
+  if (sourceMessage.signed !== sourceTag.tagObjectSigned) fail(`${sourceTag.name} signature evidence differs`);
+  if (targetMessage.signed) fail(`${targetTag} retained an invalid armored tag signature`);
+  compareBuffers(sourceMessage.unsignedMessage, targetMessage.unsignedMessage, `${targetTag} annotation message`);
 }
 
 async function findNestedGit(root, current = root) {
@@ -263,23 +283,13 @@ async function clonePinnedSource(source, workdir) {
   const repository = path.join(workdir, `${source.name}.git`);
   console.log(`[${source.name}] cloning source for independent verification`);
   git(process.cwd(), ['clone', '--mirror', source.url, repository]);
-  const headExists = git(repository, ['cat-file', '-e', `${source.defaultHead}^{commit}`], { allowFailure: true });
-  if (headExists.status !== 0) fail(`${source.name} pinned head is unavailable`);
-  if (git(repository, ['rev-parse', `${source.defaultHead}^{tree}`]).stdout.trim() !== source.defaultHeadTree) {
-    fail(`${source.name} pinned head tree differs`);
-  }
-  if (Number(git(repository, ['rev-list', '--count', source.defaultHead]).stdout.trim()) !== source.defaultBranchCommitCount) {
-    fail(`${source.name} pinned branch commit count differs`);
-  }
-  for (const tag of [...source.releaseTags, ...source.excludedTags]) {
-    const actual = git(repository, ['rev-parse', tag.sourceRef], { allowFailure: true });
-    if (actual.status !== 0 || actual.stdout.trim() !== tag.objectId) fail(`${source.name} tag object differs: ${tag.name}`);
-  }
+  validatePinnedSource(repository, source);
   return repository;
 }
 
 async function verifySource(source, sourceRepository, targetRepository, importRecord) {
-  const commitMapPath = path.join(targetRepository, 'migration', 'evidence', source.name, 'commit-map');
+  const evidenceDirectory = path.join(targetRepository, 'migration', 'evidence', source.name);
+  const commitMapPath = path.join(evidenceDirectory, 'commit-map');
   const commitMap = parseCommitMap(await readFile(commitMapPath, 'utf8'), source.name);
   for (const [oldCommit, newCommit] of commitMap) {
     if (newCommit === ZERO_OBJECT) fail(`${source.name} unexpectedly dropped commit ${oldCommit}`);
@@ -297,6 +307,25 @@ async function verifySource(source, sourceRepository, targetRepository, importRe
 
   const rewrittenHead = commitMap.get(source.defaultHead);
   if (rewrittenHead !== importRecord.rewrittenHead) fail(`${source.name} import lock has the wrong rewritten head`);
+  const refsEvidence = await readJson(path.join(evidenceDirectory, 'refs.json'));
+  const expectedRefsEvidence = {
+    sourceHead: source.defaultHead,
+    rewrittenHead,
+    tags: source.releaseTags.map((tag) => {
+      const targetRef = `refs/tags/${tag.targetName}`;
+      return {
+        originalName: tag.name,
+        targetName: tag.targetName,
+        originalObject: tag.objectId,
+        originalCommit: tag.targetCommit,
+        rewrittenObject: git(targetRepository, ['rev-parse', targetRef]).stdout.trim(),
+        rewrittenCommit: git(targetRepository, ['rev-parse', `${targetRef}^{commit}`]).stdout.trim(),
+      };
+    }),
+  };
+  if (JSON.stringify(refsEvidence) !== JSON.stringify(expectedRefsEvidence)) {
+    fail(`${source.name} refs.json evidence differs from the manifest/imported refs`);
+  }
   if (git(targetRepository, ['merge-base', '--is-ancestor', rewrittenHead, importRecord.mergeCommit], { allowFailure: true }).status !== 0) {
     fail(`${source.name} rewritten head is not a merge parent ancestor`);
   }
@@ -323,7 +352,9 @@ async function verifySource(source, sourceRepository, targetRepository, importRe
       tag.targetName,
     );
     compareTreeMaps(sourceTree, targetTree, `${tag.targetName} tagged tree`);
-    if (tag.objectType === 'tag') verifyAnnotatedTag(sourceRepository, targetRepository, tag, tag.targetName);
+    if (tag.objectType === 'tag') {
+      verifyAnnotatedTag(sourceRepository, targetRepository, tag, tag.targetName, targetCommit);
+    }
   }
 
   return {
@@ -369,6 +400,30 @@ async function main() {
 
   if (!Array.isArray(lock.imports) || lock.imports.length !== manifest.sources.length) {
     fail('Import lock source count differs from the manifest');
+  }
+  const expectedEvidenceFiles = ['migration/evidence/summary.json'];
+  for (const source of manifest.sources) {
+    expectedEvidenceFiles.push(
+      `migration/evidence/${source.name}/commit-map`,
+      `migration/evidence/${source.name}/refs.json`,
+    );
+  }
+  expectedEvidenceFiles.sort();
+  const actualEvidenceFiles = git(
+    options.repo,
+    ['ls-tree', '-r', '--name-only', 'HEAD', '--', 'migration/evidence'],
+  ).stdout.split('\n').filter(Boolean).sort();
+  if (JSON.stringify(actualEvidenceFiles) !== JSON.stringify(expectedEvidenceFiles)) {
+    fail('Committed evidence file set differs from the exact manifest contract');
+  }
+  const summaryEvidence = await readJson(path.join(options.repo, 'migration', 'evidence', 'summary.json'));
+  const expectedSummaryEvidence = {
+    baseCommit: lock.targetBaseCommit,
+    manifestSha256: lock.manifestSha256,
+    imports: lock.imports,
+  };
+  if (JSON.stringify(summaryEvidence) !== JSON.stringify(expectedSummaryEvidence)) {
+    fail('summary.json evidence differs from import-lock.json');
   }
   const workdir = options.workdir
     ? (await mkdir(options.workdir, { recursive: false }), options.workdir)

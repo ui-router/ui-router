@@ -12,7 +12,7 @@ For each source it records:
 - explicit current-layout moves applied only after the source history is merged
 - the count of signature-bearing default-branch commits
 
-The importer must validate pinned objects before rewriting anything. New upstream refs do not silently enter a locked run. Refreshing this file is a separate reviewed change.
+The importer must validate pinned objects before rewriting anything. A changed default ref, changed tag object, or added/removed tag name stops the locked run. Refreshing this file is a separate reviewed change.
 
 Path rewriting adds only the source's `destinationPrefix`. Imported tags remain on those prefixed historical commits. The `moves` list applies afterward on the assembled migration branch, so stripping the prefix from a tagged tree yields the original source paths and contents.
 

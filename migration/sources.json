@@ -31,7 +31,7 @@
       "defaultBranchCommitCount": 2826,
       "destinationPrefix": "core",
       "tagNamespace": "core@",
-      "tagSnapshotSha256": "28b52e7e1f955a57c9f9f3da8e9c572829c91a54f759d6126fa633842bd922b5",
+      "tagSnapshotSha256": "eaab853a381899cdc496328ce2b4e04e5639475fcee242f556bbfc50fa0176a3",
       "releaseTags": [
         {
           "targetName": "core@1.0.0",
@@ -1301,7 +1301,7 @@
       "defaultBranchCommitCount": 389,
       "destinationPrefix": "plugins/visualizer",
       "tagNamespace": "visualizer@",
-      "tagSnapshotSha256": "017959cf2c187763577822b580aa495676dce7d2363749e09541569c5de4597e",
+      "tagSnapshotSha256": "ef60b465ba10dc53b6c5ea76a5dfb223c95b8ba2c3ad8bf4ec9122d17b342cef",
       "releaseTags": [
         {
           "targetName": "visualizer@1.0.0",
@@ -1883,7 +1883,7 @@
       "defaultBranchCommitCount": 2126,
       "destinationPrefix": "framework/angularjs/router",
       "tagNamespace": "angularjs@",
-      "tagSnapshotSha256": "9ff48ee35580b64b52e949f9fbf65e433cf67cb8d8cf796cc9cc19ac19b30096",
+      "tagSnapshotSha256": "94047ef99269f8abbc2668196ed85adb264939cb56fe2fed543e80dbaf20a587",
       "releaseTags": [
         {
           "targetName": "angularjs@0.0.1",
@@ -2991,7 +2991,7 @@
       "defaultBranchCommitCount": 2707,
       "destinationPrefix": "framework/angular/router",
       "tagNamespace": "angular@",
-      "tagSnapshotSha256": "48ca28b49acd7a9134b3930c6a9c992e0b516a0af1ddde478ea59ee8cb61e66b",
+      "tagSnapshotSha256": "2ebd5bb82c43b370c5196ea5f7758adaa1e78ebaaa094949fbe30a72ed2c251e",
       "releaseTags": [
         {
           "targetName": "angular@1.0.0",
@@ -3840,7 +3840,7 @@
       "defaultBranchCommitCount": 679,
       "destinationPrefix": "framework/angular-hybrid/router",
       "tagNamespace": "angular-hybrid@",
-      "tagSnapshotSha256": "6dd25d10dc5ca6a6a2bbba5a987604010600e77eeddf0e290d07fe397fdfdded",
+      "tagSnapshotSha256": "0bbcc8c921c129117a04176590fb576600d046c9b53b6e01523ad7b3d42fdce6",
       "releaseTags": [
         {
           "targetName": "angular-hybrid@1.0.0",
@@ -4690,7 +4690,7 @@
       "defaultBranchCommitCount": 1287,
       "destinationPrefix": "framework/react/router",
       "tagNamespace": "react@",
-      "tagSnapshotSha256": "867d117e62c851572400fb4a6bc99e9c8fd51f26ac5e9797895ed71efb96c4e9",
+      "tagSnapshotSha256": "3e305c097301c8655b1b5b2fda51bc99f4f66dcf28fc2cae9d779c637ae1cfae",
       "releaseTags": [
         {
           "targetName": "react@0.1.0",
@@ -5236,7 +5236,7 @@
       "defaultBranchCommitCount": 724,
       "destinationPrefix": "framework/react-hybrid/router",
       "tagNamespace": "react-hybrid@",
-      "tagSnapshotSha256": "0a1524b633b39b3747d1343f1bae54a6860a306c8ab75a8b4e9b89e003b2ee96",
+      "tagSnapshotSha256": "95deb853d7f14e4a76ff36c4a0d32c004777e5fc393c109e8c4677c8b933063a",
       "releaseTags": [
         {
           "targetName": "react-hybrid@0.0.2",
@@ -5790,7 +5790,7 @@
       "defaultBranchCommitCount": 294,
       "destinationPrefix": "tools/publish-scripts",
       "tagNamespace": "publish-scripts@",
-      "tagSnapshotSha256": "6003f5283f97470f39652b1d6e795edd63b47aa1766193ab38982a733a53a101",
+      "tagSnapshotSha256": "69b8ee3826353bffadebe419eb21938f516f7206d818e9aa456c88732509a93f",
       "releaseTags": [
         {
           "targetName": "publish-scripts@1.0.0",

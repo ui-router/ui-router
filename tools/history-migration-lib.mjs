@@ -11,7 +11,7 @@ export function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     cwd: options.cwd,
     encoding: 'utf8',
-    env: { ...process.env, ...options.env },
+    env: options.cleanEnv ? options.env : { ...process.env, ...options.env },
     maxBuffer: 64 * 1024 * 1024,
     stdio: options.stdio ?? ['ignore', 'pipe', 'pipe'],
   });
@@ -30,8 +30,39 @@ export function run(command, args, options = {}) {
   };
 }
 
+const SAFE_GIT_CONFIG = [
+  '-c', 'core.hooksPath=/dev/null',
+  '-c', 'core.attributesFile=/dev/null',
+  '-c', 'core.excludesFile=/dev/null',
+  '-c', 'commit.gpgSign=false',
+  '-c', 'tag.gpgSign=false',
+];
+
+export function sanitizedGitEnvironment(overrides = {}) {
+  const environment = { ...process.env };
+  for (const key of Object.keys(environment)) {
+    if (key.startsWith('GIT_') || ['SSH_ASKPASS', 'SSH_ASKPASS_REQUIRE'].includes(key)) {
+      delete environment[key];
+    }
+  }
+  return {
+    ...environment,
+    GIT_CONFIG_NOSYSTEM: '1',
+    GIT_CONFIG_GLOBAL: '/dev/null',
+    GIT_TERMINAL_PROMPT: '0',
+    LC_ALL: 'C',
+    TZ: 'UTC',
+    ...overrides,
+  };
+}
+
 export function git(cwd, args, options = {}) {
-  return run('git', args, { ...options, cwd });
+  return run('git', [...SAFE_GIT_CONFIG, ...args], {
+    ...options,
+    cwd,
+    cleanEnv: true,
+    env: sanitizedGitEnvironment(options.env),
+  });
 }
 
 export function catFileBatch(cwd, objectIds) {
@@ -39,8 +70,9 @@ export function catFileBatch(cwd, objectIds) {
   const chunkSize = 1000;
   for (let offset = 0; offset < objectIds.length; offset += chunkSize) {
     const chunk = objectIds.slice(offset, offset + chunkSize);
-    const result = spawnSync('git', ['cat-file', '--batch'], {
+    const result = spawnSync('git', [...SAFE_GIT_CONFIG, 'cat-file', '--batch'], {
       cwd,
+      env: sanitizedGitEnvironment(),
       input: `${chunk.join('\n')}\n`,
       maxBuffer: 256 * 1024 * 1024,
       stdio: ['pipe', 'pipe', 'pipe'],
@@ -101,6 +133,89 @@ export function isObjectId(value) {
   return typeof value === 'string' && /^[0-9a-f]{40}$/.test(value);
 }
 
+export function sourceTagSnapshotSha256(source) {
+  const records = [...source.releaseTags, ...source.excludedTags]
+    .sort((left, right) => (left.name < right.name ? -1 : left.name > right.name ? 1 : 0))
+    .map((tag) => `${tag.name}\0${tag.objectId}\0${tag.targetCommit}\0${tag.classification}`);
+  return createHash('sha256').update(records.join('\n')).digest('hex');
+}
+
+export function packageVersionAtCommit(repository, commit) {
+  const result = git(repository, ['show', `${commit}:package.json`], { allowFailure: true });
+  if (result.status !== 0) return null;
+  try {
+    const packageJson = JSON.parse(result.stdout);
+    return typeof packageJson.version === 'string' ? packageJson.version : null;
+  } catch {
+    return null;
+  }
+}
+
+export function commitHasSignature(repository, commit) {
+  const contents = git(repository, ['cat-file', 'commit', commit]).stdout;
+  return contents.includes('\ngpgsig ') || contents.startsWith('gpgsig ')
+    || contents.includes('\ngpgsig-sha256 ') || contents.startsWith('gpgsig-sha256 ');
+}
+
+export function tagObjectHasSignature(repository, objectId) {
+  return git(repository, ['cat-file', '-p', objectId]).stdout.includes('-----BEGIN PGP SIGNATURE-----');
+}
+
+export function validateSourceTag(repository, source, tag, included) {
+  const label = `${source.name}:${tag.name}`;
+  const actualObject = git(repository, ['rev-parse', tag.sourceRef], { allowFailure: true });
+  if (actualObject.status !== 0) fail(`Pinned tag is missing: ${label}`);
+  if (actualObject.stdout.trim() !== tag.objectId) fail(`Tag object drifted: ${label}`);
+  if (git(repository, ['cat-file', '-t', tag.objectId]).stdout.trim() !== tag.objectType) {
+    fail(`Tag object type drifted: ${label}`);
+  }
+  const targetCommit = git(repository, ['rev-parse', `${tag.sourceRef}^{commit}`]).stdout.trim();
+  const targetTree = git(repository, ['rev-parse', `${targetCommit}^{tree}`]).stdout.trim();
+  if (targetCommit !== tag.targetCommit || targetTree !== tag.targetTree) fail(`Tag target drifted: ${label}`);
+  const observedVersion = packageVersionAtCommit(repository, targetCommit);
+  if (observedVersion !== tag.observedRootPackageVersion) fail(`Tag package version drifted: ${label}`);
+  if ((observedVersion === tag.normalizedTagVersion) !== included) {
+    fail(`Tag release classification drifted: ${label}`);
+  }
+  const reachable = git(repository, ['merge-base', '--is-ancestor', targetCommit, source.defaultHead], {
+    allowFailure: true,
+  }).status === 0;
+  if (reachable !== tag.reachableFromDefault) fail(`Tag reachability drifted: ${label}`);
+  if (commitHasSignature(repository, targetCommit) !== tag.targetCommitSigned) {
+    fail(`Tag target signature presence drifted: ${label}`);
+  }
+  if (tag.objectType === 'tag' && tagObjectHasSignature(repository, tag.objectId) !== tag.tagObjectSigned) {
+    fail(`Annotated tag signature presence drifted: ${label}`);
+  }
+}
+
+export function validatePinnedSource(repository, source) {
+  const head = git(repository, ['rev-parse', source.sourceRef], { allowFailure: true });
+  if (head.status !== 0 || head.stdout.trim() !== source.defaultHead) {
+    fail(`${source.name} default head drifted: expected ${source.defaultHead}, got ${head.stdout.trim() || '<missing>'}`);
+  }
+  if (git(repository, ['cat-file', '-t', source.defaultHead]).stdout.trim() !== 'commit') {
+    fail(`${source.name} default head is not a commit`);
+  }
+  if (git(repository, ['rev-parse', `${source.defaultHead}^{tree}`]).stdout.trim() !== source.defaultHeadTree) {
+    fail(`${source.name} default head tree drifted`);
+  }
+  if (Number(git(repository, ['rev-list', '--count', source.defaultHead]).stdout.trim()) !== source.defaultBranchCommitCount) {
+    fail(`${source.name} default branch commit count drifted`);
+  }
+  for (const tag of source.releaseTags) validateSourceTag(repository, source, tag, true);
+  for (const tag of source.excludedTags) validateSourceTag(repository, source, tag, false);
+  const expectedTags = [...source.releaseTags, ...source.excludedTags].map((tag) => tag.name).sort();
+  const actualTags = git(repository, ['tag', '--list']).stdout.split('\n').filter(Boolean).sort();
+  if (JSON.stringify(actualTags) !== JSON.stringify(expectedTags)) {
+    const expected = new Set(expectedTags);
+    const actual = new Set(actualTags);
+    const added = actualTags.filter((tag) => !expected.has(tag));
+    const missing = expectedTags.filter((tag) => !actual.has(tag));
+    fail(`${source.name} tag set drifted; added=[${added.join(',')}], missing=[${missing.join(',')}]`);
+  }
+}
+
 export function assertRepoPath(value, label) {
   if (typeof value !== 'string' || value.length === 0) fail(`${label} must be a non-empty string`);
   if (value.includes('\\')) fail(`${label} must use forward slashes: ${value}`);
@@ -109,6 +224,25 @@ export function assertRepoPath(value, label) {
   }
   if (value === '.' || value.split('/').includes('..')) fail(`${label} is unsafe: ${value}`);
 }
+
+const EXPECTED_SOURCE_ORDER = [
+  'core',
+  'dsr',
+  'rx',
+  'redux',
+  'sticky-states',
+  'visualizer',
+  'angularjs',
+  'sample-app-angularjs',
+  'angular',
+  'sample-app-angular',
+  'angular-hybrid',
+  'sample-app-angular-hybrid',
+  'react',
+  'sample-app-react',
+  'react-hybrid',
+  'publish-scripts',
+];
 
 export function validateManifest(manifest) {
   if (manifest?.schemaVersion !== 1) fail('Manifest schemaVersion must be 1');
@@ -123,6 +257,15 @@ export function validateManifest(manifest) {
     fail('Manifest generatedCommitIdentity name and email are required');
   }
   if (!Array.isArray(manifest.sources) || manifest.sources.length === 0) fail('Manifest sources must be non-empty');
+  const fixtureTarget = manifest.target.url.startsWith('file://');
+  if (!fixtureTarget && manifest.target.url !== 'https://github.com/ui-router/ui-router.git') {
+    fail('Production manifest target.url must be https://github.com/ui-router/ui-router.git');
+  }
+  const officialUiRouterTarget = !fixtureTarget;
+  if (officialUiRouterTarget
+    && JSON.stringify(manifest.sources.map((source) => source.name)) !== JSON.stringify(EXPECTED_SOURCE_ORDER)) {
+    fail(`Manifest source order must be exactly: ${EXPECTED_SOURCE_ORDER.join(', ')}`);
+  }
 
   const sourceNames = new Set();
   const prefixes = new Set();
@@ -171,6 +314,10 @@ export function validateManifest(manifest) {
       }
     }
 
+    if (!/^[0-9a-f]{64}$/.test(source.tagSnapshotSha256)
+      || source.tagSnapshotSha256 !== sourceTagSnapshotSha256(source)) {
+      fail(`${label}.tagSnapshotSha256 does not match its locked tag records`);
+    }
     if (!Array.isArray(source.moves)) fail(`${label}.moves must be an array`);
     const moveSources = new Set();
     const moveTargets = new Set();
@@ -186,6 +333,12 @@ export function validateManifest(manifest) {
       moveSources.add(move.from);
       moveTargets.add(move.to);
     }
+  }
+
+  const releaseTagCount = manifest.sources.reduce((total, source) => total + source.releaseTags.length, 0);
+  const excludedTagCount = manifest.sources.reduce((total, source) => total + source.excludedTags.length, 0);
+  if (officialUiRouterTarget && (releaseTagCount !== 474 || excludedTagCount !== 27)) {
+    fail(`Manifest tag scope must remain 474 accepted and 27 excluded; got ${releaseTagCount}/${excludedTagCount}`);
   }
 
   return manifest;
@@ -210,18 +363,29 @@ export function generatedCommitEnv(identity, unixSeconds) {
 }
 
 export function gitVersion() {
-  return run('git', ['--version']).stdout.trim();
+  return git(process.cwd(), ['--version']).stdout.trim();
 }
 
 export function filterRepoVersion() {
-  const direct = run('git-filter-repo', ['--version'], { allowFailure: true });
+  const environment = sanitizedGitEnvironment();
+  const direct = run('git-filter-repo', ['--version'], {
+    allowFailure: true,
+    cleanEnv: true,
+    env: environment,
+  });
   if (direct.status === 0) return { command: 'git-filter-repo', version: direct.stdout.trim() };
-  const extension = run('git', ['filter-repo', '--version'], { allowFailure: true });
+  const extension = git(process.cwd(), ['filter-repo', '--version'], { allowFailure: true });
   if (extension.status === 0) return { command: 'git filter-repo', version: extension.stdout.trim() };
   fail('git-filter-repo is required. Install the pinned version from SPEC.md before running the importer.');
 }
 
 export function runFilterRepo(command, args, cwd) {
-  if (command === 'git-filter-repo') return run('git-filter-repo', args, { cwd });
-  return run('git', ['filter-repo', ...args], { cwd });
+  if (command === 'git-filter-repo') {
+    return run('git-filter-repo', args, {
+      cwd,
+      cleanEnv: true,
+      env: sanitizedGitEnvironment(),
+    });
+  }
+  return git(cwd, ['filter-repo', ...args]);
 }

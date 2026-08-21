@@ -141,7 +141,7 @@ Move commits contain path changes only. Reference/path repairs are separate comm
 - 474 accepted release tags and 27 excluded tags
 - current-head move operations
 
-New upstream refs never silently enter a locked run. If a pinned default ref or tag object moves before the official run, stop and review a manifest refresh.
+New upstream refs never silently enter a locked run. If a pinned default ref/tag object moves, or any source tag name is added or removed before the official run, stop and review a manifest refresh.
 
 ### 5.2 Importer behavior
 
@@ -150,16 +150,17 @@ New upstream refs never silently enter a locked run. If a pinned default ref or 
 1. require a full immutable target `--base`; never resolve floating target `HEAD`
 2. refuse existing output/work directories
 3. verify the exact `git-filter-repo` pin and manifest schema
-4. fresh-clone every source as a mirror
-5. validate pinned heads, trees, commit counts, tag objects/types/targets/trees, package versions, reachability, and signature presence
-6. delete unselected refs in the temporary mirror
-7. rewrite only remaining refs beneath one destination prefix and namespace tags
-8. retain old-to-new commit maps
-9. fresh-clone the target and prove `--base` is on target `main`
-10. merge rewritten default histories in manifest order with deterministic two-parent merge commits
-11. apply manifest moves in deterministic path-only commits
-12. add import lock, commit maps, and ref evidence in one final deterministic evidence commit
-13. preserve the work/output directory on failure and print exact locations
+4. sanitize Git environment overrides; disable system/global Git config, hooks, signing, and global attributes/excludes
+5. fresh-clone every source as a mirror
+6. validate pinned heads, trees, commit counts, the complete tag-name set, tag objects/types/targets/trees, package versions, reachability, and signature presence
+7. delete unselected refs in the temporary mirror
+8. rewrite only remaining refs beneath one destination prefix and namespace tags
+9. retain old-to-new commit maps
+10. fresh-clone the target and prove `--base` is an exact commit on target `main`
+11. merge rewritten default histories in manifest order with deterministic two-parent merge commits
+12. apply manifest moves in deterministic path-only commits
+13. add import lock, commit maps, and ref evidence in one final deterministic evidence commit
+14. preserve the work/output directory on failure and print exact locations
 
 The importer never runs source package code, modifies global Git configuration, publishes, pushes, or merges a PR.
 
@@ -208,6 +209,8 @@ During migration:
 - do not publish
 
 ### 6.2 Non-published manifests
+
+Before parallel package edits, the coordinator creates `migration/package-classification.json`. It assigns every current `package.json` a class, published/private intent, workspace membership, lock owner, final unique name, owning lane, and allowed internal-resolution mode. Global validators consume this file; package lanes do not independently invent classifications.
 
 Every example, integration, scaffold, and test fixture must have:
 
@@ -325,14 +328,16 @@ No required source-repository lane may disappear. A pre-existing failure needs a
 |---|---|---|---|
 | `H00` | Merge migration spec/tooling | — | reviewed `SPEC.md`, manifest, importer, verifier on target `main` |
 | `H01` | Lock official inputs | `H00` | exact target base, source-ref revalidation, Node/npm decision date and pins, clean working state |
-| `H02` | Rehearse history import twice | `H01` | identical heads/tags/maps/evidence; independent verifier passes both |
+| `H02` | Rehearse history import twice and inject failures | `H01` | identical heads/tags/maps/evidence; independent verifier passes both; stale-tag and path-collision probes fail nonzero and preserve the documented diagnostic state |
 | `H03` | Execute official history import | `H02` | `migration/history-import` branch from exact base; no push by tool |
 | `H04` | Review history/layout PR | `H03` | tag/tree evidence reviewed; generated commits and moves isolated; draft PR green |
+| `H05` | Maintainer merge gate for imported history | `H04` | maintainer approves the exact verified head; imported history lands on target `main` |
 | `B01` | Review baseline commands | `H00` | lifecycle hooks and CI commands classified safe/unsafe before execution |
 | `B02` | Run pinned source baselines | `B01` | exact per-source install/build/test/docs commands, environment, result, logs |
 | `B03` | Check in baseline manifest | `B02` | all existing green lanes represented; evidence-backed waivers for failures |
-| `N01` | Pin root Node/npm and npm workspaces | `H04` | exact pins, positive workspace globs, root scripts, initial root lock |
-| `N02` | Classify/normalize manifests | `H04` | published metadata preserved; private unique non-published projects; repo metadata updated |
+| `N00` | Lock the package-classification contract | `H05` | coordinator-owned `migration/package-classification.json` covers every manifest, unique name, workspace/lock owner, lane, and internal-resolution mode |
+| `N01` | Pin root Node/npm and npm workspaces | `H05` | exact pins, positive workspace globs, root scripts, initial root lock |
+| `N02` | Normalize manifests in owned lanes | `N00` | published metadata preserved; private unique non-published projects; repo metadata updated without cross-lane classification drift |
 | `N03` | Convert lock and resolution policy | `N01`,`N02`,`B03` | root/local npm locks; reviewed Yarn `resolutions` translated only where intentional; no current Yarn/pnpm locks |
 | `N04` | Implement layout/dependency validators | `N02`,`N03` | `verify-layout` and `verify-internal-deps` fail with exact paths/edges |
 | `S01` | Standardize package build/test interfaces | `N03`,`B03` | package scripts independently reproduce required baseline lanes |
@@ -348,11 +353,12 @@ No required source-repository lane may disappear. A pre-existing failure needs a
 
 ### 10.3 Safe parallel lanes
 
-After `H04`:
+After maintainer gate `H05`:
 
 - `B01`–`B03` may already be complete from source clones.
+- `N00` has one coordinator writer and lands the complete classification/ownership contract first.
 - `N01` root tooling has one writer.
-- `N02` may split into isolated Core, plugins, frameworks, examples/integrations, and tools worktrees after the classification contract is fixed.
+- `N02` may then split into isolated Core, plugins, frameworks, examples/integrations, and tools worktrees whose path ownership is recorded by `N00`.
 - Read-only CI/task inventory can proceed while `N01`/`N02` write.
 - `S02`, `I01`, and `P01` start only after their shared manifest/dependency contracts land.
 - A single integration writer resolves cross-lane root lock, Turbo, and CI changes.

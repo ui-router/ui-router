@@ -17,6 +17,7 @@ import {
   runFilterRepo,
   sha256File,
   validateManifest,
+  validatePinnedSource,
   writeJson,
 } from './history-migration-lib.mjs';
 
@@ -63,53 +64,6 @@ function parseArgs(argv) {
   return options;
 }
 
-function parsePackageVersion(repository, commit) {
-  const result = git(repository, ['show', `${commit}:package.json`], { allowFailure: true });
-  if (result.status !== 0) return null;
-  try {
-    const packageJson = JSON.parse(result.stdout);
-    return typeof packageJson.version === 'string' ? packageJson.version : null;
-  } catch {
-    return null;
-  }
-}
-
-function objectHasCommitSignature(repository, commit) {
-  const contents = git(repository, ['cat-file', 'commit', commit]).stdout;
-  return contents.includes('\ngpgsig ') || contents.startsWith('gpgsig ');
-}
-
-function objectHasTagSignature(repository, objectId) {
-  return git(repository, ['cat-file', '-p', objectId]).stdout.includes('-----BEGIN PGP SIGNATURE-----');
-}
-
-function validateTag(repository, source, tag, included) {
-  const label = `${source.name}:${tag.name}`;
-  const actualObject = git(repository, ['rev-parse', tag.sourceRef], { allowFailure: true });
-  if (actualObject.status !== 0) fail(`Pinned tag is missing: ${label}`);
-  if (actualObject.stdout.trim() !== tag.objectId) fail(`Tag object drifted: ${label}`);
-  if (git(repository, ['cat-file', '-t', tag.objectId]).stdout.trim() !== tag.objectType) {
-    fail(`Tag object type drifted: ${label}`);
-  }
-  const targetCommit = git(repository, ['rev-parse', `${tag.sourceRef}^{commit}`]).stdout.trim();
-  const targetTree = git(repository, ['rev-parse', `${targetCommit}^{tree}`]).stdout.trim();
-  if (targetCommit !== tag.targetCommit || targetTree !== tag.targetTree) fail(`Tag target drifted: ${label}`);
-  const observedVersion = parsePackageVersion(repository, targetCommit);
-  if (observedVersion !== tag.observedRootPackageVersion) fail(`Tag package version drifted: ${label}`);
-  const matches = observedVersion === tag.normalizedTagVersion;
-  if (matches !== included) fail(`Tag release classification drifted: ${label}`);
-  const reachable = git(repository, ['merge-base', '--is-ancestor', targetCommit, source.sourceRef], {
-    allowFailure: true,
-  }).status === 0;
-  if (reachable !== tag.reachableFromDefault) fail(`Tag reachability drifted: ${label}`);
-  if (objectHasCommitSignature(repository, targetCommit) !== tag.targetCommitSigned) {
-    fail(`Tag target signature presence drifted: ${label}`);
-  }
-  if (tag.objectType === 'tag' && objectHasTagSignature(repository, tag.objectId) !== tag.tagObjectSigned) {
-    fail(`Annotated tag signature presence drifted: ${label}`);
-  }
-}
-
 function removeUnselectedRefs(repository, allowedRefs) {
   const refs = git(repository, ['for-each-ref', '--format=%(refname)']).stdout.split('\n').filter(Boolean);
   for (const ref of refs) {
@@ -132,24 +86,7 @@ async function prepareSource(source, workdir, filterRepo) {
   console.log(`\n[${source.name}] cloning and validating ${source.url}`);
   git(process.cwd(), ['clone', '--mirror', source.url, repository]);
 
-  const head = git(repository, ['rev-parse', source.sourceRef], { allowFailure: true });
-  if (head.status !== 0 || head.stdout.trim() !== source.defaultHead) {
-    fail(`${source.name} default head drifted: expected ${source.defaultHead}, got ${head.stdout.trim() || '<missing>'}`);
-  }
-  const headTree = git(repository, ['rev-parse', `${source.defaultHead}^{tree}`]).stdout.trim();
-  if (headTree !== source.defaultHeadTree) fail(`${source.name} default head tree drifted`);
-  const commitCount = Number(git(repository, ['rev-list', '--count', source.defaultHead]).stdout.trim());
-  if (commitCount !== source.defaultBranchCommitCount) fail(`${source.name} default branch commit count drifted`);
-
-  for (const tag of source.releaseTags) validateTag(repository, source, tag, true);
-  for (const tag of source.excludedTags) validateTag(repository, source, tag, false);
-
-  const pinnedTagNames = new Set([...source.releaseTags, ...source.excludedTags].map((tag) => tag.name));
-  const observedTagNames = git(repository, ['tag', '--list']).stdout.split('\n').filter(Boolean);
-  const extraTags = observedTagNames.filter((tag) => !pinnedTagNames.has(tag));
-  if (extraTags.length > 0) {
-    console.warn(`[${source.name}] ignoring ${extraTags.length} tags created after the locked snapshot`);
-  }
+  validatePinnedSource(repository, source);
 
   const allowedRefs = new Set([source.sourceRef, ...source.releaseTags.map((tag) => tag.sourceRef)]);
   removeUnselectedRefs(repository, allowedRefs);
@@ -198,7 +135,6 @@ async function prepareSource(source, workdir, filterRepo) {
     repository,
     rewrittenHead,
     commitMapContents,
-    extraTags,
     tags,
   };
 }
@@ -221,8 +157,11 @@ function createGeneratedCommit(repository, identity, timestamp, message) {
 async function assembleTarget(manifest, manifestPath, options, preparedSources, versions, workdir) {
   console.log(`\n[target] cloning ${manifest.target.url}`);
   git(process.cwd(), ['clone', '--no-checkout', manifest.target.url, options.output]);
-  const baseExists = git(options.output, ['cat-file', '-e', `${options.base}^{commit}`], { allowFailure: true });
-  if (baseExists.status !== 0) fail(`Target base commit is not present: ${options.base}`);
+  const baseExists = git(options.output, ['cat-file', '-e', options.base], { allowFailure: true });
+  if (baseExists.status !== 0) fail(`Target base object is not present: ${options.base}`);
+  if (git(options.output, ['cat-file', '-t', options.base]).stdout.trim() !== 'commit') {
+    fail(`Target base object is not a commit: ${options.base}`);
+  }
   const onTargetMain = git(
     options.output,
     ['merge-base', '--is-ancestor', options.base, `refs/remotes/origin/${manifest.target.baseBranch}`],

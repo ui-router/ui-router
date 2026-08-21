@@ -4,6 +4,7 @@ This repository is the migration target for the UI-Router projects.
 
 - [`SPEC.md`](SPEC.md) is the executable migration specification.
 - [`migration/sources.json`](migration/sources.json) pins source history, tags, and layout moves.
+- [`migration/validation.md`](migration/validation.md) records the tooling rehearsal evidence and remaining official-run gates.
 - [`tools/import-history.mjs`](tools/import-history.mjs) and [`tools/verify-history.mjs`](tools/verify-history.mjs) implement the history migration gate.
 - [`archive/original`](archive/original) preserves the original draft and scripts for comparison only.
 

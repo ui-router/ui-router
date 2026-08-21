@@ -13,13 +13,17 @@
     "toolchain": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["node", "npm", "git", "python", "uv", "gitFilterRepo", "contractSchemaValidator"],
+      "required": ["node", "nodeLtsLine", "npm", "git", "python", "pythonExecutable", "pythonExecutableSha256", "uv", "gitFilterRepo", "contractSchemaValidator", "contractSchemaBundleSha256", "runtime"],
       "properties": {
         "node": { "type": "string", "minLength": 1 },
+        "nodeLtsLine": { "type": "string", "pattern": "^[0-9]+$" },
         "npm": { "type": "string", "minLength": 1 },
         "git": { "type": "string", "minLength": 1 },
         "python": { "type": "string", "minLength": 1 },
+        "pythonExecutable": { "type": "string", "pattern": "^/" },
+        "pythonExecutableSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
         "uv": { "type": "string", "minLength": 1 },
+        "contractSchemaBundleSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
         "contractSchemaValidator": {
           "type": "object",
           "additionalProperties": false,
@@ -43,12 +47,40 @@
             "wrapperPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
             "wrapperSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
           }
+        },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["osImage", "osImageDigest", "architecture", "timezone", "locale", "browser"],
+          "properties": {
+            "osImage": { "type": "string", "minLength": 1 },
+            "osImageDigest": { "type": "string", "minLength": 1 },
+            "architecture": { "type": "string", "minLength": 1 },
+            "timezone": { "type": "string", "minLength": 1 },
+            "locale": { "type": "string", "minLength": 1 },
+            "browser": {
+              "oneOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["name", "revision", "installerVersion", "sha256"],
+                  "properties": {
+                    "name": { "type": "string", "minLength": 1 },
+                    "revision": { "type": "string", "minLength": 1 },
+                    "installerVersion": { "type": "string", "minLength": 1 },
+                    "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+                  }
+                }
+              ]
+            }
+          }
         }
       }
     },
     "sources": {
       "type": "array",
-      "minItems": 16,
+      "minItems": 1,
       "maxItems": 16,
       "uniqueItems": true,
       "items": {

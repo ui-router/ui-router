@@ -8,7 +8,7 @@
     "schemaVersion": { "const": 1 },
     "executionLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
     "baselinesSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
-    "inventoryManifestCount": { "const": 44 },
+    "inventoryManifestCount": { "type": "integer", "minimum": 1 },
     "manifests": {
       "type": "array",
       "uniqueItems": true,

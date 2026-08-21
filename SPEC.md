@@ -460,35 +460,45 @@ After `H02` passes, from a clean checkout of the reviewed control branch rooted 
 # H01 has already vendored the exact artifact and generated a wrapper that
 # executes that local artifact without network/cache resolution.
 EXECUTION_LOCK="$PWD/migration/execution-lock.json"
+# Read this from the reviewed H01 handoff/commit evidence; do not derive it from
+# the file in the command that the digest is intended to authenticate.
+EXECUTION_LOCK_SHA256="<reviewed-execution-lock-sha256>"
 IFS=$'\t' read -r FILTER_REPO_ARTIFACT FILTER_REPO_ARTIFACT_SHA FILTER_REPO_WRAPPER FILTER_REPO_WRAPPER_SHA < <(
   node -e 'const x=require(process.argv[1]).toolchain.gitFilterRepo; console.log([x.artifactPath,x.artifactSha256,x.wrapperPath,x.wrapperSha256].join("\t"))' "$EXECUTION_LOCK"
 )
 test "$(sha256sum "$FILTER_REPO_ARTIFACT" | cut -d' ' -f1)" = "$FILTER_REPO_ARTIFACT_SHA"
 test "$(sha256sum "$FILTER_REPO_WRAPPER" | cut -d' ' -f1)" = "$FILTER_REPO_WRAPPER_SHA"
 
-# H01 has already created and retained validated mirrors as
-# .migration-work/sources/<source-name>.git. The fixture also proves that
-# remote, retained-mirror, and bundle-restored --source-root modes are identical.
+# H01 has already created and retained validated mirrors and bundles. The
+# fixture proves that explicit remote, retained-mirror, and locked-bundle modes
+# are identical and that only the locked wrapper is executed.
 PATH="$(dirname "$FILTER_REPO_WRAPPER"):$PATH" node tools/test-history-migration.mjs
 
 BASE="$(node -e "const x=require(process.argv[1]); process.stdout.write(x.targetBase)" "$EXECUTION_LOCK")"
 PATH="$(dirname "$FILTER_REPO_WRAPPER"):$PATH" \
   node tools/import-history.mjs \
   --control-root "$PWD" \
+  --manifest "$PWD/migration/sources.json" \
   --execution-lock "$EXECUTION_LOCK" \
+  --execution-lock-sha256 "$EXECUTION_LOCK_SHA256" \
+  --source-mode remote \
   --base "$BASE" \
   --output ../ui-router-import \
   --workdir "$PWD/.migration-work/import" \
   --keep-workdir
 
-node tools/verify-history.mjs \
+PATH="$(dirname "$FILTER_REPO_WRAPPER"):$PATH" \
+  node tools/verify-history.mjs \
   --repo ../ui-router-import \
   --manifest ../ui-router-import/migration/sources.json \
   --execution-lock ../ui-router-import/migration/execution-lock.json \
+  --execution-lock-sha256 "$EXECUTION_LOCK_SHA256" \
+  --control-root "$PWD" \
+  --source-mode remote \
   --report .migration-work/verification.json
 ```
 
-Repeat into different output/work directories with `--source-root "$PWD/.migration-work/sources"`, then restore fresh bare sources only from the hashed offline bundles and repeat with that bundle-backed source root. All three runs consume the same execution lock and compare identically:
+Repeat into different output/work directories with `--source-mode mirror` and `--source-mode bundle`; the execution lock supplies the exact retained mirror and bundle paths and hashes. Verify each output with the matching mode. All three runs consume the same execution lock and compare identically:
 
 ```bash
 for candidate in ../ui-router-import-2 ../ui-router-import-3; do

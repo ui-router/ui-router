@@ -7,41 +7,52 @@ import process from 'node:process';
 import {
   catFileBatch,
   commitTimestamp,
-  executionToolchain,
   fail,
-  filterRepoVersion,
   generatedCommitEnv,
   git,
+  gitBlobBuffer,
   isObjectId,
   pathExists,
+  prospectiveRealpath,
   readJson,
   runFilterRepo,
+  sha256Buffer,
   sha256File,
   validateLocalSourceMetadata,
   validateManifest,
+  validateManifestImmutable,
   validatePinnedSource,
   writeJson,
 } from './history-migration-lib.mjs';
+import {
+  buildControlFileRecords,
+  copyControlTree,
+  lockedFilterRepoDescriptor,
+  validateControlContracts,
+  validateExecutionLockInputs,
+  validateExecutionLockPreflight,
+} from './control-contract-lib.mjs';
 
 function usage() {
   return `Usage: node tools/import-history.mjs --base <commit> --output <directory> [options]
 
 Options:
-  --manifest <file>    Source manifest (default: migration/sources.json)
-  --workdir <dir>      New work directory for filtered source clones
-  --source-root <dir>  Optional directory containing validated <source-name>.git mirrors
-  --keep-workdir       Keep the work directory after a successful run
-  --base <commit>      Required immutable commit from the target repository
-  --output <dir>       Required new directory for the assembled repository
-  --help               Show this help
+  --manifest <file>         Exact control-root migration/sources.json
+  --execution-lock <file>   Exact control-root migration/execution-lock.json
+  --execution-lock-sha256 <reviewed-digest>
+  --control-root <dir>      Reviewed control checkout and retained artifact root
+  --source-mode <mode>      remote, mirror, or bundle
+  --workdir <dir>           New work directory for filtered source clones
+  --keep-workdir            Keep the work directory after a successful run
+  --fixture                 Enable the one-source local fixture domain
+  --base <commit>           Required immutable commit from the target repository
+  --output <dir>            Required new directory for the assembled repository
+  --help                    Show this help
 `;
 }
 
 function parseArgs(argv) {
-  const options = {
-    manifest: path.resolve('migration/sources.json'),
-    keepWorkdir: false,
-  };
+  const options = { fixture: false, keepWorkdir: false };
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
     if (argument === '--help') return { help: true };
@@ -49,23 +60,46 @@ function parseArgs(argv) {
       options.keepWorkdir = true;
       continue;
     }
-    if (['--manifest', '--workdir', '--source-root', '--base', '--output'].includes(argument)) {
+    if (argument === '--fixture') {
+      options.fixture = true;
+      continue;
+    }
+    if (['--manifest', '--execution-lock', '--execution-lock-sha256', '--control-root', '--source-mode', '--workdir', '--base', '--output'].includes(argument)) {
       const value = argv[index + 1];
       if (!value || value.startsWith('--')) fail(`${argument} requires a value`);
-      options[argument === '--source-root' ? 'sourceRoot' : argument.slice(2)] = value;
+      options[argument.replace(/^--/, '').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())] = value;
       index += 1;
       continue;
     }
     fail(`Unknown argument: ${argument}`);
   }
-  if (!options.base) fail('--base is required');
+  for (const required of ['manifest', 'executionLock', 'executionLockSha256', 'controlRoot', 'sourceMode', 'base', 'output']) {
+    if (!options[required]) fail(`--${required.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)} is required`);
+  }
   if (!isObjectId(options.base)) fail('--base must be a full 40-character lowercase commit ID');
-  if (!options.output) fail('--output is required');
+  if (!/^[0-9a-f]{64}$/.test(options.executionLockSha256)) {
+    fail('--execution-lock-sha256 must be a SHA-256 digest');
+  }
+  if (!['remote', 'mirror', 'bundle'].includes(options.sourceMode)) fail('--source-mode must be remote, mirror, or bundle');
   options.output = path.resolve(options.output);
   if (options.workdir) options.workdir = path.resolve(options.workdir);
-  if (options.sourceRoot) options.sourceRoot = path.resolve(options.sourceRoot);
   options.manifest = path.resolve(options.manifest);
+  options.executionLock = path.resolve(options.executionLock);
+  options.controlRoot = path.resolve(options.controlRoot);
   return options;
+}
+
+const RESERVED_IMPORT_PATHS = [
+  'migration/execution-lock.json',
+  'migration/baselines.json',
+  'migration/package-classification.json',
+  'migration/control-evidence',
+  'migration/import-lock.json',
+  'migration/evidence',
+];
+
+function reservedImportPath(filename) {
+  return RESERVED_IMPORT_PATHS.find((reserved) => filename === reserved || filename.startsWith(`${reserved}/`));
 }
 
 function pathsOverlap(first, second) {
@@ -111,6 +145,48 @@ function firstTreeCollision(firstPaths, secondPaths) {
   return null;
 }
 
+function preflightMove(occupied, currentSourcePaths, move, sourceName) {
+  const moving = currentSourcePaths.filter((filename) => (
+    filename === move.from || filename.startsWith(`${move.from}/`)
+  ));
+  if (moving.length === 0) fail(`${sourceName} move source is missing during preflight: ${move.from}`);
+  const movingSet = new Set(moving);
+  const foreignUnderSource = occupied.filter((filename) => (
+    !movingSet.has(filename) && (filename === move.from || filename.startsWith(`${move.from}/`))
+  ));
+  if (foreignUnderSource.length > 0) fail(`${sourceName} move source overlaps another tree: ${move.from}`);
+  const retainedOccupied = occupied.filter((filename) => !movingSet.has(filename));
+  if (retainedOccupied.some((filename) => filename === move.to || filename.startsWith(`${move.to}/`))) {
+    fail(`${sourceName} move target already exists during preflight: ${move.to}`);
+  }
+  const retainedSource = currentSourcePaths.filter((filename) => !movingSet.has(filename));
+  const moved = moving.map((filename) => `${move.to}${filename.slice(move.from.length)}`);
+  const collision = firstTreeCollision(retainedOccupied, moved);
+  if (collision) fail(`${sourceName} move collision during preflight: ${collision}`);
+  return {
+    occupied: [...retainedOccupied, ...moved].sort(),
+    currentSourcePaths: [...retainedSource, ...moved].sort(),
+  };
+}
+
+function preflightAllSourcePaths(targetRepository, base, manifest, preparedSources) {
+  let occupied = treeLeafPaths(targetRepository, base).sort();
+  for (const source of manifest.sources) {
+    const prepared = preparedSources.get(source.name);
+    let currentSourcePaths = treeLeafPaths(prepared.repository, prepared.rewrittenHead).sort();
+    const initialReserved = currentSourcePaths.find(reservedImportPath);
+    if (initialReserved) fail(`${source.name} source uses reserved import path: ${initialReserved}`);
+    const collision = firstTreeCollision(occupied, currentSourcePaths);
+    if (collision) fail(`${source.name} source/target tree collision before merge: ${collision}`);
+    occupied = [...occupied, ...currentSourcePaths].sort();
+    for (const move of source.moves) {
+      ({ occupied, currentSourcePaths } = preflightMove(occupied, currentSourcePaths, move, source.name));
+      const movedReserved = currentSourcePaths.find(reservedImportPath);
+      if (movedReserved) fail(`${source.name} move uses reserved import path: ${movedReserved}`);
+    }
+  }
+}
+
 function parseCommitMap(contents) {
   const map = new Map();
   for (const line of contents.split('\n')) {
@@ -141,13 +217,21 @@ function rewriteAnnotatedTag(repository, originalContents, targetCommit, targetN
   return objectId;
 }
 
-async function prepareSource(source, workdir, filterRepo, sourceRoot) {
+function sourceLocation(source, lockedSource, options) {
+  if (options.sourceMode === 'remote') return source.url;
+  const relativePath = options.sourceMode === 'mirror' ? lockedSource.mirrorPath : lockedSource.bundlePath;
+  return path.join(options.controlRoot, relativePath);
+}
+
+async function prepareSource(source, lockedSource, workdir, filterRepo, options) {
   const repository = path.join(workdir, `${source.name}.git`);
-  const sourceLocation = sourceRoot ? path.join(sourceRoot, `${source.name}.git`) : source.url;
-  if (sourceRoot && !(await pathExists(sourceLocation))) fail(`Source mirror is missing: ${sourceLocation}`);
-  validateLocalSourceMetadata(sourceLocation, source.name);
-  console.log(`\n[${source.name}] cloning and validating ${sourceLocation}`);
-  git(process.cwd(), ['clone', '--mirror', sourceLocation, repository]);
+  const sourceLocationValue = sourceLocation(source, lockedSource, options);
+  if (!(await pathExists(sourceLocationValue)) && options.sourceMode !== 'remote') {
+    fail(`${source.name} ${options.sourceMode} source is missing: ${sourceLocationValue}`);
+  }
+  validateLocalSourceMetadata(sourceLocationValue, source.name);
+  console.log(`\n[${source.name}] cloning and validating ${options.sourceMode} source`);
+  git(process.cwd(), ['clone', '--mirror', sourceLocationValue, repository]);
 
   validatePinnedSource(repository, source);
   const annotatedTags = new Map();
@@ -229,7 +313,7 @@ function createGeneratedCommit(repository, identity, timestamp, message) {
   return git(repository, ['rev-parse', 'HEAD']).stdout.trim();
 }
 
-async function assembleTarget(manifest, manifestPath, options, preparedSources, versions, workdir) {
+async function assembleTarget(manifest, options, preparedSources, executionLock, controlContract, filterRepo, workdir) {
   console.log(`\n[target] cloning ${manifest.target.url}`);
   git(process.cwd(), ['clone', '--no-checkout', manifest.target.url, options.output]);
   const targetRefsBeforeImport = refSnapshot(options.output);
@@ -258,10 +342,19 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
   if (JSON.stringify(targetRefsBeforeImport) !== JSON.stringify(expectedTargetRefs)) {
     fail('Target pre-import ref set differs from the exact main-only contract');
   }
+  const baseManifest = gitBlobBuffer(options.output, options.base, 'migration/sources.json');
+  if (sha256Buffer(baseManifest) !== executionLock.targetBaseSourceManifestSha256) {
+    fail('Target-base migration/sources.json differs from the execution lock');
+  }
+  const baseManifestJson = validateManifest(JSON.parse(baseManifest.toString('utf8')), { fixture: options.fixture });
+  if (!options.fixture) validateManifestImmutable(manifest, baseManifestJson);
   const reservedPaths = git(options.output, [
-    'ls-tree', '-r', '--name-only', options.base, '--', 'migration/import-lock.json', 'migration/evidence',
+    'ls-tree', '-r', '--name-only', options.base, '--',
+    'migration/execution-lock.json', 'migration/baselines.json', 'migration/package-classification.json',
+    'migration/control-evidence', 'migration/import-lock.json', 'migration/evidence',
   ]).stdout.split('\n').filter(Boolean);
-  if (reservedPaths.length > 0) fail(`Target base already uses reserved evidence paths: ${reservedPaths.join(', ')}`);
+  if (reservedPaths.length > 0) fail(`Target base already uses reserved control/evidence paths: ${reservedPaths.join(', ')}`);
+  preflightAllSourcePaths(options.output, options.base, manifest, preparedSources);
   git(options.output, ['checkout', '--detach', options.base]);
   git(options.output, ['switch', '-c', manifest.target.outputBranch]);
 
@@ -337,13 +430,32 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
     });
   }
 
-  const evidenceRoot = path.join(options.output, 'migration', 'evidence');
-  await mkdir(evidenceRoot, { recursive: true });
+  const finalControlContract = await validateControlContracts({
+    contractRoot: options.controlRoot,
+    artifactRoot: options.controlRoot,
+    manifest,
+    executionLock,
+    filterRepo,
+    expectedBase: options.base,
+    fixture: options.fixture,
+  });
+  if (JSON.stringify(finalControlContract.controlFiles) !== JSON.stringify(controlContract.controlFiles)
+    || JSON.stringify(finalControlContract.evidence) !== JSON.stringify(controlContract.evidence)) {
+    fail('Control contracts or evidence changed during import');
+  }
+  await copyControlTree({
+    controlRoot: options.controlRoot,
+    destinationRoot: options.output,
+    evidence: controlContract.evidence,
+  });
+  const importEvidenceRoot = path.join(options.output, 'migration', 'evidence', 'imports');
   for (const source of manifest.sources) {
     const prepared = preparedSources.get(source.name);
-    const sourceEvidence = path.join(evidenceRoot, source.name);
+    const sourceEvidence = path.join(importEvidenceRoot, source.name);
     await mkdir(sourceEvidence, { recursive: true });
-    await writeFileNormalized(path.join(sourceEvidence, 'commit-map'), prepared.commitMapContents);
+    const commitMap = prepared.commitMapContents.endsWith('\n')
+      ? prepared.commitMapContents : `${prepared.commitMapContents}\n`;
+    await writeFile(path.join(sourceEvidence, 'commit-map'), commitMap);
     await writeJson(path.join(sourceEvidence, 'refs.json'), {
       sourceHead: source.defaultHead,
       rewrittenHead: prepared.rewrittenHead,
@@ -351,25 +463,46 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
     });
   }
 
+  const evidenceTimestamp = commitTimestamp(options.output, 'HEAD') + 1;
   const lock = {
-    schemaVersion: 1,
-    manifest: path.basename(manifestPath),
-    manifestSha256: await sha256File(manifestPath),
+    schemaVersion: 2,
+    manifest: 'migration/sources.json',
+    manifestSha256: await sha256File(path.join(options.output, 'migration/sources.json')),
+    executionLock: {
+      path: 'migration/execution-lock.json',
+      sha256: await sha256File(path.join(options.output, 'migration/execution-lock.json')),
+    },
     targetBaseCommit: options.base,
     targetRefsBeforeImport,
     outputBranch: manifest.target.outputBranch,
-    tools: versions,
+    tools: executionLock.toolchain,
+    controlFiles: await buildControlFileRecords(options.output),
+    controlEvidence: controlContract.evidence.map((record) => ({
+      ownerContract: record.ownerContract,
+      source: record.sourcePath,
+      destination: record.destinationPath,
+      sha256: record.sha256,
+    })),
     imports: importResults,
   };
   await writeJson(path.join(options.output, 'migration', 'import-lock.json'), lock);
-  await writeJson(path.join(evidenceRoot, 'summary.json'), {
-    baseCommit: options.base,
+  await writeJson(path.join(options.output, 'migration', 'evidence', 'summary.json'), {
+    schemaVersion: 1,
+    baseCommit: lock.targetBaseCommit,
     manifestSha256: lock.manifestSha256,
-    imports: importResults,
+    executionLockSha256: lock.executionLock.sha256,
+    targetRefsBeforeImport: lock.targetRefsBeforeImport,
+    outputBranch: lock.outputBranch,
+    controlFiles: lock.controlFiles,
+    controlEvidence: lock.controlEvidence,
+    imports: lock.imports,
   });
 
-  git(options.output, ['add', '--', 'migration/import-lock.json', 'migration/evidence']);
-  const evidenceTimestamp = commitTimestamp(options.output, 'HEAD') + 1;
+  git(options.output, ['add', '--',
+    'migration/sources.json', 'migration/execution-lock.json', 'migration/baselines.json',
+    'migration/package-classification.json', 'migration/evidence/control', 'migration/evidence/imports',
+    'migration/evidence/summary.json', 'migration/import-lock.json',
+  ]);
   const evidenceCommit = createGeneratedCommit(
     options.output,
     manifest.generatedCommitIdentity,
@@ -382,14 +515,8 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
   console.log(`Base: ${options.base}`);
   console.log(`Evidence commit: ${evidenceCommit}`);
   console.log(`Final HEAD: ${finalHead}`);
-  console.log(`Run the verifier before pushing: node tools/verify-history.mjs --repo ${options.output} --manifest ${manifestPath}`);
+  console.log(`Run the verifier before pushing with the assembled manifest/lock and --control-root ${options.controlRoot}`);
   return { finalHead, evidenceCommit, workdir };
-}
-
-async function writeFileNormalized(filename, contents) {
-  await mkdir(path.dirname(filename), { recursive: true });
-  const normalized = contents.endsWith('\n') ? contents : `${contents}\n`;
-  await writeFile(filename, normalized);
 }
 
 async function main() {
@@ -398,22 +525,70 @@ async function main() {
     console.log(usage());
     return;
   }
-  if (options.workdir && (pathsOverlap(options.workdir, options.output) || pathsOverlap(options.output, options.workdir))) {
+  const physicalControlRoot = await prospectiveRealpath(options.controlRoot);
+  const physicalOutput = await prospectiveRealpath(options.output);
+  const physicalWorkdir = options.workdir ? await prospectiveRealpath(options.workdir) : null;
+  if (physicalWorkdir && (pathsOverlap(physicalWorkdir, physicalOutput) || pathsOverlap(physicalOutput, physicalWorkdir))) {
     fail('--workdir and --output must not be equal, nested, or otherwise overlap');
   }
+  for (const candidate of [physicalOutput, ...(physicalWorkdir ? [physicalWorkdir] : [])]) {
+    if (pathsOverlap(physicalControlRoot, candidate) || pathsOverlap(candidate, physicalControlRoot)) {
+      fail('--control-root must not physically overlap --output or --workdir');
+    }
+  }
+  const expectedManifest = path.join(options.controlRoot, 'migration', 'sources.json');
+  const expectedExecutionLock = path.join(options.controlRoot, 'migration', 'execution-lock.json');
+  if (options.manifest !== expectedManifest) fail('--manifest must be the exact control-root migration/sources.json');
+  if (options.executionLock !== expectedExecutionLock) {
+    fail('--execution-lock must be the exact control-root migration/execution-lock.json');
+  }
   if (!(await pathExists(options.manifest))) fail(`Manifest does not exist: ${options.manifest}`);
+  if (!(await pathExists(options.executionLock))) fail(`Execution lock does not exist: ${options.executionLock}`);
   if (await pathExists(options.output)) fail(`Output path already exists: ${options.output}`);
   if (options.workdir && await pathExists(options.workdir)) fail(`Work path already exists: ${options.workdir}`);
 
-  const manifest = validateManifest(await readJson(options.manifest));
-  const filterRepo = filterRepoVersion();
-  const versions = executionToolchain(filterRepo);
-  if (JSON.stringify(versions) !== JSON.stringify(manifest.historyToolchain)) {
-    fail(
-      `History toolchain mismatch:\nexpected ${JSON.stringify(manifest.historyToolchain)}\n`
-      + `observed ${JSON.stringify(versions)}`,
-    );
+  if (await sha256File(options.executionLock) !== options.executionLockSha256) {
+    fail('Execution lock differs from the separately reviewed digest');
   }
+  const manifest = validateManifest(await readJson(options.manifest), { fixture: options.fixture });
+  const executionLock = await readJson(options.executionLock);
+  await validateExecutionLockPreflight({
+    contractRoot: options.controlRoot,
+    artifactRoot: options.controlRoot,
+    manifest,
+    executionLock,
+    expectedBase: options.base,
+    fixture: options.fixture,
+    requireCommittedControl: !options.fixture,
+  });
+  await validateControlContracts({
+    contractRoot: options.controlRoot,
+    artifactRoot: options.controlRoot,
+    manifest,
+    executionLock,
+    expectedBase: options.base,
+    fixture: options.fixture,
+    requireCommittedControl: !options.fixture,
+    validateArtifacts: false,
+  });
+  await validateExecutionLockInputs({
+    artifactRoot: options.controlRoot,
+    manifest,
+    executionLock,
+    fixture: options.fixture,
+    requireCommittedControl: !options.fixture,
+  });
+  const filterRepo = await lockedFilterRepoDescriptor(options.controlRoot, executionLock);
+  const controlContract = await validateControlContracts({
+    contractRoot: options.controlRoot,
+    artifactRoot: options.controlRoot,
+    manifest,
+    executionLock,
+    filterRepo,
+    expectedBase: options.base,
+    fixture: options.fixture,
+    requireCommittedControl: !options.fixture,
+  });
   const workdir = options.workdir
     ? (await mkdir(options.workdir, { recursive: false }), options.workdir)
     : await mkdtemp(path.join(os.tmpdir(), 'uirouter-history-import-'));
@@ -426,10 +601,14 @@ async function main() {
 
   try {
     const preparedSources = new Map();
-    for (const source of manifest.sources) {
-      preparedSources.set(source.name, await prepareSource(source, workdir, filterRepo, options.sourceRoot));
+    for (const [index, source] of manifest.sources.entries()) {
+      preparedSources.set(source.name, await prepareSource(
+        source, executionLock.sources[index], workdir, filterRepo, options,
+      ));
     }
-    await assembleTarget(manifest, options.manifest, options, preparedSources, versions, workdir);
+    await assembleTarget(
+      manifest, options, preparedSources, executionLock, controlContract, filterRepo, workdir,
+    );
     succeeded = true;
   } finally {
     if (succeeded) {

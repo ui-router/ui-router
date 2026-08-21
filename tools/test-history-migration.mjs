@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { access, mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { access, chmod, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -8,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import {
   commitHasSignature,
+  executionToolchain,
   filterRepoVersion,
   generatedCommitEnv,
   git,
@@ -42,6 +44,23 @@ function runNode(script, args, expectedSuccess = true) {
     );
   }
   return `${result.stdout}\n${result.stderr}`;
+}
+
+async function directoryDigest(directory, relative = '') {
+  const hash = createHash('sha256');
+  const current = path.join(directory, relative);
+  for (const entry of (await readdir(current, { withFileTypes: true })).sort((a, b) => (
+    a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+  ))) {
+    const child = path.join(relative, entry.name);
+    if (entry.isDirectory()) hash.update(await directoryDigest(directory, child));
+    else hash.update(`${child}\0`).update(await readFile(path.join(directory, child)));
+  }
+  return hash.digest('hex');
+}
+
+function refs(repository) {
+  return git(repository, ['for-each-ref', '--format=%(refname) %(objectname)']).stdout;
 }
 
 async function clearWorktree(repository) {
@@ -85,7 +104,7 @@ function tagRecord(repository, name, include) {
   return record;
 }
 
-async function createFixture(root) {
+async function createFixture(root, historyToolchain) {
   const targetWork = path.join(root, 'target-work');
   const targetBare = path.join(root, 'target.git');
   await mkdir(targetWork);
@@ -95,22 +114,67 @@ async function createFixture(root) {
   git(root, ['clone', '--bare', '--quiet', targetWork, targetBare]);
 
   const sourceWork = path.join(root, 'source-work');
-  const sourceBare = path.join(root, 'source.git');
+  const sourceRoot = path.join(root, 'source-mirrors');
+  const sourceBare = path.join(sourceRoot, 'fixture.git');
   await mkdir(sourceWork);
+  await mkdir(sourceRoot);
   git(sourceWork, ['init', '-b', 'master', '--quiet']);
   await mkdir(path.join(sourceWork, 'integration'));
   await writeFile(path.join(sourceWork, 'package.json'), '{"name":"fixture","version":"1.0.0"}\n');
   await writeFile(path.join(sourceWork, 'index.js'), 'one\n');
+  await writeFile(path.join(sourceWork, 'executable.sh'), '#!/bin/sh\nexit 0\n');
+  await chmod(path.join(sourceWork, 'executable.sh'), 0o755);
+  await symlink('index.js', path.join(sourceWork, 'index-link.js'));
   await writeFile(path.join(sourceWork, 'integration', 'test.txt'), 'fixture\n');
-  commit(sourceWork, 'release one');
+  const releaseOne = commit(sourceWork, 'release one');
   git(sourceWork, ['tag', '1.0.0']);
+  git(sourceWork, ['branch', 'side']);
 
   await writeFile(path.join(sourceWork, 'package.json'), '{"name":"fixture","version":"2.0.0"}\n');
   await writeFile(path.join(sourceWork, 'index.js'), 'one\ntwo\n');
-  const head = commit(sourceWork, 'release two');
-  git(sourceWork, ['tag', '-a', 'v2.0.0', '-m', 'release two'], {
+  commit(sourceWork, 'prepare release two');
+  git(sourceWork, ['switch', 'side', '--quiet']);
+  await writeFile(path.join(sourceWork, 'side.txt'), 'side branch\n');
+  commit(sourceWork, 'side branch');
+  git(sourceWork, ['switch', 'master', '--quiet']);
+  git(sourceWork, ['merge', '--no-ff', '--no-gpg-sign', '-m', 'merge side branch', 'side'], {
     env: generatedCommitEnv(identity, timestamp),
   });
+  git(sourceWork, ['branch', '-D', 'side']);
+  const mergeHead = git(sourceWork, ['rev-parse', 'HEAD']).stdout.trim();
+  const signedCommitFile = path.join(root, 'signed-commit.txt');
+  const signedTree = git(sourceWork, ['rev-parse', 'HEAD^{tree}']).stdout.trim();
+  await writeFile(signedCommitFile, [
+    `tree ${signedTree}`,
+    `parent ${mergeHead}`,
+    `author ${identity.name} <${identity.email}> ${timestamp} +0000`,
+    `committer ${identity.name} <${identity.email}> ${timestamp} +0000`,
+    'gpgsig -----BEGIN PGP SIGNATURE-----',
+    ' ZmFrZS1jb21taXQtc2lnbmF0dXJl',
+    ' -----END PGP SIGNATURE-----',
+    '',
+    `release two; preserve ${releaseOne}`,
+    '',
+  ].join('\n'));
+  const head = git(sourceWork, ['hash-object', '-t', 'commit', '-w', signedCommitFile]).stdout.trim();
+  git(sourceWork, ['update-ref', 'refs/heads/master', head, mergeHead]);
+  git(sourceWork, ['reset', '--hard', '--quiet', head]);
+  const signedTagFile = path.join(root, 'signed-tag.txt');
+  await writeFile(signedTagFile, [
+    `object ${head}`,
+    'type commit',
+    'tag v2.0.0',
+    `tagger ${identity.name} <${identity.email}> ${timestamp} +0000`,
+    '',
+    'release two',
+    '',
+    '-----BEGIN PGP SIGNATURE-----',
+    'ZmFrZS10YWctc2lnbmF0dXJl',
+    '-----END PGP SIGNATURE-----',
+    '',
+  ].join('\n'));
+  const signedTag = git(sourceWork, ['hash-object', '-t', 'tag', '-w', signedTagFile]).stdout.trim();
+  git(sourceWork, ['update-ref', 'refs/tags/v2.0.0', signedTag]);
   git(sourceWork, ['tag', 'artifact']);
 
   git(sourceWork, ['switch', '--orphan', 'tag-only', '--quiet']);
@@ -137,7 +201,7 @@ async function createFixture(root) {
     tagNamespace: 'fixture@',
     releaseTags,
     excludedTags,
-    signedDefaultBranchCommitCount: 0,
+    signedDefaultBranchCommitCount: 1,
     moves: [{ from: 'lib/integration', to: 'integration' }],
   };
   source.tagSnapshotSha256 = sourceTagSnapshotSha256(source);
@@ -151,37 +215,48 @@ async function createFixture(root) {
       baseCommitPolicy: 'fixture requires --base',
       outputBranch: 'migration/history-import',
     },
-    historyToolchain: {
-      gitFilterRepoPackageVersion: '2.47.0',
-      gitFilterRepoReportedVersion: 'a40bce548d2c',
-    },
+    historyToolchain,
     generatedCommitIdentity: identity,
     tagPolicy: { description: 'fixture', renamedFormat: '<source-name>@<original-tag>' },
     sources: [source],
   };
   const manifestPath = path.join(root, 'manifest.json');
   await writeJson(manifestPath, manifest);
-  return { base, manifestPath, sourceBare };
+  return {
+    base, manifestPath, sourceBare, sourceRoot, targetBare, targetWork,
+  };
 }
 
 async function main() {
-  const version = filterRepoVersion();
-  assert(version.version === 'a40bce548d2c', `Expected git-filter-repo 2.47.0/a40bce548d2c, got ${version.version}`);
+  const filterRepo = filterRepoVersion();
+  assert(filterRepo.version === 'a40bce548d2c', `Expected git-filter-repo 2.47.0/a40bce548d2c, got ${filterRepo.version}`);
+  const historyToolchain = executionToolchain(filterRepo);
   const root = await mkdtemp(path.join(os.tmpdir(), 'uirouter-history-test-'));
   let succeeded = false;
   try {
-    const { base, manifestPath, sourceBare } = await createFixture(root);
+    const {
+      base, manifestPath, sourceBare, sourceRoot, targetBare, targetWork,
+    } = await createFixture(root, historyToolchain);
     const outputOne = path.join(root, 'output-1');
     const outputTwo = path.join(root, 'output-2');
-    for (const output of [outputOne, outputTwo]) {
-      runNode(importer, ['--manifest', manifestPath, '--base', base, '--output', output]);
-    }
+    runNode(importer, ['--manifest', manifestPath, '--base', base, '--output', outputOne]);
+    runNode(importer, [
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--base', base,
+      '--output', outputTwo,
+    ]);
     assert(git(outputOne, ['rev-parse', 'HEAD']).stdout === git(outputTwo, ['rev-parse', 'HEAD']).stdout, 'Final HEAD differs');
-    assert(git(outputOne, ['show-ref', '--tags']).stdout === git(outputTwo, ['show-ref', '--tags']).stdout, 'Tag refs differ');
+    assert(refs(outputOne) === refs(outputTwo), 'Final ref namespaces differ');
     assert(
-      await readFile(path.join(outputOne, 'migration/evidence/fixture/commit-map'), 'utf8')
-        === await readFile(path.join(outputTwo, 'migration/evidence/fixture/commit-map'), 'utf8'),
-      'Commit maps differ',
+      await readFile(path.join(outputOne, 'migration/import-lock.json'), 'utf8')
+        === await readFile(path.join(outputTwo, 'migration/import-lock.json'), 'utf8'),
+      'Import locks differ',
+    );
+    assert(
+      await directoryDigest(path.join(outputOne, 'migration/evidence'))
+        === await directoryDigest(path.join(outputTwo, 'migration/evidence')),
+      'Evidence trees differ',
     );
     await access(path.join(outputOne, 'integration/test.txt'));
     assert(!(await pathExists(path.join(outputOne, 'lib/integration'))), 'Layout source still exists');
@@ -189,8 +264,193 @@ async function main() {
     assert(!(await pathExists(path.join(outputOne, 'lib/tag-only.txt'))), 'Tag-only file leaked onto current branch');
 
     const report = path.join(root, 'verification.json');
-    runNode(verifier, ['--repo', outputOne, '--manifest', manifestPath, '--report', report]);
+    runNode(verifier, [
+      '--repo', outputOne,
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--report', report,
+    ]);
     assert((await readJson(report)).ok === true, 'Verifier report did not pass');
+
+    const nestedRoot = path.join(root, 'failure-nested-paths');
+    const nestedFailure = runNode(importer, [
+      '--manifest', manifestPath,
+      '--base', base,
+      '--workdir', nestedRoot,
+      '--output', path.join(nestedRoot, 'output'),
+    ], false);
+    assert(nestedFailure.includes('must not be equal, nested, or otherwise overlap'), 'Nested-path failure was not explicit');
+    assert(!(await pathExists(nestedRoot)), 'Nested-path failure mutated the filesystem');
+
+    const toolchainManifest = await readJson(manifestPath);
+    toolchainManifest.historyToolchain.npm = '0.0.0-fixture-mismatch';
+    const toolchainManifestPath = path.join(root, 'toolchain-mismatch-manifest.json');
+    await writeJson(toolchainManifestPath, toolchainManifest);
+    const toolchainFailure = runNode(importer, [
+      '--manifest', toolchainManifestPath,
+      '--base', base,
+      '--workdir', path.join(root, 'failure-toolchain-work'),
+      '--output', path.join(root, 'failure-toolchain-output'),
+    ], false);
+    assert(toolchainFailure.includes('History toolchain mismatch'), 'Toolchain mismatch failure was not explicit');
+    assert(!(await pathExists(path.join(root, 'failure-toolchain-work'))), 'Toolchain mismatch created a workdir');
+
+    const replacedCommit = git(sourceBare, ['rev-parse', 'refs/tags/1.0.0^{commit}']).stdout.trim();
+    git(sourceBare, ['update-ref', `refs/replace/${replacedCommit}`, 'refs/heads/master']);
+    const replacementFailure = runNode(importer, [
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--base', base,
+      '--workdir', path.join(root, 'failure-replacement-work'),
+      '--output', path.join(root, 'failure-replacement-output'),
+    ], false);
+    assert(replacementFailure.includes('source contains replacement refs'), 'Replacement-ref import failure was not explicit');
+    const replacementVerifyFailure = runNode(verifier, [
+      '--repo', outputOne,
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--workdir', path.join(root, 'failure-replacement-verify-work'),
+    ], false);
+    assert(replacementVerifyFailure.includes('source contains replacement refs'), 'Replacement-ref verify failure was not explicit');
+    git(sourceBare, ['update-ref', '-d', `refs/replace/${replacedCommit}`]);
+
+    await mkdir(path.join(sourceBare, 'info'), { recursive: true });
+    await writeFile(path.join(sourceBare, 'info', 'grafts'), `${replacedCommit}\n`);
+    const graftFailure = runNode(importer, [
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--base', base,
+      '--workdir', path.join(root, 'failure-graft-work'),
+      '--output', path.join(root, 'failure-graft-output'),
+    ], false);
+    assert(graftFailure.includes('unsafe Git metadata before clone: info/grafts'), 'Graft import failure was not explicit');
+    const graftVerifyFailure = runNode(verifier, [
+      '--repo', outputOne,
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--workdir', path.join(root, 'failure-graft-verify-work'),
+    ], false);
+    assert(graftVerifyFailure.includes('unsafe Git metadata before clone: info/grafts'), 'Graft verify failure was not explicit');
+    await rm(path.join(sourceBare, 'info', 'grafts'));
+
+    await mkdir(path.join(sourceBare, 'objects', 'info'), { recursive: true });
+    await writeFile(path.join(sourceBare, 'objects', 'info', 'alternates'), '/tmp/unsafe-alternate\n');
+    const alternatesFailure = runNode(importer, [
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--base', base,
+      '--workdir', path.join(root, 'failure-alternates-work'),
+      '--output', path.join(root, 'failure-alternates-output'),
+    ], false);
+    assert(alternatesFailure.includes('unsafe Git metadata before clone: objects/info/alternates'), 'Alternates import failure was not explicit');
+    const alternatesVerifyFailure = runNode(verifier, [
+      '--repo', outputOne,
+      '--manifest', manifestPath,
+      '--source-root', sourceRoot,
+      '--workdir', path.join(root, 'failure-alternates-verify-work'),
+    ], false);
+    assert(alternatesVerifyFailure.includes('unsafe Git metadata before clone: objects/info/alternates'), 'Alternates verify failure was not explicit');
+    await rm(path.join(sourceBare, 'objects', 'info', 'alternates'));
+
+    git(outputTwo, ['update-ref', 'refs/notes/unexpected', 'HEAD']);
+    const extraRefFailure = runNode(verifier, [
+      '--repo', outputTwo,
+      '--manifest', manifestPath,
+      '--workdir', path.join(root, 'failure-extra-ref-verify-work'),
+    ], false);
+    assert(extraRefFailure.includes('Final ref namespace differs'), 'Extra-ref failure was not explicit');
+    git(outputTwo, ['update-ref', '-d', 'refs/notes/unexpected']);
+
+    const originalOutputTwoHead = git(outputTwo, ['rev-parse', 'HEAD']).stdout.trim();
+    const tamperedRefsPath = path.join(outputTwo, 'migration/evidence/fixture/refs.json');
+    const tamperedRefs = await readJson(tamperedRefsPath);
+    tamperedRefs.sourceHead = '0'.repeat(40);
+    await writeJson(tamperedRefsPath, tamperedRefs);
+    git(outputTwo, ['add', 'migration/evidence/fixture/refs.json']);
+    git(outputTwo, ['commit', '--amend', '--no-edit', '--no-gpg-sign'], {
+      env: generatedCommitEnv(identity, timestamp),
+    });
+    const evidenceFailure = runNode(verifier, [
+      '--repo', outputTwo,
+      '--manifest', manifestPath,
+      '--workdir', path.join(root, 'failure-evidence-verify-work'),
+    ], false);
+    assert(evidenceFailure.includes('refs.json evidence differs'), 'Evidence-tamper failure was not explicit');
+    git(outputTwo, ['reset', '--hard', '--quiet', originalOutputTwoHead]);
+
+    const originalReleaseTag = git(sourceBare, ['rev-parse', 'refs/tags/v2.0.0']).stdout.trim();
+    git(sourceBare, ['update-ref', 'refs/tags/v2.0.0', 'refs/heads/master']);
+    const driftWork = path.join(root, 'failure-drift-work');
+    const driftOutput = path.join(root, 'failure-drift-output');
+    const driftFailure = runNode(
+      importer,
+      ['--manifest', manifestPath, '--base', base, '--workdir', driftWork, '--output', driftOutput],
+      false,
+    );
+    assert(driftFailure.includes('Tag object drifted'), 'Existing-tag drift failure was not explicit');
+    assert(await pathExists(driftWork), 'Existing-tag drift did not preserve workdir');
+    assert(!(await pathExists(driftOutput)), 'Existing-tag drift unexpectedly assembled target output');
+    git(sourceBare, ['update-ref', 'refs/tags/v2.0.0', originalReleaseTag]);
+
+    git(targetBare, ['update-ref', 'refs/tags/preexisting', base]);
+    const targetTagWork = path.join(root, 'failure-target-tag-work');
+    const targetTagOutput = path.join(root, 'failure-target-tag-output');
+    const targetTagFailure = runNode(
+      importer,
+      ['--manifest', manifestPath, '--base', base, '--workdir', targetTagWork, '--output', targetTagOutput],
+      false,
+    );
+    assert(targetTagFailure.includes('Target already has tags'), 'Target-tag collision failure was not explicit');
+    assert(await pathExists(targetTagWork), 'Target-tag collision did not preserve workdir');
+    assert(await pathExists(targetTagOutput), 'Target-tag collision did not preserve partial output');
+    git(targetBare, ['update-ref', '-d', 'refs/tags/preexisting']);
+
+    git(targetBare, ['update-ref', 'refs/heads/extra', base]);
+    const targetRefFailure = runNode(importer, [
+      '--manifest', manifestPath,
+      '--base', base,
+      '--workdir', path.join(root, 'failure-target-ref-work'),
+      '--output', path.join(root, 'failure-target-ref-output'),
+    ], false);
+    assert(targetRefFailure.includes('Target pre-import ref set differs'), 'Target-ref failure was not explicit');
+    git(targetBare, ['update-ref', '-d', 'refs/heads/extra']);
+
+    await mkdir(path.join(targetWork, 'migration', 'evidence'), { recursive: true });
+    await writeFile(path.join(targetWork, 'migration', 'evidence', 'preexisting.txt'), 'reserved\n');
+    const reservedBase = commit(targetWork, 'add reserved evidence path');
+    const reservedTarget = path.join(root, 'reserved-target.git');
+    git(root, ['clone', '--bare', '--quiet', targetWork, reservedTarget]);
+    const reservedManifest = await readJson(manifestPath);
+    reservedManifest.target.url = `file://${reservedTarget}`;
+    const reservedManifestPath = path.join(root, 'reserved-manifest.json');
+    await writeJson(reservedManifestPath, reservedManifest);
+    const reservedFailure = runNode(importer, [
+      '--manifest', reservedManifestPath,
+      '--base', reservedBase,
+      '--workdir', path.join(root, 'failure-reserved-work'),
+      '--output', path.join(root, 'failure-reserved-output'),
+    ], false);
+    assert(reservedFailure.includes('reserved evidence paths'), 'Reserved-path failure was not explicit');
+
+    git(targetWork, ['reset', '--hard', '--quiet', base]);
+    await writeFile(path.join(targetWork, 'lib'), 'target file collides with source directory\n');
+    const treeCollisionBase = commit(targetWork, 'add file-directory collision');
+    const treeCollisionTarget = path.join(root, 'tree-collision-target.git');
+    git(root, ['clone', '--bare', '--quiet', targetWork, treeCollisionTarget]);
+    const treeCollisionManifest = await readJson(manifestPath);
+    treeCollisionManifest.target.url = `file://${treeCollisionTarget}`;
+    const treeCollisionManifestPath = path.join(root, 'tree-collision-manifest.json');
+    await writeJson(treeCollisionManifestPath, treeCollisionManifest);
+    const treeCollisionFailure = runNode(importer, [
+      '--manifest', treeCollisionManifestPath,
+      '--base', treeCollisionBase,
+      '--workdir', path.join(root, 'failure-tree-collision-work'),
+      '--output', path.join(root, 'failure-tree-collision-output'),
+    ], false);
+    assert(treeCollisionFailure.includes('source/target tree collision before merge'), 'Source/target collision failure was not explicit');
+    const treeCollisionOutput = path.join(root, 'failure-tree-collision-output');
+    assert(git(treeCollisionOutput, ['rev-parse', 'HEAD']).stdout.trim() === treeCollisionBase, 'Tree collision created an import commit');
+    assert(!(await pathExists(path.join(treeCollisionOutput, 'migration', 'import-lock.json'))), 'Tree collision created import evidence');
 
     git(sourceBare, ['update-ref', 'refs/tags/unreviewed', 'refs/heads/master']);
     const tagWork = path.join(root, 'failure-tag-work');

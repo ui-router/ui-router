@@ -473,7 +473,13 @@ function validateBaselineDomain(baselines, manifest) {
   for (const entry of baselines.entries) {
     const source = sources.get(entry.source);
     if (!source) fail(`${entry.id} references an unknown baseline source`);
-    if (entry.sourceCommit !== source.defaultHead) fail(`${entry.id} baseline source commit differs from the manifest`);
+    const lockedBaselineCommits = new Set([
+      source.defaultHead,
+      ...source.releaseTags.map((tag) => tag.targetCommit),
+    ]);
+    if (!lockedBaselineCommits.has(entry.sourceCommit)) {
+      fail(`${entry.id} baseline source commit is not locked by the source manifest`);
+    }
     if ((entry.result === 'waived-failure' || entry.lifecycleReview === 'waived') && entry.waiver === null) {
       fail(`${entry.id} requires a waiver`);
     }

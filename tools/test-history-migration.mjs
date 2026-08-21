@@ -725,6 +725,27 @@ async function main() {
     ), false);
     assert(extraEvidenceFailure.includes('missing or extra files'), 'Extra control evidence was accepted');
 
+    const taggedBaselineControl = await copyControl(fixture.controlRoot, path.join(root, 'control-tagged-baseline'));
+    const taggedBaselinesPath = path.join(taggedBaselineControl, 'migration/baselines.json');
+    const taggedBaselines = await readJson(taggedBaselinesPath);
+    taggedBaselines.entries[0].sourceCommit = fixtureManifest.sources[0].releaseTags[0].targetCommit;
+    await writeJson(taggedBaselinesPath, taggedBaselines);
+    await rechainContracts(taggedBaselineControl);
+    runNode(importer, taggedBaselineControl, importArgs(
+      fixture, taggedBaselineControl, 'mirror', path.join(root, 'output-tagged-baseline'),
+    ));
+    const unlockedBaselineControl = await copyControl(fixture.controlRoot, path.join(root, 'control-unlocked-baseline'));
+    const unlockedBaselinesPath = path.join(unlockedBaselineControl, 'migration/baselines.json');
+    const unlockedBaselines = await readJson(unlockedBaselinesPath);
+    unlockedBaselines.entries[0].sourceCommit = '0'.repeat(40);
+    await writeJson(unlockedBaselinesPath, unlockedBaselines);
+    await rechainContracts(unlockedBaselineControl);
+    const unlockedBaselineFailure = runNode(importer, unlockedBaselineControl, importArgs(
+      fixture, unlockedBaselineControl, 'mirror', path.join(root, 'failure-unlocked-baseline-output'),
+    ), false);
+    assert(unlockedBaselineFailure.includes('not locked by the source manifest'),
+      'Control contracts accepted an unrecorded baseline source commit');
+
     const missingControl = await copyControl(fixture.controlRoot, path.join(root, 'control-missing'));
     await rm(path.join(missingControl, 'migration/baselines.json'));
     const missingControlFailure = runNode(importer, missingControl, importArgs(

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/package-classification.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "executionLockSha256", "baselinesSha256", "inventoryManifestCount", "manifests", "edges", "resolutions", "lifecycleHooks"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "executionLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "baselinesSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "inventoryManifestCount": { "const": 44 },
+    "manifests": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "origin", "class", "published", "private", "workspace", "lockOwner", "finalName", "owningLane", "ownedFiles", "internalResolutionMode", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "path": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "origin": { "enum": ["imported", "generated-root", "generated-tool"] },
+          "class": { "enum": ["published-package", "example", "integration", "fixture", "nested-tool", "root"] },
+          "published": { "type": "boolean" },
+          "private": { "type": "boolean" },
+          "workspace": { "type": "boolean" },
+          "lockOwner": { "enum": ["root", "local", "none"] },
+          "finalName": { "type": "string", "minLength": 1 },
+          "owningLane": { "type": "string", "minLength": 1 },
+          "ownedFiles": { "type": "array", "minItems": 1, "items": { "$ref": "contract-common.schema.json#/$defs/relativePath" } },
+          "internalResolutionMode": { "enum": ["workspace", "local-tarball", "published-registry", "none"] },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "consumerManifest", "manifestSection", "package", "declaredSpec", "finalSpec", "expectedVersion", "resolutionMode", "expectedOrigin", "owningLane", "packedExpectation", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "consumerManifest": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "manifestSection": { "enum": ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies", "legacy-injected"] },
+          "package": { "type": "string", "minLength": 1 },
+          "declaredSpec": { "type": ["string", "null"] },
+          "finalSpec": { "type": "string", "minLength": 1 },
+          "expectedVersion": { "type": "string", "minLength": 1 },
+          "resolutionMode": { "enum": ["workspace", "local-tarball", "published-registry"] },
+          "expectedOrigin": { "type": "string", "minLength": 1 },
+          "owningLane": { "type": "string", "minLength": 1 },
+          "packedExpectation": { "enum": ["local-tarball", "published-registry", "not-applicable"] },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    },
+    "resolutions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "owner", "originalSelector", "originalScope", "affectedDependencyPaths", "directness", "decision", "rootScopeBroadens", "approval", "expectedLockEntries", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "owner": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "originalSelector": { "type": "string", "minLength": 1 },
+          "originalScope": { "type": "string", "minLength": 1 },
+          "affectedDependencyPaths": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "directness": { "enum": ["direct", "transitive", "both"] },
+          "decision": { "enum": ["root-override", "direct-dependency", "remove", "isolated-integration"] },
+          "rootScopeBroadens": { "type": "boolean" },
+          "approval": { "type": "string", "minLength": 1 },
+          "expectedLockEntries": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    },
+    "lifecycleHooks": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "manifest", "hook", "decision", "explicitTask", "owner", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "manifest": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "hook": { "type": "string", "minLength": 1 },
+          "decision": { "enum": ["explicit-task", "disabled", "no-side-effect"] },
+          "explicitTask": { "type": ["string", "null"] },
+          "owner": { "type": "string", "minLength": 1 },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    }
+  }
+}

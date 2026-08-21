@@ -26,7 +26,7 @@ function usage() {
   return `Usage: node tools/verify-history.mjs --repo <directory> [options]
 
 Options:
-  --manifest <file>    Source manifest (default: <repo>/migration/sources.json)
+  --manifest <file>    Required source manifest
   --workdir <dir>      New work directory for verification source clones
   --source-root <dir>  Optional directory containing validated <source-name>.git mirrors
   --report <file>      Write a JSON verification report outside the repository
@@ -55,7 +55,7 @@ function parseArgs(argv) {
     fail(`Unknown argument: ${argument}`);
   }
   if (!options.repo) fail('--repo is required');
-  options.manifest ??= path.join(options.repo, 'migration', 'sources.json');
+  if (!options.manifest) fail('--manifest is required');
   return options;
 }
 
@@ -283,8 +283,13 @@ function verifyAnnotatedTag(sourceRepository, targetRepository, sourceTag, targe
     || onlyHeader(targetParsed, 'tag') !== targetTag) {
     fail(`${targetTag} annotation has the wrong direct target, type, or name`);
   }
-  if (onlyHeader(sourceParsed, 'tagger') !== onlyHeader(targetParsed, 'tagger')) {
-    fail(`${targetTag} tagger metadata differs`);
+  const expectedHeaders = sourceParsed.headers.map((header) => {
+    if (header.key === 'object') return { key: 'object', value: expectedRewrittenCommit };
+    if (header.key === 'tag') return { key: 'tag', value: targetTag };
+    return header;
+  });
+  if (JSON.stringify(targetParsed.headers) !== JSON.stringify(expectedHeaders)) {
+    fail(`${targetTag} ordered non-signature tag headers differ`);
   }
   const sourceMessage = splitTagSignature(sourceParsed.message);
   const targetMessage = splitTagSignature(targetParsed.message);

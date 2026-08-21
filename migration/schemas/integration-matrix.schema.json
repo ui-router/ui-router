@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/integration-matrix.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packageClassificationSha256", "fixtures"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageClassificationSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "fixtures": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "group", "owner", "evidence", "lockOwner", "runtime", "committedManifestSha256", "committedLockSha256", "tarballDirectory", "internalEdges", "externalGraphSha256", "allowedExternalGraphChanges", "staging", "cleanCommand", "reuseCommand", "sandbox", "sentinelPackage", "failureBundleContents", "resetInputs"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "path": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "group": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 1 },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" },
+          "lockOwner": { "const": "local" },
+          "runtime": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["node", "npm", "browser"],
+            "properties": {
+              "node": { "type": "string", "minLength": 1 },
+              "npm": { "type": "string", "minLength": 1 },
+              "browser": { "$ref": "#/$defs/browser" }
+            }
+          },
+          "committedManifestSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+          "committedLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+          "tarballDirectory": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "internalEdges": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "package", "manifestSection", "declaredSpec", "legacySourceKey", "expectedVersion", "origin", "tarballArtifactId", "owner", "evidence"],
+              "properties": {
+                "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+                "package": { "type": "string", "minLength": 1 },
+                "manifestSection": { "enum": ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] },
+                "declaredSpec": { "type": ["string", "null"] },
+                "legacySourceKey": { "type": ["string", "null"] },
+                "expectedVersion": { "type": "string", "minLength": 1 },
+                "origin": { "enum": ["local-tarball", "published-registry"] },
+                "tarballArtifactId": { "type": ["string", "null"] },
+                "owner": { "type": "string", "minLength": 1 },
+                "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+              },
+              "allOf": [
+                {
+                  "if": { "properties": { "origin": { "const": "local-tarball" } }, "required": ["origin"] },
+                  "then": { "properties": { "tarballArtifactId": { "type": "string", "minLength": 1 } } },
+                  "else": { "properties": { "tarballArtifactId": { "type": "null" } } }
+                }
+              ]
+            }
+          },
+          "externalGraphSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+          "allowedExternalGraphChanges": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["package", "expectedVersion", "triggeringEdge", "reason", "evidence"],
+              "properties": {
+                "package": { "type": "string", "minLength": 1 },
+                "expectedVersion": { "type": "string", "minLength": 1 },
+                "triggeringEdge": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+                "reason": { "type": "string", "minLength": 1 },
+                "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+              }
+            }
+          },
+          "staging": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mode", "manifestPath", "lockPath", "stagedManifestPath", "temporaryLockPath", "rewriteEdgeIds", "lockCommand", "installCommand", "restorationPolicy"],
+            "properties": {
+              "mode": { "const": "copy-and-rewrite-local-tarballs" },
+              "manifestPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+              "lockPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+              "stagedManifestPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+              "temporaryLockPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+              "rewriteEdgeIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "contract-common.schema.json#/$defs/identifier" } },
+              "lockCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
+              "installCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
+              "restorationPolicy": { "const": "committed-manifest-and-lock-remain-byte-identical" }
+            }
+          },
+          "cleanCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
+          "reuseCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
+          "sandbox": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["outsideRepositoryAncestry", "allowSourceSymlinks", "allowNodeModulesSymlinks", "allowMutableHardLinks", "unsetEnvironment"],
+            "properties": {
+              "outsideRepositoryAncestry": { "const": true },
+              "allowSourceSymlinks": { "const": false },
+              "allowNodeModulesSymlinks": { "const": false },
+              "allowMutableHardLinks": { "const": false },
+              "unsetEnvironment": { "type": "array", "uniqueItems": true, "contains": { "const": "NODE_PATH" }, "items": { "type": "string" } }
+            }
+          },
+          "sentinelPackage": { "type": "string", "minLength": 1 },
+          "failureBundleContents": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "uniqueItems": true,
+            "items": { "enum": ["original-manifest-lock", "staged-manifest-lock", "matrix-entry", "run-lock-and-tarballs", "toolchain-config", "dependency-graph", "command-and-logs"] },
+            "allOf": [
+              { "contains": { "const": "original-manifest-lock" } },
+              { "contains": { "const": "staged-manifest-lock" } },
+              { "contains": { "const": "matrix-entry" } },
+              { "contains": { "const": "run-lock-and-tarballs" } },
+              { "contains": { "const": "toolchain-config" } },
+              { "contains": { "const": "dependency-graph" } },
+              { "contains": { "const": "command-and-logs" } }
+            ]
+          },
+          "resetInputs": {
+            "type": "array",
+            "minItems": 9,
+            "maxItems": 9,
+            "uniqueItems": true,
+            "items": { "enum": ["fixture-tree", "lock", "matrix", "repository-revision", "platform", "node-npm", "tarballs", "dependency-graph", "command"] },
+            "allOf": [
+              { "contains": { "const": "fixture-tree" } },
+              { "contains": { "const": "lock" } },
+              { "contains": { "const": "matrix" } },
+              { "contains": { "const": "repository-revision" } },
+              { "contains": { "const": "platform" } },
+              { "contains": { "const": "node-npm" } },
+              { "contains": { "const": "tarballs" } },
+              { "contains": { "const": "dependency-graph" } },
+              { "contains": { "const": "command" } }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "browser": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "revision", "installerVersion", "sha256"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "revision": { "type": "string", "minLength": 1 },
+            "installerVersion": { "type": "string", "minLength": 1 },
+            "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+          }
+        }
+      ]
+    }
+  }
+}

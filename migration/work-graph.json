@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    { "id": "H00", "dependsOn": [] },
+    { "id": "H01", "dependsOn": ["H00"] },
+    { "id": "H02", "dependsOn": ["H01", "N00"] },
+    { "id": "H03", "dependsOn": ["H02"] },
+    { "id": "H03R", "dependsOn": ["H03", "B03", "N00"] },
+    { "id": "H04", "dependsOn": ["H03R"] },
+    { "id": "H05", "dependsOn": ["H04"] },
+    { "id": "B01", "dependsOn": ["H00"] },
+    { "id": "B02", "dependsOn": ["B01", "H01"] },
+    { "id": "B03", "dependsOn": ["B02"] },
+    { "id": "N00", "dependsOn": ["H01", "B03"] },
+    { "id": "N01", "dependsOn": ["H05", "N00"] },
+    { "id": "N02", "dependsOn": ["H05", "N00"] },
+    { "id": "N03", "dependsOn": ["N01", "N02", "B03"] },
+    { "id": "N04", "dependsOn": ["N02", "N03"] },
+    { "id": "N05", "dependsOn": ["N02", "B03"] },
+    { "id": "S01", "dependsOn": ["N03", "N05", "B03"] },
+    { "id": "S02", "dependsOn": ["S01", "N04"] },
+    { "id": "S03", "dependsOn": ["S01", "S02"] },
+    { "id": "I01", "dependsOn": ["H05", "N03", "B03"] },
+    { "id": "I02", "dependsOn": ["S03", "I01"] },
+    { "id": "P01", "dependsOn": ["S03", "N04"] },
+    { "id": "C01", "dependsOn": ["S03", "I02", "P01", "B03", "N05"] },
+    { "id": "C02", "dependsOn": ["C01"] },
+    { "id": "A01", "dependsOn": ["C02"] },
+    { "id": "R01", "dependsOn": ["A01"] }
+  ]
+}

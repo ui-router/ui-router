@@ -15,7 +15,8 @@ export function run(command, args, options = {}) {
     encoding: 'utf8',
     env: options.cleanEnv ? options.env : { ...process.env, ...options.env },
     maxBuffer: 64 * 1024 * 1024,
-    stdio: options.stdio ?? ['ignore', 'pipe', 'pipe'],
+    input: options.input,
+    stdio: options.stdio ?? [options.input === undefined ? 'ignore' : 'pipe', 'pipe', 'pipe'],
   });
 
   if (result.error) throw result.error;

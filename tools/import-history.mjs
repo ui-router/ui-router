@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import {
+  catFileBatch,
   commitTimestamp,
   executionToolchain,
   fail,
@@ -120,6 +121,26 @@ function parseCommitMap(contents) {
   return map;
 }
 
+function rewriteAnnotatedTag(repository, originalContents, targetCommit, targetName) {
+  const separator = originalContents.indexOf(Buffer.from('\n\n'));
+  if (separator < 0) fail(`Malformed annotated tag ${targetName}`);
+  const rewrittenHeaders = originalContents.subarray(0, separator).toString('utf8').split('\n').map((line) => {
+    if (line.startsWith('object ')) return `object ${targetCommit}`;
+    if (line.startsWith('tag ')) return `tag ${targetName}`;
+    return line;
+  });
+  const message = originalContents.subarray(separator + 2);
+  const signatureOffset = message.indexOf(Buffer.from('-----BEGIN PGP SIGNATURE-----'));
+  const unsignedMessage = signatureOffset < 0 ? message : message.subarray(0, signatureOffset);
+  const contents = Buffer.concat([
+    Buffer.from(`${rewrittenHeaders.join('\n')}\n\n`),
+    unsignedMessage,
+  ]);
+  const objectId = git(repository, ['hash-object', '-t', 'tag', '-w', '--stdin'], { input: contents }).stdout.trim();
+  git(repository, ['update-ref', `refs/tags/${targetName}`, objectId]);
+  return objectId;
+}
+
 async function prepareSource(source, workdir, filterRepo, sourceRoot) {
   const repository = path.join(workdir, `${source.name}.git`);
   const sourceLocation = sourceRoot ? path.join(sourceRoot, `${source.name}.git`) : source.url;
@@ -129,6 +150,12 @@ async function prepareSource(source, workdir, filterRepo, sourceRoot) {
   git(process.cwd(), ['clone', '--mirror', sourceLocation, repository]);
 
   validatePinnedSource(repository, source);
+  const annotatedTags = new Map();
+  const annotatedTagIds = source.releaseTags.filter((tag) => tag.objectType === 'tag').map((tag) => tag.objectId);
+  if (annotatedTagIds.length > 0) {
+    const objects = catFileBatch(repository, annotatedTagIds);
+    for (const objectId of annotatedTagIds) annotatedTags.set(objectId, objects.get(objectId).contents);
+  }
 
   const allowedRefs = new Set([source.sourceRef, ...source.releaseTags.map((tag) => tag.sourceRef)]);
   removeUnselectedRefs(repository, allowedRefs);
@@ -157,6 +184,12 @@ async function prepareSource(source, workdir, filterRepo, sourceRoot) {
   const commitMapContents = await readFile(commitMapPath, 'utf8');
   const commitMap = parseCommitMap(commitMapContents);
   if (commitMap.get(source.defaultHead) !== rewrittenHead) fail(`${source.name} commit map does not map the default head`);
+  for (const tag of source.releaseTags) {
+    if (tag.objectType !== 'tag') continue;
+    const rewrittenCommit = commitMap.get(tag.targetCommit);
+    if (!rewrittenCommit) fail(`${source.name} commit map does not map annotated tag ${tag.name}`);
+    rewriteAnnotatedTag(repository, annotatedTags.get(tag.objectId), rewrittenCommit, tag.targetName);
+  }
 
   const tags = source.releaseTags.map((tag) => {
     const rewrittenCommit = git(repository, ['rev-parse', `refs/tags/${tag.targetName}^{commit}`]).stdout.trim();

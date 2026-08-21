@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/path-repairs.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "executionLockSha256", "packageClassificationSha256", "moves", "repairs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "executionLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "packageClassificationSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "moves": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "from", "to", "moveCommit", "owner", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "source": { "type": "string", "minLength": 1 },
+          "from": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "to": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "moveCommit": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "owner": { "type": "string", "minLength": 1 },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    },
+    "repairs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "moveId", "owningPackage", "field", "oldReference", "newReference", "interpretationMode", "repairCommit", "owningTask", "validation", "smokeAssertion", "evidence"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "moveId": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "owningPackage": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "field": { "type": "string", "minLength": 1 },
+          "oldReference": { "type": "string", "minLength": 1 },
+          "newReference": { "type": "string", "minLength": 1 },
+          "interpretationMode": { "enum": ["process-cwd", "config-file", "repository-root", "url", "documentation"] },
+          "repairCommit": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "owningTask": { "type": "string", "pattern": "^[A-Z][A-Z0-9]*$" },
+          "validation": { "$ref": "contract-common.schema.json#/$defs/command" },
+          "smokeAssertion": { "type": "string", "minLength": 1 },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+        }
+      }
+    }
+  }
+}

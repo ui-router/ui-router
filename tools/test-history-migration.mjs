@@ -165,6 +165,7 @@ async function createFixture(root, historyToolchain) {
     'type commit',
     'tag v2.0.0',
     `tagger ${identity.name} <${identity.email}> ${timestamp} +0000`,
+    'encoding UTF-8',
     '',
     'release two',
     '',
@@ -271,6 +272,8 @@ async function main() {
       '--report', report,
     ]);
     assert((await readJson(report)).ok === true, 'Verifier report did not pass');
+    const missingManifestFailure = runNode(verifier, ['--repo', outputOne], false);
+    assert(missingManifestFailure.includes('--manifest is required'), 'Verifier accepted an implicit assembled-tree manifest');
 
     const nestedRoot = path.join(root, 'failure-nested-paths');
     const nestedFailure = runNode(importer, [

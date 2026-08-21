@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/import-lock.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "manifest", "manifestSha256", "executionLock", "targetBaseCommit", "targetRefsBeforeImport", "outputBranch", "tools", "controlFiles", "controlEvidence", "imports"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "manifest": { "const": "migration/sources.json" },
+    "manifestSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "executionLock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "const": "migration/execution-lock.json" },
+        "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+      }
+    },
+    "targetBaseCommit": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+    "targetRefsBeforeImport": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "outputBranch": { "type": "string", "minLength": 1 },
+    "tools": { "$ref": "execution-lock.schema.json#/properties/toolchain" },
+    "controlFiles": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "destination", "sha256"],
+        "properties": {
+          "id": { "enum": ["sources", "execution-lock", "baselines", "package-classification"] },
+          "source": { "enum": ["migration/sources.json", "migration/execution-lock.json", "migration/baselines.json", "migration/package-classification.json"] },
+          "destination": { "enum": ["migration/sources.json", "migration/execution-lock.json", "migration/baselines.json", "migration/package-classification.json"] },
+          "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+        }
+      }
+    },
+    "controlEvidence": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ownerContract", "source", "destination", "sha256"],
+        "properties": {
+          "ownerContract": { "enum": ["execution-lock", "baselines", "package-classification"] },
+          "source": { "type": "string", "pattern": "^migration/control-evidence/" },
+          "destination": { "type": "string", "pattern": "^migration/evidence/control/" },
+          "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+        }
+      }
+    },
+    "imports": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "sourceHead", "rewrittenHead", "mergeCommit", "layoutCommit", "releaseTagCount"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "sourceHead": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "rewrittenHead": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "mergeCommit": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "layoutCommit": {
+            "oneOf": [
+              { "$ref": "contract-common.schema.json#/$defs/objectId" },
+              { "type": "null" }
+            ]
+          },
+          "releaseTagCount": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

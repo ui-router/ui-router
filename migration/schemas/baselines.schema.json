@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/baselines.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "executionLockSha256", "sourceManifestSha256", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "executionLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "sourceManifestSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "entries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "sourceCommit", "sourcePath", "discoveredFrom", "workflowMatrixKey", "downstreamGroup", "downstreamProject", "owner", "lane", "command", "packageManager", "runtime", "lifecycleReview", "result", "expectedFailureReason", "evidence", "waiver"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "source": { "type": "string", "minLength": 1 },
+          "sourceCommit": { "$ref": "contract-common.schema.json#/$defs/objectId" },
+          "sourcePath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "discoveredFrom": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "contract-common.schema.json#/$defs/relativePath" } },
+          "workflowMatrixKey": { "type": ["string", "null"] },
+          "downstreamGroup": { "type": ["string", "null"] },
+          "downstreamProject": { "type": ["string", "null"] },
+          "owner": { "type": "string", "minLength": 1 },
+          "lane": { "enum": ["install", "static", "build", "unit", "integration", "browser", "e2e", "docs", "pack", "downstream"] },
+          "legacyInjectedEdges": { "type": "array", "items": { "type": "string", "minLength": 1 }, "default": [] },
+          "command": { "$ref": "contract-common.schema.json#/$defs/command" },
+          "packageManager": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "version", "lockPolicy"],
+            "properties": {
+              "name": { "enum": ["npm", "yarn"] },
+              "version": { "type": "string", "minLength": 1 },
+              "lockPolicy": { "enum": ["npm-ci", "npm-install", "yarn-frozen-lockfile", "no-lock-reviewed"] }
+            }
+          },
+          "runtime": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["node", "osImageDigest", "architecture", "timezone", "locale", "browser"],
+            "properties": {
+              "node": { "type": "string", "minLength": 1 },
+              "osImageDigest": { "type": "string", "minLength": 1 },
+              "architecture": { "type": "string", "minLength": 1 },
+              "timezone": { "type": "string", "minLength": 1 },
+              "locale": { "type": "string", "minLength": 1 },
+              "browser": {
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["name", "revision", "installerVersion", "sha256"],
+                    "properties": {
+                      "name": { "type": "string", "minLength": 1 },
+                      "revision": { "type": "string", "minLength": 1 },
+                      "installerVersion": { "type": "string", "minLength": 1 },
+                      "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "lifecycleReview": { "enum": ["none", "safe-explicit", "disabled", "waived"] },
+          "result": { "enum": ["pass", "expected-failure", "waived-failure"] },
+          "expectedFailureReason": { "type": ["string", "null"] },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" },
+          "waiver": { "$ref": "contract-common.schema.json#/$defs/waiver" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "result": { "const": "waived-failure" } }, "required": ["result"] },
+            "then": { "properties": { "waiver": { "type": "object" } } }
+          },
+          {
+            "if": { "properties": { "lifecycleReview": { "const": "waived" } }, "required": ["lifecycleReview"] },
+            "then": { "properties": { "waiver": { "type": "object" } } }
+          },
+          {
+            "if": { "properties": { "result": { "const": "expected-failure" } }, "required": ["result"] },
+            "then": { "properties": { "expectedFailureReason": { "type": "string", "minLength": 1 } } },
+            "else": { "properties": { "expectedFailureReason": { "type": "null" } } }
+          }
+        ]
+      }
+    }
+  }
+}

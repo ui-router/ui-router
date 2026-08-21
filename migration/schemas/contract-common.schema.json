@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/contract-common.schema.json",
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "objectId": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "anyOf": [
+          { "pattern": "^/" },
+          { "pattern": "^[A-Za-z]:" },
+          { "pattern": "(^|/)\\.\\.($|/)" }
+        ]
+      }
+    },
+    "identifier": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._@/-]*$" },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cwd", "argv", "environment", "expectedStatus"],
+      "properties": {
+        "cwd": { "$ref": "#/$defs/relativePath" },
+        "argv": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "environment": { "type": "object", "additionalProperties": { "type": "string" } },
+        "expectedStatus": { "type": "integer", "minimum": 0, "maximum": 255 }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/relativePath" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "waiver": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["owner", "reason", "trackingIssue", "expires"],
+          "properties": {
+            "owner": { "type": "string", "minLength": 1 },
+            "reason": { "type": "string", "minLength": 1 },
+            "trackingIssue": { "type": "string", "format": "uri" },
+            "expires": { "type": "string", "format": "date" }
+          }
+        }
+      ]
+    }
+  }
+}

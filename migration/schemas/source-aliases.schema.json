@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/source-aliases.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packageClassificationSha256", "edges"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageClassificationSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "edges": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "package", "export", "sourceEntrypoint", "consumer", "lane", "owner", "evidence", "precedence", "adapters", "watchRoots", "ignoredPaths", "invalidationCommand", "expectedRealpath", "productionDisableRule"],
+        "properties": {
+          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+          "package": { "type": "string", "minLength": 1 },
+          "export": { "type": "string", "minLength": 1 },
+          "sourceEntrypoint": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "consumer": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "lane": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 1 },
+          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" },
+          "precedence": { "type": "integer", "minimum": 0 },
+          "adapters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["typescript", "jest", "vitest", "karmaWebpack", "rollupRolldownVite", "ngPackagr"],
+            "properties": {
+              "typescript": { "$ref": "#/$defs/adapter" },
+              "jest": { "$ref": "#/$defs/adapter" },
+              "vitest": { "$ref": "#/$defs/adapter" },
+              "karmaWebpack": { "$ref": "#/$defs/adapter" },
+              "rollupRolldownVite": { "$ref": "#/$defs/adapter" },
+              "ngPackagr": { "$ref": "#/$defs/adapter" }
+            }
+          },
+          "watchRoots": { "type": "array", "minItems": 1, "items": { "$ref": "contract-common.schema.json#/$defs/relativePath" } },
+          "ignoredPaths": { "type": "array", "items": { "$ref": "contract-common.schema.json#/$defs/relativePath" } },
+          "invalidationCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
+          "expectedRealpath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+          "productionDisableRule": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "adapter": {
+      "oneOf": [
+        { "const": "not-applicable" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["configPath", "selector", "positiveTest", "watchTest", "expectedWatchObservation", "negativeProductionTest"],
+          "properties": {
+            "configPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
+            "selector": { "type": "string", "minLength": 1 },
+            "positiveTest": { "$ref": "contract-common.schema.json#/$defs/command" },
+            "watchTest": { "$ref": "contract-common.schema.json#/$defs/command" },
+            "expectedWatchObservation": { "type": "string", "minLength": 1 },
+            "negativeProductionTest": { "$ref": "contract-common.schema.json#/$defs/command" }
+          }
+        }
+      ]
+    }
+  }
+}

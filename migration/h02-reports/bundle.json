@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "sourceManifestSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
+  "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+  "targetBaseCommit": "7e99fcbfa6aa71857866a0d10f54ca22f76d8433",
+  "finalHead": "6fdc8269620f4bfcf1997c68ef4323429c7cc568",
+  "sourceCount": 16,
+  "releaseTagCount": 475,
+  "sources": [
+    {
+      "name": "core",
+      "selectedCommitCount": 2829,
+      "defaultBranchCommitCount": 2826,
+      "releaseTagCount": 54,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 644
+    },
+    {
+      "name": "dsr",
+      "selectedCommitCount": 548,
+      "defaultBranchCommitCount": 548,
+      "releaseTagCount": 7,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 398
+    },
+    {
+      "name": "rx",
+      "selectedCommitCount": 455,
+      "defaultBranchCommitCount": 455,
+      "releaseTagCount": 14,
+      "excludedTagCount": 1,
+      "signedDefaultBranchCommitCount": 332
+    },
+    {
+      "name": "redux",
+      "selectedCommitCount": 42,
+      "defaultBranchCommitCount": 42,
+      "releaseTagCount": 1,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 4
+    },
+    {
+      "name": "sticky-states",
+      "selectedCommitCount": 628,
+      "defaultBranchCommitCount": 627,
+      "releaseTagCount": 7,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 415
+    },
+    {
+      "name": "visualizer",
+      "selectedCommitCount": 412,
+      "defaultBranchCommitCount": 389,
+      "releaseTagCount": 40,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 173
+    },
+    {
+      "name": "angularjs",
+      "selectedCommitCount": 2212,
+      "defaultBranchCommitCount": 2126,
+      "releaseTagCount": 68,
+      "excludedTagCount": 9,
+      "signedDefaultBranchCommitCount": 46
+    },
+    {
+      "name": "sample-app-angularjs",
+      "selectedCommitCount": 631,
+      "defaultBranchCommitCount": 631,
+      "releaseTagCount": 0,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 405
+    },
+    {
+      "name": "angular",
+      "selectedCommitCount": 2716,
+      "defaultBranchCommitCount": 2707,
+      "releaseTagCount": 51,
+      "excludedTagCount": 5,
+      "signedDefaultBranchCommitCount": 586
+    },
+    {
+      "name": "sample-app-angular",
+      "selectedCommitCount": 861,
+      "defaultBranchCommitCount": 861,
+      "releaseTagCount": 0,
+      "excludedTagCount": 2,
+      "signedDefaultBranchCommitCount": 694
+    },
+    {
+      "name": "angular-hybrid",
+      "selectedCommitCount": 689,
+      "defaultBranchCommitCount": 683,
+      "releaseTagCount": 55,
+      "excludedTagCount": 2,
+      "signedDefaultBranchCommitCount": 362
+    },
+    {
+      "name": "sample-app-angular-hybrid",
+      "selectedCommitCount": 254,
+      "defaultBranchCommitCount": 254,
+      "releaseTagCount": 0,
+      "excludedTagCount": 2,
+      "signedDefaultBranchCommitCount": 49
+    },
+    {
+      "name": "react",
+      "selectedCommitCount": 1290,
+      "defaultBranchCommitCount": 1287,
+      "releaseTagCount": 35,
+      "excludedTagCount": 1,
+      "signedDefaultBranchCommitCount": 707
+    },
+    {
+      "name": "sample-app-react",
+      "selectedCommitCount": 765,
+      "defaultBranchCommitCount": 765,
+      "releaseTagCount": 0,
+      "excludedTagCount": 0,
+      "signedDefaultBranchCommitCount": 612
+    },
+    {
+      "name": "react-hybrid",
+      "selectedCommitCount": 724,
+      "defaultBranchCommitCount": 724,
+      "releaseTagCount": 37,
+      "excludedTagCount": 1,
+      "signedDefaultBranchCommitCount": 523
+    },
+    {
+      "name": "publish-scripts",
+      "selectedCommitCount": 295,
+      "defaultBranchCommitCount": 294,
+      "releaseTagCount": 106,
+      "excludedTagCount": 4,
+      "signedDefaultBranchCommitCount": 40
+    }
+  ]
+}

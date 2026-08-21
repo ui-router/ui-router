@@ -1,6 +1,6 @@
 # Migration tooling validation
 
-This records rehearsal validation of the importer/verifier implementation from merged PR #2 plus the adversarial-review hardening branch. It is not the official history import; the official run must use the eventual merged hardening commit as its target base.
+This records the historical pre-H01 rehearsal of the importer/verifier implementation from merged PR #2 plus the adversarial-review hardening branch. It is not the official history import. Its 474-tag count and `e928851d` output predate the accepted `publish-scripts@2.8.0` tag and are retained only as historical tooling evidence. The official H01 controls contain 475 accepted and 27 excluded tags; current remote/mirror/bundle H02 results, negative probes, and whole-output identity digests are recorded in `migration/h02-rehearsal.json`.
 
 ## Inputs
 

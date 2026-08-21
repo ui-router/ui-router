@@ -1,0 +1,58 @@
+{
+  "name": "@uirouter/publish-scripts",
+  "version": "2.8.0",
+  "description": "Helper scripts for publishing UI-Router projects",
+  "main": "x",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ui-router/publish-scripts.git"
+  },
+  "author": "Chris Thielen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ui-router/publish-scripts/issues"
+  },
+  "homepage": "https://github.com/ui-router/publish-scripts#readme",
+  "scripts": {
+    "release": "node ./release.js --deps check-peer-dependencies",
+    "format": "prettier --write \"*.js\" \"actions/**/*.js\" \"docgen/*.js\"",
+    "prepare": "husky"
+  },
+  "bin": {
+    "artifact_tagging": "./artifact_tagging.js",
+    "ensure_clean_master": "./ensure_clean_master.js",
+    "generate_docs": "./docgen_via_docker.sh",
+    "modify_sourcemap_paths": "./modify_sourcemap_paths.js",
+    "publish_docs": "./publish_docs.js",
+    "publish_yalc_package": "./publish_yalc_package.js",
+    "release": "./release.js",
+    "show_changelog": "./show_changelog.js",
+    "test_downstream_projects": "./test_downstream_projects.js",
+    "util": "./util.js"
+  },
+  "dependencies": {
+    "check-peer-dependencies": "^4.3.4",
+    "conventional-changelog": "^3.1.24",
+    "conventional-changelog-ui-router-core": "^1.4.2",
+    "find-parent-dir": "^0.3.1",
+    "git-semver-tags": "^4.1.1",
+    "lodash": "^4.17.21",
+    "node-cleanup": "^2.1.2",
+    "npm-run-all": "^4.1.5",
+    "open": "^8.4.0",
+    "readline-sync": "^1.4.10",
+    "shelljs": "^0.8.4",
+    "shx": "^0.3.3",
+    "tmp": "^0.2.1",
+    "tweak-sourcemap-paths": "0.0.4",
+    "yalc": "^1.0.0-pre.53",
+    "yargs": "^17.3.0"
+  },
+  "resolutions": {
+    "npm-packlist": "1.4.6"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4"
+  }
+}

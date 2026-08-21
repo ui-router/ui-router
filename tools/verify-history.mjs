@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createHash } from 'node:crypto';
 import { mkdir, mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -13,6 +14,7 @@ import {
   pathExists,
   readJson,
   sha256File,
+  validateLocalSourceMetadata,
   validateManifest,
   validatePinnedSource,
   writeJson,
@@ -26,6 +28,7 @@ function usage() {
 Options:
   --manifest <file>    Source manifest (default: <repo>/migration/sources.json)
   --workdir <dir>      New work directory for verification source clones
+  --source-root <dir>  Optional directory containing validated <source-name>.git mirrors
   --report <file>      Write a JSON verification report outside the repository
   --keep-workdir       Keep the work directory after a successful verification
   --repo <directory>   Required assembled repository to verify
@@ -42,10 +45,10 @@ function parseArgs(argv) {
       options.keepWorkdir = true;
       continue;
     }
-    if (['--manifest', '--workdir', '--report', '--repo'].includes(argument)) {
+    if (['--manifest', '--workdir', '--source-root', '--report', '--repo'].includes(argument)) {
       const value = argv[index + 1];
       if (!value || value.startsWith('--')) fail(`${argument} requires a value`);
-      options[argument.slice(2)] = path.resolve(value);
+      options[argument === '--source-root' ? 'sourceRoot' : argument.slice(2)] = path.resolve(value);
       index += 1;
       continue;
     }
@@ -98,6 +101,28 @@ function onlyHeader(parsed, key) {
 
 function compareBuffers(left, right, label) {
   if (!left.equals(right)) fail(`${label} differs`);
+}
+
+function prefixedTreeObjectId(sourceTree, prefix) {
+  let current = sourceTree;
+  for (const component of prefix.split('/').reverse()) {
+    const treeEntry = Buffer.concat([
+      Buffer.from(`40000 ${component}\0`),
+      Buffer.from(current, 'hex'),
+    ]);
+    current = createHash('sha1')
+      .update(Buffer.from(`tree ${treeEntry.length}\0`))
+      .update(treeEntry)
+      .digest('hex');
+  }
+  return current;
+}
+
+function refSnapshot(repository) {
+  return git(repository, ['for-each-ref', '--format=%(refname) %(objectname)']).stdout
+    .split('\n')
+    .filter(Boolean)
+    .sort();
 }
 
 function treeEntries(repository, commit) {
@@ -202,23 +227,23 @@ function verifyRewrittenCommitMetadata(sourceRepository, targetRepository, expec
     }
     const oldParsed = parseGitObject(oldObject.contents);
     const newParsed = parseGitObject(newObject.contents);
-    const oldParents = headerValues(oldParsed, 'parent');
-    const expectedParents = oldParents.map((parent) => {
-      const mapped = commitMap.get(parent);
-      if (!mapped || mapped === ZERO_OBJECT) fail(`${source.name} did not map parent ${parent}`);
-      return mapped;
-    });
-    if (JSON.stringify(headerValues(newParsed, 'parent')) !== JSON.stringify(expectedParents)) {
-      fail(`${source.name} parent topology differs at ${oldCommit}`);
+    const expectedHeaders = [];
+    for (const header of oldParsed.headers) {
+      if (header.key === 'tree') {
+        expectedHeaders.push({
+          key: 'tree',
+          value: prefixedTreeObjectId(header.value, source.destinationPrefix),
+        });
+      } else if (header.key === 'parent') {
+        const mapped = commitMap.get(header.value);
+        if (!mapped || mapped === ZERO_OBJECT) fail(`${source.name} did not map parent ${header.value}`);
+        expectedHeaders.push({ key: 'parent', value: mapped });
+      } else if (!['gpgsig', 'gpgsig-sha256'].includes(header.key)) {
+        expectedHeaders.push(header);
+      }
     }
-    if (onlyHeader(oldParsed, 'author') !== onlyHeader(newParsed, 'author')) {
-      fail(`${source.name} author metadata differs at ${oldCommit}`);
-    }
-    if (onlyHeader(oldParsed, 'committer') !== onlyHeader(newParsed, 'committer')) {
-      fail(`${source.name} committer metadata differs at ${oldCommit}`);
-    }
-    if (JSON.stringify(headerValues(oldParsed, 'encoding')) !== JSON.stringify(headerValues(newParsed, 'encoding'))) {
-      fail(`${source.name} encoding metadata differs at ${oldCommit}`);
+    if (JSON.stringify(newParsed.headers) !== JSON.stringify(expectedHeaders)) {
+      fail(`${source.name} full commit headers or prefixed tree differ at ${oldCommit}`);
     }
     compareBuffers(oldParsed.message, newParsed.message, `${source.name} commit message at ${oldCommit}`);
     const oldSigned = headerValues(oldParsed, 'gpgsig').length > 0 || headerValues(oldParsed, 'gpgsig-sha256').length > 0;
@@ -236,9 +261,7 @@ function splitTagSignature(message) {
   const marker = Buffer.from('-----BEGIN PGP SIGNATURE-----');
   const markerOffset = message.indexOf(marker);
   if (markerOffset < 0) return { unsignedMessage: message, signed: false };
-  let unsignedEnd = markerOffset;
-  while (unsignedEnd > 0 && message[unsignedEnd - 1] === 0x0a) unsignedEnd -= 1;
-  return { unsignedMessage: message.subarray(0, unsignedEnd), signed: true };
+  return { unsignedMessage: message.subarray(0, markerOffset), signed: true };
 }
 
 function verifyAnnotatedTag(sourceRepository, targetRepository, sourceTag, targetTag, expectedRewrittenCommit) {
@@ -279,10 +302,13 @@ async function findNestedGit(root, current = root) {
   }
 }
 
-async function clonePinnedSource(source, workdir) {
+async function clonePinnedSource(source, workdir, sourceRoot) {
   const repository = path.join(workdir, `${source.name}.git`);
-  console.log(`[${source.name}] cloning source for independent verification`);
-  git(process.cwd(), ['clone', '--mirror', source.url, repository]);
+  const sourceLocation = sourceRoot ? path.join(sourceRoot, `${source.name}.git`) : source.url;
+  if (sourceRoot && !(await pathExists(sourceLocation))) fail(`Source mirror is missing: ${sourceLocation}`);
+  validateLocalSourceMetadata(sourceLocation, source.name);
+  console.log(`[${source.name}] cloning source for independent verification from ${sourceLocation}`);
+  git(process.cwd(), ['clone', '--mirror', sourceLocation, repository]);
   validatePinnedSource(repository, source);
   return repository;
 }
@@ -390,10 +416,8 @@ async function main() {
     fail('Import lock target base is not a commit in the assembled repository');
   }
   const targetMainRef = `refs/remotes/origin/${manifest.target.baseBranch}`;
-  if (git(options.repo, ['merge-base', '--is-ancestor', lock.targetBaseCommit, targetMainRef], {
-    allowFailure: true,
-  }).status !== 0) {
-    fail(`Import lock target base is not on ${targetMainRef}`);
+  if (git(options.repo, ['rev-parse', targetMainRef]).stdout.trim() !== lock.targetBaseCommit) {
+    fail(`Import lock target base does not equal ${targetMainRef}`);
   }
   if (git(options.repo, ['remote', 'get-url', 'origin']).stdout.trim() !== manifest.target.url) {
     fail('Assembled repository origin differs from manifest target.url');
@@ -401,9 +425,16 @@ async function main() {
   if (git(options.repo, ['symbolic-ref', '--short', 'HEAD']).stdout.trim() !== manifest.target.outputBranch) {
     fail('Assembled repository is not on the manifest output branch');
   }
-  if (!lock.tools || typeof lock.tools.node !== 'string' || typeof lock.tools.git !== 'string'
-    || lock.tools.gitFilterRepo !== manifest.historyToolchain.gitFilterRepoReportedVersion) {
+  if (JSON.stringify(lock.tools) !== JSON.stringify(manifest.historyToolchain)) {
     fail('Import lock tool evidence is incomplete or differs from the manifest');
+  }
+  const expectedTargetRefsBeforeImport = [
+    `refs/heads/${manifest.target.baseBranch} ${lock.targetBaseCommit}`,
+    `refs/remotes/origin/HEAD ${lock.targetBaseCommit}`,
+    `${targetMainRef} ${lock.targetBaseCommit}`,
+  ].sort();
+  if (JSON.stringify(lock.targetRefsBeforeImport) !== JSON.stringify(expectedTargetRefsBeforeImport)) {
+    fail('Import lock targetRefsBeforeImport differs from the exact main-only contract');
   }
   if (git(options.repo, ['status', '--porcelain']).stdout !== '') fail('Assembled repository must be clean before verification');
   await findNestedGit(options.repo);
@@ -411,14 +442,6 @@ async function main() {
   const expectedTags = manifest.sources.flatMap((source) => source.releaseTags.map((tag) => tag.targetName)).sort();
   const actualTags = git(options.repo, ['tag', '--list']).stdout.split('\n').filter(Boolean).sort();
   if (JSON.stringify(actualTags) !== JSON.stringify(expectedTags)) fail('Final tag set differs from the manifest');
-  const importedRefs = git(options.repo, ['for-each-ref', '--format=%(refname)']).stdout
-    .split('\n')
-    .filter((ref) => ref.includes('import-'));
-  if (importedRefs.length > 0) fail(`Imported branch refs remain: ${importedRefs.join(', ')}`);
-  if (git(options.repo, ['for-each-ref', '--format=%(refname)', 'refs/replace']).stdout.trim()) {
-    fail('Git replace refs remain after import');
-  }
-
   if (!Array.isArray(lock.imports) || lock.imports.length !== manifest.sources.length) {
     fail('Import lock source count differs from the manifest');
   }
@@ -472,7 +495,7 @@ async function main() {
         || (importRecord.layoutCommit !== null && !isObjectId(importRecord.layoutCommit))) {
         fail(`${source.name} import lock has invalid generated object IDs`);
       }
-      const sourceRepository = await clonePinnedSource(source, workdir);
+      const sourceRepository = await clonePinnedSource(source, workdir, options.sourceRoot);
       reportSources.push(await verifySource(source, sourceRepository, options.repo, importRecord));
 
       const mergeParents = commitParents(options.repo, importRecord.mergeCommit);
@@ -528,6 +551,17 @@ async function main() {
     }
 
     const finalHead = git(options.repo, ['rev-parse', 'HEAD']).stdout.trim();
+    const expectedFinalRefs = [...lock.targetRefsBeforeImport];
+    expectedFinalRefs.push(`refs/heads/${manifest.target.outputBranch} ${finalHead}`);
+    for (const tag of manifest.sources.flatMap((source) => source.releaseTags)) {
+      expectedFinalRefs.push(
+        `refs/tags/${tag.targetName} ${git(options.repo, ['rev-parse', `refs/tags/${tag.targetName}`]).stdout.trim()}`,
+      );
+    }
+    expectedFinalRefs.sort();
+    if (JSON.stringify(refSnapshot(options.repo)) !== JSON.stringify(expectedFinalRefs)) {
+      fail('Final ref namespace differs from the exact target/import contract');
+    }
     const finalParents = commitParents(options.repo, finalHead);
     if (finalParents.length !== 1 || finalParents[0] !== expectedFirstParent) fail('Final evidence commit parent differs');
     verifyGeneratedCommit(

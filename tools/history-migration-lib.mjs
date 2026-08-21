@@ -1,7 +1,9 @@
 import { createHash } from 'node:crypto';
+import { constants as fsConstants, accessSync, existsSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 export function fail(message) {
   throw new Error(message);
@@ -49,6 +51,7 @@ export function sanitizedGitEnvironment(overrides = {}) {
     ...environment,
     GIT_CONFIG_NOSYSTEM: '1',
     GIT_CONFIG_GLOBAL: '/dev/null',
+    GIT_NO_REPLACE_OBJECTS: '1',
     GIT_TERMINAL_PROMPT: '0',
     LC_ALL: 'C',
     TZ: 'UTC',
@@ -191,7 +194,28 @@ export function validateSourceTag(repository, source, tag, included) {
   }
 }
 
+export function validateLocalSourceMetadata(sourceLocation, sourceName) {
+  let repository;
+  if (sourceLocation.startsWith('file://')) repository = fileURLToPath(sourceLocation);
+  else if (!sourceLocation.includes('://')) repository = sourceLocation;
+  else return;
+  const gitDirectory = existsSync(path.join(repository, '.git')) ? path.join(repository, '.git') : repository;
+  for (const relativePath of ['info/grafts', 'objects/info/alternates']) {
+    if (existsSync(path.join(gitDirectory, relativePath))) {
+      fail(`${sourceName} source contains unsafe Git metadata before clone: ${relativePath}`);
+    }
+  }
+}
+
 export function validatePinnedSource(repository, source) {
+  const replacementRefs = git(repository, ['for-each-ref', '--format=%(refname)', 'refs/replace']).stdout.trim();
+  if (replacementRefs) fail(`${source.name} source contains replacement refs: ${replacementRefs.replaceAll('\n', ', ')}`);
+  const gitDirectory = git(repository, ['rev-parse', '--absolute-git-dir']).stdout.trim();
+  for (const relativePath of ['info/grafts', 'objects/info/alternates']) {
+    if (existsSync(path.join(gitDirectory, relativePath))) {
+      fail(`${source.name} source contains unsafe Git metadata: ${relativePath}`);
+    }
+  }
   const head = git(repository, ['rev-parse', source.sourceRef], { allowFailure: true });
   if (head.status !== 0 || head.stdout.trim() !== source.defaultHead) {
     fail(`${source.name} default head drifted: expected ${source.defaultHead}, got ${head.stdout.trim() || '<missing>'}`);
@@ -252,8 +276,23 @@ export function validateManifest(manifest) {
   if (typeof manifest.target.baseBranch !== 'string') fail('Manifest target.baseBranch is required');
   if (manifest.target.baseCommit !== null) fail('Manifest target.baseCommit must remain null; --base supplies the immutable execution input');
   if (typeof manifest.target.outputBranch !== 'string') fail('Manifest target.outputBranch is required');
-  if (!manifest.historyToolchain?.gitFilterRepoPackageVersion || !manifest.historyToolchain?.gitFilterRepoReportedVersion) {
-    fail('Manifest historyToolchain git-filter-repo versions are required');
+  const requiredToolchainFields = [
+    'node',
+    'npm',
+    'git',
+    'python',
+    'uv',
+    'gitFilterRepoPackageVersion',
+    'gitFilterRepoReportedVersion',
+    'gitFilterRepoExecutableSha256',
+  ];
+  if (!manifest.historyToolchain || requiredToolchainFields.some((field) => (
+    typeof manifest.historyToolchain[field] !== 'string' || manifest.historyToolchain[field].length === 0
+  ))) {
+    fail(`Manifest historyToolchain requires: ${requiredToolchainFields.join(', ')}`);
+  }
+  if (!/^[0-9a-f]{64}$/.test(manifest.historyToolchain.gitFilterRepoExecutableSha256)) {
+    fail('Manifest historyToolchain.gitFilterRepoExecutableSha256 must be a SHA-256 digest');
   }
   if (!manifest.generatedCommitIdentity?.name || !manifest.generatedCommitIdentity?.email) {
     fail('Manifest generatedCommitIdentity name and email are required');
@@ -368,26 +407,50 @@ export function gitVersion() {
   return git(process.cwd(), ['--version']).stdout.trim();
 }
 
+function findExecutable(command) {
+  for (const directory of (process.env.PATH ?? '').split(path.delimiter)) {
+    if (!directory) continue;
+    const candidate = path.join(directory, command);
+    try {
+      accessSync(candidate, fsConstants.X_OK);
+      return candidate;
+    } catch {
+      // Continue searching PATH.
+    }
+  }
+  fail(`${command} is required on PATH`);
+}
+
 export function filterRepoVersion() {
-  const environment = sanitizedGitEnvironment();
-  const direct = run('git-filter-repo', ['--version'], {
-    allowFailure: true,
+  const executable = findExecutable('git-filter-repo');
+  const direct = run(executable, ['--version'], {
     cleanEnv: true,
-    env: environment,
+    env: sanitizedGitEnvironment(),
   });
-  if (direct.status === 0) return { command: 'git-filter-repo', version: direct.stdout.trim() };
-  const extension = git(process.cwd(), ['filter-repo', '--version'], { allowFailure: true });
-  if (extension.status === 0) return { command: 'git filter-repo', version: extension.stdout.trim() };
-  fail('git-filter-repo is required. Install the pinned version from SPEC.md before running the importer.');
+  return {
+    command: executable,
+    version: direct.stdout.trim(),
+    executableSha256: createHash('sha256').update(readFileSync(executable)).digest('hex'),
+  };
+}
+
+export function executionToolchain(filterRepo = filterRepoVersion()) {
+  return {
+    node: process.version,
+    npm: run('npm', ['--version']).stdout.trim(),
+    git: gitVersion(),
+    python: run('python3', ['--version']).stdout.trim(),
+    uv: run('uv', ['--version']).stdout.trim(),
+    gitFilterRepoPackageVersion: '2.47.0',
+    gitFilterRepoReportedVersion: filterRepo.version,
+    gitFilterRepoExecutableSha256: filterRepo.executableSha256,
+  };
 }
 
 export function runFilterRepo(command, args, cwd) {
-  if (command === 'git-filter-repo') {
-    return run('git-filter-repo', args, {
-      cwd,
-      cleanEnv: true,
-      env: sanitizedGitEnvironment(),
-    });
-  }
-  return git(cwd, ['filter-repo', ...args]);
+  return run(command, args, {
+    cwd,
+    cleanEnv: true,
+    env: sanitizedGitEnvironment(),
+  });
 }

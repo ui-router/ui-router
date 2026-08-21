@@ -9,8 +9,14 @@
     "outputBranch": "migration/history-import"
   },
   "historyToolchain": {
+    "node": "v22.23.2",
+    "npm": "10.9.8",
+    "git": "git version 2.54.0",
+    "python": "Python 3.12.13",
+    "uv": "uv 0.11.26 (x86_64-unknown-linux-gnu)",
     "gitFilterRepoPackageVersion": "2.47.0",
-    "gitFilterRepoReportedVersion": "a40bce548d2c"
+    "gitFilterRepoReportedVersion": "a40bce548d2c",
+    "gitFilterRepoExecutableSha256": "3058a082bdd927a6b3e64bc432b6b25e46049e52d3fd6b71ac154b4c0d8b56e7"
   },
   "generatedCommitIdentity": {
     "name": "UI-Router Monorepo Migration",

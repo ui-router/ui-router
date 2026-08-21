@@ -6,16 +6,17 @@ import path from 'node:path';
 import process from 'node:process';
 import {
   commitTimestamp,
+  executionToolchain,
   fail,
   filterRepoVersion,
   generatedCommitEnv,
   git,
-  gitVersion,
   isObjectId,
   pathExists,
   readJson,
   runFilterRepo,
   sha256File,
+  validateLocalSourceMetadata,
   validateManifest,
   validatePinnedSource,
   writeJson,
@@ -27,6 +28,7 @@ function usage() {
 Options:
   --manifest <file>    Source manifest (default: migration/sources.json)
   --workdir <dir>      New work directory for filtered source clones
+  --source-root <dir>  Optional directory containing validated <source-name>.git mirrors
   --keep-workdir       Keep the work directory after a successful run
   --base <commit>      Required immutable commit from the target repository
   --output <dir>       Required new directory for the assembled repository
@@ -46,10 +48,10 @@ function parseArgs(argv) {
       options.keepWorkdir = true;
       continue;
     }
-    if (['--manifest', '--workdir', '--base', '--output'].includes(argument)) {
+    if (['--manifest', '--workdir', '--source-root', '--base', '--output'].includes(argument)) {
       const value = argv[index + 1];
       if (!value || value.startsWith('--')) fail(`${argument} requires a value`);
-      options[argument.slice(2)] = value;
+      options[argument === '--source-root' ? 'sourceRoot' : argument.slice(2)] = value;
       index += 1;
       continue;
     }
@@ -60,8 +62,14 @@ function parseArgs(argv) {
   if (!options.output) fail('--output is required');
   options.output = path.resolve(options.output);
   if (options.workdir) options.workdir = path.resolve(options.workdir);
+  if (options.sourceRoot) options.sourceRoot = path.resolve(options.sourceRoot);
   options.manifest = path.resolve(options.manifest);
   return options;
+}
+
+function pathsOverlap(first, second) {
+  const relative = path.relative(first, second);
+  return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
 }
 
 function removeUnselectedRefs(repository, allowedRefs) {
@@ -69,6 +77,37 @@ function removeUnselectedRefs(repository, allowedRefs) {
   for (const ref of refs) {
     if (!allowedRefs.has(ref)) git(repository, ['update-ref', '-d', ref]);
   }
+}
+
+function refSnapshot(repository) {
+  return git(repository, ['for-each-ref', '--format=%(refname) %(objectname)']).stdout
+    .split('\n')
+    .filter(Boolean)
+    .sort();
+}
+
+function treeLeafPaths(repository, commit) {
+  return git(repository, ['ls-tree', '-r', '--name-only', commit]).stdout.split('\n').filter(Boolean);
+}
+
+function firstTreeCollision(firstPaths, secondPaths) {
+  const combined = [
+    ...firstPaths.map((filename) => ({ filename, owner: 'target' })),
+    ...secondPaths.map((filename) => ({ filename, owner: 'source' })),
+  ].sort((left, right) => (
+    left.filename < right.filename ? -1
+      : left.filename > right.filename ? 1
+        : left.owner < right.owner ? -1 : 1
+  ));
+  for (let index = 1; index < combined.length; index += 1) {
+    const previous = combined[index - 1];
+    const current = combined[index];
+    if (previous.owner !== current.owner
+      && (previous.filename === current.filename || current.filename.startsWith(`${previous.filename}/`))) {
+      return `${previous.filename} <> ${current.filename}`;
+    }
+  }
+  return null;
 }
 
 function parseCommitMap(contents) {
@@ -81,10 +120,13 @@ function parseCommitMap(contents) {
   return map;
 }
 
-async function prepareSource(source, workdir, filterRepo) {
+async function prepareSource(source, workdir, filterRepo, sourceRoot) {
   const repository = path.join(workdir, `${source.name}.git`);
-  console.log(`\n[${source.name}] cloning and validating ${source.url}`);
-  git(process.cwd(), ['clone', '--mirror', source.url, repository]);
+  const sourceLocation = sourceRoot ? path.join(sourceRoot, `${source.name}.git`) : source.url;
+  if (sourceRoot && !(await pathExists(sourceLocation))) fail(`Source mirror is missing: ${sourceLocation}`);
+  validateLocalSourceMetadata(sourceLocation, source.name);
+  console.log(`\n[${source.name}] cloning and validating ${sourceLocation}`);
+  git(process.cwd(), ['clone', '--mirror', sourceLocation, repository]);
 
   validatePinnedSource(repository, source);
 
@@ -157,17 +199,36 @@ function createGeneratedCommit(repository, identity, timestamp, message) {
 async function assembleTarget(manifest, manifestPath, options, preparedSources, versions, workdir) {
   console.log(`\n[target] cloning ${manifest.target.url}`);
   git(process.cwd(), ['clone', '--no-checkout', manifest.target.url, options.output]);
+  const targetRefsBeforeImport = refSnapshot(options.output);
+  const targetTags = targetRefsBeforeImport.filter((record) => record.startsWith('refs/tags/'));
+  if (targetTags.length > 0) fail(`Target already has tags: ${targetTags.join(', ')}`);
+  const outputRefSuffix = `/${manifest.target.outputBranch}`;
+  const outputRefConflicts = targetRefsBeforeImport.filter((record) => record.split(' ')[0].endsWith(outputRefSuffix));
+  if (outputRefConflicts.length > 0) {
+    fail(`Target output branch already exists: ${outputRefConflicts.join(', ')}`);
+  }
   const baseExists = git(options.output, ['cat-file', '-e', options.base], { allowFailure: true });
   if (baseExists.status !== 0) fail(`Target base object is not present: ${options.base}`);
   if (git(options.output, ['cat-file', '-t', options.base]).stdout.trim() !== 'commit') {
     fail(`Target base object is not a commit: ${options.base}`);
   }
-  const onTargetMain = git(
-    options.output,
-    ['merge-base', '--is-ancestor', options.base, `refs/remotes/origin/${manifest.target.baseBranch}`],
-    { allowFailure: true },
-  );
-  if (onTargetMain.status !== 0) fail(`Target base is not on origin/${manifest.target.baseBranch}: ${options.base}`);
+  const targetMainRef = `refs/remotes/origin/${manifest.target.baseBranch}`;
+  const targetMain = git(options.output, ['rev-parse', targetMainRef]).stdout.trim();
+  if (targetMain !== options.base) {
+    fail(`Target base must equal ${targetMainRef}: expected ${targetMain}, got ${options.base}`);
+  }
+  const expectedTargetRefs = [
+    `refs/heads/${manifest.target.baseBranch} ${options.base}`,
+    `refs/remotes/origin/HEAD ${options.base}`,
+    `${targetMainRef} ${options.base}`,
+  ].sort();
+  if (JSON.stringify(targetRefsBeforeImport) !== JSON.stringify(expectedTargetRefs)) {
+    fail('Target pre-import ref set differs from the exact main-only contract');
+  }
+  const reservedPaths = git(options.output, [
+    'ls-tree', '-r', '--name-only', options.base, '--', 'migration/import-lock.json', 'migration/evidence',
+  ]).stdout.split('\n').filter(Boolean);
+  if (reservedPaths.length > 0) fail(`Target base already uses reserved evidence paths: ${reservedPaths.join(', ')}`);
   git(options.output, ['checkout', '--detach', options.base]);
   git(options.output, ['switch', '-c', manifest.target.outputBranch]);
 
@@ -182,13 +243,18 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
       '--no-tags',
       remote,
       `+${source.sourceRef}:refs/remotes/${remote}/${source.defaultBranch}`,
-      '+refs/tags/*:refs/tags/*',
+      'refs/tags/*:refs/tags/*',
     ]);
     const rewrittenRef = `refs/remotes/${remote}/${source.defaultBranch}`;
     const rewrittenHead = git(options.output, ['rev-parse', rewrittenRef]).stdout.trim();
     if (rewrittenHead !== prepared.rewrittenHead) fail(`${source.name} fetched rewritten head drifted`);
 
     const firstParent = git(options.output, ['rev-parse', 'HEAD']).stdout.trim();
+    const collision = firstTreeCollision(
+      treeLeafPaths(options.output, firstParent),
+      treeLeafPaths(options.output, rewrittenHead),
+    );
+    if (collision) fail(`${source.name} source/target tree collision before merge: ${collision}`);
     const mergeTimestamp = Math.max(
       commitTimestamp(options.output, firstParent),
       commitTimestamp(options.output, rewrittenHead),
@@ -257,12 +323,9 @@ async function assembleTarget(manifest, manifestPath, options, preparedSources, 
     manifest: path.basename(manifestPath),
     manifestSha256: await sha256File(manifestPath),
     targetBaseCommit: options.base,
+    targetRefsBeforeImport,
     outputBranch: manifest.target.outputBranch,
-    tools: {
-      node: process.version,
-      git: versions.git,
-      gitFilterRepo: versions.filterRepo,
-    },
+    tools: versions,
     imports: importResults,
   };
   await writeJson(path.join(options.output, 'migration', 'import-lock.json'), lock);
@@ -302,19 +365,22 @@ async function main() {
     console.log(usage());
     return;
   }
+  if (options.workdir && (pathsOverlap(options.workdir, options.output) || pathsOverlap(options.output, options.workdir))) {
+    fail('--workdir and --output must not be equal, nested, or otherwise overlap');
+  }
   if (!(await pathExists(options.manifest))) fail(`Manifest does not exist: ${options.manifest}`);
   if (await pathExists(options.output)) fail(`Output path already exists: ${options.output}`);
   if (options.workdir && await pathExists(options.workdir)) fail(`Work path already exists: ${options.workdir}`);
 
   const manifest = validateManifest(await readJson(options.manifest));
   const filterRepo = filterRepoVersion();
-  if (filterRepo.version !== manifest.historyToolchain.gitFilterRepoReportedVersion) {
+  const versions = executionToolchain(filterRepo);
+  if (JSON.stringify(versions) !== JSON.stringify(manifest.historyToolchain)) {
     fail(
-      `git-filter-repo version mismatch: expected ${manifest.historyToolchain.gitFilterRepoReportedVersion} `
-      + `(package ${manifest.historyToolchain.gitFilterRepoPackageVersion}), got ${filterRepo.version}`,
+      `History toolchain mismatch:\nexpected ${JSON.stringify(manifest.historyToolchain)}\n`
+      + `observed ${JSON.stringify(versions)}`,
     );
   }
-  const versions = { git: gitVersion(), filterRepo: filterRepo.version };
   const workdir = options.workdir
     ? (await mkdir(options.workdir, { recursive: false }), options.workdir)
     : await mkdtemp(path.join(os.tmpdir(), 'uirouter-history-import-'));
@@ -328,7 +394,7 @@ async function main() {
   try {
     const preparedSources = new Map();
     for (const source of manifest.sources) {
-      preparedSources.set(source.name, await prepareSource(source, workdir, filterRepo));
+      preparedSources.set(source.name, await prepareSource(source, workdir, filterRepo, options.sourceRoot));
     }
     await assembleTarget(manifest, options.manifest, options, preparedSources, versions, workdir);
     succeeded = true;

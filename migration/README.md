@@ -11,8 +11,9 @@ For each source it records:
 - excluded tags and the evidence for exclusion
 - explicit current-layout moves applied only after the source history is merged
 - the count of signature-bearing default-branch commits
+- the exact rehearsal history toolchain, including Node/Git/Python/uv/filter-repo versions and executable-wrapper digest
 
-The importer must validate pinned objects before rewriting anything. A changed default ref, changed tag object, or added/removed tag name stops the locked run. Refreshing this file is a separate reviewed change.
+The importer must validate the exact toolchain and pinned objects before rewriting anything. Replacement refs/grafts/alternates, a changed default ref or tag object, an added/removed tag name, a pre-existing target tag/output ref, a reserved target evidence path, or a source-target path collision stops the locked run. Refreshing this file is a separate reviewed change. `--source-root` accepts retained `<source-name>.git` mirrors so the manifest-URL and offline-local paths can be compared byte-for-byte.
 
 Path rewriting adds only the source's `destinationPrefix`. Imported tags remain on those prefixed historical commits. The `moves` list applies afterward on the assembled migration branch, so stripping the prefix from a tagged tree yields the original source paths and contents.
 

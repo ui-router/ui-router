@@ -483,12 +483,6 @@ export function validateManifest(manifest, { fixture = false } = {}) {
     }
   }
 
-  const releaseTagCount = manifest.sources.reduce((total, source) => total + source.releaseTags.length, 0);
-  const excludedTagCount = manifest.sources.reduce((total, source) => total + source.excludedTags.length, 0);
-  if (officialUiRouterTarget && (releaseTagCount !== 474 || excludedTagCount !== 27)) {
-    fail(`Manifest tag scope must remain 474 accepted and 27 excluded; got ${releaseTagCount}/${excludedTagCount}`);
-  }
-
   return manifest;
 }
 

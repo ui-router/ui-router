@@ -196,12 +196,12 @@ async function createFixture(root) {
     'gpgsig -----BEGIN PGP SIGNATURE-----', ' ZmFrZS1jb21taXQtc2lnbmF0dXJl', ' -----END PGP SIGNATURE-----',
     '', `release two; preserve ${releaseOne}`, '',
   ].join('\n'));
-  const head = git(sourceWork, ['hash-object', '-t', 'commit', '-w', signedCommitFile]).stdout.trim();
-  git(sourceWork, ['update-ref', 'refs/heads/master', head, mergeHead]);
-  git(sourceWork, ['reset', '--hard', '--quiet', head]);
+  const signedHead = git(sourceWork, ['hash-object', '-t', 'commit', '-w', signedCommitFile]).stdout.trim();
+  git(sourceWork, ['update-ref', 'refs/heads/master', signedHead, mergeHead]);
+  git(sourceWork, ['reset', '--hard', '--quiet', signedHead]);
   const signedTagFile = path.join(root, 'signed-tag.txt');
   await writeFile(signedTagFile, [
-    `object ${head}`, 'type commit', 'tag v2.0.0',
+    `object ${signedHead}`, 'type commit', 'tag v2.0.0',
     `tagger ${identity.name} <${identity.email}> ${timestamp} +0000`, 'encoding UTF-8', '', 'release two', '',
     '-----BEGIN PGP SIGNATURE-----', 'ZmFrZS10YWctc2lnbmF0dXJl', '-----END PGP SIGNATURE-----', '',
   ].join('\n'));
@@ -216,9 +216,12 @@ async function createFixture(root) {
   git(sourceWork, ['tag', '1.5.0']);
   git(sourceWork, ['switch', 'master', '--quiet']);
   git(sourceWork, ['branch', '-D', 'tag-only']);
+  await writeFile(path.join(sourceWork, 'package.json'), '{"name":"fixture","version":"2.1.0"}\n');
+  const head = commit(sourceWork, 'new qualifying release');
+  git(sourceWork, ['tag', '2.1.0']);
   git(root, ['clone', '--bare', '--quiet', sourceWork, sourceBare]);
 
-  const releaseTags = ['1.0.0', '1.5.0', 'v2.0.0'].map((name) => tagRecord(sourceBare, name, true));
+  const releaseTags = ['1.0.0', '1.5.0', 'v2.0.0', '2.1.0'].map((name) => tagRecord(sourceBare, name, true));
   const excludedTags = [tagRecord(sourceBare, 'artifact', false)];
   const source = {
     name: 'fixture', url: `file://${sourceBare}`, defaultBranch: 'master', sourceRef: 'refs/heads/master',
@@ -403,6 +406,18 @@ async function main() {
   let succeeded = false;
   try {
     const officialManifest = await readJson(fileURLToPath(new URL('../migration/sources.json', import.meta.url)));
+    const refreshedOfficialManifest = structuredClone(officialManifest);
+    const refreshedTag = structuredClone(refreshedOfficialManifest.sources[0].releaseTags[0]);
+    refreshedTag.name = '999.0.0';
+    refreshedTag.sourceRef = 'refs/tags/999.0.0';
+    refreshedTag.normalizedTagVersion = '999.0.0';
+    refreshedTag.observedRootPackageVersion = '999.0.0';
+    refreshedTag.targetName = `${refreshedOfficialManifest.sources[0].name}@999.0.0`;
+    refreshedOfficialManifest.sources[0].releaseTags.push(refreshedTag);
+    refreshedOfficialManifest.sources[0].tagSnapshotSha256 = sourceTagSnapshotSha256(
+      refreshedOfficialManifest.sources[0],
+    );
+    validateManifest(refreshedOfficialManifest);
     officialManifest.sources[0].url = 'file:///tmp/not-an-official-source.git';
     assertThrows(
       () => validateManifest(officialManifest),
@@ -554,8 +569,19 @@ async function main() {
       '--bundle-root', '.migration-work/generated-bundles',
     ]);
     runNode(inputLocker, generatedControl, lockerArgs('check', generatedControl));
-    assert((await readJson(path.join(generatedControl, 'migration/execution-lock.json'))).sources.length === 1,
-      'Generated execution lock omitted the fixture source');
+    const generatedManifest = await readJson(path.join(generatedControl, 'migration/sources.json'));
+    const generatedLock = await readJson(path.join(generatedControl, 'migration/execution-lock.json'));
+    assert(generatedLock.sources.length === 1, 'Generated execution lock omitted the fixture source');
+    assert(generatedManifest.sources[0].releaseTags.some((tag) => tag.name === '2.1.0'),
+      'H01 refresh omitted the new qualifying release tag');
+    assert(generatedLock.sources[0].includedRefs.includes('refs/tags/2.1.0'),
+      'Execution lock omitted the new qualifying release ref');
+    const generatedMirror = path.join(generatedControl, generatedLock.sources[0].mirrorPath);
+    assert(git(generatedMirror, ['rev-parse', '--verify', 'refs/tags/2.1.0']).stdout.trim() !== '',
+      'Retained mirror omitted the new qualifying release ref');
+    const generatedBundle = path.join(generatedControl, generatedLock.sources[0].bundlePath);
+    assert(git(generatedControl, ['bundle', 'list-heads', generatedBundle]).stdout.includes('refs/tags/2.1.0'),
+      'Offline bundle omitted the new qualifying release ref');
 
     runNode(inputLocker, fixture.controlRoot, lockerArgs('check', fixture.controlRoot));
     const staleCheckControl = await copyControl(fixture.controlRoot, path.join(root, 'control-stale-check'));
@@ -575,6 +601,10 @@ async function main() {
     }
     const heads = [...outputs.values()].map((repository) => git(repository, ['rev-parse', 'HEAD']).stdout.trim());
     assert(new Set(heads).size === 1, 'Remote/mirror/bundle final HEADs differ');
+    for (const repository of outputs.values()) {
+      assert(git(repository, ['rev-parse', '--verify', 'refs/tags/fixture@2.1.0']).stdout.trim() !== '',
+        'Imported repository omitted the newly qualifying release tag');
+    }
     const refSets = [...outputs.values()].map((repository) => JSON.stringify(refSnapshot(repository)));
     assert(new Set(refSets).size === 1, 'Remote/mirror/bundle ref namespaces differ');
     const lockTexts = await Promise.all([...outputs.values()].map((repository) => (

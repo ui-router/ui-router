@@ -1,0 +1,11 @@
+{
+  "angular": {
+    "angular-cli": "./examples/angular-cli"
+  },
+  "angularjs": {
+    "angularjs-webpack": "./examples/angularjs-webpack"
+  },
+  "react": {
+    "react-vite": "./examples/react-vite"
+  }
+}

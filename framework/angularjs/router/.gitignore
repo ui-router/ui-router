@@ -1,0 +1,26 @@
+# common
+node_modules
+bower_components
+yarn-error.log
+
+.DS_Store
+*~
+**/.*
+
+# webstorm files
+idea-out
+*.iml
+*.ipr
+*.iws
+
+# generated files
+_doc
+lib
+lib-esm
+release
+
+# do not ignore github
+!.github
+!.npmrc
+!.npmignore
+!.prettier*

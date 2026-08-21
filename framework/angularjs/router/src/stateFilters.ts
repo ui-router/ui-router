@@ -1,0 +1,46 @@
+/** @publicapi @module ng1 */ /** */
+
+import { ng as angular } from './angular';
+import { Obj, StateService, StateOrName } from '@uirouter/core';
+
+/**
+ * `isState` Filter: truthy if the current state is the parameter
+ *
+ * Translates to [[StateService.is]] `$state.is("stateName")`.
+ *
+ * #### Example:
+ * ```html
+ * <div ng-if="'stateName' | isState">show if state is 'stateName'</div>
+ * ```
+ */
+$IsStateFilter.$inject = ['$state'];
+function $IsStateFilter($state: StateService) {
+  const isFilter: any = function (state: StateOrName, params: Obj, options?: { relative?: StateOrName }) {
+    return $state.is(state, params, options);
+  };
+  isFilter.$stateful = true;
+  return isFilter;
+}
+
+/**
+ * `includedByState` Filter: truthy if the current state includes the parameter
+ *
+ * Translates to [[StateService.includes]]` $state.is("fullOrPartialStateName")`.
+ *
+ * #### Example:
+ * ```html
+ * <div ng-if="'fullOrPartialStateName' | includedByState">show if state includes 'fullOrPartialStateName'</div>
+ * ```
+ */
+$IncludedByStateFilter.$inject = ['$state'];
+function $IncludedByStateFilter($state: StateService) {
+  const includesFilter: any = function (state: StateOrName, params: Obj, options: { relative?: StateOrName }) {
+    return $state.includes(state, params, options);
+  };
+  includesFilter.$stateful = true;
+  return includesFilter;
+}
+
+angular.module('ui.router.state').filter('isState', $IsStateFilter).filter('includedByState', $IncludedByStateFilter);
+
+export { $IsStateFilter, $IncludedByStateFilter };

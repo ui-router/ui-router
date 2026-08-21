@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "outDir": "lib",
+    "declaration": true,
+    "sourceMap": true
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["./typescript-versions/**/*"]
+}

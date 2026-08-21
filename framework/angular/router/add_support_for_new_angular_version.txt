@@ -1,0 +1,50 @@
+Notes from when I added Angular 11 support
+
+- in uirouter/angular:
+ - update peer deps for angular packages, bumping each range by one
+ - update angular packages manually to the lower range supported (for angular 11, set to ^10.0.0)
+ - update ng-packagr manually to the lower range supported (for angular 11, set to ^10.0.0)
+ - update typescript to the version required by @angular/compiler-cli
+ - npx check-peer-dependencies
+ - gh pr create
+ - update other libs
+ - update tests in test-angular-versions/
+   - ./scaffold.sh 11
+   - remove old tests from test-angular-versions and ../downstream_projects.json
+ - update tests in test-typescript-versions/
+   - ./scaffold.sh 4.5
+   - (maybe) remove old tests from test-typescript-versions and ../downstream_projects.json
+ - npx check-peer-dependencies
+ - gh pr create
+ - npm run release
+
+- in sample-app-angular:
+ - git checkout -b update-to-latest-angular
+ - npx ng update @angular/core @angular/cli
+ - git commit -m "chore: update to Angular 11"
+ - yarn && yarn test
+ - gh pr create
+
+- in sample-app-angular-hybrid
+ - npx ng update @angular/core @angular/cli
+ - yarn upgrade-interactive --latest (update uirouter libs)
+ - push to a branch 'upgrade-to-angular-11'
+
+- in uirouter/angular-hybrid
+ - target the sample-app branch in downstream_test.json: 
+   - "https://github.com/ui-router/sample-app-angular-hybrid.git@update-to-angular-11"
+ - update peer deps for angular packages, bumping each range by one
+ - update angular packages manually to the lower range supported (for angular 11, set to ^10.0.0)
+ - update ng-packagr manually to the lower range supported (for angular 11, set to ^10.0.0)
+ - update typescript to the version required by @angular/compiler-cli
+ - npx check-peer-dependencies
+ - in example
+  - npx ng update @angular/core @angular/cli
+  - yarn upgrade-interactive --latest (update uirouter libs)
+ - gh pr create
+ - npm run release
+ - revert downstream_projects.json and push
+
+- in sample-app-angular-hybrid after merging
+ - yarn upgrade-interactive --latest (update uirouter libs)
+ - push and merge

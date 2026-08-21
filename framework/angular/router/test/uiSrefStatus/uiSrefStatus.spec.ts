@@ -1,0 +1,55 @@
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { vi, describe, beforeEach, it, expect } from 'vitest';
+import { UISref } from '../../src';
+
+import { SrefStatus } from '../../src/directives/uiSrefStatus';
+import { UIRouterModule } from '../../src/uiRouterNgModule';
+import { clickOnElement, tick } from '../testUtils';
+
+describe('uiSrefStatus', () => {
+  @Component({
+    template: '<a uiSref="foo" (uiSrefStatus)="updated($event)"></a>',
+    standalone: false,
+  })
+  class TestComponent {
+    updated(_event: SrefStatus) {
+      throw new Error('updated() method must be spied');
+    }
+  }
+
+  let component: TestComponent;
+  let de: DebugElement;
+  let fixture: ComponentFixture<TestComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [
+        UIRouterModule.forRoot({
+          states: [{ name: 'foo' }],
+          useHash: true,
+        }),
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    de = fixture.debugElement.query(By.directive(UISref));
+  });
+
+  describe('when click on `foo` uiSref', () => {
+    it('should emit a event with a TargetState pointing to `foo`', async () => {
+      const spy = vi.spyOn(component, 'updated').mockImplementation(() => {});
+      clickOnElement(de);
+      await tick();
+      expect(spy).toHaveBeenCalledTimes(2);
+
+      const arg: SrefStatus = spy.mock.calls[1][0];
+      expect(arg.targetStates.length).toEqual(1);
+      expect(arg.targetStates[0].state()).toEqual(expect.objectContaining({ name: 'foo' }));
+    });
+  });
+});

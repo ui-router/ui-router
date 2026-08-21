@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 38,
+  "expectedFailureReason": null,
+  "id": "angularjs.root.install",
+  "inputHashesAfterSha256": "c291b0fddc67af1f9ecea777c6b50de0792d4ab7107f78d2bfdccfcc24cc8244",
+  "inputHashesBeforeSha256": "c291b0fddc67af1f9ecea777c6b50de0792d4ab7107f78d2bfdccfcc24cc8244",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angularjs",
+  "sourceCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
+  "status": 0,
+  "stderrSha256": "15822ce391073bbfc685ba709f7c89be0aacf1640950e9f808193ccd7feaa724",
+  "stdoutSha256": "ff3cd43b146e56db7973f2b71eb684a4321d3c8e5d6a7a70b2f5d6863e4fa88c"
+}

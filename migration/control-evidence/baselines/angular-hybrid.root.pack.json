@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": null,
+  "id": "angular-hybrid.root.pack",
+  "inputHashesAfterSha256": "40fa88b73c9246e85e2631db693e79c03d5c67fdf591f2750a6e2b37f30094ca",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angular-hybrid",
+  "sourceCommit": "e27abcd0b7a921de0ebb856780c114e98250d74c",
+  "status": 0,
+  "stderrSha256": "b5f09dc495fab334b18f5cf6a44c1ed83650d69c41ac67d6e8a65d83638a237a",
+  "stdoutSha256": "96cbbea3ad6a2ebb8cddbe5832b2ec40fe6e6687d6824f2451a5f455676810be"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "build"
+  ],
+  "durationSeconds": 7,
+  "expectedFailureReason": null,
+  "id": "react.root.build",
+  "inputHashesAfterSha256": "47f0775dfa5edc9bef04155836f94b210e0775a195f2af6cf46284b18785a1a9",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react",
+  "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "status": 0,
+  "stderrSha256": "fa5f0bb11f494253a76f76c31a289f373e542c373803fbbe1a33a6060a58efd8",
+  "stdoutSha256": "e098d3d4267b02e1f949835edb810a384fdfb0fad8a2ca651c67f0544e2a7597"
+}

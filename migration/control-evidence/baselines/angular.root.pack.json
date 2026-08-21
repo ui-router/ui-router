@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": null,
+  "id": "angular.root.pack",
+  "inputHashesAfterSha256": "a9c3f2b54409367d49d83c0e1c3a7674a422df97a471d4d7f1add487f1e184e4",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "angular",
+  "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
+  "status": 0,
+  "stderrSha256": "d5b8658666eafd23c9a4b8c5985538fa2f967278f842e99a486b31b7a9c15762",
+  "stdoutSha256": "8b29995f12fa18e40db0a54da06bc90d6ed15e8e006811064c9627b481a0975c"
+}

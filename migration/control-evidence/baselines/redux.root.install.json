@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--frozen-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 21,
+  "expectedFailureReason": null,
+  "id": "redux.root.install",
+  "inputHashesAfterSha256": "d0ae0f81ff9f227dd009f6489b7253b4411c226de854518d2443ea4d613f1446",
+  "inputHashesBeforeSha256": "d0ae0f81ff9f227dd009f6489b7253b4411c226de854518d2443ea4d613f1446",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "redux",
+  "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "status": 0,
+  "stderrSha256": "79020dfe4c7e56f4359c79204e78b32f676db96c77b720b2290aef5664ac6fe4",
+  "stdoutSha256": "a94c6551478eab3cebc0999eab91fe4e8451b57cd80dca05ca1f806d362f18de"
+}

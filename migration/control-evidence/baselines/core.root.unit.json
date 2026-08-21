@@ -1,0 +1,27 @@
+{
+  "browser": {
+    "installerVersion": "@playwright/test@1.57.0",
+    "name": "chromium",
+    "revision": "1200",
+    "sha256": "2e61bc3fd990bd4d7b419ef6b6303c67aaed683e5b83b3b25e416f015f343209"
+  },
+  "browserInstallerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "browserInstallerStdoutSha256": "407559863956ecf007c14eae3795dda60e1d0d1d12cddae548bf249480c5c13d",
+  "browserRuntimeImageDigest": "sha256:0743972be2ab0363ab12cdf98f7fed9858006db7954fa61d8fe615b8060217d4",
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 5,
+  "expectedFailureReason": null,
+  "id": "core.root.unit",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "core",
+  "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
+  "status": 0,
+  "stderrSha256": "cfff686c22eaa8e9d36e8b79c5db7381ddbdf9e9b9496717b7d7a323e4dacebd",
+  "stdoutSha256": "febb7a8de35d67e2e692bbdd325af0ad013589a19539c0b32eba17d5c9cf8c87"
+}

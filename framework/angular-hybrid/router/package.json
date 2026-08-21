@@ -1,0 +1,71 @@
+{
+  "name": "@uirouter/angular-hybrid",
+  "version": "22.0.0",
+  "scripts": {
+    "example": "cd example && npm i && npm start",
+    "clean": "shx rm -rf lib _bundles dist",
+    "build": "npm run clean && ng-packagr -p ng-package.json",
+    "release": "release --deps @uirouter/core @uirouter/angular @uirouter/angularjs",
+    "test": "npm run build",
+    "test:downstream": "npm run build && test_downstream_projects",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky"
+  },
+  "license": "MIT",
+  "checkPeerDependencies": {
+    "ignore": [
+      "postcss"
+    ]
+  },
+  "peerDependencies": {
+    "@angular/core": "^22.0.0",
+    "@angular/upgrade": "^22.0.0",
+    "@uirouter/angular": "^22.0.0",
+    "@uirouter/angularjs": "^1.0.30",
+    "@uirouter/core": "^6.1.2",
+    "angular": "^1.5.0"
+  },
+  "resolutions": {
+    "@uirouter/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@angular/animations": "^22.0.5",
+    "@angular/common": "^22.0.5",
+    "@angular/compiler": "^22.0.5",
+    "@angular/compiler-cli": "^22.0.5",
+    "@angular/core": "^22.0.5",
+    "@angular/platform-browser": "^22.0.5",
+    "@angular/platform-browser-dynamic": "^22.0.5",
+    "@angular/upgrade": "^22.0.5",
+    "@types/angular": "^1.8.9",
+    "@types/jquery": "^3.5.6",
+    "@uirouter/angular": "^22.0.0",
+    "@uirouter/angularjs": "^1.1.0",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/publish-scripts": "^2.8.0",
+    "@uirouter/rx": "^1.0.0",
+    "angular": "^1.8.3",
+    "husky": "^9.1.7",
+    "ng-packagr": "^22.0.1",
+    "prettier": "^3.6.2",
+    "pretty-quick": "^4.2.2",
+    "rxjs": "~7.8.2",
+    "rxjs-compat": "^6.5.4",
+    "shx": "^0.3.3",
+    "typescript": "~6.0.3",
+    "tslib": "^2.8.1",
+    "zone.js": "~0.16.0"
+  },
+  "distDir": "dist",
+  "sideEffects": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/angular-hybrid.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}

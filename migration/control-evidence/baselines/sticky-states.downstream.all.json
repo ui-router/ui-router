@@ -8,7 +8,7 @@
   "expectedFailureReason": "The source-native downstream command fails in its prerequisite build because unpinned tsgo resolves TypeScript 6, which rejects node10 moduleResolution and the missing rootDir.",
   "id": "sticky-states.downstream.all",
   "projectSummary": [],
-  "result": "expected-failure",
+  "result": "waived-failure",
   "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
   "schemaVersion": 1,
   "source": "sticky-states",

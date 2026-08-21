@@ -9,7 +9,7 @@
   "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package required by Vitest.",
   "id": "rx.root.unit",
   "inputHashesAfterSha256": "b966d4f71fef7a0de79e93ee7c5cbc9236b40d2d6cf5c9ff854a7e3d70cae2ce",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "rx",
   "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",

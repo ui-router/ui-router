@@ -1277,9 +1277,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/angular.root.docs.json",
-        "sha256": "bd0fe86476676a7b867fab45bb9465164dde95103f0bd290aaff3135d669f612"
+        "sha256": "38953398097cb10038a3cb8b77c5388dde1156c18a1d71678204e2fa93160050"
       },
-      "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+      "expectedFailureReason": null,
       "id": "angular.root.docs",
       "lane": "docs",
       "legacyInjectedEdges": [],
@@ -1290,7 +1290,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -1302,7 +1302,12 @@
       "source": "angular",
       "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "docs"
     },
     {
@@ -1851,9 +1856,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/angularjs.root.docs.json",
-        "sha256": "8a0f36d0e42b361f69b9c676352f92ec116460e541eafe4363b532a08635a5e5"
+        "sha256": "c49b955ce0152f418355379b86e40d57e7e812a8de7122a290022ebe3ee837a7"
       },
-      "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+      "expectedFailureReason": null,
       "id": "angularjs.root.docs",
       "lane": "docs",
       "legacyInjectedEdges": [],
@@ -1864,7 +1869,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -1876,7 +1881,12 @@
       "source": "angularjs",
       "sourceCommit": "99a1232907edc2a673c1131b56f7b52054c56c0a",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "docs"
     },
     {
@@ -2064,9 +2074,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/core.downstream.all.json",
-        "sha256": "83cdd65fd12f45257b560b5f4ae71278cf2364608c82fa55813c9b4ff04608c3"
+        "sha256": "a6fede209f3f94a14132364d554e68f133b5fbbdb9178e786bff61b3f58c38ed"
       },
-      "expectedFailureReason": "The recursive source-native helper passes Angular, AngularJS, their nested projects, and React, then Yarn 1.22.22 fails linking Vite in the nested React 17 integration; later projects are skipped by the fail-fast helper.",
+      "expectedFailureReason": null,
       "id": "core.downstream.all",
       "lane": "downstream",
       "legacyInjectedEdges": [
@@ -2084,7 +2094,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -2096,7 +2106,12 @@
       "source": "core",
       "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The recursive source-native helper passes Angular, AngularJS, their nested projects, and React, then Yarn 1.22.22 fails linking Vite in the nested React 17 integration; later projects are skipped by the fail-fast helper.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "all"
     },
     {
@@ -2230,9 +2245,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/core.downstream.other.json",
-        "sha256": "4bf956bbbdc22ddfe1f6bc0a191012cc00a6ca55b912ba2ff368128e8da3ea22"
+        "sha256": "e44e21a4367ac8106b69b09eec79d74e7f6a3880acd921ce65c25d16ccd6af93"
       },
-      "expectedFailureReason": "The Core-injected TypeScript 3.9/5.4 and Sticky States parent lanes pass, then publishing the nested Sticky States package fails because its unpinned tsgo resolves TypeScript 6 and rejects the retained tsconfig.",
+      "expectedFailureReason": null,
       "id": "core.downstream.other",
       "lane": "downstream",
       "legacyInjectedEdges": [
@@ -2247,7 +2262,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -2259,7 +2274,12 @@
       "source": "core",
       "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The Core-injected TypeScript 3.9/5.4 and Sticky States parent lanes pass, then publishing the nested Sticky States package fails because its unpinned tsgo resolves TypeScript 6 and rejects the retained tsconfig.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "other"
     },
     {
@@ -2696,9 +2716,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/core.root.docs.json",
-        "sha256": "98fb94746928c12a259edd11e8d399784e1f4829f3394c8e7e612b32fc0758de"
+        "sha256": "66b6bf387f39b2d7bb58c33a993e4dfbb805e784bef55c57440f6abba78968f3"
       },
-      "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+      "expectedFailureReason": null,
       "id": "core.root.docs",
       "lane": "docs",
       "legacyInjectedEdges": [],
@@ -2709,7 +2729,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -2721,7 +2741,12 @@
       "source": "core",
       "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "docs"
     },
     {
@@ -5091,9 +5116,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/react.root.docs.json",
-        "sha256": "e026082e8532ded9a000e2e5de5a7411aa0523516ac6def90ab560f2109307e3"
+        "sha256": "a3c3a895df4b14c6a666b978855f06557dd5c62a82cb63ac432ba4337fe6b38b"
       },
-      "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+      "expectedFailureReason": null,
       "id": "react.root.docs",
       "lane": "docs",
       "legacyInjectedEdges": [],
@@ -5104,7 +5129,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -5116,7 +5141,12 @@
       "source": "react",
       "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "docs"
     },
     {
@@ -5515,9 +5545,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/redux.root.install.node10.json",
-        "sha256": "1b7e93ae038ea427db154db7725359afe01da27c08fb5da2badb31056f1b3175"
+        "sha256": "10ea98de4c1ee71c9d0b0f503bf1fd413d065fe73821ff2d4c0ea5a339a2bcc0"
       },
-      "expectedFailureReason": "The locked dependency graph contains @testing-library/dom@10.4.1, which requires Node >=18 while the retained Travis baseline pins Node 10.",
+      "expectedFailureReason": null,
       "id": "redux.root.install.node10",
       "lane": "install",
       "legacyInjectedEdges": [],
@@ -5528,7 +5558,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -5540,7 +5570,12 @@
       "source": "redux",
       "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The locked dependency graph contains @testing-library/dom@10.4.1, which requires Node >=18 while the retained Travis baseline pins Node 10.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": null
     },
     {
@@ -5723,9 +5758,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/rx.root.build.json",
-        "sha256": "a7be2c9da1b6f222c2617993777356eb0e7dd4e8c228891db7f47d5767da3ee2"
+        "sha256": "ca69e8995508d71fa612d74d069f373384ff7555fe8e3c4cbfd15542790ae4d6"
       },
-      "expectedFailureReason": "The source package-lock omits @typescript/native-preview-linux-x64 required by tsgo.",
+      "expectedFailureReason": null,
       "id": "rx.root.build",
       "lane": "build",
       "legacyInjectedEdges": [],
@@ -5736,7 +5771,7 @@
         "name": "npm",
         "version": "10.9.8"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -5748,7 +5783,12 @@
       "source": "rx",
       "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source package-lock omits @typescript/native-preview-linux-x64 required by tsgo.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "build"
     },
     {
@@ -5884,9 +5924,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/rx.root.unit.json",
-        "sha256": "aa40c1e73e1e50a7cdd1dfe77095cebd5d955d08afddb327ae541fae39189f98"
+        "sha256": "39d5f8a6061a467c9c65136cdaae8f696936f7824a41214add7eba6cd4384275"
       },
-      "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package required by Vitest.",
+      "expectedFailureReason": null,
       "id": "rx.root.unit",
       "lane": "unit",
       "legacyInjectedEdges": [],
@@ -5897,7 +5937,7 @@
         "name": "npm",
         "version": "10.9.8"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -5909,7 +5949,12 @@
       "source": "rx",
       "sourceCommit": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source package-lock omits the platform-specific esbuild optional package required by Vitest.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "test"
     },
     {
@@ -6628,9 +6673,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/sample-app-react.root.build.json",
-        "sha256": "18240d77bbaef15a5a549626036ce6aabd44a3358141f31fda18751cfe4eb191"
+        "sha256": "250f8b6a7ca87b9bbe37e9a384bb0e7dff9f475c76298330154e41e71c787ec6"
       },
-      "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package required by Vite.",
+      "expectedFailureReason": null,
       "id": "sample-app-react.root.build",
       "lane": "build",
       "legacyInjectedEdges": [],
@@ -6641,7 +6686,7 @@
         "name": "npm",
         "version": "10.9.8"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -6653,7 +6698,12 @@
       "source": "sample-app-react",
       "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source package-lock omits the platform-specific esbuild optional package required by Vite.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "build"
     },
     {
@@ -6680,9 +6730,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/sample-app-react.root.e2e.json",
-        "sha256": "4b480d3fd992cca360a6eea236284303a802482ea2aecae016954743b9c8a5ce"
+        "sha256": "685aaff3acc9910288f127aa972bafba9221230bcd9b5d56d8e16308fd30b939"
       },
-      "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package, so the test command fails during its build step before browser launch.",
+      "expectedFailureReason": null,
       "id": "sample-app-react.root.e2e",
       "lane": "e2e",
       "legacyInjectedEdges": [],
@@ -6693,7 +6743,7 @@
         "name": "npm",
         "version": "10.9.8"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": {
@@ -6710,7 +6760,12 @@
       "source": "sample-app-react",
       "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source package-lock omits the platform-specific esbuild optional package, so the test command fails during its build step before browser launch.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "test"
     },
     {
@@ -6792,9 +6847,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/sticky-states.downstream.all.json",
-        "sha256": "ac369f66be212cc049147d95f8735d25ae114839d739deca3d0917da4e059da2"
+        "sha256": "71c4462f9dbb62e0e4da4b0e53c3abca9730be07a68ed476d934ed9ce8009d89"
       },
-      "expectedFailureReason": "The source-native downstream command fails in its prerequisite build because unpinned tsgo resolves TypeScript 6, which rejects node10 moduleResolution and the missing rootDir.",
+      "expectedFailureReason": null,
       "id": "sticky-states.downstream.all",
       "lane": "downstream",
       "legacyInjectedEdges": [
@@ -6809,7 +6864,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -6821,7 +6876,12 @@
       "source": "sticky-states",
       "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source-native downstream command fails in its prerequisite build because unpinned tsgo resolves TypeScript 6, which rejects node10 moduleResolution and the missing rootDir.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "all"
     },
     {
@@ -7204,9 +7264,9 @@
       "downstreamProject": null,
       "evidence": {
         "path": "migration/control-evidence/baselines/sticky-states.root.build.json",
-        "sha256": "62a863381b01b78fb068cc5f07b09ae513a314d47f9608cd03d26f6f2fa80ef5"
+        "sha256": "500f50e018362c8c72f67afc8a2f50b9ab108ffcaca3c4ad20690252216c7f88"
       },
-      "expectedFailureReason": "The unpinned tsgo dependency resolves TypeScript 6, which rejects the retained node10 moduleResolution and missing rootDir.",
+      "expectedFailureReason": null,
       "id": "sticky-states.root.build",
       "lane": "build",
       "legacyInjectedEdges": [],
@@ -7217,7 +7277,7 @@
         "name": "yarn",
         "version": "1.22.22"
       },
-      "result": "expected-failure",
+      "result": "waived-failure",
       "runtime": {
         "architecture": "x64",
         "browser": null,
@@ -7229,7 +7289,12 @@
       "source": "sticky-states",
       "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
       "sourcePath": ".",
-      "waiver": null,
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The unpinned tsgo dependency resolves TypeScript 6, which rejects the retained node10 moduleResolution and missing rootDir.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      },
       "workflowMatrixKey": "build"
     },
     {

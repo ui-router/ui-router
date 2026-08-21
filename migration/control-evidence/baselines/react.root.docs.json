@@ -9,7 +9,7 @@
   "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
   "id": "react.root.docs",
   "inputHashesAfterSha256": "47f0775dfa5edc9bef04155836f94b210e0775a195f2af6cf46284b18785a1a9",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "react",
   "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",

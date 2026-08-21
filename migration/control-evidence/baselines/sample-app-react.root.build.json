@@ -9,7 +9,7 @@
   "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package required by Vite.",
   "id": "sample-app-react.root.build",
   "inputHashesAfterSha256": "e38e6b418a8595da1977956575bd5f0d0b3fb689baf78cd180e7841aa29d8aff",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "sample-app-react",
   "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",

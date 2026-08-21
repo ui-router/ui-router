@@ -10,7 +10,7 @@
   "durationSeconds": 17,
   "expectedFailureReason": "The locked dependency graph contains @testing-library/dom@10.4.1, which requires Node >=18 while the retained Travis baseline pins Node 10.",
   "id": "redux.root.install.node10",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "redux",
   "sourceCommit": "61610a4df2fc191e079ee3cc8c81a651aa86341a",

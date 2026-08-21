@@ -9,7 +9,7 @@
   "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
   "id": "angular.root.docs",
   "inputHashesAfterSha256": "a9c3f2b54409367d49d83c0e1c3a7674a422df97a471d4d7f1add487f1e184e4",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "angular",
   "sourceCommit": "9d6fd8aff88fe5a5f25f9a139cff024b7a19c1ab",

@@ -14,7 +14,7 @@
     "===> Successfully ran downstream tests for: typescript5.4, typescript3.9, sticky-states <===",
     "===> Did not try to run downstream tests for: sticky-states.angular-cli, sticky-states.angularjs-webpack, sticky-states.react-vite <==="
   ],
-  "result": "expected-failure",
+  "result": "waived-failure",
   "runtimeImageDigest": "sha256:a3c4909353ea44f3913651d21718e252877bfeb18aff2aaea3a067a738df2c94",
   "schemaVersion": 1,
   "source": "core",

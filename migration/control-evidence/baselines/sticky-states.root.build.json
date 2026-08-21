@@ -9,7 +9,7 @@
   "expectedFailureReason": "The unpinned tsgo dependency resolves TypeScript 6, which rejects the retained node10 moduleResolution and missing rootDir.",
   "id": "sticky-states.root.build",
   "inputHashesAfterSha256": "2a1395f7aea6f784f0cbb76c2d9d42ae428d9ddeecb5c36b765e7adbc0472c9c",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "sticky-states",
   "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",

@@ -17,7 +17,7 @@
   "durationSeconds": 2,
   "expectedFailureReason": "The source package-lock omits the platform-specific esbuild optional package, so the test command fails during its build step before browser launch.",
   "id": "sample-app-react.root.e2e",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "sample-app-react",
   "sourceCommit": "64ed979799b70dcf44cbb725b72351ef6c8afe1d",

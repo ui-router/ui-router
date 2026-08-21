@@ -9,7 +9,7 @@
   "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
   "id": "core.root.docs",
   "inputHashesAfterSha256": "c2a733d376997b619310676a926b34e731e21e9dd67e9c72eec07ccbb0430920",
-  "result": "expected-failure",
+  "result": "waived-failure",
   "schemaVersion": 1,
   "source": "core",
   "sourceCommit": "c647c9c5aceb7057a965a0ec039b13bea17119a5",

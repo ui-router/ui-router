@@ -51,9 +51,10 @@ const npmrcLines = readText('.npmrc')
   .filter((line) => line && !line.startsWith('#'));
 if (!npmrcLines.includes('ignore-scripts=true')) fail('.npmrc must set ignore-scripts=true');
 
-if (existsSync(join(root, 'package-lock.json'))) {
-  fail('root package-lock.json is forbidden until N03 proves classified dependency resolution');
-}
+const rootLockPresent = existsSync(join(root, 'package-lock.json'));
+const lockVerifierEnabled = packageJson.scripts?.['verify:locks'] === 'node tools/verify-npm-locks.mjs';
+if (lockVerifierEnabled && !rootLockPresent) fail('N03 lock verification requires package-lock.json');
+if (!lockVerifierEnabled && rootLockPresent) fail('root package-lock.json is forbidden until N03 lock verification is enabled');
 
 const lifecycleHooks = ['preinstall', 'install', 'postinstall', 'prepare', 'prepublish', 'prepublishOnly'];
 for (const hook of lifecycleHooks) {

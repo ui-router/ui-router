@@ -3,7 +3,7 @@
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -30,6 +30,7 @@ const pathRepairs = readJson('migration/path-repairs.json');
 const evidencePath = 'migration/evidence/n02/manifest-normalization.json';
 const evidence = readJson(evidencePath);
 const n01Commit = 'a83234469609a7a037c67977d4d980fb5d602ab9';
+const n02Commit = 'cc76293fb28f85f272bb898cc12de66ce4d5c416';
 const expectedEvidenceSha256 = 'e1bd63c1cdb1190ae5aee88b6b1c5c5f660c5b965d5e5df63aad5acbbfef72ff';
 const expectedClassificationSha256 = '9f7e4ea667a23c673ada140741831d8c26b55d7b66b22d4d2db69bcfe1cec359';
 const expectedPathRepairsSha256 = '6925035749cb2a2efceec041e2489fbe516d56c05b44f9b75794941f5b3fbf3d';
@@ -63,19 +64,21 @@ const gitBytes = (revision, path) => execFileSync('git', [...gitArgs, 'show', `$
 requireEqual('N02 evidence base commit', evidence.baseCommit, n01Commit);
 try {
   requireEqual('N01 baseline object', git('rev-parse', `${n01Commit}^{commit}`).trim(), n01Commit);
-  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', n01Commit, 'HEAD']);
+  requireEqual('N02 approved object', git('rev-parse', `${n02Commit}^{commit}`).trim(), n02Commit);
+  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', n01Commit, n02Commit]);
+  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', n02Commit, 'HEAD']);
 } catch (error) {
-  fail(`N01 baseline ${n01Commit} must be available and ancestral to HEAD: ${error.message}`);
+  fail(`N01/N02 approved history must be available and ancestral to HEAD: ${error.message}`);
 }
 requireEqual(
   'N01 package-classification digest',
   evidence.packageClassificationBeforeSha256,
   digest(gitBytes(n01Commit, 'migration/package-classification.json')),
 );
-requireEqual('approved N02 evidence digest', sha256(evidencePath), expectedEvidenceSha256);
-requireEqual('approved N02 classification digest', sha256('migration/package-classification.json'), expectedClassificationSha256);
-requireEqual('approved N02 path-repair digest', sha256('migration/path-repairs.json'), expectedPathRepairsSha256);
-requireEqual('path-repair classification digest', pathRepairs.packageClassificationSha256, expectedClassificationSha256);
+requireEqual('approved N02 evidence digest', digest(gitBytes(n02Commit, evidencePath)), expectedEvidenceSha256);
+requireEqual('current N02 evidence digest', sha256(evidencePath), expectedEvidenceSha256);
+requireEqual('approved N02 classification digest', digest(gitBytes(n02Commit, 'migration/package-classification.json')), expectedClassificationSha256);
+requireEqual('approved N02 path-repair digest', digest(gitBytes(n02Commit, 'migration/path-repairs.json')), expectedPathRepairsSha256);
 requireEqual('N02 evidence task', evidence.task, 'N02');
 requireEqual('N02 evidence execution-lock digest', evidence.executionLockSha256, classification.executionLockSha256);
 requireEqual('N02 evidence baseline digest', evidence.baselinesSha256, classification.baselinesSha256);
@@ -114,7 +117,7 @@ requireEqual('private classification count', classification.manifests.filter((re
 requireEqual('resolution-policy record count', classification.resolutions.length, 7);
 requireEqual('local-tarball edge count', classification.edges.filter((edge) => edge.resolutionMode === 'local-tarball').length, 37);
 
-const changedPaths = git('diff', '--name-only', n01Commit, 'HEAD')
+const changedPaths = git('diff', '--name-only', n01Commit, n02Commit)
   .trim()
   .split('\n')
   .filter(Boolean)
@@ -148,7 +151,7 @@ for (const record of classification.manifests) {
   if (!hashes) fail(`missing manifest-hash evidence: ${record.id}`);
   requireEqual(`${record.id} hash path`, hashes.path, path);
   requireEqual(`${record.id} baseline hash`, hashes.beforeSha256, digest(baselineBytes));
-  requireEqual(`${record.id} current hash`, hashes.afterSha256, sha256(path));
+  requireEqual(`${record.id} approved N02 hash`, hashes.afterSha256, digest(gitBytes(n02Commit, path)));
 
   requireEqual(`${record.id} name`, manifest.name, record.finalName);
   requireEqual(`${record.id} private`, manifest.private === true, record.private);
@@ -162,6 +165,10 @@ for (const record of classification.manifests) {
     }
   }
   for (const field of toolchainAdjustments.get(path)?.fields ?? []) allowedFields.add(field.field);
+  if (['core/package.json', 'frameworks/angular-hybrid/uirouter-angular-hybrid/package.json', 'tools/publish-scripts/package.json'].includes(path)) {
+    allowedFields.add('resolutions');
+  }
+  if (path === 'frameworks/angular/examples/sample-app/package.json') allowedFields.add('overrides');
   const baselineUnchanged = structuredClone(baseline);
   const currentUnchanged = structuredClone(manifest);
   for (const field of allowedFields) {
@@ -224,7 +231,7 @@ for (const adjustment of evidence.exampleToolchainAdjustments) {
 requireEqual('configuration adjustment count', evidence.configurationAdjustments.length, 3);
 for (const adjustment of evidence.configurationAdjustments) {
   requireEqual(`${adjustment.path} baseline hash`, adjustment.beforeSha256, digest(gitBytes(n01Commit, adjustment.path)));
-  requireEqual(`${adjustment.path} current hash`, adjustment.afterSha256, sha256(adjustment.path));
+  requireEqual(`${adjustment.path} approved N02 hash`, adjustment.afterSha256, digest(gitBytes(n02Commit, adjustment.path)));
 }
 
 const expectedResolutionIds = classification.resolutions.map((record) => record.id);
@@ -250,5 +257,7 @@ requireEqual('install-smoke log path', evidence.installSmoke.log.path, 'migratio
 requireEqual('install-smoke log digest', evidence.installSmoke.log.sha256, 'fa762a026e620246b152085e8f388dc750121afbf9524722dfef8ebed8a6ceee');
 requireEqual('install-smoke log bytes', readText(evidence.installSmoke.log.path), expectedSmokeLog);
 
-if (existsSync(join(root, 'package-lock.json'))) fail('root package-lock.json is forbidden until N03');
+if (git('ls-tree', '-r', '--name-only', n02Commit, '--', 'package-lock.json').trim()) {
+  fail('approved N02 commit unexpectedly contains a root package-lock.json');
+}
 console.log(`MANIFEST_NORMALIZATION_OK manifests=${classification.manifests.length} private=${classification.manifests.filter((record) => record.private).length} published=${publishedEvidence.size} workspaceEdges=${workspaceEdges}`);

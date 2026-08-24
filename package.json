@@ -27,9 +27,10 @@
     "tools/*"
   ],
   "scripts": {
-    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:contracts && npm run verify:work-graph",
+    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:contracts && npm run verify:work-graph",
     "verify:root-config": "node tools/verify-root-config.mjs",
     "verify:manifests": "node tools/verify-manifest-normalization.mjs",
+    "verify:locks": "node tools/verify-npm-locks.mjs",
     "verify:contracts": "node tools/verify-contract-schemas.mjs",
     "verify:work-graph": "node tools/verify-work-graph.mjs",
     "test:history-migration": "node tools/test-history-migration.mjs"

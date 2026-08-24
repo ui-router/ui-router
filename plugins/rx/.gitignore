@@ -1,0 +1,20 @@
+# common
+node_modules
+.DS_Store
+*~
+**/.*
+.*
+stats.html
+
+# webstorm files
+.idea
+idea-out
+*.iml
+*.ipr
+*.iws
+
+_doc
+_bundles
+lib
+lib-esm
+yarn-error.log

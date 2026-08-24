@@ -1,0 +1,24 @@
+name: 'Upgrade dependencies'
+description: 'Upgrade dependencies'
+inputs:
+  deptype:
+    description: 'dependencies or devDependencies'
+    required: true
+    default: 'dependencies'
+  latest:
+    description: 'if `true`, uses yarn upgrade --latest'
+    required: true
+    default: 'false'
+  excludes:
+    description: 'comma separated list of packages to exclude from upgrades'
+    required: false
+outputs:
+  upgrades: # id of output
+    description: 'The packages@versions that were updated'
+  upgradecount:
+    description: 'The number of packages that were updated'
+  upgradestrategy:
+    description: 'A description of the strategy used either a) latest or b) matching semver range'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

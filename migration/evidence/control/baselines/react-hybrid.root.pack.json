@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "pack",
+    "--ignore-scripts",
+    "--json",
+    "--dry-run"
+  ],
+  "durationSeconds": 2,
+  "expectedFailureReason": null,
+  "id": "react-hybrid.root.pack",
+  "inputHashesAfterSha256": "881ac892b07dc569137c8c49bed2969d775360f3a4994ef733715951f147b412",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "react-hybrid",
+  "sourceCommit": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+  "status": 0,
+  "stderrSha256": "1a2caa93defe6bafa38516d8a1657334482d31e8cd2103c9c1d59490be5cff57",
+  "stdoutSha256": "6ee7ac991f1f2866e31304bbc587eae91600b9ac0f3939a9fce568e2a8727989"
+}

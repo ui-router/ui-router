@@ -1,0 +1,72 @@
+{
+  "name": "@uirouter/visualizer",
+  "description": "UI-Router State Visualizer and Transition Visualizer",
+  "version": "7.2.1",
+  "scripts": {
+    "start": "npm run bundle && serve . --open /examples/example",
+    "clean": "shx rm -rf lib lib-esm _bundles",
+    "compile": "tsgo --outdir lib && tsgo -m es6 --outdir lib-esm",
+    "bundle": "rolldown -c rolldown.config.mjs",
+    "build": "npm run clean && npm run compile && npm run bundle",
+    "prepublishOnly": "npm run build",
+    "release": "release",
+    "prepare": "husky"
+  },
+  "homepage": "https://github.com/ui-router/visualizer",
+  "contributors": [
+    {
+      "name": "Chris Thielen",
+      "web": "https://github.com/christopherthielen"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "UI-Router",
+      "web": "https://github.com/ui-router?tab=members"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/visualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/visualizer/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "d3-hierarchy": "^3.1.2",
+    "d3-interpolate": "=3.0.1",
+    "preact": "^10.28.1"
+  },
+  "devDependencies": {
+    "@types/d3-hierarchy": "^3.1.7",
+    "@types/d3-interpolate": "^3.0.4",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/publish-scripts": "2.7.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4",
+    "pretty-quick": "^4.2.2",
+    "rolldown": "^1.0.0-beta.58",
+    "rollup-plugin-styles": "^4.0.0",
+    "serve": "^14.2.5",
+    "shx": "^0.4.0",
+    "@typescript/native-preview": "^7.0.0-dev.20250701",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-linux-x64-gnu": "1.0.0-beta.58",
+    "@typescript/native-preview-linux-x64": "^7.0.0-dev.20250701"
+  },
+  "peerDependencies": {
+    "@uirouter/core": ">=5.0.0"
+  },
+  "main": "_bundles/ui-router-visualizer.js",
+  "module": "_bundles/ui-router-visualizer.esm.js",
+  "typings": "artisinal.typings.d.ts",
+  "checkPeerDependencies": {
+    "ignore": [
+      "rollup"
+    ]
+  }
+}

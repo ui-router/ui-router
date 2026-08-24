@@ -1,0 +1,13 @@
+{
+  "field": "script.src",
+  "id": "visualizer-example-bundle",
+  "interpretationMode": "config-file",
+  "newReference": "src=\"../../_bundles/ui-router-visualizer.js\"",
+  "oldReference": "src=\"../_bundles/ui-router-visualizer.js\"",
+  "resolvedTarget": "plugins/visualizer/_bundles/ui-router-visualizer.js",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": false
+}

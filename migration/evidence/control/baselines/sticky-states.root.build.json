@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "build"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": "The unpinned tsgo dependency resolves TypeScript 6, which rejects the retained node10 moduleResolution and missing rootDir.",
+  "id": "sticky-states.root.build",
+  "inputHashesAfterSha256": "2a1395f7aea6f784f0cbb76c2d9d42ae428d9ddeecb5c36b765e7adbc0472c9c",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "sticky-states",
+  "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "status": 2,
+  "stderrSha256": "b49a837c9a52c008214e97cbbf59670d2be46595a65bea4461e6dbccdd9815c7",
+  "stdoutSha256": "887ba4fdbad0c31f55161cd1252a1715094305f796f2986f5227b05fc5f874dd"
+}

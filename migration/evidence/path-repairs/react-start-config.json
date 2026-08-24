@@ -1,0 +1,13 @@
+{
+  "field": "scripts.start",
+  "id": "react-start-config",
+  "interpretationMode": "process-cwd",
+  "newReference": "--config ../examples/typescript/webpack.config.js",
+  "oldReference": "--config ./examples/typescript/webpack.config.js",
+  "resolvedTarget": "frameworks/react/examples/typescript/webpack.config.js",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

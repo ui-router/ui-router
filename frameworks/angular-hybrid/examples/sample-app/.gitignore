@@ -1,0 +1,16 @@
+/.angular/cache
+node_modules/
+*.iml
+*.ipr
+*.iws
+.*
+transpiled
+_bundles
+yarn-error.log
+dist
+
+cypress/screenshots
+cypress/videos
+cypress/fixtures
+cypress/plugins
+cypress/support

@@ -1,0 +1,11 @@
+.*
+**/tsconfig.json
+**/node_modules
+core/
+react/
+examples/
+_doc/
+*.config.ts
+*.setup.ts
+.prettierignore
+.prettierrc

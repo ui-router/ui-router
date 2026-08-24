@@ -1,0 +1,2131 @@
+{
+  "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+  "moves": [
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "core/test/typescript3.9",
+      "id": "core-typescript-3-9",
+      "moveCommit": "9b0e1b9aeed494dd21279b9a70fb6f09a72fe4af",
+      "owner": "core/package.json",
+      "source": "core",
+      "to": "core/integration/typescript-3.9"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "core/test/typescript5.4",
+      "id": "core-typescript-5-4",
+      "moveCommit": "9b0e1b9aeed494dd21279b9a70fb6f09a72fe4af",
+      "owner": "core/package.json",
+      "source": "core",
+      "to": "core/integration/typescript-5.4"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "plugins/visualizer/example",
+      "id": "visualizer-example",
+      "moveCommit": "05d111fe0d74272158aafd386d05f6947032470c",
+      "owner": "plugins/visualizer/package.json",
+      "source": "visualizer",
+      "to": "plugins/visualizer/examples/example"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/angularjs/router/test/typescript",
+      "id": "angularjs-typescript",
+      "moveCommit": "19f9e11477b54d113f1d4bea6c7ae1267dd9020b",
+      "owner": "framework/angularjs/router/package.json",
+      "source": "angularjs",
+      "to": "framework/angularjs/integration/typescript-versions"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/angular/router/test-angular-versions",
+      "id": "angular-versions",
+      "moveCommit": "cda082bcedf05fb9bc7f708dd87b504cdcce9a1a",
+      "owner": "framework/angular/router/package.json",
+      "source": "angular",
+      "to": "framework/angular/integration/angular-versions"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/angular/router/test-typescript-versions",
+      "id": "angular-typescript-versions",
+      "moveCommit": "cda082bcedf05fb9bc7f708dd87b504cdcce9a1a",
+      "owner": "framework/angular/router/package.json",
+      "source": "angular",
+      "to": "framework/angular/integration/typescript-versions"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/angular-hybrid/router/example",
+      "id": "angular-hybrid-example",
+      "moveCommit": "eefa531516da668bfba7d6b992795fb94e5f48c9",
+      "owner": "framework/angular-hybrid/router/package.json",
+      "source": "angular-hybrid",
+      "to": "framework/angular-hybrid/examples/example"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/react/router/examples",
+      "id": "react-examples",
+      "moveCommit": "80a8ece0478294bffb4a472901c90cc282c88b09",
+      "owner": "framework/react/router/package.json",
+      "source": "react",
+      "to": "framework/react/examples"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/react/router/integration",
+      "id": "react-integration",
+      "moveCommit": "80a8ece0478294bffb4a472901c90cc282c88b09",
+      "owner": "framework/react/router/package.json",
+      "source": "react",
+      "to": "framework/react/integration"
+    },
+    {
+      "evidence": {
+        "path": "migration/import-lock.json",
+        "sha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5"
+      },
+      "from": "framework/react-hybrid/router/integration",
+      "id": "react-hybrid-integration",
+      "moveCommit": "6eec38d6b3a8ff21b71ab6152e35ff56e7e5a68f",
+      "owner": "framework/react-hybrid/router/package.json",
+      "source": "react-hybrid",
+      "to": "framework/react-hybrid/integration"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "framework",
+      "id": "frameworks-root",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "migration/package-classification.json",
+      "source": "monorepo-layout",
+      "to": "frameworks"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/angular/router",
+      "id": "angular-package",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/angular/uirouter-angular/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/angular/uirouter-angular"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/angularjs/router",
+      "id": "angularjs-package",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/angularjs/uirouter-angularjs"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/angular-hybrid/router",
+      "id": "angular-hybrid-package",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/angular-hybrid/uirouter-angular-hybrid"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/react/router",
+      "id": "react-package",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/react/uirouter-react/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/react/uirouter-react"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/react-hybrid/router",
+      "id": "react-hybrid-package",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/react-hybrid/uirouter-react-hybrid"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "core/integration",
+      "id": "core-integration-tests",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "core/package.json",
+      "source": "monorepo-layout",
+      "to": "core/integration-tests"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/angular/integration",
+      "id": "angular-integration-tests",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/angular/uirouter-angular/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/angular/integration-tests"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/angularjs/integration",
+      "id": "angularjs-integration-tests",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/angularjs/integration-tests"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/react/integration",
+      "id": "react-integration-tests",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/react/uirouter-react/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/react/integration-tests"
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/h03r-layout.json",
+        "sha256": "8e2de28dc8d0e86920ba76452424b5bdf19bb8a2e157dbe20d93c44a7f4ad086"
+      },
+      "from": "frameworks/react-hybrid/integration",
+      "id": "react-hybrid-integration-tests",
+      "moveCommit": "f45a0e4bf867ad2bed77e4d01ae78444f3f83374",
+      "owner": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "source": "monorepo-layout",
+      "to": "frameworks/react-hybrid/integration-tests"
+    }
+  ],
+  "packageClassificationSha256": "3b96ab6740f4511c4afeb63e184f29ef4089583dedb48fbfbedde87143cdbc18",
+  "repairs": [
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/core-downstream-typescript-3-9.json",
+        "sha256": "c826fb6be2913fcd0f84744eb5e5bc3f8fe97b209c9e871ff9b76f3e17cbe400"
+      },
+      "field": "other.typescript3.9",
+      "id": "core-downstream-typescript-3-9",
+      "interpretationMode": "process-cwd",
+      "moveId": "core-typescript-3-9",
+      "newReference": "\"./integration-tests/typescript-3.9\"",
+      "oldReference": "\"./test/typescript3.9\"",
+      "owningPackage": "core/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From core, the repaired reference resolves to core/integration-tests/typescript-3.9 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "core/downstream_projects.json",
+          "\"./test/typescript3.9\"",
+          "\"./integration-tests/typescript-3.9\"",
+          "core/integration-tests/typescript-3.9",
+          "exists"
+        ],
+        "cwd": "core",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/core-downstream-typescript-5-4.json",
+        "sha256": "bee9400f446a57d44076dff4655b5d85de8b62841365a4d16e3f615fc0220b8b"
+      },
+      "field": "other.typescript5.4",
+      "id": "core-downstream-typescript-5-4",
+      "interpretationMode": "process-cwd",
+      "moveId": "core-typescript-5-4",
+      "newReference": "\"./integration-tests/typescript-5.4\"",
+      "oldReference": "\"./test/typescript5.4\"",
+      "owningPackage": "core/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From core, the repaired reference resolves to core/integration-tests/typescript-5.4 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "core/downstream_projects.json",
+          "\"./test/typescript5.4\"",
+          "\"./integration-tests/typescript-5.4\"",
+          "core/integration-tests/typescript-5.4",
+          "exists"
+        ],
+        "cwd": "core",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angularjs-downstream-typescript-3-9.json",
+        "sha256": "a616d43d793457e29d97c0bcc139b7c0a8e25650c18081bf49f85218bfd4dee9"
+      },
+      "field": "typescript.typescript3.9",
+      "id": "angularjs-downstream-typescript-3-9",
+      "interpretationMode": "process-cwd",
+      "moveId": "angularjs-typescript",
+      "newReference": "\"../integration-tests/typescript-versions/3.9\"",
+      "oldReference": "\"./test/typescript/3.9\"",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angularjs/uirouter-angularjs, the repaired reference resolves to frameworks/angularjs/integration-tests/typescript-versions/3.9 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angularjs/uirouter-angularjs/downstream_projects.json",
+          "\"./test/typescript/3.9\"",
+          "\"../integration-tests/typescript-versions/3.9\"",
+          "frameworks/angularjs/integration-tests/typescript-versions/3.9",
+          "exists"
+        ],
+        "cwd": "frameworks/angularjs/uirouter-angularjs",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-downstream-v22.json",
+        "sha256": "d245977f895ece109506354a8ce014efa379f6b9f97fd562c891ae97e0e8393c"
+      },
+      "field": "projects.angular22",
+      "id": "angular-downstream-v22",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-versions",
+      "newReference": "\"../integration-tests/angular-versions/v22\"",
+      "oldReference": "\"./test-angular-versions/v22\"",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions/v22 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "\"./test-angular-versions/v22\"",
+          "\"../integration-tests/angular-versions/v22\"",
+          "frameworks/angular/integration-tests/angular-versions/v22",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-downstream-v22-standalone.json",
+        "sha256": "d3f10d19c1228fd2bbcb6d4e48604c71022d4539d0e21162f3a416d736e72f0d"
+      },
+      "field": "projects.angular22standalone",
+      "id": "angular-downstream-v22-standalone",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-versions",
+      "newReference": "../integration-tests/angular-versions/v22-standalone",
+      "oldReference": "./test-angular-versions/v22-standalone",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions/v22-standalone and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "./test-angular-versions/v22-standalone",
+          "../integration-tests/angular-versions/v22-standalone",
+          "frameworks/angular/integration-tests/angular-versions/v22-standalone",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-downstream-v22-zoneless.json",
+        "sha256": "2457b579b2006034df5eb6d79c1186551e6d6f20199f7e34bfe56d5b99475abb"
+      },
+      "field": "projects.angular22zoneless",
+      "id": "angular-downstream-v22-zoneless",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-versions",
+      "newReference": "../integration-tests/angular-versions/v22-zoneless",
+      "oldReference": "./test-angular-versions/v22-zoneless",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions/v22-zoneless and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "./test-angular-versions/v22-zoneless",
+          "../integration-tests/angular-versions/v22-zoneless",
+          "frameworks/angular/integration-tests/angular-versions/v22-zoneless",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-downstream-typescript-6.json",
+        "sha256": "a2f783c1f377b8a53ec67da55bdba48b8879536a617fd8963e083aeca632c94a"
+      },
+      "field": "projects.typescript6",
+      "id": "angular-downstream-typescript-6",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-typescript-versions",
+      "newReference": "\"../integration-tests/typescript-versions/typescript6\"",
+      "oldReference": "\"./test-typescript-versions/typescript6\"",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/typescript-versions/typescript6 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "\"./test-typescript-versions/typescript6\"",
+          "\"../integration-tests/typescript-versions/typescript6\"",
+          "frameworks/angular/integration-tests/typescript-versions/typescript6",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-hybrid-downstream-example.json",
+        "sha256": "5f787a2dfed7eb428f34502a37b272d300472238054da2adc45a4ce26ff42af6"
+      },
+      "field": "example",
+      "id": "angular-hybrid-downstream-example",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-hybrid-example",
+      "newReference": "\"../examples/example\"",
+      "oldReference": "\"./example\"",
+      "owningPackage": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/angular-hybrid/uirouter-angular-hybrid, the repaired reference resolves to frameworks/angular-hybrid/examples/example and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular-hybrid/uirouter-angular-hybrid/downstream_projects.json",
+          "\"./example\"",
+          "\"../examples/example\"",
+          "frameworks/angular-hybrid/examples/example",
+          "exists"
+        ],
+        "cwd": "frameworks/angular-hybrid/uirouter-angular-hybrid",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-downstream-17.json",
+        "sha256": "45c412b3da75c7aa4dacc4caa83218e036fe4d00abe80476f0e6c968b4f96b33"
+      },
+      "field": "react-versions.react17",
+      "id": "react-downstream-17",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-integration",
+      "newReference": "\"../integration-tests/react17\"",
+      "oldReference": "\"./integration/react17\"",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react/uirouter-react, the repaired reference resolves to frameworks/react/integration-tests/react17 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/uirouter-react/downstream_projects.json",
+          "\"./integration/react17\"",
+          "\"../integration-tests/react17\"",
+          "frameworks/react/integration-tests/react17",
+          "exists"
+        ],
+        "cwd": "frameworks/react/uirouter-react",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-downstream-18.json",
+        "sha256": "aecc431d95e98c95ef49c59b03c63569b75bb8d90d19a8d2100e4422d3753ad4"
+      },
+      "field": "react-versions.react18",
+      "id": "react-downstream-18",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-integration",
+      "newReference": "\"../integration-tests/react18\"",
+      "oldReference": "\"./integration/react18\"",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react/uirouter-react, the repaired reference resolves to frameworks/react/integration-tests/react18 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/uirouter-react/downstream_projects.json",
+          "\"./integration/react18\"",
+          "\"../integration-tests/react18\"",
+          "frameworks/react/integration-tests/react18",
+          "exists"
+        ],
+        "cwd": "frameworks/react/uirouter-react",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-downstream-19.json",
+        "sha256": "b6dcd38252d6efb1b595a72f72ffbdebf4cef932de73eb9574743b360e0d146a"
+      },
+      "field": "react-versions.react19",
+      "id": "react-downstream-19",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-integration",
+      "newReference": "\"../integration-tests/react19\"",
+      "oldReference": "\"./integration/react19\"",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react/uirouter-react, the repaired reference resolves to frameworks/react/integration-tests/react19 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/uirouter-react/downstream_projects.json",
+          "\"./integration/react19\"",
+          "\"../integration-tests/react19\"",
+          "frameworks/react/integration-tests/react19",
+          "exists"
+        ],
+        "cwd": "frameworks/react/uirouter-react",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-hybrid-downstream-16.json",
+        "sha256": "8e733e38bfa31d0a0c2f5d460ac2babe45e88b1d8320d8e73c9eae13d4cd61b8"
+      },
+      "field": "integration.react16",
+      "id": "react-hybrid-downstream-16",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-hybrid-integration",
+      "newReference": "\"../integration-tests/react16\"",
+      "oldReference": "\"./integration/react16\"",
+      "owningPackage": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react-hybrid/uirouter-react-hybrid, the repaired reference resolves to frameworks/react-hybrid/integration-tests/react16 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+          "\"./integration/react16\"",
+          "\"../integration-tests/react16\"",
+          "frameworks/react-hybrid/integration-tests/react16",
+          "exists"
+        ],
+        "cwd": "frameworks/react-hybrid/uirouter-react-hybrid",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-hybrid-downstream-17.json",
+        "sha256": "845cd3fbcad002da6aa9bc5045fa046fe59d2427855d9cb82fa99871725f2848"
+      },
+      "field": "integration.react17",
+      "id": "react-hybrid-downstream-17",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-hybrid-integration",
+      "newReference": "\"../integration-tests/react17\"",
+      "oldReference": "\"./integration/react17\"",
+      "owningPackage": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react-hybrid/uirouter-react-hybrid, the repaired reference resolves to frameworks/react-hybrid/integration-tests/react17 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+          "\"./integration/react17\"",
+          "\"../integration-tests/react17\"",
+          "frameworks/react-hybrid/integration-tests/react17",
+          "exists"
+        ],
+        "cwd": "frameworks/react-hybrid/uirouter-react-hybrid",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-hybrid-downstream-18.json",
+        "sha256": "671a48cdb5df36a9a9800befa7b3fd90c2ade2b40e22db7b97fcd4227353bb31"
+      },
+      "field": "integration.react18",
+      "id": "react-hybrid-downstream-18",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-hybrid-integration",
+      "newReference": "\"../integration-tests/react18\"",
+      "oldReference": "\"./integration/react18\"",
+      "owningPackage": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react-hybrid/uirouter-react-hybrid, the repaired reference resolves to frameworks/react-hybrid/integration-tests/react18 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+          "\"./integration/react18\"",
+          "\"../integration-tests/react18\"",
+          "frameworks/react-hybrid/integration-tests/react18",
+          "exists"
+        ],
+        "cwd": "frameworks/react-hybrid/uirouter-react-hybrid",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-hybrid-downstream-19.json",
+        "sha256": "bbf88a78e457ed1640817433595f4a4fba1d2fd07bf969a785f47764ce83565d"
+      },
+      "field": "integration.react19",
+      "id": "react-hybrid-downstream-19",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-hybrid-integration",
+      "newReference": "\"../integration-tests/react19\"",
+      "oldReference": "\"./integration/react19\"",
+      "owningPackage": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "01d76de7032153508295e94dacf4bfccdcb99777",
+      "smokeAssertion": "From frameworks/react-hybrid/uirouter-react-hybrid, the repaired reference resolves to frameworks/react-hybrid/integration-tests/react19 and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+          "\"./integration/react19\"",
+          "\"../integration-tests/react19\"",
+          "frameworks/react-hybrid/integration-tests/react19",
+          "exists"
+        ],
+        "cwd": "frameworks/react-hybrid/uirouter-react-hybrid",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/visualizer-example-bundle.json",
+        "sha256": "6a9f77b55214ea1af3deb24dbea724816d527d5cdaea8c193af411da7c33e83c"
+      },
+      "field": "script.src",
+      "id": "visualizer-example-bundle",
+      "interpretationMode": "config-file",
+      "moveId": "visualizer-example",
+      "newReference": "src=\"../../_bundles/ui-router-visualizer.js\"",
+      "oldReference": "src=\"../_bundles/ui-router-visualizer.js\"",
+      "owningPackage": "plugins/visualizer/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From plugins/visualizer/examples/example, the repaired reference resolves to plugins/visualizer/_bundles/ui-router-visualizer.js without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "plugins/visualizer/examples/example/index.html",
+          "src=\"../_bundles/ui-router-visualizer.js\"",
+          "src=\"../../_bundles/ui-router-visualizer.js\"",
+          "plugins/visualizer/_bundles/ui-router-visualizer.js",
+          "normalize-only"
+        ],
+        "cwd": "plugins/visualizer/examples/example",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/visualizer-start-example.json",
+        "sha256": "d61580e53dbf888880601b82dc97b53cc5da0737ee029c3fb91fd63d0003caa9"
+      },
+      "field": "scripts.start",
+      "id": "visualizer-start-example",
+      "interpretationMode": "process-cwd",
+      "moveId": "visualizer-example",
+      "newReference": "--open /examples/example\"",
+      "oldReference": "--open /example\"",
+      "owningPackage": "plugins/visualizer/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From plugins/visualizer, the repaired reference resolves to plugins/visualizer/examples/example and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "plugins/visualizer/package.json",
+          "--open /example\"",
+          "--open /examples/example\"",
+          "plugins/visualizer/examples/example",
+          "exists"
+        ],
+        "cwd": "plugins/visualizer",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angularjs-scaffold-input.json",
+        "sha256": "f01d5f7dfa9ddbf6d825fad6a836f585431098030f3304bc2ec6b8e60e071d5a"
+      },
+      "field": "jq.input",
+      "id": "angularjs-scaffold-input",
+      "interpretationMode": "process-cwd",
+      "moveId": "angularjs-typescript",
+      "newReference": "< ../../uirouter-angularjs/downstream_projects.json",
+      "oldReference": "< ../../downstream_projects.json",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angularjs/integration-tests/typescript-versions, the repaired reference resolves to frameworks/angularjs/uirouter-angularjs/downstream_projects.json and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angularjs/integration-tests/typescript-versions/mktest.sh",
+          "< ../../downstream_projects.json",
+          "< ../../uirouter-angularjs/downstream_projects.json",
+          "frameworks/angularjs/uirouter-angularjs/downstream_projects.json",
+          "exists"
+        ],
+        "cwd": "frameworks/angularjs/integration-tests/typescript-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angularjs-scaffold-output.json",
+        "sha256": "e91a5954b060e973170fffa4203d0795ac7f89197c42018cdfc3c13003e8e531"
+      },
+      "field": "mv.destination",
+      "id": "angularjs-scaffold-output",
+      "interpretationMode": "process-cwd",
+      "moveId": "angularjs-typescript",
+      "newReference": "mv temp.json ../../uirouter-angularjs/downstream_projects.json",
+      "oldReference": "mv temp.json ../../downstream_projects.json",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angularjs/integration-tests/typescript-versions, the repaired reference resolves to frameworks/angularjs/uirouter-angularjs/downstream_projects.json and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angularjs/integration-tests/typescript-versions/mktest.sh",
+          "mv temp.json ../../downstream_projects.json",
+          "mv temp.json ../../uirouter-angularjs/downstream_projects.json",
+          "frameworks/angularjs/uirouter-angularjs/downstream_projects.json",
+          "exists"
+        ],
+        "cwd": "frameworks/angularjs/integration-tests/typescript-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angularjs-scaffold-reference.json",
+        "sha256": "8d1a4a481a46d5c1f0f0c3c6930f5131275a430a06ef7ab3f3e07c09482f8a6e"
+      },
+      "field": "typescript.path",
+      "id": "angularjs-scaffold-reference",
+      "interpretationMode": "process-cwd",
+      "moveId": "angularjs-typescript",
+      "newReference": "../integration-tests/typescript-versions/$1",
+      "oldReference": "./test/typescript/$1",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angularjs/uirouter-angularjs, the repaired reference resolves to frameworks/angularjs/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angularjs/integration-tests/typescript-versions/mktest.sh",
+          "./test/typescript/$1",
+          "../integration-tests/typescript-versions/$1",
+          "frameworks/angularjs/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angularjs/uirouter-angularjs",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-scaffold-downstream-file.json",
+        "sha256": "9c3decf5e02125d439fd8583e87ca9c6e3bd4929be93d7ee92904902bc595fd7"
+      },
+      "field": "downstream.file",
+      "id": "angular-scaffold-downstream-file",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-versions",
+      "newReference": "../../uirouter-angular/downstream_projects.json",
+      "oldReference": "../downstream_projects.json",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/integration-tests/angular-versions, the repaired reference resolves to frameworks/angular/uirouter-angular/downstream_projects.json and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/angular-versions/scaffold.sh",
+          "../downstream_projects.json",
+          "../../uirouter-angular/downstream_projects.json",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/integration-tests/angular-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-scaffold-reference.json",
+        "sha256": "8f2438e2f144097a91c87d3444c302145df24dcee2905990548c009b3294f21a"
+      },
+      "field": "downstream.reference",
+      "id": "angular-scaffold-reference",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-versions",
+      "newReference": "../integration-tests/angular-versions/$DIR",
+      "oldReference": "./test-angular-versions/$DIR",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/angular-versions/scaffold.sh",
+          "./test-angular-versions/$DIR",
+          "../integration-tests/angular-versions/$DIR",
+          "frameworks/angular/integration-tests/angular-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-scaffold-json-dependencies.json",
+        "sha256": "51fb7631a14f6888cb7f802fdc34d8848e72c080d9b67b361701cbb11ac13371"
+      },
+      "field": "require.dependencies",
+      "id": "angular-scaffold-json-dependencies",
+      "interpretationMode": "config-file",
+      "moveId": "angular-versions",
+      "newReference": "const { get, set, unset } = require('../../uirouter-angular/node_modules/lodash');\nconst yargs = require('../../uirouter-angular/node_modules/yargs');",
+      "oldReference": "const { get, set, unset } = require('lodash');\nconst yargs = require('yargs');",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/integration-tests/angular-versions, the repaired reference resolves to frameworks/angular/uirouter-angular/node_modules/lodash without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/angular-versions/read-write-json.js",
+          "const { get, set, unset } = require('lodash');\nconst yargs = require('yargs');",
+          "const { get, set, unset } = require('../../uirouter-angular/node_modules/lodash');\nconst yargs = require('../../uirouter-angular/node_modules/yargs');",
+          "frameworks/angular/uirouter-angular/node_modules/lodash",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/angular/integration-tests/angular-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-scaffold-json-yargs-command.json",
+        "sha256": "595fe04ace07d90d5879b4ae55b205526d7d2f078cdc8f58a0cf8ac6fa513afd"
+      },
+      "field": "configureCli.require.yargs",
+      "id": "angular-scaffold-json-yargs-command",
+      "interpretationMode": "config-file",
+      "moveId": "angular-versions",
+      "newReference": "const configureCli = () => {\n  const yargs = require('../../uirouter-angular/node_modules/yargs');",
+      "oldReference": "const configureCli = () => {\n  const yargs = require('yargs');",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/integration-tests/angular-versions, the repaired reference resolves to frameworks/angular/uirouter-angular/node_modules/yargs without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/angular-versions/read-write-json.js",
+          "const configureCli = () => {\n  const yargs = require('yargs');",
+          "const configureCli = () => {\n  const yargs = require('../../uirouter-angular/node_modules/yargs');",
+          "frameworks/angular/uirouter-angular/node_modules/yargs",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/angular/integration-tests/angular-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-typescript-scaffold-json.json",
+        "sha256": "b3ced7b51a6bc06f88dfaf82d85b36d3337a266f247afc0560e415b011a446cc"
+      },
+      "field": "json.executable",
+      "id": "angular-typescript-scaffold-json",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-typescript-versions",
+      "newReference": "../angular-versions/read-write-json.js",
+      "oldReference": "../test-angular-versions/read-write-json.js",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/integration-tests/typescript-versions, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions/read-write-json.js and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/typescript-versions/scaffold.sh",
+          "../test-angular-versions/read-write-json.js",
+          "../angular-versions/read-write-json.js",
+          "frameworks/angular/integration-tests/angular-versions/read-write-json.js",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/integration-tests/typescript-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-typescript-scaffold-downstream-file.json",
+        "sha256": "8dfed752bf0eb73217d99de9b350fa40a87d1f333f5486cb794715afc6ab9091"
+      },
+      "field": "downstream.file",
+      "id": "angular-typescript-scaffold-downstream-file",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-typescript-versions",
+      "newReference": "../../uirouter-angular/downstream_projects.json",
+      "oldReference": "../downstream_projects.json",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/integration-tests/typescript-versions, the repaired reference resolves to frameworks/angular/uirouter-angular/downstream_projects.json and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/typescript-versions/scaffold.sh",
+          "../downstream_projects.json",
+          "../../uirouter-angular/downstream_projects.json",
+          "frameworks/angular/uirouter-angular/downstream_projects.json",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/integration-tests/typescript-versions",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-typescript-scaffold-reference.json",
+        "sha256": "a3c79a5d20e538ff9a8d9f9e4ee119bfe82c9b82a1267a357f0052328d8a0788"
+      },
+      "field": "downstream.reference",
+      "id": "angular-typescript-scaffold-reference",
+      "interpretationMode": "process-cwd",
+      "moveId": "angular-typescript-versions",
+      "newReference": "../integration-tests/typescript-versions/$DIR",
+      "oldReference": "./test-typescript-versions/$DIR",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/integration-tests/typescript-versions/scaffold.sh",
+          "./test-typescript-versions/$DIR",
+          "../integration-tests/typescript-versions/$DIR",
+          "frameworks/angular/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-start-config.json",
+        "sha256": "f940ffad9fd882f600b6feb2c0dd1ace794c148a1952dc1a052110c544e6d87f"
+      },
+      "field": "scripts.start",
+      "id": "react-start-config",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-examples",
+      "newReference": "--config ../examples/typescript/webpack.config.js",
+      "oldReference": "--config ./examples/typescript/webpack.config.js",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/uirouter-react, the repaired reference resolves to frameworks/react/examples/typescript/webpack.config.js and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/uirouter-react/package.json",
+          "--config ./examples/typescript/webpack.config.js",
+          "--config ../examples/typescript/webpack.config.js",
+          "frameworks/react/examples/typescript/webpack.config.js",
+          "exists"
+        ],
+        "cwd": "frameworks/react/uirouter-react",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-static-directory.json",
+        "sha256": "b2ed811cc809ea56c6794ce47a7cd407f7de9884232ab27655eedee12e528646"
+      },
+      "field": "devServer.static.directory",
+      "id": "react-example-static-directory",
+      "interpretationMode": "process-cwd",
+      "moveId": "react-examples",
+      "newReference": "directory: '../examples/typescript'",
+      "oldReference": "directory: './examples/typescript'",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/uirouter-react, the repaired reference resolves to frameworks/react/examples/typescript and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/webpack.config.js",
+          "directory: './examples/typescript'",
+          "directory: '../examples/typescript'",
+          "frameworks/react/examples/typescript",
+          "exists"
+        ],
+        "cwd": "frameworks/react/uirouter-react",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-tsconfig-plugin.json",
+        "sha256": "5bc070a9b4ad1a7e0dae6b3fd59970f52ece3fde2cbaac2eda2614720c5451ff"
+      },
+      "field": "require.tsconfig-paths-webpack-plugin",
+      "id": "react-example-tsconfig-plugin",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "require('../../uirouter-react/node_modules/tsconfig-paths-webpack-plugin')",
+      "oldReference": "require('tsconfig-paths-webpack-plugin')",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/node_modules/tsconfig-paths-webpack-plugin without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/webpack.config.js",
+          "require('tsconfig-paths-webpack-plugin')",
+          "require('../../uirouter-react/node_modules/tsconfig-paths-webpack-plugin')",
+          "frameworks/react/uirouter-react/node_modules/tsconfig-paths-webpack-plugin",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-ts-loader.json",
+        "sha256": "1c3b8cf4a9e9e8fe7bdb7b4c28bffad3b2888c35cb0bac489c27c45d68e37523"
+      },
+      "field": "module.rules.loader",
+      "id": "react-example-ts-loader",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "loader: require.resolve('../../uirouter-react/node_modules/ts-loader'),\n            options: { configFile: configFilePath }",
+      "oldReference": "loader: 'ts-loader',\n            options: { configFile: configFilePath }",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/node_modules/ts-loader without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/webpack.config.js",
+          "loader: 'ts-loader',\n            options: { configFile: configFilePath }",
+          "loader: require.resolve('../../uirouter-react/node_modules/ts-loader'),\n            options: { configFile: configFilePath }",
+          "frameworks/react/uirouter-react/node_modules/ts-loader",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-tsconfig-react.json",
+        "sha256": "1972b7daec5dbf259e76214d672e9e47df95fd44eee39f815994c5c55ca15892"
+      },
+      "field": "compilerOptions.paths.react",
+      "id": "react-example-tsconfig-react",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "[\"../../uirouter-react/node_modules/react\"]",
+      "oldReference": "[\"../../node_modules/react\"]",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/node_modules/react without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/tsconfig.json",
+          "[\"../../node_modules/react\"]",
+          "[\"../../uirouter-react/node_modules/react\"]",
+          "frameworks/react/uirouter-react/node_modules/react",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-tsconfig-react-dom.json",
+        "sha256": "9920da5cc194eb90da0e1b2ad9b58d09c147175e7208dc759a4fc36df016d499"
+      },
+      "field": "compilerOptions.paths.react-dom",
+      "id": "react-example-tsconfig-react-dom",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "[\"../../uirouter-react/node_modules/react-dom\"]",
+      "oldReference": "[\"../../node_modules/react-dom\"]",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/node_modules/react-dom without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/tsconfig.json",
+          "[\"../../node_modules/react-dom\"]",
+          "[\"../../uirouter-react/node_modules/react-dom\"]",
+          "frameworks/react/uirouter-react/node_modules/react-dom",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-tsconfig-uirouter-react.json",
+        "sha256": "824c6d289b9a3287ed4ef24e318f70dd5ec26a562cc870936ec50bd00d346391"
+      },
+      "field": "compilerOptions.paths.@uirouter/react",
+      "id": "react-example-tsconfig-uirouter-react",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "[\"../../uirouter-react/src/index.ts\"]",
+      "oldReference": "[\"../../src/index.ts\"]",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/src/index.ts and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/tsconfig.json",
+          "[\"../../src/index.ts\"]",
+          "[\"../../uirouter-react/src/index.ts\"]",
+          "frameworks/react/uirouter-react/src/index.ts",
+          "exists"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/react-example-tsconfig-uirouter-core.json",
+        "sha256": "39bf8f8f4b92f175acdc889e71a4c23bd3206bef13224b011ac67cd94d235a7b"
+      },
+      "field": "compilerOptions.paths.@uirouter/core",
+      "id": "react-example-tsconfig-uirouter-core",
+      "interpretationMode": "config-file",
+      "moveId": "react-examples",
+      "newReference": "[\"../../uirouter-react/node_modules/@uirouter/core\"]",
+      "oldReference": "[\"../../node_modules/@uirouter/core\"]",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/react/examples/typescript, the repaired reference resolves to frameworks/react/uirouter-react/node_modules/@uirouter/core without relying on generated outputs",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/react/examples/typescript/tsconfig.json",
+          "[\"../../node_modules/@uirouter/core\"]",
+          "[\"../../uirouter-react/node_modules/@uirouter/core\"]",
+          "frameworks/react/uirouter-react/node_modules/@uirouter/core",
+          "normalize-only"
+        ],
+        "cwd": "frameworks/react/examples/typescript",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-angular-tests.json",
+        "sha256": "9df6968d039fcf4001654fd26e58ed7817b8bb3189a6dc7ee1e75ee58e09f18f"
+      },
+      "field": "documentation.angular-tests",
+      "id": "angular-doc-angular-tests",
+      "interpretationMode": "documentation",
+      "moveId": "angular-versions",
+      "newReference": "update tests in ../integration-tests/angular-versions/",
+      "oldReference": "update tests in test-angular-versions/",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "update tests in test-angular-versions/",
+          "update tests in ../integration-tests/angular-versions/",
+          "frameworks/angular/integration-tests/angular-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-angular-scaffold.json",
+        "sha256": "9ae973fbc8b07ab9f1cb17dce564c644f6be2cd9815e091d30983e92feb4117f"
+      },
+      "field": "documentation.angular-scaffold",
+      "id": "angular-doc-angular-scaffold",
+      "interpretationMode": "documentation",
+      "moveId": "angular-versions",
+      "newReference": "   - (cd ../integration-tests/angular-versions && ./scaffold.sh 11)",
+      "oldReference": "   - ./scaffold.sh 11",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "   - ./scaffold.sh 11",
+          "   - (cd ../integration-tests/angular-versions && ./scaffold.sh 11)",
+          "frameworks/angular/integration-tests/angular-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-angular-remove.json",
+        "sha256": "c7d859f16d41b0e8813f2c8e84fbbde5948fc71b6badaf7b76930e2485afbcf5"
+      },
+      "field": "documentation.angular-remove",
+      "id": "angular-doc-angular-remove",
+      "interpretationMode": "documentation",
+      "moveId": "angular-versions",
+      "newReference": "remove old tests from ../integration-tests/angular-versions and downstream_projects.json",
+      "oldReference": "remove old tests from test-angular-versions and ../downstream_projects.json",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/angular-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "remove old tests from test-angular-versions and ../downstream_projects.json",
+          "remove old tests from ../integration-tests/angular-versions and downstream_projects.json",
+          "frameworks/angular/integration-tests/angular-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-typescript-tests.json",
+        "sha256": "4f4959ff549c8eff47e9cf59589dc33abf0ead9c419aa623cf87019999f59f3b"
+      },
+      "field": "documentation.typescript-tests",
+      "id": "angular-doc-typescript-tests",
+      "interpretationMode": "documentation",
+      "moveId": "angular-typescript-versions",
+      "newReference": "update tests in ../integration-tests/typescript-versions/",
+      "oldReference": "update tests in test-typescript-versions/",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "update tests in test-typescript-versions/",
+          "update tests in ../integration-tests/typescript-versions/",
+          "frameworks/angular/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-typescript-scaffold.json",
+        "sha256": "d20d519a4f3c83b34261a34e67354cf27b729af928f7e5530b83a08f20193fa7"
+      },
+      "field": "documentation.typescript-scaffold",
+      "id": "angular-doc-typescript-scaffold",
+      "interpretationMode": "documentation",
+      "moveId": "angular-typescript-versions",
+      "newReference": "   - (cd ../integration-tests/typescript-versions && ./scaffold.sh 4.5)",
+      "oldReference": "   - ./scaffold.sh 4.5",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "   - ./scaffold.sh 4.5",
+          "   - (cd ../integration-tests/typescript-versions && ./scaffold.sh 4.5)",
+          "frameworks/angular/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/angular-doc-typescript-remove.json",
+        "sha256": "916d56db2139b498782813f8a1ffbfd5ef3c07a5d0127719f6a60b7ddab09d2d"
+      },
+      "field": "documentation.typescript-remove",
+      "id": "angular-doc-typescript-remove",
+      "interpretationMode": "documentation",
+      "moveId": "angular-typescript-versions",
+      "newReference": "remove old tests from ../integration-tests/typescript-versions and downstream_projects.json",
+      "oldReference": "remove old tests from test-typescript-versions and ../downstream_projects.json",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From frameworks/angular/uirouter-angular, the repaired reference resolves to frameworks/angular/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "frameworks/angular/uirouter-angular/add_support_for_new_angular_version.txt",
+          "remove old tests from test-typescript-versions and ../downstream_projects.json",
+          "remove old tests from ../integration-tests/typescript-versions and downstream_projects.json",
+          "frameworks/angular/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": "frameworks/angular/uirouter-angular",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-workspace-framework-packages.json",
+        "sha256": "86f3ff48cb36e96b5a9bb0726f552611df21dcce895d97e9149d4703249c9757"
+      },
+      "field": "workspace.framework-packages",
+      "id": "spec-workspace-framework-packages",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "\"frameworks/*/uirouter-*\"",
+      "oldReference": "\"framework/*/router\"",
+      "owningPackage": "migration/package-classification.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "\"framework/*/router\"",
+          "\"frameworks/*/uirouter-*\"",
+          "frameworks",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-workspace-framework-examples.json",
+        "sha256": "def90fa311108d961d8a0545685e0b924a21a4194967682d0bdd3e05db45576f"
+      },
+      "field": "workspace.framework-examples",
+      "id": "spec-workspace-framework-examples",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "\"frameworks/*/examples/*\"",
+      "oldReference": "\"framework/*/examples/*\"",
+      "owningPackage": "migration/package-classification.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "\"framework/*/examples/*\"",
+          "\"frameworks/*/examples/*\"",
+          "frameworks",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angularjs-package.json",
+        "sha256": "53db72804c1e896bb9698bbc6d104ce87a5218779f64cbf9c8e861ba97fca400"
+      },
+      "field": "layout.angularjs.package",
+      "id": "spec-angularjs-package",
+      "interpretationMode": "repository-root",
+      "moveId": "angularjs-package",
+      "newReference": "frameworks/angularjs/uirouter-angularjs/",
+      "oldReference": "framework/angularjs/router/",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angularjs/uirouter-angularjs and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angularjs/router/",
+          "frameworks/angularjs/uirouter-angularjs/",
+          "frameworks/angularjs/uirouter-angularjs",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angularjs-integration.json",
+        "sha256": "7f486e8105350d4d79aab96b64b9b10c4a4406d210e8777b7a591e497984c2ae"
+      },
+      "field": "layout.angularjs.integration-tests",
+      "id": "spec-angularjs-integration",
+      "interpretationMode": "repository-root",
+      "moveId": "angularjs-integration-tests",
+      "newReference": "frameworks/angularjs/integration-tests/typescript-versions/",
+      "oldReference": "framework/angularjs/integration/typescript-versions/",
+      "owningPackage": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angularjs/integration-tests/typescript-versions and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angularjs/integration/typescript-versions/",
+          "frameworks/angularjs/integration-tests/typescript-versions/",
+          "frameworks/angularjs/integration-tests/typescript-versions",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angularjs-example.json",
+        "sha256": "2eeabe48d04e3f9c113c1caf47a5910e568dd0ef4624bd3491744abf0e15dc88"
+      },
+      "field": "layout.angularjs.example",
+      "id": "spec-angularjs-example",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "frameworks/angularjs/examples/sample-app/",
+      "oldReference": "framework/angularjs/examples/sample-app/",
+      "owningPackage": "frameworks/angularjs/examples/sample-app/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angularjs/examples/sample-app and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angularjs/examples/sample-app/",
+          "frameworks/angularjs/examples/sample-app/",
+          "frameworks/angularjs/examples/sample-app",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-package.json",
+        "sha256": "df7fd7c107e9a3adfa97d6974c2189f015f7984968fce18acf7144101fbf06d3"
+      },
+      "field": "layout.angular.package",
+      "id": "spec-angular-package",
+      "interpretationMode": "repository-root",
+      "moveId": "angular-package",
+      "newReference": "frameworks/angular/uirouter-angular/",
+      "oldReference": "framework/angular/router/",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular/uirouter-angular and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular/router/",
+          "frameworks/angular/uirouter-angular/",
+          "frameworks/angular/uirouter-angular",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-integration.json",
+        "sha256": "a46e74bbdedd1a4edf493b347d849262c25905cb7eefe3b326d0f3a608cbf101"
+      },
+      "field": "layout.angular.integration-tests",
+      "id": "spec-angular-integration",
+      "interpretationMode": "repository-root",
+      "moveId": "angular-integration-tests",
+      "newReference": "frameworks/angular/integration-tests/",
+      "oldReference": "framework/angular/integration/",
+      "owningPackage": "frameworks/angular/uirouter-angular/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular/integration-tests and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular/integration/",
+          "frameworks/angular/integration-tests/",
+          "frameworks/angular/integration-tests",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-example.json",
+        "sha256": "e30b6187a686309bc8889c14d7303ef46659b6ccea8ecbad6940a0f2490e898c"
+      },
+      "field": "layout.angular.example",
+      "id": "spec-angular-example",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "frameworks/angular/examples/sample-app/",
+      "oldReference": "framework/angular/examples/sample-app/",
+      "owningPackage": "frameworks/angular/examples/sample-app/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular/examples/sample-app and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular/examples/sample-app/",
+          "frameworks/angular/examples/sample-app/",
+          "frameworks/angular/examples/sample-app",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-hybrid-package.json",
+        "sha256": "cfe3ca7f691d25454b613aba22c69c6374b88e56b8aab2c91102aa724b1aaaa1"
+      },
+      "field": "layout.angular-hybrid.package",
+      "id": "spec-angular-hybrid-package",
+      "interpretationMode": "repository-root",
+      "moveId": "angular-hybrid-package",
+      "newReference": "frameworks/angular-hybrid/uirouter-angular-hybrid/",
+      "oldReference": "framework/angular-hybrid/router/",
+      "owningPackage": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular-hybrid/uirouter-angular-hybrid and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular-hybrid/router/",
+          "frameworks/angular-hybrid/uirouter-angular-hybrid/",
+          "frameworks/angular-hybrid/uirouter-angular-hybrid",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-hybrid-example.json",
+        "sha256": "0d32f50a35c6ff58e564d07d050911779271cc93374d57516cab0fc30073d838"
+      },
+      "field": "layout.angular-hybrid.example",
+      "id": "spec-angular-hybrid-example",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "frameworks/angular-hybrid/examples/example/",
+      "oldReference": "framework/angular-hybrid/examples/example/",
+      "owningPackage": "frameworks/angular-hybrid/examples/example/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular-hybrid/examples/example and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular-hybrid/examples/example/",
+          "frameworks/angular-hybrid/examples/example/",
+          "frameworks/angular-hybrid/examples/example",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-angular-hybrid-sample.json",
+        "sha256": "b54a519a9fd604fd372bd30ac9d9c78870e22c3c04d73c1034b21fd935b04bd1"
+      },
+      "field": "layout.angular-hybrid.sample-app",
+      "id": "spec-angular-hybrid-sample",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "frameworks/angular-hybrid/examples/sample-app/",
+      "oldReference": "framework/angular-hybrid/examples/sample-app/",
+      "owningPackage": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/angular-hybrid/examples/sample-app and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/angular-hybrid/examples/sample-app/",
+          "frameworks/angular-hybrid/examples/sample-app/",
+          "frameworks/angular-hybrid/examples/sample-app",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-react-package.json",
+        "sha256": "6a6faaed62a0366480773cb6523598c45d94a23adbdbb888406d50ed45e44215"
+      },
+      "field": "layout.react.package",
+      "id": "spec-react-package",
+      "interpretationMode": "repository-root",
+      "moveId": "react-package",
+      "newReference": "frameworks/react/uirouter-react/",
+      "oldReference": "framework/react/router/",
+      "owningPackage": "frameworks/react/uirouter-react/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/react/uirouter-react and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/react/router/",
+          "frameworks/react/uirouter-react/",
+          "frameworks/react/uirouter-react",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-react-example.json",
+        "sha256": "48e60fb84b57d9cab5fbae0ab7f5e1e7b7dd100d9498163f13c19f3c0a48bddb"
+      },
+      "field": "layout.react.example",
+      "id": "spec-react-example",
+      "interpretationMode": "repository-root",
+      "moveId": "frameworks-root",
+      "newReference": "frameworks/react/examples/sample-app/",
+      "oldReference": "framework/react/examples/sample-app/",
+      "owningPackage": "frameworks/react/examples/sample-app/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/react/examples/sample-app and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/react/examples/sample-app/",
+          "frameworks/react/examples/sample-app/",
+          "frameworks/react/examples/sample-app",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    },
+    {
+      "evidence": {
+        "path": "migration/evidence/path-repairs/spec-react-hybrid-package.json",
+        "sha256": "242ab8616188b4a6db95d2c8d8b2425752e14f96599a1b390897da1ba134cf67"
+      },
+      "field": "layout.react-hybrid.package",
+      "id": "spec-react-hybrid-package",
+      "interpretationMode": "repository-root",
+      "moveId": "react-hybrid-package",
+      "newReference": "frameworks/react-hybrid/uirouter-react-hybrid/",
+      "oldReference": "framework/react-hybrid/router/",
+      "owningPackage": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "owningTask": "H03R",
+      "repairCommit": "f48c11187886ebdcfcb17bbeb8268908f601c37a",
+      "smokeAssertion": "From ., the repaired reference resolves to frameworks/react-hybrid/uirouter-react-hybrid and exists",
+      "validation": {
+        "argv": [
+          "node",
+          "-e",
+          "const cp=require('child_process'),fs=require('fs'),p=require('path');const root=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const file=p.resolve(root,process.argv[1]);const oldRef=process.argv[2],newRef=process.argv[3],expected=process.argv[4],mustExist=process.argv[5]==='exists';const text=fs.readFileSync(file,'utf8');if(text.includes(oldRef)||!text.includes(newRef)){console.error('field bytes differ');process.exit(1)}const relative=p.relative(process.cwd(),p.resolve(root,expected)).split(p.sep).join('/');if(!newRef.includes(relative)){console.error('field does not encode expected target: '+relative);process.exit(2)}if(mustExist&&!fs.existsSync(p.resolve(root,expected))){console.error('target missing');process.exit(3)}",
+          "SPEC.md",
+          "framework/react-hybrid/router/",
+          "frameworks/react-hybrid/uirouter-react-hybrid/",
+          "frameworks/react-hybrid/uirouter-react-hybrid",
+          "exists"
+        ],
+        "cwd": ".",
+        "environment": {
+          "LC_ALL": "C",
+          "TZ": "UTC"
+        },
+        "expectedStatus": 0
+      }
+    }
+  ],
+  "schemaVersion": 1
+}

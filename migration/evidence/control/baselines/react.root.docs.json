@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "docs"
+  ],
+  "durationSeconds": 1,
+  "expectedFailureReason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+  "id": "react.root.docs",
+  "inputHashesAfterSha256": "47f0775dfa5edc9bef04155836f94b210e0775a195f2af6cf46284b18785a1a9",
+  "result": "waived-failure",
+  "schemaVersion": 1,
+  "source": "react",
+  "sourceCommit": "e6c92104edd348de2b53d4502844b1be4f221ef5",
+  "status": 127,
+  "stderrSha256": "04f721362f39a9b5248edbd69ae0cfb743b9503ee36925d6aac5fdd0877732f2",
+  "stdoutSha256": "4eee326b106e42f3d215dc8af281c2fafd4be6d1d9b735e5f9bed3d4f8a52781"
+}

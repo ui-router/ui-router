@@ -1,0 +1,19 @@
+# common
+node_modules
+**/.*
+*~
+yarn-error.log
+
+# webstorm files
+idea-out
+*.iml
+*.ipr
+*.iws
+
+_doc
+_bundles
+lib
+lib-esm
+dist
+
+!.github

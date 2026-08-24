@@ -1,0 +1,8 @@
+{
+  "integration": {
+    "react16": "../integration-tests/react16",
+    "react17": "../integration-tests/react17",
+    "react18": "../integration-tests/react18",
+    "react19": "../integration-tests/react19"
+  }
+}

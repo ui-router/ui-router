@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "name": "rx",
+  "defaultHead": "a54028d5d1aba03e8778e4711fc70d006fdc1898",
+  "refs": [
+    "refs/heads/master a54028d5d1aba03e8778e4711fc70d006fdc1898",
+    "refs/tags/0.2.0 2e254d27eaeab4b89c38ad0f9109b5fcd635124d",
+    "refs/tags/0.2.1 732cfc7bca62be3659f15ae3efbc8cff025c4662",
+    "refs/tags/0.3.0 9e19bda4fe44a0b9d2d8ca029d296a7593a670c7",
+    "refs/tags/0.3.1 f8c011dbefb35164350e1ce95fab20c7497d8cba",
+    "refs/tags/0.3.2 6a9e9aa40efdc53ab793b9d691f2dff79c6f7900",
+    "refs/tags/0.4.1 2e6d37dd734a9a0bf3eb8733f67a83aa3f2d877c",
+    "refs/tags/0.4.2 d55966dbafcbdbfa09dbb87dff7dfa9911b29e20",
+    "refs/tags/0.4.4 416288f0f71801d7b0880b435fc3ca992715782e",
+    "refs/tags/0.4.5 a5897dfbc25f177eaac35c2ecb47e6523ed20079",
+    "refs/tags/0.5.0 6cd4c791f73c05e798cedf033330fba8eef71958",
+    "refs/tags/0.6.0 02dd065c278ce22fb14786070f04b5e762db71aa",
+    "refs/tags/0.6.2 5d755433854d50b5937ee4fa3d398e0edff16cf1",
+    "refs/tags/0.6.4 398e109c040f7337a276a2bfe5dd2625f5c2b040",
+    "refs/tags/0.6.5 739a6714b25a83b41f4514845fdfd8b2c5b00c57",
+    "refs/tags/1.0.0 62278a80371db3cd24f1013fc209efbc3d43a6f2"
+  ],
+  "bundleSha256": "febe72befd62c3108936cf71be15030368326b3e610a1a92755d719e5fefc97e"
+}

@@ -76,8 +76,8 @@ Root npm workspaces are exactly:
   "core",
   "plugins/*",
   "plugins/*/examples/*",
-  "framework/*/router",
-  "framework/*/examples/*",
+  "frameworks/*/uirouter-*",
+  "frameworks/*/examples/*",
   "tools/*"
 ]
 ```
@@ -129,15 +129,15 @@ A clean packed run is always required for acceptance. A later source-linked inte
 | `redux` | `plugins/redux/` | none |
 | `sticky-states` | `plugins/sticky-states/` | none |
 | `visualizer` | `plugins/visualizer/` | `example/` to `examples/example/` |
-| `angular-ui/ui-router` (`angularjs`) | `framework/angularjs/router/` | `test/typescript/` to `framework/angularjs/integration/typescript-versions/` |
-| `sample-app-angularjs` | `framework/angularjs/examples/sample-app/` | none |
-| `angular` | `framework/angular/router/` | version/type fixtures to `framework/angular/integration/` |
-| `sample-app-angular` | `framework/angular/examples/sample-app/` | none |
-| `angular-hybrid` | `framework/angular-hybrid/router/` | `example/` to `framework/angular-hybrid/examples/example/` |
-| `sample-app-angular-hybrid` | `framework/angular-hybrid/examples/sample-app/` | none |
-| `react` | `framework/react/router/` | embedded examples/integrations to framework siblings |
-| `sample-app-react` | `framework/react/examples/sample-app/` | none |
-| `react-hybrid` | `framework/react-hybrid/router/` | embedded integrations to framework sibling |
+| `angular-ui/ui-router` (`angularjs`) | `frameworks/angularjs/uirouter-angularjs/` | `test/typescript/` to `frameworks/angularjs/integration-tests/typescript-versions/` |
+| `sample-app-angularjs` | `frameworks/angularjs/examples/sample-app/` | none |
+| `angular` | `frameworks/angular/uirouter-angular/` | version/type fixtures to `frameworks/angular/integration-tests/` |
+| `sample-app-angular` | `frameworks/angular/examples/sample-app/` | none |
+| `angular-hybrid` | `frameworks/angular-hybrid/uirouter-angular-hybrid/` | `example/` to `frameworks/angular-hybrid/examples/example/` |
+| `sample-app-angular-hybrid` | `frameworks/angular-hybrid/examples/sample-app/` | none |
+| `react` | `frameworks/react/uirouter-react/` | embedded examples/integrations to framework siblings |
+| `sample-app-react` | `frameworks/react/examples/sample-app/` | none |
+| `react-hybrid` | `frameworks/react-hybrid/uirouter-react-hybrid/` | embedded integrations to framework sibling |
 | `publish-scripts` | `tools/publish-scripts/` | none in milestone 1 |
 
 Move commits contain path changes only. Reference/path repairs are separate commits so rename evidence remains reviewable. H03R first creates the complete deterministic repair commit chain without `path-repairs.json`; after those object IDs are fixed, it adds one metadata-only contract commit whose parent is the final repair. That final commit contains versioned `migration/path-repairs.json`, excludes itself from `repairCommit` records, and changes no repaired file. The contract enumerates every moved path plus each affected owning package, expected process cwd, script/config/doc field, old and new reference, interpretation mode, already-created repair commit, owning task, exact command/environment, expected status, semantic smoke assertion, and evidence hash. A validator independently inventories moved paths, enforces the exact parent/allowed-commit chain, searches the current tree for undeclared stale references, and runs the reviewed final-tree smoke for every moved package/downstream group so valid-looking relative paths cannot silently resolve from the wrong cwd. The repair chain and final contract commit land before `H05`.

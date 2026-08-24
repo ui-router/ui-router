@@ -1,0 +1,72 @@
+{
+  "name": "@uirouter/sticky-states",
+  "description": "UI-Router Sticky States: Keep states and their components alive while a different state is activated",
+  "version": "1.5.1",
+  "scripts": {
+    "clean": "shx rm -rf lib lib-esm _bundles",
+    "build": "npm run clean && tsgo && tsgo -m es6 -outDir lib-esm && npm run bundle",
+    "build:tsc": "npm run clean && tsc && tsc -m es6 -outDir lib-esm && npm run bundle",
+    "bundle": "rolldown -c rolldown.config.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:downstream": "npm run build && test_downstream_projects",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
+    "watch": "run-p watch:*",
+    "watch:buildjs": "tsc -w",
+    "watch:test": "vitest",
+    "prepublishOnly": "npm run build",
+    "release": "release"
+  },
+  "homepage": "https://ui-router.github.io",
+  "contributors": [
+    {
+      "name": "Chris Thielen",
+      "web": "https://github.com/christopherthielen"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "UIRouter Team",
+      "web": "https://github.com/ui-router?tab=members"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/sticky-states.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/sticky-states/issues"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "main": "lib/index.js",
+  "module": "lib-esm/index.js",
+  "typings": "lib/index.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "@uirouter/core": ">=5.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "4.17.21",
+    "@typescript/native-preview": "^7.0.0-dev.20260103.1",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/publish-scripts": "^2.7.0",
+    "husky": "^9.1.7",
+    "lodash": "^4.17.21",
+    "prettier": "^3.7.4",
+    "pretty-quick": "^4.2.2",
+    "rolldown": "^1.0.0-beta.58",
+    "shx": "^0.4.0",
+    "typescript": "^5.9.3",
+    "eslint": "^9.19.0",
+    "typescript-eslint": "^8.51.0",
+    "vitest": "^4.0.16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

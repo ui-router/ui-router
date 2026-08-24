@@ -1,0 +1,133 @@
+{
+  "name": "@uirouter/react",
+  "version": "1.0.8",
+  "description": "State based routing for React",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "jsnext:main": "lib-esm/index.js",
+  "module": "lib-esm/index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:downstream": "npm run build && test_downstream_projects",
+    "test:integration": "npm run build && test_downstream_projects --group=react-versions",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 8000 --config ../examples/typescript/webpack.config.js --history-api-fallback",
+    "clean": "shx rm -rf _bundles lib lib-esm build _doc",
+    "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
+    "bundle": "cross-env NODE_ENV=production webpack",
+    "build": "run-s compile bundle fixmaps:*",
+    "release": "release --deps @uirouter/core",
+    "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
+    "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
+    "docs": "generate_docs",
+    "docs:publish": "generate_docs && publish_docs",
+    "prepublishOnly": "npm run build",
+    "artifacts": "artifact_tagging",
+    "prettier": "npx prettier --write src/**/*.[jt]s src/**/*.[jt]sx",
+    "prepare": "husky"
+  },
+  "homepage": "https://ui-router.github.io/react",
+  "contributors": [
+    {
+      "name": "Marco Botto",
+      "web": "https://github.com/elboman"
+    },
+    {
+      "name": "Chris Thielen",
+      "web": "https://github.com/christopherthielen"
+    }
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/react.git"
+  },
+  "dependencies": {
+    "@uirouter/core": "6.1.2",
+    "classnames": "^2.5.1",
+    "prop-types": "^15.8.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@uirouter/publish-scripts": "^2.7.0",
+    "@vitest/ui": "^4.0.16",
+    "cross-env": "^10.1.0",
+    "husky": "^9.1.7",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.7.4",
+    "pretty-quick": "^4.2.2",
+    "react": "^19",
+    "react-dom": "^19",
+    "ts-loader": "^9.5.4",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "checkPeerDependencies": {
+    "ignore": [
+      "@types/node",
+      "terser",
+      "yaml"
+    ]
+  },
+  "docgen": {
+    "publishDir": "_react_docs",
+    "navigation": {
+      "": [
+        "UIRouterReact"
+      ],
+      "Services": [
+        "StateService",
+        "StateRegistry",
+        "TransitionService",
+        "UrlService",
+        "UrlConfig",
+        "UrlRules"
+      ],
+      "Interfaces": [
+        "ReactStateDeclaration"
+      ],
+      "Components": [
+        "UIRouter",
+        "UIView",
+        "UISref",
+        "UISrefActive"
+      ],
+      "React Hooks": [
+        "useRouter",
+        "useSref",
+        "useSrefActive",
+        "useSrefActiveExact",
+        "useTransitionHook",
+        "useCanExit",
+        "useCurrentStateAndParams",
+        "useOnStateChanged",
+        "useIsActive"
+      ],
+      "Other": [
+        "Transition",
+        "Trace"
+      ]
+    },
+    "include": [
+      {
+        "pkg": "@uirouter/core",
+        "repo": "https://github.com/ui-router/core",
+        "branch": "master"
+      }
+    ]
+  }
+}

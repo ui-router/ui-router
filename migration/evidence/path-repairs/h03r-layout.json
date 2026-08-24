@@ -1,0 +1,62 @@
+{
+  "baseCommit": "6fdc8269620f4bfcf1997c68ef4323429c7cc568",
+  "id": "h03r-layout",
+  "moves": [
+    {
+      "from": "framework",
+      "id": "frameworks-root",
+      "to": "frameworks"
+    },
+    {
+      "from": "frameworks/angular/router",
+      "id": "angular-package",
+      "to": "frameworks/angular/uirouter-angular"
+    },
+    {
+      "from": "frameworks/angularjs/router",
+      "id": "angularjs-package",
+      "to": "frameworks/angularjs/uirouter-angularjs"
+    },
+    {
+      "from": "frameworks/angular-hybrid/router",
+      "id": "angular-hybrid-package",
+      "to": "frameworks/angular-hybrid/uirouter-angular-hybrid"
+    },
+    {
+      "from": "frameworks/react/router",
+      "id": "react-package",
+      "to": "frameworks/react/uirouter-react"
+    },
+    {
+      "from": "frameworks/react-hybrid/router",
+      "id": "react-hybrid-package",
+      "to": "frameworks/react-hybrid/uirouter-react-hybrid"
+    },
+    {
+      "from": "core/integration",
+      "id": "core-integration-tests",
+      "to": "core/integration-tests"
+    },
+    {
+      "from": "frameworks/angular/integration",
+      "id": "angular-integration-tests",
+      "to": "frameworks/angular/integration-tests"
+    },
+    {
+      "from": "frameworks/angularjs/integration",
+      "id": "angularjs-integration-tests",
+      "to": "frameworks/angularjs/integration-tests"
+    },
+    {
+      "from": "frameworks/react/integration",
+      "id": "react-integration-tests",
+      "to": "frameworks/react/integration-tests"
+    },
+    {
+      "from": "frameworks/react-hybrid/integration",
+      "id": "react-hybrid-integration-tests",
+      "to": "frameworks/react-hybrid/integration-tests"
+    }
+  ],
+  "schemaVersion": 1
+}

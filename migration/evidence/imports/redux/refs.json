@@ -1,0 +1,14 @@
+{
+  "sourceHead": "61610a4df2fc191e079ee3cc8c81a651aa86341a",
+  "rewrittenHead": "9e9f5ebcc2aba6a5360acda0c2783f0afb436334",
+  "tags": [
+    {
+      "originalName": "1.0.0",
+      "targetName": "redux@1.0.0",
+      "originalObject": "a90e709c2ed875367f694a915bc4cd84b486dcd5",
+      "originalCommit": "a90e709c2ed875367f694a915bc4cd84b486dcd5",
+      "rewrittenObject": "eb177ceee015fab259057252bbaa34ee0bcd8324",
+      "rewrittenCommit": "eb177ceee015fab259057252bbaa34ee0bcd8324"
+    }
+  ]
+}

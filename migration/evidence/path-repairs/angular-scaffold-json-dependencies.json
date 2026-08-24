@@ -1,0 +1,13 @@
+{
+  "field": "require.dependencies",
+  "id": "angular-scaffold-json-dependencies",
+  "interpretationMode": "config-file",
+  "newReference": "const { get, set, unset } = require('../../uirouter-angular/node_modules/lodash');\nconst yargs = require('../../uirouter-angular/node_modules/yargs');",
+  "oldReference": "const { get, set, unset } = require('lodash');\nconst yargs = require('yargs');",
+  "resolvedTarget": "frameworks/angular/uirouter-angular/node_modules/lodash",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": false
+}

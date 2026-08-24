@@ -1,0 +1,62 @@
+{
+  "sourceHead": "0fc6644008842790681bc08f1887a530d7120cfb",
+  "rewrittenHead": "69085dca493a957ac2a37d94b05b80e8566b97ff",
+  "tags": [
+    {
+      "originalName": "1.0.0",
+      "targetName": "dsr@1.0.0",
+      "originalObject": "8a1334db3fd804dfead566784519f070601bc00b",
+      "originalCommit": "8a1334db3fd804dfead566784519f070601bc00b",
+      "rewrittenObject": "db5b2136d15e0240845f50fe3e95f8ad98541581",
+      "rewrittenCommit": "db5b2136d15e0240845f50fe3e95f8ad98541581"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "dsr@1.0.1",
+      "originalObject": "a1061565ce9b07144d84e80d40afd57296bd1b13",
+      "originalCommit": "a1061565ce9b07144d84e80d40afd57296bd1b13",
+      "rewrittenObject": "1419f1f2d61ef5859d627e5d5fcb4868270bafc7",
+      "rewrittenCommit": "1419f1f2d61ef5859d627e5d5fcb4868270bafc7"
+    },
+    {
+      "originalName": "1.0.2",
+      "targetName": "dsr@1.0.2",
+      "originalObject": "9ace6baf172ad7072e44ea11862c22401cc219dd",
+      "originalCommit": "9ace6baf172ad7072e44ea11862c22401cc219dd",
+      "rewrittenObject": "31c618c9e2afc06843e7826215dc838787525b44",
+      "rewrittenCommit": "31c618c9e2afc06843e7826215dc838787525b44"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "dsr@1.0.3",
+      "originalObject": "7233bd3e39dd5c08b80742d9d8442cba5429a5f8",
+      "originalCommit": "7233bd3e39dd5c08b80742d9d8442cba5429a5f8",
+      "rewrittenObject": "0f76800f809a8b026c7ba760f6acf50693d6d5a6",
+      "rewrittenCommit": "0f76800f809a8b026c7ba760f6acf50693d6d5a6"
+    },
+    {
+      "originalName": "1.1.0",
+      "targetName": "dsr@1.1.0",
+      "originalObject": "9c96c88c459332e54e2adbb39e3e32196263607b",
+      "originalCommit": "9c96c88c459332e54e2adbb39e3e32196263607b",
+      "rewrittenObject": "a8e4be9fbabf722969351601585435d8c0d616b9",
+      "rewrittenCommit": "a8e4be9fbabf722969351601585435d8c0d616b9"
+    },
+    {
+      "originalName": "1.1.1",
+      "targetName": "dsr@1.1.1",
+      "originalObject": "41fc421310fcdd597c33e1bd4c74236dddf11c52",
+      "originalCommit": "41fc421310fcdd597c33e1bd4c74236dddf11c52",
+      "rewrittenObject": "719144274ef71e2bde288cb5f1224e4836b974ff",
+      "rewrittenCommit": "719144274ef71e2bde288cb5f1224e4836b974ff"
+    },
+    {
+      "originalName": "1.2.0",
+      "targetName": "dsr@1.2.0",
+      "originalObject": "dd2482d051691ed23946ae50180957158e0de8a8",
+      "originalCommit": "dd2482d051691ed23946ae50180957158e0de8a8",
+      "rewrittenObject": "5d8bd0aacb5b585ba3daeeeb8a4d724a1aa2a75d",
+      "rewrittenCommit": "5d8bd0aacb5b585ba3daeeeb8a4d724a1aa2a75d"
+    }
+  ]
+}

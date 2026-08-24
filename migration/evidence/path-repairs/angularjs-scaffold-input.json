@@ -1,0 +1,13 @@
+{
+  "field": "jq.input",
+  "id": "angularjs-scaffold-input",
+  "interpretationMode": "process-cwd",
+  "newReference": "< ../../uirouter-angularjs/downstream_projects.json",
+  "oldReference": "< ../../downstream_projects.json",
+  "resolvedTarget": "frameworks/angularjs/uirouter-angularjs/downstream_projects.json",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "install",
+    "--pure-lockfile",
+    "--ignore-scripts",
+    "--non-interactive"
+  ],
+  "durationSeconds": 17,
+  "expectedFailureReason": null,
+  "id": "sticky-states.root.install",
+  "inputHashesAfterSha256": "bc0802d6f5497b8df418ae017f1e2d71193b9b069e227b7266920e13866a1ee2",
+  "inputHashesBeforeSha256": "2a1395f7aea6f784f0cbb76c2d9d42ae428d9ddeecb5c36b765e7adbc0472c9c",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sticky-states",
+  "sourceCommit": "818914c029e2602e6bd5897cd0bdbe6a90c9f1da",
+  "status": 0,
+  "stderrSha256": "78b5cacdf76c01d93d07bd5cdfec8aa7499b817ce4862e71e0ff268e6c3a0a71",
+  "stdoutSha256": "84dec28ec251c84dc07d478d2b08a85ee4507552e40cf170969c1155229e10b8"
+}

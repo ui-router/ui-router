@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/npm-10.9.8/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "durationSeconds": 9,
+  "expectedFailureReason": null,
+  "id": "sample-app-angular.root.install",
+  "inputHashesAfterSha256": "3dca9df3207fc2b019c1989c759b96c56b2d3252c6293ab6458d8f9cb02813ec",
+  "inputHashesBeforeSha256": "3dca9df3207fc2b019c1989c759b96c56b2d3252c6293ab6458d8f9cb02813ec",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-angular",
+  "sourceCommit": "9263f04a67fdfba1d801fd0b9277d2a2b345470f",
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "a41b3c32741140081e15a1a0082415d1a779001caee69c7073f0a35c553e0def"
+}

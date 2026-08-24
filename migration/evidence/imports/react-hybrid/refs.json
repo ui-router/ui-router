@@ -1,0 +1,302 @@
+{
+  "sourceHead": "233ec37f361c549cd16bf519b4c5700b9f34c182",
+  "rewrittenHead": "292de7b28594778e1da8d48dacc58fe344c80eb1",
+  "tags": [
+    {
+      "originalName": "0.0.10",
+      "targetName": "react-hybrid@0.0.10",
+      "originalObject": "9d5a35af125af5d0866da3e82ef353a1430e4252",
+      "originalCommit": "9d5a35af125af5d0866da3e82ef353a1430e4252",
+      "rewrittenObject": "df8ce7291629e9786c0416de33392b195f2283e8",
+      "rewrittenCommit": "df8ce7291629e9786c0416de33392b195f2283e8"
+    },
+    {
+      "originalName": "0.0.11",
+      "targetName": "react-hybrid@0.0.11",
+      "originalObject": "26060cfdfb443b0dc85236d198d23af03c8f24ae",
+      "originalCommit": "26060cfdfb443b0dc85236d198d23af03c8f24ae",
+      "rewrittenObject": "94971749b26ad84a36e6a9d9f9ddbb47e653adc8",
+      "rewrittenCommit": "94971749b26ad84a36e6a9d9f9ddbb47e653adc8"
+    },
+    {
+      "originalName": "0.0.12",
+      "targetName": "react-hybrid@0.0.12",
+      "originalObject": "9907102eb4c9c36ca7105f1468bbfe6c8c569688",
+      "originalCommit": "9907102eb4c9c36ca7105f1468bbfe6c8c569688",
+      "rewrittenObject": "29dd9b96e34cdb9f9e5b353483dae2e771b3f055",
+      "rewrittenCommit": "29dd9b96e34cdb9f9e5b353483dae2e771b3f055"
+    },
+    {
+      "originalName": "0.0.13",
+      "targetName": "react-hybrid@0.0.13",
+      "originalObject": "80c1d56ad8a1e215c99d00e291af54891239c312",
+      "originalCommit": "80c1d56ad8a1e215c99d00e291af54891239c312",
+      "rewrittenObject": "792fd3e82ad85263c21718c32f52ee3de77d1b53",
+      "rewrittenCommit": "792fd3e82ad85263c21718c32f52ee3de77d1b53"
+    },
+    {
+      "originalName": "0.0.14",
+      "targetName": "react-hybrid@0.0.14",
+      "originalObject": "5fdf3a1c31abca06c8cdbdbce31ba72c396646a4",
+      "originalCommit": "5fdf3a1c31abca06c8cdbdbce31ba72c396646a4",
+      "rewrittenObject": "5038f75c3460618899f75dd685274155f0765887",
+      "rewrittenCommit": "5038f75c3460618899f75dd685274155f0765887"
+    },
+    {
+      "originalName": "0.0.15",
+      "targetName": "react-hybrid@0.0.15",
+      "originalObject": "03a7e193cf4b3c1a411decf15780fd1d45be0c13",
+      "originalCommit": "03a7e193cf4b3c1a411decf15780fd1d45be0c13",
+      "rewrittenObject": "99d94557ef164c22988c61e4acac3a208388c9e9",
+      "rewrittenCommit": "99d94557ef164c22988c61e4acac3a208388c9e9"
+    },
+    {
+      "originalName": "0.0.16",
+      "targetName": "react-hybrid@0.0.16",
+      "originalObject": "1135d9f20a499ea021f2611f056645d44db9a90c",
+      "originalCommit": "1135d9f20a499ea021f2611f056645d44db9a90c",
+      "rewrittenObject": "af4b20706ed93695e70d2145e2eaa43d9e7d05c3",
+      "rewrittenCommit": "af4b20706ed93695e70d2145e2eaa43d9e7d05c3"
+    },
+    {
+      "originalName": "0.0.2",
+      "targetName": "react-hybrid@0.0.2",
+      "originalObject": "f52f79428972d3236a4bc77132306f2fc9d97f00",
+      "originalCommit": "f52f79428972d3236a4bc77132306f2fc9d97f00",
+      "rewrittenObject": "c0d5c89fc3626451066c3e6760813cf4e7f79b14",
+      "rewrittenCommit": "c0d5c89fc3626451066c3e6760813cf4e7f79b14"
+    },
+    {
+      "originalName": "0.0.3",
+      "targetName": "react-hybrid@0.0.3",
+      "originalObject": "f69cbe1329bab163094fda4f994e7afdd56e4109",
+      "originalCommit": "f69cbe1329bab163094fda4f994e7afdd56e4109",
+      "rewrittenObject": "cf899d373ff5251b168c67838b66138387269f95",
+      "rewrittenCommit": "cf899d373ff5251b168c67838b66138387269f95"
+    },
+    {
+      "originalName": "0.0.4",
+      "targetName": "react-hybrid@0.0.4",
+      "originalObject": "23614f62b8c5c81408582ace0c86b3fa76824f1a",
+      "originalCommit": "23614f62b8c5c81408582ace0c86b3fa76824f1a",
+      "rewrittenObject": "fcaad91ff1e1ce5d3f847857c689c9df9de36542",
+      "rewrittenCommit": "fcaad91ff1e1ce5d3f847857c689c9df9de36542"
+    },
+    {
+      "originalName": "0.0.5",
+      "targetName": "react-hybrid@0.0.5",
+      "originalObject": "dcb7ad24f4c7bb5cf69c61b2b5404d397fd85e57",
+      "originalCommit": "dcb7ad24f4c7bb5cf69c61b2b5404d397fd85e57",
+      "rewrittenObject": "d23d7eea4b474b1e5a3393f6adfa6f81eeb3764f",
+      "rewrittenCommit": "d23d7eea4b474b1e5a3393f6adfa6f81eeb3764f"
+    },
+    {
+      "originalName": "0.0.6",
+      "targetName": "react-hybrid@0.0.6",
+      "originalObject": "706142a25f4b58aeb69a526a765a080d94c6c355",
+      "originalCommit": "706142a25f4b58aeb69a526a765a080d94c6c355",
+      "rewrittenObject": "c8053383a2b67818885894a36f18ee6e087104f0",
+      "rewrittenCommit": "c8053383a2b67818885894a36f18ee6e087104f0"
+    },
+    {
+      "originalName": "0.0.7",
+      "targetName": "react-hybrid@0.0.7",
+      "originalObject": "d3de541b7a940f5e18fb36cdd42250a37d744eac",
+      "originalCommit": "d3de541b7a940f5e18fb36cdd42250a37d744eac",
+      "rewrittenObject": "1e406fc6848e0976ad5965616bcc02740f1f46fa",
+      "rewrittenCommit": "1e406fc6848e0976ad5965616bcc02740f1f46fa"
+    },
+    {
+      "originalName": "0.0.8",
+      "targetName": "react-hybrid@0.0.8",
+      "originalObject": "7a67e21b11525dec233173ee5803e381dc8026b5",
+      "originalCommit": "7a67e21b11525dec233173ee5803e381dc8026b5",
+      "rewrittenObject": "7503de32ff7a2d4802801f248e4b839babf0710f",
+      "rewrittenCommit": "7503de32ff7a2d4802801f248e4b839babf0710f"
+    },
+    {
+      "originalName": "0.0.9",
+      "targetName": "react-hybrid@0.0.9",
+      "originalObject": "3ae5962d47f707d774b9befdde7e13e4314183d7",
+      "originalCommit": "3ae5962d47f707d774b9befdde7e13e4314183d7",
+      "rewrittenObject": "f71ace4aa5e1ad6dba8776f197cbf30e0570afb1",
+      "rewrittenCommit": "f71ace4aa5e1ad6dba8776f197cbf30e0570afb1"
+    },
+    {
+      "originalName": "0.1.0",
+      "targetName": "react-hybrid@0.1.0",
+      "originalObject": "270ab77b05a7e8e3067ea91d250fa8124f5efc2a",
+      "originalCommit": "270ab77b05a7e8e3067ea91d250fa8124f5efc2a",
+      "rewrittenObject": "e760e1851b4497cdb6844bdf5334bcaf853669ce",
+      "rewrittenCommit": "e760e1851b4497cdb6844bdf5334bcaf853669ce"
+    },
+    {
+      "originalName": "0.2.0",
+      "targetName": "react-hybrid@0.2.0",
+      "originalObject": "55045533df97345680e50b0093a078863313c5e9",
+      "originalCommit": "55045533df97345680e50b0093a078863313c5e9",
+      "rewrittenObject": "76af7cc068b71731fefdf30c69132068a2b5d1ee",
+      "rewrittenCommit": "76af7cc068b71731fefdf30c69132068a2b5d1ee"
+    },
+    {
+      "originalName": "0.3.0",
+      "targetName": "react-hybrid@0.3.0",
+      "originalObject": "b1bbdb96e4dae3d6221096507ed910e6939c58f4",
+      "originalCommit": "b1bbdb96e4dae3d6221096507ed910e6939c58f4",
+      "rewrittenObject": "b791ae10f0a2039d9220b4bbcbd3ae650985ba28",
+      "rewrittenCommit": "b791ae10f0a2039d9220b4bbcbd3ae650985ba28"
+    },
+    {
+      "originalName": "0.3.1",
+      "targetName": "react-hybrid@0.3.1",
+      "originalObject": "015d9eca7021106b406fd2cb891a1db6664320be",
+      "originalCommit": "015d9eca7021106b406fd2cb891a1db6664320be",
+      "rewrittenObject": "c3577b167cc8369e7668f6bfb995f5f8b748639d",
+      "rewrittenCommit": "c3577b167cc8369e7668f6bfb995f5f8b748639d"
+    },
+    {
+      "originalName": "0.3.10",
+      "targetName": "react-hybrid@0.3.10",
+      "originalObject": "eb6f791faee5f494e9558f32dfba3efe43f10568",
+      "originalCommit": "eb6f791faee5f494e9558f32dfba3efe43f10568",
+      "rewrittenObject": "dcce3729dac666aeb73cd6b2f3c605ad245aadd6",
+      "rewrittenCommit": "dcce3729dac666aeb73cd6b2f3c605ad245aadd6"
+    },
+    {
+      "originalName": "0.3.11",
+      "targetName": "react-hybrid@0.3.11",
+      "originalObject": "d55bea9fdbdcbfa2b38379e5ab035786d98745ce",
+      "originalCommit": "d55bea9fdbdcbfa2b38379e5ab035786d98745ce",
+      "rewrittenObject": "5163d40816143d3842e19d91872d328a4156bc8a",
+      "rewrittenCommit": "5163d40816143d3842e19d91872d328a4156bc8a"
+    },
+    {
+      "originalName": "0.3.12",
+      "targetName": "react-hybrid@0.3.12",
+      "originalObject": "e30fb2cf8936af37f774c9b27cb41bb377310f56",
+      "originalCommit": "e30fb2cf8936af37f774c9b27cb41bb377310f56",
+      "rewrittenObject": "39397220934e26e9b322f60fa4ff5bbe4af9cdd2",
+      "rewrittenCommit": "39397220934e26e9b322f60fa4ff5bbe4af9cdd2"
+    },
+    {
+      "originalName": "0.3.2",
+      "targetName": "react-hybrid@0.3.2",
+      "originalObject": "a648a19da2d2b950040b2f0bdc90ed27cdd6641c",
+      "originalCommit": "a648a19da2d2b950040b2f0bdc90ed27cdd6641c",
+      "rewrittenObject": "1d9c7e400aa3b77eab862014bd907ea6a8e09754",
+      "rewrittenCommit": "1d9c7e400aa3b77eab862014bd907ea6a8e09754"
+    },
+    {
+      "originalName": "0.3.3",
+      "targetName": "react-hybrid@0.3.3",
+      "originalObject": "bccc309bec95e753bc6cbd44b5a9275759fe5341",
+      "originalCommit": "bccc309bec95e753bc6cbd44b5a9275759fe5341",
+      "rewrittenObject": "eebee49014d094465003c6d06b96b3880f1dc9f2",
+      "rewrittenCommit": "eebee49014d094465003c6d06b96b3880f1dc9f2"
+    },
+    {
+      "originalName": "0.3.4",
+      "targetName": "react-hybrid@0.3.4",
+      "originalObject": "5422901be7b27af3ea68b10a74c300a1c00a33a6",
+      "originalCommit": "5422901be7b27af3ea68b10a74c300a1c00a33a6",
+      "rewrittenObject": "0df9201872e2181ae98b7d658ecfe71846fcb819",
+      "rewrittenCommit": "0df9201872e2181ae98b7d658ecfe71846fcb819"
+    },
+    {
+      "originalName": "0.3.5",
+      "targetName": "react-hybrid@0.3.5",
+      "originalObject": "37070d3d7434274858a3b3d41efbd307d698cf3c",
+      "originalCommit": "37070d3d7434274858a3b3d41efbd307d698cf3c",
+      "rewrittenObject": "f2585be9a66610eefe1e3df51d04adc6b3e24f57",
+      "rewrittenCommit": "f2585be9a66610eefe1e3df51d04adc6b3e24f57"
+    },
+    {
+      "originalName": "0.3.6",
+      "targetName": "react-hybrid@0.3.6",
+      "originalObject": "8887915a58efb3a74f2a68567cd36e09833d56b9",
+      "originalCommit": "8887915a58efb3a74f2a68567cd36e09833d56b9",
+      "rewrittenObject": "a76de4d4d12048ce78edc349c1841113a7b5a2d7",
+      "rewrittenCommit": "a76de4d4d12048ce78edc349c1841113a7b5a2d7"
+    },
+    {
+      "originalName": "0.3.7",
+      "targetName": "react-hybrid@0.3.7",
+      "originalObject": "c357fb4ead7b0754833c7901ff804a11047ecfec",
+      "originalCommit": "c357fb4ead7b0754833c7901ff804a11047ecfec",
+      "rewrittenObject": "01a15ce5dd362fa0f1b7168e15556b90e01f0f4b",
+      "rewrittenCommit": "01a15ce5dd362fa0f1b7168e15556b90e01f0f4b"
+    },
+    {
+      "originalName": "0.3.8",
+      "targetName": "react-hybrid@0.3.8",
+      "originalObject": "690ebd8ad107f6addfbc6b0e0ff1c2bc9bae808f",
+      "originalCommit": "690ebd8ad107f6addfbc6b0e0ff1c2bc9bae808f",
+      "rewrittenObject": "69f41aeb969993dc5e8af327afe2a08b9169c892",
+      "rewrittenCommit": "69f41aeb969993dc5e8af327afe2a08b9169c892"
+    },
+    {
+      "originalName": "0.3.9",
+      "targetName": "react-hybrid@0.3.9",
+      "originalObject": "91073bd0024559268f736098d2e24f269b51e7bf",
+      "originalCommit": "91073bd0024559268f736098d2e24f269b51e7bf",
+      "rewrittenObject": "665e45fc6eeac8bf9d80111702fbc433f65dc172",
+      "rewrittenCommit": "665e45fc6eeac8bf9d80111702fbc433f65dc172"
+    },
+    {
+      "originalName": "1.0.0",
+      "targetName": "react-hybrid@1.0.0",
+      "originalObject": "15e99bcdd569a632b284a737bfb22186cbc707bc",
+      "originalCommit": "15e99bcdd569a632b284a737bfb22186cbc707bc",
+      "rewrittenObject": "c90c3a912df7c38b6045d444cb14e1b0c4176b2a",
+      "rewrittenCommit": "c90c3a912df7c38b6045d444cb14e1b0c4176b2a"
+    },
+    {
+      "originalName": "1.0.1",
+      "targetName": "react-hybrid@1.0.1",
+      "originalObject": "01772f455614ffbe7f80d3e0da94ec2447145e1f",
+      "originalCommit": "01772f455614ffbe7f80d3e0da94ec2447145e1f",
+      "rewrittenObject": "47e49e9ca6a6eaf906178158639d1cb41c76ee8e",
+      "rewrittenCommit": "47e49e9ca6a6eaf906178158639d1cb41c76ee8e"
+    },
+    {
+      "originalName": "1.0.2",
+      "targetName": "react-hybrid@1.0.2",
+      "originalObject": "b1cbee060647aab88b8acf305db6c9eed6512580",
+      "originalCommit": "b1cbee060647aab88b8acf305db6c9eed6512580",
+      "rewrittenObject": "4189e858357583735204f1c5db58bfdee8de49ff",
+      "rewrittenCommit": "4189e858357583735204f1c5db58bfdee8de49ff"
+    },
+    {
+      "originalName": "1.0.3",
+      "targetName": "react-hybrid@1.0.3",
+      "originalObject": "13fb3013a5d2bca8f337cec216bd96f635b154e9",
+      "originalCommit": "13fb3013a5d2bca8f337cec216bd96f635b154e9",
+      "rewrittenObject": "6f066221dd45b916cf1535b5a1bb27538e2db4b7",
+      "rewrittenCommit": "6f066221dd45b916cf1535b5a1bb27538e2db4b7"
+    },
+    {
+      "originalName": "1.0.4",
+      "targetName": "react-hybrid@1.0.4",
+      "originalObject": "a7e012b66627eeed58dbc16ef5abf65c56740749",
+      "originalCommit": "a7e012b66627eeed58dbc16ef5abf65c56740749",
+      "rewrittenObject": "b252c02c17c63d248b9fc0852a2f69591cc0add4",
+      "rewrittenCommit": "b252c02c17c63d248b9fc0852a2f69591cc0add4"
+    },
+    {
+      "originalName": "1.0.5",
+      "targetName": "react-hybrid@1.0.5",
+      "originalObject": "70d5f965604f3af91307c37f02820a1a6d5d8c14",
+      "originalCommit": "70d5f965604f3af91307c37f02820a1a6d5d8c14",
+      "rewrittenObject": "41bced56d02ce3ba44f77ace5c493b85fd21f40d",
+      "rewrittenCommit": "41bced56d02ce3ba44f77ace5c493b85fd21f40d"
+    },
+    {
+      "originalName": "2.0.0",
+      "targetName": "react-hybrid@2.0.0",
+      "originalObject": "cc22d3c07516d36c5410fc5629a5bd162e83b8b2",
+      "originalCommit": "cc22d3c07516d36c5410fc5629a5bd162e83b8b2",
+      "rewrittenObject": "cb905c2657c32c7658ca5fb8e9090435b4493be1",
+      "rewrittenCommit": "cb905c2657c32c7658ca5fb8e9090435b4493be1"
+    }
+  ]
+}

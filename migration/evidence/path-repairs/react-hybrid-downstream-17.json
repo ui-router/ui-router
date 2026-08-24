@@ -1,0 +1,13 @@
+{
+  "field": "integration.react17",
+  "id": "react-hybrid-downstream-17",
+  "interpretationMode": "process-cwd",
+  "newReference": "\"../integration-tests/react17\"",
+  "oldReference": "\"./integration/react17\"",
+  "resolvedTarget": "frameworks/react-hybrid/integration-tests/react17",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

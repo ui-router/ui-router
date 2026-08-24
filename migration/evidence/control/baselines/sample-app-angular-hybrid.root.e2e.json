@@ -1,0 +1,27 @@
+{
+  "browser": {
+    "installerVersion": "@playwright/test@1.58.2",
+    "name": "chromium",
+    "revision": "1208",
+    "sha256": "27e55cc30e487493b89b663085d6deeb0707be201a568657c922fac9076c317c"
+  },
+  "browserInstallerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "browserInstallerStdoutSha256": "504bb4ca12ade9ed24445132fec543857844b2fe50807066fa5d57b935345564",
+  "browserRuntimeImageDigest": "sha256:11ccb69d8828b3d5d11c2e01c47da8c784b484451072c6d03f6a809b7a297982",
+  "command": [
+    "node",
+    "/workspace/.migration-work/runtime/yarn-1.22.22/bin/yarn.js",
+    "run",
+    "test"
+  ],
+  "durationSeconds": 26,
+  "expectedFailureReason": null,
+  "id": "sample-app-angular-hybrid.root.e2e",
+  "result": "pass",
+  "schemaVersion": 1,
+  "source": "sample-app-angular-hybrid",
+  "sourceCommit": "8ab41ac68cb5e51f17846d82dea47cb4789eb071",
+  "status": 0,
+  "stderrSha256": "dabd346d662f83e7193b01f7a2a6c780d0294e148509b87cbb81d80385f64d44",
+  "stdoutSha256": "577270ca5de66ebcaa8abdd8a091118c4d847d2af73029e9af6891c91d25bdef"
+}

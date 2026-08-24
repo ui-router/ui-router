@@ -1,0 +1,45 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "prestart": "npx check-peer-dependencies --install",
+    "start": "webpack serve --open",
+    "prebuild": "npx check-peer-dependencies --install",
+    "build": "webpack",
+    "test": "npm run build && cypress-runner run --path .",
+    "test:ui": "npm run build && cypress-runner open --path ."
+  },
+  "checkPeerDependencies": {
+    "ignore": [
+      "ajv"
+    ]
+  },
+  "dependencies": {
+    "@angular/animations": "^22.0.5",
+    "@angular/common": "^22.0.5",
+    "@angular/compiler": "^22.0.5",
+    "@angular/compiler-cli": "^22.0.5",
+    "@angular/core": "^22.0.5",
+    "@angular/platform-browser": "^22.0.5",
+    "@angular/platform-browser-dynamic": "^22.0.5",
+    "@angular/upgrade": "^22.0.5",
+    "@types/angular": "^1.8.9",
+    "@types/jquery": "^3.2.16",
+    "@uirouter/angular": "^22.0.0",
+    "@uirouter/angular-hybrid": "latest",
+    "@uirouter/angularjs": "1.1.1",
+    "@uirouter/core": "^6.1.2",
+    "@uirouter/rx": "^1.0.0",
+    "angular": "1.8.3",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.8.1",
+    "typescript": "~6.0.3",
+    "zone.js": "~0.16.0"
+  },
+  "devDependencies": {
+    "@uirouter/cypress-runner": "^3.1.0",
+    "ts-loader": "9.4.2",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
+  }
+}

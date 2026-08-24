@@ -27,7 +27,7 @@
     "prettier": "npx prettier --write src/**/*.[jt]s src/**/*.[jt]sx",
     "prepare": "husky"
   },
-  "homepage": "https://ui-router.github.io/react",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/react/uirouter-react#readme",
   "contributors": [
     {
       "name": "Marco Botto",
@@ -42,7 +42,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ui-router/react.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "frameworks/react/uirouter-react"
   },
   "dependencies": {
     "@uirouter/core": "6.1.2",
@@ -129,5 +130,8 @@
         "branch": "master"
       }
     ]
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/ui-router/issues"
   }
 }

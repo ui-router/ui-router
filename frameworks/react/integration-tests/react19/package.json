@@ -1,7 +1,7 @@
 {
-  "name": "integration-test-react19",
-  "version": "1.0.0",
+  "name": "@uirouter/internal-framework-react-integration-react19",
   "private": true,
+  "version": "1.0.0",
   "description": "Integration tests for @uirouter/react with React 19",
   "scripts": {
     "dev": "vite",

@@ -1,5 +1,6 @@
 {
-  "name": "@uirouter/angular-test-typescript3.9",
+  "name": "@uirouter/internal-framework-angular-integration-typescript-versions-scaffold",
+  "private": true,
   "version": "1.0.0",
   "description": "Test against Typescript 3.9",
   "scripts": {

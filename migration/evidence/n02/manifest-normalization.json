@@ -1,0 +1,808 @@
+{
+  "schemaVersion": 1,
+  "task": "N02",
+  "baseCommit": "a83234469609a7a037c67977d4d980fb5d602ab9",
+  "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+  "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+  "packageClassificationBeforeSha256": "3b96ab6740f4511c4afeb63e184f29ef4089583dedb48fbfbedde87143cdbc18",
+  "edgeAdjustments": [
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "declaredSpec": "1.1.1",
+      "previousFinalSpec": "1.1.1",
+      "finalSpec": "^1.1.1",
+      "expectedVersion": "1.1.2",
+      "reason": "The explicit range preserves the source minimum while allowing the classified local workspace version."
+    },
+    {
+      "edgeId": "edge-framework-angular-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "declaredSpec": "2.7.0",
+      "previousFinalSpec": "2.7.0",
+      "finalSpec": "^2.7.0",
+      "expectedVersion": "2.8.0",
+      "reason": "The explicit range preserves the source minimum while allowing the classified local workspace version."
+    },
+    {
+      "edgeId": "edge-plugins-visualizer-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/visualizer/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "declaredSpec": "2.7.0",
+      "previousFinalSpec": "2.7.0",
+      "finalSpec": "^2.7.0",
+      "expectedVersion": "2.8.0",
+      "reason": "The explicit range preserves the source minimum while allowing the classified local workspace version."
+    }
+  ],
+  "publishedPackages": [
+    {
+      "id": "core",
+      "path": "core/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/core",
+        "version": "6.1.2",
+        "engines": {
+          "node": ">=4.0.0"
+        },
+        "dependencies": null,
+        "peerDependencies": null,
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "core"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/core#readme"
+      }
+    },
+    {
+      "id": "framework/angular-hybrid/router",
+      "path": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/angular-hybrid",
+        "version": "22.0.0",
+        "engines": null,
+        "dependencies": null,
+        "peerDependencies": {
+          "@angular/core": "^22.0.0",
+          "@angular/upgrade": "^22.0.0",
+          "@uirouter/angular": "^22.0.0",
+          "@uirouter/angularjs": "^1.0.30",
+          "@uirouter/core": "^6.1.2",
+          "angular": "^1.5.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "frameworks/angular-hybrid/uirouter-angular-hybrid"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angular-hybrid/uirouter-angular-hybrid#readme"
+      }
+    },
+    {
+      "id": "framework/angular/router",
+      "path": "frameworks/angular/uirouter-angular/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/angular",
+        "version": "22.0.0",
+        "engines": {
+          "node": ">=6.0.0"
+        },
+        "dependencies": {
+          "tslib": "^2.3.0"
+        },
+        "peerDependencies": {
+          "@angular/common": "^22.0.0",
+          "@angular/core": "^22.0.0",
+          "@uirouter/core": "^6.1.2",
+          "@uirouter/rx": "^1.0.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "frameworks/angular/uirouter-angular"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angular/uirouter-angular#readme"
+      }
+    },
+    {
+      "id": "framework/angularjs/router",
+      "path": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/angularjs",
+        "version": "1.1.2",
+        "engines": {
+          "node": ">=4.0.0"
+        },
+        "dependencies": null,
+        "peerDependencies": {
+          "@uirouter/core": "^6.1.2",
+          "angular": ">=1.2.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "frameworks/angularjs/uirouter-angularjs"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angularjs/uirouter-angularjs#readme"
+      }
+    },
+    {
+      "id": "framework/react-hybrid/router",
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/react-hybrid",
+        "version": "2.0.0",
+        "engines": null,
+        "dependencies": {
+          "@uirouter/angularjs": "1.1.2",
+          "@uirouter/core": "6.1.2",
+          "@uirouter/react": "1.0.8"
+        },
+        "peerDependencies": {
+          "angular": "^1.5.0",
+          "react": ">=16.8.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "frameworks/react-hybrid/uirouter-react-hybrid"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/react-hybrid/uirouter-react-hybrid#readme"
+      }
+    },
+    {
+      "id": "framework/react/router",
+      "path": "frameworks/react/uirouter-react/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/react",
+        "version": "1.0.8",
+        "engines": null,
+        "dependencies": {
+          "@uirouter/core": "6.1.2",
+          "classnames": "^2.5.1",
+          "prop-types": "^15.8.1"
+        },
+        "peerDependencies": {
+          "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "frameworks/react/uirouter-react"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/react/uirouter-react#readme"
+      }
+    },
+    {
+      "id": "plugins/dsr",
+      "path": "plugins/dsr/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/dsr",
+        "version": "1.2.0",
+        "engines": {
+          "node": ">=18.0.0"
+        },
+        "dependencies": null,
+        "peerDependencies": {
+          "@uirouter/core": ">=5.0.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "plugins/dsr"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/dsr#readme"
+      }
+    },
+    {
+      "id": "plugins/redux",
+      "path": "plugins/redux/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/redux",
+        "version": "1.0.0",
+        "engines": null,
+        "dependencies": {},
+        "peerDependencies": {
+          "@uirouter/core": ">=5.0.0"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "plugins/redux"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/redux#readme"
+      }
+    },
+    {
+      "id": "plugins/rx",
+      "path": "plugins/rx/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/rx",
+        "version": "1.0.0",
+        "engines": null,
+        "dependencies": null,
+        "peerDependencies": {
+          "@uirouter/core": ">=6.0.1",
+          "rxjs": "^6.5.3 || ^7.0.0"
+        },
+        "optionalDependencies": {
+          "@rollup/rollup-linux-x64-gnu": "^4.29.1"
+        }
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "plugins/rx"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/rx#readme"
+      }
+    },
+    {
+      "id": "plugins/sticky-states",
+      "path": "plugins/sticky-states/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/sticky-states",
+        "version": "1.5.1",
+        "engines": {
+          "node": ">=4.0.0"
+        },
+        "dependencies": null,
+        "peerDependencies": {
+          "@uirouter/core": ">=5.0.1"
+        },
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "plugins/sticky-states"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/sticky-states#readme"
+      }
+    },
+    {
+      "id": "plugins/visualizer",
+      "path": "plugins/visualizer/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/visualizer",
+        "version": "7.2.1",
+        "engines": null,
+        "dependencies": {
+          "d3-hierarchy": "^3.1.2",
+          "d3-interpolate": "=3.0.1",
+          "preact": "^10.28.1"
+        },
+        "peerDependencies": {
+          "@uirouter/core": ">=5.0.0"
+        },
+        "optionalDependencies": {
+          "@rolldown/binding-linux-x64-gnu": "1.0.0-beta.58",
+          "@typescript/native-preview-linux-x64": "^7.0.0-dev.20250701"
+        }
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "plugins/visualizer"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/visualizer#readme"
+      }
+    },
+    {
+      "id": "tools/publish-scripts",
+      "path": "tools/publish-scripts/package.json",
+      "identityAndPublishedIntent": {
+        "name": "@uirouter/publish-scripts",
+        "version": "2.8.0",
+        "engines": null,
+        "dependencies": {
+          "check-peer-dependencies": "^4.3.4",
+          "conventional-changelog": "^3.1.24",
+          "conventional-changelog-ui-router-core": "^1.4.2",
+          "find-parent-dir": "^0.3.1",
+          "git-semver-tags": "^4.1.1",
+          "lodash": "^4.17.21",
+          "node-cleanup": "^2.1.2",
+          "npm-run-all": "^4.1.5",
+          "open": "^8.4.0",
+          "readline-sync": "^1.4.10",
+          "shelljs": "^0.8.4",
+          "shx": "^0.3.3",
+          "tmp": "^0.2.1",
+          "tweak-sourcemap-paths": "0.0.4",
+          "yalc": "^1.0.0-pre.53",
+          "yargs": "^17.3.0"
+        },
+        "peerDependencies": null,
+        "optionalDependencies": null
+      },
+      "metadataTarget": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ui-router/ui-router.git",
+          "directory": "tools/publish-scripts"
+        },
+        "bugs": {
+          "url": "https://github.com/ui-router/ui-router/issues"
+        },
+        "homepage": "https://github.com/ui-router/ui-router/tree/main/tools/publish-scripts#readme"
+      }
+    }
+  ],
+  "exampleToolchainAdjustments": [
+    {
+      "path": "plugins/dsr/examples/angular-cli/package.json",
+      "fields": [
+        {
+          "field": "dependencies.@angular/common",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/compiler",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/core",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/platform-browser",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/platform-browser-dynamic",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.tslib",
+          "before": "^2.6.0",
+          "after": "^2.8.1"
+        },
+        {
+          "field": "dependencies.zone.js",
+          "before": "^0.14.0",
+          "after": "~0.16.2"
+        },
+        {
+          "field": "devDependencies.@angular-devkit/build-angular",
+          "before": "^17.0.0",
+          "after": "^22.1.3"
+        },
+        {
+          "field": "devDependencies.@angular/cli",
+          "before": "^17.0.0",
+          "after": "^22.1.3"
+        },
+        {
+          "field": "devDependencies.@angular/compiler-cli",
+          "before": "^17.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "devDependencies.@playwright/test",
+          "before": "^1.40.0",
+          "after": "^1.62.1"
+        },
+        {
+          "field": "devDependencies.serve",
+          "before": "^14.2.0",
+          "after": "^14.2.5"
+        },
+        {
+          "field": "devDependencies.typescript",
+          "before": "~5.2.0",
+          "after": "~6.0.3"
+        }
+      ]
+    },
+    {
+      "path": "plugins/sticky-states/examples/angular-cli/package.json",
+      "fields": [
+        {
+          "field": "dependencies.@angular/common",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/compiler",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/core",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/forms",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.@angular/platform-browser",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "dependencies.rxjs",
+          "before": "~7.8.0",
+          "after": "~7.8.2"
+        },
+        {
+          "field": "dependencies.tslib",
+          "before": "^2.3.0",
+          "after": "^2.8.1"
+        },
+        {
+          "field": "dependencies.zone.js",
+          "before": "~0.15.0",
+          "after": "~0.16.2"
+        },
+        {
+          "field": "devDependencies.@angular/build",
+          "before": "^20.0.0",
+          "after": "^22.1.3"
+        },
+        {
+          "field": "devDependencies.@angular/cli",
+          "before": "^20.0.0",
+          "after": "^22.1.3"
+        },
+        {
+          "field": "devDependencies.@angular/compiler-cli",
+          "before": "^20.0.0",
+          "after": "^22.1.0"
+        },
+        {
+          "field": "devDependencies.@playwright/test",
+          "before": "^1.49.0",
+          "after": "^1.62.1"
+        },
+        {
+          "field": "devDependencies.serve",
+          "before": "^14.2.0",
+          "after": "^14.2.5"
+        },
+        {
+          "field": "devDependencies.typescript",
+          "before": "~5.8.0",
+          "after": "~6.0.3"
+        }
+      ]
+    },
+    {
+      "path": "frameworks/react/examples/animating-transitions/package.json",
+      "fields": [
+        {
+          "field": "dependencies.react",
+          "before": "^16.13.1",
+          "after": "^18.3.1"
+        },
+        {
+          "field": "dependencies.react-dom",
+          "before": "^16.13.1",
+          "after": "^18.3.1"
+        },
+        {
+          "field": "dependencies.react-scripts",
+          "before": "1.1.4",
+          "after": "5.0.1"
+        },
+        {
+          "field": "dependencies.react-transition-group",
+          "before": "^4.3.0",
+          "after": "^4.4.5"
+        },
+        {
+          "field": "devDependencies.@types/react-transition-group",
+          "before": "^4.2.4",
+          "after": "^4.4.12"
+        }
+      ]
+    },
+    {
+      "path": "frameworks/react/examples/typescript/package.json",
+      "fields": [
+        {
+          "field": "dependencies.react",
+          "before": "16.12.0",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "dependencies.react-dom",
+          "before": "16.12.0",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "devDependencies.@types/react",
+          "before": null,
+          "after": "^19"
+        },
+        {
+          "field": "devDependencies.@types/react-dom",
+          "before": null,
+          "after": "^19"
+        },
+        {
+          "field": "devDependencies.cross-env",
+          "before": "^7.0.0",
+          "after": "^10.1.0"
+        },
+        {
+          "field": "devDependencies.prop-types",
+          "before": "^15.7.2",
+          "after": "^15.8.1"
+        },
+        {
+          "field": "devDependencies.ts-loader",
+          "before": "^6.2.1",
+          "after": "^9.5.4"
+        },
+        {
+          "field": "devDependencies.tsconfig-paths-webpack-plugin",
+          "before": "^3.2.0",
+          "after": "^4.2.0"
+        },
+        {
+          "field": "devDependencies.typescript",
+          "before": "3.8.2",
+          "after": "^5.9.3"
+        },
+        {
+          "field": "devDependencies.webpack",
+          "before": "^4.41.6",
+          "after": "^5.104.1"
+        },
+        {
+          "field": "devDependencies.webpack-cli",
+          "before": null,
+          "after": "^6.0.1"
+        },
+        {
+          "field": "devDependencies.webpack-dev-server",
+          "before": "3.10.3",
+          "after": "^5.2.2"
+        }
+      ]
+    },
+    {
+      "path": "plugins/dsr/examples/react-vite/package.json",
+      "fields": [
+        {
+          "field": "dependencies.react",
+          "before": "^18.2.0",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "dependencies.react-dom",
+          "before": "^18.2.0",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "devDependencies.@playwright/test",
+          "before": "^1.40.0",
+          "after": "^1.62.1"
+        },
+        {
+          "field": "devDependencies.@vitejs/plugin-react",
+          "before": "^4.2.0",
+          "after": "^5.1.2"
+        },
+        {
+          "field": "devDependencies.serve",
+          "before": "^14.2.0",
+          "after": "^14.2.5"
+        },
+        {
+          "field": "devDependencies.vite",
+          "before": "^5.0.0",
+          "after": "^7.3.0"
+        }
+      ]
+    },
+    {
+      "path": "plugins/redux/examples/react/package.json",
+      "fields": [
+        {
+          "field": "dependencies.react",
+          "before": "^18.3.1",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "dependencies.react-dom",
+          "before": "^18.3.1",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "devDependencies.@types/react",
+          "before": "^18.3.21",
+          "after": "^19"
+        },
+        {
+          "field": "devDependencies.@types/react-dom",
+          "before": "^18.3.7",
+          "after": "^19"
+        },
+        {
+          "field": "devDependencies.@vitejs/plugin-react",
+          "before": "^4.5.2",
+          "after": "^5.1.2"
+        },
+        {
+          "field": "devDependencies.typescript",
+          "before": "^5.8.3",
+          "after": "^5.9.3"
+        },
+        {
+          "field": "devDependencies.vite",
+          "before": "^6.3.5",
+          "after": "^7.3.0"
+        }
+      ]
+    },
+    {
+      "path": "plugins/sticky-states/examples/react-vite/package.json",
+      "fields": [
+        {
+          "field": "dependencies.react",
+          "before": "^18.3.1",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "dependencies.react-dom",
+          "before": "^18.3.1",
+          "after": "^19.2.3"
+        },
+        {
+          "field": "devDependencies.@playwright/test",
+          "before": "^1.49.0",
+          "after": "^1.62.1"
+        },
+        {
+          "field": "devDependencies.@vitejs/plugin-react",
+          "before": "^4.3.4",
+          "after": "^5.1.2"
+        },
+        {
+          "field": "devDependencies.serve",
+          "before": "^14.2.0",
+          "after": "^14.2.5"
+        },
+        {
+          "field": "devDependencies.vite",
+          "before": "^6.0.0",
+          "after": "^7.3.0"
+        }
+      ]
+    }
+  ],
+  "installSmoke": {
+    "runtimeImage": "uirouter-h01:2026-08-21",
+    "runtimeImageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8",
+    "command": "npm install --package-lock=false --ignore-scripts --no-audit --no-fund --loglevel=error",
+    "workspaceCount": 26,
+    "linkedPublishedPackageCount": 12,
+    "rootLockPresent": false,
+    "log": {
+      "path": "migration/evidence/n02/install-smoke.log",
+      "sha256": "fa762a026e620246b152085e8f388dc750121afbf9524722dfef8ebed8a6ceee"
+    },
+    "validatedCommands": [
+      "npm run compile --workspace @uirouter/core",
+      "npm run build --workspace @uirouter/react",
+      "npm run build --workspace @uirouter/internal-framework-react-examples-animating-transitions",
+      "npm exec --workspace @uirouter/internal-framework-react-examples-typescript -- webpack -- --mode production",
+      "npm run build --workspace @uirouter/internal-plugins-redux-examples-react"
+    ]
+  },
+  "configurationAdjustments": [
+    {
+      "path": "frameworks/react/examples/typescript/webpack.config.js",
+      "reason": "Root workspaces hoist tool dependencies; resolve the declared tools normally and serve the example directory itself.",
+      "changes": [
+        {
+          "field": "TsconfigPathsPlugin module",
+          "before": "../../uirouter-react/node_modules/tsconfig-paths-webpack-plugin",
+          "after": "tsconfig-paths-webpack-plugin"
+        },
+        {
+          "field": "ts-loader module",
+          "before": "../../uirouter-react/node_modules/ts-loader",
+          "after": "ts-loader"
+        },
+        {
+          "field": "devServer.static.directory",
+          "before": "../examples/typescript",
+          "after": "__dirname"
+        }
+      ]
+    },
+    {
+      "path": "frameworks/react/examples/typescript/index.tsx",
+      "reason": "Use the React 19 root API without changing the example component tree.",
+      "changes": [
+        {
+          "field": "React DOM import",
+          "before": "import * as ReactDOM from 'react-dom';",
+          "after": "import { createRoot } from 'react-dom/client';"
+        },
+        {
+          "field": "root render call",
+          "before": "ReactDOM.render(app, el);",
+          "after": "createRoot(el!).render(app);"
+        }
+      ]
+    }
+  ]
+}

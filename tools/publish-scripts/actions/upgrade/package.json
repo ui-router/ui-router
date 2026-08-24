@@ -1,5 +1,5 @@
 {
-  "name": "upgrade",
+  "name": "@uirouter/internal-tools-publish-scripts-actions-upgrade",
   "private": true,
   "version": "1.0.0",
   "dependencies": {

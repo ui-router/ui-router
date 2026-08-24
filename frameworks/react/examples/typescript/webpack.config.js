@@ -1,5 +1,5 @@
 var path = require('path');
-var TsconfigPathsPlugin = require('../../uirouter-react/node_modules/tsconfig-paths-webpack-plugin');
+var TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 var configFilePath = path.resolve(__dirname, 'tsconfig.json');
 
@@ -21,7 +21,7 @@ var config = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: require.resolve('../../uirouter-react/node_modules/ts-loader'),
+            loader: require.resolve('ts-loader'),
             options: { configFile: configFilePath },
           },
         ],
@@ -31,7 +31,7 @@ var config = {
   },
   devServer: {
     static: {
-      directory: '../examples/typescript',
+      directory: __dirname,
     },
   },
 };

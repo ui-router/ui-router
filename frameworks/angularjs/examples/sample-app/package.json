@@ -1,5 +1,6 @@
 {
-  "name": "sample-app-angularjs",
+  "name": "@uirouter/internal-framework-angularjs-examples-sample-app",
+  "private": true,
   "description": "Sample app for UI-Router for AngularJS",
   "version": "1.0.2",
   "scripts": {

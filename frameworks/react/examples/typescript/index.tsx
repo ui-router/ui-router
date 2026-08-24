@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import {
   UIRouter,
   UIRouterReact,
@@ -70,4 +70,4 @@ let app = (
     </UIRouter>
   </React.StrictMode>
 );
-ReactDOM.render(app, el);
+createRoot(el!).render(app);

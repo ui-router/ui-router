@@ -1,5 +1,6 @@
 {
-  "name": "@uirouter/core-test-typescript5.4",
+  "name": "@uirouter/internal-core-integration-typescript-5-4",
+  "private": true,
   "version": "1.0.0",
   "description": "Test against Typescript 5.4",
   "scripts": {

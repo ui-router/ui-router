@@ -1,4 +1,6 @@
 {
+  "name": "@uirouter/internal-framework-angularjs-integration-typescript-versions-template",
+  "private": true,
   "description": "Test against Typescript VERSION",
   "scripts": {
     "test": "tsc"

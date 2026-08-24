@@ -1,8 +1,8 @@
 {
-  "name": "ui-router-react-hybrid-react17",
+  "name": "@uirouter/internal-framework-react-hybrid-integration-react17",
+  "private": true,
   "description": "Integration test for @uirouter/react-hybrid with React 17",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@uirouter/react-hybrid": "latest",
     "@uirouter/visualizer": "^7.2.1",

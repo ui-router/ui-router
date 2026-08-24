@@ -1,5 +1,6 @@
 {
-  "name": "v22-standalone",
+  "name": "@uirouter/internal-framework-angular-integration-angular-versions-v22-standalone",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,7 +11,6 @@
     "test:dev": "ng build --configuration development && DIST_PATH=dist/v21-standalone/browser npx playwright test",
     "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21-standalone/browser npx playwright test"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^22.0.8",
     "@angular/compiler": "^22.0.8",

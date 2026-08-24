@@ -1,4 +1,6 @@
 {
+  "name": "@uirouter/internal-framework-angularjs-integration-typescript-versions-3-9",
+  "private": true,
   "description": "Test against Typescript 3.9",
   "scripts": {
     "test": "tsc"

@@ -5,14 +5,15 @@
   "main": "x",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ui-router/publish-scripts.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "tools/publish-scripts"
   },
   "author": "Chris Thielen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ui-router/publish-scripts/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
-  "homepage": "https://github.com/ui-router/publish-scripts#readme",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/tools/publish-scripts#readme",
   "scripts": {
     "release": "node ./release.js --deps check-peer-dependencies",
     "format": "prettier --write \"*.js\" \"actions/**/*.js\" \"docgen/*.js\"",

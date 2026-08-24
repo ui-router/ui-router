@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build",
     "release": "release"
   },
-  "homepage": "https://ui-router.github.io",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/sticky-states#readme",
   "contributors": [
     {
       "name": "Chris Thielen",
@@ -33,10 +33,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ui-router/sticky-states.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "plugins/sticky-states"
   },
   "bugs": {
-    "url": "https://github.com/ui-router/sticky-states/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
   "engines": {
     "node": ">=4.0.0"

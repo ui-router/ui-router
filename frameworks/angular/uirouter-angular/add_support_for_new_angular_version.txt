@@ -5,7 +5,7 @@ Notes from when I added Angular 11 support
  - update angular packages manually to the lower range supported (for angular 11, set to ^10.0.0)
  - update ng-packagr manually to the lower range supported (for angular 11, set to ^10.0.0)
  - update typescript to the version required by @angular/compiler-cli
- - npx check-peer-dependencies
+ - npm exec -- check-peer-dependencies
  - gh pr create
  - update other libs
  - update tests in ../integration-tests/angular-versions/
@@ -14,37 +14,37 @@ Notes from when I added Angular 11 support
  - update tests in ../integration-tests/typescript-versions/
    - (cd ../integration-tests/typescript-versions && ./scaffold.sh 4.5)
    - (maybe) remove old tests from ../integration-tests/typescript-versions and downstream_projects.json
- - npx check-peer-dependencies
+ - npm exec -- check-peer-dependencies
  - gh pr create
  - npm run release
 
 - in sample-app-angular:
  - git checkout -b update-to-latest-angular
- - npx ng update @angular/core @angular/cli
+ - npm exec -- ng update @angular/core @angular/cli
  - git commit -m "chore: update to Angular 11"
- - yarn && yarn test
+ - npm ci --ignore-scripts && npm test
  - gh pr create
 
 - in sample-app-angular-hybrid
- - npx ng update @angular/core @angular/cli
- - yarn upgrade-interactive --latest (update uirouter libs)
+ - npm exec -- ng update @angular/core @angular/cli
+ - npm install --ignore-scripts @uirouter/angular@latest @uirouter/angular-hybrid@latest @uirouter/core@latest
  - push to a branch 'upgrade-to-angular-11'
 
 - in uirouter/angular-hybrid
- - target the sample-app branch in downstream_test.json: 
+ - target the sample-app branch in downstream_test.json:
    - "https://github.com/ui-router/sample-app-angular-hybrid.git@update-to-angular-11"
  - update peer deps for angular packages, bumping each range by one
  - update angular packages manually to the lower range supported (for angular 11, set to ^10.0.0)
  - update ng-packagr manually to the lower range supported (for angular 11, set to ^10.0.0)
  - update typescript to the version required by @angular/compiler-cli
- - npx check-peer-dependencies
+ - npm exec -- check-peer-dependencies
  - in example
-  - npx ng update @angular/core @angular/cli
-  - yarn upgrade-interactive --latest (update uirouter libs)
+  - npm exec -- ng update @angular/core @angular/cli
+  - npm install --ignore-scripts @uirouter/angular@latest @uirouter/angular-hybrid@latest @uirouter/core@latest
  - gh pr create
  - npm run release
  - revert downstream_projects.json and push
 
 - in sample-app-angular-hybrid after merging
- - yarn upgrade-interactive --latest (update uirouter libs)
+ - npm install --ignore-scripts @uirouter/angular@latest @uirouter/angular-hybrid@latest @uirouter/core@latest
  - push and merge

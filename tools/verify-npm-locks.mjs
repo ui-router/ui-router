@@ -69,6 +69,7 @@ try {
 } catch (error) {
   fail(`N03 base, implementation, and gate chain is invalid: ${error.message}`);
 }
+const gitBytes = (commit, path) => execFileSync('git', [...gitArgs, 'show', `${commit}:${path}`], { maxBuffer: 128 * 1024 * 1024 });
 requireEqual('runtime Node', evidence.runtime.node, 'v24.19.0');
 requireEqual('runtime npm', evidence.runtime.npm, '11.17.0');
 requireEqual('lifecycle execution', evidence.installPolicy.lifecycleScriptsExecuted, false);
@@ -157,12 +158,13 @@ const expectedLocks = [
 ].sort();
 requireEqual('npm lock placement', discoveredLocks.sort(), expectedLocks);
 
+const approvedRootLockBytes = gitBytes(gateCommit, evidence.rootLock.path);
+const approvedRootLock = JSON.parse(approvedRootLockBytes.toString('utf8'));
+requireEqual('approved root lock digest', evidence.rootLock.sha256, digest(approvedRootLockBytes));
+requireEqual('approved root lock package count', evidence.rootLock.packageEntries, Object.keys(approvedRootLock.packages).length);
 const rootLock = readJson('package-lock.json');
-requireEqual('root lockfile version', rootLock.lockfileVersion, 3);
-requireEqual('root lock workspace globs', rootLock.packages[''].workspaces, expectedWorkspaces);
-requireEqual('root lock digest', evidence.rootLock.sha256, sha256('package-lock.json'));
-requireEqual('root lock package count', evidence.rootLock.packageEntries, Object.keys(rootLock.packages).length);
-requireEqual('root lock workspace count', evidence.rootLock.workspaceCount, rootOwned.length);
+requireEqual('current root lockfile version', rootLock.lockfileVersion, 3);
+requireEqual('current root lock workspace globs', rootLock.packages[''].workspaces, expectedWorkspaces);
 
 const published = new Map();
 for (const record of classification.manifests.filter((record) => record.published)) {

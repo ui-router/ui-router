@@ -9,4 +9,3 @@ tsconfig.json
 webpack.config.js
 release.sh
 src
-yarn.lock

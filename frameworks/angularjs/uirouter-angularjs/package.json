@@ -30,8 +30,8 @@
     "docs": "generate_docs",
     "docs:publish": "generate_docs && publish_docs",
     "release": "release --deps @uirouter/core && node ./scripts/npm_angular_ui_router_release.js && node ./scripts/bower_release.js",
-    "prepublishOnly": "npm run build",
-    "artifacts": "artifact_tagging"
+    "artifacts": "artifact_tagging",
+    "build:publish": "npm run build"
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angularjs/uirouter-angularjs#readme",
   "contributors": [
@@ -144,6 +144,5 @@
         "branch": "master"
       }
     ]
-  },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  }
 }

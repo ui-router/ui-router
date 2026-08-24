@@ -2,14 +2,13 @@
   "name": "@uirouter/angular-hybrid",
   "version": "22.0.0",
   "scripts": {
-    "example": "cd example && npm i && npm start",
     "clean": "shx rm -rf lib _bundles dist",
     "build": "npm run clean && ng-packagr -p ng-package.json",
     "release": "release --deps @uirouter/core @uirouter/angular @uirouter/angularjs",
     "test": "npm run build",
     "test:downstream": "npm run build && test_downstream_projects",
-    "prepublishOnly": "npm run build",
-    "prepare": "husky"
+    "setup:hooks": "husky",
+    "build:publish": "npm run build"
   },
   "license": "MIT",
   "checkPeerDependencies": {
@@ -65,7 +64,6 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "bugs": {
     "url": "https://github.com/ui-router/ui-router/issues"
   },

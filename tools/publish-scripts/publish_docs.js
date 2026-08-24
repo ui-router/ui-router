@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const publishYalcPackage = require('./publish_yalc_package');
 const util = require('./util');
 util.packageDir();
 

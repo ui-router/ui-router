@@ -5,7 +5,8 @@ The app is bundled using webpack.
 
 ## Running
 
-```
-npm install
+```bash
+npm ci --ignore-scripts
+npm run setup:browser
 npm start
 ```

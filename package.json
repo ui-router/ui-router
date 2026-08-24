@@ -27,14 +27,16 @@
     "tools/*"
   ],
   "scripts": {
-    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:layout && npm run verify:internal-deps && npm run verify:contracts && npm run verify:work-graph",
+    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:contracts && npm run verify:work-graph",
     "verify:root-config": "node tools/verify-root-config.mjs",
     "verify:manifests": "node tools/verify-manifest-normalization.mjs",
     "verify:locks": "node tools/verify-npm-locks.mjs",
+    "verify:package-manager": "node tools/verify-package-manager.mjs",
     "verify:layout": "node tools/verify-layout.mjs",
     "verify:internal-deps": "node tools/verify-internal-deps.mjs",
     "test:n04-validators": "node tools/test-n04-validators.mjs",
     "test:n04-installed": "node tools/test-n04-installed.mjs",
+    "test:n05-package-manager": "node tools/test-n05-package-manager.mjs",
     "prove:installs": "node tools/prove-npm-installs.mjs",
     "verify:contracts": "node tools/verify-contract-schemas.mjs",
     "verify:work-graph": "node tools/verify-work-graph.mjs",

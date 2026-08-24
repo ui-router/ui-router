@@ -1,0 +1,579 @@
+{
+  "schemaVersion": 1,
+  "task": "N05",
+  "owner": "ui-router-maintainers",
+  "baseCommit": "40e57e908a95b74fcc12f19e689ba7f0986a59a7",
+  "reviewedOn": "2026-08-24",
+  "entries": [
+    {
+      "path": "archive/original/monorepo.sh",
+      "sha256": "b06c5e039e64ac7805d4cdafc9290576ddab094fabaea49e4b56717986d75aaf",
+      "category": "original-draft",
+      "executable": false,
+      "reason": "Archived original migration tooling is immutable and outside current execution paths."
+    },
+    {
+      "path": "archive/original/verify-monorepo.sh",
+      "sha256": "97b4163f8862c5400bf1debedb24c9152578ffc03199437dba934c377deee00d",
+      "category": "original-draft",
+      "executable": false,
+      "reason": "Archived original migration tooling is immutable and outside current execution paths."
+    },
+    {
+      "path": "core/.github/workflows/ci.yml.legacy",
+      "sha256": "c15beaefff6a821b6a246d3a7cb6c695c211631cd70ad7f2013deba58525b465",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "core/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "4961b39e0ff8443ceeb1fe23c29a205c99dcd086a8b609bf412fca44eb5c969e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "core/CHANGELOG.md",
+      "sha256": "02ebe5389e57e3cad40b2e02ca60b70e6d9b8d41e4d2d48594edd452da259356",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "frameworks/angular-hybrid/examples/sample-app/.github/workflows/ci.yml.legacy",
+      "sha256": "1b20803d767c0155c1bf1ea4199aedd6e94db87e3c6a0fb75b26737dd6cb8ffd",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular-hybrid/examples/sample-app/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "81122f1445ed5e2138ecd4fb235d7a0339b4baca7bd2d50285ac623b22cff810",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular-hybrid/uirouter-angular-hybrid/.github/workflows/ci.yml.legacy",
+      "sha256": "4927871a978611cb51f6d26731c6b1be74458a84eb9dc3b6549efa2e45c5e93e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular-hybrid/uirouter-angular-hybrid/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "64cf37eaa51cd79db319f86c927b2df28f79e8dd9e6ec0749b8824fecf08818d",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular-hybrid/uirouter-angular-hybrid/CHANGELOG.md",
+      "sha256": "7dbf7d1b7514ad19aba4493e0fe851ed24f09235152587cb7a139a687b6934d8",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "frameworks/angular/examples/sample-app/.github/workflows/ci.yml.legacy",
+      "sha256": "ae998eeb67df0a942c62fbacc852d76090efa41fcf1ac1f74114eb935a6b2a4e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular/examples/sample-app/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "3e79f4f12cc01fe5d090583027e5052690a621413dc9e18544ac4f06cfe8ca87",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular/examples/sample-app/dependencies.yml.legacy",
+      "sha256": "cb79863b2168504af3fec92c6aecf5314f4917596e9109d1031888e25e4df944",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Imported source-repository automation is explicitly inert; C01 owns root CI and dependency automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular/uirouter-angular/.github/workflows/ci.yml.legacy",
+      "sha256": "0c209e337197663094d6ae55f7d75d93a12d200bce9e3702ab100a0c5a79e8a3",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular/uirouter-angular/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "5854de158f9f9ad03986afe077e0b311558a4d15cf8a7b29205952844e37384f",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angular/uirouter-angular/CHANGELOG.md",
+      "sha256": "ef9f81b3dadd09bdcda5f940852c2dc9cec9725bbbf751d2ecd641e406731ec0",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "frameworks/angularjs/examples/sample-app/.github/workflows/ci.yml.legacy",
+      "sha256": "bf799d776b4fd42cc28d7160564e1b111893fa27eee74e2c70d480a74b42506d",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angularjs/examples/sample-app/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "be5aefe77e06b7444be21582fc5cf949a52db29d1710858b1e0f87c80fcea25e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angularjs/examples/sample-app/dependencies.yml.legacy",
+      "sha256": "cf67433a7fbd0e1ac31d0e14fb6b1a671fce2beaa0f0b32974121da59ec5cee4",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Imported source-repository automation is explicitly inert; C01 owns root CI and dependency automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/.github/workflows/ci.yml.legacy",
+      "sha256": "42d913c0b99f65eb42ec4dfe0465b359dd6e9958dca79ba4e46147e501c40287",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "2781cf898fb3c5b942fba8072637596b76fcbb65b1244bac4c964b0ba0f6f8bf",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/CHANGELOG.md",
+      "sha256": "e9c9893910f126d7c515f4e9cbaeb3d254e7cca4be6981a0fcf757b1c896484f",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/test/angular/1.5/angular-mocks.js",
+      "sha256": "33c915eccb8f04fcae0f10cc40b2b8da3bc2c7056ef0ea13d7bad9552091f42c",
+      "category": "vendored-source",
+      "executable": false,
+      "reason": "Vendored AngularJS test source contains historical tool references and is not package-manager automation."
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/test/angular/1.6/angular-mocks.js",
+      "sha256": "e4680fd2cab0c9acb2bf65bec78bf8b4fd89fd01d4328bfadc4cbbd7f0fc11ec",
+      "category": "vendored-source",
+      "executable": false,
+      "reason": "Vendored AngularJS test source contains historical tool references and is not package-manager automation."
+    },
+    {
+      "path": "frameworks/angularjs/uirouter-angularjs/test/angular/1.7/angular-mocks.js",
+      "sha256": "aeec09dfa0bae2df36cca92305535273d295116cfd2e7162d1aa09892e7685ff",
+      "category": "vendored-source",
+      "executable": false,
+      "reason": "Vendored AngularJS test source contains historical tool references and is not package-manager automation."
+    },
+    {
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/.github/dependabot.yml.legacy",
+      "sha256": "40059487d62f59a27d32301b2ae4b928c8cf62c45bed354348c0ae9661d3efe3",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Imported source-repository automation is explicitly inert; C01 owns root CI and dependency automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/.github/workflows/ci.yml.legacy",
+      "sha256": "e5726bb55c1bdc84e5bfef0916c476d840e933c572967d1a2118dddf3d1b02db",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md",
+      "sha256": "05e7f9513038416f5d3ee5cadcf6b9e2d8097f98fe5e2bffad160585af1aec2a",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "frameworks/react/examples/sample-app/.github/workflows/ci.yml.legacy",
+      "sha256": "c48cc1ac4bda38efe21e1b1a5937d3bdee7a80239e3e009938b09d4fe9f5a486",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/examples/sample-app/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "be5aefe77e06b7444be21582fc5cf949a52db29d1710858b1e0f87c80fcea25e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/examples/sample-app/dependencies.yml.legacy",
+      "sha256": "cf67433a7fbd0e1ac31d0e14fb6b1a671fce2beaa0f0b32974121da59ec5cee4",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Imported source-repository automation is explicitly inert; C01 owns root CI and dependency automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/uirouter-react/.github/dependabot.yml.legacy",
+      "sha256": "8a47f604cfd6dd57098a94ed86edd9a205489b64a0e199b13b64395e6c672896",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Imported source-repository automation is explicitly inert; C01 owns root CI and dependency automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/uirouter-react/.github/workflows/ci.yml.legacy",
+      "sha256": "384ecb5452369e032ef7ebd5c50fd4e5a9ae8b423b2711f6d82abc25a062cbc4",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/uirouter-react/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "bc7552cc7ba5110fbfe8ac3ccfb95827498476defdda3d7ae7f2ab35abb11853",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "frameworks/react/uirouter-react/CHANGELOG.md",
+      "sha256": "f08371334928fcd105b7c7e468d31b6b66133a7607ad9da547fae4a4c7ca6ecb",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "plugins/dsr/.github/workflows/ci.yml.legacy",
+      "sha256": "e91e54ac1e6d90a99427729fb194759156f18383cb9a951c5748cc7d4b6abe90",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/dsr/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "370583b7526e2e06677e0288937e0dab4a1347c999c4897aa2690076b4c2ca1f",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/redux/.travis.yml.legacy",
+      "sha256": "b5152d9b79ab2a2d7b0a67fe671297073cb317f406a7921936a30b1469d971b3",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository Travis configuration is renamed inert; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/rx/.github/workflows/ci.yml.legacy",
+      "sha256": "876589d9aa7d989beac0ecebdb7ad03f89155c3e1a85f11969caadaf216483a9",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/rx/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/sticky-states/.github/workflows/ci.yml.legacy",
+      "sha256": "7e69697d3e346c65d731a698c11e0989f2ce885d07b848603dd2d08b1dbfcfaa",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/sticky-states/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/visualizer/.github/workflows/ci.yml.legacy",
+      "sha256": "c5b9549aa6bc62067371c44bfececeaa182e663fcefcbed39895a853c6ab939e",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "plugins/visualizer/.github/workflows/update_dependencies.yml.legacy",
+      "sha256": "b30ec74bcb56591d68a15f97fe48604c279f116f357af6a304b1ebda7da27a2a",
+      "category": "source-workflow",
+      "executable": false,
+      "reason": "Nested source-repository workflow is renamed out of executable workflow syntax; C01 owns root CI.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/CHANGELOG.md",
+      "sha256": "3b89f3de580750190678936dc45c3a2fcf23ab63dcc88a82a896469c5c7b8b32",
+      "category": "historical-changelog",
+      "executable": false,
+      "reason": "Published historical release prose is immutable non-executable context."
+    },
+    {
+      "path": "tools/publish-scripts/actions/upgrade/Dockerfile.legacy",
+      "sha256": "6be64e7a852f2cef2bc72ea785718743a6aa0ee3c7e1a50ef469f8aa2a32f742",
+      "category": "dependency-action",
+      "executable": false,
+      "reason": "Source-era dependency action is disabled because it supports non-npm package managers and lacks a deterministic local lock.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/actions/upgrade/action.yml.legacy",
+      "sha256": "15f301157a88a5d4a8deba14f92f24721bda4822b99fe8851b33b505729e7a13",
+      "category": "dependency-action",
+      "executable": false,
+      "reason": "Source-era dependency action is disabled because it supports non-npm package managers and lacks a deterministic local lock.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/actions/upgrade/entrypoint.sh.legacy",
+      "sha256": "67dd55c151b14ac6f206ac67d2ce88cf2583f75dedc8a12e20dec274bbd50381",
+      "category": "dependency-action",
+      "executable": false,
+      "reason": "Source-era dependency action component is explicitly inert; C01 owns replacement automation.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/actions/upgrade/package.json",
+      "sha256": "fea2059b90b634cfeca530623e8206031f32367b60d60acf04a803eb1c8aa66f",
+      "category": "disabled-metadata",
+      "executable": false,
+      "reason": "Private non-workspace metadata remains only to classify the disabled source-era action.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/actions/upgrade/upgrade.legacy.js",
+      "sha256": "2ac4419869050051ce1a659b41d9a2743fa6240045959df9bb647dbcce0692e5",
+      "category": "dependency-action",
+      "executable": false,
+      "reason": "Source-era dependency action is disabled because it supports non-npm package managers and lacks a deterministic local lock.",
+      "replacementTask": "C01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/docgen/Dockerfile.legacy",
+      "sha256": "98065e14b152b430cb93c2f06e9ee697d60c3e26f0ce2ee64ff2a5b9ee22cabc",
+      "category": "source-helper",
+      "executable": false,
+      "reason": "Source-era docs container is non-executable until deterministic packaging owns it.",
+      "replacementTask": "P01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/docgen_via_docker.legacy.sh",
+      "sha256": "3135c401305d0c96bf45c13de3acf6ec520cf49a69d82b18632cb2e889a1ce78",
+      "category": "source-helper",
+      "executable": false,
+      "reason": "Source-era docs container is non-executable until deterministic packaging owns it.",
+      "replacementTask": "P01",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/docgen_via_docker.sh",
+      "sha256": "beec181de64299c3c7a6e8a6eb08e4017da683f80d117130bb4519ced1b4caf2",
+      "category": "enforcement-guard",
+      "executable": true,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/publish-scripts/publish_yalc_package.js",
+      "sha256": "bc80a59b6f5eea7b2eb9400eacebfb989b2e5e7e86af76e4a9350160a4accc0c",
+      "category": "enforcement-guard",
+      "executable": true,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/publish-scripts/publish_yalc_package.legacy.js",
+      "sha256": "e39bfff00fa6ff4343b264539539ee72a01747e0e903941ed46e3323ae37686a",
+      "category": "source-helper",
+      "executable": false,
+      "reason": "Source-era package transport is non-executable; I02 owns content-addressed npm tarballs.",
+      "replacementTask": "I02",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/test_downstream_projects.js",
+      "sha256": "b637253c1db5c866f4bc0f39647a35ae68dc6b215c7d1fd0347649ccd4ccf4ff",
+      "category": "enforcement-guard",
+      "executable": true,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/publish-scripts/test_downstream_projects.legacy.js",
+      "sha256": "d8c869d48454e9fab31e348aaca1d0e01c5904416215ff40515c2b13b17ad82a",
+      "category": "source-helper",
+      "executable": false,
+      "reason": "Source-era downstream runner is non-executable; I02 owns the npm tarball runner.",
+      "replacementTask": "I02",
+      "disposition": "disabled",
+      "expiresOn": "2026-09-30"
+    },
+    {
+      "path": "tools/publish-scripts/util.js",
+      "sha256": "927500e30b88271b2f30aa5d16911404b76cbba92d2d621f2abb0e5eb981d6dc",
+      "category": "enforcement-guard",
+      "executable": true,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/test-n04-validators.mjs",
+      "sha256": "c7021c0117129fc6297d85cb2fcd5c3efa7f90e815320931628207d4ee8f7a9d",
+      "category": "enforcement-guard",
+      "executable": false,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/verify-internal-deps.mjs",
+      "sha256": "36692b48feccece6261e8092f9f8f9975793dc8c138ae4ef1a55d03f77136660",
+      "category": "enforcement-guard",
+      "executable": false,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/verify-layout.mjs",
+      "sha256": "a5235765bed111d46e466bc8c6f50dc3f2072013579e77178801888d7bba0933",
+      "category": "enforcement-guard",
+      "executable": false,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    },
+    {
+      "path": "tools/verify-npm-locks.mjs",
+      "sha256": "7164d6a69517a6763a066fbf81a197e64424ef696a8e872e15663b2b470fa787",
+      "category": "enforcement-guard",
+      "executable": false,
+      "reason": "Current guard or fail-closed stub mentions prohibited tooling only to reject or disable it."
+    }
+  ]
+}

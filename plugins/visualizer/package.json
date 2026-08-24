@@ -8,9 +8,9 @@
     "compile": "tsgo --outdir lib && tsgo -m es6 --outdir lib-esm",
     "bundle": "rolldown -c rolldown.config.mjs",
     "build": "npm run clean && npm run compile && npm run bundle",
-    "prepublishOnly": "npm run build",
     "release": "release",
-    "prepare": "husky"
+    "setup:hooks": "husky",
+    "build:publish": "npm run build"
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/visualizer#readme",
   "contributors": [

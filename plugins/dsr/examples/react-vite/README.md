@@ -4,8 +4,9 @@ Example showing Deep State Redirect in a React app using Vite.
 
 ## Running
 
-```
-npm install
+```bash
+npm ci --ignore-scripts
+npm run setup:browser
 npm run dev
 ```
 

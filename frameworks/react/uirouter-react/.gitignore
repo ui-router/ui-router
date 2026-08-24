@@ -8,6 +8,5 @@ lib-esm/
 _bundles/
 node_modules/
 _doc
-yarn-error.log
 !.github
 !.husky

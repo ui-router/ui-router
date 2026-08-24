@@ -18,9 +18,9 @@
     "docs": "generate_docs",
     "docs:publish": "generate_docs && publish_docs",
     "lint": "eslint src test",
-    "prepublishOnly": "echo && echo DO NOT RUN npm publish.  Instead, run npm run release && echo && echo && false",
     "changelog": "update_changelog --include-core",
-    "prepare": "husky"
+    "setup:hooks": "husky",
+    "guard:publish": "echo && echo DO NOT RUN npm publish.  Instead, run npm run release && echo && echo && false"
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angular/uirouter-angular#readme",
   "contributors": [

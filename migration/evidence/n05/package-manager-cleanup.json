@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "task": "N05",
+  "owner": "ui-router-maintainers",
+  "baseCommit": "40e57e908a95b74fcc12f19e689ba7f0986a59a7",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "rootLock": {
+    "beforeSha256": "a92a65f359b645af82fa0db7f8ef319ca84f3e17b687a0cafd1d29926e5f47c9",
+    "afterSha256": "2dc333cc65a5b88ea0932e20c6ef67f337288a63b12bc6cf585cf539480dfee4",
+    "beforePackageEntries": 4307,
+    "afterPackageEntries": 4289,
+    "addedPackageKeys": [],
+    "removedPackageKeys": [
+      "node_modules/detect-indent",
+      "node_modules/ignore-walk",
+      "node_modules/npm-bundled",
+      "node_modules/npm-normalize-package-bin",
+      "node_modules/npm-packlist",
+      "node_modules/yalc",
+      "node_modules/yalc/node_modules/cliui",
+      "node_modules/yalc/node_modules/emoji-regex",
+      "node_modules/yalc/node_modules/fs-extra",
+      "node_modules/yalc/node_modules/ignore",
+      "node_modules/yalc/node_modules/ini",
+      "node_modules/yalc/node_modules/is-fullwidth-code-point",
+      "node_modules/yalc/node_modules/jsonfile",
+      "node_modules/yalc/node_modules/string-width",
+      "node_modules/yalc/node_modules/universalify",
+      "node_modules/yalc/node_modules/wrap-ansi",
+      "node_modules/yalc/node_modules/yargs",
+      "node_modules/yalc/node_modules/yargs-parser"
+    ]
+  },
+  "installProof": {
+    "command": "npm ci --ignore-scripts --no-audit --no-fund",
+    "exitStatus": 0,
+    "sandboxOutsideRepositoryAncestry": true,
+    "forbiddenInstalledPackagesAbsent": [
+      "node_modules/yalc",
+      "node_modules/@yarnpkg"
+    ],
+    "disabledStubExitStatuses": {
+      "tools/publish-scripts/test_downstream_projects.js": 1,
+      "tools/publish-scripts/publish_yalc_package.js": 1,
+      "tools/publish-scripts/docgen_via_docker.sh": 1
+    }
+  },
+  "validation": {
+    "cleanTreeCheck": "PACKAGE_MANAGER_VERIFY_OK manifests=45 angularConfigs=9 allowlisted=63 legacy=42 scanned=1044",
+    "adversarialCheck": "N05_PACKAGE_MANAGER_ADVERSARIAL_TESTS_OK cases=54"
+  }
+}

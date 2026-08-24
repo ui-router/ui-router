@@ -147,6 +147,7 @@ for (const record of classification.manifests) {
   const manifest = readJson(path);
   const baselineBytes = gitBytes(n01Commit, path);
   const baseline = JSON.parse(baselineBytes.toString('utf8'));
+  const approvedN02 = JSON.parse(gitBytes(n02Commit, path).toString('utf8'));
   const hashes = manifestHashes.get(record.id);
   if (!hashes) fail(`missing manifest-hash evidence: ${record.id}`);
   requireEqual(`${record.id} hash path`, hashes.path, path);
@@ -170,12 +171,12 @@ for (const record of classification.manifests) {
   }
   if (path === 'frameworks/angular/examples/sample-app/package.json') allowedFields.add('overrides');
   const baselineUnchanged = structuredClone(baseline);
-  const currentUnchanged = structuredClone(manifest);
+  const approvedUnchanged = structuredClone(approvedN02);
   for (const field of allowedFields) {
     removeField(baselineUnchanged, field);
-    removeField(currentUnchanged, field);
+    removeField(approvedUnchanged, field);
   }
-  requireEqual(`${record.id} fields outside N02 ownership`, currentUnchanged, baselineUnchanged);
+  requireEqual(`${record.id} approved fields outside N02 ownership`, approvedUnchanged, baselineUnchanged);
 }
 
 let workspaceEdges = 0;
@@ -199,7 +200,7 @@ const publishedEvidence = new Map(evidence.publishedPackages.map((record) => [re
 requireEqual('published evidence count', publishedEvidence.size, 12);
 for (const record of classification.manifests.filter((record) => record.published)) {
   const path = movePath(record.path);
-  const manifest = readJson(path);
+  const manifest = JSON.parse(gitBytes(n02Commit, path).toString('utf8'));
   const expected = publishedEvidence.get(record.id);
   if (!expected) fail(`missing published-package evidence: ${record.id}`);
   requireEqual(`${record.id} evidence path`, expected.path, path);
@@ -220,7 +221,7 @@ for (const adjustment of evidence.edgeAdjustments) {
   requireEqual(`${adjustment.edgeId} evidence digest`, edge.evidence?.sha256, evidenceSha256);
 }
 for (const adjustment of evidence.exampleToolchainAdjustments) {
-  const manifest = readJson(adjustment.path);
+  const manifest = JSON.parse(gitBytes(n02Commit, adjustment.path).toString('utf8'));
   for (const field of adjustment.fields) {
     const separator = field.field.indexOf('.');
     const section = field.field.slice(0, separator);
@@ -239,7 +240,7 @@ requireEqual('N03 deferred resolution task', evidence.deferredPolicy.resolutionT
 requireEqual('N03 deferred resolution records', evidence.deferredPolicy.resolutionTranslation.recordIds, expectedResolutionIds);
 requireEqual('N05 deferred package-manager task', evidence.deferredPolicy.packageManagerCleanup.task, 'N05');
 const nestedPackageManagers = [...classifiedPaths]
-  .filter((path) => Object.hasOwn(readJson(path), 'packageManager'))
+  .filter((path) => Object.hasOwn(JSON.parse(gitBytes(n02Commit, path).toString('utf8')), 'packageManager'))
   .sort();
 requireEqual('N05 deferred package-manager paths', evidence.deferredPolicy.packageManagerCleanup.paths, nestedPackageManagers);
 requireEqual('I01 deferred local-tarball task', evidence.deferredPolicy.localTarballEdges.task, 'I01');

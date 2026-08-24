@@ -11,7 +11,6 @@ karma.**.js
 tslint.json
 tsconfig.json
 tsconfig.*.json
-yarn.lock
 stats.html
 
 *.iml

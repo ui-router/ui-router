@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Reactive extensions for UI-Router",
   "scripts": {
-    "prepare": "husky",
-    "clean": "shx rm -rf lib lib-esm _bundles yarn-error.log stats.html",
+    "clean": "shx rm -rf lib lib-esm _bundles stats.html",
     "compile": "npm run clean && tsgo && tsgo --outDir lib-esm --module es6",
     "bundle": "rolldown -c rolldown.config.mjs",
     "build": "run-s compile bundle fixmaps:*",
@@ -13,8 +12,9 @@
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -p ../src --include '_bundles/**/*.js.map'",
     "release": "release",
-    "prepublishOnly": "npm run build",
-    "precommit": "pretty-quick --staged"
+    "setup:hooks": "husky",
+    "build:publish": "npm run build",
+    "check:staged": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",

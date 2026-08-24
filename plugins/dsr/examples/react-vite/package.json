@@ -18,12 +18,12 @@
     "vite": "^7.3.0"
   },
   "scripts": {
-    "postinstall": "npx playwright install chromium",
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "npm run build && npx playwright test",
-    "test:ui": "npm run build && npx playwright test --ui"
+    "test:ui": "npm run build && npx playwright test --ui",
+    "setup:browser": "npm exec -- playwright install chromium"
   }
 }

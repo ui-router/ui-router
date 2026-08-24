@@ -49,7 +49,7 @@ function walkFiles(directory, output = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     if (skipped.has(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
-    if (entry.isSymbolicLink()) continue;
+    if (entry.isSymbolicLink()) fail(`symbolic links are forbidden in the package/lock inventory: ${rel(absolute)}`);
     if (entry.isDirectory()) walkFiles(absolute, output);
     else output.push(rel(absolute));
   }

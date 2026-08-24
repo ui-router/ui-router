@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, realpathSync } from 'node:fs';
+import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -12,6 +13,9 @@ const pathRepairs = readJsonAt(repository, 'migration/path-repairs.json');
 const sources = readJsonAt(repository, 'migration/sources.json');
 const sourceInventory = readJsonAt(repository, 'migration/evidence/control/n00/inventory.json');
 const sections = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'];
+const npmCli = realpathSync(execFileSync('which', ['npm'], { encoding: 'utf8' }).trim());
+const npmRequire = createRequire(path.join(path.dirname(npmCli), '..', 'package.json'));
+const semver = npmRequire('semver');
 
 function canonicalize(input) {
   let current = input;
@@ -64,28 +68,9 @@ function sourceDeclaredSpecs(universe) {
 }
 
 function satisfies(version, range) {
-  const parse = (value) => {
-    const match = String(value).match(/^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/);
-    if (!match) fail(`unsupported semantic version: ${value}`);
-    return match.slice(1).map(Number);
-  };
-  const compare = (a, b) => {
-    for (let index = 0; index < 3; index += 1) {
-      if (a[index] !== b[index]) return a[index] > b[index] ? 1 : -1;
-    }
-    return 0;
-  };
-  const actual = parse(version);
-  if (range === '*' || range === 'latest') return true;
-  if (range.includes('||')) return range.split('||').some((part) => satisfies(version, part.trim()));
-  if (range.startsWith('^')) {
-    const minimum = parse(range.slice(1));
-    if (compare(actual, minimum) < 0) return false;
-    const maximum = minimum[0] > 0 ? [minimum[0] + 1, 0, 0] : minimum[1] > 0 ? [0, minimum[1] + 1, 0] : [0, 0, minimum[2] + 1];
-    return compare(actual, maximum) < 0;
-  }
-  if (range.startsWith('>=')) return compare(actual, parse(range.slice(2))) >= 0;
-  return compare(actual, parse(range)) === 0;
+  if (typeof range !== 'string' || ['latest', 'next'].includes(range) || /^(?:file:|workspace:|git\+|https?:)/.test(range)) return false;
+  if (semver.valid(version) === null || semver.validRange(range) === null) return false;
+  return semver.satisfies(version, range, { includePrerelease: false });
 }
 
 function expectedOriginFor(target, mode) {
@@ -176,18 +161,33 @@ function downstreamEntries(value, prefix = [], rootLevel = true) {
   return result;
 }
 
+function discoverNamedFiles(directory, basename, output = []) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (['.git', 'node_modules', '.cache', '.turbo', 'dist', 'coverage'].includes(entry.name)) continue;
+    const absolute = path.join(directory, entry.name);
+    if (entry.isSymbolicLink()) fail(`symbolic link in downstream inventory: ${path.relative(repository, absolute)}`);
+    if (entry.isDirectory()) discoverNamedFiles(absolute, basename, output);
+    else if (entry.name === basename) output.push(path.relative(repository, absolute).split(path.sep).join('/'));
+  }
+  return output;
+}
+
 function deriveLegacy(universe, classifiedById) {
   const sourceMap = sourceDestinationMap();
-  const downstreamFiles = [
-    'core/downstream_projects.json',
-    'frameworks/angular/uirouter-angular/downstream_projects.json',
-    'frameworks/angular-hybrid/uirouter-angular-hybrid/downstream_projects.json',
-    'frameworks/angularjs/uirouter-angularjs/downstream_projects.json',
-    'frameworks/react/uirouter-react/downstream_projects.json',
-    'frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json',
-    'plugins/dsr/downstream_projects.json',
-    'plugins/sticky-states/downstream_projects.json',
-  ];
+  const expectedDownstreamFiles = [];
+  for (const source of sourceInventory.sources) {
+    if (source.downstreamProjects === null) continue;
+    const rootSnapshot = source.manifests.find((manifest) => manifest.sourcePath === 'package.json');
+    if (!rootSnapshot) fail(`source with downstream projects has no root manifest: ${source.name}`);
+    expectedDownstreamFiles.push(`${path.posix.dirname(canonicalize(rootSnapshot.finalPath))}/downstream_projects.json`);
+  }
+  expectedDownstreamFiles.sort();
+  const downstreamFiles = discoverNamedFiles(repository, 'downstream_projects.json').sort();
+  if (JSON.stringify(downstreamFiles) !== JSON.stringify(expectedDownstreamFiles)) {
+    const missing = expectedDownstreamFiles.filter((file) => !downstreamFiles.includes(file));
+    const extra = downstreamFiles.filter((file) => !expectedDownstreamFiles.includes(file));
+    fail(`downstream config inventory mismatch missing=[${missing}] extra=[${extra}]`);
+  }
   const derived = new Map();
   for (const configPath of downstreamFiles) {
     const producerDirectory = path.posix.dirname(configPath);
@@ -198,7 +198,11 @@ function deriveLegacy(universe, classifiedById) {
       let consumerDirectory;
       if (/^https?:\/\//.test(entry.destination)) {
         consumerDirectory = sourceMap.get(entry.destination.replace(/\/$/, ''));
-        if (!consumerDirectory) continue;
+        if (!consumerDirectory) {
+          const allowedAlias = configPath === 'core/downstream_projects.json' && entry.key === 'angularjs.angularjs' && entry.destination === 'https://github.com/angular-ui/ui-router.git';
+          if (allowedAlias) continue;
+          fail(`${configPath}:${entry.key}: unmapped remote downstream ${entry.destination}`);
+        }
       } else {
         consumerDirectory = path.posix.normalize(path.posix.join(producerDirectory, entry.destination));
         if (consumerDirectory.startsWith('../') || path.posix.isAbsolute(consumerDirectory)) fail(`${configPath}:${entry.key}: destination escapes repository`);
@@ -233,6 +237,11 @@ function validateRootLock(workspaceEdges) {
   }
 }
 
+function registryTarball(packageName, version) {
+  const basename = packageName.split('/').pop();
+  return `https://registry.npmjs.org/${packageName}/-/${basename}-${version}.tgz`;
+}
+
 function validateLocalLocks(localEdges) {
   const byConsumer = new Map();
   for (const value of localEdges.values()) {
@@ -255,7 +264,9 @@ function validateLocalLocks(localEdges) {
       if (!item) fail(`${edge.id}: local lock has no direct internal package entry`);
       if (item.link === true) fail(`${edge.id}: committed registry baseline is a workspace link`);
       if (item.version !== edge.expectedVersion) fail(`${edge.id}: local lock version ${item.version} != ${edge.expectedVersion}`);
-      if (!/^https:\/\/registry\.npmjs\.org\//.test(item.resolved || '')) fail(`${edge.id}: local lock origin is not the registry baseline: ${item.resolved}`);
+      const expectedResolved = registryTarball(edge.package, edge.expectedVersion);
+      if (item.resolved !== expectedResolved) fail(`${edge.id}: local lock origin ${item.resolved} != ${expectedResolved}`);
+      if (typeof item.integrity !== 'string' || !/^sha512-[A-Za-z0-9+/]+={0,2}$/.test(item.integrity)) fail(`${edge.id}: local lock has no valid sha512 integrity`);
     }
   }
 }
@@ -276,7 +287,50 @@ function validateResolutionPolicy(universe) {
       if (JSON.stringify(item.manifest.overrides) !== JSON.stringify(exactOverride)) fail(`${item.canonicalPath}: Angular integration override differs from approved exact shape`);
     } else if (allowed.has(item.canonicalPath)) fail(`${item.canonicalPath}: approved isolated override is missing`);
   }
-  if (classification.resolutions.length !== 7) fail(`expected 7 classified resolution decisions, found ${classification.resolutions.length}`);
+
+  const expected = new Map();
+  for (const source of sourceInventory.sources) {
+    for (const snapshot of source.manifests) {
+      const owner = universe.byCanonicalPath.get(canonicalize(snapshot.finalPath));
+      if (!owner) fail(`resolution source owner is not classified: ${snapshot.finalPath}`);
+      const directNames = new Set(sections.flatMap((section) => Object.keys(snapshot.dependencies?.[section] || {})));
+      for (const [scope, records] of [['resolutions', snapshot.resolutions || {}], ['overrides', snapshot.overrides || {}]]) {
+        for (const selector of Object.keys(records)) {
+          const directness = directNames.has(selector) ? 'direct' : 'transitive';
+          const decision = owner.record.class === 'integration' ? 'isolated-integration' : directness === 'direct' ? 'direct-dependency' : 'remove';
+          const id = slug(`resolution-${owner.record.id}-${scope}-${selector}`);
+          if (expected.has(id)) fail(`duplicate independently derived resolution decision: ${id}`);
+          expected.set(id, {
+            owner: owner.record.path,
+            originalScope: scope,
+            originalSelector: selector,
+            decision,
+            directness,
+            affectedDependencyPaths: [selector],
+            expectedLockEntries: directness === 'direct' ? [selector] : [],
+            rootScopeBroadens: false,
+          });
+        }
+      }
+    }
+  }
+  const actual = new Map();
+  for (const record of classification.resolutions) {
+    if (actual.has(record.id)) fail(`duplicate classified resolution decision: ${record.id}`);
+    actual.set(record.id, record);
+  }
+  const missing = [...expected.keys()].filter((id) => !actual.has(id));
+  const extra = [...actual.keys()].filter((id) => !expected.has(id));
+  if (expected.size !== 7 || actual.size !== 7 || missing.length || extra.length) fail(`resolution decision coverage mismatch expected=${expected.size} actual=${actual.size} missing=[${missing}] extra=[${extra}]`);
+  for (const [id, wanted] of expected) {
+    const record = actual.get(id);
+    for (const [field, value] of Object.entries(wanted)) {
+      if (JSON.stringify(record[field]) !== JSON.stringify(value)) fail(`${id}: resolution ${field} ${JSON.stringify(record[field])} != ${JSON.stringify(value)}`);
+    }
+    const owner = universe.byCanonicalPath.get(canonicalize(record.owner));
+    const lock = owner.record.lockOwner === 'local' ? readJsonAt(repository, `${owner.directory}/package-lock.json`) : readJsonAt(repository, 'package-lock.json');
+    for (const packageName of record.expectedLockEntries) if (!lock.packages?.[`node_modules/${packageName}`]) fail(`${id}: expected lock entry is missing: ${packageName}`);
+  }
 }
 
 function npmLsGraph(directory) {
@@ -288,14 +342,26 @@ function npmLsGraph(directory) {
   }
 }
 
-function assertInternalNpmLs(directory, expectedVersions) {
+function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
   const graph = npmLsGraph(directory);
+  const contextManifest = readJsonAt(directory, 'package.json');
+  if (!graph || typeof graph !== 'object' || graph.name !== contextManifest.name || graph.version !== contextManifest.version || typeof graph.dependencies !== 'object') {
+    fail(`npm ls graph root differs from ${directory}/package.json`);
+  }
+  for (const problem of graph.problems || []) {
+    const text = String(problem);
+    if ([...expectedVersions.keys()].some((name) => text.startsWith(`invalid: ${name}@`) || text.startsWith(`missing: ${name}@`) || text.startsWith(`extraneous: ${name}@`) || text.startsWith(`overridden: ${name}@`))) {
+      fail(`npm ls internal root problem in ${directory}: ${problem}`);
+    }
+  }
   const seen = new Set();
+  const found = new Set();
   function visit(node) {
     if (!node || typeof node !== 'object' || seen.has(node)) return;
     seen.add(node);
     for (const [name, dependency] of Object.entries(node.dependencies || {})) {
       if (expectedVersions.has(name)) {
+        found.add(name);
         const badFlags = ['invalid', 'missing', 'extraneous', 'overridden'].filter((flag) => dependency?.[flag]);
         if (badFlags.length) fail(`npm ls internal problem in ${directory}: ${name} ${badFlags.join(',')}`);
         if (dependency?.version !== expectedVersions.get(name)) fail(`npm ls internal version in ${directory}: ${name}@${dependency?.version} != ${expectedVersions.get(name)}`);
@@ -304,37 +370,53 @@ function assertInternalNpmLs(directory, expectedVersions) {
     }
   }
   visit(graph);
+  const missing = [...requiredNames].filter((name) => !found.has(name));
+  if (missing.length) fail(`npm ls omitted required internal packages in ${directory}: ${missing.join(', ')}`);
 }
 
 function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) {
   const install = realpathSync(path.resolve(installedRoot));
   if (install === repository || install.startsWith(`${repository}${path.sep}`) || repository.startsWith(`${install}${path.sep}`)) fail('--installed-root must be outside repository ancestry');
   const expectedVersions = new Map([...universe.byName].map(([name, item]) => [name, item.manifest.version]));
-  assertInternalNpmLs(install, expectedVersions);
-  for (const { edge, target } of workspaceEdges.values()) {
+  const workspaceTargets = new Set([...workspaceEdges.values()].map(({ edge }) => edge.package));
+  assertInternalNpmLs(install, expectedVersions, workspaceTargets);
+  for (const { edge, consumer, target } of workspaceEdges.values()) {
     const packagePath = path.join(install, 'node_modules', ...edge.package.split('/'));
     if (!existsSync(packagePath)) fail(`${edge.id}: installed root has no ${edge.package}`);
     const physical = realpathSync(packagePath);
     const expected = realpathSync(path.join(install, target.directory));
     if (physical !== expected) fail(`${edge.id}: workspace physical origin ${physical} != ${expected}`);
+    const consumerRequire = createRequire(path.join(install, consumer.canonicalPath));
+    let resolvedManifest;
+    try { resolvedManifest = realpathSync(consumerRequire.resolve(`${edge.package}/package.json`)); } catch (error) { fail(`${edge.id}: consumer-context resolution failed: ${error.message}`); }
+    if (resolvedManifest !== path.join(expected, 'package.json')) fail(`${edge.id}: consumer resolved ${resolvedManifest} instead of workspace ${expected}/package.json`);
     const manifest = readJsonAt(physical, 'package.json');
     if (manifest.name !== edge.package || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed workspace identity/version mismatch`);
   }
-  const checkedLocalContexts = new Set();
-  for (const { edge, consumer } of localEdges.values()) {
-    if (consumer.record.lockOwner === 'none') continue;
-    const context = path.join(install, consumer.directory);
-    if (!checkedLocalContexts.has(context)) {
-      assertInternalNpmLs(context, expectedVersions);
-      checkedLocalContexts.add(context);
+  const localContexts = new Map();
+  for (const value of localEdges.values()) {
+    if (value.consumer.record.lockOwner === 'none') continue;
+    const context = path.join(install, value.consumer.directory);
+    if (!localContexts.has(context)) localContexts.set(context, []);
+    localContexts.get(context).push(value);
+  }
+  for (const [context, values] of localContexts) {
+    assertInternalNpmLs(context, expectedVersions, new Set(values.map(({ edge }) => edge.package)));
+    const installedLock = readJsonAt(context, 'node_modules/.package-lock.json');
+    for (const { edge } of values) {
+      const packagePath = path.join(context, 'node_modules', ...edge.package.split('/'));
+      if (!existsSync(packagePath)) fail(`${edge.id}: installed local consumer has no ${edge.package}`);
+      if (lstatSync(packagePath).isSymbolicLink()) fail(`${edge.id}: local dependency is a symbolic link`);
+      const physical = realpathSync(packagePath);
+      const expectedPhysical = path.resolve(packagePath);
+      if (physical !== expectedPhysical) fail(`${edge.id}: local dependency realpath ${physical} != ${expectedPhysical}`);
+      const manifest = readJsonAt(physical, 'package.json');
+      if (manifest.name !== edge.package || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed local identity/version mismatch`);
+      const committed = readJsonAt(repository, `${values[0].consumer.directory}/package-lock.json`).packages?.[`node_modules/${edge.package}`];
+      const installed = installedLock.packages?.[`node_modules/${edge.package}`];
+      for (const field of ['version', 'resolved', 'integrity']) if (installed?.[field] !== committed?.[field]) fail(`${edge.id}: installed ${field} differs from committed registry baseline`);
+      if (installed?.link === true) fail(`${edge.id}: installed local package is linked`);
     }
-    const packagePath = path.join(context, 'node_modules', ...edge.package.split('/'));
-    if (!existsSync(packagePath)) fail(`${edge.id}: installed local consumer has no ${edge.package}`);
-    const physical = realpathSync(packagePath);
-    const consumerRoot = realpathSync(path.join(install, consumer.directory));
-    if (!physical.startsWith(`${consumerRoot}${path.sep}`)) fail(`${edge.id}: local dependency escaped consumer install: ${physical}`);
-    const manifest = readJsonAt(physical, 'package.json');
-    if (manifest.name !== edge.package || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed local identity/version mismatch`);
   }
 }
 

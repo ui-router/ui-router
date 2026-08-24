@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -60,6 +60,12 @@ try {
     writeFileSync(path.join(root, 'frameworks/angular/integration-tests/typescript-versions/scaffold/package-lock.json'), '{}\n');
   }, /npm lock placement mismatch/);
   expectFailure('layout-yarn-lock', 'verify-layout.mjs', (root) => writeFileSync(path.join(root, 'yarn.lock'), ''), /forbidden current Yarn\/pnpm locks/);
+  expectFailure('layout-symlink-manifest', 'verify-layout.mjs', (root) => {
+    mkdirSync(path.join(root, 'rogue')); symlinkSync('../core/package.json', path.join(root, 'rogue/package.json'));
+  }, /symbolic links are forbidden.*rogue\/package\.json/);
+  expectFailure('layout-symlink-lock', 'verify-layout.mjs', (root) => {
+    mkdirSync(path.join(root, 'core/rogue')); symlinkSync('../../package-lock.json', path.join(root, 'core/rogue/package-lock.json'));
+  }, /symbolic links are forbidden.*core\/rogue\/package-lock\.json/);
   expectFailure('layout-lock-workspaces-drift', 'verify-layout.mjs', (root) => {
     const value = json(root, 'package-lock.json'); value.packages[''].workspaces = ['core']; save(root, 'package-lock.json', value);
   }, /root lock workspace declarations differ/);
@@ -96,7 +102,15 @@ try {
   expectFailure('deps-local-file-origin', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package-lock.json'; const value = json(root, file);
     value.packages['node_modules/@uirouter/core'].resolved = 'file:../../../core'; save(root, file, value);
-  }, /origin is not the registry baseline/);
+  }, /local lock origin file:.* != https:\/\/registry\.npmjs\.org\/@uirouter\/core/);
+  expectFailure('deps-local-wrong-registry-package', 'verify-internal-deps.mjs', (root) => {
+    const file = 'core/integration-tests/typescript-3.9/package-lock.json'; const value = json(root, file);
+    value.packages['node_modules/@uirouter/core'].resolved = 'https://registry.npmjs.org/@uirouter/react/-/react-6.1.2.tgz'; save(root, file, value);
+  }, /local lock origin .*react.* != .*core-6\.1\.2/);
+  expectFailure('deps-local-missing-integrity', 'verify-internal-deps.mjs', (root) => {
+    const file = 'core/integration-tests/typescript-3.9/package-lock.json'; const value = json(root, file);
+    delete value.packages['node_modules/@uirouter/core'].integrity; save(root, file, value);
+  }, /local lock has no valid sha512 integrity/);
   expectFailure('deps-local-workspace-spec', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/core'] = 'workspace:*'; save(root, file, value);
@@ -113,6 +127,13 @@ try {
     const file = 'plugins/dsr/downstream_projects.json'; const value = json(root, file);
     value.react.renamed = value.react['react-vite']; delete value.react['react-vite']; save(root, file, value);
   }, /unclassified current downstream relationship/);
+  expectFailure('deps-extra-downstream-config', 'verify-internal-deps.mjs', (root) => {
+    mkdirSync(path.join(root, 'core/rogue')); save(root, 'core/rogue/downstream_projects.json', { rogue: './fixture' });
+  }, /downstream config inventory mismatch.*core\/rogue\/downstream_projects\.json/);
+  expectFailure('deps-unmapped-remote', 'verify-internal-deps.mjs', (root) => {
+    const file = 'plugins/dsr/downstream_projects.json'; const value = json(root, file);
+    value.react['react-vite'] = 'https://github.com/ui-router/not-imported.git'; save(root, file, value);
+  }, /plugins\/dsr\/downstream_projects\.json:react\.react-vite: unmapped remote downstream/);
   expectFailure('deps-stale-downstream-path', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/react/uirouter-react/downstream_projects.json'; const value = json(root, file);
     value['react-versions'].react17 = './integration/react17'; save(root, file, value);
@@ -123,6 +144,23 @@ try {
   expectFailure('deps-root-override', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'package.json'); value.overrides = { '@uirouter/angular': '22.0.0' }; save(root, 'package.json', value);
   }, /root overrides\/resolutions are forbidden/);
+  expectFailure('deps-resolution-record-drift', 'verify-internal-deps.mjs', (root) => {
+    const value = json(root, 'migration/package-classification.json'); value.resolutions[0].decision = 'isolated-integration'; save(root, 'migration/package-classification.json', value);
+  }, /resolution decision .* != /);
+  expectFailure('deps-workspace-dist-tag', 'verify-internal-deps.mjs', (root) => {
+    const manifestFile = 'frameworks/react/examples/sample-app/package.json'; const manifest = json(root, manifestFile);
+    manifest.dependencies['@uirouter/react'] = 'latest'; save(root, manifestFile, manifest);
+    const contract = json(root, 'migration/package-classification.json');
+    contract.edges.find((edge) => edge.id === 'edge-framework-react-examples-sample-app-dependencies-uirouter-react').finalSpec = 'latest';
+    save(root, 'migration/package-classification.json', contract);
+  }, /target 1\.0\.8 does not satisfy latest/);
+  expectFailure('deps-workspace-malformed-range', 'verify-internal-deps.mjs', (root) => {
+    const manifestFile = 'frameworks/react/examples/sample-app/package.json'; const manifest = json(root, manifestFile);
+    manifest.dependencies['@uirouter/react'] = '^1.0.0 || nope'; save(root, manifestFile, manifest);
+    const contract = json(root, 'migration/package-classification.json');
+    contract.edges.find((edge) => edge.id === 'edge-framework-react-examples-sample-app-dependencies-uirouter-react').finalSpec = '^1.0.0 || nope';
+    save(root, 'migration/package-classification.json', contract);
+  }, /target 1\.0\.8 does not satisfy/);
   expectFailure('deps-angular-override-drift', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/angular/integration-tests/angular-versions/v22/package.json'; const value = json(root, file);
     value.overrides['@uirouter/angular']['@angular/core'] = '22.0.0'; save(root, file, value);

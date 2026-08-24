@@ -34,6 +34,7 @@
     "verify:layout": "node tools/verify-layout.mjs",
     "verify:internal-deps": "node tools/verify-internal-deps.mjs",
     "test:n04-validators": "node tools/test-n04-validators.mjs",
+    "test:n04-installed": "node tools/test-n04-installed.mjs",
     "prove:installs": "node tools/prove-npm-installs.mjs",
     "verify:contracts": "node tools/verify-contract-schemas.mjs",
     "verify:work-graph": "node tools/verify-work-graph.mjs",

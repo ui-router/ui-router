@@ -1,0 +1,36 @@
+{
+  "name": "@uirouter/monorepo",
+  "private": true,
+  "packageManager": "npm@11.17.0",
+  "engines": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.19.0",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "11.17.0",
+      "onFail": "error"
+    }
+  },
+  "workspaces": [
+    "core",
+    "plugins/*",
+    "plugins/*/examples/*",
+    "frameworks/*/uirouter-*",
+    "frameworks/*/examples/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "check": "npm run verify:root-config && npm run verify:contracts && npm run verify:work-graph",
+    "verify:root-config": "node tools/verify-root-config.mjs",
+    "verify:contracts": "node tools/verify-contract-schemas.mjs",
+    "verify:work-graph": "node tools/verify-work-graph.mjs",
+    "test:history-migration": "node tools/test-history-migration.mjs"
+  }
+}

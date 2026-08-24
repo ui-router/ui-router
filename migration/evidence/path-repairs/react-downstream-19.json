@@ -1,0 +1,13 @@
+{
+  "field": "react-versions.react19",
+  "id": "react-downstream-19",
+  "interpretationMode": "process-cwd",
+  "newReference": "\"../integration-tests/react19\"",
+  "oldReference": "\"./integration/react19\"",
+  "resolvedTarget": "frameworks/react/integration-tests/react19",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

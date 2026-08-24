@@ -9,8 +9,8 @@
     "react": "https://github.com/ui-router/react.git"
   },
   "other": {
-    "typescript5.4": "./test/typescript5.4",
-    "typescript3.9": "./test/typescript3.9",
+    "typescript5.4": "./integration-tests/typescript-5.4",
+    "typescript3.9": "./integration-tests/typescript-3.9",
     "sticky-states": "https://github.com/ui-router/sticky-states.git"
   }
 }

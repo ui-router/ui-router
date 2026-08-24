@@ -3,7 +3,7 @@
   "description": "UI-Router State Visualizer and Transition Visualizer",
   "version": "7.2.1",
   "scripts": {
-    "start": "npm run bundle && serve . --open /example",
+    "start": "npm run bundle && serve . --open /examples/example",
     "clean": "shx rm -rf lib lib-esm _bundles",
     "compile": "tsgo --outdir lib && tsgo -m es6 --outdir lib-esm",
     "bundle": "rolldown -c rolldown.config.mjs",

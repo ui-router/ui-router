@@ -24,4 +24,4 @@ $JSON write $DIR/package.json scripts.test "npm run test:dev && npm run test:pro
 $JSON write $DIR/package.json scripts.test:dev "ng build --configuration development && DIST_PATH=dist/$DIR/browser npx playwright test"
 $JSON write $DIR/package.json scripts.test:prod "ng build  --configuration production && DIST_PATH=dist/$DIR/browser npx playwright test"
 
-$JSON write ../downstream_projects.json  "projects.angular$VERSION" "./test-angular-versions/$DIR"
+$JSON write ../../uirouter-angular/downstream_projects.json  "projects.angular$VERSION" "../integration-tests/angular-versions/$DIR"

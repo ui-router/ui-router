@@ -1,0 +1,13 @@
+{
+  "field": "json.executable",
+  "id": "angular-typescript-scaffold-json",
+  "interpretationMode": "process-cwd",
+  "newReference": "../angular-versions/read-write-json.js",
+  "oldReference": "../test-angular-versions/read-write-json.js",
+  "resolvedTarget": "frameworks/angular/integration-tests/angular-versions/read-write-json.js",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

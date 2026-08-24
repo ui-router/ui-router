@@ -1,0 +1,13 @@
+{
+  "field": "configureCli.require.yargs",
+  "id": "angular-scaffold-json-yargs-command",
+  "interpretationMode": "config-file",
+  "newReference": "const configureCli = () => {\n  const yargs = require('../../uirouter-angular/node_modules/yargs');",
+  "oldReference": "const configureCli = () => {\n  const yargs = require('yargs');",
+  "resolvedTarget": "frameworks/angular/uirouter-angular/node_modules/yargs",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": false
+}

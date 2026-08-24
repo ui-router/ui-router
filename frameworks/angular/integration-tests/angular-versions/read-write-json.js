@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 const fs = require('fs');
 // JSON parse/stringify with support for comments (tsconfig.json can have comments)
-const { get, set, unset } = require('lodash');
-const yargs = require('yargs');
+const { get, set, unset } = require('../../uirouter-angular/node_modules/lodash');
+const yargs = require('../../uirouter-angular/node_modules/yargs');
 
 const configureCli = () => {
-  const yargs = require('yargs');
+  const yargs = require('../../uirouter-angular/node_modules/yargs');
 
   const addDefaultPositionalArgs = (_yargs) => {
     _yargs.positional('filename', { description: 'The JSON file' });

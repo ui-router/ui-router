@@ -1,0 +1,13 @@
+{
+  "field": "documentation.typescript-scaffold",
+  "id": "angular-doc-typescript-scaffold",
+  "interpretationMode": "documentation",
+  "newReference": "   - (cd ../integration-tests/typescript-versions && ./scaffold.sh 4.5)",
+  "oldReference": "   - ./scaffold.sh 4.5",
+  "resolvedTarget": "frameworks/angular/integration-tests/typescript-versions",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

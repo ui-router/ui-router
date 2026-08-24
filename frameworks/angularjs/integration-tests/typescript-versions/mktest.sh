@@ -13,5 +13,5 @@ fi
 
 cp -Rp template "$1";
 sed -e "s/VERSION/$1/g" < template/package.json > $1/package.json
-jq ".typescript += { \"typescript$1\": \"./test/typescript/$1\" }" < ../../downstream_projects.json > temp.json
-mv temp.json ../../downstream_projects.json
+jq ".typescript += { \"typescript$1\": \"../integration-tests/typescript-versions/$1\" }" < ../../uirouter-angularjs/downstream_projects.json > temp.json
+mv temp.json ../../uirouter-angularjs/downstream_projects.json

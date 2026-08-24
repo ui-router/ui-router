@@ -1,0 +1,13 @@
+{
+  "field": "compilerOptions.paths.react",
+  "id": "react-example-tsconfig-react",
+  "interpretationMode": "config-file",
+  "newReference": "[\"../../uirouter-react/node_modules/react\"]",
+  "oldReference": "[\"../../node_modules/react\"]",
+  "resolvedTarget": "frameworks/react/uirouter-react/node_modules/react",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": false
+}

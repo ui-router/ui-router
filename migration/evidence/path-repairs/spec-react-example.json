@@ -1,0 +1,13 @@
+{
+  "field": "layout.react.example",
+  "id": "spec-react-example",
+  "interpretationMode": "repository-root",
+  "newReference": "frameworks/react/examples/sample-app/",
+  "oldReference": "framework/react/examples/sample-app/",
+  "resolvedTarget": "frameworks/react/examples/sample-app",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

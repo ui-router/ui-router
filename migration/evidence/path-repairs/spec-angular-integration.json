@@ -1,0 +1,13 @@
+{
+  "field": "layout.angular.integration-tests",
+  "id": "spec-angular-integration",
+  "interpretationMode": "repository-root",
+  "newReference": "frameworks/angular/integration-tests/",
+  "oldReference": "framework/angular/integration/",
+  "resolvedTarget": "frameworks/angular/integration-tests",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

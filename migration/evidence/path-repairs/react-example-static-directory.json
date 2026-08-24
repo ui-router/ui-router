@@ -1,0 +1,13 @@
+{
+  "field": "devServer.static.directory",
+  "id": "react-example-static-directory",
+  "interpretationMode": "process-cwd",
+  "newReference": "directory: '../examples/typescript'",
+  "oldReference": "directory: './examples/typescript'",
+  "resolvedTarget": "frameworks/react/examples/typescript",
+  "schemaVersion": 1,
+  "status": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "targetMustExist": true
+}

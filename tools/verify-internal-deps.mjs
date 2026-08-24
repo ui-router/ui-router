@@ -356,7 +356,7 @@ function npmLsGraph(directory) {
   }
 }
 
-function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
+function assertInternalNpmLs(directory, expectedVersions, requiredNames, forbiddenNames = new Set()) {
   const graph = npmLsGraph(directory);
   const contextManifest = readJsonAt(directory, 'package.json');
   if (!graph || typeof graph !== 'object' || graph.name !== contextManifest.name || graph.version !== contextManifest.version || typeof graph.dependencies !== 'object') {
@@ -364,6 +364,9 @@ function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
   }
   for (const problem of graph.problems || []) {
     const text = String(problem);
+    if ([...forbiddenNames].some((name) => text.startsWith(`invalid: ${name}@`) || text.startsWith(`missing: ${name}@`) || text.startsWith(`extraneous: ${name}@`) || text.startsWith(`overridden: ${name}@`))) {
+      fail(`npm ls contains forbidden legacy-only package in ${directory}: ${problem}`);
+    }
     if ([...expectedVersions.keys()].some((name) => text.startsWith(`invalid: ${name}@`) || text.startsWith(`missing: ${name}@`) || text.startsWith(`extraneous: ${name}@`) || text.startsWith(`overridden: ${name}@`))) {
       fail(`npm ls internal root problem in ${directory}: ${problem}`);
     }
@@ -375,6 +378,7 @@ function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
     seen.add(node);
     for (const [name, dependency] of Object.entries(node.dependencies || {})) {
       if (expectedVersions.has(name)) {
+        if (forbiddenNames.has(name)) fail(`npm ls contains forbidden legacy-only package in ${directory}: ${name}`);
         found.add(name);
         const badFlags = ['invalid', 'missing', 'extraneous', 'overridden'].filter((flag) => dependency?.[flag]);
         if (badFlags.length) fail(`npm ls internal problem in ${directory}: ${name} ${badFlags.join(',')}`);
@@ -386,6 +390,35 @@ function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
   visit(graph);
   const missing = [...requiredNames].filter((name) => !found.has(name));
   if (missing.length) fail(`npm ls omitted required internal packages in ${directory}: ${missing.join(', ')}`);
+}
+
+function pathEntryExists(file) {
+  try { lstatSync(file); return true; } catch (error) { if (error.code === 'ENOENT') return false; throw error; }
+}
+
+function lockHasPackage(packages, packageName) {
+  const suffix = `node_modules/${packageName}`;
+  return Object.keys(packages || {}).some((key) => key === suffix || key.endsWith(`/${suffix}`));
+}
+
+function installedPackageEntries(nodeModules, packageName, output = []) {
+  if (!pathEntryExists(nodeModules)) return output;
+  for (const entry of readdirSync(nodeModules, { withFileTypes: true })) {
+    if (entry.name === '.bin' || entry.name === '.package-lock.json') continue;
+    const absolute = path.join(nodeModules, entry.name);
+    if (entry.name.startsWith('@') && entry.isDirectory() && !entry.isSymbolicLink()) {
+      for (const scoped of readdirSync(absolute, { withFileTypes: true })) {
+        const scopedPath = path.join(absolute, scoped.name);
+        const name = `${entry.name}/${scoped.name}`;
+        if (name === packageName) output.push(scopedPath);
+        if (scoped.isDirectory() && !scoped.isSymbolicLink()) installedPackageEntries(path.join(scopedPath, 'node_modules'), packageName, output);
+      }
+    } else {
+      if (entry.name === packageName) output.push(absolute);
+      if (entry.isDirectory() && !entry.isSymbolicLink()) installedPackageEntries(path.join(absolute, 'node_modules'), packageName, output);
+    }
+  }
+  return output;
 }
 
 function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) {
@@ -401,7 +434,6 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
   };
   const expectedVersions = new Map([...universe.byName].map(([name, item]) => [name, item.manifest.version]));
   const workspaceTargets = new Set([...workspaceEdges.values()].map(({ edge }) => edge.package));
-  assertInternalNpmLs(install, expectedVersions, workspaceTargets);
   for (const { edge, consumer, target } of workspaceEdges.values()) {
     const packagePath = path.join(install, 'node_modules', ...edge.package.split('/'));
     if (!existsSync(packagePath)) fail(`${edge.id}: installed root has no ${edge.package}`);
@@ -416,6 +448,7 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     const manifest = readJsonAt(physical, 'package.json');
     if (manifest.name !== edge.package || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed workspace identity/version mismatch`);
   }
+  assertInternalNpmLs(install, expectedVersions, workspaceTargets);
   const localContexts = new Map();
   for (const value of localEdges.values()) {
     if (value.consumer.record.lockOwner === 'none') continue;
@@ -431,7 +464,7 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
       byPackage.get(value.edge.package).push(value);
     }
     const required = new Set([...byPackage].filter(([, records]) => records.some(({ edge }) => edge.declaredSpec !== null)).map(([packageName]) => packageName));
-    assertInternalNpmLs(context, expectedVersions, required);
+    const forbidden = new Set([...byPackage].filter(([, records]) => records.every(({ edge }) => edge.declaredSpec === null)).map(([packageName]) => packageName));
     const installedLock = readJsonAt(context, 'node_modules/.package-lock.json');
     const committedLock = readJsonAt(repository, `${values[0].consumer.directory}/package-lock.json`);
     for (const [packageName, records] of byPackage) {
@@ -442,11 +475,14 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
       const committed = committedLock.packages?.[`node_modules/${packageName}`];
       const installed = installedLock.packages?.[`node_modules/${packageName}`];
       if (!declared) {
-        if (existsSync(packagePath) || committed || installed) fail(`${edge.id}: deferred legacy-only package unexpectedly installed or locked`);
+        const filesystemEntries = installedPackageEntries(path.join(context, 'node_modules'), packageName);
+        if (filesystemEntries.length || lockHasPackage(committedLock.packages, packageName) || lockHasPackage(installedLock.packages, packageName) || pathEntryExists(packagePath)) {
+          fail(`${edge.id}: forbidden legacy-only package present in baseline: ${filesystemEntries[0] || packagePath}`);
+        }
         continue;
       }
-      if (!existsSync(packagePath)) fail(`${edge.id}: installed local consumer has no ${packageName}`);
-      if (lstatSync(packagePath).isSymbolicLink()) fail(`${edge.id}: local dependency is a symbolic link`);
+      if (!pathEntryExists(packagePath)) fail(`${edge.id}: installed local consumer has no ${packageName}`);
+      if (lstatSync(packagePath).isSymbolicLink()) fail(`${edge.id}: local dependency is a symbolic link: ${packagePath}`);
       const physical = realpathSync(packagePath);
       const expectedPhysical = path.resolve(packagePath);
       if (physical !== expectedPhysical || !physical.startsWith(`${context}${path.sep}`)) fail(`${edge.id}: local dependency realpath ${physical} != ${expectedPhysical}`);
@@ -455,6 +491,7 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
       for (const field of ['version', 'resolved', 'integrity']) if (installed?.[field] !== committed?.[field]) fail(`${edge.id}: installed ${field} differs from committed registry baseline`);
       if (installed?.link === true) fail(`${edge.id}: installed local package is linked`);
     }
+    assertInternalNpmLs(context, expectedVersions, required, forbidden);
   }
 }
 

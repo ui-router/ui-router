@@ -27,7 +27,7 @@ const workspaceTarget = readlinkSync(workspaceLink);
 rmSync(workspaceLink);
 try {
   symlinkSync(path.join(installedRoot, 'core/integration-tests/typescript-3.9/node_modules/@uirouter/core'), workspaceLink);
-  run(/npm ls internal root problem.*@uirouter\/core|workspace physical origin .* != /, 'workspace-registry-fallback'); passed += 1;
+  run(/edge-framework-angular-examples-sample-app-dependencies-uirouter-core: workspace physical origin .* != .*\/installed\/core|edge-framework-angular-hybrid-examples-example-dependencies-uirouter-core: workspace physical origin/, 'workspace-registry-fallback'); passed += 1;
 } finally {
   rmSync(workspaceLink, { force: true });
   symlinkSync(workspaceTarget, workspaceLink);
@@ -38,10 +38,21 @@ const installedWorkspaceBackup = path.join(installedRoot, '.n04-original-core-wo
 renameSync(installedWorkspace, installedWorkspaceBackup);
 try {
   symlinkSync(path.join(repository, 'core'), installedWorkspace);
-  run(/edge-core-devdependencies-uirouter-publish-scripts.*directory is a symbolic link|edge-.*core.*realpath escapes installed root|npm ls internal/, 'workspace-target-escape'); passed += 1;
+  run(/edge-core-devdependencies-uirouter-publish-scripts consumer: directory is a symbolic link: .*\/core/, 'workspace-consumer-escape'); passed += 1;
 } finally {
   rmSync(installedWorkspace, { force: true });
   renameSync(installedWorkspaceBackup, installedWorkspace);
+}
+
+const installedTarget = path.join(installedRoot, 'plugins/rx');
+const installedTargetBackup = path.join(installedRoot, 'plugins/.n04-original-rx-workspace');
+renameSync(installedTarget, installedTargetBackup);
+try {
+  symlinkSync(path.join(repository, 'plugins/rx'), installedTarget);
+  run(/edge-framework-angular-hybrid-examples-example-dependencies-uirouter-rx: directory is a symbolic link: .*\/plugins\/rx/, 'workspace-target-escape'); passed += 1;
+} finally {
+  rmSync(installedTarget, { force: true });
+  renameSync(installedTargetBackup, installedTarget);
 }
 
 const localPackage = path.join(installedRoot, 'core/integration-tests/typescript-3.9/node_modules/@uirouter/core');
@@ -49,7 +60,7 @@ const backup = `${localPackage}.n04-original`;
 renameSync(localPackage, backup);
 try {
   symlinkSync(path.join(installedRoot, 'core'), localPackage);
-  run(/npm ls internal|local dependency is a symbolic link|local dependency realpath/, 'local-workspace-link'); passed += 1;
+  run(/edge-core-integration-typescript-3-9-dependencies-uirouter-core: local dependency is a symbolic link: .*typescript-3\.9\/node_modules\/@uirouter\/core/, 'local-workspace-link'); passed += 1;
 } finally {
   rmSync(localPackage, { force: true });
   renameSync(backup, localPackage);
@@ -57,7 +68,7 @@ try {
 
 renameSync(localPackage, backup);
 try {
-  run(/npm ls internal|npm ls omitted|required internal|installed local consumer has no/, 'local-missing-package'); passed += 1;
+  run(/edge-core-integration-typescript-3-9-dependencies-uirouter-core: installed local consumer has no @uirouter\/core/, 'local-missing-package'); passed += 1;
 } finally {
   renameSync(backup, localPackage);
 }
@@ -66,9 +77,26 @@ const legacyOnlyPackage = path.join(installedRoot, 'frameworks/react/integration
 mkdirSync(legacyOnlyPackage, { recursive: true });
 try {
   writeFileSync(path.join(legacyOnlyPackage, 'package.json'), '{"name":"@uirouter/react","version":"1.0.8"}\n');
-  run(/npm ls internal.*@uirouter\/react|edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: deferred legacy-only package unexpectedly installed or locked/, 'legacy-only-baseline-injection'); passed += 1;
+  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*node_modules\/@uirouter\/react/, 'legacy-only-baseline-injection'); passed += 1;
 } finally {
   rmSync(legacyOnlyPackage, { recursive: true, force: true });
+}
+
+const nestedLegacyOnlyPackage = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/react/node_modules/@uirouter/react');
+mkdirSync(nestedLegacyOnlyPackage, { recursive: true });
+try {
+  writeFileSync(path.join(nestedLegacyOnlyPackage, 'package.json'), '{"name":"@uirouter/react","version":"1.0.8"}\n');
+  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*node_modules\/react\/node_modules\/@uirouter\/react/, 'nested-legacy-only-injection'); passed += 1;
+} finally {
+  rmSync(path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/react'), { recursive: true, force: true });
+}
+
+mkdirSync(path.dirname(legacyOnlyPackage), { recursive: true });
+symlinkSync('/n04-deliberately-missing', legacyOnlyPackage);
+try {
+  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*node_modules\/@uirouter\/react/, 'dangling-legacy-only-symlink'); passed += 1;
+} finally {
+  rmSync(legacyOnlyPackage, { force: true });
 }
 
 const installedLockPath = path.join(installedRoot, 'core/integration-tests/typescript-3.9/node_modules/.package-lock.json');
@@ -77,9 +105,24 @@ try {
   const installedLock = JSON.parse(installedLockBytes);
   installedLock.packages['node_modules/@uirouter/core'].resolved = 'https://registry.npmjs.org/@uirouter/react/-/react-6.1.2.tgz';
   writeFileSync(installedLockPath, `${JSON.stringify(installedLock, null, 2)}\n`);
-  run(/installed resolved differs from committed registry baseline/, 'installed-lock-origin'); passed += 1;
+  run(/edge-core-integration-typescript-3-9-dependencies-uirouter-core: installed resolved differs from committed registry baseline/, 'installed-lock-origin'); passed += 1;
 } finally {
   writeFileSync(installedLockPath, installedLockBytes);
+}
+
+const reactInstalledLockPath = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/.package-lock.json');
+const reactInstalledLockBytes = readFileSync(reactInstalledLockPath);
+try {
+  const installedLock = JSON.parse(reactInstalledLockBytes);
+  installedLock.packages['node_modules/react/node_modules/@uirouter/react'] = {
+    version: '1.0.8',
+    resolved: 'https://registry.npmjs.org/@uirouter/react/-/react-1.0.8.tgz',
+    integrity: 'sha512-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==',
+  };
+  writeFileSync(reactInstalledLockPath, `${JSON.stringify(installedLock, null, 2)}\n`);
+  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline/, 'nested-legacy-only-lock'); passed += 1;
+} finally {
+  writeFileSync(reactInstalledLockPath, reactInstalledLockBytes);
 }
 
 run(null, 'restored-control'); passed += 1;

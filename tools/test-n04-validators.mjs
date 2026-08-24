@@ -115,6 +115,10 @@ try {
     const file = 'core/integration-tests/typescript-3.9/package-lock.json'; const value = json(root, file);
     value.packages['node_modules/@uirouter/core'].integrity = 'sha512-AAAA'; save(root, file, value);
   }, /edge-core-integration-typescript-3-9-dependencies-uirouter-core: local lock has no valid 64-byte sha512 integrity/);
+  expectFailure('deps-cross-lock-integrity-drift', 'verify-internal-deps.mjs', (root) => {
+    const file = 'core/integration-tests/typescript-5.4/package-lock.json'; const value = json(root, file);
+    value.packages['node_modules/@uirouter/core'].integrity = `sha512-${Buffer.alloc(64, 1).toString('base64')}`; save(root, file, value);
+  }, /edge-core-integration-typescript-5-4-dependencies-uirouter-core: integrity for @uirouter\/core@6\.1\.2 differs across committed locks/);
   expectFailure('deps-local-workspace-spec', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/core'] = 'workspace:*'; save(root, file, value);

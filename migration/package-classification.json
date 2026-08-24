@@ -2791,13 +2791,13 @@
     {
       "class": "integration",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "finalName": "@uirouter/internal-framework-angular-integration-typescript-versions-scaffold",
       "id": "framework/angular/integration/typescript-versions/scaffold",
-      "internalResolutionMode": "local-tarball",
-      "lockOwner": "local",
+      "internalResolutionMode": "none",
+      "lockOwner": "none",
       "origin": "imported",
       "ownedFiles": [
         "framework/angular/integration/typescript-versions/scaffold/package.json"
@@ -2891,13 +2891,13 @@
     {
       "class": "integration",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "finalName": "@uirouter/internal-framework-angularjs-integration-typescript-versions-template",
       "id": "framework/angularjs/integration/typescript-versions/template",
-      "internalResolutionMode": "local-tarball",
-      "lockOwner": "local",
+      "internalResolutionMode": "none",
+      "lockOwner": "none",
       "origin": "imported",
       "ownedFiles": [
         "framework/angularjs/integration/typescript-versions/template/package.json"
@@ -3478,8 +3478,8 @@
       "decision": "remove",
       "directness": "transitive",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [],
       "id": "resolution-core-resolutions-chokidar",
@@ -3496,8 +3496,8 @@
       "decision": "direct-dependency",
       "directness": "direct",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3516,8 +3516,8 @@
       "decision": "direct-dependency",
       "directness": "direct",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [
         "@uirouter/core"
@@ -3536,8 +3536,8 @@
       "decision": "isolated-integration",
       "directness": "direct",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3556,8 +3556,8 @@
       "decision": "isolated-integration",
       "directness": "direct",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3576,8 +3576,8 @@
       "decision": "isolated-integration",
       "directness": "direct",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3596,8 +3596,8 @@
       "decision": "remove",
       "directness": "transitive",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n03/lock-conversion.json",
+        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
       },
       "expectedLockEntries": [],
       "id": "resolution-tools-publish-scripts-resolutions-npm-packlist",

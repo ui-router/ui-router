@@ -1,0 +1,11 @@
+runtime node=v24.19.0 npm=11.17.0
+command=npm ci --ignore-scripts --no-audit --no-fund
+install=passed
+installed-packages=3956
+npm-ls-exit=1
+npm-ls-problems=15
+workspace-resolution-edges=86
+workspace-resolution=passed
+npm-ls-internal-packages=12
+npm-ls-internal=passed
+root-lock-mutation=none

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "packageCount": 12,
+  "packages": [
+    {
+      "package": "@uirouter/angular",
+      "version": "22.0.0",
+      "npmLsResolved": "file:../../frameworks/angular/uirouter-angular",
+      "workspacePath": "frameworks/angular/uirouter-angular",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/angular-hybrid",
+      "version": "22.0.0",
+      "npmLsResolved": "file:../../frameworks/angular-hybrid/uirouter-angular-hybrid",
+      "workspacePath": "frameworks/angular-hybrid/uirouter-angular-hybrid",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/angularjs",
+      "version": "1.1.2",
+      "npmLsResolved": "file:../../frameworks/angularjs/uirouter-angularjs",
+      "workspacePath": "frameworks/angularjs/uirouter-angularjs",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/core",
+      "version": "6.1.2",
+      "npmLsResolved": "file:../../core",
+      "workspacePath": "core",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/dsr",
+      "version": "1.2.0",
+      "npmLsResolved": "file:../../plugins/dsr",
+      "workspacePath": "plugins/dsr",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/publish-scripts",
+      "version": "2.8.0",
+      "npmLsResolved": "file:../../tools/publish-scripts",
+      "workspacePath": "tools/publish-scripts",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/react",
+      "version": "1.0.8",
+      "npmLsResolved": "file:../../frameworks/react/uirouter-react",
+      "workspacePath": "frameworks/react/uirouter-react",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/react-hybrid",
+      "version": "2.0.0",
+      "npmLsResolved": "file:../../frameworks/react-hybrid/uirouter-react-hybrid",
+      "workspacePath": "frameworks/react-hybrid/uirouter-react-hybrid",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/redux",
+      "version": "1.0.0",
+      "npmLsResolved": "file:../../plugins/redux",
+      "workspacePath": "plugins/redux",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/rx",
+      "version": "1.0.0",
+      "npmLsResolved": "file:../../plugins/rx",
+      "workspacePath": "plugins/rx",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/sticky-states",
+      "version": "1.5.1",
+      "npmLsResolved": "file:../../plugins/sticky-states",
+      "workspacePath": "plugins/sticky-states",
+      "invalid": false,
+      "overridden": false
+    },
+    {
+      "package": "@uirouter/visualizer",
+      "version": "7.2.1",
+      "npmLsResolved": "file:../../plugins/visualizer",
+      "workspacePath": "plugins/visualizer",
+      "invalid": false,
+      "overridden": false
+    }
+  ]
+}

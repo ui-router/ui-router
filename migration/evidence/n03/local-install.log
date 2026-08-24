@@ -1,0 +1,7 @@
+runtime node=v24.19.0 npm=11.17.0
+command=npm ci --ignore-scripts --no-audit --no-fund
+local-locks=14
+ci-passed=14
+npm-ls-passed=14
+existing-lock-restable=14
+template-only-locks=0

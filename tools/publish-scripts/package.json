@@ -49,9 +49,6 @@
     "yalc": "^1.0.0-pre.53",
     "yargs": "^17.3.0"
   },
-  "resolutions": {
-    "npm-packlist": "1.4.6"
-  },
   "devDependencies": {
     "husky": "^9.1.7",
     "prettier": "^3.7.4"

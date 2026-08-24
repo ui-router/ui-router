@@ -96,9 +96,6 @@
     "utf-8-validate": "5.0.3",
     "webpack": "^5.92.1"
   },
-  "resolutions": {
-    "chokidar": "3.3.1"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"

@@ -1,0 +1,866 @@
+{
+  "schemaVersion": 1,
+  "edgeCount": 86,
+  "edges": [
+    {
+      "edgeId": "edge-core-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "core/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.6.3",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-examples-sample-app-dependencies-uirouter-angular",
+      "consumerManifest": "frameworks/angular/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-examples-sample-app-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-examples-sample-app-dependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-examples-sample-app-dependencies-uirouter-visualizer",
+      "consumerManifest": "frameworks/angular/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.2.1",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angular",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angular-hybrid",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular-hybrid",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular-hybrid/uirouter-angular-hybrid",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.1",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular-hybrid/examples/example/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angular",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angular-hybrid",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular-hybrid",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular-hybrid/uirouter-angular-hybrid",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.1",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/rx",
+      "spec": "1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-examples-sample-app-dependencies-uirouter-visualizer",
+      "consumerManifest": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.2.1",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-devdependencies-uirouter-angular",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-devdependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.0",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-devdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.8.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-devdependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angular",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.0.30",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-hybrid-router-peerdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-router-devdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-router-devdependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-router-peerdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angular-router-peerdependencies-uirouter-rx",
+      "consumerManifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/angularjs/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.2",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/angularjs/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-dsr",
+      "consumerManifest": "frameworks/angularjs/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/dsr",
+      "spec": "^1.2.0",
+      "version": "1.2.0",
+      "resolvedPath": "plugins/dsr",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-sticky-states",
+      "consumerManifest": "frameworks/angularjs/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/sticky-states",
+      "spec": "^1.5.1",
+      "version": "1.5.1",
+      "resolvedPath": "plugins/sticky-states",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-examples-sample-app-dependencies-uirouter-visualizer",
+      "consumerManifest": "frameworks/angularjs/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.2.1",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-router-devdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.6.4",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+      "consumerManifest": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-examples-animating-transitions-dependencies-uirouter-react",
+      "consumerManifest": "frameworks/react/examples/animating-transitions/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.2",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-examples-sample-app-dependencies-uirouter-react",
+      "consumerManifest": "frameworks/react/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.8",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-examples-sample-app-dependencies-uirouter-visualizer",
+      "consumerManifest": "frameworks/react/examples/sample-app/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.2.1",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-examples-typescript-dependencies-uirouter-react",
+      "consumerManifest": "frameworks/react/examples/typescript/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.2",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs",
+      "consumerManifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "1.1.2",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-hybrid-router-dependencies-uirouter-react",
+      "consumerManifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "1.0.8",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-hybrid-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-router-dependencies-uirouter-core",
+      "consumerManifest": "frameworks/react/uirouter-react/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-framework-react-router-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "frameworks/react/uirouter-react/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-devdependencies-uirouter-core",
+      "consumerManifest": "plugins/dsr/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/dsr/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.6.8",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-angular",
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-core",
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-dsr",
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/dsr",
+      "spec": "^1.0.2",
+      "version": "1.2.0",
+      "resolvedPath": "plugins/dsr",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-rx",
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angular-cli-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/dsr/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-angularjs",
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.0",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-core",
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-dsr",
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/dsr",
+      "spec": "^1.0.2",
+      "version": "1.2.0",
+      "resolvedPath": "plugins/dsr",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-angularjs-webpack-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-core",
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-dsr",
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/dsr",
+      "spec": "^1.0.2",
+      "version": "1.2.0",
+      "resolvedPath": "plugins/dsr",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-react",
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.7",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-examples-react-vite-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/dsr/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-dsr-peerdependencies-uirouter-core",
+      "consumerManifest": "plugins/dsr/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": ">=5.0.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-redux-devdependencies-uirouter-core",
+      "consumerManifest": "plugins/redux/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-redux-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/redux/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-redux-devdependencies-uirouter-react",
+      "consumerManifest": "plugins/redux/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.8",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-redux-peerdependencies-uirouter-core",
+      "consumerManifest": "plugins/redux/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": ">=5.0.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-rx-devdependencies-uirouter-core",
+      "consumerManifest": "plugins/rx/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-rx-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/rx/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-rx-peerdependencies-uirouter-core",
+      "consumerManifest": "plugins/rx/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": ">=6.0.1",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-devdependencies-uirouter-core",
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-angular",
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angular",
+      "spec": "^22.0.0",
+      "version": "22.0.0",
+      "resolvedPath": "frameworks/angular/uirouter-angular",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-rx",
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/rx",
+      "spec": "^1.0.0",
+      "version": "1.0.0",
+      "resolvedPath": "plugins/rx",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-sticky-states",
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/sticky-states",
+      "spec": "^1.5.1",
+      "version": "1.5.1",
+      "resolvedPath": "plugins/sticky-states",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angular-cli-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/sticky-states/examples/angular-cli/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-angularjs",
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/angularjs",
+      "spec": "^1.1.0",
+      "version": "1.1.2",
+      "resolvedPath": "frameworks/angularjs/uirouter-angularjs",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-sticky-states",
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/sticky-states",
+      "spec": "^1.5.1",
+      "version": "1.5.1",
+      "resolvedPath": "plugins/sticky-states",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-angularjs-webpack-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-react",
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/react",
+      "spec": "^1.0.7",
+      "version": "1.0.8",
+      "resolvedPath": "frameworks/react/uirouter-react",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-sticky-states",
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/sticky-states",
+      "spec": "^1.5.1",
+      "version": "1.5.1",
+      "resolvedPath": "plugins/sticky-states",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-examples-react-vite-dependencies-uirouter-visualizer",
+      "consumerManifest": "plugins/sticky-states/examples/react-vite/package.json",
+      "manifestSection": "dependencies",
+      "package": "@uirouter/visualizer",
+      "spec": "^7.0.0",
+      "version": "7.2.1",
+      "resolvedPath": "plugins/visualizer",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-sticky-states-peerdependencies-uirouter-core",
+      "consumerManifest": "plugins/sticky-states/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": ">=5.0.1",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-visualizer-devdependencies-uirouter-core",
+      "consumerManifest": "plugins/visualizer/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/core",
+      "spec": "^6.1.2",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-visualizer-devdependencies-uirouter-publish-scripts",
+      "consumerManifest": "plugins/visualizer/package.json",
+      "manifestSection": "devDependencies",
+      "package": "@uirouter/publish-scripts",
+      "spec": "^2.7.0",
+      "version": "2.8.0",
+      "resolvedPath": "tools/publish-scripts",
+      "origin": "workspace"
+    },
+    {
+      "edgeId": "edge-plugins-visualizer-peerdependencies-uirouter-core",
+      "consumerManifest": "plugins/visualizer/package.json",
+      "manifestSection": "peerDependencies",
+      "package": "@uirouter/core",
+      "spec": ">=5.0.0",
+      "version": "6.1.2",
+      "resolvedPath": "core",
+      "origin": "workspace"
+    }
+  ]
+}

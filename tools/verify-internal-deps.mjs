@@ -269,15 +269,27 @@ function validateLocalLocks(localEdges) {
     const lock = readJsonAt(repository, lockPath);
     if (lock.lockfileVersion !== 3) fail(`${lockPath}: lockfileVersion must be 3`);
     if (lock.packages?.['']?.name !== consumer.manifest.name || lock.packages?.['']?.version !== consumer.manifest.version) fail(`${lockPath}: root identity differs from manifest`);
-    for (const { edge } of edges) {
-      const item = lock.packages?.[`node_modules/${edge.package}`];
+    const byPackage = new Map();
+    for (const value of edges) {
+      if (!byPackage.has(value.edge.package)) byPackage.set(value.edge.package, []);
+      byPackage.get(value.edge.package).push(value);
+    }
+    for (const [packageName, records] of byPackage) {
+      const declared = records.find(({ edge }) => edge.declaredSpec !== null);
+      if (!declared) {
+        const keys = matchingLockKeys(lock.packages, packageName);
+        if (keys.length) fail(`${records[0].edge.id}: forbidden legacy-only package in committed lock ${lockPath}: ${keys.join(', ')}`);
+        continue;
+      }
+      const { edge } = declared;
+      const item = lock.packages?.[`node_modules/${packageName}`];
       if (!item) fail(`${edge.id}: local lock has no direct internal package entry`);
       if (item.link === true) fail(`${edge.id}: committed registry baseline is a workspace link`);
       if (item.version !== edge.expectedVersion) fail(`${edge.id}: local lock version ${item.version} != ${edge.expectedVersion}`);
-      const expectedResolved = registryTarball(edge.package, edge.expectedVersion);
+      const expectedResolved = registryTarball(packageName, edge.expectedVersion);
       if (item.resolved !== expectedResolved) fail(`${edge.id}: local lock origin ${item.resolved} != ${expectedResolved}`);
       if (!validSha512Integrity(item.integrity)) fail(`${edge.id}: local lock has no valid 64-byte sha512 integrity`);
-      const artifact = `${edge.package}@${edge.expectedVersion}`;
+      const artifact = `${packageName}@${edge.expectedVersion}`;
       const priorIntegrity = integrityByArtifact.get(artifact);
       if (priorIntegrity && priorIntegrity !== item.integrity) fail(`${edge.id}: integrity for ${artifact} differs across committed locks`);
       integrityByArtifact.set(artifact, item.integrity);
@@ -396,9 +408,9 @@ function pathEntryExists(file) {
   try { lstatSync(file); return true; } catch (error) { if (error.code === 'ENOENT') return false; throw error; }
 }
 
-function lockHasPackage(packages, packageName) {
+function matchingLockKeys(packages, packageName) {
   const suffix = `node_modules/${packageName}`;
-  return Object.keys(packages || {}).some((key) => key === suffix || key.endsWith(`/${suffix}`));
+  return Object.keys(packages || {}).filter((key) => key === suffix || key.endsWith(`/${suffix}`));
 }
 
 function installedPackageEntries(nodeModules, packageName, output = []) {
@@ -406,16 +418,18 @@ function installedPackageEntries(nodeModules, packageName, output = []) {
   for (const entry of readdirSync(nodeModules, { withFileTypes: true })) {
     if (entry.name === '.bin' || entry.name === '.package-lock.json') continue;
     const absolute = path.join(nodeModules, entry.name);
-    if (entry.name.startsWith('@') && entry.isDirectory() && !entry.isSymbolicLink()) {
+    if (entry.isSymbolicLink()) fail(`symlinked package directory while scanning for forbidden ${packageName}: ${absolute}`);
+    if (entry.name.startsWith('@') && entry.isDirectory()) {
       for (const scoped of readdirSync(absolute, { withFileTypes: true })) {
         const scopedPath = path.join(absolute, scoped.name);
         const name = `${entry.name}/${scoped.name}`;
         if (name === packageName) output.push(scopedPath);
-        if (scoped.isDirectory() && !scoped.isSymbolicLink()) installedPackageEntries(path.join(scopedPath, 'node_modules'), packageName, output);
+        if (scoped.isSymbolicLink()) fail(`symlinked package directory while scanning for forbidden ${packageName}: ${scopedPath}`);
+        if (scoped.isDirectory()) installedPackageEntries(path.join(scopedPath, 'node_modules'), packageName, output);
       }
     } else {
       if (entry.name === packageName) output.push(absolute);
-      if (entry.isDirectory() && !entry.isSymbolicLink()) installedPackageEntries(path.join(absolute, 'node_modules'), packageName, output);
+      if (entry.isDirectory()) installedPackageEntries(path.join(absolute, 'node_modules'), packageName, output);
     }
   }
   return output;
@@ -476,8 +490,10 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
       const installed = installedLock.packages?.[`node_modules/${packageName}`];
       if (!declared) {
         const filesystemEntries = installedPackageEntries(path.join(context, 'node_modules'), packageName);
-        if (filesystemEntries.length || lockHasPackage(committedLock.packages, packageName) || lockHasPackage(installedLock.packages, packageName) || pathEntryExists(packagePath)) {
-          fail(`${edge.id}: forbidden legacy-only package present in baseline: ${filesystemEntries[0] || packagePath}`);
+        const committedKeys = matchingLockKeys(committedLock.packages, packageName);
+        const installedKeys = matchingLockKeys(installedLock.packages, packageName);
+        if (filesystemEntries.length || committedKeys.length || installedKeys.length || pathEntryExists(packagePath)) {
+          fail(`${edge.id}: forbidden legacy-only package present in baseline: filesystem=[${filesystemEntries}] committedLock=[${committedKeys}] installedLock=[${installedKeys}] directPath=${pathEntryExists(packagePath)}`);
         }
         continue;
       }
@@ -518,9 +534,8 @@ function main() {
   if (declared.size !== 109 || legacy.size !== 28 || all.size !== 137 || missing.length || extra.length) fail(`edge coverage mismatch current=${declared.size} legacy=${legacy.size} total=${all.size} missing=[${missing}] extra=[${extra}]`);
   const workspaceEdges = new Map([...all].filter(([, value]) => value.edge.resolutionMode === 'workspace'));
   const localEdges = new Map([...all].filter(([, value]) => value.edge.resolutionMode === 'local-tarball'));
-  const declaredLocalEdges = new Map([...declared].filter(([, value]) => value.edge.resolutionMode === 'local-tarball'));
   validateRootLock(workspaceEdges);
-  validateLocalLocks(declaredLocalEdges);
+  validateLocalLocks(localEdges);
   validateResolutionPolicy(universe);
   const installedIndex = process.argv.indexOf('--installed-root');
   if (installedIndex !== -1) {

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { mkdirSync, readFileSync, readlinkSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readlinkSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -82,19 +82,36 @@ try {
   rmSync(legacyOnlyPackage, { recursive: true, force: true });
 }
 
-const nestedLegacyOnlyPackage = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/react/node_modules/@uirouter/react');
+const reactNodeModules = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/react/node_modules');
+const reactNodeModulesBackup = `${reactNodeModules}.n04-original`;
+const hadReactNodeModules = existsSync(reactNodeModules);
+if (hadReactNodeModules) renameSync(reactNodeModules, reactNodeModulesBackup);
+const nestedLegacyOnlyPackage = path.join(reactNodeModules, '@uirouter/react');
 mkdirSync(nestedLegacyOnlyPackage, { recursive: true });
 try {
   writeFileSync(path.join(nestedLegacyOnlyPackage, 'package.json'), '{"name":"@uirouter/react","version":"1.0.8"}\n');
   run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*node_modules\/react\/node_modules\/@uirouter\/react/, 'nested-legacy-only-injection'); passed += 1;
 } finally {
-  rmSync(path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/react'), { recursive: true, force: true });
+  rmSync(reactNodeModules, { recursive: true, force: true });
+  if (hadReactNodeModules) renameSync(reactNodeModulesBackup, reactNodeModules);
+}
+
+const linkedParentTarget = path.join(installedRoot, '.n04-linked-parent');
+const linkedParent = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/n04-linked-parent');
+mkdirSync(path.join(linkedParentTarget, 'node_modules/@uirouter/react'), { recursive: true });
+writeFileSync(path.join(linkedParentTarget, 'node_modules/@uirouter/react/package.json'), '{"name":"@uirouter/react","version":"1.0.8"}\n');
+symlinkSync(linkedParentTarget, linkedParent);
+try {
+  run(/symlinked package directory while scanning for forbidden @uirouter\/react: .*\/node_modules\/n04-linked-parent/, 'symlink-parent-legacy-only-injection'); passed += 1;
+} finally {
+  rmSync(linkedParent, { force: true });
+  rmSync(linkedParentTarget, { recursive: true, force: true });
 }
 
 mkdirSync(path.dirname(legacyOnlyPackage), { recursive: true });
 symlinkSync('/n04-deliberately-missing', legacyOnlyPackage);
 try {
-  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*node_modules\/@uirouter\/react/, 'dangling-legacy-only-symlink'); passed += 1;
+  run(/symlinked package directory while scanning for forbidden @uirouter\/react: .*react17\/node_modules\/@uirouter\/react/, 'dangling-legacy-only-symlink'); passed += 1;
 } finally {
   rmSync(legacyOnlyPackage, { force: true });
 }
@@ -120,7 +137,7 @@ try {
     integrity: 'sha512-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==',
   };
   writeFileSync(reactInstalledLockPath, `${JSON.stringify(installedLock, null, 2)}\n`);
-  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline/, 'nested-legacy-only-lock'); passed += 1;
+  run(/edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package present in baseline: .*installedLock=\[node_modules\/react\/node_modules\/@uirouter\/react\]/, 'nested-legacy-only-lock'); passed += 1;
 } finally {
   writeFileSync(reactInstalledLockPath, reactInstalledLockBytes);
 }

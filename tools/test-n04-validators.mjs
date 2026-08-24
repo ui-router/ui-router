@@ -119,6 +119,14 @@ try {
     const file = 'core/integration-tests/typescript-5.4/package-lock.json'; const value = json(root, file);
     value.packages['node_modules/@uirouter/core'].integrity = `sha512-${Buffer.alloc(64, 1).toString('base64')}`; save(root, file, value);
   }, /edge-core-integration-typescript-5-4-dependencies-uirouter-core: integrity for @uirouter\/core@6\.1\.2 differs across committed locks/);
+  expectFailure('deps-legacy-only-direct-committed-lock', 'verify-internal-deps.mjs', (root) => {
+    const file = 'frameworks/react/integration-tests/react17/package-lock.json'; const value = json(root, file);
+    value.packages['node_modules/@uirouter/react'] = { version: '1.0.8' }; save(root, file, value);
+  }, /edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package in committed lock .*react17\/package-lock\.json: node_modules\/@uirouter\/react/);
+  expectFailure('deps-legacy-only-nested-committed-lock', 'verify-internal-deps.mjs', (root) => {
+    const file = 'frameworks/react/integration-tests/react17/package-lock.json'; const value = json(root, file);
+    value.packages['node_modules/react/node_modules/@uirouter/react'] = { version: '1.0.8' }; save(root, file, value);
+  }, /edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: forbidden legacy-only package in committed lock .*react17\/package-lock\.json: node_modules\/react\/node_modules\/@uirouter\/react/);
   expectFailure('deps-local-workspace-spec', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/core'] = 'workspace:*'; save(root, file, value);

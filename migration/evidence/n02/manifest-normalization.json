@@ -786,7 +786,27 @@
           "before": "../examples/typescript",
           "after": "__dirname"
         }
-      ]
+      ],
+      "beforeSha256": "2e642360348f900690baa4881d4714648f5910229cf0821a22e9fbf010da6575",
+      "afterSha256": "527b69cf50ce8863ac3b649f168277e51ea6f4609894f9bfaadee9a7a83f53e6"
+    },
+    {
+      "path": "frameworks/react/examples/typescript/tsconfig.json",
+      "reason": "Remove compiler options and checkout-relative source aliases that are obsolete under the root npm workspace.",
+      "changes": [
+        {
+          "field": "suppressImplicitAnyIndexErrors",
+          "before": "\"suppressImplicitAnyIndexErrors\": true",
+          "after": "removed"
+        },
+        {
+          "field": "baseUrl and paths aliases",
+          "before": "checkout-relative React and UI-Router paths",
+          "after": "normal Node module resolution"
+        }
+      ],
+      "beforeSha256": "6e4f7b882fd0804dddb1827f64a39462cbf2f68162c00449a943cbb7ac55dab2",
+      "afterSha256": "ab7dc759c8eb9b57db621514f6d35df6d11ab2fa7a5e96dbd3187feb86536d92"
     },
     {
       "path": "frameworks/react/examples/typescript/index.tsx",
@@ -802,7 +822,340 @@
           "before": "ReactDOM.render(app, el);",
           "after": "createRoot(el!).render(app);"
         }
+      ],
+      "beforeSha256": "0672c39296bfd36183d893adde36cbe3dd5b602cb370728986efed9b1a808eb0",
+      "afterSha256": "94e7f62d22964444489aa66a54200eb4ad057b6aea418131c295828f82e2921b"
+    }
+  ],
+  "manifestHashes": [
+    {
+      "id": "core",
+      "path": "core/package.json",
+      "beforeSha256": "f1b6737727b3ff414285a015444243bb23b80f1e4fbb456649b2c0d00cd1684f",
+      "afterSha256": "baa7df3c77de82bb9ce596f7033cb6d39858d41b8a5104675d859abf18120870"
+    },
+    {
+      "id": "core/integration/typescript-3.9",
+      "path": "core/integration-tests/typescript-3.9/package.json",
+      "beforeSha256": "7ecaa8f804c0f126305b62eeb026e61483c420a0643c71d8481ff5fb82107d1f",
+      "afterSha256": "e2a593b022140e9037d5ca836821ce211c2461b23c792b06d7ca810e57dc676d"
+    },
+    {
+      "id": "core/integration/typescript-5.4",
+      "path": "core/integration-tests/typescript-5.4/package.json",
+      "beforeSha256": "52542d6e28b14269994d261d4b4a7d33f69d4fe7f33b3dfdee697e47a3ef13b4",
+      "afterSha256": "b900026811c92f7f0d464e79ac06124190aa3576278b54cf91314d595792d654"
+    },
+    {
+      "id": "framework/angular-hybrid/examples/example",
+      "path": "frameworks/angular-hybrid/examples/example/package.json",
+      "beforeSha256": "608fd09a380d2c19d165325a0474c851cdde0528e3537c0a7c25555b7a229d3a",
+      "afterSha256": "95c7b17b4e7b747b5d77092362632c7325b7681bded29e2734c70cb95de9703d"
+    },
+    {
+      "id": "framework/angular-hybrid/examples/sample-app",
+      "path": "frameworks/angular-hybrid/examples/sample-app/package.json",
+      "beforeSha256": "c7bb90c6921617f272d9bd077165b605b42312e3f5745d949f8a630c7d134b84",
+      "afterSha256": "017134b0bbb8a00456d333901ee298d814045610c4d8f529f63e193c80f45a30"
+    },
+    {
+      "id": "framework/angular-hybrid/router",
+      "path": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "beforeSha256": "18da219ada4823e84a9ee5b29dc5f3ed21e12b03056f5669f0e32f42a35dc7ae",
+      "afterSha256": "caa4477b8a52178bd58798ccf643b9634d5402fc2d8bdc1ced106a72f211e63c"
+    },
+    {
+      "id": "framework/angular/examples/sample-app",
+      "path": "frameworks/angular/examples/sample-app/package.json",
+      "beforeSha256": "fbeefc13843ead1d1d969c972b25fce4c313523eea4efa82ff8dcc45ff5ea951",
+      "afterSha256": "928c64c5c6a0e0148fc6626b9492ec54856168937d4041b1b533a88057805a8e"
+    },
+    {
+      "id": "framework/angular/integration/angular-versions/v22",
+      "path": "frameworks/angular/integration-tests/angular-versions/v22/package.json",
+      "beforeSha256": "99418ffe70762eb8012eab37b49c41b5fc2680b0280ed6fac700fc7097f3f253",
+      "afterSha256": "a410416608a7dc3278a44caf129adfa4ac8b59be69c37cfc8a4ca7f63b3b42b8"
+    },
+    {
+      "id": "framework/angular/integration/angular-versions/v22-standalone",
+      "path": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package.json",
+      "beforeSha256": "91c1a5dba10ac8559420ca835c8d755a76a1b3bef9393a67bf6156e4b52f2844",
+      "afterSha256": "3aedb6c22bc79470590384f89692fdb16eb68f7899e0d4d7f0b3951ffe6d0ffa"
+    },
+    {
+      "id": "framework/angular/integration/angular-versions/v22-zoneless",
+      "path": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package.json",
+      "beforeSha256": "3967f059353841242397cd61f034ebdfb3a6371bdb532aa07b865569691d6eee",
+      "afterSha256": "856ba58856281b41b85ca52a101927e2554690e548f2d2a01e386ea825598f6f"
+    },
+    {
+      "id": "framework/angular/integration/typescript-versions/scaffold",
+      "path": "frameworks/angular/integration-tests/typescript-versions/scaffold/package.json",
+      "beforeSha256": "37d056690e70274cf6503f48aca60a2a4c30cd241ce2dfa4417aa210eef77272",
+      "afterSha256": "07ed5b2e7cf78fc2e3ecca785175667457147c6bbf930e8345af11a6cad98dcf"
+    },
+    {
+      "id": "framework/angular/integration/typescript-versions/typescript6",
+      "path": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json",
+      "beforeSha256": "87b0a654cff0cc19b9614f2e0f8e2ac4ea77b307dbadd61fba2522119b498b07",
+      "afterSha256": "9f003ecc2f8bb6d284c55d811f00f240b684913ab5714cb6b6a9fc5acc645ca0"
+    },
+    {
+      "id": "framework/angular/router",
+      "path": "frameworks/angular/uirouter-angular/package.json",
+      "beforeSha256": "df861314377fdb105357dfcedf951e7c7d8e6ad51e4bdb9e970bf10504ad5379",
+      "afterSha256": "5aa95d29b4eef9b2de7d850c1e0abf8bbc8445314726408ad0d3655c4c6433ee"
+    },
+    {
+      "id": "framework/angularjs/examples/sample-app",
+      "path": "frameworks/angularjs/examples/sample-app/package.json",
+      "beforeSha256": "8bf100dcd37ea8afd8128a7ec33410c2e9b364a85d31ac82f7e7c9716d9dc534",
+      "afterSha256": "7d2dd3605b0d95bab5bf0ccf1eb579b49b0ac16220565508031d25f4fbd7c1a5"
+    },
+    {
+      "id": "framework/angularjs/integration/typescript-versions/3.9",
+      "path": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json",
+      "beforeSha256": "c71607216b12d958fa40dd38e57658b3d345174a525746ef457cb717e65ee3e4",
+      "afterSha256": "dfde317f2d44b603ec3f7e6efe2837366dea8402fc0ad1fd3c079161f0b214e7"
+    },
+    {
+      "id": "framework/angularjs/integration/typescript-versions/template",
+      "path": "frameworks/angularjs/integration-tests/typescript-versions/template/package.json",
+      "beforeSha256": "a18d0ad9ef06d735139794a11b7529b21d43a31ea9a15c1f84773c9acc82ce78",
+      "afterSha256": "8a4d242315ea21973e6e259bc5d4f9ce84027f4cc202df5a65ec05707f21ae97"
+    },
+    {
+      "id": "framework/angularjs/router",
+      "path": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "beforeSha256": "7986c6180a3c9ead7121c3d54c91d856f5409c7077ee2e67731aa9c8e9092b14",
+      "afterSha256": "0d6ac7f49d565024dda55a148713363a70afcd364c8f48fe2afea540954c6ca3"
+    },
+    {
+      "id": "framework/react-hybrid/integration/react16",
+      "path": "frameworks/react-hybrid/integration-tests/react16/package.json",
+      "beforeSha256": "d69fcb35842a5d3df6dc09ebcfc5359f3b155ebd6ef67e08fb2779bd73661c5b",
+      "afterSha256": "2dda2745197c4207297e8c582c9f10a64202e5a142b47d0e4b76152f4e5a1e37"
+    },
+    {
+      "id": "framework/react-hybrid/integration/react17",
+      "path": "frameworks/react-hybrid/integration-tests/react17/package.json",
+      "beforeSha256": "f86093c00302a125cbc072ce131fc9a64922fe171b92856f129590d05054dca2",
+      "afterSha256": "c4e07aa3d01ea2f690b9e6360dc8751626b8eb1d0f04af624af963943c1e358d"
+    },
+    {
+      "id": "framework/react-hybrid/integration/react18",
+      "path": "frameworks/react-hybrid/integration-tests/react18/package.json",
+      "beforeSha256": "fffed41cc5e838b0cb6c4d1f8d32833dd57c6a03d809abed2750916adf550adc",
+      "afterSha256": "6ad54e1d0d92acc336b55b6b4f73f537d8cb621e691a9fb5bea8d9b72fd35148"
+    },
+    {
+      "id": "framework/react-hybrid/integration/react19",
+      "path": "frameworks/react-hybrid/integration-tests/react19/package.json",
+      "beforeSha256": "7d72b6d583d643fa1295c69a786e8200645e9ecaf7b3d026d68eb881434bb4ab",
+      "afterSha256": "8e6e3d43b3433ab3a130af63ea6076a5b25c7251325cfe8e9a95d741a862d5d4"
+    },
+    {
+      "id": "framework/react-hybrid/router",
+      "path": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "beforeSha256": "4ef17265538b3571b1a394d88fdb0190ac75a0044a3a799c87c208c516fac868",
+      "afterSha256": "477a709e5494d9d87328a8f90c3f0251a16ba63bedcfe91a641e739099bf6568"
+    },
+    {
+      "id": "framework/react/examples/animating-transitions",
+      "path": "frameworks/react/examples/animating-transitions/package.json",
+      "beforeSha256": "fcec01f63da0e00c1b47c1ccdffea9e479689c9b7d30b05d622f8391f0691d49",
+      "afterSha256": "00ccf9c3ea1eaf656badfb28b924c54616e1b03079e16658c88da96a7018986a"
+    },
+    {
+      "id": "framework/react/examples/sample-app",
+      "path": "frameworks/react/examples/sample-app/package.json",
+      "beforeSha256": "51c7eeef986e3982c4441c2fe05fc34d2221054e8b833698a798608a63c77391",
+      "afterSha256": "34dd9a5c6e466bef45bb1ba5783cbbc222cceaaf29fb949f4b850d1c755ca3ff"
+    },
+    {
+      "id": "framework/react/examples/typescript",
+      "path": "frameworks/react/examples/typescript/package.json",
+      "beforeSha256": "1babcbad4b34de84964e46a53b82b1c84b9b2a2e9602b8342eacdd6fe72a9a9d",
+      "afterSha256": "01795d23897a46eccaae7bc56da7b6602a0efa43a714c504a26dde72248cf85b"
+    },
+    {
+      "id": "framework/react/integration/react17",
+      "path": "frameworks/react/integration-tests/react17/package.json",
+      "beforeSha256": "6da43db89ff313bf996037c04c84f6a38427f00ec16107a3c45f456d0d102aab",
+      "afterSha256": "a74b60dbff964ab1f11a9d072fafae1449c190d1fe0ec992694dd7e6031c3755"
+    },
+    {
+      "id": "framework/react/integration/react18",
+      "path": "frameworks/react/integration-tests/react18/package.json",
+      "beforeSha256": "9bce104d827c6b699563f1d8697e95ff29cdaffb9ebb57e854059734604bc9f2",
+      "afterSha256": "9ce7c22d4a25ab1a0d09b770d5c1e4357440cb59a0d05a82ae3de4a5895974ac"
+    },
+    {
+      "id": "framework/react/integration/react19",
+      "path": "frameworks/react/integration-tests/react19/package.json",
+      "beforeSha256": "b428ae77224f97ee9c8c3e7663435994a23ee56513bc6cd14fc1ec70d0620c8f",
+      "afterSha256": "da02fedf70aaea8768697573a1a11db97cc708ded1770d4a8a2609f81eae798b"
+    },
+    {
+      "id": "framework/react/router",
+      "path": "frameworks/react/uirouter-react/package.json",
+      "beforeSha256": "cfd01e895acd019bc512980bfb07da9f2731bb5090b0ba2f82366e6cbd325de6",
+      "afterSha256": "aa613bb5eaf6d99788722b49db9f4934943a952786c9e4fe3ca19def02f6e71d"
+    },
+    {
+      "id": "plugins/dsr",
+      "path": "plugins/dsr/package.json",
+      "beforeSha256": "636a0bb8fb939534bc395b0fdbdad99402fd8917391f2f66e9e1abc8c0c1c9a3",
+      "afterSha256": "c4a7e6d14f5efac674067f160683d1a8a681262d31b2f1869d4cedb4f9f601bf"
+    },
+    {
+      "id": "plugins/dsr/examples/angular-cli",
+      "path": "plugins/dsr/examples/angular-cli/package.json",
+      "beforeSha256": "35f7f751ee697ed568aab49525044e492698e91a1bb0064c3560b957404d8af0",
+      "afterSha256": "9634da3e36db6a5b79624453244e5a927c27840e755dbb3607e95f885c420c8e"
+    },
+    {
+      "id": "plugins/dsr/examples/angularjs-webpack",
+      "path": "plugins/dsr/examples/angularjs-webpack/package.json",
+      "beforeSha256": "de1e1a36cf46d4b82a3a0aec9ccc8b6c9c5f5178dd6e055f050f86a7d892c140",
+      "afterSha256": "f5caa20bec6630f4397b7ea79424d118b7f4a64ae3c86739d83043f1ef131770"
+    },
+    {
+      "id": "plugins/dsr/examples/react-vite",
+      "path": "plugins/dsr/examples/react-vite/package.json",
+      "beforeSha256": "35d3c8193beced6763071532aa1830214bb7dca611d980b2fdc7ec3b598f1027",
+      "afterSha256": "372684d8f85a4862ead1a497b3146ffcae4f4f88477f748f70bb57b932001dae"
+    },
+    {
+      "id": "plugins/redux",
+      "path": "plugins/redux/package.json",
+      "beforeSha256": "4d0f67b147d683d21074c84e4181940ed29b9c3ce8de752bbece0e44894868d9",
+      "afterSha256": "97c6d9f5ca229bd6768f1ceccf4943f8f9cfa4dbc9e8c57ac794cf455d6f66c8"
+    },
+    {
+      "id": "plugins/redux/examples/react",
+      "path": "plugins/redux/examples/react/package.json",
+      "beforeSha256": "58be638dd5f8bb1951fe841dec8212db545be53bef5a8c37cc25cd46f2b312dd",
+      "afterSha256": "064d355bd1d871e9ae280530dc3f4ca899e6072f87391517d575e66d0a05b312"
+    },
+    {
+      "id": "plugins/rx",
+      "path": "plugins/rx/package.json",
+      "beforeSha256": "335dc0199abee21402e38fafbe6538938177b3a4670f04d7a8823c7d870ab1e1",
+      "afterSha256": "47c1f59d3d2c8040b73fb634f85a5f70a0a8fd6a16128d73622dd03641f8e2c4"
+    },
+    {
+      "id": "plugins/sticky-states",
+      "path": "plugins/sticky-states/package.json",
+      "beforeSha256": "24f793c64293cf90725f8b0e48118c75ecd2b02d490e7ae747fe34a38d702ee4",
+      "afterSha256": "08b742e33a5ef36f0037ca4be63ce2795ed98f4590f0b3fbc27c1c90bfd9fa96"
+    },
+    {
+      "id": "plugins/sticky-states/examples/angular-cli",
+      "path": "plugins/sticky-states/examples/angular-cli/package.json",
+      "beforeSha256": "d8b1f0ea57fd8404125abe1e6adcdd0c5b04fa4441ec2f9df1c569188e8cc08c",
+      "afterSha256": "4f1876821078f84745bf5e45033d624d80302bc9ca27517bca0e0661df6e060b"
+    },
+    {
+      "id": "plugins/sticky-states/examples/angularjs-webpack",
+      "path": "plugins/sticky-states/examples/angularjs-webpack/package.json",
+      "beforeSha256": "2bfb6980d3f6c8af0a731120c8f1402b3068b2d9e435fa0f0c60391ce515a062",
+      "afterSha256": "d546c3112ff0ac43970afd02ba9ec0fdd748d15e78a54cb91735cbe0ae761d1e"
+    },
+    {
+      "id": "plugins/sticky-states/examples/react-vite",
+      "path": "plugins/sticky-states/examples/react-vite/package.json",
+      "beforeSha256": "edea0bbf8d18abd65c2258e382f3d88a50d15b2420aab2fc4b639716b43f6993",
+      "afterSha256": "c1d39b9a6202c4f7373bca9a0fbf1a5464e545c1cda3a6cf828c79388669ee51"
+    },
+    {
+      "id": "plugins/visualizer",
+      "path": "plugins/visualizer/package.json",
+      "beforeSha256": "99f7dd1593f75f3f1e85b0e8b1975372b411021897d44f45e35184d1731233d4",
+      "afterSha256": "53ce8f95c6028104421e84746f4876d28cb576f39744b1063982c4ad22e76df5"
+    },
+    {
+      "id": "tools/publish-scripts",
+      "path": "tools/publish-scripts/package.json",
+      "beforeSha256": "59fe2c3e27bf312cc17960e84d09dbdef302ae47e223b8cb63b882f078ea0557",
+      "afterSha256": "ff8481628414f924bbd348cf40011ea4e008a875ef015cbd50df0a9443e7fa6c"
+    },
+    {
+      "id": "tools/publish-scripts/actions/upgrade",
+      "path": "tools/publish-scripts/actions/upgrade/package.json",
+      "beforeSha256": "37a1b555b87cb32d994077e79f81f2b8cb32ad75471807418c2bfcb7966a8940",
+      "afterSha256": "9add2f0b49cdccc8397f05cab208a6bea6222ce64e2f7173b6f32d0116baca54"
+    },
+    {
+      "id": "tools/publish-scripts/docgen",
+      "path": "tools/publish-scripts/docgen/package.json",
+      "beforeSha256": "3c5617aebcd06f000f2338651aa74cf3e8393d442593b2d76c45c9d823d3a80e",
+      "afterSha256": "4396187866df2ab813e67888741110295794c841dd5831502358b8f02f1d65a6"
+    }
+  ],
+  "deferredPolicy": {
+    "resolutionTranslation": {
+      "task": "N03",
+      "recordIds": [
+        "resolution-core-resolutions-chokidar",
+        "resolution-framework-angular-examples-sample-app-overrides-uirouter-angular",
+        "resolution-framework-angular-hybrid-router-resolutions-uirouter-core",
+        "resolution-framework-angular-integration-angular-versions-v22-overrides-uirouter-angular",
+        "resolution-framework-angular-integration-angular-versions-v22-standalone-overrides-uirouter-angular",
+        "resolution-framework-angular-integration-angular-versions-v22-zoneless-overrides-uirouter-angular",
+        "resolution-tools-publish-scripts-resolutions-npm-packlist"
+      ]
+    },
+    "packageManagerCleanup": {
+      "task": "N05",
+      "paths": [
+        "core/package.json",
+        "frameworks/angular-hybrid/examples/sample-app/package.json",
+        "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+        "frameworks/angularjs/uirouter-angularjs/package.json"
+      ]
+    },
+    "localTarballEdges": {
+      "task": "I01",
+      "edgeIds": [
+        "edge-core-integration-typescript-3-9-dependencies-uirouter-core",
+        "edge-core-integration-typescript-3-9-legacy-injected-uirouter-core-other-typescript3-9",
+        "edge-core-integration-typescript-5-4-dependencies-uirouter-core",
+        "edge-core-integration-typescript-5-4-legacy-injected-uirouter-core-other-typescript5-4",
+        "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-angular",
+        "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-core",
+        "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-rx",
+        "edge-framework-angular-integration-angular-versions-v22-legacy-injected-uirouter-angular-default-angular22",
+        "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-angular",
+        "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-core",
+        "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-rx",
+        "edge-framework-angular-integration-angular-versions-v22-standalone-legacy-injected-uirouter-angular-default-angular22standalone",
+        "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-angular",
+        "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-core",
+        "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-rx",
+        "edge-framework-angular-integration-angular-versions-v22-zoneless-legacy-injected-uirouter-angular-default-angular22zoneless",
+        "edge-framework-angular-integration-typescript-versions-scaffold-dependencies-uirouter-angular",
+        "edge-framework-angular-integration-typescript-versions-typescript6-dependencies-uirouter-angular",
+        "edge-framework-angular-integration-typescript-versions-typescript6-legacy-injected-uirouter-angular-default-typescript6",
+        "edge-framework-angularjs-integration-typescript-versions-3-9-dependencies-uirouter-angularjs",
+        "edge-framework-angularjs-integration-typescript-versions-3-9-legacy-injected-uirouter-angularjs-typescript-typescript3-9",
+        "edge-framework-angularjs-integration-typescript-versions-template-dependencies-uirouter-angularjs",
+        "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+        "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+        "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16",
+        "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-react-hybrid",
+        "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-visualizer",
+        "edge-framework-react-hybrid-integration-react17-legacy-injected-uirouter-react-hybrid-integration-react17",
+        "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-react-hybrid",
+        "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-visualizer",
+        "edge-framework-react-hybrid-integration-react18-legacy-injected-uirouter-react-hybrid-integration-react18",
+        "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-react-hybrid",
+        "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-visualizer",
+        "edge-framework-react-hybrid-integration-react19-legacy-injected-uirouter-react-hybrid-integration-react19",
+        "edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17",
+        "edge-framework-react-integration-react18-legacy-injected-uirouter-react-react-versions-react18",
+        "edge-framework-react-integration-react19-legacy-injected-uirouter-react-react-versions-react19"
       ]
     }
-  ]
+  }
 }

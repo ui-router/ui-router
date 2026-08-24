@@ -2792,7 +2792,7 @@
       "class": "integration",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "finalName": "@uirouter/internal-framework-angular-integration-typescript-versions-scaffold",
       "id": "framework/angular/integration/typescript-versions/scaffold",
@@ -2892,7 +2892,7 @@
       "class": "integration",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "finalName": "@uirouter/internal-framework-angularjs-integration-typescript-versions-template",
       "id": "framework/angularjs/integration/typescript-versions/template",
@@ -3479,7 +3479,7 @@
       "directness": "transitive",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [],
       "id": "resolution-core-resolutions-chokidar",
@@ -3497,7 +3497,7 @@
       "directness": "direct",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3517,7 +3517,7 @@
       "directness": "direct",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [
         "@uirouter/core"
@@ -3537,7 +3537,7 @@
       "directness": "direct",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3557,7 +3557,7 @@
       "directness": "direct",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3577,7 +3577,7 @@
       "directness": "direct",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [
         "@uirouter/angular"
@@ -3597,7 +3597,7 @@
       "directness": "transitive",
       "evidence": {
         "path": "migration/evidence/n03/lock-conversion.json",
-        "sha256": "d0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741"
+        "sha256": "869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813"
       },
       "expectedLockEntries": [],
       "id": "resolution-tools-publish-scripts-resolutions-npm-packlist",

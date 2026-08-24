@@ -506,6 +506,12 @@
       "path": "migration/evidence/n03/root-npm-ls-internal.json",
       "sha256": "9244347e262ed73d925cd80efce1119c2a42c9f3cd7500ea95e8f92fbe52e5aa",
       "packageCount": 12
+    },
+    "installProof": {
+      "path": "migration/evidence/n03/install-proof.json",
+      "sha256": "6a24229888305959073f18dfefc7846348efcde714e2edea770519d223d90412",
+      "rootRuns": 1,
+      "localRuns": 14
     }
   },
   "deferredPackedProof": {
@@ -515,5 +521,6 @@
     "templateBlueprintEdges": 2,
     "legacyInjectedEdges": 14,
     "reason": "Committed fixture locks preserve the registry baseline. I02 rewrites or injects only classified edges to content-addressed local tarballs in an external sandbox and proves their final origin."
-  }
+  },
+  "implementationCommit": "0b17c5cf052a5d3e60c6fbe75bde1b49ee2ac9dd"
 }

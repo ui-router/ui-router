@@ -24,9 +24,9 @@ const classification = readJson('migration/package-classification.json');
 const pathRepairs = readJson('migration/path-repairs.json');
 const evidencePath = 'migration/evidence/n03/lock-conversion.json';
 const evidence = readJson(evidencePath);
-const expectedEvidenceSha256 = 'd0da15bae66357729e19dc18d38a6cef44a6314f29768f196a29f283e637f741';
-const expectedClassificationSha256 = '52b1d3cc7b09ec98009cc4e5ed52d4fe200c84eec73904379fc14ff823b66c6d';
-const expectedPathRepairsSha256 = 'a5d93abfcfe26da7742b16760c4c0cc9b2416e6b1ceb5cfbe58e58cdd59f4f49';
+const expectedEvidenceSha256 = '869f8f7cdc3ad19cc32df9c4f7d4ee4ac59fe7bd2febb43786fa59a15a78f813';
+const expectedClassificationSha256 = 'a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365';
+const expectedPathRepairsSha256 = '8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad';
 const expectedWorkspaces = [
   'core',
   'plugins/*',
@@ -53,11 +53,21 @@ const movePath = (input) => {
 requireEqual('N03 task', evidence.task, 'N03');
 requireEqual('N03 base', evidence.baseCommit, 'ce1cbb52907c66123f9c454082889f79a1e689a4');
 const gitArgs = ['-c', `safe.directory=${root}`, '-C', root];
+let gateCommit;
 try {
   requireEqual('N03 base object', execFileSync('git', [...gitArgs, 'rev-parse', `${evidence.baseCommit}^{commit}`], { encoding: 'utf8' }).trim(), evidence.baseCommit);
-  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', evidence.baseCommit, 'HEAD']);
+  requireEqual('N03 implementation object', execFileSync('git', [...gitArgs, 'rev-parse', `${evidence.implementationCommit}^{commit}`], { encoding: 'utf8' }).trim(), evidence.implementationCommit);
+  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', evidence.baseCommit, evidence.implementationCommit]);
+  execFileSync('git', [...gitArgs, 'merge-base', '--is-ancestor', evidence.implementationCommit, 'HEAD']);
+  const descendants = execFileSync('git', [...gitArgs, 'rev-list', '--reverse', '--ancestry-path', `${evidence.implementationCommit}..HEAD`], { encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  if (descendants.length === 0) fail('N03 gate commit is missing');
+  gateCommit = descendants[0];
+  requireEqual('N03 gate parent', execFileSync('git', [...gitArgs, 'rev-parse', `${gateCommit}^`], { encoding: 'utf8' }).trim(), evidence.implementationCommit);
 } catch (error) {
-  fail(`N03 base must be available and ancestral to HEAD: ${error.message}`);
+  fail(`N03 base, implementation, and gate chain is invalid: ${error.message}`);
 }
 requireEqual('runtime Node', evidence.runtime.node, 'v24.19.0');
 requireEqual('runtime npm', evidence.runtime.npm, '11.17.0');
@@ -67,7 +77,21 @@ requireEqual('approved N03 classification digest', sha256('migration/package-cla
 requireEqual('approved N03 path-repair digest', sha256('migration/path-repairs.json'), expectedPathRepairsSha256);
 requireEqual('classification digest', pathRepairs.packageClassificationSha256, expectedClassificationSha256);
 requireEqual('N03 evidence reference count', classification.resolutions.filter((record) => record.evidence?.path === evidencePath).length, 7);
-const changedPaths = execFileSync('git', [...gitArgs, 'diff', '--no-renames', '--name-only', evidence.baseCommit, 'HEAD'], { encoding: 'utf8' })
+const gateChangedPaths = execFileSync('git', [...gitArgs, 'diff', '--no-renames', '--name-only', evidence.implementationCommit, gateCommit], { encoding: 'utf8' })
+  .trim()
+  .split('\n')
+  .filter(Boolean)
+  .sort();
+requireEqual('N03 gate changed-file closure', gateChangedPaths, [
+  'migration/evidence/n03/install-proof.json',
+  'migration/evidence/n03/lock-conversion.json',
+  'migration/package-classification.json',
+  'migration/path-repairs.json',
+  'package.json',
+  'tools/prove-npm-installs.mjs',
+  'tools/verify-npm-locks.mjs',
+]);
+const changedPaths = execFileSync('git', [...gitArgs, 'diff', '--no-renames', '--name-only', evidence.baseCommit, gateCommit], { encoding: 'utf8' })
   .trim()
   .split('\n')
   .filter(Boolean)
@@ -86,6 +110,7 @@ const expectedChangedPaths = [...new Set([
   'migration/package-classification.json',
   'migration/path-repairs.json',
   'package.json',
+  'tools/prove-npm-installs.mjs',
   'tools/verify-manifest-normalization.mjs',
   'tools/verify-npm-locks.mjs',
   'tools/verify-root-config.mjs',
@@ -222,7 +247,7 @@ for (const path of overrideOwners) {
   });
 }
 
-for (const key of ['rootInstall', 'localInstall', 'npmLsProblems', 'npmLsInternal']) {
+for (const key of ['rootInstall', 'localInstall', 'npmLsProblems', 'npmLsInternal', 'installProof']) {
   const proof = evidence.proof[key];
   requireEqual(`${key} digest`, proof.sha256, sha256(proof.path));
 }
@@ -242,6 +267,14 @@ for (const [name, target] of published) {
 const npmLsProblems = readJson(evidence.proof.npmLsProblems.path);
 requireEqual('root npm ls status', npmLsProblems.exitStatus, 1);
 requireEqual('root npm ls problem count', npmLsProblems.problemCount, 15);
+for (const problem of npmLsProblems.problems) {
+  const subject = problem.replace(/^(invalid|missing): /, '').split(', required by')[0];
+  for (const name of published.keys()) {
+    if (subject.startsWith(`${name}@`) || subject.includes(`/node_modules/${name}`)) {
+      fail(`S01 npm-ls waiver masks an internal package problem: ${problem}`);
+    }
+  }
+}
 requireEqual('root npm ls disposition', npmLsProblems.disposition, {
   status: 'waived-failure',
   owner: 'ui-router-maintainers',
@@ -249,6 +282,31 @@ requireEqual('root npm ls disposition', npmLsProblems.disposition, {
   expiresOn: '2026-09-30',
   reason: 'The first combined root graph exposes pre-existing cross-source dev-tool and peer-range conflicts; all classified internal workspace edges independently resolve to their local package and S01 owns toolchain convergence.',
 });
+const installProof = readJson(evidence.proof.installProof.path);
+requireEqual('install proof runtime', installProof.runtime, { node: 'v24.19.0', npm: '11.17.0', timezone: 'UTC', locale: 'C' });
+requireEqual('install proof external root', installProof.sandboxOutsideRepositoryAncestry, true);
+requireEqual('install proof source mutation', installProof.sourceTreeUnchanged, true);
+requireEqual('install proof root lock', installProof.root.lockSha256, evidence.rootLock.sha256);
+requireEqual('install proof root command', installProof.root.command, 'npm ci --ignore-scripts --no-audit --no-fund --loglevel=error');
+requireEqual('install proof root status', installProof.root.ciExitStatus, 0);
+requireEqual('install proof root npm ls status', installProof.root.npmLsExitStatus, 1);
+requireEqual('install proof root npm ls problems', installProof.root.npmLsProblemCount, 15);
+requireEqual('install proof internal workspaces', installProof.root.npmLsInternalWorkspacePackages, 12);
+requireEqual('install proof installed origins', installProof.root.installedOriginVerifier, 'passed');
+requireEqual('install proof root lock mutation', installProof.root.lockUnchanged, true);
+requireEqual('install proof local count', installProof.localRuns.length, localOwned.length);
+const installProofByManifest = new Map(installProof.localRuns.map((record) => [record.manifest, record]));
+for (const record of evidence.localLocks) {
+  const run = installProofByManifest.get(record.manifest);
+  if (!run) fail(`install proof is missing local run ${record.manifest}`);
+  requireEqual(`${record.manifest} install lock`, run.lockSha256, record.sha256);
+  requireEqual(`${record.manifest} external sandbox`, run.sandboxOutsideRepositoryAncestry, true);
+  requireEqual(`${record.manifest} install command`, run.command, 'npm ci --ignore-scripts --no-audit --no-fund --loglevel=error');
+  requireEqual(`${record.manifest} install status`, run.ciExitStatus, 0);
+  requireEqual(`${record.manifest} npm ls status`, run.npmLsExitStatus, 0);
+  requireEqual(`${record.manifest} npm ls problems`, run.npmLsProblemCount, 0);
+  requireEqual(`${record.manifest} lock mutation`, run.lockUnchanged, true);
+}
 
 const installedFlag = process.argv.indexOf('--installed-root');
 if (installedFlag !== -1) {

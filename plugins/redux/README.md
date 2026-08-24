@@ -40,10 +40,10 @@ Depending on the framework you're using, the initial boilerplate may differ a bi
 
 ### Installation
 
-The package is publish on the `npm` repository and can be installed using `yarn` or `npm`.
+The package is published on the npm registry and can be installed with npm.
 
-```
-yarn add @uirouter/redux
+```bash
+npm install @uirouter/redux
 ```
 
 ### React
@@ -88,15 +88,22 @@ const app = (
 
 ## Development
 
-Clone the library and install the dependencies with `npm install` or `yarn`.
+Clone the monorepo and install its dependencies from the repository root:
 
-You can run the React example with `yarn start` but you need to go into `examples/react` and install the dependencies there as well.
+```bash
+npm ci --ignore-scripts
+```
+
+Run the React example from the same root install:
+
+```bash
+npm run start --workspace @uirouter/internal-plugins-redux-examples-react
+```
 
 ## Building the library
 
-To build the library just install the dependencies and run the `build` script:
+Run the package's build script through the root workspace:
 
 ```bash
-yarn install
-yarn build
+npm run build --workspace @uirouter/redux
 ```

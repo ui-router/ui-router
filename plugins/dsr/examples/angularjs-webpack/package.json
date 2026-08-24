@@ -5,11 +5,11 @@
   "description": "AngularJS/webpack sticky states example",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx playwright install chromium",
     "test": "npm run build && npx playwright test",
     "test:ui": "npm run build && npx playwright test --ui",
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development --open"
+    "start": "webpack serve --mode development --open",
+    "setup:browser": "npm exec -- playwright install chromium"
   },
   "author": "",
   "license": "MIT",

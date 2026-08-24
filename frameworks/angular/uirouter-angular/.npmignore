@@ -15,7 +15,6 @@ tsconfig.json
 tsconfig.**.json
 webpack.config.js
 rollup.config.js
-yarn.lock
 
 *.iml
 *.ipr

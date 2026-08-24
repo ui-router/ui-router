@@ -10,4 +10,3 @@ node_modules
 *.iws
 *.iml
 .*
-yarn-error.log

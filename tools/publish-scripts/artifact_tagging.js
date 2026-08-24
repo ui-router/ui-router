@@ -100,7 +100,6 @@ if (npm) {
 
 if (githubtag) {
   _exec(`git add --force ${COMMIT_ARTIFACTS.join(' ')}`);
-  _exec(`git rm yarn.lock`);
 
   _exec(`git commit -m 'chore(*): commiting build files'`);
   _exec(`git tag ${tagname}`);

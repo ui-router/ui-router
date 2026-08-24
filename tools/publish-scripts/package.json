@@ -17,7 +17,7 @@
   "scripts": {
     "release": "node ./release.js --deps check-peer-dependencies",
     "format": "prettier --write \"*.js\" \"actions/**/*.js\" \"docgen/*.js\"",
-    "prepare": "husky"
+    "setup:hooks": "husky"
   },
   "bin": {
     "artifact_tagging": "./artifact_tagging.js",
@@ -46,7 +46,6 @@
     "shx": "^0.3.3",
     "tmp": "^0.2.1",
     "tweak-sourcemap-paths": "0.0.4",
-    "yalc": "^1.0.0-pre.53",
     "yargs": "^17.3.0"
   },
   "devDependencies": {

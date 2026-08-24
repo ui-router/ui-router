@@ -3,7 +3,6 @@ build
 bundles
 build_packages
 site
-yarn-error.log
 
 # common
 **/.*

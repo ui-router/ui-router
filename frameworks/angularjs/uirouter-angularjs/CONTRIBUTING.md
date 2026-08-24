@@ -73,9 +73,9 @@ Use `npm` to install the development dependencies for each repository.
 
 ```
 cd core
-npm install
+npm ci --ignore-scripts
 cd ../angularjs
-npm install
+npm ci --ignore-scripts
 cd ..
 ```
 

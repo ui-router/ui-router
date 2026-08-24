@@ -15,8 +15,8 @@
     "watch": "run-p watch:*",
     "watch:buildjs": "tsc -w",
     "watch:test": "vitest",
-    "prepublishOnly": "npm run build",
-    "release": "release"
+    "release": "release",
+    "build:publish": "npm run build"
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/sticky-states#readme",
   "contributors": [

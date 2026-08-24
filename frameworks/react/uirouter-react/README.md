@@ -30,8 +30,8 @@ UI-Router applications are modeled as a hierarchical tree of states. UI-Router p
 
 The UI-Router package is distributed using [npm](https://www.npmjs.com/), the node package manager.
 
-```
-yarn add @uirouter/react
+```bash
+npm install @uirouter/react
 ```
 
 Import `UIRouter` into your project, define some states and you're good to go!

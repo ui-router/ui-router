@@ -12,7 +12,6 @@ karma.**.js
 tslint.json
 tsconfig.json
 tsconfig.*.json
-yarn.lock
 rollup.config.js
 stats.html
 

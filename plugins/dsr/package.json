@@ -13,7 +13,7 @@
     "watch:test": "vitest",
     "changelog": "update_changelog",
     "release": "release",
-    "prepublishOnly": "npm run build"
+    "build:publish": "npm run build"
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/dsr#readme",
   "contributors": [

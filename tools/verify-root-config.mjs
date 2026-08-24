@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -50,6 +50,10 @@ const npmrcLines = readText('.npmrc')
   .map((line) => line.trim())
   .filter((line) => line && !line.startsWith('#'));
 if (!npmrcLines.includes('ignore-scripts=true')) fail('.npmrc must set ignore-scripts=true');
+
+if (existsSync(join(root, 'package-lock.json'))) {
+  fail('root package-lock.json is forbidden until N03 proves classified dependency resolution');
+}
 
 const lifecycleHooks = ['preinstall', 'install', 'postinstall', 'prepare', 'prepublish', 'prepublishOnly'];
 for (const hook of lifecycleHooks) {

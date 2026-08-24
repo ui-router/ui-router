@@ -56,6 +56,9 @@ try {
   expectFailure('nested-package-manager', (root) => {
     const file = 'core/package.json'; const value = json(root, file); value.packageManager = 'npm@11.17.0'; save(root, file, value);
   }, /nested packageManager declaration/);
+  expectFailure('angular-cli-other-package-manager', (root) => {
+    const file = 'frameworks/angular/uirouter-angular/angular.json'; const value = json(root, file); value.cli.packageManager = 'bun'; save(root, file, value);
+  }, /Angular CLI package manager/);
   expectFailure('yarn-lock', (root) => writeFileSync(path.join(root, 'yarn.lock'), ''), /forbidden current package-manager artifact/);
   expectFailure('pnpm-lock', (root) => writeFileSync(path.join(root, 'pnpm-lock.yaml'), ''), /forbidden current package-manager artifact/);
   expectFailure('yarn-config', (root) => writeFileSync(path.join(root, '.yarnrc.yml'), 'nodeLinker: node-modules\n'), /forbidden current package-manager artifact/);
@@ -120,6 +123,12 @@ try {
   expectFailure('fabricated-downstream-invocation', (root) => {
     const file = 'plugins/rx/package.json'; const value = json(root, file); value.scripts['test:downstream'] = 'test_downstream_projects'; save(root, file, value);
   }, /unapproved source-era helper invocation/);
+  expectFailure('indirect-downstream-package-script', (root) => {
+    const file = 'core/package.json'; const value = json(root, file); value.scripts.ci = 'npm run test:downstream'; save(root, file, value);
+  }, /indirect retired-script invocation/);
+  expectFailure('indirect-downstream-shell-script', (root) => {
+    const file = path.join(root, 'rogue.sh'); writeFileSync(file, '#!/usr/bin/env bash\nnpm --workspace @uirouter/core run test:downstream\n'); chmodSync(file, 0o755);
+  }, /unallowlisted retired-script invocation/);
   expectFailure('disabled-downstream-drift', (root) => {
     const file = 'core/package.json'; const value = json(root, file); delete value.scripts['test:downstream']; save(root, file, value);
   }, /disabled test:downstream/);

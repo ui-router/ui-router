@@ -50,7 +50,7 @@
     }
   },
   "validation": {
-    "cleanTreeCheck": "PACKAGE_MANAGER_VERIFY_OK manifests=45 allowlisted=63 legacy=42 scanned=1044",
-    "adversarialCheck": "N05_PACKAGE_MANAGER_ADVERSARIAL_TESTS_OK cases=51"
+    "cleanTreeCheck": "PACKAGE_MANAGER_VERIFY_OK manifests=45 angularConfigs=9 allowlisted=63 legacy=42 scanned=1044",
+    "adversarialCheck": "N05_PACKAGE_MANAGER_ADVERSARIAL_TESTS_OK cases=54"
   }
 }

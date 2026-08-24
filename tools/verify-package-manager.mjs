@@ -44,7 +44,7 @@ requireEqual('root runtime engine', rootPackage.devEngines?.runtime, { name: 'no
 requireEqual('root package-manager engine', rootPackage.devEngines?.packageManager, { name: 'npm', version: '11.17.0', onFail: 'error' });
 
 const cleanupEvidencePath = 'migration/evidence/n05/package-manager-cleanup.json';
-requireEqual('approved cleanup evidence digest', sha256(cleanupEvidencePath), '408bfb49db3b67acf6069794cf3d68b4da9c49b7749ae3d53be96b46e5d19c4a');
+requireEqual('approved cleanup evidence digest', sha256(cleanupEvidencePath), 'c79098272e690258cfb6dfe235c0149e3cb7f4bd81ce2ee9ae6fc9d6705c894d');
 const cleanupEvidence = readJson(cleanupEvidencePath);
 requireEqual('cleanup evidence task', cleanupEvidence.task, 'N05');
 requireEqual('cleanup evidence owner', cleanupEvidence.owner, 'ui-router-maintainers');
@@ -73,8 +73,8 @@ requireEqual('cleanup disabled stub statuses', cleanupEvidence.installProof.disa
   'tools/publish-scripts/docgen_via_docker.sh': 1,
 });
 requireEqual('cleanup validation summary', cleanupEvidence.validation, {
-  cleanTreeCheck: 'PACKAGE_MANAGER_VERIFY_OK manifests=45 allowlisted=63 legacy=42 scanned=1044',
-  adversarialCheck: 'N05_PACKAGE_MANAGER_ADVERSARIAL_TESTS_OK cases=51',
+  cleanTreeCheck: 'PACKAGE_MANAGER_VERIFY_OK manifests=45 angularConfigs=9 allowlisted=63 legacy=42 scanned=1044',
+  adversarialCheck: 'N05_PACKAGE_MANAGER_ADVERSARIAL_TESTS_OK cases=54',
 });
 
 const allowlistPath = 'migration/evidence/n05/package-manager-allowlist.json';
@@ -181,6 +181,7 @@ const forbiddenCommand = /\byarn(?:pkg)?\b|\bpnpm\b|\byalc\b|@yarnpkg\/|\bcorepa
 const normalizedCommandText = (text) => text.replace(/\$\{[^}]*\}/g, '').replace(/["'\\]/g, '');
 const hasForbiddenCommand = (text) => forbiddenCommand.test(text) || forbiddenCommand.test(normalizedCommandText(text));
 const legacyCommand = /test_downstream_projects|publish_yalc_package/i;
+const retiredScriptInvocation = /\btest:(?:downstream|integration)\b/i;
 const installCommand = /\bnpm\s+(?:ci|i|install|update)\b/i;
 const packageManifests = files.filter((path) => path.endsWith('/package.json') || path === 'package.json');
 for (const path of packageManifests) {
@@ -199,6 +200,7 @@ for (const path of packageManifests) {
     if (implicitLifecycleScripts.has(name)) fail(`implicit lifecycle script remains: ${path} scripts.${name}`);
     if (hasForbiddenCommand(command)) fail(`forbidden package-manager command: ${path} scripts.${name}`);
     if (legacyCommand.test(command) && approved[name] !== command) fail(`unapproved source-era helper invocation: ${path} scripts.${name}`);
+    if (retiredScriptInvocation.test(command)) fail(`indirect retired-script invocation: ${path} scripts.${name}`);
     if (installCommand.test(command) && !/--ignore-scripts\b/.test(command)) fail(`install command lacks --ignore-scripts: ${path} scripts.${name}`);
   }
   for (const [name, target] of Object.entries(manifest.bin ?? {})) {
@@ -214,6 +216,20 @@ for (const [path, scripts] of disabledDownstreamScripts) {
   const actual = readJson(path).scripts ?? {};
   for (const [name, command] of Object.entries(scripts)) requireEqual(`${path} disabled ${name}`, actual[name], command);
 }
+const angularConfigs = files.filter((path) => path.endsWith('/angular.json'));
+let angularPackageManagerFields = 0;
+const inspectAngularConfig = (value, path) => {
+  if (!value || typeof value !== 'object') return;
+  for (const [key, child] of Object.entries(value)) {
+    if (key === 'packageManager') {
+      requireEqual(`${path} Angular CLI package manager`, child, 'npm');
+      angularPackageManagerFields += 1;
+    }
+    inspectAngularConfig(child, path);
+  }
+};
+for (const path of angularConfigs) inspectAngularConfig(readJson(path), path);
+requireEqual('Angular CLI package-manager field count', angularPackageManagerFields, 5);
 requireEqual('disabled dependency-action metadata', readJson('tools/publish-scripts/actions/upgrade/package.json'), {
   name: '@uirouter/internal-tools-publish-scripts-actions-upgrade',
   private: true,
@@ -281,10 +297,11 @@ for (const path of files) {
   if (bytes.includes(0)) continue;
   const text = bytes.toString('utf8');
   if (hasForbiddenCommand(text) || legacyCommand.test(text)) fail(`unallowlisted package-manager occurrence: ${path}`);
+  if (retiredScriptInvocation.test(text)) fail(`unallowlisted retired-script invocation: ${path}`);
   if ((path.endsWith('.sh') || Boolean(statSync(join(root, path)).mode & 0o111)) && installCommand.test(text) && !/--ignore-scripts\b/.test(text)) {
     fail(`active install command lacks --ignore-scripts: ${path}`);
   }
   scannedFiles += 1;
 }
 
-console.log(`PACKAGE_MANAGER_VERIFY_OK manifests=${packageManifests.length} allowlisted=${allowlist.entries.length} legacy=${legacyFiles.length} scanned=${scannedFiles}`);
+console.log(`PACKAGE_MANAGER_VERIFY_OK manifests=${packageManifests.length} angularConfigs=${angularConfigs.length} allowlisted=${allowlist.entries.length} legacy=${legacyFiles.length} scanned=${scannedFiles}`);

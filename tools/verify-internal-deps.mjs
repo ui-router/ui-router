@@ -455,11 +455,19 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     if (physical !== expected || !physical.startsWith(`${install}${path.sep}`)) fail(`${label}: realpath escapes installed root: ${physical}`);
     return physical;
   };
-  containedDirectory('installed root node_modules', path.join(install, 'node_modules'));
+  const rootNodeModules = path.join(install, 'node_modules');
+  containedDirectory('installed root node_modules', rootNodeModules);
+  containedFile('installed root hidden lock', path.join(rootNodeModules, '.package-lock.json'));
   const expectedVersions = new Map([...universe.byName].map(([name, item]) => [name, item.manifest.version]));
   const workspaceTargets = new Set([...workspaceEdges.values()].map(({ edge }) => edge.package));
+  const validatedScopes = new Set();
   for (const { edge, consumer, target } of workspaceEdges.values()) {
-    const packagePath = path.join(install, 'node_modules', ...edge.package.split('/'));
+    const packageParts = edge.package.split('/');
+    if (packageParts.length > 1 && !validatedScopes.has(packageParts[0])) {
+      containedDirectory(`installed workspace scope ${packageParts[0]}`, path.join(rootNodeModules, packageParts[0]));
+      validatedScopes.add(packageParts[0]);
+    }
+    const packagePath = path.join(rootNodeModules, ...packageParts);
     if (!existsSync(packagePath)) fail(`${edge.id}: installed root has no ${edge.package}`);
     const physical = realpathSync(packagePath);
     const expected = containedDirectory(edge.id, path.join(install, target.directory));

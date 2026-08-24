@@ -33,6 +33,28 @@ try {
   renameSync(rootNodeModulesBackup, rootNodeModules);
 }
 
+const rootHiddenLock = path.join(rootNodeModules, '.package-lock.json');
+const rootHiddenLockBackup = path.join(rootNodeModules, '.package-lock.json.n04-original');
+renameSync(rootHiddenLock, rootHiddenLockBackup);
+try {
+  symlinkSync(path.join(repository, 'package-lock.json'), rootHiddenLock);
+  run(/installed root hidden lock: path is not a regular contained file: .*node_modules\/\.package-lock\.json/, 'root-hidden-lock-escape'); passed += 1;
+} finally {
+  rmSync(rootHiddenLock, { force: true });
+  renameSync(rootHiddenLockBackup, rootHiddenLock);
+}
+
+const rootScope = path.join(rootNodeModules, '@uirouter');
+const rootScopeBackup = path.join(rootNodeModules, '@uirouter.n04-original');
+renameSync(rootScope, rootScopeBackup);
+try {
+  symlinkSync(rootScopeBackup, rootScope);
+  run(/installed workspace scope @uirouter: directory is a symbolic link: .*node_modules\/@uirouter/, 'workspace-scope-escape'); passed += 1;
+} finally {
+  rmSync(rootScope, { force: true });
+  renameSync(rootScopeBackup, rootScope);
+}
+
 const localContext = path.join(installedRoot, 'core/integration-tests/typescript-3.9');
 const localNodeModules = path.join(localContext, 'node_modules');
 const localNodeModulesBackup = path.join(localContext, '.n04-node_modules');

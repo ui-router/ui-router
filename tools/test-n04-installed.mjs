@@ -22,6 +22,40 @@ function run(expected, label) {
 let passed = 0;
 run(null, 'positive-control'); passed += 1;
 
+const rootNodeModules = path.join(installedRoot, 'node_modules');
+const rootNodeModulesBackup = path.join(installedRoot, '.n04-root-node_modules');
+renameSync(rootNodeModules, rootNodeModulesBackup);
+try {
+  symlinkSync(rootNodeModulesBackup, rootNodeModules);
+  run(/installed root node_modules: directory is a symbolic link: .*\/node_modules/, 'root-node-modules-escape'); passed += 1;
+} finally {
+  rmSync(rootNodeModules, { force: true });
+  renameSync(rootNodeModulesBackup, rootNodeModules);
+}
+
+const localContext = path.join(installedRoot, 'core/integration-tests/typescript-3.9');
+const localNodeModules = path.join(localContext, 'node_modules');
+const localNodeModulesBackup = path.join(localContext, '.n04-node_modules');
+renameSync(localNodeModules, localNodeModulesBackup);
+try {
+  symlinkSync(localNodeModulesBackup, localNodeModules);
+  run(/edge-core-integration-typescript-3-9-dependencies-uirouter-core node_modules: directory is a symbolic link: .*typescript-3\.9\/node_modules/, 'local-node-modules-escape'); passed += 1;
+} finally {
+  rmSync(localNodeModules, { force: true });
+  renameSync(localNodeModulesBackup, localNodeModules);
+}
+
+const hiddenLock = path.join(localNodeModules, '.package-lock.json');
+const hiddenLockBackup = path.join(localNodeModules, '.package-lock.json.n04-original');
+renameSync(hiddenLock, hiddenLockBackup);
+try {
+  symlinkSync(path.join(repository, 'core/integration-tests/typescript-3.9/package-lock.json'), hiddenLock);
+  run(/edge-core-integration-typescript-3-9-dependencies-uirouter-core hidden lock: path is not a regular contained file: .*node_modules\/\.package-lock\.json/, 'hidden-lock-escape'); passed += 1;
+} finally {
+  rmSync(hiddenLock, { force: true });
+  renameSync(hiddenLockBackup, hiddenLock);
+}
+
 const workspaceLink = path.join(installedRoot, 'node_modules/@uirouter/core');
 const workspaceTarget = readlinkSync(workspaceLink);
 rmSync(workspaceLink);

@@ -446,6 +446,16 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     if (physical !== expected || !physical.startsWith(`${install}${path.sep}`)) fail(`${label}: realpath escapes installed root: ${physical}`);
     return physical;
   };
+  const containedFile = (label, lexicalPath) => {
+    const expected = path.resolve(lexicalPath);
+    if (!expected.startsWith(`${install}${path.sep}`)) fail(`${label}: lexical path escapes installed root: ${expected}`);
+    const stat = lstatSync(expected);
+    if (stat.isSymbolicLink() || !stat.isFile()) fail(`${label}: path is not a regular contained file: ${expected}`);
+    const physical = realpathSync(expected);
+    if (physical !== expected || !physical.startsWith(`${install}${path.sep}`)) fail(`${label}: realpath escapes installed root: ${physical}`);
+    return physical;
+  };
+  containedDirectory('installed root node_modules', path.join(install, 'node_modules'));
   const expectedVersions = new Map([...universe.byName].map(([name, item]) => [name, item.manifest.version]));
   const workspaceTargets = new Set([...workspaceEdges.values()].map(({ edge }) => edge.package));
   for (const { edge, consumer, target } of workspaceEdges.values()) {
@@ -472,6 +482,10 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
   }
   for (const [context, values] of localContexts) {
     containedDirectory(`${values[0].edge.id} consumer`, context);
+    const contextNodeModules = path.join(context, 'node_modules');
+    containedDirectory(`${values[0].edge.id} node_modules`, contextNodeModules);
+    const hiddenLockPath = path.join(contextNodeModules, '.package-lock.json');
+    containedFile(`${values[0].edge.id} hidden lock`, hiddenLockPath);
     const byPackage = new Map();
     for (const value of values) {
       if (!byPackage.has(value.edge.package)) byPackage.set(value.edge.package, []);
@@ -479,7 +493,7 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     }
     const required = new Set([...byPackage].filter(([, records]) => records.some(({ edge }) => edge.declaredSpec !== null)).map(([packageName]) => packageName));
     const forbidden = new Set([...byPackage].filter(([, records]) => records.every(({ edge }) => edge.declaredSpec === null)).map(([packageName]) => packageName));
-    const installedLock = readJsonAt(context, 'node_modules/.package-lock.json');
+    const installedLock = JSON.parse(readFileSync(hiddenLockPath, 'utf8'));
     const committedLock = readJsonAt(repository, `${values[0].consumer.directory}/package-lock.json`);
     for (const [packageName, records] of byPackage) {
       const declared = records.find(({ edge }) => edge.declaredSpec !== null);

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, readlinkSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, readlinkSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -33,6 +33,17 @@ try {
   symlinkSync(workspaceTarget, workspaceLink);
 }
 
+const installedWorkspace = path.join(installedRoot, 'core');
+const installedWorkspaceBackup = path.join(installedRoot, '.n04-original-core-workspace');
+renameSync(installedWorkspace, installedWorkspaceBackup);
+try {
+  symlinkSync(path.join(repository, 'core'), installedWorkspace);
+  run(/edge-core-devdependencies-uirouter-publish-scripts.*directory is a symbolic link|edge-.*core.*realpath escapes installed root|npm ls internal/, 'workspace-target-escape'); passed += 1;
+} finally {
+  rmSync(installedWorkspace, { force: true });
+  renameSync(installedWorkspaceBackup, installedWorkspace);
+}
+
 const localPackage = path.join(installedRoot, 'core/integration-tests/typescript-3.9/node_modules/@uirouter/core');
 const backup = `${localPackage}.n04-original`;
 renameSync(localPackage, backup);
@@ -49,6 +60,15 @@ try {
   run(/npm ls internal|npm ls omitted|required internal|installed local consumer has no/, 'local-missing-package'); passed += 1;
 } finally {
   renameSync(backup, localPackage);
+}
+
+const legacyOnlyPackage = path.join(installedRoot, 'frameworks/react/integration-tests/react17/node_modules/@uirouter/react');
+mkdirSync(legacyOnlyPackage, { recursive: true });
+try {
+  writeFileSync(path.join(legacyOnlyPackage, 'package.json'), '{"name":"@uirouter/react","version":"1.0.8"}\n');
+  run(/npm ls internal.*@uirouter\/react|edge-framework-react-integration-react17-legacy-injected-uirouter-react-react-versions-react17: deferred legacy-only package unexpectedly installed or locked/, 'legacy-only-baseline-injection'); passed += 1;
+} finally {
+  rmSync(legacyOnlyPackage, { recursive: true, force: true });
 }
 
 const installedLockPath = path.join(installedRoot, 'core/integration-tests/typescript-3.9/node_modules/.package-lock.json');

@@ -242,12 +242,22 @@ function registryTarball(packageName, version) {
   return `https://registry.npmjs.org/${packageName}/-/${basename}-${version}.tgz`;
 }
 
+function validSha512Integrity(value) {
+  if (typeof value !== 'string' || !value.startsWith('sha512-')) return false;
+  const encoded = value.slice('sha512-'.length);
+  try {
+    const bytes = Buffer.from(encoded, 'base64');
+    return bytes.length === 64 && bytes.toString('base64') === encoded;
+  } catch { return false; }
+}
+
 function validateLocalLocks(localEdges) {
   const byConsumer = new Map();
   for (const value of localEdges.values()) {
     if (!byConsumer.has(value.consumer.canonicalPath)) byConsumer.set(value.consumer.canonicalPath, []);
     byConsumer.get(value.consumer.canonicalPath).push(value);
   }
+  const integrityByArtifact = new Map();
   for (const [consumerPath, edges] of byConsumer) {
     const consumer = edges[0].consumer;
     const lockPath = `${consumer.directory}/package-lock.json`;
@@ -266,7 +276,11 @@ function validateLocalLocks(localEdges) {
       if (item.version !== edge.expectedVersion) fail(`${edge.id}: local lock version ${item.version} != ${edge.expectedVersion}`);
       const expectedResolved = registryTarball(edge.package, edge.expectedVersion);
       if (item.resolved !== expectedResolved) fail(`${edge.id}: local lock origin ${item.resolved} != ${expectedResolved}`);
-      if (typeof item.integrity !== 'string' || !/^sha512-[A-Za-z0-9+/]+={0,2}$/.test(item.integrity)) fail(`${edge.id}: local lock has no valid sha512 integrity`);
+      if (!validSha512Integrity(item.integrity)) fail(`${edge.id}: local lock has no valid 64-byte sha512 integrity`);
+      const artifact = `${edge.package}@${edge.expectedVersion}`;
+      const priorIntegrity = integrityByArtifact.get(artifact);
+      if (priorIntegrity && priorIntegrity !== item.integrity) fail(`${edge.id}: integrity for ${artifact} differs across committed locks`);
+      integrityByArtifact.set(artifact, item.integrity);
     }
   }
 }
@@ -377,6 +391,14 @@ function assertInternalNpmLs(directory, expectedVersions, requiredNames) {
 function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) {
   const install = realpathSync(path.resolve(installedRoot));
   if (install === repository || install.startsWith(`${repository}${path.sep}`) || repository.startsWith(`${install}${path.sep}`)) fail('--installed-root must be outside repository ancestry');
+  const containedDirectory = (label, lexicalPath) => {
+    const expected = path.resolve(lexicalPath);
+    if (!expected.startsWith(`${install}${path.sep}`)) fail(`${label}: lexical path escapes installed root: ${expected}`);
+    if (lstatSync(expected).isSymbolicLink()) fail(`${label}: directory is a symbolic link: ${expected}`);
+    const physical = realpathSync(expected);
+    if (physical !== expected || !physical.startsWith(`${install}${path.sep}`)) fail(`${label}: realpath escapes installed root: ${physical}`);
+    return physical;
+  };
   const expectedVersions = new Map([...universe.byName].map(([name, item]) => [name, item.manifest.version]));
   const workspaceTargets = new Set([...workspaceEdges.values()].map(({ edge }) => edge.package));
   assertInternalNpmLs(install, expectedVersions, workspaceTargets);
@@ -384,7 +406,8 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     const packagePath = path.join(install, 'node_modules', ...edge.package.split('/'));
     if (!existsSync(packagePath)) fail(`${edge.id}: installed root has no ${edge.package}`);
     const physical = realpathSync(packagePath);
-    const expected = realpathSync(path.join(install, target.directory));
+    const expected = containedDirectory(edge.id, path.join(install, target.directory));
+    containedDirectory(`${edge.id} consumer`, path.join(install, consumer.directory));
     if (physical !== expected) fail(`${edge.id}: workspace physical origin ${physical} != ${expected}`);
     const consumerRequire = createRequire(path.join(install, consumer.canonicalPath));
     let resolvedManifest;
@@ -401,19 +424,34 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
     localContexts.get(context).push(value);
   }
   for (const [context, values] of localContexts) {
-    assertInternalNpmLs(context, expectedVersions, new Set(values.map(({ edge }) => edge.package)));
+    containedDirectory(`${values[0].edge.id} consumer`, context);
+    const byPackage = new Map();
+    for (const value of values) {
+      if (!byPackage.has(value.edge.package)) byPackage.set(value.edge.package, []);
+      byPackage.get(value.edge.package).push(value);
+    }
+    const required = new Set([...byPackage].filter(([, records]) => records.some(({ edge }) => edge.declaredSpec !== null)).map(([packageName]) => packageName));
+    assertInternalNpmLs(context, expectedVersions, required);
     const installedLock = readJsonAt(context, 'node_modules/.package-lock.json');
-    for (const { edge } of values) {
-      const packagePath = path.join(context, 'node_modules', ...edge.package.split('/'));
-      if (!existsSync(packagePath)) fail(`${edge.id}: installed local consumer has no ${edge.package}`);
+    const committedLock = readJsonAt(repository, `${values[0].consumer.directory}/package-lock.json`);
+    for (const [packageName, records] of byPackage) {
+      const declared = records.find(({ edge }) => edge.declaredSpec !== null);
+      const representative = declared || records[0];
+      const { edge } = representative;
+      const packagePath = path.join(context, 'node_modules', ...packageName.split('/'));
+      const committed = committedLock.packages?.[`node_modules/${packageName}`];
+      const installed = installedLock.packages?.[`node_modules/${packageName}`];
+      if (!declared) {
+        if (existsSync(packagePath) || committed || installed) fail(`${edge.id}: deferred legacy-only package unexpectedly installed or locked`);
+        continue;
+      }
+      if (!existsSync(packagePath)) fail(`${edge.id}: installed local consumer has no ${packageName}`);
       if (lstatSync(packagePath).isSymbolicLink()) fail(`${edge.id}: local dependency is a symbolic link`);
       const physical = realpathSync(packagePath);
       const expectedPhysical = path.resolve(packagePath);
-      if (physical !== expectedPhysical) fail(`${edge.id}: local dependency realpath ${physical} != ${expectedPhysical}`);
+      if (physical !== expectedPhysical || !physical.startsWith(`${context}${path.sep}`)) fail(`${edge.id}: local dependency realpath ${physical} != ${expectedPhysical}`);
       const manifest = readJsonAt(physical, 'package.json');
-      if (manifest.name !== edge.package || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed local identity/version mismatch`);
-      const committed = readJsonAt(repository, `${values[0].consumer.directory}/package-lock.json`).packages?.[`node_modules/${edge.package}`];
-      const installed = installedLock.packages?.[`node_modules/${edge.package}`];
+      if (manifest.name !== packageName || manifest.version !== edge.expectedVersion) fail(`${edge.id}: installed local identity/version mismatch`);
       for (const field of ['version', 'resolved', 'integrity']) if (installed?.[field] !== committed?.[field]) fail(`${edge.id}: installed ${field} differs from committed registry baseline`);
       if (installed?.link === true) fail(`${edge.id}: installed local package is linked`);
     }
@@ -450,7 +488,7 @@ function main() {
   const installedIndex = process.argv.indexOf('--installed-root');
   if (installedIndex !== -1) {
     if (!process.argv[installedIndex + 1]) fail('--installed-root requires a path');
-    validateInstalled(process.argv[installedIndex + 1], workspaceEdges, declaredLocalEdges, universe);
+    validateInstalled(process.argv[installedIndex + 1], workspaceEdges, localEdges, universe);
   }
   console.log(`INTERNAL_DEPS_VERIFY_OK current=${declared.size} legacy=${legacy.size} workspace=${workspaceEdges.size} localTarball=${localEdges.size}${installedIndex === -1 ? ' installed=not-requested' : ' installed=verified'}`);
 }

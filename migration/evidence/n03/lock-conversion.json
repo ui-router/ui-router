@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "task": "N03",
+  "baseCommit": "ce1cbb52907c66123f9c454082889f79a1e689a4",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8",
+    "architecture": "x64",
+    "timezone": "UTC",
+    "locale": "C"
+  },
+  "installPolicy": {
+    "packageLockOnly": "npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
+    "cleanInstall": "npm ci --ignore-scripts --no-audit --no-fund",
+    "forceFlagsForbidden": [
+      "--force",
+      "--legacy-peer-deps"
+    ],
+    "lifecycleScriptsExecuted": false
+  },
+  "rootLock": {
+    "path": "package-lock.json",
+    "sha256": "a92a65f359b645af82fa0db7f8ef319ca84f3e17b687a0cafd1d29926e5f47c9",
+    "lockfileVersion": 3,
+    "packageEntries": 4307,
+    "workspaceCount": 26,
+    "localPublishedLinks": 12,
+    "reinstallStable": true
+  },
+  "localLocks": [
+    {
+      "manifest": "core/integration-tests/typescript-3.9/package.json",
+      "lock": "core/integration-tests/typescript-3.9/package-lock.json",
+      "name": "@uirouter/internal-core-integration-typescript-3-9",
+      "sha256": "b2558f23e8f1a42fb623ba8d24dfc332f9a26e6b6112814bc525d1406625ca52",
+      "lockfileVersion": 3,
+      "packageEntries": 3,
+      "internalEdges": [
+        {
+          "edgeId": "edge-core-integration-typescript-3-9-dependencies-uirouter-core",
+          "package": "@uirouter/core",
+          "declaredSpec": "latest",
+          "committedLockVersion": "6.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/core/-/core-6.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "core/integration-tests/typescript-5.4/package.json",
+      "lock": "core/integration-tests/typescript-5.4/package-lock.json",
+      "name": "@uirouter/internal-core-integration-typescript-5-4",
+      "sha256": "a7d57a24f721e474a37d248b244e0e8fe9bdef70619e6cc4d82a1d29b8abfbd4",
+      "lockfileVersion": 3,
+      "packageEntries": 3,
+      "internalEdges": [
+        {
+          "edgeId": "edge-core-integration-typescript-5-4-dependencies-uirouter-core",
+          "package": "@uirouter/core",
+          "declaredSpec": "latest",
+          "committedLockVersion": "6.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/core/-/core-6.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22/package-lock.json",
+      "name": "@uirouter/internal-framework-angular-integration-angular-versions-v22",
+      "sha256": "7d56750b55dad7b9af972deedc1ddda11be619cea496f6345a3af8056777ba6f",
+      "lockfileVersion": 3,
+      "packageEntries": 545,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-angular",
+          "package": "@uirouter/angular",
+          "declaredSpec": "*",
+          "committedLockVersion": "22.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/angular/-/angular-22.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-core",
+          "package": "@uirouter/core",
+          "declaredSpec": "*",
+          "committedLockVersion": "6.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/core/-/core-6.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-dependencies-uirouter-rx",
+          "package": "@uirouter/rx",
+          "declaredSpec": "*",
+          "committedLockVersion": "1.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/rx/-/rx-1.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package-lock.json",
+      "name": "@uirouter/internal-framework-angular-integration-angular-versions-v22-standalone",
+      "sha256": "13bfd3403325e990b6b43cc928173d491b665ab1f328fb80a173724a700b5132",
+      "lockfileVersion": 3,
+      "packageEntries": 545,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-angular",
+          "package": "@uirouter/angular",
+          "declaredSpec": "*",
+          "committedLockVersion": "22.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/angular/-/angular-22.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-core",
+          "package": "@uirouter/core",
+          "declaredSpec": "*",
+          "committedLockVersion": "6.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/core/-/core-6.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-standalone-dependencies-uirouter-rx",
+          "package": "@uirouter/rx",
+          "declaredSpec": "*",
+          "committedLockVersion": "1.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/rx/-/rx-1.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package-lock.json",
+      "name": "@uirouter/internal-framework-angular-integration-angular-versions-v22-zoneless",
+      "sha256": "37f64c039c1fc4d9d930f5274fbd4e69e687760bb66dde9a7cb251a1909f112b",
+      "lockfileVersion": 3,
+      "packageEntries": 508,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-angular",
+          "package": "@uirouter/angular",
+          "declaredSpec": "*",
+          "committedLockVersion": "22.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/angular/-/angular-22.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-core",
+          "package": "@uirouter/core",
+          "declaredSpec": "*",
+          "committedLockVersion": "6.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/core/-/core-6.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-angular-integration-angular-versions-v22-zoneless-dependencies-uirouter-rx",
+          "package": "@uirouter/rx",
+          "declaredSpec": "*",
+          "committedLockVersion": "1.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/rx/-/rx-1.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json",
+      "lock": "frameworks/angular/integration-tests/typescript-versions/typescript6/package-lock.json",
+      "name": "@uirouter/internal-framework-angular-integration-typescript-versions-typescript6",
+      "sha256": "07362375f4b230ce51bb5440c16e898db136b9bee03cb58b49a77bd532b1d45b",
+      "lockfileVersion": 3,
+      "packageEntries": 9,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-angular-integration-typescript-versions-typescript6-dependencies-uirouter-angular",
+          "package": "@uirouter/angular",
+          "declaredSpec": "*",
+          "committedLockVersion": "22.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/angular/-/angular-22.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json",
+      "lock": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package-lock.json",
+      "name": "@uirouter/internal-framework-angularjs-integration-typescript-versions-3-9",
+      "sha256": "a4c385e69eae4a3a66621d4069ab06f3501a401e3b588d4f4a50b22963315674",
+      "lockfileVersion": 3,
+      "packageEntries": 6,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-angularjs-integration-typescript-versions-3-9-dependencies-uirouter-angularjs",
+          "package": "@uirouter/angularjs",
+          "declaredSpec": "latest",
+          "committedLockVersion": "1.1.2",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/angularjs/-/angularjs-1.1.2.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react16/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react16/package-lock.json",
+      "name": "@uirouter/internal-framework-react-hybrid-integration-react16",
+      "sha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d",
+      "lockfileVersion": 3,
+      "packageEntries": 374,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+          "package": "@uirouter/react-hybrid",
+          "declaredSpec": "latest",
+          "committedLockVersion": "2.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/react-hybrid/-/react-hybrid-2.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+          "package": "@uirouter/visualizer",
+          "declaredSpec": "^7.2.1",
+          "committedLockVersion": "7.2.1",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/visualizer/-/visualizer-7.2.1.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react17/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react17/package-lock.json",
+      "name": "@uirouter/internal-framework-react-hybrid-integration-react17",
+      "sha256": "166a596a6a1d197bbb5529a4b9c7f9a3eb85528db4c501694ae686f539bc0c8a",
+      "lockfileVersion": 3,
+      "packageEntries": 371,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-react-hybrid",
+          "package": "@uirouter/react-hybrid",
+          "declaredSpec": "latest",
+          "committedLockVersion": "2.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/react-hybrid/-/react-hybrid-2.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-visualizer",
+          "package": "@uirouter/visualizer",
+          "declaredSpec": "^7.2.1",
+          "committedLockVersion": "7.2.1",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/visualizer/-/visualizer-7.2.1.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react18/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react18/package-lock.json",
+      "name": "@uirouter/internal-framework-react-hybrid-integration-react18",
+      "sha256": "b62a7fdaaffdc45385b18ae5023a67efcc14a71d32c6050def913ecd935b3d71",
+      "lockfileVersion": 3,
+      "packageEntries": 371,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-react-hybrid",
+          "package": "@uirouter/react-hybrid",
+          "declaredSpec": "latest",
+          "committedLockVersion": "2.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/react-hybrid/-/react-hybrid-2.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react18-dependencies-uirouter-visualizer",
+          "package": "@uirouter/visualizer",
+          "declaredSpec": "^7.2.1",
+          "committedLockVersion": "7.2.1",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/visualizer/-/visualizer-7.2.1.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react19/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react19/package-lock.json",
+      "name": "@uirouter/internal-framework-react-hybrid-integration-react19",
+      "sha256": "6bb89b94a96ec84393aebc354108214bebb6e9a0d42f09c00095966a1f3a9c4f",
+      "lockfileVersion": 3,
+      "packageEntries": 371,
+      "internalEdges": [
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-react-hybrid",
+          "package": "@uirouter/react-hybrid",
+          "declaredSpec": "latest",
+          "committedLockVersion": "2.0.0",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/react-hybrid/-/react-hybrid-2.0.0.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        },
+        {
+          "edgeId": "edge-framework-react-hybrid-integration-react19-dependencies-uirouter-visualizer",
+          "package": "@uirouter/visualizer",
+          "declaredSpec": "^7.2.1",
+          "committedLockVersion": "7.2.1",
+          "committedLockResolved": "https://registry.npmjs.org/@uirouter/visualizer/-/visualizer-7.2.1.tgz",
+          "committedLockOrigin": "published-registry",
+          "stagedPackedOriginTask": "I02"
+        }
+      ],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react17/package.json",
+      "lock": "frameworks/react/integration-tests/react17/package-lock.json",
+      "name": "@uirouter/internal-framework-react-integration-react17",
+      "sha256": "117aaccd22b9c020d0e17ee6f14cbd059f716e3d5e7300b85eb88ec6cfdcc2e8",
+      "lockfileVersion": 3,
+      "packageEntries": 274,
+      "internalEdges": [],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react18/package.json",
+      "lock": "frameworks/react/integration-tests/react18/package-lock.json",
+      "name": "@uirouter/internal-framework-react-integration-react18",
+      "sha256": "56f135fc8461c5fad20d1ba10889a4e12edbf470e42a0db1c293442b5bd24530",
+      "lockfileVersion": 3,
+      "packageEntries": 272,
+      "internalEdges": [],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react19/package.json",
+      "lock": "frameworks/react/integration-tests/react19/package-lock.json",
+      "name": "@uirouter/internal-framework-react-integration-react19",
+      "sha256": "c74ed22a2a6ca0e427818745da64e08899141751eb4b11d23f1c883a194b8e19",
+      "lockfileVersion": 3,
+      "packageEntries": 206,
+      "internalEdges": [],
+      "ci": "passed",
+      "npmLs": "passed",
+      "existingLockRestable": true
+    }
+  ],
+  "templateOnlyProjects": [
+    {
+      "manifest": "frameworks/angular/integration-tests/typescript-versions/scaffold/package.json",
+      "role": "generator-template",
+      "lockOwner": "none",
+      "generatedProject": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json"
+    },
+    {
+      "manifest": "frameworks/angularjs/integration-tests/typescript-versions/template/package.json",
+      "role": "generator-template",
+      "lockOwner": "none",
+      "generatedProject": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json"
+    }
+  ],
+  "removedCurrentLocks": [
+    "core/yarn.lock",
+    "frameworks/angular-hybrid/examples/sample-app/yarn.lock",
+    "frameworks/angular-hybrid/uirouter-angular-hybrid/yarn.lock",
+    "frameworks/angular/examples/sample-app/package-lock.json",
+    "frameworks/angular/integration-tests/typescript-versions/typescript6/yarn.lock",
+    "frameworks/angular/uirouter-angular/yarn.lock",
+    "frameworks/angularjs/examples/sample-app/package-lock.json",
+    "frameworks/angularjs/uirouter-angularjs/yarn.lock",
+    "frameworks/react-hybrid/uirouter-react-hybrid/yarn.lock",
+    "frameworks/react/examples/animating-transitions/yarn.lock",
+    "frameworks/react/examples/sample-app/package-lock.json",
+    "frameworks/react/examples/typescript/yarn.lock",
+    "frameworks/react/uirouter-react/yarn.lock",
+    "plugins/dsr/package-lock.json",
+    "plugins/redux/yarn.lock",
+    "plugins/rx/package-lock.json",
+    "plugins/sticky-states/package-lock.json",
+    "plugins/visualizer/package-lock.json",
+    "tools/publish-scripts/yarn.lock"
+  ],
+  "resolutionActions": [
+    {
+      "id": "resolution-core-resolutions-chokidar",
+      "owner": "core/package.json",
+      "decision": "remove",
+      "action": "removed-without-root-override",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-framework-angular-examples-sample-app-overrides-uirouter-angular",
+      "owner": "frameworks/angular/examples/sample-app/package.json",
+      "decision": "direct-dependency",
+      "action": "removed-package-local-policy-and-retained-direct-dependency",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-framework-angular-hybrid-router-resolutions-uirouter-core",
+      "owner": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "decision": "direct-dependency",
+      "action": "removed-package-local-policy-and-retained-direct-dependency",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-framework-angular-integration-angular-versions-v22-overrides-uirouter-angular",
+      "owner": "frameworks/angular/integration-tests/angular-versions/v22/package.json",
+      "decision": "isolated-integration",
+      "action": "retained-in-local-integration-manifest",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-framework-angular-integration-angular-versions-v22-standalone-overrides-uirouter-angular",
+      "owner": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package.json",
+      "decision": "isolated-integration",
+      "action": "retained-in-local-integration-manifest",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-framework-angular-integration-angular-versions-v22-zoneless-overrides-uirouter-angular",
+      "owner": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package.json",
+      "decision": "isolated-integration",
+      "action": "retained-in-local-integration-manifest",
+      "rootScopeBroadens": false
+    },
+    {
+      "id": "resolution-tools-publish-scripts-resolutions-npm-packlist",
+      "owner": "tools/publish-scripts/package.json",
+      "decision": "remove",
+      "action": "removed-without-root-override",
+      "rootScopeBroadens": false
+    }
+  ],
+  "proof": {
+    "workspaceResolution": {
+      "path": "migration/evidence/n03/workspace-resolution.json",
+      "sha256": "b1dfec408601ae8522d5ef08a97291f095657e3d7cf19a10a27df1794f58d973",
+      "edgeCount": 86
+    },
+    "rootInstall": {
+      "path": "migration/evidence/n03/root-install.log",
+      "sha256": "27d97e2e247dfb4223e572c52a5f288fea19b6a782254fe416b5d1b10a678ed8"
+    },
+    "localInstall": {
+      "path": "migration/evidence/n03/local-install.log",
+      "sha256": "7711b1633c74d13d36f0ba4b1c4c2f5e44dcf8250e7cf5bcbf5abd1cc674b909"
+    },
+    "npmLsProblems": {
+      "path": "migration/evidence/n03/root-npm-ls-problems.json",
+      "sha256": "98f9f6d99688a597ea73b8035e588424cc689d4a86b822368ac7abe0860a076e"
+    },
+    "npmLsInternal": {
+      "path": "migration/evidence/n03/root-npm-ls-internal.json",
+      "sha256": "9244347e262ed73d925cd80efce1119c2a42c9f3cd7500ea95e8f92fbe52e5aa",
+      "packageCount": 12
+    },
+    "installProof": {
+      "path": "migration/evidence/n03/install-proof.json",
+      "sha256": "6a24229888305959073f18dfefc7846348efcde714e2edea770519d223d90412",
+      "rootRuns": 1,
+      "localRuns": 14
+    }
+  },
+  "deferredPackedProof": {
+    "task": "I02",
+    "localTarballEdges": 37,
+    "declaredCommittedEdges": 21,
+    "templateBlueprintEdges": 2,
+    "legacyInjectedEdges": 14,
+    "reason": "Committed fixture locks preserve the registry baseline. I02 rewrites or injects only classified edges to content-addressed local tarballs in an external sandbox and proves their final origin."
+  },
+  "implementationCommit": "0b17c5cf052a5d3e60c6fbe75bde1b49ee2ac9dd"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "command": "npm ls --all --json",
+  "exitStatus": 1,
+  "problemCount": 15,
+  "problems": [
+    "invalid: karma@5.2.3 <root>/node_modules/karma",
+    "invalid: @types/node@16.18.126 <root>/node_modules/@types/node",
+    "invalid: react-dom@18.3.1 <root>/node_modules/react-dom",
+    "invalid: react@18.3.1 <root>/node_modules/react",
+    "invalid: @types/react-dom@18.3.7 <root>/node_modules/@types/react-dom",
+    "invalid: @types/react@18.3.31 <root>/node_modules/@types/react",
+    "missing: @angular/build@^22.1.3, required by angular-cli@npm:@uirouter/internal-plugins-sticky-states-examples-angular-cli@0.0.0",
+    "missing: @angular/compiler-cli@^22.1.0, required by angular-cli@npm:@uirouter/internal-plugins-sticky-states-examples-angular-cli@0.0.0",
+    "invalid: typescript@5.9.3 <root>/plugins/sticky-states/node_modules/typescript",
+    "invalid: rollup@1.32.1 <root>/node_modules/rollup",
+    "invalid: typescript@5.4.5 <root>/node_modules/typescript",
+    "invalid: yaml@1.10.3 <root>/node_modules/yaml",
+    "invalid: karma@6.3.20 <root>/frameworks/angular-hybrid/examples/sample-app/node_modules/karma",
+    "invalid: vitest@3.2.7 <root>/plugins/dsr/node_modules/vitest",
+    "invalid: @babel/core@7.29.7 <root>/node_modules/@babel/core"
+  ],
+  "disposition": {
+    "status": "waived-failure",
+    "owner": "ui-router-maintainers",
+    "trackingTask": "S01",
+    "expiresOn": "2026-09-30",
+    "reason": "The first combined root graph exposes pre-existing cross-source dev-tool and peer-range conflicts; all classified internal workspace edges independently resolve to their local package and S01 owns toolchain convergence."
+  }
+}

@@ -254,7 +254,7 @@
       "to": "frameworks/react-hybrid/integration-tests"
     }
   ],
-  "packageClassificationSha256": "9f7e4ea667a23c673ada140741831d8c26b55d7b66b22d4d2db69bcfe1cec359",
+  "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
   "repairs": [
     {
       "evidence": {

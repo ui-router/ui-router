@@ -1,4 +1,6 @@
 {
+  "name": "@uirouter/internal-tools-publish-scripts-docgen",
+  "private": true,
   "dependencies": {
     "typedoc": "0.17.8",
     "typescript": "3.9.7",

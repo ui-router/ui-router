@@ -33,7 +33,7 @@
     "prepublishOnly": "npm run build",
     "artifacts": "artifact_tagging"
   },
-  "homepage": "https://ui-router.github.io",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/angularjs/uirouter-angularjs#readme",
   "contributors": [
     {
       "name": "Nate Abele",
@@ -61,10 +61,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular-ui/ui-router.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "frameworks/angularjs/uirouter-angularjs"
   },
   "bugs": {
-    "url": "https://github.com/angular-ui/ui-router/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
   "engines": {
     "node": ">=4.0.0"

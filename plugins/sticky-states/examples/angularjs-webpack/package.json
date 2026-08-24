@@ -1,5 +1,6 @@
 {
-  "name": "angularjs-webpack",
+  "name": "@uirouter/internal-plugins-sticky-states-examples-angularjs-webpack",
+  "private": true,
   "version": "1.0.0",
   "description": "AngularJS/webpack sticky states example",
   "main": "index.js",

@@ -4,14 +4,15 @@
   "description": "Redux bindings for UI-Router",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ui-router/redux.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "plugins/redux"
   },
   "author": "Marco Botto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ui-router/redux/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
-  "homepage": "https://github.com/ui-router/redux#readme",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/redux#readme",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.cts",

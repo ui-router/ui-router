@@ -1,8 +1,8 @@
 {
-  "name": "ui-router-react-hybrid-react19",
+  "name": "@uirouter/internal-framework-react-hybrid-integration-react19",
+  "private": true,
   "description": "Integration test for @uirouter/react-hybrid with React 19",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@uirouter/react-hybrid": "latest",
     "@uirouter/visualizer": "^7.2.1",

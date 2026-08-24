@@ -61,6 +61,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ui-router/react-hybrid.git"
-  }
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "frameworks/react-hybrid/uirouter-react-hybrid"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/ui-router/issues"
+  },
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/frameworks/react-hybrid/uirouter-react-hybrid#readme"
 }

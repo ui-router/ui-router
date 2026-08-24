@@ -1,5 +1,6 @@
 {
-  "name": "@uirouter/sample-app-react",
+  "name": "@uirouter/internal-framework-react-examples-sample-app",
+  "private": true,
   "version": "1.0.0",
   "description": "Architecture overview demo for UI-Router React",
   "type": "module",

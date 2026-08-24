@@ -12,7 +12,7 @@
     "release": "release",
     "prepare": "husky"
   },
-  "homepage": "https://github.com/ui-router/visualizer",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/plugins/visualizer#readme",
   "contributors": [
     {
       "name": "Chris Thielen",
@@ -27,10 +27,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ui-router/visualizer.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "plugins/visualizer"
   },
   "bugs": {
-    "url": "https://github.com/ui-router/visualizer/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
   "license": "MIT",
   "dependencies": {
@@ -42,7 +43,7 @@
     "@types/d3-hierarchy": "^3.1.7",
     "@types/d3-interpolate": "^3.0.4",
     "@uirouter/core": "^6.1.2",
-    "@uirouter/publish-scripts": "2.7.0",
+    "@uirouter/publish-scripts": "^2.7.0",
     "husky": "^9.1.7",
     "prettier": "^3.7.4",
     "pretty-quick": "^4.2.2",

@@ -24,7 +24,7 @@
     "changelog": "show_changelog",
     "release": "release"
   },
-  "homepage": "https://ui-router.github.io",
+  "homepage": "https://github.com/ui-router/ui-router/tree/main/core#readme",
   "contributors": [
     {
       "name": "Nate Abele",
@@ -52,10 +52,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ui-router/core.git"
+    "url": "git+https://github.com/ui-router/ui-router.git",
+    "directory": "core"
   },
   "bugs": {
-    "url": "https://github.com/ui-router/core/issues"
+    "url": "https://github.com/ui-router/ui-router/issues"
   },
   "engines": {
     "node": ">=4.0.0"

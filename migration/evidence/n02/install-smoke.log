@@ -1,0 +1,10 @@
+runtime node=v24.19.0 npm=11.17.0
+install=passed
+workspace-query count=26
+local-published-links count=12
+root-lock=absent
+core-compile=passed
+react-package-build=passed
+react-animating-build=passed
+react-typescript-webpack=passed
+redux-react-build=passed

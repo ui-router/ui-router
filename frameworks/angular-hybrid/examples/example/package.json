@@ -1,4 +1,6 @@
 {
+  "name": "@uirouter/internal-framework-angular-hybrid-examples-example",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "prestart": "npx check-peer-dependencies --install",
@@ -25,8 +27,8 @@
     "@types/angular": "^1.8.9",
     "@types/jquery": "^3.2.16",
     "@uirouter/angular": "^22.0.0",
-    "@uirouter/angular-hybrid": "latest",
-    "@uirouter/angularjs": "1.1.1",
+    "@uirouter/angular-hybrid": "^22.0.0",
+    "@uirouter/angularjs": "^1.1.1",
     "@uirouter/core": "^6.1.2",
     "@uirouter/rx": "^1.0.0",
     "angular": "1.8.3",

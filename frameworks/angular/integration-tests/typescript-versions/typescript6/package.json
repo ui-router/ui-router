@@ -1,5 +1,6 @@
 {
-  "name": "@uirouter/angular-test-typescript6",
+  "name": "@uirouter/internal-framework-angular-integration-typescript-versions-typescript6",
+  "private": true,
   "version": "1.0.0",
   "description": "Test against Typescript 6",
   "scripts": {

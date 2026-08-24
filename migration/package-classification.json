@@ -209,12 +209,12 @@
       "consumerManifest": "framework/angular-hybrid/examples/example/package.json",
       "declaredSpec": "1.1.1",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n02/manifest-normalization.json",
+        "sha256": "e1bd63c1cdb1190ae5aee88b6b1c5c5f660c5b965d5e5df63aad5acbbfef72ff"
       },
       "expectedOrigin": "workspace:framework/angularjs/router/package.json",
       "expectedVersion": "1.1.2",
-      "finalSpec": "1.1.1",
+      "finalSpec": "^1.1.1",
       "id": "edge-framework-angular-hybrid-examples-example-dependencies-uirouter-angularjs",
       "manifestSection": "dependencies",
       "owningLane": "example:framework/angular-hybrid/examples/example",
@@ -804,12 +804,12 @@
       "consumerManifest": "framework/angular/router/package.json",
       "declaredSpec": "2.7.0",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n02/manifest-normalization.json",
+        "sha256": "e1bd63c1cdb1190ae5aee88b6b1c5c5f660c5b965d5e5df63aad5acbbfef72ff"
       },
       "expectedOrigin": "workspace:tools/publish-scripts/package.json",
       "expectedVersion": "2.8.0",
-      "finalSpec": "2.7.0",
+      "finalSpec": "^2.7.0",
       "id": "edge-framework-angular-router-devdependencies-uirouter-publish-scripts",
       "manifestSection": "devDependencies",
       "owningLane": "published-package:framework/angular/router",
@@ -2300,12 +2300,12 @@
       "consumerManifest": "plugins/visualizer/package.json",
       "declaredSpec": "2.7.0",
       "evidence": {
-        "path": "migration/control-evidence/n00/inventory.json",
-        "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        "path": "migration/evidence/n02/manifest-normalization.json",
+        "sha256": "e1bd63c1cdb1190ae5aee88b6b1c5c5f660c5b965d5e5df63aad5acbbfef72ff"
       },
       "expectedOrigin": "workspace:tools/publish-scripts/package.json",
       "expectedVersion": "2.8.0",
-      "finalSpec": "2.7.0",
+      "finalSpec": "^2.7.0",
       "id": "edge-plugins-visualizer-devdependencies-uirouter-publish-scripts",
       "manifestSection": "devDependencies",
       "owningLane": "published-package:plugins/visualizer",

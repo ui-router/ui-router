@@ -27,7 +27,16 @@
     "tools/*"
   ],
   "scripts": {
-    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:contracts && npm run verify:work-graph",
+    "build": "turbo run build --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "build:workspaces": "turbo run build",
+    "lint": "turbo run lint --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "typecheck": "turbo run typecheck --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "test": "turbo run test --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "test:watch": "turbo run test:watch --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*' --concurrency=16",
+    "docs": "turbo run docs --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "setup:browser": "turbo run setup:browser --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
+    "e2e": "turbo run e2e --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
+    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:turbo && npm run verify:contracts && npm run verify:work-graph",
     "verify:root-config": "node tools/verify-root-config.mjs",
     "verify:manifests": "node tools/verify-manifest-normalization.mjs",
     "verify:locks": "node tools/verify-npm-locks.mjs",
@@ -38,6 +47,9 @@
     "test:s01": "node tools/test-s01-scripts.mjs",
     "verify:source-aliases": "node tools/verify-source-aliases.mjs",
     "test:source-aliases": "node tools/test-source-aliases.mjs",
+    "verify:turbo": "node tools/verify-turbo-graph.mjs",
+    "test:turbo": "node tools/test-turbo-graph.mjs",
+    "prove:turbo": "node tools/prove-turbo-graph.mjs",
     "prove:source-commands": "node tools/prove-source-commands.mjs",
     "prove:source-watch": "node tools/prove-source-watch.mjs",
     "prove:source-packs": "node tools/prove-source-packs.mjs",
@@ -48,5 +60,8 @@
     "verify:contracts": "node tools/verify-contract-schemas.mjs",
     "verify:work-graph": "node tools/verify-work-graph.mjs",
     "test:history-migration": "node tools/test-history-migration.mjs"
+  },
+  "devDependencies": {
+    "turbo": "2.10.12"
   }
 }

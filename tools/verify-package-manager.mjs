@@ -57,9 +57,34 @@ requireEqual('cleanup evidence runtime', cleanupEvidence.runtime, {
 const n03Evidence = readJson('migration/evidence/n03/lock-conversion.json');
 requireEqual('cleanup lock predecessor', cleanupEvidence.rootLock.beforeSha256, n03Evidence.rootLock.sha256);
 requireEqual('cleanup lock predecessor entries', cleanupEvidence.rootLock.beforePackageEntries, n03Evidence.rootLock.packageEntries);
-requireEqual('cleanup current lock digest', cleanupEvidence.rootLock.afterSha256, sha256('package-lock.json'));
-requireEqual('cleanup current lock entries', cleanupEvidence.rootLock.afterPackageEntries, Object.keys(readJson('package-lock.json').packages).length);
 requireEqual('cleanup added lock keys', cleanupEvidence.rootLock.addedPackageKeys, []);
+const turboEvidencePath = 'migration/evidence/s03/turbo-graph.json';
+requireEqual('approved S03 Turbo evidence digest', sha256(turboEvidencePath), '3362046ab45dc9400ca16a026b0d478d9ce57e26bc1901bbabf6018b4b6f1bbd');
+const turboEvidence = readJson(turboEvidencePath);
+requireEqual('Turbo evidence schema version', turboEvidence.schemaVersion, 1);
+requireEqual('Turbo evidence task', turboEvidence.task, 'S03');
+requireEqual('Turbo evidence owner', turboEvidence.owner, 'ui-router-maintainers');
+requireEqual('Turbo evidence base', turboEvidence.baseCommit, '25e382a7994268f37411f4dfaa5a97ce3e2fa2d3');
+requireEqual('Turbo evidence runtime', turboEvidence.runtime, cleanupEvidence.runtime);
+requireEqual('Turbo lock predecessor digest', turboEvidence.rootLock.beforeSha256, cleanupEvidence.rootLock.afterSha256);
+requireEqual('Turbo lock predecessor entries', turboEvidence.rootLock.beforePackageEntries, cleanupEvidence.rootLock.afterPackageEntries);
+requireEqual('Turbo current lock digest', turboEvidence.rootLock.afterSha256, sha256('package-lock.json'));
+const currentRootLock = readJson('package-lock.json');
+requireEqual('Turbo current lock entries', turboEvidence.rootLock.afterPackageEntries, Object.keys(currentRootLock.packages).length);
+requireEqual('Turbo added lock keys', turboEvidence.rootLock.addedPackageKeys, [
+  'node_modules/@turbo/darwin-64',
+  'node_modules/@turbo/darwin-arm64',
+  'node_modules/@turbo/linux-64',
+  'node_modules/@turbo/linux-arm64',
+  'node_modules/@turbo/windows-64',
+  'node_modules/@turbo/windows-arm64',
+  'node_modules/turbo',
+]);
+requireEqual('Turbo evidence package', turboEvidence.turbo, {
+  version: '2.10.12',
+  integrity: 'sha512-AswgMPnpOoaVZHrrSBejETzEbuIA69OVGwfkHwfrY0A23VjWXBANzgq9+OymWOHAIArB7D1+1z498WY8fGg1Jw==',
+  remoteCache: false,
+});
 requireEqual('cleanup install command', cleanupEvidence.installProof.command, 'npm ci --ignore-scripts --no-audit --no-fund');
 requireEqual('cleanup install status', cleanupEvidence.installProof.exitStatus, 0);
 requireEqual('cleanup external sandbox', cleanupEvidence.installProof.sandboxOutsideRepositoryAncestry, true);

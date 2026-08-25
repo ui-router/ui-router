@@ -1,0 +1,441 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    ".node-version",
+    ".nvmrc",
+    ".npmrc",
+    "package-lock.json"
+  ],
+  "tasks": {
+    "clean": {
+      "cache": false
+    },
+    "lint": {
+      "cache": false,
+      "outputs": []
+    },
+    "typecheck": {
+      "cache": false,
+      "outputs": []
+    },
+    "test": {
+      "cache": false,
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": [],
+      "env": ["NODE_ENV"]
+    },
+    "pack": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": [".artifacts/packages/**"]
+    },
+    "docs": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": [],
+      "env": ["NODE_ENV"]
+    },
+    "e2e": {
+      "cache": false,
+      "outputs": ["test-results/**", "playwright-report/**"],
+      "env": ["CI", "CYPRESS_CACHE_FOLDER", "PLAYWRIGHT_BROWSERS_PATH"]
+    },
+    "setup:browser": {
+      "cache": false,
+      "env": ["CYPRESS_CACHE_FOLDER", "PLAYWRIGHT_BROWSERS_PATH"]
+    },
+    "integration": {
+      "cache": false
+    },
+    "release": {
+      "cache": false
+    },
+    "publish": {
+      "cache": false
+    },
+    "@uirouter/angular#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/angular-hybrid#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/angularjs#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["lib-esm/**", "lib/**", "release/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/core#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/dsr#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-angular-examples-sample-app#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-angular-hybrid-examples-example#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-angular-hybrid-examples-sample-app#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-angularjs-examples-sample-app#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-react-examples-animating-transitions#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["build/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-framework-react-examples-sample-app#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["docs/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-dsr-examples-angular-cli#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-dsr-examples-angularjs-webpack#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["bundle.js"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-dsr-examples-react-vite#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-redux-examples-react#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-sticky-states-examples-angular-cli#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-sticky-states-examples-angularjs-webpack#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["bundle.js"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/internal-plugins-sticky-states-examples-react-vite#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/react#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/react-hybrid#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/redux#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["dist/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/rx#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/sticky-states#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/visualizer#build": {
+      "dependsOn": ["^build", "clean"],
+      "cache": false,
+      "outputs": ["_bundles/**", "lib-esm/**", "lib/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/angular#docs": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": ["_doc/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/angularjs#docs": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": ["_doc/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/core#docs": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": ["_doc/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/react#docs": {
+      "dependsOn": ["^build", "build"],
+      "cache": false,
+      "outputs": ["_doc/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@uirouter/angular#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**",
+        "$TURBO_ROOT$/plugins/rx/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/angular#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**",
+        "$TURBO_ROOT$/plugins/rx/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/angularjs#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/angularjs#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/angularjs#typecheck": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": []
+    },
+    "@uirouter/core#test": {
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/core#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/dsr#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/dsr#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/react#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/react#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/redux#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**",
+        "$TURBO_ROOT$/frameworks/react/uirouter-react/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/redux#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**",
+        "$TURBO_ROOT$/frameworks/react/uirouter-react/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/rx#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/rx#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/sticky-states#test": {
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    },
+    "@uirouter/sticky-states#test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.cjs",
+        "$TURBO_ROOT$/core/src/**"
+      ],
+      "outputs": [],
+      "env": ["CI"]
+    }
+  }
+}

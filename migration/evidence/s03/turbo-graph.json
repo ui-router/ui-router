@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "task": "S03",
+  "owner": "ui-router-maintainers",
+  "baseCommit": "25e382a7994268f37411f4dfaa5a97ce3e2fa2d3",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "rootLock": {
+    "beforeSha256": "2dc333cc65a5b88ea0932e20c6ef67f337288a63b12bc6cf585cf539480dfee4",
+    "afterSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
+    "beforePackageEntries": 4289,
+    "afterPackageEntries": 4296,
+    "addedPackageKeys": [
+      "node_modules/@turbo/darwin-64",
+      "node_modules/@turbo/darwin-arm64",
+      "node_modules/@turbo/linux-64",
+      "node_modules/@turbo/linux-arm64",
+      "node_modules/@turbo/windows-64",
+      "node_modules/@turbo/windows-arm64",
+      "node_modules/turbo"
+    ]
+  },
+  "turbo": {
+    "version": "2.10.12",
+    "integrity": "sha512-AswgMPnpOoaVZHrrSBejETzEbuIA69OVGwfkHwfrY0A23VjWXBANzgq9+OymWOHAIArB7D1+1z498WY8fGg1Jw==",
+    "remoteCache": false
+  }
+}

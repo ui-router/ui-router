@@ -97,8 +97,19 @@ if (/(?:^|\s|&&|\|\|)tsc(?:\s|$)/.test(requireScript(angularjs, 'test', 'B03 ang
 }
 
 const forbiddenUnitPattern = /(?:^|\s|&&|\|\|)(?:npm\s+run\s+)?(?:build|compile|bundle|typecheck|e2e)(?:\s|$)|(?:npm|npx)\s+(?:i|install|ci)(?:\s|$)|(?:playwright\s+test|cypress(?:-runner)?\s+(?:run|open))/i;
-const browserInstallPattern = /(?:playwright|npx\s+playwright|npm\s+exec\s+--\s+playwright)\s+install\b/i;
-const browserTestPattern = /(?:playwright|npx\s+playwright|npm\s+exec\s+--\s+playwright)\s+test\b/i;
+const browserKinds = [
+  {
+    name: 'Playwright',
+    execute: /(?:playwright|npx\s+playwright|npm\s+exec\s+--\s+playwright)\s+test\b/i,
+    install: /(?:playwright|npx\s+playwright|npm\s+exec\s+--\s+playwright)\s+install\b/i,
+  },
+  {
+    name: 'Cypress',
+    execute: /(?:cypress-runner|cypress)\s+(?:run|open)\b/i,
+    install: /(?:cypress|npm\s+exec\s+--\s+cypress)\s+install\b/i,
+  },
+];
+const anyBrowserInstall = new RegExp(browserKinds.map((kind) => kind.install.source).join('|'), 'i');
 let browserProjects = 0;
 let publishedWithTests = 0;
 
@@ -112,14 +123,18 @@ for (const record of records) {
     }
   }
   for (const [name, command] of Object.entries(scripts)) {
-    if (name !== 'setup:browser' && browserInstallPattern.test(command)) {
+    if (name !== 'setup:browser' && anyBrowserInstall.test(command)) {
       fail(`${record.currentPath} embeds browser installation in ${name}: ${command}`);
     }
   }
-  if (Object.values(scripts).some((command) => browserTestPattern.test(command))) {
+  const usedBrowserKinds = browserKinds.filter((kind) => Object.values(scripts).some((command) => kind.execute.test(command)));
+  if (usedBrowserKinds.length > 0) {
     browserProjects += 1;
-    requireScript(record, 'setup:browser', 'Playwright execution requires explicit browser setup');
-    requireScript(record, 'e2e', 'Playwright execution requires a canonical e2e lane');
+    const setup = requireScript(record, 'setup:browser', `${usedBrowserKinds.map((kind) => kind.name).join('/')} execution requires explicit browser setup`);
+    requireScript(record, 'e2e', `${usedBrowserKinds.map((kind) => kind.name).join('/')} execution requires a canonical e2e lane`);
+    for (const kind of usedBrowserKinds) {
+      if (!kind.install.test(setup)) fail(`${record.currentPath} setup:browser does not install ${kind.name}: ${setup}`);
+    }
   }
 }
 

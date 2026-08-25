@@ -58,6 +58,12 @@ const cases = [
     expected: 'embeds browser installation in e2e',
   },
   {
+    name: 'Cypress execution requires matching setup',
+    path: 'frameworks/angular-hybrid/examples/example/package.json',
+    mutate: (manifest) => { manifest.scripts['setup:browser'] = 'playwright install chromium'; },
+    expected: 'setup:browser does not install Cypress',
+  },
+  {
     name: 'unit baseline requires watch interface',
     path: 'plugins/dsr/package.json',
     mutate: (manifest) => { delete manifest.scripts['test:watch']; },

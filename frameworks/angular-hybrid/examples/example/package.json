@@ -8,6 +8,7 @@
     "test": "npm run e2e",
     "e2e": "npm run build && cypress-runner run --path .",
     "test:ui": "npm run build && cypress-runner open --path .",
+    "setup:browser": "cypress install",
     "check:peers": "npm exec -- check-peer-dependencies"
   },
   "checkPeerDependencies": {

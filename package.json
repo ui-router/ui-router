@@ -38,6 +38,7 @@
     "test:s01": "node tools/test-s01-scripts.mjs",
     "verify:source-aliases": "node tools/verify-source-aliases.mjs",
     "test:source-aliases": "node tools/test-source-aliases.mjs",
+    "prove:source-commands": "node tools/prove-source-commands.mjs",
     "prove:source-watch": "node tools/prove-source-watch.mjs",
     "prove:source-packs": "node tools/prove-source-packs.mjs",
     "test:n04-validators": "node tools/test-n04-validators.mjs",

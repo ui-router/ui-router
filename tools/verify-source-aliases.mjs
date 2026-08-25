@@ -169,10 +169,10 @@ for (const edge of contract.edges) {
       fail(`${edge.id} ${label} must use cwd=., CI=${ci}, expectedStatus=0, and its exact edge argv`);
     }
   };
-  requireCommand(edge.invalidationCommand, expectedWatch, '0', 'invalidation command');
+  requireCommand(edge.invalidationCommand, expectedWatch, 'false', 'invalidation command');
   for (const [name, adapter] of activeEntries) {
     requireCommand(adapter.positiveTest, expectedPositive, '1', `${name} positive test`);
-    requireCommand(adapter.watchTest, expectedWatch, '0', `${name} watch test`);
+    requireCommand(adapter.watchTest, expectedWatch, 'false', `${name} watch test`);
     requireCommand(adapter.negativeProductionTest, expectedProduction, '1', `${name} production test`);
   }
   const sourceRoot = edge.sourceEntrypoint.split('/src/')[0];
@@ -242,8 +242,50 @@ function parseAdapterConfig(relative) {
   };
   visit(source);
   if (!configObject) fail(`unable to locate exported adapter config object: ${relative}`);
-  return configObject;
+  return { source, config: configObject };
 }
+
+function variableDeclaration(source, name) {
+  for (const statement of source.statements) {
+    if (!ts.isVariableStatement(statement)) continue;
+    const declaration = statement.declarationList.declarations.find((candidate) => ts.isIdentifier(candidate.name) && candidate.name.text === name);
+    if (declaration) return declaration;
+  }
+  return null;
+}
+
+function resolvesToHelper(configPath, moduleSpecifier) {
+  const absolute = path.resolve(path.dirname(path.join(root, configPath)), moduleSpecifier);
+  return existsSync(absolute) && realpathSync(absolute) === realpathSync(helperPath);
+}
+
+function requireExactVitestHelper(parsed, configPath, packageName) {
+  const helperImport = parsed.source.statements.find((statement) => ts.isImportDeclaration(statement)
+    && ts.isStringLiteral(statement.moduleSpecifier)
+    && statement.importClause?.name?.text === 'sourceAliases');
+  if (!helperImport || !resolvesToHelper(configPath, helperImport.moduleSpecifier.text)) fail(`${packageName} Vitest config must import the exact shared helper: ${configPath}`);
+  const sourceDeclaration = variableDeclaration(parsed.source, 'source');
+  const initializer = sourceDeclaration?.initializer;
+  if (!initializer || !ts.isCallExpression(initializer) || !isMember(initializer.expression, 'sourceAliases', 'vitestConfigFor')
+    || initializer.arguments.length !== 1 || !ts.isStringLiteral(initializer.arguments[0]) || initializer.arguments[0].text !== packageName) {
+    fail(`${packageName} Vitest config must call the exact shared helper with its own package name: ${configPath}`);
+  }
+}
+
+function requireExactJestHelper(parsed, configPath, packageName) {
+  const helperDeclaration = variableDeclaration(parsed.source, 'sourceAliases');
+  const helperInitializer = helperDeclaration?.initializer;
+  if (!helperInitializer || !ts.isCallExpression(helperInitializer) || !ts.isIdentifier(helperInitializer.expression) || helperInitializer.expression.text !== 'require'
+    || helperInitializer.arguments.length !== 1 || !ts.isStringLiteral(helperInitializer.arguments[0]) || !resolvesToHelper(configPath, helperInitializer.arguments[0].text)) {
+    fail(`AngularJS Jest must require the exact shared helper: ${configPath}`);
+  }
+  const packageDeclaration = variableDeclaration(parsed.source, 'sourcePackage');
+  if (!packageDeclaration?.initializer || !ts.isStringLiteral(packageDeclaration.initializer) || packageDeclaration.initializer.text !== packageName) {
+    fail(`AngularJS Jest sourcePackage must be exactly ${packageName}`);
+  }
+}
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const edgesToCheck = selectedEdge ? contract.edges.filter((edge) => edge.id === selectedEdge) : contract.edges;
 for (const edge of edgesToCheck) {
@@ -280,7 +322,9 @@ for (const edge of contract.edges) {
 }
 for (const [consumer, configPath] of vitestAdapters) {
   const packageName = readJson(consumer).name;
-  const config = parseAdapterConfig(configPath);
+  const parsed = parseAdapterConfig(configPath);
+  requireExactVitestHelper(parsed, configPath, packageName);
+  const config = parsed.config;
   const resolve = objectProperty(config, 'resolve');
   const alias = resolve && ts.isObjectLiteralExpression(resolve.initializer) ? objectProperty(resolve.initializer, 'alias') : null;
   if (!alias || !includesMember(alias.initializer, 'source', 'aliases')) fail(`${packageName} Vitest config does not install the exact shared source aliases: ${configPath}`);
@@ -296,6 +340,17 @@ for (const [consumer, configPath] of vitestAdapters) {
   }
 
   const source = helper.vitestConfigFor(packageName);
+  const expectedEdges = contract.edges
+    .filter((edge) => edge.consumer === consumer)
+    .sort((left, right) => left.precedence - right.precedence || `${left.package}${left.export}`.localeCompare(`${right.package}${right.export}`));
+  const expectedAliases = expectedEdges.map((edge) => {
+    const specifier = `${edge.package}${edge.export === '.' ? '' : edge.export.slice(1)}`;
+    return { pattern: new RegExp(`^${escapeRegExp(specifier)}$`).source, replacement: path.join(root, edge.sourceEntrypoint) };
+  });
+  const actualAliases = source.aliases.map((aliasEntry) => ({ pattern: aliasEntry.find?.source, replacement: aliasEntry.replacement }));
+  if (JSON.stringify(actualAliases) !== JSON.stringify(expectedAliases)) fail(`${packageName} shared Vitest aliases differ from the exact contract values`);
+  const expectedWatchRoots = [...new Set(expectedEdges.flatMap((edge) => edge.watchRoots).map((watchRoot) => path.join(root, watchRoot)))].sort();
+  if (JSON.stringify(source.watchRoots) !== JSON.stringify(expectedWatchRoots)) fail(`${packageName} shared Vitest watch roots differ from the exact contract values`);
   if (source.typescriptPlugin?.enforce !== 'pre') fail(`${packageName} shared TypeScript source compiler must run pre-transform`);
   if (!source.plugins?.includes(source.typescriptPlugin) || !source.plugins?.includes(source.watchPlugin)) fail(`${packageName} shared Vitest plugin set is incomplete`);
   const watchRoot = source.watchRoots[0];
@@ -309,7 +364,10 @@ for (const [consumer, configPath] of vitestAdapters) {
 
 const angularjsManifest = publishedByName.get('@uirouter/angularjs').currentPath;
 if (readJson(angularjsManifest).scripts?.typecheck !== 'tsc -p tsconfig.source.json') fail('AngularJS typecheck must use the shared source-alias TypeScript config');
-const angularjsJest = parseAdapterConfig('frameworks/angularjs/uirouter-angularjs/jest.config.js');
+const angularjsConfigPath = 'frameworks/angularjs/uirouter-angularjs/jest.config.js';
+const angularjsParsed = parseAdapterConfig(angularjsConfigPath);
+requireExactJestHelper(angularjsParsed, angularjsConfigPath, '@uirouter/angularjs');
+const angularjsJest = angularjsParsed.config;
 const roots = objectProperty(angularjsJest, 'roots');
 const watchesSharedRoots = roots && ts.isArrayLiteralExpression(roots.initializer) && roots.initializer.elements.some((element) =>
   ts.isSpreadElement(element) && ts.isCallExpression(element.expression) && ts.isPropertyAccessExpression(element.expression.expression)
@@ -320,6 +378,18 @@ const mapsSharedAliases = mapper && ts.isObjectLiteralExpression(mapper.initiali
   ts.isSpreadAssignment(property) && ts.isCallExpression(property.expression) && ts.isPropertyAccessExpression(property.expression.expression)
   && isMember(property.expression.expression, 'sourceAliases', 'jestModuleNameMapperFor'));
 if (!mapsSharedAliases) fail('AngularJS Jest moduleNameMapper must install the exact shared source aliases');
+const angularjsEdges = contract.edges
+  .filter((edge) => edge.consumer === angularjsManifest)
+  .sort((left, right) => left.precedence - right.precedence || `${left.package}${left.export}`.localeCompare(`${right.package}${right.export}`));
+const angularjsRoot = path.dirname(path.join(root, angularjsManifest));
+const expectedJestMapper = Object.fromEntries(angularjsEdges.map((edge) => {
+  const specifier = `${edge.package}${edge.export === '.' ? '' : edge.export.slice(1)}`;
+  return [`^${escapeRegExp(specifier)}$`, `<rootDir>/${path.relative(angularjsRoot, path.join(root, edge.sourceEntrypoint)).split(path.sep).join('/')}`];
+}));
+if (JSON.stringify(helper.jestModuleNameMapperFor('@uirouter/angularjs')) !== JSON.stringify(expectedJestMapper)) fail('AngularJS shared Jest mapper differs from the exact contract values');
+const expectedJestRoots = [...new Set(angularjsEdges.flatMap((edge) => edge.watchRoots)
+  .map((watchRoot) => `<rootDir>/${path.relative(angularjsRoot, path.join(root, watchRoot)).split(path.sep).join('/')}`))].sort();
+if (JSON.stringify(helper.jestWatchRootsFor('@uirouter/angularjs')) !== JSON.stringify(expectedJestRoots)) fail('AngularJS shared Jest watch roots differ from the exact contract values');
 const globals = objectProperty(angularjsJest, 'globals');
 const tsJest = globals && ts.isObjectLiteralExpression(globals.initializer) ? objectProperty(globals.initializer, 'ts-jest') : null;
 const isolated = tsJest && ts.isObjectLiteralExpression(tsJest.initializer) ? objectProperty(tsJest.initializer, 'isolatedModules') : null;

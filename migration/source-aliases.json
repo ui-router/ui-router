@@ -43,7 +43,7 @@
               "source-angular-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -85,7 +85,7 @@
           "source-angular-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -133,7 +133,7 @@
               "source-angular-rx-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -175,7 +175,7 @@
           "source-angular-rx-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -221,7 +221,7 @@
               "source-angularjs-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -266,7 +266,7 @@
               "source-angularjs-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -309,7 +309,7 @@
           "source-angularjs-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -355,7 +355,7 @@
               "source-angularjs-core-router"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -400,7 +400,7 @@
               "source-angularjs-core-router"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -443,7 +443,7 @@
           "source-angularjs-core-router"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -489,7 +489,7 @@
               "source-angularjs-core-state-stateregistry"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -534,7 +534,7 @@
               "source-angularjs-core-state-stateregistry"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -577,7 +577,7 @@
           "source-angularjs-core-state-stateregistry"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -625,7 +625,7 @@
               "source-dsr-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -667,7 +667,7 @@
           "source-dsr-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -715,7 +715,7 @@
               "source-dsr-core-state-interface"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -757,7 +757,7 @@
           "source-dsr-core-state-interface"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -805,7 +805,7 @@
               "source-dsr-core-state-stateobject"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -847,7 +847,7 @@
           "source-dsr-core-state-stateobject"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -895,7 +895,7 @@
               "source-dsr-core-vanilla"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -937,7 +937,7 @@
           "source-dsr-core-vanilla"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -985,7 +985,7 @@
               "source-react-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1027,7 +1027,7 @@
           "source-react-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1075,7 +1075,7 @@
               "source-redux-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1117,7 +1117,7 @@
           "source-redux-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1165,7 +1165,7 @@
               "source-redux-react-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1207,7 +1207,7 @@
           "source-redux-react-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1255,7 +1255,7 @@
               "source-rx-core-globals"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1297,7 +1297,7 @@
           "source-rx-core-globals"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1345,7 +1345,7 @@
               "source-rx-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1387,7 +1387,7 @@
           "source-rx-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1435,7 +1435,7 @@
               "source-sticky-core-root"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1477,7 +1477,7 @@
           "source-sticky-core-root"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1525,7 +1525,7 @@
               "source-sticky-core-state-interface"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1567,7 +1567,7 @@
           "source-sticky-core-state-interface"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1615,7 +1615,7 @@
               "source-sticky-core-state-stateobject"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1657,7 +1657,7 @@
           "source-sticky-core-state-stateobject"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1705,7 +1705,7 @@
               "source-sticky-core-transition-interface"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1747,7 +1747,7 @@
           "source-sticky-core-transition-interface"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },
@@ -1795,7 +1795,7 @@
               "source-sticky-core-transition-transitionservice"
             ],
             "environment": {
-              "CI": "0"
+              "CI": "false"
             },
             "expectedStatus": 0
           },
@@ -1837,7 +1837,7 @@
           "source-sticky-core-transition-transitionservice"
         ],
         "environment": {
-          "CI": "0"
+          "CI": "false"
         },
         "expectedStatus": 0
       },

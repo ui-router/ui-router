@@ -43,7 +43,7 @@ for (const [manifestPath, packageName] of [...consumerNames].sort((left, right) 
   const forbiddenReferences = ['source-aliases.cjs', 'migration/source-aliases.json', root.split(path.sep).join('/'), ...upstreamReferences];
   for (const entry of pack.files) {
     const absolute = path.join(root, packageRoot, entry.path);
-    if (!existsSync(absolute)) continue;
+    if (!existsSync(absolute)) throw new Error(`SOURCE_PACK_FAILED package=${packageName} npm reported missing checkout file ${entry.path}`);
     const text = readFileSync(absolute).toString('utf8').split(path.sep).join('/');
     const leaked = forbiddenReferences.find((reference) => reference && text.includes(reference));
     if (leaked) throw new Error(`SOURCE_PACK_FAILED package=${packageName} file=${entry.path} contains development checkout/source reference ${leaked}`);

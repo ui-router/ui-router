@@ -77,8 +77,8 @@ const cases = [
   ['wrong adapter ownership', (value) => { value.edges[0].adapters.jest = value.edges[0].adapters.vitest; value.edges[0].adapters.vitest = 'not-applicable'; }, 'adapter ownership expected'],
   ['wrong root precedence', (value) => { value.edges.find((edge) => edge.export === '.').precedence = 10; }, 'root precedence must be 100'],
   ['wrong classification evidence', (value) => { value.edges[0].evidence.sha256 = '0'.repeat(64); }, 'evidence does not bind the classification'],
-  ['watch command targets another edge', (value) => { const argv = value.edges[0].invalidationCommand.argv; argv[argv.length - 1] = value.edges[1].id; }, 'invalidation command must use cwd=., CI=0, expectedStatus=0, and its exact edge argv'],
-  ['watch command has wrong environment', (value) => { value.edges[0].invalidationCommand.environment.CI = '1'; }, 'invalidation command must use cwd=., CI=0, expectedStatus=0, and its exact edge argv'],
+  ['watch command targets another edge', (value) => { const argv = value.edges[0].invalidationCommand.argv; argv[argv.length - 1] = value.edges[1].id; }, 'invalidation command must use cwd=., CI=false, expectedStatus=0, and its exact edge argv'],
+  ['watch command has wrong environment', (value) => { value.edges[0].invalidationCommand.environment.CI = '1'; }, 'invalidation command must use cwd=., CI=false, expectedStatus=0, and its exact edge argv'],
 ];
 
 try {
@@ -122,6 +122,24 @@ const fullCases = [
     file: 'frameworks/angularjs/uirouter-angularjs/jest.config.js',
     mutate: (text) => text.replace('    ...sourceAliases.jestModuleNameMapperFor(sourcePackage),\n', ''),
     expected: 'moduleNameMapper must install the exact shared source aliases',
+  },
+  {
+    name: 'wrong Vitest consumer package',
+    file: 'plugins/dsr/vitest.config.ts',
+    mutate: (text) => text.replace("vitestConfigFor('@uirouter/dsr')", "vitestConfigFor('@uirouter/rx')"),
+    expected: 'must call the exact shared helper with its own package name',
+  },
+  {
+    name: 'wrong Jest consumer package',
+    file: 'frameworks/angularjs/uirouter-angularjs/jest.config.js',
+    mutate: (text) => text.replace("const sourcePackage = '@uirouter/angularjs'", "const sourcePackage = '@uirouter/core'"),
+    expected: 'sourcePackage must be exactly @uirouter/angularjs',
+  },
+  {
+    name: 'wrong helper alias values',
+    file: 'tools/source-aliases.cjs',
+    mutate: (text) => text.replace('replacement: sourcePath(edge),', 'replacement: repositoryRoot,'),
+    expected: 'shared Vitest aliases differ from the exact contract values',
   },
   {
     name: 'bare Vitest watch command',

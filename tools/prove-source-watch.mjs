@@ -21,6 +21,7 @@ const lanes = contract.edges
       probePath: path.join(root, edge.sourceEntrypoint),
       probeRelative: edge.sourceEntrypoint,
       ignoredPaths: edge.ignoredPaths,
+      commandEnvironment: edge.invalidationCommand.environment,
       marker: usesJest ? /Test Suites:\s+\d+ passed/g : /Test Files\s+\d+ passed/g,
     };
   });
@@ -49,7 +50,7 @@ process.once('SIGINT', () => { cleanupActive(); process.exit(130); });
 process.once('SIGTERM', () => { cleanupActive(); process.exit(143); });
 process.once('exit', cleanupActive);
 
-async function proveLane({ edgeId, packageName, probePath, probeRelative, ignoredPaths, marker }) {
+async function proveLane({ edgeId, packageName, probePath, probeRelative, ignoredPaths, commandEnvironment, marker }) {
   const original = readFileSync(probePath);
   const token = `\n// source-watch-probe:${edgeId}:${process.pid}\n`;
   let output = '';
@@ -71,7 +72,7 @@ async function proveLane({ edgeId, packageName, probePath, probeRelative, ignore
   const child = spawn('npm', ['run', 'test:watch', `--workspace=${packageName}`], {
     cwd: root,
     detached: true,
-    env: { ...process.env, CI: 'false', FORCE_COLOR: '0', NO_COLOR: '1' },
+    env: { ...process.env, ...commandEnvironment, FORCE_COLOR: '0', NO_COLOR: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   activeChild = child;

@@ -9,6 +9,7 @@
     "release": "release --deps @uirouter/core @uirouter/rx",
     "check-peer-dependencies": "check-peer-dependencies",
     "test": "npm run test:zone && npm run test:zoneless",
+    "test:watch": "vitest",
     "test:zone": "vitest run --project zone",
     "test:zone:watch": "vitest watch --project zone",
     "test:zone:debug": "vitest --project zone --no-file-parallelism --inspect-brk",

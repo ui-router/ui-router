@@ -5,8 +5,10 @@
   "description": "AngularJS/webpack sticky states example",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && playwright install chromium && playwright test",
+    "test": "npm run e2e",
+    "e2e": "npm run build && playwright test",
     "test:ui": "npm run build && playwright test --ui",
+    "setup:browser": "npm exec -- playwright install chromium",
     "build": "webpack --progress",
     "start": "webpack serve --progress --open"
   },

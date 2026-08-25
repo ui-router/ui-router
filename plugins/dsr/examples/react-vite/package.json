@@ -22,8 +22,9 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "npm run build && npx playwright test",
-    "test:ui": "npm run build && npx playwright test --ui",
+    "test": "npm run e2e",
+    "e2e": "npm run build && playwright test",
+    "test:ui": "npm run build && playwright test --ui",
     "setup:browser": "npm exec -- playwright install chromium"
   }
 }

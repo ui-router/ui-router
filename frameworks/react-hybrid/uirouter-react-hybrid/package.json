@@ -8,7 +8,6 @@
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
     "build": "run-s compile bundle fixmaps:*",
-    "test": "npm run build",
     "test:downstream": "test_downstream_projects",
     "release": "release --deps @uirouter/core @uirouter/react @uirouter/angularjs",
     "setup:hooks": "husky",

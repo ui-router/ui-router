@@ -7,9 +7,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "playwright install chromium && npm run test:dev && npm run test:prod",
-    "test:dev": "ng build --configuration development && DIST_PATH=dist/v21-standalone/browser npx playwright test",
-    "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21-standalone/browser npx playwright test"
+    "test": "npm run e2e",
+    "e2e": "npm run test:dev && npm run test:prod",
+    "setup:browser": "npm exec -- playwright install chromium",
+    "test:dev": "ng build --configuration development && DIST_PATH=dist/v21-standalone/browser playwright test",
+    "test:prod": "ng build  --configuration production && DIST_PATH=dist/v21-standalone/browser playwright test"
   },
   "dependencies": {
     "@angular/common": "^22.0.8",

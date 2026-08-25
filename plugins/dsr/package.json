@@ -7,6 +7,7 @@
     "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
     "compile": "npm run clean && tsgo && tsgo -m es6 --outDir lib-esm",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:downstream": "test_downstream_projects",
     "watch": "run-p watch:*",
     "watch:buildjs": "tsgo -w",

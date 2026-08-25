@@ -7,9 +7,10 @@
     "clean": "shx rm -rf dist test-results",
     "start": "webpack-dev-server --progress --open",
     "build": "webpack",
-    "test": "playwright install chromium && npm run build && playwright test",
+    "test": "npm run e2e",
     "test:ui": "npm run build && playwright test --ui",
-    "e2e": "npm run test",
+    "e2e": "npm run build && playwright test",
+    "setup:browser": "npm exec -- playwright install chromium",
     "format": "prettier --write \"app/**/*.js\" \"tests/**/*.js\" \"*.js\" \"*.json\"",
     "setup:hooks": "husky"
   },

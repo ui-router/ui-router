@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _doc build release *.log",
     "compile": "tsc && tsc -m es6 --outDir lib-esm && npm run fixdts",
+    "typecheck": "tsc --noEmit",
     "fixdts": "dts-downlevel 'lib/**/*.d.ts' 'lib-esm/**/*.d.ts'",
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include 'release/**/*.js.map'",
@@ -16,7 +17,8 @@
     "bundle_router": "rollup -c --environment ROUTER  && rollup -c --environment ROUTER,MINIFY",
     "bundle_events": "rollup -c --environment EVENTS  && rollup -c --environment EVENTS,MINIFY",
     "bundle_resolve": "rollup -c --environment RESOLVE && rollup -c --environment RESOLVE,MINIFY",
-    "test": "tsc && NG=1.7 jest && NG=1.6 jest && NG=1.5 jest && NG=1.4 jest && NG=1.3 jest && NG=1.2 jest",
+    "test": "NG=1.7 jest && NG=1.6 jest && NG=1.5 jest && NG=1.4 jest && NG=1.3 jest && NG=1.2 jest",
+    "test:watch": "jest --watch",
     "test:debug": "node --inspect ./node_modules/.bin/jest --runInBand --watch",
     "test:ng12": "NG=1.2 jest",
     "test:ng13": "NG=1.3 jest",

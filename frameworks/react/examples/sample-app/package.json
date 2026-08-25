@@ -9,8 +9,10 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "npx playwright install chromium && npm run build && playwright test",
-    "test:ui": "npx playwright install chromium && npm run build && playwright test --ui",
+    "test": "npm run e2e",
+    "test:ui": "npm run build && playwright test --ui",
+    "e2e": "npm run build && playwright test",
+    "setup:browser": "npm exec -- playwright install chromium",
     "test:report": "playwright show-report",
     "gh-pages": "npm run build && git add docs && git commit -m 'update github pages' docs && git push"
   },

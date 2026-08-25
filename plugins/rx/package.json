@@ -8,7 +8,7 @@
     "bundle": "rolldown -c rolldown.config.mjs",
     "build": "run-s compile bundle fixmaps:*",
     "test": "vitest run",
-    "test:watch": "vitest",
+    "test:watch": "vitest --watch",
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -p ../src --include '_bundles/**/*.js.map'",
     "release": "release",

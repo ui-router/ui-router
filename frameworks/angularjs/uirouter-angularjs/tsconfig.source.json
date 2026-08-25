@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../../..",
+    "types": [],
+    "paths": {
+      "@uirouter/core": ["core/src/index.ts"],
+      "@uirouter/core/lib/router": ["core/src/router.ts"],
+      "@uirouter/core/lib/state/stateRegistry": ["core/src/state/stateRegistry.ts"]
+    },
+    "noEmit": true
+  }
+}

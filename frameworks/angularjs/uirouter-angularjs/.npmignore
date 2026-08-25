@@ -12,6 +12,7 @@ karma.conf.js
 tsconfig.json
 tsconfig.**.json
 webpack.config.js
+jest.config.js
 
 *.iml
 *.ipr

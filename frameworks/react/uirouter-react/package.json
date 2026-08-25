@@ -8,7 +8,7 @@
   "module": "lib-esm/index.js",
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest",
+    "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
     "test:downstream": "npm run build && test_downstream_projects",
     "test:integration": "npm run build && test_downstream_projects --group=react-versions",

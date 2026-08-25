@@ -270,6 +270,7 @@ const migrationControlFiles = new Set([
   'migration/path-repairs.json',
   'migration/README.md',
   'migration/sources.json',
+  'migration/source-aliases.json',
   'migration/validation.md',
   'migration/work-graph.json',
 ]);

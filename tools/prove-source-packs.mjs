@@ -26,8 +26,8 @@ for (const [manifestPath, packageName] of [...consumerNames].sort((left, right) 
   }
 
   const packed = new Set(pack.files.map((entry) => entry.path));
-  const adapterConfigs = new Set(contract.edges
-    .filter((edge) => edge.consumer === manifestPath)
+  const consumerEdges = contract.edges.filter((edge) => edge.consumer === manifestPath);
+  const adapterConfigs = new Set(consumerEdges
     .flatMap((edge) => Object.values(edge.adapters))
     .filter((adapter) => adapter !== 'not-applicable')
     .map((adapter) => path.relative(packageRoot, adapter.configPath).split(path.sep).join('/')));
@@ -35,13 +35,18 @@ for (const [manifestPath, packageName] of [...consumerNames].sort((left, right) 
     if (packed.has(config)) throw new Error(`SOURCE_PACK_FAILED package=${packageName} includes development source-alias adapter ${config}`);
   }
 
+  const upstreamReferences = new Set();
+  for (const upstream of consumerEdges.flatMap((edge) => [edge.sourceEntrypoint, ...edge.watchRoots])) {
+    upstreamReferences.add(path.relative(packageRoot, upstream).split(path.sep).join('/'));
+    upstreamReferences.add(path.join(root, upstream).split(path.sep).join('/'));
+  }
+  const forbiddenReferences = ['source-aliases.cjs', 'migration/source-aliases.json', root.split(path.sep).join('/'), ...upstreamReferences];
   for (const entry of pack.files) {
     const absolute = path.join(root, packageRoot, entry.path);
-    if (!existsSync(absolute) || entry.size > 8 * 1024 * 1024) continue;
-    const text = readFileSync(absolute, 'utf8');
-    if (text.includes('source-aliases.cjs') || text.includes('migration/source-aliases.json') || text.includes(root)) {
-      throw new Error(`SOURCE_PACK_FAILED package=${packageName} file=${entry.path} contains a development checkout/source alias`);
-    }
+    if (!existsSync(absolute)) continue;
+    const text = readFileSync(absolute).toString('utf8').split(path.sep).join('/');
+    const leaked = forbiddenReferences.find((reference) => reference && text.includes(reference));
+    if (leaked) throw new Error(`SOURCE_PACK_FAILED package=${packageName} file=${entry.path} contains development checkout/source reference ${leaked}`);
   }
   console.log(`SOURCE_PACK_OK package=${packageName} files=${pack.entryCount} bytes=${pack.unpackedSize}`);
 }

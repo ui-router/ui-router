@@ -164,11 +164,16 @@ for (const edge of contract.edges) {
   const expectedPositive = ['node', 'tools/verify-source-aliases.mjs', '--edge', edge.id];
   const expectedWatch = ['node', 'tools/prove-source-watch.mjs', '--edge', edge.id];
   const expectedProduction = ['node', 'tools/verify-source-aliases.mjs', '--edge', edge.id, '--production'];
-  if (JSON.stringify(edge.invalidationCommand.argv) !== JSON.stringify(expectedWatch)) fail(`${edge.id} invalidation command must target its exact edge`);
+  const requireCommand = (command, argv, ci, label) => {
+    if (command.cwd !== '.' || command.expectedStatus !== 0 || JSON.stringify(command.environment) !== JSON.stringify({ CI: ci }) || JSON.stringify(command.argv) !== JSON.stringify(argv)) {
+      fail(`${edge.id} ${label} must use cwd=., CI=${ci}, expectedStatus=0, and its exact edge argv`);
+    }
+  };
+  requireCommand(edge.invalidationCommand, expectedWatch, '0', 'invalidation command');
   for (const [name, adapter] of activeEntries) {
-    if (JSON.stringify(adapter.positiveTest.argv) !== JSON.stringify(expectedPositive)) fail(`${edge.id} ${name} positive test must target its exact edge`);
-    if (JSON.stringify(adapter.watchTest.argv) !== JSON.stringify(expectedWatch)) fail(`${edge.id} ${name} watch test must target its exact edge`);
-    if (JSON.stringify(adapter.negativeProductionTest.argv) !== JSON.stringify(expectedProduction)) fail(`${edge.id} ${name} production test must target its exact edge`);
+    requireCommand(adapter.positiveTest, expectedPositive, '1', `${name} positive test`);
+    requireCommand(adapter.watchTest, expectedWatch, '0', `${name} watch test`);
+    requireCommand(adapter.negativeProductionTest, expectedProduction, '1', `${name} production test`);
   }
   const sourceRoot = edge.sourceEntrypoint.split('/src/')[0];
   const expectedIgnored = ['lib', 'lib-esm', 'dist', '_bundles'].map((directory) => `${sourceRoot}/${directory}`);
@@ -196,6 +201,50 @@ if (!existsSync(helperPath)) fail('shared helper missing: tools/source-aliases.c
 const require = createRequire(import.meta.url);
 delete require.cache[helperPath];
 const helper = require(helperPath);
+const ts = require('typescript');
+
+function propertyName(node) {
+  if (ts.isIdentifier(node) || ts.isStringLiteral(node)) return node.text;
+  return null;
+}
+
+function objectProperty(object, name) {
+  return object.properties.find((property) => ts.isPropertyAssignment(property) && propertyName(property.name) === name);
+}
+
+function isMember(expression, objectName, propertyNameValue) {
+  return ts.isPropertyAccessExpression(expression)
+    && ts.isIdentifier(expression.expression)
+    && expression.expression.text === objectName
+    && expression.name.text === propertyNameValue;
+}
+
+function includesMember(expression, objectName, propertyNameValue) {
+  if (isMember(expression, objectName, propertyNameValue)) return true;
+  return ts.isArrayLiteralExpression(expression)
+    && expression.elements.some((element) => isMember(ts.isSpreadElement(element) ? element.expression : element, objectName, propertyNameValue));
+}
+
+function parseAdapterConfig(relative) {
+  const source = ts.createSourceFile(relative, readText(relative), ts.ScriptTarget.Latest, true, relative.endsWith('.ts') ? ts.ScriptKind.TS : ts.ScriptKind.JS);
+  let configObject = null;
+  const visit = (node) => {
+    if (ts.isExportAssignment(node) && ts.isCallExpression(node.expression) && node.expression.arguments.length > 0 && ts.isObjectLiteralExpression(node.expression.arguments[0])) {
+      configObject = node.expression.arguments[0];
+    }
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.EqualsToken
+      && ts.isPropertyAccessExpression(node.left) && ts.isIdentifier(node.left.expression)
+      && node.left.expression.text === 'module' && node.left.name.text === 'exports'
+      && ts.isObjectLiteralExpression(node.right)) {
+      configObject = node.right;
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  if (!configObject) fail(`unable to locate exported adapter config object: ${relative}`);
+  return configObject;
+}
+
 const edgesToCheck = selectedEdge ? contract.edges.filter((edge) => edge.id === selectedEdge) : contract.edges;
 for (const edge of edgesToCheck) {
   const resolved = helper.resolveSpecifierForConsumer(edge.consumer, `${edge.package}${edge.export === '.' ? '' : edge.export.slice(1)}`);
@@ -231,9 +280,20 @@ for (const edge of contract.edges) {
 }
 for (const [consumer, configPath] of vitestAdapters) {
   const packageName = readJson(consumer).name;
-  const config = readText(configPath);
-  if (!/source\.(?:plugins|typescriptPlugin)/.test(config)) fail(`${packageName} Vitest config does not install the shared TypeScript source compiler: ${configPath}`);
-  if (!/source\.(?:plugins|watchPlugin)/.test(config)) fail(`${packageName} Vitest config does not install the shared watch plugin: ${configPath}`);
+  const config = parseAdapterConfig(configPath);
+  const resolve = objectProperty(config, 'resolve');
+  const alias = resolve && ts.isObjectLiteralExpression(resolve.initializer) ? objectProperty(resolve.initializer, 'alias') : null;
+  if (!alias || !includesMember(alias.initializer, 'source', 'aliases')) fail(`${packageName} Vitest config does not install the exact shared source aliases: ${configPath}`);
+  const plugins = objectProperty(config, 'plugins');
+  const completePluginSet = plugins && (isMember(plugins.initializer, 'source', 'plugins')
+    || (includesMember(plugins.initializer, 'source', 'typescriptPlugin') && includesMember(plugins.initializer, 'source', 'watchPlugin')));
+  if (!completePluginSet) fail(`${packageName} Vitest config does not install the shared TypeScript and watch plugins: ${configPath}`);
+  const server = objectProperty(config, 'server');
+  const fs = server && ts.isObjectLiteralExpression(server.initializer) ? objectProperty(server.initializer, 'fs') : null;
+  const allow = fs && ts.isObjectLiteralExpression(fs.initializer) ? objectProperty(fs.initializer, 'allow') : null;
+  if (!allow || !ts.isArrayLiteralExpression(allow.initializer) || !allow.initializer.elements.some((element) => isMember(element, 'source', 'repositoryRoot'))) {
+    fail(`${packageName} Vitest config does not allow the shared repository source root: ${configPath}`);
+  }
 
   const source = helper.vitestConfigFor(packageName);
   if (source.typescriptPlugin?.enforce !== 'pre') fail(`${packageName} shared TypeScript source compiler must run pre-transform`);
@@ -249,8 +309,26 @@ for (const [consumer, configPath] of vitestAdapters) {
 
 const angularjsManifest = publishedByName.get('@uirouter/angularjs').currentPath;
 if (readJson(angularjsManifest).scripts?.typecheck !== 'tsc -p tsconfig.source.json') fail('AngularJS typecheck must use the shared source-alias TypeScript config');
-const angularjsJest = readText('frameworks/angularjs/uirouter-angularjs/jest.config.js');
-if (!angularjsJest.includes('isolatedModules: true') || !angularjsJest.includes('diagnostics: false')) fail('AngularJS Jest must transpile source-linked tests while the separate typecheck lane owns diagnostics');
+const angularjsJest = parseAdapterConfig('frameworks/angularjs/uirouter-angularjs/jest.config.js');
+const roots = objectProperty(angularjsJest, 'roots');
+const watchesSharedRoots = roots && ts.isArrayLiteralExpression(roots.initializer) && roots.initializer.elements.some((element) =>
+  ts.isSpreadElement(element) && ts.isCallExpression(element.expression) && ts.isPropertyAccessExpression(element.expression.expression)
+  && isMember(element.expression.expression, 'sourceAliases', 'jestWatchRootsFor'));
+if (!watchesSharedRoots) fail('AngularJS Jest roots must include the shared source watch roots');
+const mapper = objectProperty(angularjsJest, 'moduleNameMapper');
+const mapsSharedAliases = mapper && ts.isObjectLiteralExpression(mapper.initializer) && mapper.initializer.properties.some((property) =>
+  ts.isSpreadAssignment(property) && ts.isCallExpression(property.expression) && ts.isPropertyAccessExpression(property.expression.expression)
+  && isMember(property.expression.expression, 'sourceAliases', 'jestModuleNameMapperFor'));
+if (!mapsSharedAliases) fail('AngularJS Jest moduleNameMapper must install the exact shared source aliases');
+const globals = objectProperty(angularjsJest, 'globals');
+const tsJest = globals && ts.isObjectLiteralExpression(globals.initializer) ? objectProperty(globals.initializer, 'ts-jest') : null;
+const isolated = tsJest && ts.isObjectLiteralExpression(tsJest.initializer) ? objectProperty(tsJest.initializer, 'isolatedModules') : null;
+const diagnostics = tsJest && ts.isObjectLiteralExpression(tsJest.initializer) ? objectProperty(tsJest.initializer, 'diagnostics') : null;
+const tsconfig = tsJest && ts.isObjectLiteralExpression(tsJest.initializer) ? objectProperty(tsJest.initializer, 'tsconfig') : null;
+if (!isolated || isolated.initializer.kind !== ts.SyntaxKind.TrueKeyword || !diagnostics || diagnostics.initializer.kind !== ts.SyntaxKind.FalseKeyword
+  || !tsconfig || !ts.isStringLiteral(tsconfig.initializer) || tsconfig.initializer.text !== './tsconfig.source.json') {
+  fail('AngularJS Jest must transpile with tsconfig.source.json while the separate typecheck lane owns diagnostics');
+}
 
 const productionPatterns = [
   /(?:^|\/)rollup\.config\.(?:js|cjs|mjs|ts)$/,

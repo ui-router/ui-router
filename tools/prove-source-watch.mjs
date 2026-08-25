@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -20,6 +20,7 @@ const lanes = contract.edges
       packageName,
       probePath: path.join(root, edge.sourceEntrypoint),
       probeRelative: edge.sourceEntrypoint,
+      ignoredPaths: edge.ignoredPaths,
       marker: usesJest ? /Test Suites:\s+\d+ passed/g : /Test Files\s+\d+ passed/g,
     };
   });
@@ -28,7 +29,7 @@ if (lanes.length === 0) throw new Error(`unknown source-alias edge: ${selectedEd
 const stripAnsi = (value) => value.replace(/[\u001b\u009b][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[-a-zA-Z\d\/#&.:=?%@~_]+)*)?\u0007)|(?:(?:\d{1,4}(?:[;:]\d{0,4})*)?[\dA-PR-TZcf-nq-uy=><~]))/g, '');
 
 function stopGroup(child) {
-  if (!child.pid) return;
+  if (!child?.pid) return;
   try {
     process.kill(-child.pid, 'SIGTERM');
   } catch (error) {
@@ -36,7 +37,19 @@ function stopGroup(child) {
   }
 }
 
-async function proveLane({ edgeId, packageName, probePath, probeRelative, marker }) {
+let activeChild = null;
+let activeRestore = null;
+function cleanupActive() {
+  activeRestore?.();
+  stopGroup(activeChild);
+  activeRestore = null;
+  activeChild = null;
+}
+process.once('SIGINT', () => { cleanupActive(); process.exit(130); });
+process.once('SIGTERM', () => { cleanupActive(); process.exit(143); });
+process.once('exit', cleanupActive);
+
+async function proveLane({ edgeId, packageName, probePath, probeRelative, ignoredPaths, marker }) {
   const original = readFileSync(probePath);
   const token = `\n// source-watch-probe:${edgeId}:${process.pid}\n`;
   let output = '';
@@ -44,29 +57,33 @@ async function proveLane({ edgeId, packageName, probePath, probeRelative, marker
   let changed = false;
   let settled = false;
 
+  for (const ignored of ignoredPaths) {
+    if (existsSync(path.join(root, ignored))) throw new Error(`${edgeId} requires an artifact-free source lane; remove ${ignored}`);
+  }
+
+  function restore() {
+    if (changed) {
+      writeFileSync(probePath, original);
+      changed = false;
+    }
+  }
+  activeRestore = restore;
   const child = spawn('npm', ['run', 'test:watch', `--workspace=${packageName}`], {
     cwd: root,
     detached: true,
     env: { ...process.env, CI: 'false', FORCE_COLOR: '0', NO_COLOR: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
+  activeChild = child;
 
   await new Promise((resolve, reject) => {
     const timeout = setTimeout(() => finish(new Error(`${edgeId} watch proof timed out after ${runs} observed run(s)`)), 120_000);
-
-    function restore() {
-      if (changed) {
-        writeFileSync(probePath, original);
-        changed = false;
-      }
-    }
 
     function finish(error) {
       if (settled) return;
       settled = true;
       clearTimeout(timeout);
-      restore();
-      stopGroup(child);
+      cleanupActive();
       if (error) {
         const tail = stripAnsi(output).split('\n').slice(-60).join('\n');
         reject(new Error(`${error.message}\n${tail}`));
@@ -81,8 +98,8 @@ async function proveLane({ edgeId, packageName, probePath, probeRelative, marker
       if (observed <= runs) return;
       runs = observed;
       if (runs === 1) {
-        writeFileSync(probePath, Buffer.concat([original, Buffer.from(token)]));
         changed = true;
+        writeFileSync(probePath, Buffer.concat([original, Buffer.from(token)]));
       } else if (runs >= 2) {
         finish();
       }

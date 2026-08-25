@@ -77,7 +77,8 @@ const cases = [
   ['wrong adapter ownership', (value) => { value.edges[0].adapters.jest = value.edges[0].adapters.vitest; value.edges[0].adapters.vitest = 'not-applicable'; }, 'adapter ownership expected'],
   ['wrong root precedence', (value) => { value.edges.find((edge) => edge.export === '.').precedence = 10; }, 'root precedence must be 100'],
   ['wrong classification evidence', (value) => { value.edges[0].evidence.sha256 = '0'.repeat(64); }, 'evidence does not bind the classification'],
-  ['watch command targets another edge', (value) => { const argv = value.edges[0].invalidationCommand.argv; argv[argv.length - 1] = value.edges[1].id; }, 'invalidation command must target its exact edge'],
+  ['watch command targets another edge', (value) => { const argv = value.edges[0].invalidationCommand.argv; argv[argv.length - 1] = value.edges[1].id; }, 'invalidation command must use cwd=., CI=0, expectedStatus=0, and its exact edge argv'],
+  ['watch command has wrong environment', (value) => { value.edges[0].invalidationCommand.environment.CI = '1'; }, 'invalidation command must use cwd=., CI=0, expectedStatus=0, and its exact edge argv'],
 ];
 
 try {
@@ -108,7 +109,19 @@ const fullCases = [
     name: 'missing shared TypeScript source compiler',
     file: 'plugins/dsr/vitest.config.ts',
     mutate: (text) => text.replace('plugins: source.plugins', 'plugins: [source.watchPlugin]'),
-    expected: 'does not install the shared TypeScript source compiler',
+    expected: 'does not install the shared TypeScript and watch plugins',
+  },
+  {
+    name: 'missing exact Vitest aliases',
+    file: 'plugins/dsr/vitest.config.ts',
+    mutate: (text) => text.replace('resolve: { alias: source.aliases }', 'resolve: { alias: [] }'),
+    expected: 'does not install the exact shared source aliases',
+  },
+  {
+    name: 'missing exact Jest mapper',
+    file: 'frameworks/angularjs/uirouter-angularjs/jest.config.js',
+    mutate: (text) => text.replace('    ...sourceAliases.jestModuleNameMapperFor(sourcePackage),\n', ''),
+    expected: 'moduleNameMapper must install the exact shared source aliases',
   },
   {
     name: 'bare Vitest watch command',

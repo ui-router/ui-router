@@ -17,3 +17,4 @@ tsconfig.**.json
 webpack.config.js
 rollup.config.js
 karma.conf.js
+vitest.config.ts

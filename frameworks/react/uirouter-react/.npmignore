@@ -1,6 +1,8 @@
 **/.*
 **/webpack.config.js
 **/webpack.example.js
+vitest.config.ts
+vitest.setup.ts
 **/tsconfig.json
 **/tsconfig.webpack.json
 **/node_modules

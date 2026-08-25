@@ -1,8 +1,13 @@
 import { defineConfig } from 'vitest/config';
 import angular from '@analogjs/vite-plugin-angular';
+import sourceAliases from '../../../tools/source-aliases.cjs';
+
+const source = sourceAliases.vitestConfigFor('@uirouter/angular');
 
 export default defineConfig({
-  plugins: [angular({ tsconfig: './tsconfig.spec.json' })],
+  plugins: [source.typescriptPlugin, angular({ tsconfig: './tsconfig.spec.json' }), source.watchPlugin],
+  resolve: { alias: source.aliases },
+  server: { fs: { allow: [source.repositoryRoot] } },
   test: {
     globals: true,
     environment: 'jsdom',

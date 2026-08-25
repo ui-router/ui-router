@@ -12,6 +12,7 @@ tslint.json
 tsconfig.json
 tsconfig.*.json
 stats.html
+vitest.config.ts
 
 *.iml
 *.ipr

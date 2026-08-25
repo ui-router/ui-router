@@ -1,0 +1,1848 @@
+{
+  "schemaVersion": 1,
+  "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+  "edges": [
+    {
+      "id": "source-angular-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "frameworks/angular/uirouter-angular/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/angular/uirouter-angular/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "frameworks/angular/uirouter-angular/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angular-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angular-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns frameworks/angular/uirouter-angular/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angular-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-angular-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-angular-rx-root",
+      "package": "@uirouter/rx",
+      "export": ".",
+      "sourceEntrypoint": "plugins/rx/src/index.ts",
+      "consumer": "frameworks/angular/uirouter-angular/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/angular/uirouter-angular/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "frameworks/angular/uirouter-angular/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/rx]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angular-rx-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angular-rx-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns frameworks/angular/uirouter-angular/package.json after plugins/rx/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angular-rx-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "plugins/rx/src"
+      ],
+      "ignoredPaths": [
+        "plugins/rx/lib",
+        "plugins/rx/lib-esm",
+        "plugins/rx/dist",
+        "plugins/rx/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-angular-rx-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "plugins/rx/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-angularjs-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/angularjs/uirouter-angularjs/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/tsconfig.source.json",
+          "selector": "compilerOptions.paths[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "ts-jest resolves core/src/index.ts and Jest observes its source root",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "jest": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/jest.config.js",
+          "selector": "moduleNameMapper[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "jest reruns frameworks/angularjs/uirouter-angularjs/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "vitest": "not-applicable",
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-angularjs-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-angularjs-core-router",
+      "package": "@uirouter/core",
+      "export": "./lib/router",
+      "sourceEntrypoint": "core/src/router.ts",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/angularjs/uirouter-angularjs/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/tsconfig.source.json",
+          "selector": "compilerOptions.paths[@uirouter/core/lib/router]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-router"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-router"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "ts-jest resolves core/src/router.ts and Jest observes its source root",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-router",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "jest": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/jest.config.js",
+          "selector": "moduleNameMapper[@uirouter/core/lib/router]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-router"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-router"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "jest reruns frameworks/angularjs/uirouter-angularjs/package.json after core/src/router.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-router",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "vitest": "not-applicable",
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-angularjs-core-router"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/router.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-angularjs-core-state-stateregistry",
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateRegistry",
+      "sourceEntrypoint": "core/src/state/stateRegistry.ts",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/angularjs/uirouter-angularjs/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/tsconfig.source.json",
+          "selector": "compilerOptions.paths[@uirouter/core/lib/state/stateRegistry]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "ts-jest resolves core/src/state/stateRegistry.ts and Jest observes its source root",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "jest": {
+          "configPath": "frameworks/angularjs/uirouter-angularjs/jest.config.js",
+          "selector": "moduleNameMapper[@uirouter/core/lib/state/stateRegistry]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "jest reruns frameworks/angularjs/uirouter-angularjs/package.json after core/src/state/stateRegistry.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-angularjs-core-state-stateregistry",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "vitest": "not-applicable",
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-angularjs-core-state-stateregistry"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/state/stateRegistry.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-dsr-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "plugins/dsr/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/dsr/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/dsr/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-dsr-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/dsr/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-dsr-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-dsr-core-state-interface",
+      "package": "@uirouter/core",
+      "export": "./lib/state/interface",
+      "sourceEntrypoint": "core/src/state/interface.ts",
+      "consumer": "plugins/dsr/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/dsr/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/dsr/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/state/interface]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-state-interface"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-dsr-core-state-interface"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/dsr/package.json after core/src/state/interface.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-state-interface",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-dsr-core-state-interface"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/state/interface.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-dsr-core-state-stateobject",
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateObject",
+      "sourceEntrypoint": "core/src/state/stateObject.ts",
+      "consumer": "plugins/dsr/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/dsr/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/dsr/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/state/stateObject]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-state-stateobject"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-dsr-core-state-stateobject"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/dsr/package.json after core/src/state/stateObject.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-state-stateobject",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-dsr-core-state-stateobject"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/state/stateObject.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-dsr-core-vanilla",
+      "package": "@uirouter/core",
+      "export": "./lib/vanilla",
+      "sourceEntrypoint": "core/src/vanilla.ts",
+      "consumer": "plugins/dsr/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/dsr/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/dsr/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/vanilla]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-vanilla"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-dsr-core-vanilla"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/dsr/package.json after core/src/vanilla.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-dsr-core-vanilla",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-dsr-core-vanilla"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/vanilla.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-react-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "frameworks/react/uirouter-react/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:frameworks/react/uirouter-react/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "frameworks/react/uirouter-react/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-react-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-react-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns frameworks/react/uirouter-react/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-react-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-react-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-redux-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "plugins/redux/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/redux/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/redux/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-redux-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-redux-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/redux/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-redux-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-redux-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-redux-react-root",
+      "package": "@uirouter/react",
+      "export": ".",
+      "sourceEntrypoint": "frameworks/react/uirouter-react/src/index.ts",
+      "consumer": "plugins/redux/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/redux/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/redux/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/react]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-redux-react-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-redux-react-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/redux/package.json after frameworks/react/uirouter-react/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-redux-react-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "frameworks/react/uirouter-react/src"
+      ],
+      "ignoredPaths": [
+        "frameworks/react/uirouter-react/lib",
+        "frameworks/react/uirouter-react/lib-esm",
+        "frameworks/react/uirouter-react/dist",
+        "frameworks/react/uirouter-react/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-redux-react-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "frameworks/react/uirouter-react/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-rx-core-globals",
+      "package": "@uirouter/core",
+      "export": "./lib/globals",
+      "sourceEntrypoint": "core/src/globals.ts",
+      "consumer": "plugins/rx/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/rx/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/rx/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/globals]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-rx-core-globals"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-rx-core-globals"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/rx/package.json after core/src/globals.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-rx-core-globals",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-rx-core-globals"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/globals.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-rx-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "plugins/rx/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/rx/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/rx/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-rx-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-rx-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/rx/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-rx-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-rx-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-sticky-core-root",
+      "package": "@uirouter/core",
+      "export": ".",
+      "sourceEntrypoint": "core/src/index.ts",
+      "consumer": "plugins/sticky-states/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/sticky-states/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 100,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/sticky-states/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-root"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-sticky-core-root"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/sticky-states/package.json after core/src/index.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-root",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-sticky-core-root"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/index.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-sticky-core-state-interface",
+      "package": "@uirouter/core",
+      "export": "./lib/state/interface",
+      "sourceEntrypoint": "core/src/state/interface.ts",
+      "consumer": "plugins/sticky-states/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/sticky-states/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/sticky-states/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/state/interface]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-state-interface"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-sticky-core-state-interface"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/sticky-states/package.json after core/src/state/interface.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-state-interface",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-sticky-core-state-interface"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/state/interface.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-sticky-core-state-stateobject",
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateObject",
+      "sourceEntrypoint": "core/src/state/stateObject.ts",
+      "consumer": "plugins/sticky-states/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/sticky-states/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/sticky-states/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/state/stateObject]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-state-stateobject"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-sticky-core-state-stateobject"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/sticky-states/package.json after core/src/state/stateObject.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-state-stateobject",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-sticky-core-state-stateobject"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/state/stateObject.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-sticky-core-transition-interface",
+      "package": "@uirouter/core",
+      "export": "./lib/transition/interface",
+      "sourceEntrypoint": "core/src/transition/interface.ts",
+      "consumer": "plugins/sticky-states/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/sticky-states/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/sticky-states/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/transition/interface]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-transition-interface"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-sticky-core-transition-interface"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/sticky-states/package.json after core/src/transition/interface.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-transition-interface",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-sticky-core-transition-interface"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/transition/interface.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    },
+    {
+      "id": "source-sticky-core-transition-transitionservice",
+      "package": "@uirouter/core",
+      "export": "./lib/transition/transitionService",
+      "sourceEntrypoint": "core/src/transition/transitionService.ts",
+      "consumer": "plugins/sticky-states/package.json",
+      "lane": "unit-test",
+      "owner": "source-test:plugins/sticky-states/package.json",
+      "evidence": {
+        "path": "migration/package-classification.json",
+        "sha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365"
+      },
+      "precedence": 10,
+      "adapters": {
+        "typescript": "not-applicable",
+        "jest": "not-applicable",
+        "vitest": {
+          "configPath": "plugins/sticky-states/vitest.config.ts",
+          "selector": "resolve.alias[@uirouter/core/lib/transition/transitionService]",
+          "positiveTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-transition-transitionservice"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          },
+          "watchTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/prove-source-watch.mjs",
+              "--edge",
+              "source-sticky-core-transition-transitionservice"
+            ],
+            "environment": {
+              "CI": "false"
+            },
+            "expectedStatus": 0
+          },
+          "expectedWatchObservation": "vitest reruns plugins/sticky-states/package.json after core/src/transition/transitionService.ts changes",
+          "negativeProductionTest": {
+            "cwd": ".",
+            "argv": [
+              "node",
+              "tools/verify-source-aliases.mjs",
+              "--edge",
+              "source-sticky-core-transition-transitionservice",
+              "--production"
+            ],
+            "environment": {
+              "CI": "1"
+            },
+            "expectedStatus": 0
+          }
+        },
+        "karmaWebpack": "not-applicable",
+        "rollupRolldownVite": "not-applicable",
+        "ngPackagr": "not-applicable"
+      },
+      "watchRoots": [
+        "core/src"
+      ],
+      "ignoredPaths": [
+        "core/lib",
+        "core/lib-esm",
+        "core/dist",
+        "core/_bundles"
+      ],
+      "invalidationCommand": {
+        "cwd": ".",
+        "argv": [
+          "node",
+          "tools/prove-source-watch.mjs",
+          "--edge",
+          "source-sticky-core-transition-transitionservice"
+        ],
+        "environment": {
+          "CI": "false"
+        },
+        "expectedStatus": 0
+      },
+      "expectedRealpath": "core/src/transition/transitionService.ts",
+      "productionDisableRule": "Only declared test configs may load tools/source-aliases.cjs; production configs and artifacts must use package entrypoints and contain no checkout source paths."
+    }
+  ]
+}

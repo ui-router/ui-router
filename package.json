@@ -27,7 +27,7 @@
     "tools/*"
   ],
   "scripts": {
-    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:contracts && npm run verify:work-graph",
+    "check": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:contracts && npm run verify:work-graph",
     "verify:root-config": "node tools/verify-root-config.mjs",
     "verify:manifests": "node tools/verify-manifest-normalization.mjs",
     "verify:locks": "node tools/verify-npm-locks.mjs",
@@ -36,6 +36,11 @@
     "verify:internal-deps": "node tools/verify-internal-deps.mjs",
     "verify:s01": "node tools/verify-s01-scripts.mjs",
     "test:s01": "node tools/test-s01-scripts.mjs",
+    "verify:source-aliases": "node tools/verify-source-aliases.mjs",
+    "test:source-aliases": "node tools/test-source-aliases.mjs",
+    "prove:source-commands": "node tools/prove-source-commands.mjs",
+    "prove:source-watch": "node tools/prove-source-watch.mjs",
+    "prove:source-packs": "node tools/prove-source-packs.mjs",
     "test:n04-validators": "node tools/test-n04-validators.mjs",
     "test:n04-installed": "node tools/test-n04-installed.mjs",
     "test:n05-package-manager": "node tools/test-n05-package-manager.mjs",

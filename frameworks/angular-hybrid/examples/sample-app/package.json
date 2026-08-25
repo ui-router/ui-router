@@ -7,8 +7,10 @@
     "ng": "ng",
     "start": "ng serve --port 4000",
     "build": "ng build --configuration production",
-    "test": "npm run build && playwright install chromium && playwright test",
+    "test": "npm run e2e",
     "test:ui": "npm run build && playwright test --ui",
+    "e2e": "npm run build && playwright test",
+    "setup:browser": "npm exec -- playwright install chromium",
     "lint": "ng lint"
   },
   "checkPeerDependencies": {

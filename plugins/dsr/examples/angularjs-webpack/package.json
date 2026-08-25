@@ -5,8 +5,9 @@
   "description": "AngularJS/webpack sticky states example",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && npx playwright test",
-    "test:ui": "npm run build && npx playwright test --ui",
+    "test": "npm run e2e",
+    "e2e": "npm run build && playwright test",
+    "test:ui": "npm run build && playwright test --ui",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development --open",
     "setup:browser": "npm exec -- playwright install chromium"

@@ -11,6 +11,7 @@
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
     "test": "karma start",
+    "test:watch": "karma start --singleRun=false --autoWatch=true --autoWatchInterval=1",
     "test:downstream": "test_downstream_projects",
     "docs": "generate_docs",
     "docs:publish": "generate_docs && publish_docs",

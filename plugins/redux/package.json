@@ -44,6 +44,7 @@
   "scripts": {
     "start": "npm run dev --prefix examples/react",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:ci": "vitest run",
     "lint": "oxlint -c oxlint.json core react",
     "lint:fix": "oxlint -c oxlint.json --fix core react",

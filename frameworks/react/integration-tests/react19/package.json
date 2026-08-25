@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run && npm run build && npx playwright install chromium && npx playwright test"
+    "test": "npm run test:unit && npm run e2e",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "npm run build && playwright test",
+    "setup:browser": "npm exec -- playwright install chromium"
   },
   "dependencies": {
     "react": "^19.0.0",

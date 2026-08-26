@@ -521,6 +521,7 @@ async function runConsumer(contract, artifacts, proofRoot) {
     ...contract.normalizedEnvironment,
     HOME: path.join(proofRoot, "home"),
   };
+  delete environment.NODE_PATH;
   await mkdir(environment.HOME);
   run(contract.consumer.lockArgv[0], contract.consumer.lockArgv.slice(1), {
     cwd: consumerRoot,

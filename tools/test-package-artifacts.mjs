@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import {
   cp,
@@ -14,6 +15,7 @@ import os from "node:os";
 import path from "node:path";
 
 import {
+  normalizeSourceMapReferences,
   repository,
   scriptsSha256,
   sha256File,
@@ -79,6 +81,27 @@ function expectSourceMapFailure(name, sourceMap, expected) {
       "source-map-fixture",
       "lib/index.js.map",
       sourceMap
+    );
+  } catch (error) {
+    failure = error instanceof Error ? error.message : String(error);
+  }
+  if (!failure || !failure.includes(expected)) {
+    throw new Error(
+      `${name}: expected ${JSON.stringify(expected)}, received ${JSON.stringify(
+        failure
+      )}`
+    );
+  }
+  cases += 1;
+}
+
+function expectNormalizationFailure(name, sourceMap, expected) {
+  let failure;
+  try {
+    normalizeSourceMapReferences(
+      "source-map-fixture",
+      "lib/index.js.map",
+      structuredClone(sourceMap)
     );
   } catch (error) {
     failure = error instanceof Error ? error.message : String(error);
@@ -188,6 +211,40 @@ try {
     "source-map-non-array",
     { sources: "src/index.ts" },
     "non-array sources"
+  );
+  const normalizedWebpackMap = normalizeSourceMapReferences(
+    "source-map-fixture",
+    "lib/index.js.map",
+    { sources: ["webpack://package/./src/index.ts"] }
+  );
+  assert.deepEqual(normalizedWebpackMap, {
+    sourceRoot: "",
+    sources: ["src/index.ts"],
+  });
+  expectNormalizationFailure(
+    "source-map-masked-file-uri",
+    { sourceRoot: "src", sources: ["FILE:///tmp/source.ts"] },
+    "has URI source"
+  );
+  expectNormalizationFailure(
+    "source-map-masked-webpack-uri",
+    { sourceRoot: "src", sources: ["webpack://package/./index.ts"] },
+    "has URI source"
+  );
+  expectNormalizationFailure(
+    "source-map-masked-absolute",
+    { sourceRoot: "src", sources: ["/tmp/source.ts"] },
+    "has absolute source"
+  );
+  expectNormalizationFailure(
+    "source-map-masked-windows-drive",
+    { sourceRoot: "src", sources: ["C:/tmp/source.ts"] },
+    "has URI source"
+  );
+  expectNormalizationFailure(
+    "source-map-null-root",
+    { sourceRoot: null, sources: ["src/index.ts"] },
+    "non-string or empty sourceRoot"
   );
 
   await expectFailure(

@@ -17,6 +17,7 @@ import path from "node:path";
 import {
   artifactStem,
   fail,
+  normalizeSourceMapReferences,
   packageRecordForCwd,
   repository,
   sha256,
@@ -72,65 +73,6 @@ function textual(filename) {
   return /(?:\.d\.(?:ts|cts|mts)|\.(?:js|mjs|cjs|map|json))$/.test(filename);
 }
 
-function portableSourceMapReference(
-  packageRecord,
-  mapFilename,
-  sourceRoot,
-  source
-) {
-  if (typeof sourceRoot !== "string" || typeof source !== "string") {
-    fail(
-      `${packageRecord.id} source map ${mapFilename} has non-string source metadata`
-    );
-  }
-  let reference = path.posix.join(sourceRoot, source);
-  const scheme = reference.match(/^([A-Za-z][A-Za-z0-9+.-]*):/);
-  if (scheme) {
-    if (scheme[1].toLowerCase() !== "webpack") {
-      fail(
-        `${packageRecord.id} source map ${mapFilename} has non-portable URI source ${source}`
-      );
-    }
-    const parts = reference
-      .slice(scheme[0].length)
-      .replace(/^\/+/, "")
-      .split("/");
-    if (parts.length > 1 && parts[1] === ".") parts.shift();
-    reference = parts.join("/").replace(/^\.\//, "");
-  }
-  if (
-    !reference ||
-    path.posix.isAbsolute(reference) ||
-    reference.includes("\\")
-  ) {
-    fail(
-      `${packageRecord.id} source map ${mapFilename} has non-portable source ${source}`
-    );
-  }
-  reference = path.posix.normalize(reference);
-  const mapDirectory = path.posix.dirname(mapFilename);
-  const resolved = path.posix.normalize(
-    path.posix.join(mapDirectory, reference)
-  );
-  const checkoutRelative = reference.replace(/^(?:\.\.\/)+/, "");
-  if (
-    resolved === ".." ||
-    resolved.startsWith("../") ||
-    /^(?:core|frameworks|plugins|tools|node_modules)\//.test(checkoutRelative)
-  ) {
-    let portable = checkoutRelative
-      .replace(/^node_modules\//, "dependencies/")
-      .replace(/^core\/lib-esm\//, "dependencies/uirouter-core/");
-    if (!portable.startsWith("dependencies/")) portable = `sources/${portable}`;
-    reference = portable;
-  } else {
-    reference =
-      path.posix.relative(mapDirectory, resolved) ||
-      path.posix.basename(resolved);
-  }
-  return reference;
-}
-
 async function normalizeSourceMaps(packageRecord, packageRoot, packRoot) {
   const roots = packageRecord.pack.root
     ? [packRoot]
@@ -156,17 +98,11 @@ async function normalizeSourceMaps(packageRecord, packageRoot, packRoot) {
     } catch {
       fail(`${packageRecord.id} has invalid source map ${mapFilename}`);
     }
-    const sourceRoot = sourceMap.sourceRoot ?? "";
-    if (!Array.isArray(sourceMap.sources)) {
-      fail(
-        `${packageRecord.id} source map ${mapFilename} has non-array sources`
-      );
-    }
-    sourceMap.sources = sourceMap.sources.map((source) =>
-      portableSourceMapReference(packageRecord, mapFilename, sourceRoot, source)
+    sourceMap = normalizeSourceMapReferences(
+      packageRecord.id,
+      mapFilename,
+      sourceMap
     );
-    sourceMap.sourceRoot = "";
-    validateSourceMapReferences(packageRecord.id, mapFilename, sourceMap);
     await writeFile(absolute, `${JSON.stringify(sourceMap)}\n`);
   }
 }

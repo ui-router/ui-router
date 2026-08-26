@@ -64,7 +64,9 @@ export function validateSourceMapReferences(packageId, filename, sourceMap) {
   if (!Array.isArray(sourceMap.sources)) {
     fail(`${packageId} source map ${filename} has non-array sources`);
   }
-  const sourceRoot = sourceMap.sourceRoot ?? "";
+  const sourceRoot = Object.hasOwn(sourceMap, "sourceRoot")
+    ? sourceMap.sourceRoot
+    : "";
   validateRelativeSourceMapPath(packageId, filename, "sourceRoot", sourceRoot, {
     allowEmpty: true,
   });
@@ -78,6 +80,66 @@ export function validateSourceMapReferences(packageId, filename, sourceMap) {
       );
     }
   }
+}
+
+export function normalizeSourceMapReferences(packageId, filename, sourceMap) {
+  if (!Array.isArray(sourceMap.sources)) {
+    fail(`${packageId} source map ${filename} has non-array sources`);
+  }
+  const sourceRoot = Object.hasOwn(sourceMap, "sourceRoot")
+    ? sourceMap.sourceRoot
+    : "";
+  validateRelativeSourceMapPath(packageId, filename, "sourceRoot", sourceRoot, {
+    allowEmpty: true,
+  });
+  sourceMap.sources = sourceMap.sources.map((source) => {
+    if (typeof source !== "string" || source.length === 0) {
+      fail(
+        `${packageId} source map ${filename} has non-string or empty source`
+      );
+    }
+    let reference = source;
+    const scheme = source.match(/^([A-Za-z][A-Za-z0-9+.-]*):/);
+    if (scheme) {
+      if (sourceRoot !== "" || scheme[1].toLowerCase() !== "webpack") {
+        fail(`${packageId} source map ${filename} has URI source ${source}`);
+      }
+      const parts = source
+        .slice(scheme[0].length)
+        .replace(/^\/+/, "")
+        .split("/");
+      if (parts.length > 1 && parts[1] === ".") parts.shift();
+      reference = parts.join("/").replace(/^\.\//, "");
+    } else {
+      validateRelativeSourceMapPath(packageId, filename, "source", source);
+      reference = path.posix.join(sourceRoot, source);
+    }
+    const mapDirectory = path.posix.dirname(filename);
+    const resolved = path.posix.normalize(
+      path.posix.join(mapDirectory, reference)
+    );
+    const checkoutRelative = reference.replace(/^(?:\.\.\/)+/, "");
+    if (
+      resolved === ".." ||
+      resolved.startsWith("../") ||
+      /^(?:core|frameworks|plugins|tools|node_modules)\//.test(checkoutRelative)
+    ) {
+      let portable = checkoutRelative
+        .replace(/^node_modules\//, "dependencies/")
+        .replace(/^core\/lib-esm\//, "dependencies/uirouter-core/");
+      if (!portable.startsWith("dependencies/"))
+        portable = `sources/${portable}`;
+      reference = portable;
+    } else {
+      reference =
+        path.posix.relative(mapDirectory, resolved) ||
+        path.posix.basename(resolved);
+    }
+    return reference;
+  });
+  sourceMap.sourceRoot = "";
+  validateSourceMapReferences(packageId, filename, sourceMap);
+  return sourceMap;
 }
 
 export function canonicalJson(value) {

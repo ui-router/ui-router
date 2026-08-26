@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "task": "I01",
+  "owner": "ui-router-maintainers",
+  "baseCommit": "d9707bdc6fb9df51d1447e4b806da9139fe55691",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "contract": {
+    "path": "migration/isolated-projects.json",
+    "sha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689"
+  },
+  "implementation": {
+    "schemaSha256": "6522d07224d643a99afe3e120d664fd4ccbc58ae4471c0fa8e16a54cad7e8ddf",
+    "scopeVerifierSha256": "8fdda30a0dd4407799bf5d2e190f48d7530eae877cd6f4e70956e67595fa111f",
+    "installProofToolSha256": "95c5ccbfb18f3c770dd9c63729eec2209a94ff93449dd14a882210a63e3f9382",
+    "verifierSha256": "09cce61ff5783264189a3e476bf4c331353a4a025f5a38b0d33ee7dec35a71bd",
+    "adversarialTestSha256": "d3da7f9f6c182a7e42d9ff20ed43fed7b6f6cc1f7ec51f4747cd10eb485a82c6"
+  },
+  "counts": {
+    "projects": 16,
+    "runnable": 14,
+    "templates": 2,
+    "localLocks": 14,
+    "browserProjects": 10,
+    "internalEdges": 37,
+    "declaredEdges": 23,
+    "legacyInjectedEdges": 14,
+    "registryBaselineRecords": 21,
+    "ordinaryExamples": 14
+  },
+  "sourceChanges": {
+    "isolatedManifestFilesChanged": 0,
+    "localLockFilesChanged": 0,
+    "rootPackageScriptsChanged": 1
+  },
+  "installProof": {
+    "path": "migration/evidence/i01/install-proof.json",
+    "sha256": "f605eae4bd070bc9b4e5ca5a48f96faff20b81aa9016e592d8762c85bc2cda94",
+    "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error"
+  },
+  "validation": {
+    "fullCheck": "passed",
+    "isolatedVerifier": "ISOLATED_PROJECTS_VERIFY_OK projects=16 runnable=14 templates=2 locks=14 edges=37 registryBaselines=21 browser=10 examples=14",
+    "adversarial": "I01_ISOLATED_PROJECT_ADVERSARIAL_TESTS_OK cases=28",
+    "externalInstalls": "NPM_INSTALL_PROOF_OK root=1 local=14 internal=12 npmLsProblems=15",
+    "installedOrigins": "INTERNAL_DEPS_VERIFY_OK current=109 legacy=28 workspace=100 localTarball=37 installed=verified",
+    "installedAdversarial": "N04_INSTALLED_ADVERSARIAL_TESTS_OK cases=18",
+    "lockStability": "LOCK_STABILITY_OK locks=15",
+    "formatting": "passed",
+    "reproducedInstallProof": "NPM_INSTALL_PROOF_OK root=1 local=14 internal=12 npmLsProblems=15"
+  },
+  "deferred": {
+    "tarballStagingAndExecution": "I02",
+    "productionBuildAndPackRepair": "P01",
+    "ciMatrices": "C01"
+  }
+}

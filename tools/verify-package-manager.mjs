@@ -286,11 +286,18 @@ for (const path of files.filter((path) => path.endsWith('package-lock.json'))) {
   }
 }
 
-const policyPaths = new Set(['SPEC.md', 'tools/test-n05-package-manager.mjs', 'tools/verify-package-manager.mjs']);
+const policyPaths = new Set([
+  'SPEC.md',
+  'tools/test-isolated-projects.mjs',
+  'tools/test-n05-package-manager.mjs',
+  'tools/verify-isolated-projects.mjs',
+  'tools/verify-package-manager.mjs',
+]);
 const migrationControlFiles = new Set([
   'migration/baselines.json',
   'migration/execution-lock.json',
   'migration/import-lock.json',
+  'migration/isolated-projects.json',
   'migration/package-classification.json',
   'migration/path-repairs.json',
   'migration/README.md',

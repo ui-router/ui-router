@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/isolated-projects.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageClassificationSha256",
+    "pathRepairsSha256",
+    "baselinesSha256",
+    "executionLockSha256",
+    "installPolicy",
+    "counts",
+    "projects"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageClassificationSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "pathRepairsSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "baselinesSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "executionLockSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "installPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["argv", "environment", "sandbox", "lockMutation"],
+      "properties": {
+        "argv": {
+          "const": [
+            "npm",
+            "ci",
+            "--ignore-scripts",
+            "--no-audit",
+            "--no-fund",
+            "--loglevel=error"
+          ]
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["CI", "HUSKY", "LC_ALL", "TZ"],
+          "properties": {
+            "CI": { "const": "1" },
+            "HUSKY": { "const": "0" },
+            "LC_ALL": { "const": "C" },
+            "TZ": { "const": "UTC" }
+          }
+        },
+        "sandbox": { "const": "outside-repository-ancestry" },
+        "lockMutation": { "const": "forbidden" }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projects",
+        "runnable",
+        "templates",
+        "localLocks",
+        "browserProjects",
+        "internalEdges",
+        "declaredEdges",
+        "legacyInjectedEdges",
+        "registryBaselineRecords",
+        "ordinaryExamples"
+      ],
+      "properties": {
+        "projects": { "const": 16 },
+        "runnable": { "const": 14 },
+        "templates": { "const": 2 },
+        "localLocks": { "const": 14 },
+        "browserProjects": { "const": 10 },
+        "internalEdges": { "const": 37 },
+        "declaredEdges": { "const": 23 },
+        "legacyInjectedEdges": { "const": 14 },
+        "registryBaselineRecords": { "const": 21 },
+        "ordinaryExamples": { "const": 14 }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/project" }
+    }
+  },
+  "$defs": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceManifest",
+        "manifest",
+        "mode",
+        "name",
+        "manifestSha256",
+        "scriptsSha256",
+        "commands",
+        "lock",
+        "generatorScript",
+        "manifestBaselineId",
+        "downstreamDiscoveryBaselineId",
+        "downstreamBaselineIds",
+        "internalEdgeIds",
+        "declaredEdgeIds",
+        "legacyInjectedEdgeIds",
+        "registryBaselineRecords"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sourceManifest": {
+          "$ref": "contract-common.schema.json#/$defs/relativePath"
+        },
+        "manifest": {
+          "$ref": "contract-common.schema.json#/$defs/relativePath"
+        },
+        "mode": { "enum": ["runnable", "template"] },
+        "name": { "type": "string", "minLength": 1 },
+        "manifestSha256": {
+          "$ref": "contract-common.schema.json#/$defs/sha256"
+        },
+        "scriptsSha256": {
+          "$ref": "contract-common.schema.json#/$defs/sha256"
+        },
+        "commands": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["test", "e2e", "setupBrowser"],
+          "properties": {
+            "test": { "const": "test" },
+            "e2e": { "type": ["string", "null"] },
+            "setupBrowser": { "type": ["string", "null"] }
+          }
+        },
+        "lock": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "sha256", "packageEntries"],
+              "properties": {
+                "path": {
+                  "$ref": "contract-common.schema.json#/$defs/relativePath"
+                },
+                "sha256": {
+                  "$ref": "contract-common.schema.json#/$defs/sha256"
+                },
+                "packageEntries": { "type": "integer", "minimum": 1 }
+              }
+            }
+          ]
+        },
+        "generatorScript": {
+          "anyOf": [
+            { "type": "null" },
+            { "$ref": "contract-common.schema.json#/$defs/relativePath" }
+          ]
+        },
+        "manifestBaselineId": { "type": "string", "minLength": 1 },
+        "downstreamDiscoveryBaselineId": { "type": ["string", "null"] },
+        "downstreamBaselineIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "internalEdgeIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "declaredEdgeIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "legacyInjectedEdgeIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "registryBaselineRecords": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/registryBaselineRecord" }
+        }
+      }
+    },
+    "registryBaselineRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edgeId", "package", "version", "resolved", "integrity"],
+      "properties": {
+        "edgeId": { "type": "string", "minLength": 1 },
+        "package": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "resolved": { "type": "string", "format": "uri" },
+        "integrity": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

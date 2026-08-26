@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/migration/schemas/package-artifacts.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageClassificationSha256",
+    "pathRepairsSha256",
+    "sourceAliasesSha256",
+    "turboJsonSha256",
+    "rootLockPredecessorSha256",
+    "rootLockSha256",
+    "runtime",
+    "normalizedEnvironment",
+    "artifactPolicy",
+    "consumer",
+    "packages"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageClassificationSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "pathRepairsSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "sourceAliasesSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "turboJsonSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "rootLockPredecessorSha256": {
+      "$ref": "contract-common.schema.json#/$defs/sha256"
+    },
+    "rootLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node", "npm", "imageDigest"],
+      "properties": {
+        "node": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "npm": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "imageDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+      }
+    },
+    "normalizedEnvironment": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "required": ["CI", "HUSKY", "LC_ALL", "NODE_ENV", "TZ"]
+    },
+    "artifactPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "directory",
+        "naming",
+        "npmPackArgv",
+        "forbiddenPatterns",
+        "sourceMapPolicy",
+        "repetitions",
+        "waivers"
+      ],
+      "properties": {
+        "directory": {
+          "$ref": "contract-common.schema.json#/$defs/relativePath"
+        },
+        "naming": { "const": "package-version-sha256.tgz" },
+        "npmPackArgv": {
+          "type": "array",
+          "minItems": 4,
+          "items": { "type": "string" }
+        },
+        "forbiddenPatterns": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sourceMapPolicy": { "type": "string", "minLength": 1 },
+        "repetitions": { "const": 2 },
+        "waivers": { "type": "array", "maxItems": 0 }
+      }
+    },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sandbox",
+        "name",
+        "sentinelPackage",
+        "lockArgv",
+        "installArgv",
+        "dependencies",
+        "typecheck",
+        "bundler"
+      ],
+      "properties": {
+        "sandbox": { "const": "outside-repository-ancestry" },
+        "name": { "type": "string", "minLength": 1 },
+        "sentinelPackage": { "type": "string", "minLength": 1 },
+        "lockArgv": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" }
+        },
+        "installArgv": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" }
+        },
+        "dependencies": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "typecheck": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["typescript", "command"],
+          "properties": {
+            "typescript": { "type": "string", "minLength": 1 },
+            "command": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "bundler": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["package", "version", "command"],
+          "properties": {
+            "package": { "const": "esbuild" },
+            "version": { "type": "string", "minLength": 1 },
+            "command": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "packages": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/package" }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "owner",
+        "sourceManifest",
+        "manifest",
+        "manifestSha256",
+        "scriptsSha256",
+        "package",
+        "version",
+        "kind",
+        "build",
+        "pack",
+        "internalEdgeIds",
+        "entrypoints"
+      ],
+      "properties": {
+        "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+        "owner": { "type": "string", "minLength": 1 },
+        "sourceManifest": {
+          "$ref": "contract-common.schema.json#/$defs/relativePath"
+        },
+        "manifest": {
+          "$ref": "contract-common.schema.json#/$defs/relativePath"
+        },
+        "manifestSha256": {
+          "$ref": "contract-common.schema.json#/$defs/sha256"
+        },
+        "scriptsSha256": {
+          "$ref": "contract-common.schema.json#/$defs/sha256"
+        },
+        "package": { "type": "string", "pattern": "^@uirouter/" },
+        "version": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["library", "angular-library", "cli"] },
+        "build": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["script", "cleanPaths", "outputs"],
+              "properties": {
+                "script": { "const": "build" },
+                "cleanPaths": { "$ref": "#/$defs/stringArray" },
+                "outputs": { "$ref": "#/$defs/stringArray" }
+              }
+            }
+          ]
+        },
+        "pack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["script", "directory", "allowed", "required"],
+          "properties": {
+            "script": { "const": "pack" },
+            "directory": { "type": "string", "minLength": 1 },
+            "allowed": { "$ref": "#/$defs/stringArray" },
+            "required": { "$ref": "#/$defs/stringArray" }
+          }
+        },
+        "internalEdgeIds": { "$ref": "#/$defs/stringArray" },
+        "entrypoints": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "mode", "specifier", "target", "export"],
+            "properties": {
+              "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
+              "mode": {
+                "enum": [
+                  "require",
+                  "node-import",
+                  "bundler-import",
+                  "types",
+                  "bin"
+                ]
+              },
+              "specifier": { "type": "string", "minLength": 1 },
+              "target": {
+                "$ref": "contract-common.schema.json#/$defs/relativePath"
+              },
+              "export": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

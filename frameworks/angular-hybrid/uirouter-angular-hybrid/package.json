@@ -4,6 +4,7 @@
   "scripts": {
     "clean": "shx rm -rf lib _bundles dist",
     "build": "npm run clean && ng-packagr -p ng-package.json",
+    "pack": "node ../../../tools/pack-package.mjs",
     "release": "release --deps @uirouter/core @uirouter/angular @uirouter/angularjs",
     "test:downstream": "npm run build && test_downstream_projects",
     "setup:hooks": "husky",

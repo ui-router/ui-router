@@ -4,7 +4,8 @@
   "version": "1.5.1",
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _bundles",
-    "build": "npm run clean && tsgo && tsgo -m es6 -outDir lib-esm && npm run bundle",
+    "build": "npm run clean && tsc && tsc -m es6 -outDir lib-esm && npm run bundle",
+    "pack": "node ../../tools/pack-package.mjs",
     "build:tsc": "npm run clean && tsc && tsc -m es6 -outDir lib-esm && npm run bundle",
     "bundle": "rolldown -c rolldown.config.mjs",
     "test": "vitest run",
@@ -42,6 +43,7 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "files": ["lib", "lib-esm", "_bundles"],
   "main": "lib/index.js",
   "module": "lib-esm/index.js",
   "typings": "lib/index.d.ts",

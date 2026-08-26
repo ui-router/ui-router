@@ -19,8 +19,16 @@ const readText = (path) => readBytes(path).toString('utf8');
 const readJson = (path) => JSON.parse(readText(path));
 const sha256 = (path) => createHash('sha256').update(readBytes(path)).digest('hex');
 const normalized = (path) => relative(root, path).split(sep).join('/');
+const packageArtifactsContract = readJson('migration/package-artifacts.json');
+const ignoredGeneratedDirectories = new Set(packageArtifactsContract.packages.flatMap((record) => {
+  const packageDirectory = dirname(record.manifest).split(sep).join('/');
+  return [
+    ...(record.build?.cleanPaths || []).map((cleanPath) => `${packageDirectory}/${cleanPath}`),
+    `${packageDirectory}/${packageArtifactsContract.artifactPolicy.directory}`,
+  ];
+}));
 
-const ignoredDirectories = new Set(['.git', 'node_modules']);
+const ignoredDirectories = new Set(['.artifacts', '.git', '.turbo', 'node_modules']);
 const forbiddenDirectories = new Set(['.pnpm-store', '.yalc', '.yarn']);
 const files = [];
 const walk = (directory) => {
@@ -30,6 +38,7 @@ const walk = (directory) => {
     const absolute = join(directory, entry.name);
     const info = lstatSync(absolute);
     const path = normalized(absolute);
+    if (info.isDirectory() && ignoredGeneratedDirectories.has(path)) continue;
     if (info.isSymbolicLink()) fail(`package-manager inventory path is a symlink: ${path}`);
     if (info.isDirectory()) walk(absolute);
     else if (info.isFile()) files.push(path);
@@ -68,9 +77,26 @@ requireEqual('Turbo evidence base', turboEvidence.baseCommit, '25e382a7994268f37
 requireEqual('Turbo evidence runtime', turboEvidence.runtime, cleanupEvidence.runtime);
 requireEqual('Turbo lock predecessor digest', turboEvidence.rootLock.beforeSha256, cleanupEvidence.rootLock.afterSha256);
 requireEqual('Turbo lock predecessor entries', turboEvidence.rootLock.beforePackageEntries, cleanupEvidence.rootLock.afterPackageEntries);
-requireEqual('Turbo current lock digest', turboEvidence.rootLock.afterSha256, sha256('package-lock.json'));
+requireEqual('P01 lock predecessor digest', packageArtifactsContract.rootLockPredecessorSha256, turboEvidence.rootLock.afterSha256);
+requireEqual('P01 current lock digest', packageArtifactsContract.rootLockSha256, sha256('package-lock.json'));
 const currentRootLock = readJson('package-lock.json');
-requireEqual('Turbo current lock entries', turboEvidence.rootLock.afterPackageEntries, Object.keys(currentRootLock.packages).length);
+requireEqual('P01 current lock entries', Object.keys(currentRootLock.packages).length, turboEvidence.rootLock.afterPackageEntries + 5);
+const reactHybridManifest = readJson('frameworks/react-hybrid/uirouter-react-hybrid/package.json');
+const reduxManifest = readJson('plugins/redux/package.json');
+requireEqual('P01 React Hybrid lock record', currentRootLock.packages['frameworks/react-hybrid/uirouter-react-hybrid'].devDependencies, reactHybridManifest.devDependencies);
+requireEqual('P01 Redux peer lock record', currentRootLock.packages['plugins/redux'].peerDependencies, reduxManifest.peerDependencies);
+requireEqual('P01 Redux optional peer lock record', currentRootLock.packages['plugins/redux'].peerDependenciesMeta, reduxManifest.peerDependenciesMeta);
+for (const [key, version] of Object.entries({
+  'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/@types/react': '19.2.18',
+  'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/@types/react-dom': '19.2.5',
+  'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/react': '19.2.8',
+  'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/react-dom': '19.2.8',
+  'plugins/dsr/examples/angular-cli/node_modules/typescript': '6.0.3',
+  'plugins/dsr/node_modules/@angular-devkit/build-angular/node_modules/@ngtools/webpack': '22.1.5',
+  'plugins/dsr/node_modules/typescript': '5.9.3',
+})) requireEqual(`P01 changed lock package ${key}`, currentRootLock.packages[key]?.version, version);
+requireEqual('P01 removed conflicting DSR lock package', currentRootLock.packages['plugins/dsr/node_modules/@ngtools/webpack'], undefined);
+requireEqual('P01 DSR TypeScript declaration', currentRootLock.packages['plugins/dsr'].devDependencies.typescript, '^5.9.3');
 requireEqual('Turbo added lock keys', turboEvidence.rootLock.addedPackageKeys, [
   'node_modules/@turbo/darwin-64',
   'node_modules/@turbo/darwin-arm64',
@@ -125,7 +151,10 @@ for (const entry of allowlist.entries) {
   if (!files.includes(entry.path)) fail(`allowlist path is missing: ${entry.path}`);
   if (!allowedCategories.has(entry.category)) fail(`unknown allowlist category for ${entry.path}: ${entry.category}`);
   if (!entry.reason || typeof entry.reason !== 'string') fail(`allowlist reason is missing: ${entry.path}`);
-  requireEqual(`${entry.path} allowlist hash`, sha256(entry.path), entry.sha256);
+  if (entry.path === 'tools/publish-scripts/util.js') {
+    requireEqual('P01 predecessor util.js allowlist hash', entry.sha256, '927500e30b88271b2f30aa5d16911404b76cbba92d2d621f2abb0e5eb981d6dc');
+    requireEqual('P01 executable util.js hash', sha256(entry.path), '25368d23bb89f4c60401191dd117d6b9ea632b8e3e42e84e683238839f4e8acd');
+  } else requireEqual(`${entry.path} allowlist hash`, sha256(entry.path), entry.sha256);
   requireEqual(`${entry.path} executable disposition`, Boolean(statSync(join(root, entry.path)).mode & 0o111), entry.executable);
   if (entry.path.includes('.legacy') && entry.executable) fail(`legacy file remains executable: ${entry.path}`);
   if (entry.replacementTask) {
@@ -298,6 +327,7 @@ const migrationControlFiles = new Set([
   'migration/execution-lock.json',
   'migration/import-lock.json',
   'migration/isolated-projects.json',
+  'migration/package-artifacts.json',
   'migration/package-classification.json',
   'migration/path-repairs.json',
   'migration/README.md',

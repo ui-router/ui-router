@@ -1,5 +1,6 @@
 node_modules/
 .turbo/
+.artifacts/
 .integration-cache/
 .migration-work/
 *.tgz

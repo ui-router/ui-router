@@ -2,6 +2,19 @@
   "name": "@uirouter/publish-scripts",
   "version": "2.8.0",
   "description": "Helper scripts for publishing UI-Router projects",
+  "files": [
+    "artifact_tagging.js",
+    "docgen_via_docker.sh",
+    "ensure_clean_master.js",
+    "modify_sourcemap_paths.js",
+    "publish_docs.js",
+    "publish_yalc_package.js",
+    "release.js",
+    "show_changelog.js",
+    "show_version.js",
+    "test_downstream_projects.js",
+    "util.js"
+  ],
   "main": "x",
   "repository": {
     "type": "git",
@@ -15,6 +28,7 @@
   },
   "homepage": "https://github.com/ui-router/ui-router/tree/main/tools/publish-scripts#readme",
   "scripts": {
+    "pack": "node ../pack-package.mjs",
     "release": "node ./release.js --deps check-peer-dependencies",
     "format": "prettier --write \"*.js\" \"actions/**/*.js\" \"docgen/*.js\"",
     "setup:hooks": "husky"

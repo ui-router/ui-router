@@ -33,6 +33,7 @@ const rootManifest = readJson("package.json");
 const rootLock = readJson("package-lock.json");
 const turbo = readJson("turbo.json");
 const aliases = readJson("migration/source-aliases.json");
+const packageArtifacts = readJson("migration/package-artifacts.json");
 const turboEvidencePath = "migration/evidence/s03/turbo-graph.json";
 equal(
   "S03 Turbo evidence digest",
@@ -58,7 +59,8 @@ equal(
 equal("S03 Turbo lock evidence", turboEvidence.rootLock, {
   beforeSha256:
     "2dc333cc65a5b88ea0932e20c6ef67f337288a63b12bc6cf585cf539480dfee4",
-  afterSha256: sha256("package-lock.json"),
+  afterSha256:
+    "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
   beforePackageEntries: 4289,
   afterPackageEntries: 4296,
   addedPackageKeys: [
@@ -71,6 +73,16 @@ equal("S03 Turbo lock evidence", turboEvidence.rootLock, {
     "node_modules/turbo",
   ],
 });
+equal(
+  "P01 lock predecessor",
+  packageArtifacts.rootLockPredecessorSha256,
+  turboEvidence.rootLock.afterSha256
+);
+equal(
+  "P01 current lock",
+  packageArtifacts.rootLockSha256,
+  sha256("package-lock.json")
+);
 equal("S03 Turbo runtime evidence", turboEvidence.runtime, {
   node: "v24.19.0",
   npm: "11.17.0",

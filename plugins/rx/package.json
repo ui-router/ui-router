@@ -4,9 +4,10 @@
   "description": "Reactive extensions for UI-Router",
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _bundles stats.html",
-    "compile": "npm run clean && tsgo && tsgo --outDir lib-esm --module es6",
+    "compile": "npm run clean && tsc && tsc --outDir lib-esm --module es6",
     "bundle": "rolldown -c rolldown.config.mjs",
     "build": "run-s compile bundle fixmaps:*",
+    "pack": "node ../../tools/pack-package.mjs",
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
@@ -26,6 +27,7 @@
     "reactive",
     "rxjs"
   ],
+  "files": ["lib", "lib-esm", "_bundles"],
   "main": "lib/index.js",
   "module": "lib-esm/index.js",
   "typings": "lib/index.d.ts",

@@ -52,6 +52,7 @@
     "format:check": "oxfmt --check core react",
     "clean": "shx rm -rf dist",
     "build": "npm run clean && tsdown",
+    "pack": "node ../../tools/pack-package.mjs",
     "release": "release"
   },
   "devDependencies": {
@@ -76,7 +77,18 @@
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "@uirouter/core": ">=5.0.0"
+    "@uirouter/core": ">=5.0.0",
+    "react": ">=16.8.0",
+    "react-redux": ">=7.1.0",
+    "redux": ">=4.0.0 <6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-redux": {
+      "optional": true
+    }
   },
   "dependencies": {}
 }

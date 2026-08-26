@@ -1,0 +1,910 @@
+{
+  "schemaVersion": 1,
+  "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+  "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
+  "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
+  "turboJsonSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10",
+  "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
+  "rootLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "normalizedEnvironment": {
+    "CI": "true",
+    "HUSKY": "0",
+    "LC_ALL": "C",
+    "NODE_ENV": "production",
+    "TZ": "UTC"
+  },
+  "artifactPolicy": {
+    "directory": ".artifacts/packages",
+    "naming": "package-version-sha256.tgz",
+    "npmPackArgv": [
+      "npm",
+      "pack",
+      "--ignore-scripts",
+      "--json",
+      "--pack-destination"
+    ],
+    "forbiddenPatterns": [
+      "(^|/)node_modules(/|$)",
+      "(^|/)(src|test|tests|examples|integration-tests)(/|$)",
+      "(^|/)package-lock.json$",
+      "(^|/)(tsconfig|typedoc|vitest|jest|karma|rollup|rolldown|webpack|eslint)[^/]*$",
+      "(^|/)downstream_projects.json$",
+      "(^|/)artifacts.json$",
+      "(^|/).*\\.legacy(\\.[^/]*)?$",
+      "migration/source-aliases.json",
+      "tools/source-aliases.cjs"
+    ],
+    "sourceMapPolicy": "relative normalized sources only; no absolute path, repository root, source-alias helper, or repository-relative package source entrypoint may appear",
+    "repetitions": 2,
+    "waivers": []
+  },
+  "consumer": {
+    "sandbox": "outside-repository-ancestry",
+    "name": "@uirouter/p01-packed-consumer",
+    "sentinelPackage": "@uirouter/p01-root-sentinel",
+    "lockArgv": [
+      "npm",
+      "install",
+      "--package-lock-only",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "installArgv": [
+      "npm",
+      "ci",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "dependencies": {
+      "@angular/common": "22.1.3",
+      "@angular/compiler": "22.1.3",
+      "@angular/core": "22.1.3",
+      "@angular/upgrade": "22.1.3",
+      "@types/angular": "1.8.9",
+      "@types/jquery": "3.5.34",
+      "@types/node": "24.13.3",
+      "@types/react": "19.2.18",
+      "@types/react-dom": "19.2.5",
+      "angular": "1.8.3",
+      "jsdom": "27.4.0",
+      "react": "19.2.8",
+      "react-dom": "19.2.8",
+      "react-redux": "9.3.0",
+      "redux": "5.0.1",
+      "rxjs": "7.8.2",
+      "zone.js": "0.16.2"
+    },
+    "typecheck": {
+      "typescript": "5.9.3",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--project",
+        "tsconfig.json",
+        "--noEmit"
+      ]
+    },
+    "bundler": {
+      "package": "esbuild",
+      "version": "0.28.2",
+      "command": [
+        "node_modules/.bin/esbuild",
+        "bundler-probe.ts",
+        "--bundle",
+        "--format=esm",
+        "--platform=browser",
+        "--outfile=bundler-probe.mjs"
+      ]
+    }
+  },
+  "packages": [
+    {
+      "id": "core",
+      "owner": "p01-production-pack",
+      "sourceManifest": "core/package.json",
+      "manifest": "core/package.json",
+      "manifestSha256": "9d4687498fa13540c0533baa70d1f6b0e020a3076d3e78860af8d8331b938d75",
+      "scriptsSha256": "8dacad0429f3ab1263f5ca7b434b3f4762a77ca7384c56faf6e911fee06e581d",
+      "package": "@uirouter/core",
+      "version": "6.1.2",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-core.js",
+          "_bundles/ui-router-core.min.js"
+        ]
+      },
+      "internalEdgeIds": [],
+      "entrypoints": [
+        {
+          "id": "core-require",
+          "mode": "require",
+          "specifier": "@uirouter/core",
+          "target": "lib/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "core-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/core",
+          "target": "lib-esm/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "core-types",
+          "mode": "types",
+          "specifier": "@uirouter/core",
+          "target": "lib/index.d.ts",
+          "export": "UIRouter"
+        }
+      ]
+    },
+    {
+      "id": "angular",
+      "owner": "p01-production-pack",
+      "sourceManifest": "framework/angular/router/package.json",
+      "manifest": "frameworks/angular/uirouter-angular/package.json",
+      "manifestSha256": "02989715b0c8fada8246e8d6c5a1b303ab69e6542d44888957395b2d299d4c00",
+      "scriptsSha256": "cc5f7db456a54abd1250922f6d2339472290c6e8ead4f571e85055f03ff63c8c",
+      "package": "@uirouter/angular",
+      "version": "22.0.0",
+      "kind": "angular-library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["dist"],
+        "outputs": ["dist/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": "dist",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "fesm2022/**",
+          "types/**"
+        ],
+        "required": [
+          "package.json",
+          "fesm2022/uirouter-angular.mjs",
+          "types/uirouter-angular.d.ts"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-framework-angular-router-peerdependencies-uirouter-core",
+        "edge-framework-angular-router-peerdependencies-uirouter-rx"
+      ],
+      "entrypoints": [
+        {
+          "id": "angular-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/angular",
+          "target": "fesm2022/uirouter-angular.mjs",
+          "export": "UIRouterModule"
+        },
+        {
+          "id": "angular-types",
+          "mode": "types",
+          "specifier": "@uirouter/angular",
+          "target": "types/uirouter-angular.d.ts",
+          "export": "UIRouterModule"
+        }
+      ]
+    },
+    {
+      "id": "angular-hybrid",
+      "owner": "p01-production-pack",
+      "sourceManifest": "framework/angular-hybrid/router/package.json",
+      "manifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "manifestSha256": "20ee6ee0cfecf41d7da6ea6dab31e8b30e489a249ba679b11292d3b069c7d6b2",
+      "scriptsSha256": "dce6c915e29128ab7a2cfd7efd6f39a8e6026fb05446cef05b4d7581ed6dcdda",
+      "package": "@uirouter/angular-hybrid",
+      "version": "22.0.0",
+      "kind": "angular-library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["dist"],
+        "outputs": ["dist/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": "dist",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "fesm2022/**",
+          "types/**"
+        ],
+        "required": [
+          "package.json",
+          "fesm2022/uirouter-angular-hybrid.mjs",
+          "types/uirouter-angular-hybrid.d.ts"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angular",
+        "edge-framework-angular-hybrid-router-peerdependencies-uirouter-angularjs",
+        "edge-framework-angular-hybrid-router-peerdependencies-uirouter-core"
+      ],
+      "entrypoints": [
+        {
+          "id": "angular-hybrid-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/angular-hybrid",
+          "target": "fesm2022/uirouter-angular-hybrid.mjs",
+          "export": "UIRouterUpgradeModule"
+        },
+        {
+          "id": "angular-hybrid-types",
+          "mode": "types",
+          "specifier": "@uirouter/angular-hybrid",
+          "target": "types/uirouter-angular-hybrid.d.ts",
+          "export": "UIRouterUpgradeModule"
+        }
+      ]
+    },
+    {
+      "id": "angularjs",
+      "owner": "p01-production-pack",
+      "sourceManifest": "framework/angularjs/router/package.json",
+      "manifest": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "manifestSha256": "cc7974d529dc93fcbcc796705607939cbc6db9bb470cb079b912a9b8efa30ef5",
+      "scriptsSha256": "6353602fe890233a926abab22a907d167f57620e1d31358f5d02931a35e26a51",
+      "package": "@uirouter/angularjs",
+      "version": "1.1.2",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "release"],
+        "outputs": ["lib/**", "lib-esm/**", "release/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "DOCS.md",
+          "lib/**",
+          "lib-esm/**",
+          "release/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "release/ui-router-angularjs.js",
+          "release/ui-router-angularjs.min.js"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-framework-angularjs-router-peerdependencies-uirouter-core"
+      ],
+      "entrypoints": [
+        {
+          "id": "angularjs-require",
+          "mode": "require",
+          "specifier": "@uirouter/angularjs",
+          "target": "release/ui-router-angularjs.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "angularjs-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/angularjs",
+          "target": "lib-esm/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "angularjs-types",
+          "mode": "types",
+          "specifier": "@uirouter/angularjs",
+          "target": "lib/index.d.ts",
+          "export": "UIRouter"
+        }
+      ]
+    },
+    {
+      "id": "react",
+      "owner": "p01-production-pack",
+      "sourceManifest": "framework/react/router/package.json",
+      "manifest": "frameworks/react/uirouter-react/package.json",
+      "manifestSha256": "2e04b1d6a6e10623bcd4b7bbd0b5a265f220766fedc17a91c5ac9ad4cedd77ad",
+      "scriptsSha256": "87bf8d6c2875d8e52f322e3439f75b394cc2deb47c9602c9cbd6deeb96376408",
+      "package": "@uirouter/react",
+      "version": "1.0.8",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "DOCS.md",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-react.js",
+          "_bundles/ui-router-react.min.js"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-framework-react-router-dependencies-uirouter-core"
+      ],
+      "entrypoints": [
+        {
+          "id": "react-require",
+          "mode": "require",
+          "specifier": "@uirouter/react",
+          "target": "lib/index.js",
+          "export": "UIRouterReact"
+        },
+        {
+          "id": "react-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react",
+          "target": "lib-esm/index.js",
+          "export": "UIRouterReact"
+        },
+        {
+          "id": "react-types",
+          "mode": "types",
+          "specifier": "@uirouter/react",
+          "target": "lib/index.d.ts",
+          "export": "UIRouterReact"
+        }
+      ]
+    },
+    {
+      "id": "react-hybrid",
+      "owner": "p01-production-pack",
+      "sourceManifest": "framework/react-hybrid/router/package.json",
+      "manifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "manifestSha256": "c724c7500d7dc4237a1564cef58e4f31051a7be438e1aba9315f1d1bb7003d37",
+      "scriptsSha256": "d31216da1ebd6aa837d944fcbaad0d1fd4d728887678df650859b6bb7470a059",
+      "package": "@uirouter/react-hybrid",
+      "version": "2.0.0",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.d.ts",
+          "lib/legacy.d.ts",
+          "lib-esm/index.js",
+          "lib-esm/legacy.js",
+          "_bundles/ui-router-react-hybrid.js",
+          "_bundles/ui-router-react-hybrid-legacy.js"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs",
+        "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+        "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+      ],
+      "entrypoints": [
+        {
+          "id": "react-hybrid-require",
+          "mode": "require",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "_bundles/ui-router-react-hybrid.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-require",
+          "mode": "require",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "_bundles/ui-router-react-hybrid-legacy.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "lib-esm/index.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "lib-esm/legacy.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-types",
+          "mode": "types",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "lib/index.d.ts",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-types",
+          "mode": "types",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "lib/legacy.d.ts",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        }
+      ]
+    },
+    {
+      "id": "dsr",
+      "owner": "p01-production-pack",
+      "sourceManifest": "plugins/dsr/package.json",
+      "manifest": "plugins/dsr/package.json",
+      "manifestSha256": "4e0aa3f46e4c064339faaeb97072b6c81a1065a40ef13c997f68aa37ac90a2a2",
+      "scriptsSha256": "60a3c49742bebee9e88fac58148cdb8d419e95c4dc44fa5277980b979ef39ab8",
+      "package": "@uirouter/dsr",
+      "version": "1.2.0",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "_bundles/ui-router-dsr.js",
+          "_bundles/ui-router-dsr.min.js"
+        ]
+      },
+      "internalEdgeIds": ["edge-plugins-dsr-peerdependencies-uirouter-core"],
+      "entrypoints": [
+        {
+          "id": "dsr-require",
+          "mode": "require",
+          "specifier": "@uirouter/dsr",
+          "target": "lib/index.js",
+          "export": "DSRPlugin"
+        },
+        {
+          "id": "dsr-types",
+          "mode": "types",
+          "specifier": "@uirouter/dsr",
+          "target": "lib/index.d.ts",
+          "export": "DSRPlugin"
+        }
+      ]
+    },
+    {
+      "id": "redux",
+      "owner": "p01-production-pack",
+      "sourceManifest": "plugins/redux/package.json",
+      "manifest": "plugins/redux/package.json",
+      "manifestSha256": "db3f692d7eafd7b1fd9cb77afb675cef78e3b770fd06557b9c015dea96b5cdb0",
+      "scriptsSha256": "1ac511fea155b0abed00da779f0fd385ac22abab5d02d14f47cd3d80e5e77d78",
+      "package": "@uirouter/redux",
+      "version": "1.0.0",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["dist"],
+        "outputs": ["dist/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": ["package.json", "README.md", "LICENSE", "dist/**"],
+        "required": [
+          "package.json",
+          "dist/index.cjs",
+          "dist/index.mjs",
+          "dist/index.d.cts",
+          "dist/index.d.mts",
+          "dist/react.cjs",
+          "dist/react.mjs",
+          "dist/react.d.cts",
+          "dist/react.d.mts"
+        ]
+      },
+      "internalEdgeIds": ["edge-plugins-redux-peerdependencies-uirouter-core"],
+      "entrypoints": [
+        {
+          "id": "redux-require",
+          "mode": "require",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.cjs",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.mjs",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-types",
+          "mode": "types",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.d.mts",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-react-require",
+          "mode": "require",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.cjs",
+          "export": "ConnectedUIRouter"
+        },
+        {
+          "id": "redux-react-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.mjs",
+          "export": "ConnectedUIRouter"
+        },
+        {
+          "id": "redux-react-types",
+          "mode": "types",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.d.mts",
+          "export": "ConnectedUIRouter"
+        }
+      ]
+    },
+    {
+      "id": "rx",
+      "owner": "p01-production-pack",
+      "sourceManifest": "plugins/rx/package.json",
+      "manifest": "plugins/rx/package.json",
+      "manifestSha256": "1a98240c3dd650b3f3d7762f771841531a935b81e1f8e31396e11962f9f1efc8",
+      "scriptsSha256": "d2b33b88acbc85f3ade8ce6c20fa24ef0c9561ca71695edf320be68a652d3fcf",
+      "package": "@uirouter/rx",
+      "version": "1.0.0",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-rx.js"
+        ]
+      },
+      "internalEdgeIds": ["edge-plugins-rx-peerdependencies-uirouter-core"],
+      "entrypoints": [
+        {
+          "id": "rx-require",
+          "mode": "require",
+          "specifier": "@uirouter/rx",
+          "target": "lib/index.js",
+          "export": "UIRouterRx"
+        },
+        {
+          "id": "rx-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/rx",
+          "target": "lib-esm/index.js",
+          "export": "UIRouterRx"
+        },
+        {
+          "id": "rx-types",
+          "mode": "types",
+          "specifier": "@uirouter/rx",
+          "target": "lib/index.d.ts",
+          "export": "UIRouterRx"
+        }
+      ]
+    },
+    {
+      "id": "sticky-states",
+      "owner": "p01-production-pack",
+      "sourceManifest": "plugins/sticky-states/package.json",
+      "manifest": "plugins/sticky-states/package.json",
+      "manifestSha256": "bd47cb72220041ebf497449b753c4eee96ba75c38fc41f73f94bc9969c18c932",
+      "scriptsSha256": "9c8becba83ebaf3ceba7b413670da73afcf59c3fa1886b74df3ad5af44dd0532",
+      "package": "@uirouter/sticky-states",
+      "version": "1.5.1",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-sticky-states.js"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-plugins-sticky-states-peerdependencies-uirouter-core"
+      ],
+      "entrypoints": [
+        {
+          "id": "sticky-states-require",
+          "mode": "require",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib/index.js",
+          "export": "StickyStatesPlugin"
+        },
+        {
+          "id": "sticky-states-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib-esm/index.js",
+          "export": "StickyStatesPlugin"
+        },
+        {
+          "id": "sticky-states-types",
+          "mode": "types",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib/index.d.ts",
+          "export": "StickyStatesPlugin"
+        }
+      ]
+    },
+    {
+      "id": "visualizer",
+      "owner": "p01-production-pack",
+      "sourceManifest": "plugins/visualizer/package.json",
+      "manifest": "plugins/visualizer/package.json",
+      "manifestSha256": "4880538bea619275e1dfb71302b86e56ff099ddc0a34542a6f92792bce01d46c",
+      "scriptsSha256": "2e0a10ecd4684a90f050a15e14fa0d4139c335a9dfdef60e956f3affd2528d27",
+      "package": "@uirouter/visualizer",
+      "version": "7.2.1",
+      "kind": "library",
+      "build": {
+        "script": "build",
+        "cleanPaths": ["lib", "lib-esm", "_bundles"],
+        "outputs": ["lib/**", "lib-esm/**", "_bundles/**"]
+      },
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "artisinal.typings.d.ts",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "artisinal.typings.d.ts",
+          "_bundles/ui-router-visualizer.js",
+          "_bundles/ui-router-visualizer.esm.js"
+        ]
+      },
+      "internalEdgeIds": [
+        "edge-plugins-visualizer-peerdependencies-uirouter-core"
+      ],
+      "entrypoints": [
+        {
+          "id": "visualizer-require",
+          "mode": "require",
+          "specifier": "@uirouter/visualizer",
+          "target": "_bundles/ui-router-visualizer.js",
+          "export": "Visualizer"
+        },
+        {
+          "id": "visualizer-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/visualizer",
+          "target": "_bundles/ui-router-visualizer.esm.js",
+          "export": "Visualizer"
+        },
+        {
+          "id": "visualizer-types",
+          "mode": "types",
+          "specifier": "@uirouter/visualizer",
+          "target": "artisinal.typings.d.ts",
+          "export": "Visualizer"
+        }
+      ]
+    },
+    {
+      "id": "publish-scripts",
+      "owner": "p01-production-pack",
+      "sourceManifest": "tools/publish-scripts/package.json",
+      "manifest": "tools/publish-scripts/package.json",
+      "manifestSha256": "84755d6152a8da4cf7b60e1d68cb663ee6cb6e7149496aa7f7199030c2a31479",
+      "scriptsSha256": "7724251a5073fc63c31e8f072cb99aa78213d79f65eedb2f109377cc0ae3dabc",
+      "package": "@uirouter/publish-scripts",
+      "version": "2.8.0",
+      "kind": "cli",
+      "build": null,
+      "pack": {
+        "script": "pack",
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "artifact_tagging.js",
+          "docgen_via_docker.sh",
+          "ensure_clean_master.js",
+          "modify_sourcemap_paths.js",
+          "publish_docs.js",
+          "publish_yalc_package.js",
+          "release.js",
+          "show_changelog.js",
+          "show_version.js",
+          "test_downstream_projects.js",
+          "util.js"
+        ],
+        "required": [
+          "package.json",
+          "artifact_tagging.js",
+          "docgen_via_docker.sh",
+          "ensure_clean_master.js",
+          "modify_sourcemap_paths.js",
+          "publish_docs.js",
+          "publish_yalc_package.js",
+          "release.js",
+          "show_changelog.js",
+          "test_downstream_projects.js",
+          "util.js"
+        ]
+      },
+      "internalEdgeIds": [],
+      "entrypoints": [
+        {
+          "id": "publish-scripts-artifact-tagging",
+          "mode": "bin",
+          "specifier": "artifact_tagging",
+          "target": "artifact_tagging.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-ensure-clean-master",
+          "mode": "bin",
+          "specifier": "ensure_clean_master",
+          "target": "ensure_clean_master.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-generate-docs",
+          "mode": "bin",
+          "specifier": "generate_docs",
+          "target": "docgen_via_docker.sh",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-modify-sourcemap-paths",
+          "mode": "bin",
+          "specifier": "modify_sourcemap_paths",
+          "target": "modify_sourcemap_paths.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-publish-docs",
+          "mode": "bin",
+          "specifier": "publish_docs",
+          "target": "publish_docs.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-publish-yalc-package",
+          "mode": "bin",
+          "specifier": "publish_yalc_package",
+          "target": "publish_yalc_package.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-release",
+          "mode": "bin",
+          "specifier": "release",
+          "target": "release.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-show-changelog",
+          "mode": "bin",
+          "specifier": "show_changelog",
+          "target": "show_changelog.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-test-downstream",
+          "mode": "bin",
+          "specifier": "test_downstream_projects",
+          "target": "test_downstream_projects.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-util",
+          "mode": "bin",
+          "specifier": "util",
+          "target": "util.js",
+          "export": null
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,7 @@
     "clean": "shx rm -rf lib lib-esm _bundles _doc dist",
     "compile": "npm run clean && ngc",
     "build": "ng build",
+    "pack": "node ../../../tools/pack-package.mjs",
     "release": "release --deps @uirouter/core @uirouter/rx",
     "check-peer-dependencies": "check-peer-dependencies",
     "test": "npm run test:zone && npm run test:zoneless",
@@ -48,6 +49,8 @@
     "node": ">=6.0.0"
   },
   "license": "MIT",
+  "module": "dist/fesm2022/uirouter-angular.mjs",
+  "typings": "dist/types/uirouter-angular.d.ts",
   "distDir": "dist",
   "peerDependencies": {
     "@angular/common": "^22.0.0",

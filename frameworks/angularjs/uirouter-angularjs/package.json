@@ -10,6 +10,7 @@
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include 'release/**/*.js.map'",
     "build": "npm run clean && npm run compile && npm run bundle && npm run fixmaps:lib && npm run fixmaps:bundle",
+    "pack": "node ../../../tools/pack-package.mjs",
     "lint": "eslint src/**/*.ts",
     "package": "npm run build",
     "bundle": "npm run bundle_router && npm run bundle_monolithic_router && npm run bundle_events && npm run bundle_resolve",
@@ -73,6 +74,7 @@
     "node": ">=4.0.0"
   },
   "license": "MIT",
+  "files": ["lib", "lib-esm", "release", "DOCS.md"],
   "main": "release/ui-router-angularjs.js",
   "jsnext:main": "lib-esm/index.js",
   "module": "lib-esm/index.js",

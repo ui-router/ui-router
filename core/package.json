@@ -6,7 +6,8 @@
     "clean": "shx rm -rf lib lib-esm _bundles .cache _doc",
     "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
     "build": "run-s compile fixdts bundle fixmaps:*",
-    "bundle": "rollup -c && rollup -c --environment MINIFY",
+    "pack": "node ../tools/pack-package.mjs",
+    "bundle": "node ../node_modules/rollup/dist/bin/rollup -c && node ../node_modules/rollup/dist/bin/rollup -c --environment MINIFY",
     "fixdts": "dts-downlevel --semver '>=2.2.0' 'lib/**/*.d.ts' 'lib-esm/**/*.d.ts'",
     "fixmaps:lib": "tweak_sourcemap_paths -a --include 'lib/**/*.js.map' 'lib-esm/**/*.js.map'",
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include '_bundles/**/*.js.map'",
@@ -62,6 +63,7 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "files": ["lib", "lib-esm", "_bundles"],
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "jsnext:main": "lib-esm/index.js",

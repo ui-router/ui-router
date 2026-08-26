@@ -6,6 +6,7 @@
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
+    "types": [],
     "allowSyntheticDefaultImports": true,
     "outDir": "lib",
     "declaration": true,

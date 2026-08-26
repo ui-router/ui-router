@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _bundles",
     "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
-    "compile": "npm run clean && tsgo && tsgo -m es6 --outDir lib-esm",
+    "pack": "node ../../tools/pack-package.mjs",
+    "compile": "npm run clean && node ../../node_modules/typescript-p01/bin/tsc && node ../../node_modules/typescript-p01/bin/tsc -m es6 --outDir lib-esm",
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "test:downstream": "test_downstream_projects",
@@ -41,6 +42,7 @@
     "node": ">=18.0.0"
   },
   "jsnext:main": "lib-esm/index.js",
+  "files": ["lib", "lib-esm", "_bundles"],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "license": "MIT",

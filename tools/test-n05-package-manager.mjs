@@ -182,7 +182,7 @@ try {
   }, /unexpected migration control\/evidence path/);
   expectFailure('root-lock-yarn-package', (root) => {
     const file = 'package-lock.json'; const value = json(root, file); value.packages['node_modules/yarn'] = { version: '1.22.22' }; save(root, file, value);
-  }, /Turbo current lock digest|forbidden package-manager package/);
+  }, /P01 current lock digest|forbidden package-manager package/);
   expectFailure('colluding-root-lock-evidence', (root) => {
     const lockPath = 'package-lock.json'; const lock = json(root, lockPath); lock.packages['node_modules/yalc'] = { version: '1.0.0' }; save(root, lockPath, lock);
     const evidencePath = 'migration/evidence/n05/package-manager-cleanup.json'; const evidence = json(root, evidencePath);

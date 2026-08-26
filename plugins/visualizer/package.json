@@ -5,9 +5,10 @@
   "scripts": {
     "start": "npm run bundle && serve . --open /examples/example",
     "clean": "shx rm -rf lib lib-esm _bundles",
-    "compile": "tsgo --outdir lib && tsgo -m es6 --outdir lib-esm",
+    "compile": "tsc --outDir lib && tsc -m es6 --outDir lib-esm",
     "bundle": "rolldown -c rolldown.config.mjs",
     "build": "npm run clean && npm run compile && npm run bundle",
+    "pack": "node ../../tools/pack-package.mjs",
     "release": "release",
     "setup:hooks": "husky",
     "build:publish": "npm run build"
@@ -62,6 +63,7 @@
   "peerDependencies": {
     "@uirouter/core": ">=5.0.0"
   },
+  "files": ["_bundles", "artisinal.typings.d.ts"],
   "main": "_bundles/ui-router-visualizer.js",
   "module": "_bundles/ui-router-visualizer.esm.js",
   "typings": "artisinal.typings.d.ts",

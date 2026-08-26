@@ -166,7 +166,7 @@ const cases = [
       value.packages["node_modules/turbo"].integrity = "sha512-invalid";
       writeJson("package-lock.json", value);
     },
-    message: "S03 Turbo lock evidence",
+    message: "P01 current lock",
   },
   {
     name: "root-task-selection",

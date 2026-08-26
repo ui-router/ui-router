@@ -28,6 +28,58 @@ export function scriptsSha256(manifest) {
   return sha256(JSON.stringify(manifest.scripts || {}));
 }
 
+export function artifactStem(packageName, version, digest) {
+  return `${packageName
+    .replace(/^@/, "")
+    .replaceAll("/", "-")}-${version}-sha256-${digest}`;
+}
+
+function validateRelativeSourceMapPath(
+  packageId,
+  filename,
+  label,
+  value,
+  { allowEmpty = false } = {}
+) {
+  if (typeof value !== "string" || (!allowEmpty && value.length === 0)) {
+    fail(
+      `${packageId} source map ${filename} has non-string or empty ${label}`
+    );
+  }
+  if (value === "" && allowEmpty) return;
+  if (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(value)) {
+    fail(`${packageId} source map ${filename} has URI ${label} ${value}`);
+  }
+  if (path.posix.isAbsolute(value) || /^[A-Za-z]:[\\/]/.test(value)) {
+    fail(`${packageId} source map ${filename} has absolute ${label} ${value}`);
+  }
+  if (value.includes("\\") || path.posix.normalize(value) !== value) {
+    fail(
+      `${packageId} source map ${filename} has non-normalized ${label} ${value}`
+    );
+  }
+}
+
+export function validateSourceMapReferences(packageId, filename, sourceMap) {
+  if (!Array.isArray(sourceMap.sources)) {
+    fail(`${packageId} source map ${filename} has non-array sources`);
+  }
+  const sourceRoot = sourceMap.sourceRoot ?? "";
+  validateRelativeSourceMapPath(packageId, filename, "sourceRoot", sourceRoot, {
+    allowEmpty: true,
+  });
+  for (const source of sourceMap.sources) {
+    validateRelativeSourceMapPath(packageId, filename, "source", source);
+    const combined = path.posix.normalize(path.posix.join(sourceRoot, source));
+    const checkoutRelative = combined.replace(/^(?:\.\.\/)+/, "");
+    if (/^(?:core|frameworks|plugins|tools)\//.test(checkoutRelative)) {
+      fail(
+        `${packageId} source map ${filename} has checkout-relative source ${source}`
+      );
+    }
+  }
+}
+
 export function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
   if (value !== null && typeof value === "object") {
@@ -607,11 +659,18 @@ export async function validatePackageArtifactsEvidence({
       if (!/^[0-9a-f]{64}$/.test(artifact[field] || ""))
         fail(`${record.id} package proof ${field} is invalid`);
     }
+    const expectedFilename = `${artifactStem(
+      record.package,
+      record.version,
+      artifact.sha256
+    )}.tgz`;
     if (
-      !artifact.filename.includes(artifact.sha256) ||
-      !artifact.filename.endsWith(".tgz")
+      artifact.filename !== expectedFilename ||
+      path.posix.basename(artifact.filename) !== artifact.filename
     ) {
-      fail(`${record.id} package proof filename is not content-addressed`);
+      fail(
+        `${record.id} package proof filename is not the exact content-addressed basename`
+      );
     }
     if (
       !Number.isInteger(artifact.fileCount) ||
@@ -627,8 +686,8 @@ export async function validatePackageArtifactsEvidence({
       !lockRecord ||
       lockRecord.version !== record.version ||
       lockRecord.integrity !== artifact.integrity ||
-      !String(lockRecord.resolved || "").endsWith(artifact.filename) ||
-      !String(lockRecord.resolved || "").startsWith("file:../artifacts/")
+      String(lockRecord.resolved || "") !==
+        `file:../artifacts/${artifact.filename}`
     ) {
       fail(
         `${record.id} consumer evidence does not bind its local content-addressed tarball`

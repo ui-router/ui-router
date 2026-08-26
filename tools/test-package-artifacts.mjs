@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 
-import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
+import {
+  cp,
+  lstat,
+  mkdir,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
@@ -10,6 +19,7 @@ import {
   sha256File,
   validatePackageArtifactsContract,
   validatePackageArtifactsEvidence,
+  validateSourceMapReferences,
 } from "./package-artifacts-lib.mjs";
 
 let fixture;
@@ -62,6 +72,36 @@ async function expectFailure(
   }
 }
 
+function expectSourceMapFailure(name, sourceMap, expected) {
+  let failure;
+  try {
+    validateSourceMapReferences(
+      "source-map-fixture",
+      "lib/index.js.map",
+      sourceMap
+    );
+  } catch (error) {
+    failure = error instanceof Error ? error.message : String(error);
+  }
+  if (!failure || !failure.includes(expected)) {
+    throw new Error(
+      `${name}: expected ${JSON.stringify(expected)}, received ${JSON.stringify(
+        failure
+      )}`
+    );
+  }
+  cases += 1;
+}
+
+async function pathExists(filename) {
+  try {
+    await lstat(filename);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function mutateContract(mutator) {
   const contract = await readJson("migration/package-artifacts.json");
   await mutator(contract);
@@ -104,6 +144,51 @@ try {
     root: fixture,
   });
   await validatePackageArtifactsEvidence({ root: fixture, contract });
+  validateSourceMapReferences("source-map-fixture", "lib/index.js.map", {
+    version: 3,
+    sourceRoot: "../",
+    sources: ["src/index.ts"],
+  });
+  expectSourceMapFailure(
+    "source-map-webpack-uri",
+    { sources: ["webpack://package/src/index.ts"] },
+    "has URI source"
+  );
+  expectSourceMapFailure(
+    "source-map-uppercase-file-uri",
+    { sources: ["FILE:///tmp/source.ts"] },
+    "has URI source"
+  );
+  expectSourceMapFailure(
+    "source-map-http-root",
+    { sourceRoot: "https://example.test/", sources: ["index.ts"] },
+    "has URI sourceRoot"
+  );
+  expectSourceMapFailure(
+    "source-map-checkout-relative",
+    { sources: ["frameworks/react/uirouter-react/src/index.ts"] },
+    "has checkout-relative source"
+  );
+  expectSourceMapFailure(
+    "source-map-non-string",
+    { sources: [42] },
+    "non-string or empty source"
+  );
+  expectSourceMapFailure(
+    "source-map-backslash",
+    { sources: ["..\\src\\index.ts"] },
+    "non-normalized source"
+  );
+  expectSourceMapFailure(
+    "source-map-dot-segment",
+    { sources: [".././src/index.ts"] },
+    "non-normalized source"
+  );
+  expectSourceMapFailure(
+    "source-map-non-array",
+    { sources: "src/index.ts" },
+    "non-array sources"
+  );
 
   await expectFailure(
     "classification-digest",
@@ -364,7 +449,18 @@ try {
       value.packages[0].filename = "not-content-addressed.tgz";
       await writeJson("migration/evidence/p01/package-proof.json", value);
     },
-    "filename is not content-addressed",
+    "filename is not the exact content-addressed basename",
+    true
+  );
+  await expectFailure(
+    "evidence-artifact-traversal",
+    ["migration/evidence/p01/package-proof.json"],
+    async () => {
+      const value = await readJson("migration/evidence/p01/package-proof.json");
+      value.packages[0].filename = `../${value.packages[0].filename}`;
+      await writeJson("migration/evidence/p01/package-proof.json", value);
+    },
+    "filename is not the exact content-addressed basename",
     true
   );
   await expectFailure(
@@ -406,6 +502,62 @@ try {
     "consumer evidence does not bind its local content-addressed tarball",
     true
   );
+  await expectFailure(
+    "consumer-path-traversal",
+    ["migration/evidence/p01/consumer-package-lock.json"],
+    async () => {
+      const value = await readJson(
+        "migration/evidence/p01/consumer-package-lock.json"
+      );
+      const record = value.packages["node_modules/@uirouter/core"];
+      record.resolved = `file:../artifacts/sub/../${path.posix.basename(
+        record.resolved
+      )}`;
+      await writeJson(
+        "migration/evidence/p01/consumer-package-lock.json",
+        value
+      );
+    },
+    "consumer evidence does not bind its local content-addressed tarball",
+    true
+  );
+
+  const sentinelRoot = path.join(
+    repository,
+    "node_modules",
+    ...contract.consumer.sentinelPackage.split("/")
+  );
+  if (await pathExists(sentinelRoot))
+    throw new Error("sentinel-collision: test precondition already exists");
+  await mkdir(sentinelRoot, { recursive: true });
+  const sentinelMarker = path.join(sentinelRoot, "preserve.txt");
+  await writeFile(sentinelMarker, "preserve\n");
+  try {
+    const result = spawnSync(
+      process.execPath,
+      ["tools/prove-package-artifacts.mjs"],
+      {
+        cwd: repository,
+        encoding: "utf8",
+        maxBuffer: 32 * 1024 * 1024,
+      }
+    );
+    const output = `${result.stdout || ""}${result.stderr || ""}`;
+    if (
+      result.status === 0 ||
+      !output.includes("root-only sentinel path already exists")
+    ) {
+      throw new Error(
+        `sentinel-collision: expected collision failure, received ${output}`
+      );
+    }
+    if ((await readFile(sentinelMarker, "utf8")) !== "preserve\n") {
+      throw new Error("sentinel-collision: pre-existing sentinel was changed");
+    }
+    cases += 1;
+  } finally {
+    await rm(sentinelRoot, { recursive: true, force: true });
+  }
 
   console.log(`PACKAGE_ARTIFACTS_ADVERSARIAL_TESTS_OK cases=${cases}`);
 } catch (error) {

@@ -18,6 +18,7 @@ import os from "node:os";
 import path from "node:path";
 
 import {
+  artifactStem,
   canonicalJson,
   contractPath,
   fail,
@@ -225,11 +226,19 @@ async function collectArtifacts(contract, destination) {
     ) {
       fail(`${record.id} artifact metadata identity differs`);
     }
+    const expectedFilename = `${artifactStem(
+      record.package,
+      record.version,
+      metadata.sha256
+    )}.tgz`;
     if (
       metadata.filename !== tarballNames[0] ||
-      !metadata.filename.includes(metadata.sha256)
+      metadata.filename !== expectedFilename ||
+      path.posix.basename(metadata.filename) !== metadata.filename
     ) {
-      fail(`${record.id} artifact filename is not content-addressed`);
+      fail(
+        `${record.id} artifact filename is not the exact content-addressed basename`
+      );
     }
     const tarball = path.join(artifactRoot, tarballNames[0]);
     if ((await sha256File(tarball)) !== metadata.sha256)
@@ -333,11 +342,7 @@ async function verifyInstalledPackages(contract, artifacts, consumerRoot) {
     ) {
       fail(`${record.package} consumer lock version/integrity differs`);
     }
-    if (
-      typeof lockRecord.resolved !== "string" ||
-      !lockRecord.resolved.startsWith("file:../artifacts/") ||
-      !lockRecord.resolved.endsWith(artifact.filename)
-    ) {
+    if (lockRecord.resolved !== `file:../artifacts/${artifact.filename}`) {
       fail(
         `${record.package} consumer lock did not resolve the content-addressed local tarball`
       );
@@ -632,6 +637,7 @@ async function runConsumer(contract, artifacts, proofRoot) {
 
 let proofRoot;
 let sentinelRoot;
+let sentinelCreated = false;
 try {
   const { contract, productionEdges } =
     await validatePackageArtifactsContract();
@@ -649,8 +655,11 @@ try {
     "node_modules",
     ...contract.consumer.sentinelPackage.split("/")
   );
-  await rm(sentinelRoot, { recursive: true, force: true });
+  if (await exists(sentinelRoot)) {
+    fail(`root-only sentinel path already exists: ${sentinelRoot}`);
+  }
   await mkdir(sentinelRoot, { recursive: true });
+  sentinelCreated = true;
   await writeFile(
     path.join(sentinelRoot, "package.json"),
     `${JSON.stringify({
@@ -698,6 +707,7 @@ try {
   }
 
   await rm(sentinelRoot, { recursive: true, force: true });
+  sentinelCreated = false;
   sentinelRoot = undefined;
   const afterSource = await sourceSnapshot(contract);
   if (canonicalJson(afterSource) !== canonicalJson(beforeSource))
@@ -709,6 +719,7 @@ try {
   console.error(error instanceof Error ? error.message : String(error));
   process.exitCode = 1;
 } finally {
-  if (sentinelRoot) await rm(sentinelRoot, { recursive: true, force: true });
+  if (sentinelRoot && sentinelCreated)
+    await rm(sentinelRoot, { recursive: true, force: true });
   if (proofRoot) await rm(proofRoot, { recursive: true, force: true });
 }

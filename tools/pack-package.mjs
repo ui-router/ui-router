@@ -15,11 +15,13 @@ import os from "node:os";
 import path from "node:path";
 
 import {
+  artifactStem,
   fail,
   packageRecordForCwd,
   repository,
   sha256,
   validatePackedFileList,
+  validateSourceMapReferences,
 } from "./package-artifacts-lib.mjs";
 
 function run(command, args, options = {}) {
@@ -40,9 +42,13 @@ function run(command, args, options = {}) {
   return result;
 }
 
-function artifactStem(packageName, version, digest) {
-  const name = packageName.replace(/^@/, "").replaceAll("/", "-");
-  return `${name}-${version}-sha256-${digest}`;
+async function exists(filename) {
+  try {
+    await lstat(filename);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function recursiveFiles(root, relative = "") {
@@ -64,6 +70,105 @@ async function recursiveFiles(root, relative = "") {
 
 function textual(filename) {
   return /(?:\.d\.(?:ts|cts|mts)|\.(?:js|mjs|cjs|map|json))$/.test(filename);
+}
+
+function portableSourceMapReference(
+  packageRecord,
+  mapFilename,
+  sourceRoot,
+  source
+) {
+  if (typeof sourceRoot !== "string" || typeof source !== "string") {
+    fail(
+      `${packageRecord.id} source map ${mapFilename} has non-string source metadata`
+    );
+  }
+  let reference = path.posix.join(sourceRoot, source);
+  const scheme = reference.match(/^([A-Za-z][A-Za-z0-9+.-]*):/);
+  if (scheme) {
+    if (scheme[1].toLowerCase() !== "webpack") {
+      fail(
+        `${packageRecord.id} source map ${mapFilename} has non-portable URI source ${source}`
+      );
+    }
+    const parts = reference
+      .slice(scheme[0].length)
+      .replace(/^\/+/, "")
+      .split("/");
+    if (parts.length > 1 && parts[1] === ".") parts.shift();
+    reference = parts.join("/").replace(/^\.\//, "");
+  }
+  if (
+    !reference ||
+    path.posix.isAbsolute(reference) ||
+    reference.includes("\\")
+  ) {
+    fail(
+      `${packageRecord.id} source map ${mapFilename} has non-portable source ${source}`
+    );
+  }
+  reference = path.posix.normalize(reference);
+  const mapDirectory = path.posix.dirname(mapFilename);
+  const resolved = path.posix.normalize(
+    path.posix.join(mapDirectory, reference)
+  );
+  const checkoutRelative = reference.replace(/^(?:\.\.\/)+/, "");
+  if (
+    resolved === ".." ||
+    resolved.startsWith("../") ||
+    /^(?:core|frameworks|plugins|tools|node_modules)\//.test(checkoutRelative)
+  ) {
+    let portable = checkoutRelative
+      .replace(/^node_modules\//, "dependencies/")
+      .replace(/^core\/lib-esm\//, "dependencies/uirouter-core/");
+    if (!portable.startsWith("dependencies/")) portable = `sources/${portable}`;
+    reference = portable;
+  } else {
+    reference =
+      path.posix.relative(mapDirectory, resolved) ||
+      path.posix.basename(resolved);
+  }
+  return reference;
+}
+
+async function normalizeSourceMaps(packageRecord, packageRoot, packRoot) {
+  const roots = packageRecord.pack.root
+    ? [packRoot]
+    : (packageRecord.build?.cleanPaths || []).map((entry) =>
+        path.join(packageRoot, entry)
+      );
+  const maps = [];
+  for (const root of roots) {
+    if (await exists(root)) {
+      for (const relative of await recursiveFiles(root)) {
+        if (relative.endsWith(".map")) maps.push(path.join(root, relative));
+      }
+    }
+  }
+  for (const absolute of [...new Set(maps)].sort()) {
+    const mapFilename = path
+      .relative(packRoot, absolute)
+      .split(path.sep)
+      .join("/");
+    let sourceMap;
+    try {
+      sourceMap = JSON.parse(await readFile(absolute, "utf8"));
+    } catch {
+      fail(`${packageRecord.id} has invalid source map ${mapFilename}`);
+    }
+    const sourceRoot = sourceMap.sourceRoot ?? "";
+    if (!Array.isArray(sourceMap.sources)) {
+      fail(
+        `${packageRecord.id} source map ${mapFilename} has non-array sources`
+      );
+    }
+    sourceMap.sources = sourceMap.sources.map((source) =>
+      portableSourceMapReference(packageRecord, mapFilename, sourceRoot, source)
+    );
+    sourceMap.sourceRoot = "";
+    validateSourceMapReferences(packageRecord.id, mapFilename, sourceMap);
+    await writeFile(absolute, `${JSON.stringify(sourceMap)}\n`);
+  }
 }
 
 async function inspectContent(contract, packageRecord, extractedPackage) {
@@ -109,21 +214,7 @@ async function inspectContent(contract, packageRecord, extractedPackage) {
             `${packageRecord.id} has invalid source map JSON in ${filename}`
           );
         }
-        for (const source of [
-          ...(sourceMap.sources || []),
-          sourceMap.sourceRoot || "",
-        ].filter(Boolean)) {
-          if (
-            path.posix.isAbsolute(source) ||
-            /^[A-Za-z]:[\\/]/.test(source) ||
-            source.startsWith("file:") ||
-            source.includes("aimee-work")
-          ) {
-            fail(
-              `${packageRecord.id} source map ${filename} has non-portable source ${source}`
-            );
-          }
-        }
+        validateSourceMapReferences(packageRecord.id, filename, sourceMap);
       }
     }
     fileRecords.push({
@@ -210,6 +301,7 @@ try {
       fail(`${packageRecord.id} required pack input is missing: ${required}`);
     }
   }
+  await normalizeSourceMaps(packageRecord, packageRoot, packRoot);
 
   temporary = await mkdtemp(path.join(os.tmpdir(), "uirouter-p01-pack-"));
   const packArgs = [...contract.artifactPolicy.npmPackArgv.slice(1), temporary];

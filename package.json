@@ -69,6 +69,7 @@
     "test:history-migration": "node tools/test-history-migration.mjs"
   },
   "devDependencies": {
-    "turbo": "2.10.12"
+    "turbo": "2.10.12",
+    "typescript-p01": "npm:typescript@5.9.3"
   }
 }

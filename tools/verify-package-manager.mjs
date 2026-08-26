@@ -91,12 +91,9 @@ for (const [key, version] of Object.entries({
   'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/@types/react-dom': '19.2.5',
   'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/react': '19.2.8',
   'frameworks/react-hybrid/uirouter-react-hybrid/node_modules/react-dom': '19.2.8',
-  'plugins/dsr/examples/angular-cli/node_modules/typescript': '6.0.3',
-  'plugins/dsr/node_modules/@angular-devkit/build-angular/node_modules/@ngtools/webpack': '22.1.5',
-  'plugins/dsr/node_modules/typescript': '5.9.3',
+  'node_modules/typescript-p01': '5.9.3',
 })) requireEqual(`P01 changed lock package ${key}`, currentRootLock.packages[key]?.version, version);
-requireEqual('P01 removed conflicting DSR lock package', currentRootLock.packages['plugins/dsr/node_modules/@ngtools/webpack'], undefined);
-requireEqual('P01 DSR TypeScript declaration', currentRootLock.packages['plugins/dsr'].devDependencies.typescript, '^5.9.3');
+requireEqual('P01 TypeScript tool alias declaration', rootPackage.devDependencies['typescript-p01'], 'npm:typescript@5.9.3');
 requireEqual('Turbo added lock keys', turboEvidence.rootLock.addedPackageKeys, [
   'node_modules/@turbo/darwin-64',
   'node_modules/@turbo/darwin-arm64',

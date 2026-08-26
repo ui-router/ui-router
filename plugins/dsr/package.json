@@ -6,7 +6,7 @@
     "clean": "shx rm -rf lib lib-esm _bundles",
     "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
     "pack": "node ../../tools/pack-package.mjs",
-    "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
+    "compile": "npm run clean && node ../../node_modules/typescript-p01/bin/tsc && node ../../node_modules/typescript-p01/bin/tsc -m es6 --outDir lib-esm",
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "test:downstream": "test_downstream_projects",
@@ -52,7 +52,6 @@
   "devDependencies": {
     "@types/lodash": "^4.17.0",
     "@typescript/native-preview": "^7.0.0-dev.20260101.1",
-    "typescript": "^5.9.3",
     "@uirouter/core": "^6.1.0",
     "@uirouter/publish-scripts": "^2.6.8",
     "jsdom": "^26.1.0",

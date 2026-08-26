@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "timezone": "UTC",
+    "locale": "C"
+  },
+  "sandboxOutsideRepositoryAncestry": true,
+  "root": {
+    "lock": "package-lock.json",
+    "lockSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
+    "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+    "ciExitStatus": 0,
+    "npmLsCommand": "npm ls --all --json",
+    "npmLsExitStatus": 1,
+    "npmLsProblemCount": 15,
+    "npmLsInternalWorkspacePackages": 12,
+    "installedOriginVerifier": "INTERNAL_DEPS_VERIFY_OK current=109 legacy=28 workspace=100 localTarball=37 installed=verified",
+    "lockUnchanged": true
+  },
+  "localRuns": [
+    {
+      "manifest": "core/integration-tests/typescript-3.9/package.json",
+      "lock": "core/integration-tests/typescript-3.9/package-lock.json",
+      "lockSha256": "b2558f23e8f1a42fb623ba8d24dfc332f9a26e6b6112814bc525d1406625ca52",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "core/integration-tests/typescript-5.4/package.json",
+      "lock": "core/integration-tests/typescript-5.4/package-lock.json",
+      "lockSha256": "a7d57a24f721e474a37d248b244e0e8fe9bdef70619e6cc4d82a1d29b8abfbd4",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package-lock.json",
+      "lockSha256": "13bfd3403325e990b6b43cc928173d491b665ab1f328fb80a173724a700b5132",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package-lock.json",
+      "lockSha256": "37f64c039c1fc4d9d930f5274fbd4e69e687760bb66dde9a7cb251a1909f112b",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/angular-versions/v22/package.json",
+      "lock": "frameworks/angular/integration-tests/angular-versions/v22/package-lock.json",
+      "lockSha256": "7d56750b55dad7b9af972deedc1ddda11be619cea496f6345a3af8056777ba6f",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json",
+      "lock": "frameworks/angular/integration-tests/typescript-versions/typescript6/package-lock.json",
+      "lockSha256": "07362375f4b230ce51bb5440c16e898db136b9bee03cb58b49a77bd532b1d45b",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json",
+      "lock": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package-lock.json",
+      "lockSha256": "a4c385e69eae4a3a66621d4069ab06f3501a401e3b588d4f4a50b22963315674",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react16/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react16/package-lock.json",
+      "lockSha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react17/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react17/package-lock.json",
+      "lockSha256": "166a596a6a1d197bbb5529a4b9c7f9a3eb85528db4c501694ae686f539bc0c8a",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react18/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react18/package-lock.json",
+      "lockSha256": "b62a7fdaaffdc45385b18ae5023a67efcc14a71d32c6050def913ecd935b3d71",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react-hybrid/integration-tests/react19/package.json",
+      "lock": "frameworks/react-hybrid/integration-tests/react19/package-lock.json",
+      "lockSha256": "6bb89b94a96ec84393aebc354108214bebb6e9a0d42f09c00095966a1f3a9c4f",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react17/package.json",
+      "lock": "frameworks/react/integration-tests/react17/package-lock.json",
+      "lockSha256": "117aaccd22b9c020d0e17ee6f14cbd059f716e3d5e7300b85eb88ec6cfdcc2e8",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react18/package.json",
+      "lock": "frameworks/react/integration-tests/react18/package-lock.json",
+      "lockSha256": "56f135fc8461c5fad20d1ba10889a4e12edbf470e42a0db1c293442b5bd24530",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    },
+    {
+      "manifest": "frameworks/react/integration-tests/react19/package.json",
+      "lock": "frameworks/react/integration-tests/react19/package-lock.json",
+      "lockSha256": "c74ed22a2a6ca0e427818745da64e08899141751eb4b11d23f1c883a194b8e19",
+      "sandboxOutsideRepositoryAncestry": true,
+      "command": "npm ci --ignore-scripts --no-audit --no-fund --loglevel=error",
+      "ciExitStatus": 0,
+      "npmLsCommand": "npm ls --all --json",
+      "npmLsExitStatus": 0,
+      "npmLsProblemCount": 0,
+      "lockUnchanged": true
+    }
+  ],
+  "sourceTreeUnchanged": true
+}

@@ -99,13 +99,8 @@ try {
   const localRuns = [];
   for (const record of classification.manifests.filter((candidate) => candidate.lockOwner === 'local')) {
     const manifestPath = movePath(record.path);
-    const sourceDirectory = join(root, dirname(manifestPath));
-    const id = record.id.replaceAll('/', '__');
-    const fixtureSandbox = join(sandboxRoot, 'local', id);
-    cpSync(sourceDirectory, fixtureSandbox, {
-      recursive: true,
-      filter: (source) => source.split(sep).at(-1) !== 'node_modules',
-    });
+    const fixtureSandbox = join(rootSandbox, dirname(manifestPath));
+    rmSync(join(fixtureSandbox, 'node_modules'), { recursive: true, force: true });
     const lockPath = join(fixtureSandbox, 'package-lock.json');
     const lockBefore = sha256(lockPath);
     run('npm', ['ci', '--ignore-scripts', '--no-audit', '--no-fund', '--loglevel=error'], fixtureSandbox);
@@ -125,6 +120,14 @@ try {
     });
   }
   localRuns.sort((left, right) => left.manifest.localeCompare(right.manifest));
+  const installedOrigins = run(
+    process.execPath,
+    [join(root, 'tools/verify-internal-deps.mjs'), '--installed-root', rootSandbox],
+    root,
+  ).stdout.trim();
+  if (!/^INTERNAL_DEPS_VERIFY_OK .* installed=verified$/.test(installedOrigins)) {
+    fail(`installed-origin verifier returned an unexpected summary: ${installedOrigins}`);
+  }
 
   const proof = {
     schemaVersion: 1,
@@ -139,19 +142,25 @@ try {
       npmLsExitStatus: npmLs.status,
       npmLsProblemCount: problems.length,
       npmLsInternalWorkspacePackages: internal.length,
-      installedOriginVerifier: 'passed',
+      installedOriginVerifier: installedOrigins,
       lockUnchanged: sha256(rootLock) === rootLockBefore,
     },
     localRuns,
     sourceTreeUnchanged: true,
   };
   const outputFlag = process.argv.indexOf('--write');
+  const expectedFlag = process.argv.indexOf('--expected');
+  if (outputFlag !== -1 && expectedFlag !== -1) fail('--write and --expected are mutually exclusive');
+  if (outputFlag !== -1 && !process.argv[outputFlag + 1]) fail('--write requires an output path');
+  if (expectedFlag !== -1 && !process.argv[expectedFlag + 1]) fail('--expected requires an evidence path');
   const outputPath = outputFlag === -1 ? null : resolve(root, process.argv[outputFlag + 1] ?? '');
+  const expectedPath = expectedFlag === -1 ? null : resolve(root, process.argv[expectedFlag + 1] ?? '');
   if (outputPath) {
     writeFileSync(outputPath, `${JSON.stringify(proof, null, 2)}\n`);
   } else {
-    const expected = readJson('migration/evidence/n03/install-proof.json');
-    if (JSON.stringify(proof) !== JSON.stringify(expected)) fail('install proof differs from migration/evidence/n03/install-proof.json');
+    const comparisonPath = expectedPath ?? join(root, 'migration/evidence/n03/install-proof.json');
+    const expected = JSON.parse(readFileSync(comparisonPath, 'utf8'));
+    if (JSON.stringify(proof) !== JSON.stringify(expected)) fail(`install proof differs from ${relative(root, comparisonPath)}`);
   }
   const statusAfter = execFileSync('git', [...gitArgs, 'status', '--porcelain=v1'], { encoding: 'utf8' });
   if (statusAfter !== statusBefore && !outputPath) fail('proof mutated the source tree');

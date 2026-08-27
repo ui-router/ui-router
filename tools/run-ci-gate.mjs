@@ -78,7 +78,13 @@ mkdirSync(output, { recursive: true });
 const gitStatus = () => {
   const result = spawnSync(
     "git",
-    ["status", "--porcelain", "--untracked-files=no"],
+    [
+      "-c",
+      `safe.directory=${repository}`,
+      "status",
+      "--porcelain",
+      "--untracked-files=no",
+    ],
     { cwd: repository, encoding: "utf8" }
   );
   if (result.status !== 0) fail("cannot inspect tracked repository state");

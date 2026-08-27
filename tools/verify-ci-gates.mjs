@@ -89,6 +89,11 @@ if (actual.split(npmProvisioning).length - 1 !== 6)
   fail("workflow npm provisioning count differs");
 if (actual.replaceAll(npmProvisioning, "").includes("npm install"))
   fail("workflow contains an unreviewed npm install");
+const npmRegistryBootstrap = `        run: ${contract.runtime.npmRegistryBootstrapCommand.join(
+  " "
+)}`;
+if (actual.split(npmRegistryBootstrap).length - 1 !== 6)
+  fail("workflow npm registry bootstrap count differs");
 for (const forbidden of [
   "pull_request_target",
   "schedule:",

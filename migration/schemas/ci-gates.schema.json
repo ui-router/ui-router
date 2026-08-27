@@ -112,6 +112,7 @@
         "node",
         "npm",
         "npmInstallCommand",
+        "npmRegistryBootstrapCommand",
         "turbo",
         "environment",
         "browser"
@@ -137,6 +138,15 @@
           ],
           "minItems": 7,
           "maxItems": 7
+        },
+        "npmRegistryBootstrapCommand": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "node" },
+            { "const": "tools/bootstrap-ci-registry-tarballs.mjs" }
+          ],
+          "minItems": 2,
+          "maxItems": 2
         },
         "turbo": { "const": "2.10.12" },
         "environment": {

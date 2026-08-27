@@ -190,6 +190,13 @@ export async function validateCiGates(options = {}) {
     ],
     "npm provisioning command"
   );
+  equal(
+    contract.runtime.npmRegistryBootstrapCommand,
+    ["node", "tools/bootstrap-ci-registry-tarballs.mjs"],
+    "npm registry bootstrap command"
+  );
+  if (!existsSync(path.join(root, contract.runtime.npmRegistryBootstrapCommand[1])))
+    fail("npm registry bootstrap script is missing");
   equal(contract.runtime.turbo, "2.10.12", "Turbo pin");
   if (!contract.runtime.ciImage.endsWith(`@${contract.runtime.ciImageDigest}`))
     fail("CI image reference is not digest pinned");

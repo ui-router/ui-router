@@ -95,6 +95,9 @@ try {
   await rejectContract("npm-provisioning", (c) => {
     c.runtime.npmInstallCommand[3] = "npm@latest";
   });
+  await rejectContract("npm-registry-bootstrap", (c) => {
+    c.runtime.npmRegistryBootstrapCommand[1] = "tools/other.mjs";
+  });
   await rejectContract("turbo", (c) => {
     c.runtime.turbo = "2.10.11";
   });

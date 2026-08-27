@@ -50,6 +50,8 @@ function commonSteps(contract, job, gateArgument = job.id) {
     `          check-latest: false`,
     `      - name: Install pinned npm`,
     `        run: ${contract.runtime.npmInstallCommand.join(" ")}`,
+    `      - name: Bootstrap pinned registry tarballs`,
+    `        run: ${contract.runtime.npmRegistryBootstrapCommand.join(" ")}`,
     `      - name: Run ${gateArgument} gate`,
     `        run: node tools/run-ci-gate.mjs --job ${gateArgument}`,
   ];
@@ -143,6 +145,8 @@ export function renderWorkflow(contract) {
     `          check-latest: false`,
     `      - name: Install pinned npm`,
     `        run: ${contract.runtime.npmInstallCommand.join(" ")}`,
+    `      - name: Bootstrap pinned registry tarballs`,
+    `        run: ${contract.runtime.npmRegistryBootstrapCommand.join(" ")}`,
     `      - name: Download producer artifacts`,
     `        uses: actions/download-artifact@${contract.actions.downloadArtifact.sha} # ${contract.actions.downloadArtifact.version}`,
     `        with:`,

@@ -5,10 +5,10 @@
   "fixtureId": "framework/react-hybrid/integration/react16",
   "mode": "clean",
   "repository": {
-    "commit": "db42cf9d36e591cd5545cd33217f49af6ed986fb",
-    "tree": "f1bc888dd1d2ffd76946da3898ba9d071d6893de",
+    "commit": "de8c8fb61df8d4ec4d5e0d7fa53efe6e00a2c919",
+    "tree": "e778aba32eb6582bb3af70870c8b469c79c51370",
     "dirty": false,
-    "sourceSnapshotSha256": "c1cee545145f0900bb17afe6bee0bc7a4aaa495831103d679dfaff323c3d4163"
+    "sourceSnapshotSha256": "57e5f9dc1328b284af886e120c8773e41a76e97034e96d401d5072e629e3ac06"
   },
   "contracts": {
     "matrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
@@ -40,15 +40,15 @@
     },
     "npmEnvironment": {
       "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-ZoLMWn/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-ZoLMWn/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-ZoLMWn/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-ZoLMWn/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -57,11 +57,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-ZoLMWn/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-ZoLMWn/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -71,20 +71,20 @@
       "bin-links": "true",
       "prefer-dedupe": "true"
     },
-    "npmConfigSha256": "4303386601ca29db2bfc274f2905d306d0aa23c3426cf9609a2f5166c07ecddb"
+    "npmConfigSha256": "ca0b70c3d469b6a916f61581bb6c43e5868830a8591678cc8f53387dae519ed0"
   },
   "browser": null,
   "environment": {
     "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-ZoLMWn/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-ZoLMWn/tmp",
+    "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-ZoLMWn/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-ZoLMWn/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -93,7 +93,7 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-ZoLMWn/browser-cache"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
   },
   "commands": {
     "lock": [
@@ -118,13 +118,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-ZoLMWn/projects/framework__react-hybrid__integration__react16",
-    "realpath": "/tmp/uirouter-i02-clean-ZoLMWn/projects/framework__react-hybrid__integration__react16",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16",
+    "realpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-ZoLMWn/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-WiJvpa/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "e69ea908581f258ab83f79511035abbc65db22da457dbec8e0def81b4cd34f68",
-    "resetInputsSha256": "5b544c52caa463f16158116c98ca9028400f6022a344b8f83d534cc50258ece0",
+    "resetInputsSha256": "ae4a452c83cbace8c6289f54094a44067cf30a2384ad4157f1ca2141f396f999",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -144,7 +144,7 @@
     "lockSha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-ZoLMWn/projects/framework__react-hybrid__integration__react16/project/package.json",
+    "manifestPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16/project/package.json",
     "manifestSha256": "b2aac9e90a384bdec8c8022c08767f308728b33bc172de5854b948abde3ee47d",
     "lockPath": "not-produced",
     "lockSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -265,7 +265,7 @@
       ],
       "status": 1,
       "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "7c7eb69b81ab97a07fdd29b213a52c118459cf7d83b548c75c5f7a2a96aff8ef"
+      "stderrSha256": "d365fcc0aa066842dbd4d4d187e541f4342ac67a995e7b182415f3c9adf72878"
     }
   ],
   "result": {
@@ -277,11 +277,11 @@
       "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
       "expires": "2026-10-31"
     },
-    "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-ZoLMWn/npm-cache/_logs/2026-08-27T02_37_37_272Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-ZoLMWn/npm-cache/_logs/2026-08-27T02_37_37_272Z-debug-0.log\n"
+    "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-WiJvpa/npm-cache/_logs/2026-08-27T02_41_27_922Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-WiJvpa/npm-cache/_logs/2026-08-27T02_41_27_922Z-debug-0.log\n"
   },
   "failureBundle": {
     "path": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/.migration-work/i02/latest/projects/framework__react-hybrid__integration__react16/failure-bundle",
-    "sha256": "9f577a279ee5597ab2763f3e8f15c59a55297f8f06be474fa5e2b21b241170f3",
+    "sha256": "ce4f8bafd23952c687c623222bb496855a5c3dd3ddbf4892bca3f5388d6bbd50",
     "contents": [
       {
         "name": "original-manifest",
@@ -321,28 +321,28 @@
       {
         "name": "run-lock",
         "path": "run-lock.json",
-        "sha256": "02107db0cbe13e5e730365a7dd65669a0e204518608c32302fb4cf9fceebcf84",
+        "sha256": "9f88272ee87cfb0fc30b6b17ec120c78b7bdffe8cdfb7248f1553916d854f753",
         "status": "produced",
         "reason": null
       },
       {
         "name": "artifact-archives",
         "path": "artifacts",
-        "sha256": "99acd4d972e68beca5ce4a6f64b4832571fdc1e50dff9b40f784ffa2120e7ae7",
+        "sha256": "d2fa9dd6d823c580c3dc83cfff63a8dcf4b86c128c6552d1b46990c4ecb9d41b",
         "status": "produced",
         "reason": null
       },
       {
         "name": "artifact-hash-manifest",
         "path": "artifacts/hashes.json",
-        "sha256": "1c1721c5351821bb80890fad252cce181665e6f6a01c2bb3a8bd048f86a42b97",
+        "sha256": "36d2aed9b28ad37742430f302fdf1be311d2961134b70d39fc87cfdf491bfded",
         "status": "produced",
         "reason": null
       },
       {
         "name": "toolchain-config",
         "path": "toolchain.json",
-        "sha256": "66a30c0b8673f7edbb2117ab2642581c7c217e91472170e4c672aca361e04a60",
+        "sha256": "4cf02d47e83c789c6168c9e1db546598781a493fe935f48cd993837aa871f9da",
         "status": "produced",
         "reason": null
       },
@@ -363,7 +363,7 @@
       {
         "name": "ancestry-link-scan",
         "path": "ancestry-link-scan.json",
-        "sha256": "1f64124fabf7e9e5d01916200d36e4ee27f5eabcd9b6f1d316a139b42f0b2bed",
+        "sha256": "69e525209799262c028bfa4d3a2ea9f750edccec90a799bbbac831f4310df393",
         "status": "produced",
         "reason": null
       },
@@ -391,7 +391,7 @@
       {
         "name": "stderr",
         "path": "command.stderr.log",
-        "sha256": "7c7eb69b81ab97a07fdd29b213a52c118459cf7d83b548c75c5f7a2a96aff8ef",
+        "sha256": "d365fcc0aa066842dbd4d4d187e541f4342ac67a995e7b182415f3c9adf72878",
         "status": "produced",
         "reason": null
       },
@@ -425,6 +425,6 @@
       "<external-cache-root>",
       "--reset"
     ],
-    "retainedSandbox": "/tmp/uirouter-i02-clean-ZoLMWn/projects/framework__react-hybrid__integration__react16"
+    "retainedSandbox": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16"
   }
 }

@@ -74,11 +74,7 @@
       "--loglevel=error"
     ],
     "setupBrowser": null,
-    "selected": [
-      "npm",
-      "run",
-      "test"
-    ],
+    "selected": ["npm", "run", "test"],
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
@@ -240,23 +236,14 @@
     },
     {
       "id": "npm-ls",
-      "argv": [
-        "npm",
-        "ls",
-        "--all",
-        "--json"
-      ],
+      "argv": ["npm", "ls", "--all", "--json"],
       "status": 0,
       "stdoutSha256": "706621dcfd8807fd48ea3becddd6f381a0cdf1a7165feb2fa9f038474fa1e713",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "selected",
-      "argv": [
-        "npm",
-        "run",
-        "test"
-      ],
+      "argv": ["npm", "run", "test"],
       "status": 0,
       "stdoutSha256": "07acef2627851f84cf55077f61ecb6e3a1eba5e3e5b8ca6ce62e72bc413b7552",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

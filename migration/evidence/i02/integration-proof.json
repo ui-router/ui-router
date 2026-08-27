@@ -21,9 +21,7 @@
       "LC_ALL": "C",
       "TZ": "UTC"
     },
-    "forbiddenEnvironmentAbsent": [
-      "NODE_PATH"
-    ]
+    "forbiddenEnvironmentAbsent": ["NODE_PATH"]
   },
   "artifacts": [
     {

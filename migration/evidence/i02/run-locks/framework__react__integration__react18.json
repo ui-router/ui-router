@@ -149,16 +149,8 @@
       "--no-fund",
       "--loglevel=error"
     ],
-    "setupBrowser": [
-      "node_modules/.bin/playwright",
-      "install",
-      "chromium"
-    ],
-    "selected": [
-      "npm",
-      "run",
-      "test"
-    ],
+    "setupBrowser": ["node_modules/.bin/playwright", "install", "chromium"],
+    "selected": ["npm", "run", "test"],
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
@@ -190,12 +182,8 @@
     "manifestSha256": "747a8801d7947e9d5bea538229e70f70036c44cbcf0f9ade0b4c6290e62702dc",
     "lockPath": "/tmp/uirouter-i02-clean-IEHibJ/projects/framework__react__integration__react18/project/package-lock.json",
     "lockSha256": "43390bcc81d152593bd996c99fe89031aac8bd191806b0b809b36924112438f4",
-    "rewriteIds": [
-      "rewrite-framework-react-integration-react18-react"
-    ],
-    "closureBindingIds": [
-      "closure-framework-react-integration-react18-core"
-    ]
+    "rewriteIds": ["rewrite-framework-react-integration-react18-react"],
+    "closureBindingIds": ["closure-framework-react-integration-react18-core"]
   },
   "artifacts": [
     {
@@ -306,34 +294,21 @@
     },
     {
       "id": "npm-ls",
-      "argv": [
-        "npm",
-        "ls",
-        "--all",
-        "--json"
-      ],
+      "argv": ["npm", "ls", "--all", "--json"],
       "status": 0,
       "stdoutSha256": "da120ad9bb3b31149170f54d195716c5759273c63688906e0d5a44f541622d06",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "setup-browser",
-      "argv": [
-        "node_modules/.bin/playwright",
-        "install",
-        "chromium"
-      ],
+      "argv": ["node_modules/.bin/playwright", "install", "chromium"],
       "status": 0,
       "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "selected",
-      "argv": [
-        "npm",
-        "run",
-        "test"
-      ],
+      "argv": ["npm", "run", "test"],
       "status": 0,
       "stdoutSha256": "7d2d61455a6e6bb3dbe9d1164e2f80c738a442300908e15918a4b5e907baa621",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

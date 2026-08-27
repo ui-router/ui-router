@@ -150,16 +150,8 @@
       "--no-fund",
       "--loglevel=error"
     ],
-    "setupBrowser": [
-      "node_modules/.bin/playwright",
-      "install",
-      "chromium"
-    ],
-    "selected": [
-      "npm",
-      "run",
-      "test"
-    ],
+    "setupBrowser": ["node_modules/.bin/playwright", "install", "chromium"],
+    "selected": ["npm", "run", "test"],
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
@@ -410,34 +402,21 @@
     },
     {
       "id": "npm-ls",
-      "argv": [
-        "npm",
-        "ls",
-        "--all",
-        "--json"
-      ],
+      "argv": ["npm", "ls", "--all", "--json"],
       "status": 0,
       "stdoutSha256": "93db619cdf0e457c1f72a205a63ad599ce539ac088ade157e183b01a87052a41",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "setup-browser",
-      "argv": [
-        "node_modules/.bin/playwright",
-        "install",
-        "chromium"
-      ],
+      "argv": ["node_modules/.bin/playwright", "install", "chromium"],
       "status": 0,
       "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "selected",
-      "argv": [
-        "npm",
-        "run",
-        "test"
-      ],
+      "argv": ["npm", "run", "test"],
       "status": 0,
       "stdoutSha256": "266efe523d4017e62b796093eef666edddb64b98a8349e922d186f2da3973eaf",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

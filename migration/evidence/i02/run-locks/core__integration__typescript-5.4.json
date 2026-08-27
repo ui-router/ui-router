@@ -74,11 +74,7 @@
       "--loglevel=error"
     ],
     "setupBrowser": null,
-    "selected": [
-      "npm",
-      "run",
-      "test"
-    ],
+    "selected": ["npm", "run", "test"],
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
@@ -110,9 +106,7 @@
     "manifestSha256": "55bd6a2e4efb5f78d116ba57d59e590461f2af489957e5b5629def2da0e3f905",
     "lockPath": "/tmp/uirouter-i02-clean-IEHibJ/projects/core__integration__typescript-5.4/project/package-lock.json",
     "lockSha256": "fe804685839cc4dc1b40c71b8823a4467b7e24e197cdd3fa2ba16fe279c8afa7",
-    "rewriteIds": [
-      "rewrite-core-integration-typescript-5.4-core"
-    ],
+    "rewriteIds": ["rewrite-core-integration-typescript-5.4-core"],
     "closureBindingIds": []
   },
   "artifacts": [
@@ -214,23 +208,14 @@
     },
     {
       "id": "npm-ls",
-      "argv": [
-        "npm",
-        "ls",
-        "--all",
-        "--json"
-      ],
+      "argv": ["npm", "ls", "--all", "--json"],
       "status": 0,
       "stdoutSha256": "533c57ef0e6975efade89b4527f4293a922df0e342da3435c5e94b4c2dd7ef57",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "id": "selected",
-      "argv": [
-        "npm",
-        "run",
-        "test"
-      ],
+      "argv": ["npm", "run", "test"],
       "status": 0,
       "stdoutSha256": "a92a383aff3191edd483ab62837b628179088b4ebcc795ed1b4a056f07213033",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

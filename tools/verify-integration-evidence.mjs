@@ -397,12 +397,16 @@ for (const [index, result] of evidence.results.entries()) {
       lstatSync(checkedBundleRoot).isSymbolicLink()
     )
       fail(`${project.id}: checked failure bundle is missing or linked`);
+    const checkedRelative = (relative) =>
+      ["package.json", "package-lock.json"].includes(path.basename(relative))
+        ? `${relative.slice(0, -".json".length)}-json.evidence`
+        : relative;
     const names = runLock.failureBundle.contents.map((record) => record.name);
     if (canonicalJson(names) !== canonicalJson(matrix.failureBundleContents))
       fail(`${project.id}: checked failure bundle inventory differs`);
     for (const record of runLock.failureBundle.contents) {
       const absolute = safeEvidencePath(
-        record.path,
+        checkedRelative(record.path),
         `${project.id} checked failure component ${record.name}`,
         checkedBundleRoot
       );
@@ -429,7 +433,7 @@ for (const [index, result] of evidence.results.entries()) {
       runLock.failureBundle.contents.find((record) => record.name === name);
     const componentPath = (name) =>
       safeEvidencePath(
-        component(name).path,
+        checkedRelative(component(name).path),
         `${project.id} checked ${name}`,
         checkedBundleRoot
       );

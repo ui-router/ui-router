@@ -12,6 +12,7 @@ import {
   readFileSync,
   readdirSync,
   realpathSync,
+  renameSync,
   rmSync,
   statSync,
   writeFileSync,
@@ -2224,6 +2225,19 @@ if (writeEvidence) {
       cpSync(dynamicRunLock.failureBundle.path, bundleTarget, {
         recursive: true,
       });
+      for (const relative of [
+        "original/package.json",
+        "original/package-lock.json",
+        "staged/package.json",
+        "staged/package-lock.json",
+      ]) {
+        const sourcePath = path.join(bundleTarget, relative);
+        if (existsSync(sourcePath))
+          renameSync(
+            sourcePath,
+            `${sourcePath.slice(0, -".json".length)}-json.evidence`
+          );
+      }
       result.checkedFailureBundle = bundleRelative;
     }
   }

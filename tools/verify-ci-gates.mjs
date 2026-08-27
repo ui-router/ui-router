@@ -73,6 +73,13 @@ if (
   ) !== 7
 )
   fail("workflow action pin usage differs");
+if (
+  count(/^          fetch-depth: 0$/gm) !== 6 ||
+  count(
+    /run: git config --global --add safe\.directory "\$GITHUB_WORKSPACE"/g
+  ) !== 6
+)
+  fail("workflow checkout history or safe-directory configuration differs");
 if (/@(?:v|main|master|latest)\b/.test(actual))
   fail("workflow contains a mutable action or image reference");
 const npmProvisioning = `        run: ${contract.runtime.npmInstallCommand.join(

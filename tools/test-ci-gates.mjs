@@ -249,6 +249,15 @@ try {
       "mcr.microsoft.com/playwright:latest"
     )
   );
+  rejectWorkflow("shallow-checkout", (text) =>
+    text.replace("          fetch-depth: 0", "          fetch-depth: 1")
+  );
+  rejectWorkflow("untrusted-checkout", (text) =>
+    text.replace(
+      'run: git config --global --add safe.directory "$GITHUB_WORKSPACE"',
+      "run: true"
+    )
+  );
   rejectWorkflow("missing-required", (text) =>
     text.replace("  required:\n", "  omitted:\n")
   );

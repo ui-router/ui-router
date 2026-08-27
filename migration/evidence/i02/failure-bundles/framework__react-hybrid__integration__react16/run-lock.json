@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "bundleState": "final",
+  "bundleState": "detached-pre-manifest",
   "runId": "dcc9c4c7c252ffb6d1fdea9d",
   "fixtureId": "framework/react-hybrid/integration/react16",
   "mode": "clean",
@@ -113,8 +113,16 @@
       "--no-fund",
       "--loglevel=error"
     ],
-    "setupBrowser": ["node_modules/.bin/playwright", "install", "chromium"],
-    "selected": ["npm", "run", "test"],
+    "setupBrowser": [
+      "node_modules/.bin/playwright",
+      "install",
+      "chromium"
+    ],
+    "selected": [
+      "npm",
+      "run",
+      "test"
+    ],
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
@@ -279,131 +287,7 @@
     },
     "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-debug-0.log\n"
   },
-  "failureBundle": {
-    "path": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/.migration-work/i02/latest/projects/framework__react-hybrid__integration__react16/failure-bundle",
-    "sha256": "7fbbf8342d2e5d54d725794e85663fe1ed27985c0cc99b082777476eb5084a94",
-    "contents": [
-      {
-        "name": "original-manifest",
-        "path": "original/package.json",
-        "sha256": "d599da04958bf5f1948551d1062da1066097119263bce4911977e19cc5ab056a",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "original-lock-or-absence",
-        "path": "original/package-lock.json",
-        "sha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "staged-manifest",
-        "path": "staged/package.json",
-        "sha256": "b2aac9e90a384bdec8c8022c08767f308728b33bc172de5854b948abde3ee47d",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "temporary-lock",
-        "path": "staged/package-lock.json",
-        "sha256": "7a25dc88217759f66b00387d619991c1c19847edc4be8c6c5324380600fd19df",
-        "status": "unavailable",
-        "reason": "phase-not-reached"
-      },
-      {
-        "name": "matrix-entry",
-        "path": "matrix-entry.json",
-        "sha256": "51bf0d9f01e6a2a4789fe3ae836b18f7eac38795eed8a480da1053b068a4437a",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "run-lock",
-        "path": "run-lock.json",
-        "sha256": "c732895f2af61b6f003746dcab3bfe9205b91730a4bf94239de04daa472176ae",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "artifact-archives",
-        "path": "artifacts",
-        "sha256": "cc4057cb473802c83a888f2a2fc297cef8df95b4bec8a524640c2e2fd4e53380",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "artifact-hash-manifest",
-        "path": "artifacts/hashes.json",
-        "sha256": "fbd05e28c82e81870aa4ce8f5c4d8741c25d173c975079090628d1b8909686ee",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "toolchain-config",
-        "path": "toolchain.json",
-        "sha256": "a63604bff867f0dd011c33e86f59d20bae0b1c1a862b35ccab26ef766608ffa0",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "dependency-graph",
-        "path": "dependency-graph.json",
-        "sha256": "4e5762bb7a1991573a1927d4227e10b75d58f939daec92e84a96bf892215ec82",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "origin-audit",
-        "path": "origin-audit.json",
-        "sha256": "d76e336f8dde4205131a9ef649459dc15bedec05821a112f3368c4c9c2da616d",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "ancestry-link-scan",
-        "path": "ancestry-link-scan.json",
-        "sha256": "ffd9005d5d9577639efad3710c95795c30d389d1f1462f4ba321466db3aa9e66",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "sentinel-probe",
-        "path": "sentinel-probe.json",
-        "sha256": "af2a2517c07409618f9db371ec9d2fb60096c40a29d36767d4d5381479baa678",
-        "status": "unavailable",
-        "reason": "sentinel-probe-not-produced"
-      },
-      {
-        "name": "exact-command",
-        "path": "command.json",
-        "sha256": "353e1ba0bdb1d6efd63c0fb641d8f7cac2de6c7e1aa3cb46e7cf8c2361b3652f",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "stdout",
-        "path": "command.stdout.log",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "stderr",
-        "path": "command.stderr.log",
-        "sha256": "cd5fb40adac57d8f26289e754570054678b10f50fc34c7f1354779f82e36b05a",
-        "status": "produced",
-        "reason": null
-      },
-      {
-        "name": "replay-reset-commands",
-        "path": "replay-reset.json",
-        "sha256": "0dc6fdb18280fbdd15a589b622d465a9207e0fb2d8cc7a81116ee4a6b2f0dfea",
-        "status": "produced",
-        "reason": null
-      }
-    ]
-  },
+  "failureBundle": null,
   "replay": {
     "replayArgv": [
       "node",

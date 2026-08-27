@@ -1,0 +1,19 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0
+npm error Found: react@16.14.0
+npm error node_modules/react
+npm error   react@"^16.14.0" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer react@"^17.0.0 || ^18.0.0 || ^19.0.0" from @uirouter/react@1.0.8
+npm error node_modules/@uirouter/react
+npm error   dev @uirouter/react@"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-eresolve-report.txt
+npm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-debug-0.log

@@ -1,0 +1,22 @@
+{
+  "replay": [
+    "node",
+    "tools/run-integration-matrix.mjs",
+    "--mode",
+    "clean",
+    "--project",
+    "framework/react-hybrid/integration/react16",
+    "--retain"
+  ],
+  "reset": [
+    "node",
+    "tools/run-integration-matrix.mjs",
+    "--mode",
+    "reuse",
+    "--project",
+    "framework/react-hybrid/integration/react16",
+    "--cache-root",
+    "<external-cache-root>",
+    "--reset"
+  ]
+}

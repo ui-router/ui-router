@@ -1,0 +1,30 @@
+{
+  "name": "@uirouter/internal-framework-react-hybrid-integration-react16",
+  "private": true,
+  "description": "Integration test for @uirouter/react-hybrid with React 16",
+  "version": "0.1.0",
+  "dependencies": {
+    "@uirouter/react-hybrid": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+    "@uirouter/visualizer": "file:../../../artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+    "angular": "1.7.0",
+    "prop-types": "15.6.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@rspack/cli": "^1.0.0",
+    "@rspack/core": "^1.0.0",
+    "serve": "^14.2.0",
+    "@uirouter/angularjs": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+    "@uirouter/core": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+    "@uirouter/react": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz"
+  },
+  "scripts": {
+    "start": "rspack serve --mode development",
+    "build": "rspack build --mode production",
+    "test": "npm run e2e",
+    "e2e": "npm run build && playwright test",
+    "setup:browser": "npm exec -- playwright install chromium"
+  }
+}

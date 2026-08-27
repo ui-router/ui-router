@@ -2,6 +2,7 @@ import { Input, Component } from '@angular/core';
 
 @Component({
   selector: 'country-detail-cmp',
+  standalone: false,
   template: `
     <h3>{{ country }}</h3>
     <div style="height: 100px;">

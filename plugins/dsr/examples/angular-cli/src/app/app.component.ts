@@ -3,6 +3,7 @@ import { StateService } from '@uirouter/core';
 
 @Component({
   selector: 'app-root',
+  standalone: false,
   template: `
     <nav data-testid="navigation">
       <a uiSref="about" uiSrefActive="active">about</a>

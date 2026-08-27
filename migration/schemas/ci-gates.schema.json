@@ -1,0 +1,527 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/schemas/ci-gates.schema.json",
+  "title": "UI-Router CI gate and baseline coverage contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "owner",
+    "bindings",
+    "workflow",
+    "runtime",
+    "actions",
+    "gateIds",
+    "jobs",
+    "integration",
+    "aggregate",
+    "artifacts",
+    "browserWorkspaces",
+    "docsWaivers",
+    "currentWaivers",
+    "baselineCoverage",
+    "counts"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "owner": { "$ref": "#/$defs/nonempty" },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baselinesSha256",
+        "packageClassificationSha256",
+        "sourceAliasesSha256",
+        "packageArtifactsSha256",
+        "integrationMatrixSha256",
+        "executionLockSha256",
+        "packageLockSha256",
+        "turboSha256"
+      ],
+      "properties": {
+        "baselinesSha256": { "$ref": "#/$defs/sha256" },
+        "packageClassificationSha256": { "$ref": "#/$defs/sha256" },
+        "sourceAliasesSha256": { "$ref": "#/$defs/sha256" },
+        "packageArtifactsSha256": { "$ref": "#/$defs/sha256" },
+        "integrationMatrixSha256": { "$ref": "#/$defs/sha256" },
+        "executionLockSha256": { "$ref": "#/$defs/sha256" },
+        "packageLockSha256": { "$ref": "#/$defs/sha256" },
+        "turboSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "name",
+        "runner",
+        "triggers",
+        "permissions",
+        "concurrency",
+        "artifactRetentionDays",
+        "packageArtifactName",
+        "aggregateJob"
+      ],
+      "properties": {
+        "path": { "const": ".github/workflows/ci.yml" },
+        "name": { "const": "CI" },
+        "runner": { "const": "ubuntu-24.04" },
+        "triggers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pullRequest", "pushBranches"],
+          "properties": {
+            "pullRequest": { "const": true },
+            "pushBranches": { "const": ["main"] }
+          }
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["contents"],
+          "properties": { "contents": { "const": "read" } }
+        },
+        "concurrency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["group", "cancelInProgress"],
+          "properties": {
+            "group": { "const": "ci-${{ github.workflow }}-${{ github.ref }}" },
+            "cancelInProgress": { "const": true }
+          }
+        },
+        "artifactRetentionDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 14
+        },
+        "packageArtifactName": { "$ref": "#/$defs/nonempty" },
+        "aggregateJob": { "const": "required" }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "migrationImageDigest",
+        "ciImage",
+        "ciImageDigest",
+        "os",
+        "architecture",
+        "node",
+        "npm",
+        "npmInstallCommand",
+        "turbo",
+        "environment",
+        "browser"
+      ],
+      "properties": {
+        "migrationImageDigest": { "$ref": "#/$defs/digest" },
+        "ciImage": { "type": "string", "pattern": "@sha256:[0-9a-f]{64}$" },
+        "ciImageDigest": { "$ref": "#/$defs/digest" },
+        "os": { "$ref": "#/$defs/nonempty" },
+        "architecture": { "const": "x64" },
+        "node": { "const": "24.19.0" },
+        "npm": { "const": "11.17.0" },
+        "npmInstallCommand": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "npm" },
+            { "const": "install" },
+            { "const": "--global" },
+            { "const": "npm@11.17.0" },
+            { "const": "--ignore-scripts" },
+            { "const": "--no-audit" },
+            { "const": "--no-fund" }
+          ],
+          "minItems": 7,
+          "maxItems": 7
+        },
+        "turbo": { "const": "2.10.12" },
+        "environment": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "required": [
+            "CI",
+            "HUSKY",
+            "LC_ALL",
+            "TZ",
+            "PLAYWRIGHT_BROWSERS_PATH",
+            "CYPRESS_CACHE_FOLDER",
+            "CHROME_BIN"
+          ],
+          "minProperties": 7,
+          "maxProperties": 7
+        },
+        "browser": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "package",
+            "version",
+            "name",
+            "revision",
+            "versionString",
+            "executableSha256"
+          ],
+          "properties": {
+            "package": { "const": "@playwright/test" },
+            "version": { "const": "1.62.1" },
+            "name": { "const": "chromium" },
+            "revision": { "const": "1234" },
+            "versionString": { "$ref": "#/$defs/nonempty" },
+            "executableSha256": { "$ref": "#/$defs/sha256" }
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checkout",
+        "setupNode",
+        "uploadArtifact",
+        "downloadArtifact"
+      ],
+      "properties": {
+        "checkout": { "$ref": "#/$defs/action" },
+        "setupNode": { "$ref": "#/$defs/action" },
+        "uploadArtifact": { "$ref": "#/$defs/action" },
+        "downloadArtifact": { "$ref": "#/$defs/action" }
+      }
+    },
+    "gateIds": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nonempty" }
+    },
+    "jobs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/job" }
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "jobId",
+        "needs",
+        "gateIds",
+        "failFast",
+        "inputDirectory",
+        "outputPrefix",
+        "shards",
+        "failurePaths"
+      ],
+      "properties": {
+        "jobId": { "const": "integration" },
+        "needs": { "const": ["packages"] },
+        "gateIds": { "const": ["isolated-matrix"] },
+        "failFast": { "const": false },
+        "inputDirectory": { "$ref": "#/$defs/relativePath" },
+        "outputPrefix": { "$ref": "#/$defs/relativePath" },
+        "shards": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": { "$ref": "#/$defs/shard" }
+        },
+        "failurePaths": { "$ref": "#/$defs/paths" }
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "needs", "requireResult"],
+      "properties": {
+        "id": { "const": "required" },
+        "needs": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "requireResult": { "const": "success" }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["packages"],
+      "properties": {
+        "packages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "producerJob",
+            "consumerJob",
+            "directory",
+            "inputDirectory",
+            "artifactIds",
+            "integrationArtifactIds",
+            "compressionLevel",
+            "includeHiddenFiles",
+            "retentionDays"
+          ],
+          "properties": {
+            "producerJob": { "const": "packages" },
+            "consumerJob": { "const": "integration" },
+            "directory": { "$ref": "#/$defs/relativePath" },
+            "inputDirectory": { "$ref": "#/$defs/relativePath" },
+            "artifactIds": {
+              "type": "array",
+              "minItems": 12,
+              "maxItems": 12,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/nonempty" }
+            },
+            "integrationArtifactIds": {
+              "type": "array",
+              "minItems": 7,
+              "maxItems": 7,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/nonempty" }
+            },
+            "compressionLevel": { "const": 0 },
+            "includeHiddenFiles": { "const": true },
+            "retentionDays": { "type": "integer", "minimum": 1, "maximum": 14 }
+          }
+        }
+      }
+    },
+    "browserWorkspaces": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nonempty" }
+    },
+    "docsWaivers": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/docsWaiver" }
+    },
+    "currentWaivers": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/currentWaiver" }
+    },
+    "baselineCoverage": {
+      "type": "array",
+      "minItems": 145,
+      "maxItems": 145,
+      "items": { "$ref": "#/$defs/coverage" }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baselineRecords",
+        "baselineWaivers",
+        "logicalGates",
+        "executableJobs",
+        "integrationShards",
+        "integrationProjects",
+        "integrationTemplates",
+        "packageArtifacts",
+        "sourceTestPackages",
+        "sourceEdges",
+        "buildOwners",
+        "ordinaryExamples",
+        "ordinaryBrowserProjects",
+        "docsWaivers"
+      ],
+      "properties": {
+        "baselineRecords": { "const": 145 },
+        "baselineWaivers": { "const": 13 },
+        "logicalGates": { "const": 11 },
+        "executableJobs": { "const": 6 },
+        "integrationShards": { "const": 5 },
+        "integrationProjects": { "const": 14 },
+        "integrationTemplates": { "const": 2 },
+        "packageArtifacts": { "const": 12 },
+        "sourceTestPackages": { "const": 8 },
+        "sourceEdges": { "const": 19 },
+        "buildOwners": { "const": 24 },
+        "ordinaryExamples": { "const": 14 },
+        "ordinaryBrowserProjects": { "const": 11 },
+        "docsWaivers": { "const": 4 }
+      }
+    }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "^(?:/|.*(?:^|/)\\.\\.(?:/|$))" }
+    },
+    "paths": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nonempty" }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "sha"],
+      "properties": {
+        "version": { "$ref": "#/$defs/nonempty" },
+        "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "argv", "timeoutMinutes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "argv": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "timeoutMinutes": { "type": "integer", "minimum": 1, "maximum": 120 }
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "needs",
+        "gateIds",
+        "timeoutMinutes",
+        "commands",
+        "failurePaths"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "needs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "gateIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "timeoutMinutes": { "type": "integer", "minimum": 1, "maximum": 120 },
+        "commands": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/command" }
+        },
+        "failurePaths": { "$ref": "#/$defs/paths" }
+      }
+    },
+    "shard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "projectIds", "commands"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "projectIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "commands": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/command" }
+        }
+      }
+    },
+    "waiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "reason", "trackingIssue", "expires"],
+      "properties": {
+        "owner": { "$ref": "#/$defs/nonempty" },
+        "reason": { "$ref": "#/$defs/nonempty" },
+        "trackingIssue": { "type": "string", "format": "uri" },
+        "expires": { "type": "string", "format": "date" }
+      }
+    },
+    "docsWaiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baselineId", "evidence", "waiver"],
+      "properties": {
+        "baselineId": { "$ref": "#/$defs/nonempty" },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "properties": {
+            "path": { "$ref": "#/$defs/relativePath" },
+            "sha256": { "$ref": "#/$defs/sha256" }
+          }
+        },
+        "waiver": { "$ref": "#/$defs/waiver" }
+      }
+    },
+    "currentWaiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "projectId",
+        "baselineId",
+        "owner",
+        "reason",
+        "trackingIssue",
+        "expires"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "projectId": { "$ref": "#/$defs/nonempty" },
+        "baselineId": { "$ref": "#/$defs/nonempty" },
+        "owner": { "$ref": "#/$defs/nonempty" },
+        "reason": { "$ref": "#/$defs/nonempty" },
+        "trackingIssue": { "type": "string", "format": "uri" },
+        "expires": { "type": "string", "format": "date" }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baselineId", "disposition", "gateIds", "reason"],
+      "properties": {
+        "baselineId": { "$ref": "#/$defs/nonempty" },
+        "disposition": {
+          "enum": [
+            "final-equivalent",
+            "final-fixed",
+            "carried-waiver",
+            "current-waiver",
+            "historical-only"
+          ]
+        },
+        "gateIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "reason": { "$ref": "#/$defs/nonempty" }
+      }
+    }
+  }
+}

@@ -1,7 +1,5 @@
 {
-  "files": [
-    "src/main.ts"
-  ],
+  "files": ["src/main.ts"],
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -10,12 +8,13 @@
     "target": "es6",
     "rootDir": "src",
     "outDir": "transpiled",
+    "paths": {
+      "@uirouter/angular": ["../../../angular/uirouter-angular/dist"],
+      "@uirouter/angular-hybrid": ["../../uirouter-angular-hybrid/dist"]
+    },
     "declaration": false,
     "sourceMap": true,
     "skipLibCheck": true,
-    "lib": [
-      "es6",
-      "dom"
-    ]
+    "lib": ["es6", "dom"]
   }
 }

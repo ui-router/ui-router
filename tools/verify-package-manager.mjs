@@ -192,7 +192,9 @@ const forbiddenLockBasenames = new Set([
 for (const path of files) {
   const basename = path.split('/').at(-1);
   if (forbiddenLockBasenames.has(basename)) fail(`forbidden current package-manager artifact: ${path}`);
-  if (/(^|\/)\.github\/workflows\/.*\.(?:yml|yaml)$/.test(path)) fail(`active source-era workflow remains: ${path}`);
+  if (/(^|\/)\.github\/workflows\/.*\.(?:yml|yaml)$/.test(path) && path !== '.github/workflows/ci.yml') {
+    fail(`active source-era workflow remains: ${path}`);
+  }
   if (basename === '.travis.yml') fail(`active source-era Travis configuration remains: ${path}`);
   if (['dependabot.yml', 'dependabot.yaml', 'dependencies.yml', 'dependencies.yaml'].includes(basename)) {
     fail(`active source-era dependency automation remains: ${path}`);
@@ -314,6 +316,10 @@ for (const path of files.filter((path) => path.endsWith('package-lock.json'))) {
 
 const policyPaths = new Set([
   'SPEC.md',
+  'tools/ci-gates-lib.mjs',
+  'tools/render-ci-workflow.mjs',
+  'tools/test-ci-gates.mjs',
+  'tools/verify-ci-gates.mjs',
   'tools/test-isolated-projects.mjs',
   'tools/test-n05-package-manager.mjs',
   'tools/verify-isolated-projects.mjs',
@@ -321,6 +327,7 @@ const policyPaths = new Set([
 ]);
 const migrationControlFiles = new Set([
   'migration/baselines.json',
+  'migration/ci-gates.json',
   'migration/execution-lock.json',
   'migration/import-lock.json',
   'migration/integration-matrix.json',

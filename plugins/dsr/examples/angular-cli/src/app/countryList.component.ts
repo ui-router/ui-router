@@ -2,6 +2,7 @@ import { Input, Component } from '@angular/core';
 
 @Component({
   selector: 'country-list-cmp',
+  standalone: false,
   template: `
     <ui-view></ui-view>
 

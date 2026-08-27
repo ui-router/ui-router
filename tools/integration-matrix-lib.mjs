@@ -1,5 +1,11 @@
 import { createHash } from "node:crypto";
-import { lstatSync, readFileSync, readdirSync, realpathSync } from "node:fs";
+import {
+  existsSync,
+  lstatSync,
+  readFileSync,
+  readdirSync,
+  realpathSync,
+} from "node:fs";
 import path from "node:path";
 
 import { validateJsonSchema } from "./validate-migration-contract.mjs";
@@ -275,6 +281,30 @@ export async function validateIntegrationMatrix(
     allEdgeIds.push(...project.edgeIds);
 
     const manifestFile = path.join(root, project.manifest);
+    const projectNpmrcPath = path.join(path.dirname(manifestFile), ".npmrc");
+    const expectedProjectNpmrc = existsSync(projectNpmrcPath)
+      ? {
+          path: path.relative(root, projectNpmrcPath).split(path.sep).join("/"),
+          sha256: sha256File(projectNpmrcPath),
+          allowedSettings: Object.fromEntries(
+            readFileSync(projectNpmrcPath, "utf8")
+              .split(/\r?\n/)
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .map((line) => {
+                const index = line.indexOf("=");
+                if (index <= 0)
+                  fail(`${project.id}: unsupported project npmrc line`);
+                return [line.slice(0, index), line.slice(index + 1)];
+              })
+          ),
+        }
+      : null;
+    assertEqual(
+      project.projectNpmrc,
+      expectedProjectNpmrc,
+      `${project.id} project npmrc`
+    );
     if (sha256File(manifestFile) !== project.committedManifestSha256)
       fail(`${project.id}: committed manifest digest differs`);
     if (fixtureTreeSha256(root, project.manifest) !== project.fixtureTreeSha256)
@@ -305,6 +335,11 @@ export async function validateIntegrationMatrix(
       } else if (project.expectedResult === "waived-failure") {
         if (!project.waiver || !project.expectedFailure)
           fail(`${project.id}: waived failure lacks policy`);
+        if (
+          project.waiver.owner !== project.owner ||
+          project.owner !== matrix.owner
+        )
+          fail(`${project.id}: waiver owner differs from matrix ownership`);
         if (new Date(`${project.waiver.expires}T00:00:00Z`) <= new Date())
           fail(`${project.id}: waiver is expired`);
       } else fail(`${project.id}: unsupported expected result`);
@@ -652,7 +687,11 @@ export function assertExternalSandbox(root, sandbox) {
     fail(`sandbox must be outside repository ancestry: ${realSandbox}`);
 }
 
-export function assertNoLinksOrSharedFiles(sourceRoot, copyRoot) {
+export function assertNoLinksOrSharedFiles(
+  sourceRoot,
+  copyRoot,
+  { mutablePaths = ["package.json", "package-lock.json"] } = {}
+) {
   if (
     lstatSync(sourceRoot).isSymbolicLink() ||
     lstatSync(copyRoot).isSymbolicLink()
@@ -662,9 +701,17 @@ export function assertNoLinksOrSharedFiles(sourceRoot, copyRoot) {
   function collect(directory, output, relative = "") {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       if (
-        ["node_modules", "dist", "coverage", ".cache", ".turbo"].includes(
-          entry.name
-        )
+        [
+          "node_modules",
+          "dist",
+          "coverage",
+          ".cache",
+          ".turbo",
+          ".angular",
+          "build",
+          "playwright-report",
+          "test-results",
+        ].includes(entry.name)
       )
         continue;
       const child = path.join(directory, entry.name);
@@ -679,16 +726,29 @@ export function assertNoLinksOrSharedFiles(sourceRoot, copyRoot) {
   collect(sourceRoot, sourceFiles);
   const copyFiles = new Map();
   collect(copyRoot, copyFiles);
-  for (const [relative, info] of copyFiles) {
-    const source = sourceFiles.get(relative);
-    if (source && source.dev === info.dev && source.ino === info.ino)
+  const mutable = new Set(mutablePaths);
+  const records = [];
+  for (const [relative, sourceInfo] of sourceFiles) {
+    const copyInfo = copyFiles.get(relative);
+    if (!copyInfo) fail(`sandbox copy omitted source file: ${relative}`);
+    if (sourceInfo.dev === copyInfo.dev && sourceInfo.ino === copyInfo.ino)
       fail(`sandbox contains hard link to source: ${relative}`);
+    const sourcePath = path.join(sourceRoot, relative);
+    const copyPath = path.join(copyRoot, relative);
+    const sourceSha256 = sha256File(sourcePath);
+    const copySha256 = sha256File(copyPath);
+    if (!mutable.has(relative) && sourceSha256 !== copySha256)
+      fail(`sandbox source content differs: ${relative}`);
+    records.push({
+      path: relative.split(path.sep).join("/"),
+      mode: sourceInfo.mode & 0o777,
+      sourceSha256,
+      copySha256: mutable.has(relative) ? "runner-owned" : copySha256,
+    });
   }
   return sha256(
     canonicalJson(
-      [...copyFiles.entries()]
-        .map(([relative]) => ({ path: relative, type: "file" }))
-        .sort((left, right) => left.path.localeCompare(right.path))
+      records.sort((left, right) => left.path.localeCompare(right.path))
     )
   );
 }

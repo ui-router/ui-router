@@ -163,6 +163,24 @@ const cases = [
         (item) => item.expectedResult === "waived-failure"
       ).waiver.expires = "2020-01-01"),
   ],
+  [
+    "waiver owner changed",
+    (value) =>
+      (value.projects.find(
+        (item) => item.expectedResult === "waived-failure"
+      ).waiver.owner = "unrelated-owner"),
+  ],
+  [
+    "project npmrc digest changed",
+    (value) =>
+      (value.projects.find((item) => item.projectNpmrc).projectNpmrc.sha256 =
+        "0".repeat(64)),
+  ],
+  [
+    "browser executable hash changed",
+    (value) =>
+      (value.browser.expectedExecutableFiles[0].sha256 = "0".repeat(64)),
+  ],
 ];
 
 let passed = 0;

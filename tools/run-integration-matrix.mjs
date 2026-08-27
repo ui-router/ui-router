@@ -132,7 +132,10 @@ rmSync(outputRoot, { recursive: true, force: true });
 mkdirSync(outputRoot, { recursive: true });
 const cacheRoot = cacheArgument ? path.resolve(cacheArgument) : null;
 if (cacheRoot) {
+  rejectSymlinkComponents(cacheRoot);
   mkdirSync(cacheRoot, { recursive: true });
+  if (lstatSync(cacheRoot).isSymbolicLink())
+    die("cache root must not be a symbolic link");
   assertExternalSandbox(repository, cacheRoot);
 }
 const cleanRoot =
@@ -141,9 +144,23 @@ const cleanRoot =
     : null;
 const runRoot = mode === "clean" ? cleanRoot : realpathSync(cacheRoot);
 assertExternalSandbox(repository, runRoot);
-mkdirSync(path.join(runRoot, "artifacts"), { recursive: true });
-mkdirSync(path.join(runRoot, "npm-cache"), { recursive: true });
-mkdirSync(path.join(runRoot, "browser-cache"), { recursive: true });
+function ensureOwnedDirectory(name) {
+  const target = path.join(runRoot, name);
+  rejectSymlinkComponents(target);
+  if (existsSync(target)) {
+    const info = lstatSync(target);
+    if (info.isSymbolicLink() || !info.isDirectory())
+      die(`cache-owned path is not a physical directory: ${target}`);
+  } else mkdirSync(target);
+  const realTarget = realpathSync(target);
+  if (!lexicallyInside(runRoot, realTarget))
+    die(`cache-owned directory escapes the run root: ${target}`);
+  return realTarget;
+}
+const artifactStagingRoot = ensureOwnedDirectory("artifacts");
+ensureOwnedDirectory("npm-cache");
+ensureOwnedDirectory("browser-cache");
+ensureOwnedDirectory("projects");
 
 const inheritedNpmConfig = Object.keys(process.env).filter((key) =>
   key.toLowerCase().startsWith("npm_config_")
@@ -187,9 +204,12 @@ const generatedNpmrcContents = [
   "bin-links=true",
   "",
 ].join("\n");
+rejectSymlinkComponents(generatedNpmrc);
+if (existsSync(generatedNpmrc) && lstatSync(generatedNpmrc).isSymbolicLink())
+  die("generated npmrc path must not be a symbolic link");
 writeFileSync(generatedNpmrc, generatedNpmrcContents);
-mkdirSync(path.join(runRoot, "home"), { recursive: true });
-mkdirSync(path.join(runRoot, "tmp"), { recursive: true });
+ensureOwnedDirectory("home");
+ensureOwnedDirectory("tmp");
 const environment = {
   PATH: [
     path.dirname(nodeExecutable),
@@ -324,6 +344,12 @@ function directorySha256(directory, ignored) {
 }
 
 function collectArtifacts() {
+  for (const entry of readdirSync(artifactStagingRoot)) {
+    const target = path.join(artifactStagingRoot, entry);
+    if (lstatSync(target).isSymbolicLink())
+      die(`artifact staging contains a symbolic link: ${target}`);
+    rmSync(target, { recursive: true, force: true });
+  }
   requiredCommand(
     matrix.artifactPolicy.producerCommand,
     repository,
@@ -568,6 +594,19 @@ function auditInternalPackages(
         `${project.id}: undeclared internal package entered the staged graph: ${packageName}`
       );
     const installedPath = path.join(projectDirectory, ...lockPath.split("/"));
+    const expectedResolved = `file:${path
+      .relative(projectDirectory, artifact.path)
+      .split(path.sep)
+      .join("/")}`;
+    const artifactRealpath = realpathSync(artifact.path);
+    if (
+      lstatSync(artifact.path).isSymbolicLink() ||
+      !lexicallyInside(artifactStagingRoot, artifactRealpath) ||
+      sha256File(artifact.path) !== artifact.sha256
+    )
+      die(
+        `${project.id}: staged artifact provenance differs: ${artifact.artifactId}`
+      );
     if (!existsSync(installedPath))
       die(`${project.id}: internal lock entry is not installed: ${lockPath}`);
     const installedRealpath = realpathSync(installedPath);
@@ -584,8 +623,7 @@ function auditInternalPackages(
       installedManifest.version !== artifact.version ||
       lockEntry.version !== artifact.version ||
       lockEntry.integrity !== artifact.integrity ||
-      !String(lockEntry.resolved).endsWith(artifact.filename) ||
-      /^https?:/i.test(String(lockEntry.resolved))
+      lockEntry.resolved !== expectedResolved
     )
       die(`${project.id}: internal package provenance differs: ${lockPath}`);
     records.push({
@@ -594,7 +632,10 @@ function auditInternalPackages(
       expectedVersion: artifact.version,
       artifactId: artifact.artifactId,
       lockResolved: lockEntry.resolved,
+      expectedLockResolved: expectedResolved,
       lockIntegrity: lockEntry.integrity,
+      stagedArtifactPath: artifact.path,
+      stagedArtifactRealpath: artifactRealpath,
       installedPath,
       installedRealpath,
       manifestSha256: sha256File(packageManifestPath),
@@ -627,6 +668,10 @@ function auditLogicalOrigins(
     const key = `node_modules/${rewrite.package}`;
     const lockEntry = temporaryLock.packages[key];
     const installedPath = path.join(projectDirectory, ...key.split("/"));
+    const expectedResolved = `file:${path
+      .relative(projectDirectory, artifact.path)
+      .split(path.sep)
+      .join("/")}`;
     if (!lockEntry || !existsSync(installedPath))
       die(`${project.id}: internal package is missing ${rewrite.package}`);
     const packageManifestPath = path.join(installedPath, "package.json");
@@ -643,8 +688,7 @@ function auditLogicalOrigins(
       installedManifest.version !== rewrite.expectedVersion ||
       lockEntry.version !== rewrite.expectedVersion ||
       lockEntry.integrity !== artifact.integrity ||
-      !String(lockEntry.resolved).endsWith(artifact.filename) ||
-      /^https?:/i.test(String(lockEntry.resolved))
+      lockEntry.resolved !== expectedResolved
     )
       die(`${project.id}: internal origin differs for ${rewrite.package}`);
     for (const edgeId of rewrite.edgeIds)
@@ -655,7 +699,10 @@ function auditLogicalOrigins(
         expectedVersion: rewrite.expectedVersion,
         artifactId: rewrite.artifactId,
         lockResolved: lockEntry.resolved,
+        expectedLockResolved: expectedResolved,
         lockIntegrity: lockEntry.integrity,
+        stagedArtifactPath: artifact.path,
+        stagedArtifactRealpath: realpathSync(artifact.path),
         installedPath,
         installedRealpath,
         manifestSha256: sha256File(packageManifestPath),
@@ -761,6 +808,7 @@ function verifyBrowserInstall(
       path.join(projectDirectory, "node_modules/playwright-core")
     ),
     executableFiles: [],
+    portableCacheSha256: null,
   };
   if (cacheRequired) {
     const browserRoot = path.join(runRoot, "browser-cache");
@@ -772,8 +820,23 @@ function verifyBrowserInstall(
       if (!names.includes(expected))
         die(`browser cache is missing ${expected}`);
     evidence.executableFiles = executableFileHashes(browserRoot);
-    if (!evidence.executableFiles.length)
-      die("browser cache has no executable files to bind");
+    evidence.portableCacheSha256 = directorySha256(
+      browserRoot,
+      new Set([".links"])
+    );
+    if (
+      evidence.installerDirectorySha256 !==
+        matrix.browser.expectedInstallerDirectorySha256 ||
+      evidence.launcherDirectorySha256 !==
+        matrix.browser.expectedLauncherDirectorySha256 ||
+      evidence.coreDirectorySha256 !==
+        matrix.browser.expectedCoreDirectorySha256 ||
+      canonicalJson(evidence.executableFiles) !==
+        canonicalJson(matrix.browser.expectedExecutableFiles) ||
+      evidence.portableCacheSha256 !==
+        matrix.browser.expectedPortableCacheSha256
+    )
+      die("installed Playwright/browser content differs from pinned hashes");
   }
   return evidence;
 }
@@ -836,7 +899,21 @@ function stepRecord(id, argv, result, logsDirectory) {
 function commandSha256(argv) {
   return sha256(canonicalJson(argv));
 }
-function npmConfigSha256() {
+function effectiveNpmSettings(project) {
+  return {
+    registry: matrix.networkPolicy.registry,
+    cache: environment.npm_config_cache,
+    "ignore-scripts": "true",
+    audit: "false",
+    fund: "false",
+    "legacy-peer-deps": "false",
+    force: "false",
+    offline: "false",
+    "bin-links": "true",
+    ...(project.projectNpmrc?.allowedSettings ?? {}),
+  };
+}
+function npmConfigSha256(project) {
   return sha256(
     canonicalJson({
       repositoryNpmrcSha256: sha256File(path.join(repository, ".npmrc")),
@@ -848,6 +925,8 @@ function npmConfigSha256() {
       npmExecutable,
       npmExecutableSha256: sha256File(npmExecutable),
       effectiveEnvironment: environment,
+      projectNpmrc: project.projectNpmrc,
+      effectiveNpmSettings: effectiveNpmSettings(project),
       lockArgv: matrix.lockPolicy.lockArgv,
       installArgv: matrix.lockPolicy.installArgv,
       reuseInstallArgv: matrix.lockPolicy.reuseInstallArgv,
@@ -881,7 +960,7 @@ function resetInputs(project, artifacts, graphs = null) {
     repositoryRevision: repositoryState,
     platformArchitecture: `${process.platform}/${process.arch}`,
     nodeNpm: `${process.version}/${matrix.runtime.npm}`,
-    npmConfiguration: npmConfigSha256(),
+    npmConfiguration: npmConfigSha256(project),
     browser: project.browser ? matrix.browser : null,
     tarballs: artifacts
       .filter((artifact) =>
@@ -946,6 +1025,29 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
       );
     }
   };
+  const addJsonState = (name, relative, value, reason) => {
+    if (value === null || value === undefined || value.status) {
+      const unavailableReason = reason ?? value?.status ?? "phase-not-reached";
+      addBytes(
+        name,
+        relative,
+        Buffer.from(
+          `${JSON.stringify(
+            { status: "unavailable", reason: unavailableReason },
+            null,
+            2
+          )}\n`
+        ),
+        "unavailable",
+        unavailableReason
+      );
+    } else
+      addBytes(
+        name,
+        relative,
+        Buffer.from(`${JSON.stringify(value, null, 2)}\n`)
+      );
+  };
   addSource(
     "original-manifest",
     "original/package.json",
@@ -1006,44 +1108,34 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
       )}\n`
     )
   );
-  addBytes(
+  addJsonState(
     "dependency-graph",
     "dependency-graph.json",
-    Buffer.from(
-      `${JSON.stringify(state.graphs ?? { status: "not-produced" }, null, 2)}\n`
-    )
+    state.graphs,
+    "dependency-graph-not-produced"
   );
   addBytes(
     "origin-audit",
     "origin-audit.json",
     Buffer.from(`${JSON.stringify(state.origins ?? [], null, 2)}\n`)
   );
-  addBytes(
+  addJsonState(
     "ancestry-link-scan",
     "ancestry-link-scan.json",
-    Buffer.from(
-      `${JSON.stringify(
-        state.linkScan ?? { status: "not-produced" },
-        null,
-        2
-      )}\n`
-    )
+    state.linkScan,
+    "ancestry-link-scan-not-produced"
   );
-  addBytes(
+  addJsonState(
     "sentinel-probe",
     "sentinel-probe.json",
-    Buffer.from(
-      `${JSON.stringify(
-        state.sentinel ?? { status: "not-produced" },
-        null,
-        2
-      )}\n`
-    )
+    state.sentinel,
+    "sentinel-probe-not-produced"
   );
-  addBytes(
+  addJsonState(
     "exact-command",
     "command.json",
-    Buffer.from(`${JSON.stringify(state.currentCommand ?? null, null, 2)}\n`)
+    state.currentCommand,
+    "command-not-started"
   );
   const lastStep = state.steps?.at(-1);
   addSource(
@@ -1626,7 +1718,8 @@ try {
 
       if (project.browser && browserInstallSha256 === null)
         browserInstallSha256 = directorySha256(
-          path.join(runRoot, "browser-cache")
+          path.join(runRoot, "browser-cache"),
+          new Set([".links"])
         );
       const browserEvidence = project.browser
         ? {
@@ -1645,6 +1738,7 @@ try {
               state.browserProvenance.launcherDirectorySha256,
             coreDirectorySha256: state.browserProvenance.coreDirectorySha256,
             executableFiles: state.browserProvenance.executableFiles,
+            portableCacheSha256: state.browserProvenance.portableCacheSha256,
             installRootSha256: browserInstallSha256,
           }
         : null;
@@ -1679,6 +1773,8 @@ try {
           nodeExecutableSha256: sha256File(nodeExecutable),
           npmExecutable,
           npmExecutableSha256: sha256File(npmExecutable),
+          projectNpmrc: project.projectNpmrc,
+          effectiveNpmSettings: effectiveNpmSettings(project),
           npmConfigSha256: resetState.value.npmConfiguration,
         },
         browser: browserEvidence,
@@ -1694,6 +1790,7 @@ try {
           path: projectRoot,
           realpath: realpathSync(projectRoot),
           cacheRoot,
+          artifactStagingRoot,
           outsideRepositoryAncestry: true,
           linkScanSha256: state.linkScan.sha256,
           resetInputsSha256: resetState.sha256,
@@ -1833,8 +1930,10 @@ try {
               state.browserProvenance.launcherDirectorySha256,
             coreDirectorySha256: state.browserProvenance.coreDirectorySha256,
             executableFiles: state.browserProvenance.executableFiles,
+            portableCacheSha256: state.browserProvenance.portableCacheSha256,
             installRootSha256: directorySha256(
-              path.join(runRoot, "browser-cache")
+              path.join(runRoot, "browser-cache"),
+              new Set([".links"])
             ),
           }
         : null;
@@ -1868,6 +1967,8 @@ try {
           nodeExecutableSha256: sha256File(nodeExecutable),
           npmExecutable,
           npmExecutableSha256: sha256File(npmExecutable),
+          projectNpmrc: project.projectNpmrc,
+          effectiveNpmSettings: effectiveNpmSettings(project),
           npmConfigSha256: resetState.value.npmConfiguration,
         },
         browser: failureBrowser,
@@ -1889,6 +1990,7 @@ try {
             ? realpathSync(projectRoot)
             : projectRoot,
           cacheRoot,
+          artifactStagingRoot,
           outsideRepositoryAncestry: true,
           linkScanSha256: state.linkScan.sha256,
           resetInputsSha256: resetState.sha256,
@@ -2096,8 +2198,11 @@ if (writeEvidence) {
     );
   const evidenceDirectory = path.join(repository, "migration/evidence/i02");
   const checkedRunLocks = path.join(evidenceDirectory, "run-locks");
+  const checkedFailureBundles = path.join(evidenceDirectory, "failure-bundles");
   rmSync(checkedRunLocks, { recursive: true, force: true });
+  rmSync(checkedFailureBundles, { recursive: true, force: true });
   mkdirSync(checkedRunLocks, { recursive: true });
+  mkdirSync(checkedFailureBundles, { recursive: true });
   const checkedSummary = JSON.parse(JSON.stringify(summary));
   checkedSummary.evidenceFormat = "compact-schema-validated-run-locks";
   for (const result of checkedSummary.results) {
@@ -2110,6 +2215,15 @@ if (writeEvidence) {
     const target = path.join(evidenceDirectory, relative);
     cpSync(source, target, { force: true });
     result.runLock = relative;
+    const dynamicRunLock = JSON.parse(readFileSync(source, "utf8"));
+    if (dynamicRunLock.failureBundle) {
+      const bundleRelative = `failure-bundles/${projectSlug(result.fixtureId)}`;
+      const bundleTarget = path.join(evidenceDirectory, bundleRelative);
+      cpSync(dynamicRunLock.failureBundle.path, bundleTarget, {
+        recursive: true,
+      });
+      result.checkedFailureBundle = bundleRelative;
+    }
   }
   cpSync(
     path.join(evidenceArtifactDirectory, "hashes.json"),

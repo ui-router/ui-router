@@ -139,7 +139,9 @@
         "nodeExecutable",
         "nodeExecutableSha256",
         "npmExecutable",
-        "npmExecutableSha256"
+        "npmExecutableSha256",
+        "projectNpmrc",
+        "effectiveNpmSettings"
       ],
       "properties": {
         "node": {
@@ -169,6 +171,48 @@
         "npmExecutableSha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "projectNpmrc": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "sha256", "allowedSettings"],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "allowedSettings": {
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        "effectiveNpmSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "required": [
+            "registry",
+            "cache",
+            "ignore-scripts",
+            "audit",
+            "fund",
+            "legacy-peer-deps",
+            "force",
+            "offline",
+            "bin-links"
+          ]
         }
       }
     },
@@ -194,7 +238,8 @@
             "installerDirectorySha256",
             "launcherDirectorySha256",
             "coreDirectorySha256",
-            "executableFiles"
+            "executableFiles",
+            "portableCacheSha256"
           ],
           "properties": {
             "package": {
@@ -268,6 +313,10 @@
                   }
                 }
               }
+            },
+            "portableCacheSha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
             }
           }
         }
@@ -347,7 +396,8 @@
         "resetInputsSha256",
         "reused",
         "reuseUpdated",
-        "changedArtifactIds"
+        "changedArtifactIds",
+        "artifactStagingRoot"
       ],
       "properties": {
         "path": {
@@ -385,6 +435,10 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "artifactStagingRoot": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -618,7 +672,10 @@
               "manifestSha256",
               "insideSandbox",
               "symlink",
-              "status"
+              "status",
+              "expectedLockResolved",
+              "stagedArtifactPath",
+              "stagedArtifactRealpath"
             ],
             "properties": {
               "edgeId": {
@@ -665,6 +722,18 @@
               },
               "status": {
                 "const": "verified"
+              },
+              "expectedLockResolved": {
+                "type": "string",
+                "pattern": "^file:(?!/).+$"
+              },
+              "stagedArtifactPath": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stagedArtifactRealpath": {
+                "type": "string",
+                "minLength": 1
               }
             }
           },
@@ -898,7 +967,10 @@
           "installedRealpath",
           "manifestSha256",
           "insideSandbox",
-          "symlink"
+          "symlink",
+          "expectedLockResolved",
+          "stagedArtifactPath",
+          "stagedArtifactRealpath"
         ],
         "properties": {
           "lockPath": {
@@ -942,6 +1014,18 @@
           },
           "symlink": {
             "const": false
+          },
+          "expectedLockResolved": {
+            "type": "string",
+            "pattern": "^file:(?!/).+$"
+          },
+          "stagedArtifactPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stagedArtifactRealpath": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }

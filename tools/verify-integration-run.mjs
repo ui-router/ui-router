@@ -175,6 +175,19 @@ for (const result of summary.results) {
       );
       if (!existsSync(absolute))
         fail(`${result.fixtureId}: failure bundle path missing ${record.name}`);
+      if (lstatSync(absolute).isSymbolicLink())
+        fail(
+          `${result.fixtureId}: failure bundle component is a symlink ${record.name}`
+        );
+      const componentRealpath = realpathSync(absolute);
+      const componentRelation = path.relative(bundleRoot, componentRealpath);
+      if (
+        componentRelation.startsWith("..") ||
+        path.isAbsolute(componentRelation)
+      )
+        fail(
+          `${result.fixtureId}: failure component escapes bundle ${record.name}`
+        );
       const digest = statSync(absolute).isDirectory()
         ? directorySha256(absolute)
         : sha256File(absolute);
@@ -195,11 +208,22 @@ for (const result of summary.results) {
       "toolchain-config",
       "dependency-graph",
       "origin-audit",
-      "ancestry-link-scan",
-      "sentinel-probe",
-      "exact-command",
       "replay-reset-commands",
     ]);
+    const lastStep = runLock.steps.at(-1);
+    if (lastStep.id !== "precondition") {
+      requiredProduced.add("exact-command");
+      requiredProduced.add("stdout");
+      requiredProduced.add("stderr");
+    }
+    if (runLock.staged.manifestSha256 !== sha256(""))
+      requiredProduced.add("staged-manifest");
+    if (runLock.staged.lockSha256 !== sha256(""))
+      requiredProduced.add("temporary-lock");
+    if (runLock.sandbox.linkScanSha256 !== sha256(""))
+      requiredProduced.add("ancestry-link-scan");
+    if (!Object.hasOwn(runLock.sentinel, "status"))
+      requiredProduced.add("sentinel-probe");
     for (const record of bundle.contents) {
       if (requiredProduced.has(record.name) && record.status !== "produced")
         fail(
@@ -253,12 +277,13 @@ for (const result of summary.results) {
         component(name).path,
         `${result.fixtureId} ${name}`
       );
-    const lastStep = runLock.steps.at(-1);
-    const exactCommand = JSON.parse(
-      readFileSync(componentPath("exact-command"), "utf8")
-    );
-    if (canonicalJson(exactCommand) !== canonicalJson(lastStep.argv))
-      fail(`${result.fixtureId}: bundled command differs from the last step`);
+    if (component("exact-command").status === "produced") {
+      const exactCommand = JSON.parse(
+        readFileSync(componentPath("exact-command"), "utf8")
+      );
+      if (canonicalJson(exactCommand) !== canonicalJson(lastStep.argv))
+        fail(`${result.fixtureId}: bundled command differs from the last step`);
+    }
     for (const [name, expectedDigest] of [
       ["stdout", lastStep.stdoutSha256],
       ["stderr", lastStep.stderrSha256],
@@ -287,6 +312,7 @@ for (const result of summary.results) {
       ["origin-audit", runLock.origins],
       ["sentinel-probe", runLock.sentinel],
     ]) {
+      if (component(name).status !== "produced") continue;
       const actual = JSON.parse(readFileSync(componentPath(name), "utf8"));
       if (canonicalJson(actual) !== canonicalJson(expected))
         fail(
@@ -339,6 +365,66 @@ for (const result of summary.results) {
   )
     fail(`${result.fixtureId}: executable provenance differs`);
   if (
+    canonicalJson(runLock.toolchain.projectNpmrc) !==
+    canonicalJson(project.projectNpmrc)
+  )
+    fail(`${result.fixtureId}: project npmrc binding differs`);
+  if (
+    project.projectNpmrc &&
+    sha256File(path.join(repository, project.projectNpmrc.path)) !==
+      project.projectNpmrc.sha256
+  )
+    fail(`${result.fixtureId}: project npmrc bytes differ`);
+  const expectedNpmSettings = {
+    registry: matrix.networkPolicy.registry,
+    cache: runLock.environment.npm_config_cache,
+    "ignore-scripts": "true",
+    audit: "false",
+    fund: "false",
+    "legacy-peer-deps": "false",
+    force: "false",
+    offline: "false",
+    "bin-links": "true",
+    ...(project.projectNpmrc?.allowedSettings ?? {}),
+  };
+  if (
+    canonicalJson(runLock.toolchain.effectiveNpmSettings) !==
+    canonicalJson(expectedNpmSettings)
+  )
+    fail(`${result.fixtureId}: effective npm configuration differs`);
+  const generatedNpmrcContents = [
+    `registry=${matrix.networkPolicy.registry}`,
+    `cache=${runLock.environment.npm_config_cache}`,
+    "ignore-scripts=true",
+    "audit=false",
+    "fund=false",
+    "legacy-peer-deps=false",
+    "force=false",
+    "offline=false",
+    "bin-links=true",
+    "",
+  ].join("\n");
+  const expectedNpmConfigSha256 = sha256(
+    canonicalJson({
+      repositoryNpmrcSha256: sha256File(path.join(repository, ".npmrc")),
+      generatedNpmrcSha256: sha256(generatedNpmrcContents),
+      registry: matrix.networkPolicy.registry,
+      cache: runLock.environment.npm_config_cache,
+      nodeExecutable: runLock.toolchain.nodeExecutable,
+      nodeExecutableSha256: runLock.toolchain.nodeExecutableSha256,
+      npmExecutable: runLock.toolchain.npmExecutable,
+      npmExecutableSha256: runLock.toolchain.npmExecutableSha256,
+      effectiveEnvironment: runLock.environment,
+      projectNpmrc: project.projectNpmrc,
+      effectiveNpmSettings: expectedNpmSettings,
+      lockArgv: matrix.lockPolicy.lockArgv,
+      installArgv: matrix.lockPolicy.installArgv,
+      reuseInstallArgv: matrix.lockPolicy.reuseInstallArgv,
+    })
+  );
+  if (runLock.toolchain.npmConfigSha256 !== expectedNpmConfigSha256)
+    fail(`${result.fixtureId}: npm configuration digest differs`);
+  if (
     runLock.sentinel.package !== matrix.sandboxPolicy.sentinelPackage ||
     runLock.sentinel.preexisting !== false ||
     runLock.sentinel.resolved !== false
@@ -352,7 +438,18 @@ for (const result of summary.results) {
       runLock.browser.launcherIntegrity !== matrix.browser.launcherIntegrity ||
       runLock.browser.coreIntegrity !== matrix.browser.coreIntegrity ||
       runLock.browser.descriptorSha256 !== matrix.browser.browsersJsonSha256 ||
-      !runLock.browser.executableFiles.length
+      runLock.browser.installerDirectorySha256 !==
+        matrix.browser.expectedInstallerDirectorySha256 ||
+      runLock.browser.launcherDirectorySha256 !==
+        matrix.browser.expectedLauncherDirectorySha256 ||
+      runLock.browser.coreDirectorySha256 !==
+        matrix.browser.expectedCoreDirectorySha256 ||
+      canonicalJson(runLock.browser.executableFiles) !==
+        canonicalJson(matrix.browser.expectedExecutableFiles) ||
+      runLock.browser.portableCacheSha256 !==
+        matrix.browser.expectedPortableCacheSha256 ||
+      runLock.browser.installRootSha256 !==
+        matrix.browser.expectedPortableCacheSha256
     )
       fail(`${result.fixtureId}: browser provenance differs`);
   } else if (!project.browser && runLock.browser !== null)
@@ -367,6 +464,27 @@ for (const result of summary.results) {
   const originIds = runLock.origins.map((record) => record.edgeId).sort();
   if (canonicalJson(originIds) !== canonicalJson([...project.edgeIds].sort()))
     fail(`${result.fixtureId}: logical origin coverage differs`);
+  for (const record of runLock.origins.filter(
+    (candidate) => candidate.status === "verified"
+  )) {
+    const artifact = runLock.artifacts.find(
+      (candidate) => candidate.artifactId === record.artifactId
+    );
+    const expectedResolved = `file:${path
+      .relative(
+        path.join(runLock.sandbox.path, "project"),
+        record.stagedArtifactPath
+      )
+      .split(path.sep)
+      .join("/")}`;
+    if (
+      !artifact ||
+      record.lockResolved !== expectedResolved ||
+      record.expectedLockResolved !== expectedResolved ||
+      record.lockIntegrity !== artifact.integrity
+    )
+      fail(`${result.fixtureId}: logical origin path differs ${record.edgeId}`);
+  }
   if (result.status === "pass") {
     if (project.expectedResult !== "pass")
       fail(`${result.fixtureId}: project expected a waived failure`);
@@ -407,18 +525,41 @@ for (const result of summary.results) {
       );
     internalLockPaths.add(record.lockPath);
     const artifact = artifactById.get(record.artifactId);
+    const expectedResolved = `file:${path
+      .relative(
+        path.join(runLock.sandbox.path, "project"),
+        record.stagedArtifactPath
+      )
+      .split(path.sep)
+      .join("/")}`;
     if (
       !artifact ||
       record.expectedVersion !== artifact.version ||
       record.lockIntegrity !== artifact.integrity ||
-      !record.lockResolved.endsWith(artifact.filename) ||
-      /^https?:/i.test(record.lockResolved) ||
+      record.lockResolved !== expectedResolved ||
+      record.expectedLockResolved !== expectedResolved ||
       !record.insideSandbox ||
       record.symlink
     )
       fail(
         `${result.fixtureId}: internal package provenance differs ${record.lockPath}`
       );
+    if (existsSync(runLock.sandbox.artifactStagingRoot)) {
+      const stagingRoot = realpathSync(runLock.sandbox.artifactStagingRoot);
+      if (
+        !existsSync(record.stagedArtifactPath) ||
+        lstatSync(record.stagedArtifactPath).isSymbolicLink() ||
+        realpathSync(record.stagedArtifactPath) !==
+          record.stagedArtifactRealpath ||
+        !record.stagedArtifactRealpath.startsWith(
+          `${stagingRoot}${path.sep}`
+        ) ||
+        sha256File(record.stagedArtifactPath) !== artifact.sha256
+      )
+        fail(
+          `${result.fixtureId}: staged artifact path differs ${record.artifactId}`
+        );
+    }
   }
   if (result.status === "pass") {
     const topLevelIds = runLock.internalPackages
@@ -429,8 +570,16 @@ for (const result of summary.results) {
       fail(`${result.fixtureId}: top-level internal artifact closure differs`);
   }
   for (const artifact of runLock.artifacts) {
-    const absolute = path.join(evidenceRoot, artifact.path);
-    if (!existsSync(absolute) || sha256File(absolute) !== artifact.sha256)
+    const absolute = safeRelative(
+      evidenceRoot,
+      artifact.path,
+      `${result.fixtureId} evidence artifact`
+    );
+    if (
+      !existsSync(absolute) ||
+      lstatSync(absolute).isSymbolicLink() ||
+      sha256File(absolute) !== artifact.sha256
+    )
       fail(
         `${result.fixtureId}: evidence artifact differs ${artifact.artifactId}`
       );

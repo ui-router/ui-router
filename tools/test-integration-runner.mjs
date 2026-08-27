@@ -53,6 +53,11 @@ try {
   assertNoLinksOrSharedFiles(source, copy);
   cases.push("independent-byte-copy");
 
+  writeFileSync(path.join(copy, "file.txt"), "mutated\n");
+  rejects("copied-source-content-mutation", () =>
+    assertNoLinksOrSharedFiles(source, copy)
+  );
+
   rmSync(path.join(copy, "file.txt"));
   linkSync(path.join(source, "file.txt"), path.join(copy, "file.txt"));
   rejects("mutable-hard-link", () => assertNoLinksOrSharedFiles(source, copy));

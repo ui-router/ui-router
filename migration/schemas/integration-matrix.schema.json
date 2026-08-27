@@ -189,7 +189,12 @@
         "installerIntegrity",
         "launcherPackage",
         "launcherVersion",
-        "launcherIntegrity"
+        "launcherIntegrity",
+        "expectedInstallerDirectorySha256",
+        "expectedLauncherDirectorySha256",
+        "expectedCoreDirectorySha256",
+        "expectedExecutableFiles",
+        "expectedPortableCacheSha256"
       ],
       "properties": {
         "installerPackage": {
@@ -236,6 +241,82 @@
         "launcherIntegrity": {
           "type": "string",
           "pattern": "^sha512-.+"
+        },
+        "expectedInstallerDirectorySha256": {
+          "const": "5c1b073ab59ab0e787e754bd367a28a60165332d84faea561d71990ee1795436"
+        },
+        "expectedLauncherDirectorySha256": {
+          "const": "e2079ee57a702f265d7a8633223dba2e319587ef286d7f51b89b4630dee6a993"
+        },
+        "expectedCoreDirectorySha256": {
+          "const": "15fc47129e7f6497747b79d5b6220f2fc9be6373b36cb360b2df3e9937ef26a1"
+        },
+        "expectedPortableCacheSha256": {
+          "const": "620d7bcc2da802d7d2889db39d6d7fac729587e0aae85ea0347987e9258f53b4"
+        },
+        "expectedExecutableFiles": {
+          "const": [
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell",
+              "sha256": "e11fc9ce65c96313476f7ee9844b6fb6a9220fb048693cfe9eee00acf4170a9f"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libEGL.so",
+              "sha256": "288fdc8eb36ac724e48b39d63667fbaafc546e34b45355ea9ce37b00045866ed"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libGLESv2.so",
+              "sha256": "c244efa3e368b5b93aff102eeb4ca53b9ab182e3b901cb869eb6a29ded7c2ba7"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libvk_swiftshader.so",
+              "sha256": "4d39038dd6d448a3a6b5cf6aefb583d50346fd75ea8879e2563d67844f460dd0"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libvulkan.so.1",
+              "sha256": "33742ba1b7f8ae04a4f9e35f66c343e3789d7d431a396cacc66ec79b579eaf51"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome",
+              "sha256": "0b20b130e7edd9dd51873be867761295fe0cfad490c2b9a64f95bd3cfc08fa71"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome_crashpad_handler",
+              "sha256": "0aa3f05a2ed9b7ac64148bf975f33ec580307abca1c77e1e562e68dd8e20606f"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome_sandbox",
+              "sha256": "18391bf9d217ddbde9956347cbb1346d2808a73ade4baa3f88a610447cf946b4"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome-wrapper",
+              "sha256": "24c1cfddcd206a86281008e7eed38109344ef34cd88d61902a9befd520a5571c"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libEGL.so",
+              "sha256": "288fdc8eb36ac724e48b39d63667fbaafc546e34b45355ea9ce37b00045866ed"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libGLESv2.so",
+              "sha256": "c244efa3e368b5b93aff102eeb4ca53b9ab182e3b901cb869eb6a29ded7c2ba7"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libvk_swiftshader.so",
+              "sha256": "4d39038dd6d448a3a6b5cf6aefb583d50346fd75ea8879e2563d67844f460dd0"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libvulkan.so.1",
+              "sha256": "33742ba1b7f8ae04a4f9e35f66c343e3789d7d431a396cacc66ec79b579eaf51"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so",
+              "sha256": "529de3168220c0a8784e19499bfcb84a3fb47001f2175a53b2e8477ece9e97b5"
+            },
+            {
+              "path": "ffmpeg-1011/ffmpeg-linux",
+              "sha256": "460d44f3416005662f528d4b92e7b94ace924e8a0288106d3803b73c56eaadc8"
+            }
+          ]
         }
       }
     },
@@ -459,7 +540,8 @@
           "closureBindings",
           "expectedResult",
           "waiver",
-          "expectedFailure"
+          "expectedFailure",
+          "projectNpmrc"
         ],
         "properties": {
           "id": {
@@ -953,6 +1035,38 @@
                     "items": {
                       "type": "string",
                       "minLength": 1
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "projectNpmrc": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path", "sha256", "allowedSettings"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+\\.npmrc$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "allowedSettings": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["prefer-dedupe"],
+                    "properties": {
+                      "prefer-dedupe": {
+                        "const": "true"
+                      }
                     }
                   }
                 }

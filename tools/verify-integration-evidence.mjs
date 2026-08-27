@@ -105,8 +105,15 @@ const postImplementationPaths = new Set(
     .split("\n")
     .filter(Boolean)
 );
-for (const line of git(["status", "--porcelain"]).split("\n").filter(Boolean))
-  postImplementationPaths.add(line.slice(3).split(" -> ").at(-1));
+for (const line of git(["status", "--porcelain"]).split("\n").filter(Boolean)) {
+  const separator = line.indexOf(" ");
+  const changed = line
+    .slice(separator + 1)
+    .trim()
+    .split(" -> ")
+    .at(-1);
+  postImplementationPaths.add(changed);
+}
 for (const changed of postImplementationPaths)
   if (!changed.startsWith(evidencePrefix))
     fail(`non-evidence change follows the proven implementation: ${changed}`);

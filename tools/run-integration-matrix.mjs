@@ -2238,6 +2238,28 @@ if (writeEvidence) {
             `${sourcePath.slice(0, -".json".length)}-json.evidence`
           );
       }
+      const checkedArchives = path.join(bundleTarget, "artifacts");
+      for (const filename of readdirSync(checkedArchives).filter((name) =>
+        name.endsWith(".tgz")
+      )) {
+        const archivePath = path.join(checkedArchives, filename);
+        const bytes = readFileSync(archivePath);
+        writeFileSync(
+          `${archivePath}.json`,
+          `${JSON.stringify(
+            {
+              filename,
+              sha256: sha256(bytes),
+              size: bytes.length,
+              encoding: "base64",
+              bytes: bytes.toString("base64"),
+            },
+            null,
+            2
+          )}\n`
+        );
+        rmSync(archivePath);
+      }
       result.checkedFailureBundle = bundleRelative;
     }
   }

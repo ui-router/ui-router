@@ -35,6 +35,45 @@ function git(args) {
     fail(`git ${args.join(" ")} failed: ${result.stderr}`);
   return result.stdout.trim();
 }
+function decodeCheckedArchive(pathname) {
+  const record = JSON.parse(readFileSync(pathname, "utf8"));
+  if (
+    record.encoding !== "base64" ||
+    typeof record.filename !== "string" ||
+    !/^[a-f0-9]{64}$/.test(record.sha256)
+  )
+    fail(`checked archive encoding is invalid: ${pathname}`);
+  const bytes = Buffer.from(record.bytes, "base64");
+  if (bytes.length !== record.size || sha256(bytes) !== record.sha256)
+    fail(`checked archive bytes differ: ${pathname}`);
+  return { ...record, bytes };
+}
+function encodedArchiveDirectorySha256(directory) {
+  const records = [];
+  for (const filename of readdirSync(directory).sort()) {
+    const absolute = path.join(directory, filename);
+    if (filename === "hashes.json") {
+      const bytes = readFileSync(absolute);
+      records.push({
+        path: filename,
+        size: bytes.length,
+        sha256: sha256(bytes),
+      });
+    } else if (filename.endsWith(".tgz.json")) {
+      const archive = decodeCheckedArchive(absolute);
+      records.push({
+        path: archive.filename,
+        size: archive.size,
+        sha256: archive.sha256,
+      });
+    } else fail(`unexpected encoded archive evidence: ${filename}`);
+  }
+  return sha256(
+    canonicalJson(
+      records.sort((left, right) => left.path.localeCompare(right.path))
+    )
+  );
+}
 function directorySha256(directory) {
   const records = [];
   function walk(absolute, relative = "") {
@@ -418,9 +457,12 @@ for (const [index, result] of evidence.results.entries()) {
       const relation = path.relative(realpathSync(checkedBundleRoot), real);
       if (relation.startsWith("..") || path.isAbsolute(relation))
         fail(`${project.id}: checked failure component escapes ${record.name}`);
-      const digest = statSync(absolute).isDirectory()
-        ? directorySha256(absolute)
-        : sha256File(absolute);
+      const digest =
+        record.name === "artifact-archives"
+          ? encodedArchiveDirectorySha256(absolute)
+          : statSync(absolute).isDirectory()
+          ? directorySha256(absolute)
+          : sha256File(absolute);
       if (digest !== record.sha256)
         fail(`${project.id}: checked failure component differs ${record.name}`);
     }
@@ -499,17 +541,19 @@ if (!checkedArtifactArchiveRoot)
   fail("checked proof lacks a retained artifact archive set");
 for (const artifact of evidence.artifacts) {
   const archive = safeEvidencePath(
-    artifact.filename,
+    `${artifact.filename}.json`,
     `${artifact.artifactId} checked archive`,
     checkedArtifactArchiveRoot
   );
+  const decoded = existsSync(archive) ? decodeCheckedArchive(archive) : null;
   if (
     !/^[a-f0-9]{64}$/.test(artifact.sha256) ||
     !artifact.filename.includes(`-sha256-${artifact.sha256}.tgz`) ||
     artifact.path !== "artifact-hashes.json" ||
-    !existsSync(archive) ||
+    !decoded ||
     lstatSync(archive).isSymbolicLink() ||
-    sha256File(archive) !== artifact.sha256
+    decoded.filename !== artifact.filename ||
+    decoded.sha256 !== artifact.sha256
   )
     fail(`${artifact.artifactId}: proof artifact binding differs`);
 }

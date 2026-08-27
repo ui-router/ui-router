@@ -5,10 +5,10 @@
   "fixtureId": "framework/react-hybrid/integration/react16",
   "mode": "clean",
   "repository": {
-    "commit": "623140d796f0130f599428f74dbec2e0829d0205",
-    "tree": "b6a6ddabe97e4725b794ab4b08a2fe0d466470fb",
+    "commit": "b91121c6d1c02f73b415c8d20f49f117fd89470f",
+    "tree": "af32963e6089d302f513d42ca72ad2fd0b8b6823",
     "dirty": false,
-    "sourceSnapshotSha256": "41ccc8f1a092023058f736529d289bdfbf9e61f410074d98f83711431e2a81d0"
+    "sourceSnapshotSha256": "4c42292884471c999b54935df686aa4d23a47eadeb77507087615ea5c9f74057"
   },
   "contracts": {
     "matrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
@@ -40,15 +40,15 @@
     },
     "npmEnvironment": {
       "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-xQspYW/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-xQspYW/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-X8q6Vw/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-X8q6Vw/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-xQspYW/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-X8q6Vw/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-xQspYW/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-X8q6Vw/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -57,11 +57,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-xQspYW/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-X8q6Vw/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-xQspYW/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-X8q6Vw/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -71,20 +71,20 @@
       "bin-links": "true",
       "prefer-dedupe": "true"
     },
-    "npmConfigSha256": "232873b4fd13ddadc688b4b7832c7904878bfe7b16a0144c3797a2f9017ee897"
+    "npmConfigSha256": "035ec53790452b5ba2d534a39200b06f1b4f9dc9d0c752bc92f088452183b4ac"
   },
   "browser": null,
   "environment": {
     "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-xQspYW/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-xQspYW/tmp",
+    "HOME": "/tmp/uirouter-i02-clean-X8q6Vw/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-X8q6Vw/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-xQspYW/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-X8q6Vw/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-xQspYW/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-X8q6Vw/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -93,7 +93,7 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-xQspYW/browser-cache"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-X8q6Vw/browser-cache"
   },
   "commands": {
     "lock": [
@@ -126,13 +126,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-xQspYW/projects/framework__react-hybrid__integration__react16",
-    "realpath": "/tmp/uirouter-i02-clean-xQspYW/projects/framework__react-hybrid__integration__react16",
+    "path": "/tmp/uirouter-i02-clean-X8q6Vw/projects/framework__react-hybrid__integration__react16",
+    "realpath": "/tmp/uirouter-i02-clean-X8q6Vw/projects/framework__react-hybrid__integration__react16",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-xQspYW/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-X8q6Vw/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "e69ea908581f258ab83f79511035abbc65db22da457dbec8e0def81b4cd34f68",
-    "resetInputsSha256": "736a0b7dc8db82fe55763618310811945dfe6e301dc0c7207b1c868227d406f9",
+    "resetInputsSha256": "3365077db88275a4e1c5469e8dc32793f7445a1b4a568d31f266933d724f32fe",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -152,7 +152,7 @@
     "lockSha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-xQspYW/projects/framework__react-hybrid__integration__react16/project/package.json",
+    "manifestPath": "/tmp/uirouter-i02-clean-X8q6Vw/projects/framework__react-hybrid__integration__react16/project/package.json",
     "manifestSha256": "b2aac9e90a384bdec8c8022c08767f308728b33bc172de5854b948abde3ee47d",
     "lockPath": "not-produced",
     "lockSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -273,7 +273,7 @@
       ],
       "status": 1,
       "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "cd5fb40adac57d8f26289e754570054678b10f50fc34c7f1354779f82e36b05a"
+      "stderrSha256": "8d1cf64fcfb915fa1f6eff1fc59082ba821def9e8a53b7490d18e2b03c2fbef0"
     }
   ],
   "result": {
@@ -285,7 +285,7 @@
       "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
       "expires": "2026-10-31"
     },
-    "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-xQspYW/npm-cache/_logs/2026-08-27T02_28_26_901Z-debug-0.log\n"
+    "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-X8q6Vw/npm-cache/_logs/2026-08-27T02_33_44_552Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-X8q6Vw/npm-cache/_logs/2026-08-27T02_33_44_552Z-debug-0.log\n"
   },
   "failureBundle": null,
   "replay": {
@@ -309,6 +309,6 @@
       "<external-cache-root>",
       "--reset"
     ],
-    "retainedSandbox": "/tmp/uirouter-i02-clean-xQspYW/projects/framework__react-hybrid__integration__react16"
+    "retainedSandbox": "/tmp/uirouter-i02-clean-X8q6Vw/projects/framework__react-hybrid__integration__react16"
   }
 }

@@ -153,15 +153,15 @@
   ],
   "environment": {
     "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-X8q6Vw/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-X8q6Vw/tmp",
+    "HOME": "/tmp/uirouter-i02-clean-ZoLMWn/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-ZoLMWn/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-X8q6Vw/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-ZoLMWn/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-X8q6Vw/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-ZoLMWn/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -170,6 +170,6 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-X8q6Vw/browser-cache"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-ZoLMWn/browser-cache"
   }
 }

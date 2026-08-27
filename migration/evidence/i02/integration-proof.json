@@ -4,10 +4,10 @@
   "owner": "ui-router-maintainers",
   "matrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
   "repository": {
-    "commit": "b91121c6d1c02f73b415c8d20f49f117fd89470f",
-    "tree": "af32963e6089d302f513d42ca72ad2fd0b8b6823",
+    "commit": "db42cf9d36e591cd5545cd33217f49af6ed986fb",
+    "tree": "f1bc888dd1d2ffd76946da3898ba9d071d6893de",
     "dirty": false,
-    "sourceSnapshotSha256": "4c42292884471c999b54935df686aa4d23a47eadeb77507087615ea5c9f74057"
+    "sourceSnapshotSha256": "c1cee545145f0900bb17afe6bee0bc7a4aaa495831103d679dfaff323c3d4163"
   },
   "runtime": {
     "platform": "linux",
@@ -140,64 +140,64 @@
     {
       "fixtureId": "core/integration/typescript-3.9",
       "status": "pass",
-      "runId": "995903a2c9753af33d1f22f7",
+      "runId": "603fc6ade95bc458a1022b93",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "6def71a7b18ca19480f0bf5fe1260f68233dae9fe3a534057f96e5b8956a8241",
+      "runLockSha256": "bb808f747018b63737db3c6add6edc4918215863b967b89062aa52aa8cf6a2b4",
       "runLock": "run-locks/core__integration__typescript-3.9.json"
     },
     {
       "fixtureId": "core/integration/typescript-5.4",
       "status": "pass",
-      "runId": "7bb7d481ec51048754fafa0c",
+      "runId": "499bc71954cb1844f347c7a1",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "73f1723d8c6a4be8392befec7621a420b00ac0278349c4492800c3319569bd16",
+      "runLockSha256": "7391d6b5ac61b300f2990680e14223fb5be31e4bfd5df62ea626d3f844565b10",
       "runLock": "run-locks/core__integration__typescript-5.4.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22",
       "status": "pass",
-      "runId": "8654aa268bed1098fb2de8cf",
+      "runId": "11e1b12f5352e3bb8d024aa2",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "5059c5d451ae3192d9d5535beb6833416f0a39066440e7285c8c2f195c60752e",
+      "runLockSha256": "0b9cbb66def6da615c4af30759848444903da1cb4e13e18c0877a6b7dd4744d2",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-standalone",
       "status": "pass",
-      "runId": "e172d1fe995fd443b227d54f",
+      "runId": "c2e99e41e26fa40b8b9de45a",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "f09227deb11ac33bd22d177504d21d1717c06095feb529db3f7b1d888f9ce1c2",
+      "runLockSha256": "58befe7122fbdc2b7825f22655ba018c71b152d2bd0b87e0b9d56408637f5080",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22-standalone.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-zoneless",
       "status": "pass",
-      "runId": "1ead7cba53a691539493ea67",
+      "runId": "75f2725d6537a275d764d86f",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "5048a768fe7f9c68ee03dc66b7490eae017f07e852a6e5059cfeb164b29ccd8d",
+      "runLockSha256": "7d75741585b2ccd9ea52b9bb26c9c50bbcbc0e3aee53ff63e9c053070067024c",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22-zoneless.json"
     },
     {
       "fixtureId": "framework/angular/integration/typescript-versions/typescript6",
       "status": "pass",
-      "runId": "579868540c43bd4b56c3e4bd",
+      "runId": "6a6ebf9b2df45d1034f80255",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "d68875b116502532dda2d476cf6c69857df3afe8d462c6dc56ad117d5c7b57be",
+      "runLockSha256": "5154b46456ebfc337add3b81beface2c9494e8da5233c83dc941b0e2e5f4b705",
       "runLock": "run-locks/framework__angular__integration__typescript-versions__typescript6.json"
     },
     {
       "fixtureId": "framework/angularjs/integration/typescript-versions/3.9",
       "status": "pass",
-      "runId": "9dd40db23e7800c3071347dc",
+      "runId": "bb86d7292326a9bdb301c9a7",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "b379108555ba9d145facf4c834ba1249f0e34c4b213f9d837a454bba0a2a5644",
+      "runLockSha256": "480a0dc8fa0577adb7488f169ba6b94619ea4fcf01b57e45ee43b58a24e75e58",
       "runLock": "run-locks/framework__angularjs__integration__typescript-versions__3.9.json"
     },
     {
@@ -206,65 +206,65 @@
       "runId": "dcc9c4c7c252ffb6d1fdea9d",
       "mode": "clean",
       "reused": false,
-      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-X8q6Vw/npm-cache/_logs/2026-08-27T02_33_44_552Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-X8q6Vw/npm-cache/_logs/2026-08-27T02_33_44_552Z-debug-0.log\n",
+      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-ZoLMWn/npm-cache/_logs/2026-08-27T02_37_37_272Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-ZoLMWn/npm-cache/_logs/2026-08-27T02_37_37_272Z-debug-0.log\n",
       "failureBundle": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/.migration-work/i02/latest/projects/framework__react-hybrid__integration__react16/failure-bundle",
-      "retainedSandbox": "/tmp/uirouter-i02-clean-X8q6Vw/projects/framework__react-hybrid__integration__react16",
+      "retainedSandbox": "/tmp/uirouter-i02-clean-ZoLMWn/projects/framework__react-hybrid__integration__react16",
       "runLock": "run-locks/framework__react-hybrid__integration__react16.json",
-      "runLockSha256": "e356bcda32de0274f8c04c6e451db1c033dbd43a3adaaed173ddf32bead43c69",
+      "runLockSha256": "42750325b2535719a89860fcda916fe81f8ebf3b66a6bb19b37bf16d8028e935",
       "checkedFailureBundle": "failure-bundles/framework__react-hybrid__integration__react16"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react17",
       "status": "pass",
-      "runId": "4d42e0272f9baa383195fff4",
+      "runId": "08a0b55a89a803ebc170bacc",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "b0bba0b2432378412f6c94eb393212515a7115071e95289e94f2ecc001aa6f82",
+      "runLockSha256": "012da645540da5a49af4039a8f617b6c847c610f38d18e9fa9b25d87b0a45c0c",
       "runLock": "run-locks/framework__react-hybrid__integration__react17.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react18",
       "status": "pass",
-      "runId": "184501d4e4aa74c511da5da8",
+      "runId": "b8bb1ba8aeaa3a2ce52b59e0",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "7c028ad60708f83e361e6db52db5ba5af3d5aa2b2de6c2c0349295c12fcc8b4a",
+      "runLockSha256": "e98c1195974381476bed60ec83f006416bee05b51014452157a7e239c77f2d88",
       "runLock": "run-locks/framework__react-hybrid__integration__react18.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react19",
       "status": "pass",
-      "runId": "6beb2ce996763655ef287655",
+      "runId": "38d36e7b6221e249d1f49fa7",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "cb0959c2d55fa7b612a51d2396cc362e1c0dde70c974a37277163981ac5832c1",
+      "runLockSha256": "231aecaa431c183ca6f7854a4087e5c7ad4e8493682efc470b245888ed3d52dd",
       "runLock": "run-locks/framework__react-hybrid__integration__react19.json"
     },
     {
       "fixtureId": "framework/react/integration/react17",
       "status": "pass",
-      "runId": "c243cf16bdc58d5bed501639",
+      "runId": "753258d07d8b48dfb6251ff4",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "79527def4f1f0acfb458a1c5b18659083a92d6f3d30495f59956108efe39bb1d",
+      "runLockSha256": "8880a7e383a21c5f4843893072bbb71c182e2df132f7d75eeab6ef277899fda9",
       "runLock": "run-locks/framework__react__integration__react17.json"
     },
     {
       "fixtureId": "framework/react/integration/react18",
       "status": "pass",
-      "runId": "35c60c6cededba83d9ffd887",
+      "runId": "d6a889c2ff47ccc5cd38c31d",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "b1914c61c0b89f2d7af0e8b980ba491b710d4108c0923808ee4f65c3cdfd8864",
+      "runLockSha256": "f5bc6220e6063c2d6a84e012708823a78dbccb4f72fb389ded6efdc391eeee38",
       "runLock": "run-locks/framework__react__integration__react18.json"
     },
     {
       "fixtureId": "framework/react/integration/react19",
       "status": "pass",
-      "runId": "4fb880fa5614572d34f4f35b",
+      "runId": "ed25453f51cc8579f77b8f2f",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "e79415d3d7480532e066db189e4d14e8c9b171d13fcf3da643549cd205e481e2",
+      "runLockSha256": "62e32531efa524320266cf64aa2c488ff24b4787cef138dc5f9b5a34a1c81b41",
       "runLock": "run-locks/framework__react__integration__react19.json"
     }
   ],

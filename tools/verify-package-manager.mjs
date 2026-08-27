@@ -323,6 +323,7 @@ const migrationControlFiles = new Set([
   'migration/baselines.json',
   'migration/execution-lock.json',
   'migration/import-lock.json',
+  'migration/integration-matrix.json',
   'migration/isolated-projects.json',
   'migration/package-artifacts.json',
   'migration/package-classification.json',

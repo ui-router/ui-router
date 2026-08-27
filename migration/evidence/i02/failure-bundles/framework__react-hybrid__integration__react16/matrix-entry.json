@@ -1,0 +1,383 @@
+{
+  "id": "framework/react-hybrid/integration/react16",
+  "owner": "ui-router-maintainers",
+  "mode": "runnable",
+  "manifest": "frameworks/react-hybrid/integration-tests/react16/package.json",
+  "sourceManifest": "framework/react-hybrid/integration/react16/package.json",
+  "name": "@uirouter/internal-framework-react-hybrid-integration-react16",
+  "fixtureTreeSha256": "9b65c6d915405e3d7f1f92cc6567f774980426aa9b148f8a8b444c2ce930c7d9",
+  "committedManifestSha256": "d599da04958bf5f1948551d1062da1066097119263bce4911977e19cc5ab056a",
+  "committedLock": {
+    "path": "frameworks/react-hybrid/integration-tests/react16/package-lock.json",
+    "sha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d",
+    "packageEntries": 374
+  },
+  "generatorScript": null,
+  "commands": {
+    "setupBrowser": "setup:browser",
+    "test": "test",
+    "e2e": "e2e",
+    "selected": "test"
+  },
+  "browser": true,
+  "manifestBaselineId": "react-hybrid.manifest.integration/react16.static",
+  "downstreamBaselineIds": [
+    "react-hybrid.downstream.all",
+    "react-hybrid.downstream.integration.react16.discovery"
+  ],
+  "registryBaselineRecords": [
+    {
+      "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+      "package": "@uirouter/react-hybrid",
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/@uirouter/react-hybrid/-/react-hybrid-2.0.0.tgz",
+      "integrity": "sha512-VU5j8vV6V0EAJ3kIp/TqxvE6xQEnqMrdq/W9D64xMAdeIqrsUlNIribTCgX82fcc6xTNkCxTuCcukOyDS2lhEg=="
+    },
+    {
+      "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+      "package": "@uirouter/visualizer",
+      "version": "7.2.1",
+      "resolved": "https://registry.npmjs.org/@uirouter/visualizer/-/visualizer-7.2.1.tgz",
+      "integrity": "sha512-Q6kyXHPiHZPsFbI8vuaVmC9WZCSHg11CeqE/WJStQ48DHI32qDW0AGyHZWX+HPonaDRNH/m+9gnfR/HQUSk/3g=="
+    }
+  ],
+  "edgeIds": [
+    "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+    "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+    "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16"
+  ],
+  "rewriteIds": [
+    "rewrite-framework-react-hybrid-integration-react16-react-hybrid",
+    "rewrite-framework-react-hybrid-integration-react16-visualizer"
+  ],
+  "rewrites": [
+    {
+      "id": "rewrite-framework-react-hybrid-integration-react16-react-hybrid",
+      "owner": "ui-router-maintainers",
+      "package": "@uirouter/react-hybrid",
+      "artifactId": "react-hybrid",
+      "expectedVersion": "2.0.0",
+      "operation": "replace-declared",
+      "manifestSection": "dependencies",
+      "declaredSpec": "latest",
+      "edgeIds": [
+        "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+        "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16"
+      ],
+      "evidence": [
+        {
+          "path": "migration/control-evidence/n00/inventory.json",
+          "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        },
+        {
+          "path": "migration/control-evidence/n00/inventory.json",
+          "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        }
+      ]
+    },
+    {
+      "id": "rewrite-framework-react-hybrid-integration-react16-visualizer",
+      "owner": "ui-router-maintainers",
+      "package": "@uirouter/visualizer",
+      "artifactId": "visualizer",
+      "expectedVersion": "7.2.1",
+      "operation": "replace-declared",
+      "manifestSection": "dependencies",
+      "declaredSpec": "^7.2.1",
+      "edgeIds": [
+        "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer"
+      ],
+      "evidence": [
+        {
+          "path": "migration/control-evidence/n00/inventory.json",
+          "sha256": "394ee8543ef2c98c46a4c17513fde9e6976139e3be2e3acf855643d950cd5c12"
+        }
+      ]
+    }
+  ],
+  "externalGraph": {
+    "sha256": "7ae85aef65503e99e24cb127af0680c0701ed7525504b59455f6ee7f827f7288",
+    "records": 368
+  },
+  "stagingPolicy": "execute-external-copy",
+  "evidence": {
+    "path": "frameworks/react-hybrid/integration-tests/react16/package.json",
+    "sha256": "d599da04958bf5f1948551d1062da1066097119263bce4911977e19cc5ab056a"
+  },
+  "expectedExternalGraphSha256": "a436cf0cb17816380627c64ca7e6aeae274960aa27be16603ce27a217c4c1305",
+  "allowedExternalGraphChanges": [
+    {
+      "key": "node_modules/@rolldown/binding-linux-x64-gnu",
+      "before": null,
+      "after": {
+        "version": "1.0.0-beta.58",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.0-beta.58.tgz",
+        "integrity": "sha512-urzJX0HrXxIh0FfxwWRjfPCMeInU9qsImLQxHBgLp5ivji1EEUnOfux8KxPPnRQthJyneBrN2LeqUix9DYrNaQ==",
+        "cpu": [
+          "x64"
+        ],
+        "libc": [
+          "glibc"
+        ],
+        "license": "MIT",
+        "optional": true,
+        "os": [
+          "linux"
+        ],
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "key": "node_modules/@typescript/native-preview-linux-x64",
+      "before": null,
+      "after": {
+        "version": "7.0.0-dev.20260707.2",
+        "resolved": "https://registry.npmjs.org/@typescript/native-preview-linux-x64/-/native-preview-linux-x64-7.0.0-dev.20260707.2.tgz",
+        "integrity": "sha512-du0dzi6y97Po5vDNdPJTyyijHCpaS22JLRnKZEJXBDaO9gCIymOv/5QQokFRuOlQm0bWl3i9PF4OVdGP6uAOQA==",
+        "cpu": [
+          "x64"
+        ],
+        "license": "Apache-2.0",
+        "optional": true,
+        "os": [
+          "linux"
+        ],
+        "engines": {
+          "node": ">=16.20.0"
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "key": "node_modules/d3-color",
+      "before": {
+        "version": "1.4.1",
+        "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-1.4.1.tgz",
+        "integrity": "sha512-p2sTHSLCJI2QKunbGb7ocOh7DgTAn8IrLx21QRc/BSnodXM4sv6aLQlnfpvehFMLZEfBc6g9pH9SWQccFYfJ9Q==",
+        "license": "BSD-3-Clause"
+      },
+      "after": {
+        "version": "3.1.0",
+        "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-3.1.0.tgz",
+        "integrity": "sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==",
+        "license": "ISC",
+        "engines": {
+          "node": ">=12"
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "key": "node_modules/d3-hierarchy",
+      "before": {
+        "version": "2.0.0",
+        "resolved": "https://registry.npmjs.org/d3-hierarchy/-/d3-hierarchy-2.0.0.tgz",
+        "integrity": "sha512-SwIdqM3HxQX2214EG9GTjgmCc/mbSx4mQBn+DuEETubhOw6/U3fmnji4uCVrmzOydMHSO1nZle5gh6HB/wdOzw==",
+        "license": "BSD-3-Clause"
+      },
+      "after": {
+        "version": "3.1.2",
+        "resolved": "https://registry.npmjs.org/d3-hierarchy/-/d3-hierarchy-3.1.2.tgz",
+        "integrity": "sha512-FX/9frcub54beBdugHjDCdikxThEqjnR93Qt7PvQTOHxyiNCAlvMrHhclk3cD5VeAaq9fxmfRp+CnWw9rEMBuA==",
+        "license": "ISC",
+        "engines": {
+          "node": ">=12"
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "key": "node_modules/d3-interpolate",
+      "before": {
+        "version": "1.4.0",
+        "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-1.4.0.tgz",
+        "integrity": "sha512-V9znK0zc3jOPV4VD2zZn0sDhZU3WAE2bmlxdIwwQPPzPjvyLkd8B3JUVdS1IDUFDkWZ72c9qnv1GK2ZagTZ8EA==",
+        "license": "BSD-3-Clause",
+        "dependencies": {
+          "d3-color": "1"
+        }
+      },
+      "after": {
+        "version": "3.0.1",
+        "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-3.0.1.tgz",
+        "integrity": "sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==",
+        "license": "ISC",
+        "dependencies": {
+          "d3-color": "1 - 3"
+        },
+        "engines": {
+          "node": ">=12"
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "key": "node_modules/preact",
+      "before": {
+        "version": "10.4.8",
+        "resolved": "https://registry.npmjs.org/preact/-/preact-10.4.8.tgz",
+        "integrity": "sha512-uVLeEAyRsCkUEFhVHlOu17OxcrwC7+hTGZ08kBoLBiGHiZooUZuibQnphgMKftw/rqYntNMyhVCPqQhcyAGHag==",
+        "license": "MIT",
+        "funding": {
+          "type": "opencollective",
+          "url": "https://opencollective.com/preact"
+        }
+      },
+      "after": {
+        "version": "10.29.8",
+        "resolved": "https://registry.npmjs.org/preact/-/preact-10.29.8.tgz",
+        "integrity": "sha512-ej2aVZ+vZ8WO7tvlQWRM9N63A0KzF9q4mWJfDUHgYaIofWY9hu74QdnQrjoPMmZi2/nZ5gN0bJCQF49xQqx09Q==",
+        "license": "MIT",
+        "funding": {
+          "type": "opencollective",
+          "url": "https://opencollective.com/preact"
+        },
+        "peerDependencies": {
+          "preact-render-to-string": ">=5"
+        },
+        "peerDependenciesMeta": {
+          "preact-render-to-string": {
+            "optional": true
+          }
+        }
+      },
+      "triggeringArtifactIds": [
+        "react-hybrid",
+        "visualizer"
+      ],
+      "reason": "exact external graph effect of matrix-declared local artifacts",
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    }
+  ],
+  "closureBindings": [
+    {
+      "id": "closure-framework-react-hybrid-integration-react16-angularjs",
+      "owner": "ui-router-maintainers",
+      "artifactId": "angularjs",
+      "package": "@uirouter/angularjs",
+      "expectedVersion": "1.1.2",
+      "manifestSection": "devDependencies",
+      "requiredByArtifactIds": [
+        "react-hybrid"
+      ],
+      "productionEdgeIds": [
+        "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs"
+      ],
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "id": "closure-framework-react-hybrid-integration-react16-core",
+      "owner": "ui-router-maintainers",
+      "artifactId": "core",
+      "package": "@uirouter/core",
+      "expectedVersion": "6.1.2",
+      "manifestSection": "devDependencies",
+      "requiredByArtifactIds": [
+        "angularjs",
+        "react",
+        "react-hybrid",
+        "visualizer"
+      ],
+      "productionEdgeIds": [
+        "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+        "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+        "edge-framework-react-router-dependencies-uirouter-core",
+        "edge-plugins-visualizer-peerdependencies-uirouter-core"
+      ],
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    },
+    {
+      "id": "closure-framework-react-hybrid-integration-react16-react",
+      "owner": "ui-router-maintainers",
+      "artifactId": "react",
+      "package": "@uirouter/react",
+      "expectedVersion": "1.0.8",
+      "manifestSection": "devDependencies",
+      "requiredByArtifactIds": [
+        "react-hybrid"
+      ],
+      "productionEdgeIds": [
+        "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+      ],
+      "evidence": {
+        "path": "migration/package-artifacts.json",
+        "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+      }
+    }
+  ],
+  "expectedResult": "waived-failure",
+  "waiver": {
+    "baselineId": "i02-react-hybrid-react16-peer-mismatch",
+    "owner": "ui-router-maintainers",
+    "reason": "The retained React 16 fixture conflicts with the exact local @uirouter/react 1.0.8 peer range even though @uirouter/react-hybrid 2.0.0 advertises React 16.8 support.",
+    "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
+    "expires": "2026-10-31"
+  },
+  "expectedFailure": {
+    "phase": "lock",
+    "contains": [
+      "ERESOLVE unable to resolve dependency tree",
+      "peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\"",
+      "@uirouter/react@1.0.8"
+    ]
+  },
+  "projectNpmrc": {
+    "path": "frameworks/react-hybrid/integration-tests/react16/.npmrc",
+    "sha256": "74743f06318bdf8e77ed961b774625de48a52f7b05b34edb1c827e02c9150cb5",
+    "allowedSettings": {
+      "prefer-dedupe": "true"
+    }
+  }
+}

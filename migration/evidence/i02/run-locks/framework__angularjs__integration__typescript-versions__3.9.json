@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "bundleState": "final",
+  "runId": "acc3643b038c3b8dd153db3d",
+  "fixtureId": "framework/angularjs/integration/typescript-versions/3.9",
+  "mode": "clean",
+  "repository": {
+    "commit": "de8c8fb61df8d4ec4d5e0d7fa53efe6e00a2c919",
+    "tree": "e778aba32eb6582bb3af70870c8b469c79c51370",
+    "dirty": false,
+    "sourceSnapshotSha256": "57e5f9dc1328b284af886e120c8773e41a76e97034e96d401d5072e629e3ac06"
+  },
+  "contracts": {
+    "matrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+    "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
+    "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+    "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
+  },
+  "platform": {
+    "os": "linux",
+    "architecture": "x64",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "nodeExecutable": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin/node",
+    "nodeExecutableSha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+    "npmExecutable": "/home/coder/.newt-cache/npm-versions/11.17.0/bin/npm",
+    "npmExecutableSha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+    "projectNpmrc": null,
+    "npmEnvironment": {
+      "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
+      "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
+      "CI": "1",
+      "HUSKY": "0",
+      "LC_ALL": "C",
+      "TZ": "UTC",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+      "npm_config_registry": "https://registry.npmjs.org/",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
+      "npm_config_globalconfig": "/dev/null",
+      "npm_config_ignore_scripts": "true",
+      "npm_config_audit": "false",
+      "npm_config_fund": "false",
+      "npm_config_legacy_peer_deps": "false",
+      "npm_config_force": "false",
+      "npm_config_offline": "false",
+      "npm_config_bin_links": "true",
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
+    },
+    "effectiveNpmSettings": {
+      "registry": "https://registry.npmjs.org/",
+      "cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+      "ignore-scripts": "true",
+      "audit": "false",
+      "fund": "false",
+      "legacy-peer-deps": "false",
+      "force": "false",
+      "offline": "false",
+      "bin-links": "true"
+    },
+    "npmConfigSha256": "3ace3a12646e974fce4114d7834ca13d6faeaa26e2513e0ed81d105695575f54"
+  },
+  "browser": null,
+  "environment": {
+    "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
+    "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
+    "CI": "1",
+    "HUSKY": "0",
+    "LC_ALL": "C",
+    "TZ": "UTC",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
+    "npm_config_globalconfig": "/dev/null",
+    "npm_config_ignore_scripts": "true",
+    "npm_config_audit": "false",
+    "npm_config_fund": "false",
+    "npm_config_legacy_peer_deps": "false",
+    "npm_config_force": "false",
+    "npm_config_offline": "false",
+    "npm_config_bin_links": "true",
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
+  },
+  "commands": {
+    "lock": [
+      "npm",
+      "install",
+      "--package-lock-only",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "install": [
+      "npm",
+      "ci",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "setupBrowser": null,
+    "selected": ["npm", "run", "test"],
+    "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
+  },
+  "sandbox": {
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9",
+    "realpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9",
+    "cacheRoot": null,
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-WiJvpa/artifacts",
+    "outsideRepositoryAncestry": true,
+    "linkScanSha256": "f343a0bda15bb828ee50e4088977f43cf7bbadda7e30d34de442276464ce2c73",
+    "resetInputsSha256": "87ad8cb5f0104291250db179fb089ce3c90d59f4fae1c4464af7cc0653832e46",
+    "reused": false,
+    "reuseUpdated": false,
+    "changedArtifactIds": []
+  },
+  "sentinel": {
+    "package": "@uirouter/i02-root-sentinel",
+    "checkoutPath": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/node_modules/@uirouter/i02-root-sentinel",
+    "preexisting": false,
+    "resolved": false
+  },
+  "original": {
+    "fixtureTreeSha256": "67cae6ad97fb3c28a5e2ac2fd4e73aae6f87b99446b10aa0fd38c40e410c0586",
+    "manifestPath": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json",
+    "manifestSha256": "dfde317f2d44b603ec3f7e6efe2837366dea8402fc0ad1fd3c079161f0b214e7",
+    "lockPath": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package-lock.json",
+    "lockSha256": "a4c385e69eae4a3a66621d4069ab06f3501a401e3b588d4f4a50b22963315674"
+  },
+  "staged": {
+    "manifestPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/package.json",
+    "manifestSha256": "e5e590a0205ff7045a0d3e6346972ac1f435ab041538a7e8fbcf62b20087d53e",
+    "lockPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/package-lock.json",
+    "lockSha256": "88d697dcf9de71f9d8d6be07ad3a7112b08fad896a52482dd219a577dacd9e50",
+    "rewriteIds": [
+      "rewrite-framework-angularjs-integration-typescript-versions-3.9-angularjs"
+    ],
+    "closureBindingIds": [
+      "closure-framework-angularjs-integration-typescript-versions-3.9-core"
+    ]
+  },
+  "artifacts": [
+    {
+      "artifactId": "angularjs",
+      "package": "@uirouter/angularjs",
+      "version": "1.1.2",
+      "filename": "uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "path": "artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "sha256": "660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5",
+      "integrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+      "metadataSha256": "0dbf5d2356ddd9c69dfc907a827388628bcc5ae0da79f62778990deee826ff34",
+      "filesSha256": "74240918679275ebca0b308672ada0a970f683565dae029cf193f6602d4118f8"
+    },
+    {
+      "artifactId": "core",
+      "package": "@uirouter/core",
+      "version": "6.1.2",
+      "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "path": "artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
+      "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
+      "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
+      "filesSha256": "7ac3c44a82f54339940630fd7da8481f43c5450fff60d1cebde78199659a4057"
+    }
+  ],
+  "dependencyGraphs": {
+    "externalBeforeSha256": "f645db066e3299a4e2bdfb929f6bdba086225ec5b6b18bb9be5cf173be67f738",
+    "externalAfterSha256": "f645db066e3299a4e2bdfb929f6bdba086225ec5b6b18bb9be5cf173be67f738",
+    "lockSha256": "88d697dcf9de71f9d8d6be07ad3a7112b08fad896a52482dd219a577dacd9e50",
+    "installedSha256": "0cdda3510d5fd695b244dea621c94cb4dbedfe678ab7ce6dc3ea32f5fa15d0c0",
+    "peerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "moduleAuditSha256": "5fb9930344d0e2bd1edfedd98ba77c96aad2afe0bc119f58bbd0c1bc50b9907d",
+    "nodeModulesSha256": "53c98d83be300966b5c14a8954a1299dbe01e17b85cc0d42eac451b03b2be62b"
+  },
+  "origins": [
+    {
+      "status": "verified",
+      "edgeId": "edge-framework-angularjs-integration-typescript-versions-3-9-dependencies-uirouter-angularjs",
+      "package": "@uirouter/angularjs",
+      "expectedVersion": "1.1.2",
+      "artifactId": "angularjs",
+      "lockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "lockIntegrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "manifestSha256": "cc7974d529dc93fcbcc796705607939cbc6db9bb470cb079b912a9b8efa30ef5",
+      "insideSandbox": true,
+      "symlink": false
+    },
+    {
+      "status": "verified",
+      "edgeId": "edge-framework-angularjs-integration-typescript-versions-3-9-legacy-injected-uirouter-angularjs-typescript-typescript3-9",
+      "package": "@uirouter/angularjs",
+      "expectedVersion": "1.1.2",
+      "artifactId": "angularjs",
+      "lockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "lockIntegrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "manifestSha256": "cc7974d529dc93fcbcc796705607939cbc6db9bb470cb079b912a9b8efa30ef5",
+      "insideSandbox": true,
+      "symlink": false
+    }
+  ],
+  "internalPackages": [
+    {
+      "lockPath": "node_modules/@uirouter/angularjs",
+      "package": "@uirouter/angularjs",
+      "expectedVersion": "1.1.2",
+      "artifactId": "angularjs",
+      "lockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "lockIntegrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/angularjs",
+      "manifestSha256": "cc7974d529dc93fcbcc796705607939cbc6db9bb470cb079b912a9b8efa30ef5",
+      "insideSandbox": true,
+      "symlink": false
+    },
+    {
+      "lockPath": "node_modules/@uirouter/core",
+      "package": "@uirouter/core",
+      "expectedVersion": "6.1.2",
+      "artifactId": "core",
+      "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "lockIntegrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__angularjs__integration__typescript-versions__3.9/project/node_modules/@uirouter/core",
+      "manifestSha256": "9d4687498fa13540c0533baa70d1f6b0e020a3076d3e78860af8d8331b938d75",
+      "insideSandbox": true,
+      "symlink": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "lock",
+      "argv": [
+        "npm",
+        "install",
+        "--package-lock-only",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ],
+      "status": 0,
+      "stdoutSha256": "3ac5f6628933bf4fab6bf4981e4fe5e255f28e68032ad8d0b105a088b23aa9ee",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "install",
+      "argv": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ],
+      "status": 0,
+      "stdoutSha256": "8c295fbde4ee6a206f69055dcbcfb46848e7ccc90356fbe9c25fb8aceef6611a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "npm-ls",
+      "argv": ["npm", "ls", "--all", "--json"],
+      "status": 0,
+      "stdoutSha256": "4267f3af25fe1c7c17c6407bba947cf2db217209f12fcf277010a51623fbfeee",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "selected",
+      "argv": ["npm", "run", "test"],
+      "status": 0,
+      "stdoutSha256": "07acef2627851f84cf55077f61ecb6e3a1eba5e3e5b8ca6ce62e72bc413b7552",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "result": {
+    "status": "pass",
+    "waiver": null,
+    "failureReason": null
+  },
+  "failureBundle": null,
+  "replay": {
+    "replayArgv": [
+      "node",
+      "tools/run-integration-matrix.mjs",
+      "--mode",
+      "clean",
+      "--project",
+      "framework/angularjs/integration/typescript-versions/3.9",
+      "--retain"
+    ],
+    "resetArgv": [
+      "node",
+      "tools/run-integration-matrix.mjs",
+      "--mode",
+      "reuse",
+      "--project",
+      "framework/angularjs/integration/typescript-versions/3.9",
+      "--cache-root",
+      "<external-cache-root>",
+      "--reset"
+    ],
+    "retainedSandbox": null
+  }
+}

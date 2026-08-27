@@ -1,0 +1,26 @@
+[
+  {
+    "status": "unavailable",
+    "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+    "package": "@uirouter/react-hybrid",
+    "expectedVersion": "2.0.0",
+    "artifactId": "react-hybrid",
+    "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+  },
+  {
+    "status": "unavailable",
+    "edgeId": "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16",
+    "package": "@uirouter/react-hybrid",
+    "expectedVersion": "2.0.0",
+    "artifactId": "react-hybrid",
+    "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+  },
+  {
+    "status": "unavailable",
+    "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+    "package": "@uirouter/visualizer",
+    "expectedVersion": "7.2.1",
+    "artifactId": "visualizer",
+    "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+  }
+]

@@ -1,170 +1,1138 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ui-router.github.io/migration/schemas/integration-matrix.schema.json",
+  "$id": "https://ui-router.github.io/schemas/integration-matrix.schema.json",
+  "title": "UI-Router isolated integration matrix",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "packageClassificationSha256", "fixtures"],
+  "required": [
+    "schemaVersion",
+    "owner",
+    "evidence",
+    "isolatedProjectsSha256",
+    "packageArtifactsSha256",
+    "packageClassificationSha256",
+    "pathRepairsSha256",
+    "baselinesSha256",
+    "executionLockSha256",
+    "counts",
+    "runtime",
+    "browser",
+    "artifactPolicy",
+    "lockPolicy",
+    "sandboxPolicy",
+    "networkPolicy",
+    "resetInputs",
+    "failureBundleContents",
+    "projects",
+    "commandAdapters"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "packageClassificationSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
-    "fixtures": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "isolatedProjectsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packageArtifactsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packageClassificationSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pathRepairsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "baselinesSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "executionLockSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projects",
+        "runnable",
+        "templates",
+        "browserProjects",
+        "logicalEdges",
+        "rewriteOperations",
+        "registryBaselineRecords",
+        "artifactIds",
+        "closureBindings",
+        "waivedFailures"
+      ],
+      "properties": {
+        "projects": {
+          "const": 16
+        },
+        "runnable": {
+          "const": 14
+        },
+        "templates": {
+          "const": 2
+        },
+        "browserProjects": {
+          "const": 10
+        },
+        "logicalEdges": {
+          "const": 37
+        },
+        "rewriteOperations": {
+          "const": 26
+        },
+        "registryBaselineRecords": {
+          "const": 21
+        },
+        "artifactIds": {
+          "const": 7
+        },
+        "closureBindings": {
+          "const": 21
+        },
+        "waivedFailures": {
+          "const": 1
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "architecture",
+        "node",
+        "npm",
+        "imageDigest",
+        "environment",
+        "forbiddenEnvironment"
+      ],
+      "properties": {
+        "platform": {
+          "const": "linux"
+        },
+        "architecture": {
+          "const": "x64"
+        },
+        "node": {
+          "const": "24.19.0"
+        },
+        "npm": {
+          "const": "11.17.0"
+        },
+        "imageDigest": {
+          "const": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["CI", "HUSKY", "LC_ALL", "TZ"],
+          "properties": {
+            "CI": {
+              "const": "1"
+            },
+            "HUSKY": {
+              "const": "0"
+            },
+            "LC_ALL": {
+              "const": "C"
+            },
+            "TZ": {
+              "const": "UTC"
+            }
+          }
+        },
+        "forbiddenEnvironment": {
+          "const": ["NODE_PATH"]
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "installerPackage",
+        "installerVersion",
+        "corePackage",
+        "coreIntegrity",
+        "browsersJsonSha256",
+        "name",
+        "revision",
+        "version",
+        "setupArgv",
+        "installerIntegrity",
+        "launcherPackage",
+        "launcherVersion",
+        "launcherIntegrity",
+        "expectedInstallerDirectorySha256",
+        "expectedLauncherDirectorySha256",
+        "expectedCoreDirectorySha256",
+        "expectedExecutableFiles",
+        "expectedPortableCacheSha256"
+      ],
+      "properties": {
+        "installerPackage": {
+          "const": "@playwright/test"
+        },
+        "installerVersion": {
+          "const": "1.62.1"
+        },
+        "corePackage": {
+          "const": "playwright-core"
+        },
+        "coreIntegrity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "browsersJsonSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "name": {
+          "const": "chromium"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setupArgv": {
+          "const": ["node_modules/.bin/playwright", "install", "chromium"]
+        },
+        "installerIntegrity": {
+          "type": "string",
+          "pattern": "^sha512-.+"
+        },
+        "launcherPackage": {
+          "const": "playwright"
+        },
+        "launcherVersion": {
+          "const": "1.62.1"
+        },
+        "launcherIntegrity": {
+          "type": "string",
+          "pattern": "^sha512-.+"
+        },
+        "expectedInstallerDirectorySha256": {
+          "const": "5c1b073ab59ab0e787e754bd367a28a60165332d84faea561d71990ee1795436"
+        },
+        "expectedLauncherDirectorySha256": {
+          "const": "e2079ee57a702f265d7a8633223dba2e319587ef286d7f51b89b4630dee6a993"
+        },
+        "expectedCoreDirectorySha256": {
+          "const": "15fc47129e7f6497747b79d5b6220f2fc9be6373b36cb360b2df3e9937ef26a1"
+        },
+        "expectedPortableCacheSha256": {
+          "const": "620d7bcc2da802d7d2889db39d6d7fac729587e0aae85ea0347987e9258f53b4"
+        },
+        "expectedExecutableFiles": {
+          "const": [
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell",
+              "sha256": "e11fc9ce65c96313476f7ee9844b6fb6a9220fb048693cfe9eee00acf4170a9f"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libEGL.so",
+              "sha256": "288fdc8eb36ac724e48b39d63667fbaafc546e34b45355ea9ce37b00045866ed"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libGLESv2.so",
+              "sha256": "c244efa3e368b5b93aff102eeb4ca53b9ab182e3b901cb869eb6a29ded7c2ba7"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libvk_swiftshader.so",
+              "sha256": "4d39038dd6d448a3a6b5cf6aefb583d50346fd75ea8879e2563d67844f460dd0"
+            },
+            {
+              "path": "chromium_headless_shell-1234/chrome-headless-shell-linux64/libvulkan.so.1",
+              "sha256": "33742ba1b7f8ae04a4f9e35f66c343e3789d7d431a396cacc66ec79b579eaf51"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome",
+              "sha256": "0b20b130e7edd9dd51873be867761295fe0cfad490c2b9a64f95bd3cfc08fa71"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome_crashpad_handler",
+              "sha256": "0aa3f05a2ed9b7ac64148bf975f33ec580307abca1c77e1e562e68dd8e20606f"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome_sandbox",
+              "sha256": "18391bf9d217ddbde9956347cbb1346d2808a73ade4baa3f88a610447cf946b4"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/chrome-wrapper",
+              "sha256": "24c1cfddcd206a86281008e7eed38109344ef34cd88d61902a9befd520a5571c"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libEGL.so",
+              "sha256": "288fdc8eb36ac724e48b39d63667fbaafc546e34b45355ea9ce37b00045866ed"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libGLESv2.so",
+              "sha256": "c244efa3e368b5b93aff102eeb4ca53b9ab182e3b901cb869eb6a29ded7c2ba7"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libvk_swiftshader.so",
+              "sha256": "4d39038dd6d448a3a6b5cf6aefb583d50346fd75ea8879e2563d67844f460dd0"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/libvulkan.so.1",
+              "sha256": "33742ba1b7f8ae04a4f9e35f66c343e3789d7d431a396cacc66ec79b579eaf51"
+            },
+            {
+              "path": "chromium-1234/chrome-linux64/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so",
+              "sha256": "529de3168220c0a8784e19499bfcb84a3fb47001f2175a53b2e8477ece9e97b5"
+            },
+            {
+              "path": "ffmpeg-1011/ffmpeg-linux",
+              "sha256": "460d44f3416005662f528d4b92e7b94ace924e8a0288106d3803b73c56eaadc8"
+            }
+          ]
+        }
+      }
+    },
+    "artifactPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "producerCommand",
+        "directory",
+        "metadataDirectoryName",
+        "hashAlgorithm",
+        "filenamePolicy",
+        "artifactIds",
+        "registryFallback"
+      ],
+      "properties": {
+        "producerCommand": {
+          "const": ["npm", "run", "pack", "--", "--output-logs=errors-only"]
+        },
+        "directory": {
+          "const": "artifacts"
+        },
+        "metadataDirectoryName": {
+          "const": ".artifacts/packages"
+        },
+        "hashAlgorithm": {
+          "const": "sha256"
+        },
+        "filenamePolicy": {
+          "const": "p01-content-addressed-basename"
+        },
+        "artifactIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 7,
+          "maxItems": 7
+        },
+        "registryFallback": {
+          "const": "forbidden"
+        }
+      }
+    },
+    "lockPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lockArgv",
+        "installArgv",
+        "reuseInstallArgv",
+        "lockMutation",
+        "lifecycleScripts"
+      ],
+      "properties": {
+        "lockArgv": {
+          "const": [
+            "npm",
+            "install",
+            "--package-lock-only",
+            "--ignore-scripts",
+            "--no-audit",
+            "--no-fund",
+            "--loglevel=error"
+          ]
+        },
+        "installArgv": {
+          "const": [
+            "npm",
+            "ci",
+            "--ignore-scripts",
+            "--no-audit",
+            "--no-fund",
+            "--loglevel=error"
+          ]
+        },
+        "reuseInstallArgv": {
+          "const": [
+            "npm",
+            "install",
+            "--no-save",
+            "--ignore-scripts",
+            "--no-audit",
+            "--no-fund",
+            "--loglevel=error"
+          ]
+        },
+        "lockMutation": {
+          "const": "external-temporary-only"
+        },
+        "lifecycleScripts": {
+          "const": "forbidden"
+        }
+      }
+    },
+    "sandboxPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean",
+        "reuse",
+        "copyMethod",
+        "sourceSymlinks",
+        "nodeModulesSymlinks",
+        "mutableHardLinks",
+        "successfulCleanRetention",
+        "failedRetention",
+        "sentinelPackage",
+        "sentinelExpected"
+      ],
+      "properties": {
+        "clean": {
+          "const": "fresh-outside-repository-ancestry"
+        },
+        "reuse": {
+          "const": "opt-in-external-cache"
+        },
+        "copyMethod": {
+          "const": "byte-copy"
+        },
+        "sourceSymlinks": {
+          "const": "forbidden"
+        },
+        "nodeModulesSymlinks": {
+          "const": "forbidden"
+        },
+        "mutableHardLinks": {
+          "const": "forbidden"
+        },
+        "successfulCleanRetention": {
+          "const": "evidence-only"
+        },
+        "failedRetention": {
+          "const": "required"
+        },
+        "sentinelPackage": {
+          "const": "@uirouter/i02-root-sentinel"
+        },
+        "sentinelExpected": {
+          "const": "unresolved"
+        }
+      }
+    },
+    "networkPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registry",
+        "externalRegistryDependencies",
+        "internalRegistryFallback",
+        "npmCache"
+      ],
+      "properties": {
+        "registry": {
+          "const": "https://registry.npmjs.org/"
+        },
+        "externalRegistryDependencies": {
+          "const": "committed-lock-only"
+        },
+        "internalRegistryFallback": {
+          "const": "forbidden"
+        },
+        "npmCache": {
+          "const": "sandbox-owned"
+        }
+      }
+    },
+    "resetInputs": {
       "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
       "uniqueItems": true,
+      "minItems": 15,
+      "maxItems": 15
+    },
+    "failureBundleContents": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 17,
+      "maxItems": 17
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "path", "group", "owner", "evidence", "lockOwner", "runtime", "committedManifestSha256", "committedLockSha256", "tarballDirectory", "internalEdges", "externalGraphSha256", "allowedExternalGraphChanges", "staging", "cleanCommand", "reuseCommand", "sandbox", "sentinelPackage", "failureBundleContents", "resetInputs"],
+        "required": [
+          "id",
+          "owner",
+          "mode",
+          "manifest",
+          "sourceManifest",
+          "name",
+          "fixtureTreeSha256",
+          "committedManifestSha256",
+          "committedLock",
+          "generatorScript",
+          "commands",
+          "browser",
+          "manifestBaselineId",
+          "downstreamBaselineIds",
+          "registryBaselineRecords",
+          "edgeIds",
+          "rewriteIds",
+          "rewrites",
+          "externalGraph",
+          "stagingPolicy",
+          "evidence",
+          "expectedExternalGraphSha256",
+          "allowedExternalGraphChanges",
+          "closureBindings",
+          "expectedResult",
+          "waiver",
+          "expectedFailure",
+          "projectNpmrc"
+        ],
         "properties": {
-          "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
-          "path": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-          "group": { "type": "string", "minLength": 1 },
-          "owner": { "type": "string", "minLength": 1 },
-          "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" },
-          "lockOwner": { "const": "local" },
-          "runtime": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode": {
+            "enum": ["runnable", "template"]
+          },
+          "manifest": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceManifest": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fixtureTreeSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "committedManifestSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "committedLock": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path", "sha256", "packageEntries"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "packageEntries": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            ]
+          },
+          "generatorScript": {
+            "type": ["string", "null"]
+          },
+          "commands": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["node", "npm", "browser"],
+            "required": ["setupBrowser", "test", "e2e", "selected"],
             "properties": {
-              "node": { "type": "string", "minLength": 1 },
-              "npm": { "type": "string", "minLength": 1 },
-              "browser": { "$ref": "#/$defs/browser" }
-            }
-          },
-          "committedManifestSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
-          "committedLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
-          "tarballDirectory": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-          "internalEdges": {
-            "type": "array",
-            "minItems": 1,
-            "uniqueItems": true,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["id", "package", "manifestSection", "declaredSpec", "legacySourceKey", "expectedVersion", "origin", "tarballArtifactId", "owner", "evidence"],
-              "properties": {
-                "id": { "$ref": "contract-common.schema.json#/$defs/identifier" },
-                "package": { "type": "string", "minLength": 1 },
-                "manifestSection": { "enum": ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] },
-                "declaredSpec": { "type": ["string", "null"] },
-                "legacySourceKey": { "type": ["string", "null"] },
-                "expectedVersion": { "type": "string", "minLength": 1 },
-                "origin": { "enum": ["local-tarball", "published-registry"] },
-                "tarballArtifactId": { "type": ["string", "null"] },
-                "owner": { "type": "string", "minLength": 1 },
-                "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+              "setupBrowser": {
+                "type": ["string", "null"]
               },
-              "allOf": [
-                {
-                  "if": { "properties": { "origin": { "const": "local-tarball" } }, "required": ["origin"] },
-                  "then": { "properties": { "tarballArtifactId": { "type": "string", "minLength": 1 } } },
-                  "else": { "properties": { "tarballArtifactId": { "type": "null" } } }
-                }
-              ]
-            }
-          },
-          "externalGraphSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
-          "allowedExternalGraphChanges": {
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["package", "expectedVersion", "triggeringEdge", "reason", "evidence"],
-              "properties": {
-                "package": { "type": "string", "minLength": 1 },
-                "expectedVersion": { "type": "string", "minLength": 1 },
-                "triggeringEdge": { "$ref": "contract-common.schema.json#/$defs/identifier" },
-                "reason": { "type": "string", "minLength": 1 },
-                "evidence": { "$ref": "contract-common.schema.json#/$defs/evidence" }
+              "test": {
+                "type": "string",
+                "minLength": 1
+              },
+              "e2e": {
+                "type": ["string", "null"]
+              },
+              "selected": {
+                "type": ["string", "null"]
               }
             }
           },
-          "staging": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["mode", "manifestPath", "lockPath", "stagedManifestPath", "temporaryLockPath", "rewriteEdgeIds", "lockCommand", "installCommand", "restorationPolicy"],
-            "properties": {
-              "mode": { "const": "copy-and-rewrite-local-tarballs" },
-              "manifestPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-              "lockPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-              "stagedManifestPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-              "temporaryLockPath": { "$ref": "contract-common.schema.json#/$defs/relativePath" },
-              "rewriteEdgeIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "contract-common.schema.json#/$defs/identifier" } },
-              "lockCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
-              "installCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
-              "restorationPolicy": { "const": "committed-manifest-and-lock-remain-byte-identical" }
-            }
+          "browser": {
+            "type": "boolean"
           },
-          "cleanCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
-          "reuseCommand": { "$ref": "contract-common.schema.json#/$defs/command" },
-          "sandbox": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["outsideRepositoryAncestry", "allowSourceSymlinks", "allowNodeModulesSymlinks", "allowMutableHardLinks", "unsetEnvironment"],
-            "properties": {
-              "outsideRepositoryAncestry": { "const": true },
-              "allowSourceSymlinks": { "const": false },
-              "allowNodeModulesSymlinks": { "const": false },
-              "allowMutableHardLinks": { "const": false },
-              "unsetEnvironment": { "type": "array", "uniqueItems": true, "contains": { "const": "NODE_PATH" }, "items": { "type": "string" } }
-            }
+          "manifestBaselineId": {
+            "type": "string",
+            "minLength": 1
           },
-          "sentinelPackage": { "type": "string", "minLength": 1 },
-          "failureBundleContents": {
+          "downstreamBaselineIds": {
             "type": "array",
-            "minItems": 7,
-            "maxItems": 7,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "registryBaselineRecords": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "edgeId",
+                "package",
+                "version",
+                "resolved",
+                "integrity"
+              ],
+              "properties": {
+                "edgeId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "package": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "resolved": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "integrity": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "edgeIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
             "uniqueItems": true,
-            "items": { "enum": ["original-manifest-lock", "staged-manifest-lock", "matrix-entry", "run-lock-and-tarballs", "toolchain-config", "dependency-graph", "command-and-logs"] },
-            "allOf": [
-              { "contains": { "const": "original-manifest-lock" } },
-              { "contains": { "const": "staged-manifest-lock" } },
-              { "contains": { "const": "matrix-entry" } },
-              { "contains": { "const": "run-lock-and-tarballs" } },
-              { "contains": { "const": "toolchain-config" } },
-              { "contains": { "const": "dependency-graph" } },
-              { "contains": { "const": "command-and-logs" } }
+            "minItems": 1
+          },
+          "rewriteIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "rewrites": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "owner",
+                "package",
+                "artifactId",
+                "expectedVersion",
+                "operation",
+                "manifestSection",
+                "declaredSpec",
+                "edgeIds",
+                "evidence"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "package": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifactId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expectedVersion": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "operation": {
+                  "enum": ["replace-declared", "inject-legacy"]
+                },
+                "manifestSection": {
+                  "enum": [
+                    "dependencies",
+                    "devDependencies",
+                    "optionalDependencies"
+                  ]
+                },
+                "declaredSpec": {
+                  "type": ["string", "null"]
+                },
+                "edgeIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true,
+                  "minItems": 1
+                },
+                "evidence": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["path", "sha256"],
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "externalGraph": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["sha256", "records"],
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "records": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
             ]
           },
-          "resetInputs": {
+          "stagingPolicy": {
+            "enum": ["execute-external-copy", "validate-template-rewrites-only"]
+          },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "expectedExternalGraphSha256": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            ]
+          },
+          "allowedExternalGraphChanges": {
             "type": "array",
-            "minItems": 9,
-            "maxItems": 9,
-            "uniqueItems": true,
-            "items": { "enum": ["fixture-tree", "lock", "matrix", "repository-revision", "platform", "node-npm", "tarballs", "dependency-graph", "command"] },
-            "allOf": [
-              { "contains": { "const": "fixture-tree" } },
-              { "contains": { "const": "lock" } },
-              { "contains": { "const": "matrix" } },
-              { "contains": { "const": "repository-revision" } },
-              { "contains": { "const": "platform" } },
-              { "contains": { "const": "node-npm" } },
-              { "contains": { "const": "tarballs" } },
-              { "contains": { "const": "dependency-graph" } },
-              { "contains": { "const": "command" } }
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "key",
+                "before",
+                "after",
+                "triggeringArtifactIds",
+                "reason",
+                "evidence"
+              ],
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "before": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                },
+                "after": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                },
+                "triggeringArtifactIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["path", "sha256"],
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "closureBindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "owner",
+                "artifactId",
+                "package",
+                "expectedVersion",
+                "manifestSection",
+                "requiredByArtifactIds",
+                "productionEdgeIds",
+                "evidence"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifactId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "package": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expectedVersion": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "manifestSection": {
+                  "const": "devDependencies"
+                },
+                "requiredByArtifactIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "productionEdgeIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "evidence": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["path", "sha256"],
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "expectedResult": {
+            "enum": ["pass", "waived-failure", "inventory-only"]
+          },
+          "waiver": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "baselineId",
+                  "owner",
+                  "reason",
+                  "trackingIssue",
+                  "expires"
+                ],
+                "properties": {
+                  "baselineId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "owner": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "trackingIssue": {
+                    "type": "string",
+                    "pattern": "^https://github\\.com/ui-router/ui-router/issues/[0-9]+$"
+                  },
+                  "expires": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            ]
+          },
+          "expectedFailure": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["phase", "contains"],
+                "properties": {
+                  "phase": {
+                    "const": "lock"
+                  },
+                  "contains": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "projectNpmrc": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path", "sha256", "allowedSettings"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+\\.npmrc$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "allowedSettings": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["prefer-dedupe"],
+                    "properties": {
+                      "prefer-dedupe": {
+                        "const": "true"
+                      }
+                    }
+                  }
+                }
+              }
             ]
           }
         }
       }
-    }
-  },
-  "$defs": {
-    "browser": {
-      "oneOf": [
-        { "type": "null" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["name", "revision", "installerVersion", "sha256"],
-          "properties": {
-            "name": { "type": "string", "minLength": 1 },
-            "revision": { "type": "string", "minLength": 1 },
-            "installerVersion": { "type": "string", "minLength": 1 },
-            "sha256": { "$ref": "contract-common.schema.json#/$defs/sha256" }
+    },
+    "commandAdapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "owner",
+          "invokedAs",
+          "package",
+          "allowedProjects",
+          "implementation",
+          "script",
+          "scriptSha256",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "const": "npx-local-serve"
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "invokedAs": {
+            "const": "npx"
+          },
+          "package": {
+            "const": "serve"
+          },
+          "allowedProjects": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "implementation": {
+            "const": "sandbox-local-bin-dispatch"
+          },
+          "script": {
+            "const": "tools/i02-npx-local-bin.mjs"
+          },
+          "scriptSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
           }
         }
-      ]
+      }
     }
   }
 }

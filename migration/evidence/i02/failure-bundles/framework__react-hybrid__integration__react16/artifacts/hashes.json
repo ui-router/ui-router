@@ -1,0 +1,79 @@
+[
+  {
+    "artifactId": "angular",
+    "package": "@uirouter/angular",
+    "version": "22.0.0",
+    "filename": "uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+    "sha256": "31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a",
+    "integrity": "sha512-ux0DtQdGXeBovz7UZX4gUnzsOpowOooMlla1ju5JsKDrmgfTHOMYO5GEkRcF+BBX5B+GLoX0cdYC8ALZAee78g==",
+    "metadataSha256": "e5c20776449e341b8d5e4c5847c189101c443c64145119505e4046cde40da2cf",
+    "filesSha256": "2279bfeea662e08c9444950c3898312fdd0f1ab157b54256d1d59f2f5dfc53fa"
+  },
+  {
+    "artifactId": "angularjs",
+    "package": "@uirouter/angularjs",
+    "version": "1.1.2",
+    "filename": "uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+    "sha256": "660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5",
+    "integrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+    "metadataSha256": "0dbf5d2356ddd9c69dfc907a827388628bcc5ae0da79f62778990deee826ff34",
+    "filesSha256": "74240918679275ebca0b308672ada0a970f683565dae029cf193f6602d4118f8"
+  },
+  {
+    "artifactId": "core",
+    "package": "@uirouter/core",
+    "version": "6.1.2",
+    "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+    "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
+    "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
+    "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
+    "filesSha256": "7ac3c44a82f54339940630fd7da8481f43c5450fff60d1cebde78199659a4057"
+  },
+  {
+    "artifactId": "react",
+    "package": "@uirouter/react",
+    "version": "1.0.8",
+    "filename": "uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+    "sha256": "79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61",
+    "integrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
+    "metadataSha256": "c4f730c43f07abed3404cd6e4a132e43a0d66542d6334d596697ab3df7f7fabe",
+    "filesSha256": "fdd273ea44e0895a6a05d90e8e8de57aadb23e0bf9f34bee362f34449a41aa63"
+  },
+  {
+    "artifactId": "react-hybrid",
+    "package": "@uirouter/react-hybrid",
+    "version": "2.0.0",
+    "filename": "uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+    "sha256": "58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069",
+    "integrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
+    "metadataSha256": "6b291c968c04af213f00ffd4f813f4c99b23520119ba10d4d46db8c3b1f9669e",
+    "filesSha256": "817e0a16c51a99fc028d686aadf5be33fe1992cdb32286c964cd4dfdb8d238a2"
+  },
+  {
+    "artifactId": "rx",
+    "package": "@uirouter/rx",
+    "version": "1.0.0",
+    "filename": "uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+    "sha256": "7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c",
+    "integrity": "sha512-aipGWjaWBL1FdgEdnRO2qn8ZlgI6saJQJ8H4QQHIvZDeVUPiHxLBf8s1NBDyUF4+OfQGuICZwFfpYYUp+DbLzQ==",
+    "metadataSha256": "8fa0eef0c3c62dd2df373257027cf9a6c1c11aaa1e19465ed9ed621b00c006c3",
+    "filesSha256": "e7aa5c775410093893922218618421e853014ec40d1d6415e86840fcb74bed44"
+  },
+  {
+    "artifactId": "visualizer",
+    "package": "@uirouter/visualizer",
+    "version": "7.2.1",
+    "filename": "uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+    "sha256": "ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d",
+    "integrity": "sha512-K8/qPad9DDfCYzs8GodV3ovzoLxrOwndaa9iC8jsak5tfzWgzHlE3p5EpBW6q3an1N4RqQe95FQCuoSQ4dLnhw==",
+    "metadataSha256": "dc26ebab7060bea03ba2affee3a5fc226be809ab0d6da8c90a0de8f70cd63e53",
+    "filesSha256": "727da0d3ca21e0a36a61b0c2c86dbc11f447c47698c2ab2c9c311d2551f7c6cf"
+  }
+]

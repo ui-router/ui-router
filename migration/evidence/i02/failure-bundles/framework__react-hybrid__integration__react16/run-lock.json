@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "bundleState": "detached-pre-manifest",
+  "runId": "dcc9c4c7c252ffb6d1fdea9d",
+  "fixtureId": "framework/react-hybrid/integration/react16",
+  "mode": "clean",
+  "repository": {
+    "commit": "de8c8fb61df8d4ec4d5e0d7fa53efe6e00a2c919",
+    "tree": "e778aba32eb6582bb3af70870c8b469c79c51370",
+    "dirty": false,
+    "sourceSnapshotSha256": "57e5f9dc1328b284af886e120c8773e41a76e97034e96d401d5072e629e3ac06"
+  },
+  "contracts": {
+    "matrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+    "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
+    "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+    "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
+  },
+  "platform": {
+    "os": "linux",
+    "architecture": "x64",
+    "imageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8"
+  },
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "nodeExecutable": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin/node",
+    "nodeExecutableSha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+    "npmExecutable": "/home/coder/.newt-cache/npm-versions/11.17.0/bin/npm",
+    "npmExecutableSha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+    "projectNpmrc": {
+      "path": "frameworks/react-hybrid/integration-tests/react16/.npmrc",
+      "sha256": "74743f06318bdf8e77ed961b774625de48a52f7b05b34edb1c827e02c9150cb5",
+      "allowedSettings": {
+        "prefer-dedupe": "true"
+      }
+    },
+    "npmEnvironment": {
+      "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
+      "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
+      "CI": "1",
+      "HUSKY": "0",
+      "LC_ALL": "C",
+      "TZ": "UTC",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+      "npm_config_registry": "https://registry.npmjs.org/",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
+      "npm_config_globalconfig": "/dev/null",
+      "npm_config_ignore_scripts": "true",
+      "npm_config_audit": "false",
+      "npm_config_fund": "false",
+      "npm_config_legacy_peer_deps": "false",
+      "npm_config_force": "false",
+      "npm_config_offline": "false",
+      "npm_config_bin_links": "true",
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
+    },
+    "effectiveNpmSettings": {
+      "registry": "https://registry.npmjs.org/",
+      "cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+      "ignore-scripts": "true",
+      "audit": "false",
+      "fund": "false",
+      "legacy-peer-deps": "false",
+      "force": "false",
+      "offline": "false",
+      "bin-links": "true",
+      "prefer-dedupe": "true"
+    },
+    "npmConfigSha256": "ca0b70c3d469b6a916f61581bb6c43e5868830a8591678cc8f53387dae519ed0"
+  },
+  "browser": null,
+  "environment": {
+    "PATH": "/home/coder/.newt-cache/node-versions/n/versions/node/24.19.0/bin:/home/coder/.newt-cache/npm-versions/11.17.0/bin:/usr/local/bin:/usr/bin:/bin",
+    "HOME": "/tmp/uirouter-i02-clean-WiJvpa/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-WiJvpa/tmp",
+    "CI": "1",
+    "HUSKY": "0",
+    "LC_ALL": "C",
+    "TZ": "UTC",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-WiJvpa/npm-cache",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-WiJvpa/npmrc",
+    "npm_config_globalconfig": "/dev/null",
+    "npm_config_ignore_scripts": "true",
+    "npm_config_audit": "false",
+    "npm_config_fund": "false",
+    "npm_config_legacy_peer_deps": "false",
+    "npm_config_force": "false",
+    "npm_config_offline": "false",
+    "npm_config_bin_links": "true",
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WiJvpa/browser-cache"
+  },
+  "commands": {
+    "lock": [
+      "npm",
+      "install",
+      "--package-lock-only",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "install": [
+      "npm",
+      "ci",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+      "--loglevel=error"
+    ],
+    "setupBrowser": [
+      "node_modules/.bin/playwright",
+      "install",
+      "chromium"
+    ],
+    "selected": [
+      "npm",
+      "run",
+      "test"
+    ],
+    "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
+  },
+  "sandbox": {
+    "path": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16",
+    "realpath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16",
+    "cacheRoot": null,
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-WiJvpa/artifacts",
+    "outsideRepositoryAncestry": true,
+    "linkScanSha256": "e69ea908581f258ab83f79511035abbc65db22da457dbec8e0def81b4cd34f68",
+    "resetInputsSha256": "ae4a452c83cbace8c6289f54094a44067cf30a2384ad4157f1ca2141f396f999",
+    "reused": false,
+    "reuseUpdated": false,
+    "changedArtifactIds": []
+  },
+  "sentinel": {
+    "package": "@uirouter/i02-root-sentinel",
+    "checkoutPath": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/node_modules/@uirouter/i02-root-sentinel",
+    "preexisting": false,
+    "resolved": false,
+    "status": "not-probed"
+  },
+  "original": {
+    "fixtureTreeSha256": "9b65c6d915405e3d7f1f92cc6567f774980426aa9b148f8a8b444c2ce930c7d9",
+    "manifestPath": "frameworks/react-hybrid/integration-tests/react16/package.json",
+    "manifestSha256": "d599da04958bf5f1948551d1062da1066097119263bce4911977e19cc5ab056a",
+    "lockPath": "frameworks/react-hybrid/integration-tests/react16/package-lock.json",
+    "lockSha256": "58e0157515cafd9c82518a9f178e487a51f202f714ff4ec26e03e76640f5c94d"
+  },
+  "staged": {
+    "manifestPath": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16/project/package.json",
+    "manifestSha256": "b2aac9e90a384bdec8c8022c08767f308728b33bc172de5854b948abde3ee47d",
+    "lockPath": "not-produced",
+    "lockSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rewriteIds": [
+      "rewrite-framework-react-hybrid-integration-react16-react-hybrid",
+      "rewrite-framework-react-hybrid-integration-react16-visualizer"
+    ],
+    "closureBindingIds": [
+      "closure-framework-react-hybrid-integration-react16-angularjs",
+      "closure-framework-react-hybrid-integration-react16-core",
+      "closure-framework-react-hybrid-integration-react16-react"
+    ]
+  },
+  "artifacts": [
+    {
+      "artifactId": "angularjs",
+      "package": "@uirouter/angularjs",
+      "version": "1.1.2",
+      "filename": "uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "path": "artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "sha256": "660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5",
+      "integrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
+      "metadataSha256": "0dbf5d2356ddd9c69dfc907a827388628bcc5ae0da79f62778990deee826ff34",
+      "filesSha256": "74240918679275ebca0b308672ada0a970f683565dae029cf193f6602d4118f8"
+    },
+    {
+      "artifactId": "core",
+      "package": "@uirouter/core",
+      "version": "6.1.2",
+      "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "path": "artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
+      "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
+      "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
+      "filesSha256": "7ac3c44a82f54339940630fd7da8481f43c5450fff60d1cebde78199659a4057"
+    },
+    {
+      "artifactId": "react",
+      "package": "@uirouter/react",
+      "version": "1.0.8",
+      "filename": "uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+      "path": "artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+      "sha256": "79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61",
+      "integrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
+      "metadataSha256": "c4f730c43f07abed3404cd6e4a132e43a0d66542d6334d596697ab3df7f7fabe",
+      "filesSha256": "fdd273ea44e0895a6a05d90e8e8de57aadb23e0bf9f34bee362f34449a41aa63"
+    },
+    {
+      "artifactId": "react-hybrid",
+      "package": "@uirouter/react-hybrid",
+      "version": "2.0.0",
+      "filename": "uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+      "path": "artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+      "sha256": "58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069",
+      "integrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
+      "metadataSha256": "6b291c968c04af213f00ffd4f813f4c99b23520119ba10d4d46db8c3b1f9669e",
+      "filesSha256": "817e0a16c51a99fc028d686aadf5be33fe1992cdb32286c964cd4dfdb8d238a2"
+    },
+    {
+      "artifactId": "visualizer",
+      "package": "@uirouter/visualizer",
+      "version": "7.2.1",
+      "filename": "uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "path": "artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "sha256": "ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d",
+      "integrity": "sha512-K8/qPad9DDfCYzs8GodV3ovzoLxrOwndaa9iC8jsak5tfzWgzHlE3p5EpBW6q3an1N4RqQe95FQCuoSQ4dLnhw==",
+      "metadataSha256": "dc26ebab7060bea03ba2affee3a5fc226be809ab0d6da8c90a0de8f70cd63e53",
+      "filesSha256": "727da0d3ca21e0a36a61b0c2c86dbc11f447c47698c2ab2c9c311d2551f7c6cf"
+    }
+  ],
+  "dependencyGraphs": {
+    "externalBeforeSha256": "7ae85aef65503e99e24cb127af0680c0701ed7525504b59455f6ee7f827f7288",
+    "externalAfterSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lockSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "installedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "peerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "moduleAuditSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "nodeModulesSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "origins": [
+    {
+      "status": "unavailable",
+      "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-react-hybrid",
+      "package": "@uirouter/react-hybrid",
+      "expectedVersion": "2.0.0",
+      "artifactId": "react-hybrid",
+      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+    },
+    {
+      "status": "unavailable",
+      "edgeId": "edge-framework-react-hybrid-integration-react16-legacy-injected-uirouter-react-hybrid-integration-react16",
+      "package": "@uirouter/react-hybrid",
+      "expectedVersion": "2.0.0",
+      "artifactId": "react-hybrid",
+      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+    },
+    {
+      "status": "unavailable",
+      "edgeId": "edge-framework-react-hybrid-integration-react16-dependencies-uirouter-visualizer",
+      "package": "@uirouter/visualizer",
+      "expectedVersion": "7.2.1",
+      "artifactId": "visualizer",
+      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)"
+    }
+  ],
+  "internalPackages": [],
+  "steps": [
+    {
+      "id": "lock",
+      "argv": [
+        "npm",
+        "install",
+        "--package-lock-only",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ],
+      "status": 1,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "d365fcc0aa066842dbd4d4d187e541f4342ac67a995e7b182415f3c9adf72878"
+    }
+  ],
+  "result": {
+    "status": "waived-failure",
+    "waiver": {
+      "baselineId": "i02-react-hybrid-react16-peer-mismatch",
+      "owner": "ui-router-maintainers",
+      "reason": "The retained React 16 fixture conflicts with the exact local @uirouter/react 1.0.8 peer range even though @uirouter/react-hybrid 2.0.0 advertises React 16.8 support.",
+      "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
+      "expires": "2026-10-31"
+    },
+    "failureReason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-WiJvpa/npm-cache/_logs/2026-08-27T02_41_27_922Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-WiJvpa/npm-cache/_logs/2026-08-27T02_41_27_922Z-debug-0.log\n"
+  },
+  "failureBundle": null,
+  "replay": {
+    "replayArgv": [
+      "node",
+      "tools/run-integration-matrix.mjs",
+      "--mode",
+      "clean",
+      "--project",
+      "framework/react-hybrid/integration/react16",
+      "--retain"
+    ],
+    "resetArgv": [
+      "node",
+      "tools/run-integration-matrix.mjs",
+      "--mode",
+      "reuse",
+      "--project",
+      "framework/react-hybrid/integration/react16",
+      "--cache-root",
+      "<external-cache-root>",
+      "--reset"
+    ],
+    "retainedSandbox": "/tmp/uirouter-i02-clean-WiJvpa/projects/framework__react-hybrid__integration__react16"
+  }
+}

@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "task": "I02",
   "owner": "ui-router-maintainers",
-  "matrixSha256": "37fd19a06ff43f6de6cc996d476edbe28817b2ef79da343bbedb03b370e53ee7",
+  "matrixSha256": "5ba5b9b1ebbfb0ef780ce5e365071028dacfab3e15a887e7cdb6c755900d9535",
   "repository": {
-    "commit": "96c6319e48b8adfd1a08b09e4a53cc558bc5a6ef",
-    "tree": "fd0409ed0d93f9350c9bf1224046e488b87410ae",
-    "dirty": true,
-    "sourceSnapshotSha256": "52e5eb62187567b41ba9e6d9525163e9f2873e069855429181b1ad479dadafb2"
+    "commit": "23f8363251da0ff98dfd02eabd62b34f53689752",
+    "tree": "19692c4930aa73b37a33e4a5f5b176cff067e044",
+    "dirty": false,
+    "sourceSnapshotSha256": "96a50f6b7b34273ae9b3ea6b152062bf550e66db1e31bfab188bafb6a7de2549"
   },
   "runtime": {
     "platform": "linux",
@@ -31,7 +31,7 @@
       "package": "@uirouter/angular",
       "version": "22.0.0",
       "filename": "uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "path": "artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a",
       "integrity": "sha512-ux0DtQdGXeBovz7UZX4gUnzsOpowOooMlla1ju5JsKDrmgfTHOMYO5GEkRcF+BBX5B+GLoX0cdYC8ALZAee78g==",
       "metadataSha256": "e5c20776449e341b8d5e4c5847c189101c443c64145119505e4046cde40da2cf",
@@ -42,7 +42,7 @@
       "package": "@uirouter/angularjs",
       "version": "1.1.2",
       "filename": "uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
-      "path": "artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5",
       "integrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
       "metadataSha256": "0dbf5d2356ddd9c69dfc907a827388628bcc5ae0da79f62778990deee826ff34",
@@ -53,7 +53,7 @@
       "package": "@uirouter/core",
       "version": "6.1.2",
       "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "path": "artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
       "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
       "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
@@ -64,7 +64,7 @@
       "package": "@uirouter/react",
       "version": "1.0.8",
       "filename": "uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "path": "artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61",
       "integrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
       "metadataSha256": "c4f730c43f07abed3404cd6e4a132e43a0d66542d6334d596697ab3df7f7fabe",
@@ -75,7 +75,7 @@
       "package": "@uirouter/react-hybrid",
       "version": "2.0.0",
       "filename": "uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "path": "artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069",
       "integrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
       "metadataSha256": "6b291c968c04af213f00ffd4f813f4c99b23520119ba10d4d46db8c3b1f9669e",
@@ -86,7 +86,7 @@
       "package": "@uirouter/rx",
       "version": "1.0.0",
       "filename": "uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
-      "path": "artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c",
       "integrity": "sha512-aipGWjaWBL1FdgEdnRO2qn8ZlgI6saJQJ8H4QQHIvZDeVUPiHxLBf8s1NBDyUF4+OfQGuICZwFfpYYUp+DbLzQ==",
       "metadataSha256": "8fa0eef0c3c62dd2df373257027cf9a6c1c11aaa1e19465ed9ed621b00c006c3",
@@ -97,7 +97,7 @@
       "package": "@uirouter/visualizer",
       "version": "7.2.1",
       "filename": "uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
-      "path": "artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "path": "artifact-hashes.json",
       "sha256": "ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d",
       "integrity": "sha512-K8/qPad9DDfCYzs8GodV3ovzoLxrOwndaa9iC8jsak5tfzWgzHlE3p5EpBW6q3an1N4RqQe95FQCuoSQ4dLnhw==",
       "metadataSha256": "dc26ebab7060bea03ba2affee3a5fc226be809ab0d6da8c90a0de8f70cd63e53",
@@ -123,7 +123,8 @@
   ],
   "counts": {
     "selected": 14,
-    "passed": 14,
+    "passed": 13,
+    "waived": 1,
     "failed": 0,
     "logicalEdges": 35,
     "browserProjects": 10
@@ -141,128 +142,132 @@
     {
       "fixtureId": "core/integration/typescript-3.9",
       "status": "pass",
-      "runId": "d271f996485a02c5be71e639",
+      "runId": "4bed1f0a1f8057e3e01aeb2b",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "631294803d112bbe188bb1fadf7fce3209b1aace15b71314b6109d420ea2eaba",
-      "runLock": "projects/core__integration__typescript-3.9/run-lock.json"
+      "runLockSha256": "de3ae544e0da92d992b2518829748854f03fa39e9b83f2e2878e9d1e64986589",
+      "runLock": "run-locks/core__integration__typescript-3.9.json"
     },
     {
       "fixtureId": "core/integration/typescript-5.4",
       "status": "pass",
-      "runId": "193bae11d4d4f39d475d3fc0",
+      "runId": "12a3ff9c9921ba5fe02471b0",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "7353f13141a157e82a8685555121cc850a4a2146598e83e5abe8e8838d487bed",
-      "runLock": "projects/core__integration__typescript-5.4/run-lock.json"
+      "runLockSha256": "ea35b9f1e338ae8c35140e72618ef9b4b35c8e605c529a18612c92c4f36267bf",
+      "runLock": "run-locks/core__integration__typescript-5.4.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22",
       "status": "pass",
-      "runId": "aa1b788e99da5363a26ff884",
+      "runId": "a0a550fe481b56249399f10f",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "adde2b5ee09052fc4ebdc03976f3cf029d64b0106f8f388df6e88d7bd8cfabf2",
-      "runLock": "projects/framework__angular__integration__angular-versions__v22/run-lock.json"
+      "runLockSha256": "b1ae65dc1497de0269b75e8e3f702eb602ac78d700bbcb71d36a021e2c600b60",
+      "runLock": "run-locks/framework__angular__integration__angular-versions__v22.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-standalone",
       "status": "pass",
-      "runId": "50250709b5d75e08188a4701",
+      "runId": "6e3ff54303cd05e9e32b5f24",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "b4a2e7eebb9e2f552a7d6884b5fffb43b773b63889ea5f0a6a42184c8b3bb6de",
-      "runLock": "projects/framework__angular__integration__angular-versions__v22-standalone/run-lock.json"
+      "runLockSha256": "1f4aa6349e1a0febb004cd80a2a67f632593216b1852045f5143b33e5b59608e",
+      "runLock": "run-locks/framework__angular__integration__angular-versions__v22-standalone.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-zoneless",
       "status": "pass",
-      "runId": "71e8cb451de27d95771d7f32",
+      "runId": "7951bff6607185aa5bea69f5",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "8cf7e8d1d4d687625483d12e151cd3e897e3a4f2cb6414ca24d833efdb3238ca",
-      "runLock": "projects/framework__angular__integration__angular-versions__v22-zoneless/run-lock.json"
+      "runLockSha256": "97bdf2f43735a227fed125d30022c52c0d2f9796b3ac7615ffb589c1963d035e",
+      "runLock": "run-locks/framework__angular__integration__angular-versions__v22-zoneless.json"
     },
     {
       "fixtureId": "framework/angular/integration/typescript-versions/typescript6",
       "status": "pass",
-      "runId": "62e9201b0c4ab07b6f82415b",
+      "runId": "9bf0612374736dd8e455b5d7",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "894bc9010712ea6d6de856254e0866dc721ff6b4fdff953e382bcfbbad56c673",
-      "runLock": "projects/framework__angular__integration__typescript-versions__typescript6/run-lock.json"
+      "runLockSha256": "b0a14178de38776f164b8d4be3c479f2f810920e785409257f3392a6970b94ab",
+      "runLock": "run-locks/framework__angular__integration__typescript-versions__typescript6.json"
     },
     {
       "fixtureId": "framework/angularjs/integration/typescript-versions/3.9",
       "status": "pass",
-      "runId": "53194573daeb161c4cefff3d",
+      "runId": "81d106ef302ba80f3565b85b",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "a37a69e47749795f3775a2ab7337595f31405af5ef3618a0f33abaf7437f316c",
-      "runLock": "projects/framework__angularjs__integration__typescript-versions__3.9/run-lock.json"
+      "runLockSha256": "2154fc6dadde07bf9b7ab871c75aa0900117db7d87e5535ca36f1726697d3375",
+      "runLock": "run-locks/framework__angularjs__integration__typescript-versions__3.9.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react16",
-      "status": "pass",
-      "runId": "c45098b1f5291a301c44f5c7",
+      "status": "waived-failure",
+      "runId": "dcc9c4c7c252ffb6d1fdea9d",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "cc4de3a3d4abe935270a35ef7d352a7b65c24759dee772798f86dd35884b6f17",
-      "runLock": "projects/framework__react-hybrid__integration__react16/run-lock.json"
+      "reason": "INTEGRATION_RUN_FAILED: framework/react-hybrid/integration/react16: temporary lock generation failed (1)\nnpm error code ERESOLVE\nnpm error ERESOLVE unable to resolve dependency tree\nnpm error\nnpm error While resolving: @uirouter/internal-framework-react-hybrid-integration-react16@0.1.0\nnpm error Found: react@16.14.0\nnpm error node_modules/react\nnpm error   react@\"^16.14.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\" from @uirouter/react@1.0.8\nnpm error node_modules/@uirouter/react\nnpm error   dev @uirouter/react@\"file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /tmp/uirouter-i02-clean-IEHibJ/npm-cache/_logs/2026-08-27T01_51_34_637Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /tmp/uirouter-i02-clean-IEHibJ/npm-cache/_logs/2026-08-27T01_51_34_637Z-debug-0.log\n",
+      "failureBundle": "/home/coder/ws/ngp-skills/.aimee-work/uirouter-i02/.migration-work/i02/latest/projects/framework__react-hybrid__integration__react16/failure-bundle",
+      "retainedSandbox": "/tmp/uirouter-i02-clean-IEHibJ/projects/framework__react-hybrid__integration__react16",
+      "runLock": "run-locks/framework__react-hybrid__integration__react16.json",
+      "runLockSha256": "a81e33ff74eb350f97b0ab8bd75290014a10fc339c9d85330791d63ab5bc5143"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react17",
       "status": "pass",
-      "runId": "c9f06e0b4eb0cda64423cefe",
+      "runId": "5ad9d906dd60e7d6a2bb15c9",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "a3e80ee6e0c292f62223bebac8ad25cc4086c7484d2d8d4bb766bd94a924ab58",
-      "runLock": "projects/framework__react-hybrid__integration__react17/run-lock.json"
+      "runLockSha256": "9cb12eca7ebb155d86ad419786333cf3f556dc982d893f5ebc9547b481c307b0",
+      "runLock": "run-locks/framework__react-hybrid__integration__react17.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react18",
       "status": "pass",
-      "runId": "8d98ef2f5944a47df9595b80",
+      "runId": "4d30ec4395dac9969ef2a1e8",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "17529329dc1fb5e53addd6d2e5648f49e3c9fd2b5ccd62e2fb41abd0df8fa8e2",
-      "runLock": "projects/framework__react-hybrid__integration__react18/run-lock.json"
+      "runLockSha256": "14d5e138998a79e4bfd28b94c32a369881f8103df5e3560e98c8385d8900e9ba",
+      "runLock": "run-locks/framework__react-hybrid__integration__react18.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react19",
       "status": "pass",
-      "runId": "c7fac6ef9855ee39680a0b36",
+      "runId": "bdb8b66917631a2c187e8886",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "f54d5cfeda2fa509f379f64ea6662f3be4785b806115d39a2a14da6ae0b3aa9a",
-      "runLock": "projects/framework__react-hybrid__integration__react19/run-lock.json"
+      "runLockSha256": "eb9462e8fda54eacb07354a66a839684bba7d8375e03140ec8ccf429750759ca",
+      "runLock": "run-locks/framework__react-hybrid__integration__react19.json"
     },
     {
       "fixtureId": "framework/react/integration/react17",
       "status": "pass",
-      "runId": "4d56c285d23b8b197bfa924f",
+      "runId": "c4d6004119e9a1eb7dfd313b",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "f834c01988fcc95a1b3096a4e1146d5757fe67ad54dced046dacb8fe99ae098b",
-      "runLock": "projects/framework__react__integration__react17/run-lock.json"
+      "runLockSha256": "225b2b45258631d688f500f1f4e42369fd6e5d9e5d43126aaec2d2dc9cb02b67",
+      "runLock": "run-locks/framework__react__integration__react17.json"
     },
     {
       "fixtureId": "framework/react/integration/react18",
       "status": "pass",
-      "runId": "f7b8077e34b378f36875cd67",
+      "runId": "f46b90096a7f967ed5a02bb2",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "6cd46c270899d9d22d8c678edfd6eeb4e8f5984c92e679c1b60a4d07a6baf810",
-      "runLock": "projects/framework__react__integration__react18/run-lock.json"
+      "runLockSha256": "a14f1504f1d672bdd05e25782d17b063020eb35e530be48442e5b96e881c5392",
+      "runLock": "run-locks/framework__react__integration__react18.json"
     },
     {
       "fixtureId": "framework/react/integration/react19",
       "status": "pass",
-      "runId": "8cae16c71546ba178d37c43f",
+      "runId": "4c7003c27bc3685d32a661ca",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "aff6077ed0dd641dca10840dbb58ab67ef69be8436d2d6d7d98b3c98972f2b1a",
-      "runLock": "projects/framework__react__integration__react19/run-lock.json"
+      "runLockSha256": "a56e2d1b3f40110c7c5a6c60e21ce6acbd5a5acf6bd1da438af860f82d574ece",
+      "runLock": "run-locks/framework__react__integration__react19.json"
     }
-  ]
+  ],
+  "evidenceFormat": "compact-schema-validated-run-locks"
 }

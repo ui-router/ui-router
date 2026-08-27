@@ -221,6 +221,7 @@ export async function validateIntegrationMatrix(
 
   const allEdgeIds = [];
   const allRewriteIds = [];
+  const allClosureBindingIds = [];
   const allRegistryRecords = [];
   const usedArtifactIds = new Set();
   for (const project of matrix.projects) {
@@ -296,6 +297,17 @@ export async function validateIntegrationMatrix(
         fail(`${project.id}: runnable staging policy differs`);
       if (project.commands.selected !== project.commands.test)
         fail(`${project.id}: selected command must be test`);
+      if (project.expectedResult === "inventory-only")
+        fail(`${project.id}: runnable project cannot be inventory-only`);
+      if (project.expectedResult === "pass") {
+        if (project.waiver !== null || project.expectedFailure !== null)
+          fail(`${project.id}: passing project has failure policy`);
+      } else if (project.expectedResult === "waived-failure") {
+        if (!project.waiver || !project.expectedFailure)
+          fail(`${project.id}: waived failure lacks policy`);
+        if (new Date(`${project.waiver.expires}T00:00:00Z`) <= new Date())
+          fail(`${project.id}: waiver is expired`);
+      } else fail(`${project.id}: unsupported expected result`);
     } else {
       if (project.committedLock !== null)
         fail(`${project.id}: template must remain lockless`);
@@ -303,6 +315,12 @@ export async function validateIntegrationMatrix(
         fail(`${project.id}: template must not select execution command`);
       if (project.stagingPolicy !== "validate-template-rewrites-only")
         fail(`${project.id}: template staging policy differs`);
+      if (
+        project.expectedResult !== "inventory-only" ||
+        project.waiver !== null ||
+        project.expectedFailure !== null
+      )
+        fail(`${project.id}: template result policy differs`);
     }
     if (project.browser !== Boolean(source.commands.setupBrowser))
       fail(`${project.id}: browser classification differs`);
@@ -312,19 +330,28 @@ export async function validateIntegrationMatrix(
     const lockBrowser = projectLock?.packages["node_modules/@playwright/test"];
     const lockBrowserCore =
       projectLock?.packages["node_modules/playwright-core"];
+    const lockBrowserLauncher =
+      projectLock?.packages["node_modules/playwright"];
     if (project.browser) {
       if (
         !lockBrowser ||
-        lockBrowser.version !== matrix.browser.installerVersion
+        lockBrowser.version !== matrix.browser.installerVersion ||
+        lockBrowser.integrity !== matrix.browser.installerIntegrity
       )
-        fail(`${project.id}: Playwright lock version differs`);
+        fail(`${project.id}: Playwright installer lock provenance differs`);
+      if (
+        !lockBrowserLauncher ||
+        lockBrowserLauncher.version !== matrix.browser.launcherVersion ||
+        lockBrowserLauncher.integrity !== matrix.browser.launcherIntegrity
+      )
+        fail(`${project.id}: Playwright launcher lock provenance differs`);
       if (
         !lockBrowserCore ||
         lockBrowserCore.version !== matrix.browser.installerVersion ||
         lockBrowserCore.integrity !== matrix.browser.coreIntegrity
       )
         fail(`${project.id}: Playwright core lock provenance differs`);
-    } else if (lockBrowser || lockBrowserCore)
+    } else if (lockBrowser || lockBrowserCore || lockBrowserLauncher)
       fail(`${project.id}: unexpected Playwright lock entry`);
 
     const groups = new Map();
@@ -381,6 +408,65 @@ export async function validateIntegrationMatrix(
       if (!artifact || artifact.package !== rewrite.package)
         fail(`${project.id}: rewrite artifact/package mismatch`);
     }
+    const directArtifactIds = new Set(
+      project.rewrites.map((rewrite) => rewrite.artifactId)
+    );
+    const closureArtifactIds = new Set(directArtifactIds);
+    const pendingArtifactIds = [...directArtifactIds];
+    while (pendingArtifactIds.length) {
+      const parent = artifactById.get(pendingArtifactIds.shift());
+      for (const edgeId of parent.internalEdgeIds ?? []) {
+        const edge = edgeById.get(edgeId);
+        const dependency = artifactByPackage.get(edge.package);
+        if (!dependency)
+          fail(`${project.id}: P01 internal closure lacks ${edge.package}`);
+        if (!closureArtifactIds.has(dependency.id)) {
+          closureArtifactIds.add(dependency.id);
+          pendingArtifactIds.push(dependency.id);
+        }
+      }
+    }
+    const expectedClosureBindings = [...closureArtifactIds]
+      .filter((artifactId) => !directArtifactIds.has(artifactId))
+      .sort()
+      .map((artifactId) => {
+        const artifact = artifactById.get(artifactId);
+        const requiredByArtifactIds = [];
+        const productionEdgeIds = [];
+        for (const parentId of closureArtifactIds) {
+          const parent = artifactById.get(parentId);
+          for (const edgeId of parent.internalEdgeIds ?? []) {
+            if (edgeById.get(edgeId).package === artifact.package) {
+              requiredByArtifactIds.push(parentId);
+              productionEdgeIds.push(edgeId);
+            }
+          }
+        }
+        return {
+          id: `closure-${project.id.replaceAll("/", "-")}-${artifactId}`,
+          owner: "ui-router-maintainers",
+          artifactId,
+          package: artifact.package,
+          expectedVersion: artifact.version,
+          manifestSection: "devDependencies",
+          requiredByArtifactIds: [...new Set(requiredByArtifactIds)].sort(),
+          productionEdgeIds: [...new Set(productionEdgeIds)].sort(),
+          evidence: {
+            path: "migration/package-artifacts.json",
+            sha256: matrix.packageArtifactsSha256,
+          },
+        };
+      });
+    assertEqual(
+      project.closureBindings,
+      expectedClosureBindings,
+      `${project.id} P01 internal closure bindings`
+    );
+    allClosureBindingIds.push(
+      ...project.closureBindings.map((binding) => binding.id)
+    );
+    for (const binding of project.closureBindings)
+      usedArtifactIds.add(binding.artifactId);
     assertEqual(
       project.externalGraph,
       externalGraph(root, project.committedLock?.path, publishedNames),
@@ -408,9 +494,10 @@ export async function validateIntegrationMatrix(
       const afterByKey = new Map(
         beforeRecords.map((record) => [record.key, record.value])
       );
-      const projectArtifactIds = new Set(
-        project.rewrites.map((rewrite) => rewrite.artifactId)
-      );
+      const projectArtifactIds = new Set([
+        ...project.rewrites.map((rewrite) => rewrite.artifactId),
+        ...project.closureBindings.map((binding) => binding.artifactId),
+      ]);
       for (const change of project.allowedExternalGraphChanges) {
         if (
           change.key.startsWith("node_modules/") &&
@@ -452,6 +539,7 @@ export async function validateIntegrationMatrix(
 
   assertUnique(allEdgeIds, (id) => id, "logical edge coverage");
   assertUnique(allRewriteIds, (id) => id, "rewrite id");
+  assertUnique(allClosureBindingIds, (id) => id, "closure binding id");
   assertEqual(
     allEdgeIds.sort(),
     isolated.projects.flatMap((project) => project.internalEdgeIds).sort(),
@@ -475,6 +563,10 @@ export async function validateIntegrationMatrix(
       .length,
     logicalEdges: allEdgeIds.length,
     rewriteOperations: allRewriteIds.length,
+    closureBindings: allClosureBindingIds.length,
+    waivedFailures: matrix.projects.filter(
+      (project) => project.expectedResult === "waived-failure"
+    ).length,
     registryBaselineRecords: allRegistryRecords.length,
     artifactIds: usedArtifactIds.size,
   };
@@ -561,6 +653,11 @@ export function assertExternalSandbox(root, sandbox) {
 }
 
 export function assertNoLinksOrSharedFiles(sourceRoot, copyRoot) {
+  if (
+    lstatSync(sourceRoot).isSymbolicLink() ||
+    lstatSync(copyRoot).isSymbolicLink()
+  )
+    fail("source/copy root must not be a symbolic link");
   const sourceFiles = new Map();
   function collect(directory, output, relative = "") {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -590,7 +687,7 @@ export function assertNoLinksOrSharedFiles(sourceRoot, copyRoot) {
   return sha256(
     canonicalJson(
       [...copyFiles.entries()]
-        .map(([relative, info]) => ({ path: relative, size: info.size }))
+        .map(([relative]) => ({ path: relative, type: "file" }))
         .sort((left, right) => left.path.localeCompare(right.path))
     )
   );

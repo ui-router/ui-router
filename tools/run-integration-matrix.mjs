@@ -101,6 +101,33 @@ if (new Set(selected.map((project) => project.id)).size !== selected.length)
 const outputRoot = path.resolve(
   value("--output") ?? path.join(repository, ".migration-work/i02/latest")
 );
+const allowedRepositoryOutputRoot = path.join(
+  repository,
+  ".migration-work/i02"
+);
+function lexicallyInside(parent, candidate) {
+  const relative = path.relative(parent, candidate);
+  return (
+    relative === "" ||
+    (!relative.startsWith("..") && !path.isAbsolute(relative))
+  );
+}
+function rejectSymlinkComponents(candidate) {
+  let current = path.parse(candidate).root;
+  for (const component of path.relative(current, candidate).split(path.sep)) {
+    if (!component) continue;
+    current = path.join(current, component);
+    if (existsSync(current) && lstatSync(current).isSymbolicLink())
+      die(`path component is a symbolic link: ${current}`);
+  }
+}
+if (
+  lexicallyInside(outputRoot, repository) ||
+  (lexicallyInside(repository, outputRoot) &&
+    !lexicallyInside(allowedRepositoryOutputRoot, outputRoot))
+)
+  die(`unsafe output path: ${outputRoot}`);
+rejectSymlinkComponents(outputRoot);
 rmSync(outputRoot, { recursive: true, force: true });
 mkdirSync(outputRoot, { recursive: true });
 const cacheRoot = cacheArgument ? path.resolve(cacheArgument) : null;
@@ -118,14 +145,81 @@ mkdirSync(path.join(runRoot, "artifacts"), { recursive: true });
 mkdirSync(path.join(runRoot, "npm-cache"), { recursive: true });
 mkdirSync(path.join(runRoot, "browser-cache"), { recursive: true });
 
-const environment = { ...process.env, ...matrix.runtime.environment };
-for (const key of matrix.runtime.forbiddenEnvironment) delete environment[key];
-environment.npm_config_cache = path.join(runRoot, "npm-cache");
-environment.npm_config_registry = matrix.networkPolicy.registry;
-environment.PLAYWRIGHT_BROWSERS_PATH = path.join(runRoot, "browser-cache");
+const inheritedNpmConfig = Object.keys(process.env).filter((key) =>
+  key.toLowerCase().startsWith("npm_config_")
+);
+const discardedInheritedNpmConfig = new Set([
+  "npm_config_cache",
+  "npm_config_prefix",
+  "npm_config_registry",
+]);
+const unexpectedNpmConfig = inheritedNpmConfig.filter(
+  (key) => !discardedInheritedNpmConfig.has(key.toLowerCase())
+);
+if (unexpectedNpmConfig.length)
+  die(
+    `unapproved inherited npm configuration: ${unexpectedNpmConfig
+      .sort()
+      .join(",")}`
+  );
+if (
+  inheritedNpmConfig.some(
+    (key) =>
+      key.toLowerCase() === "npm_config_registry" &&
+      process.env[key] !== matrix.networkPolicy.registry
+  )
+)
+  die("inherited npm registry differs from the matrix");
+const npmWhich = spawnSync("which", ["npm"], { encoding: "utf8" });
+if (npmWhich.status !== 0) die("cannot resolve the npm executable");
+const npmExecutable = realpathSync(npmWhich.stdout.trim());
+const nodeExecutable = realpathSync(process.execPath);
+const generatedNpmrc = path.join(runRoot, "npmrc");
+const generatedNpmrcContents = [
+  `registry=${matrix.networkPolicy.registry}`,
+  `cache=${path.join(runRoot, "npm-cache")}`,
+  "ignore-scripts=true",
+  "audit=false",
+  "fund=false",
+  "legacy-peer-deps=false",
+  "force=false",
+  "offline=false",
+  "bin-links=true",
+  "",
+].join("\n");
+writeFileSync(generatedNpmrc, generatedNpmrcContents);
+mkdirSync(path.join(runRoot, "home"), { recursive: true });
+mkdirSync(path.join(runRoot, "tmp"), { recursive: true });
+const environment = {
+  PATH: [
+    path.dirname(nodeExecutable),
+    path.dirname(npmExecutable),
+    "/usr/local/bin",
+    "/usr/bin",
+    "/bin",
+  ].join(path.delimiter),
+  HOME: path.join(runRoot, "home"),
+  TMPDIR: path.join(runRoot, "tmp"),
+  ...matrix.runtime.environment,
+  npm_config_cache: path.join(runRoot, "npm-cache"),
+  npm_config_registry: matrix.networkPolicy.registry,
+  npm_config_userconfig: generatedNpmrc,
+  npm_config_globalconfig: "/dev/null",
+  npm_config_ignore_scripts: "true",
+  npm_config_audit: "false",
+  npm_config_fund: "false",
+  npm_config_legacy_peer_deps: "false",
+  npm_config_force: "false",
+  npm_config_offline: "false",
+  npm_config_bin_links: "true",
+  PLAYWRIGHT_BROWSERS_PATH: path.join(runRoot, "browser-cache"),
+};
+for (const key of matrix.runtime.forbiddenEnvironment)
+  if (Object.hasOwn(environment, key)) die(`forbidden environment key ${key}`);
 
 const commandResult = (argv, cwd, env = environment) => {
-  const result = spawnSync(argv[0], argv.slice(1), {
+  const executable = argv[0] === "npm" ? npmExecutable : argv[0];
+  const result = spawnSync(executable, argv.slice(1), {
     cwd,
     env,
     encoding: "utf8",
@@ -324,7 +418,21 @@ function copyFixture(project, projectRoot) {
   return { source, destination, linkScanSha256 };
 }
 
-function stageManifest(project, projectDirectory, artifactMap) {
+function projectArtifactIds(project) {
+  return [
+    ...new Set([
+      ...project.rewrites.map((rewrite) => rewrite.artifactId),
+      ...project.closureBindings.map((binding) => binding.artifactId),
+    ]),
+  ].sort();
+}
+
+function stageManifest(
+  project,
+  projectDirectory,
+  artifactMap,
+  allowPreviouslyStaged = false
+) {
   const manifestPath = path.join(projectDirectory, "package.json");
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
   const changed = [];
@@ -335,12 +443,19 @@ function stageManifest(project, projectDirectory, artifactMap) {
     if (!manifest[rewrite.manifestSection])
       manifest[rewrite.manifestSection] = {};
     const before = manifest[rewrite.manifestSection][rewrite.package];
+    const previouslyStaged =
+      allowPreviouslyStaged && String(before ?? "").startsWith("file:");
     if (
       rewrite.operation === "replace-declared" &&
-      before !== rewrite.declaredSpec
+      before !== rewrite.declaredSpec &&
+      !previouslyStaged
     )
       die(`${project.id}: declaration changed before staging ${rewrite.id}`);
-    if (rewrite.operation === "inject-legacy" && before !== undefined)
+    if (
+      rewrite.operation === "inject-legacy" &&
+      before !== undefined &&
+      !previouslyStaged
+    )
       die(
         `${project.id}: legacy-only package already declared ${rewrite.package}`
       );
@@ -352,10 +467,38 @@ function stageManifest(project, projectDirectory, artifactMap) {
       die(`${project.id}: invalid artifact relative path ${relative}`);
     manifest[rewrite.manifestSection][rewrite.package] = `file:${relative}`;
     changed.push({
-      rewriteId: rewrite.id,
+      id: rewrite.id,
+      kind: "logical-edge",
       section: rewrite.manifestSection,
       package: rewrite.package,
       before: before ?? null,
+      after: `file:${relative}`,
+    });
+  }
+  for (const binding of project.closureBindings) {
+    const artifact = artifactMap.get(binding.artifactId);
+    if (!artifact || artifact.package !== binding.package)
+      die(`${project.id}: closure artifact mismatch for ${binding.id}`);
+    manifest[binding.manifestSection] ??= {};
+    const before = manifest[binding.manifestSection][binding.package];
+    if (
+      before !== undefined &&
+      !(allowPreviouslyStaged && String(before).startsWith("file:"))
+    )
+      die(
+        `${project.id}: closure package is already declared ${binding.package}`
+      );
+    const relative = path
+      .relative(projectDirectory, artifact.path)
+      .split(path.sep)
+      .join("/");
+    manifest[binding.manifestSection][binding.package] = `file:${relative}`;
+    changed.push({
+      id: binding.id,
+      kind: "p01-internal-closure",
+      section: binding.manifestSection,
+      package: binding.package,
+      before: null,
       after: `file:${relative}`,
     });
   }
@@ -391,6 +534,136 @@ function sandboxModuleAudit(projectDirectory, temporaryLock) {
     records.push({ key, realpath: real, version: entry.version ?? null });
   }
   return records.sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function internalPackageName(lockPath) {
+  const marker = "/node_modules/";
+  const normalized = lockPath.replaceAll("\\", "/");
+  const index = normalized.lastIndexOf(marker);
+  const suffix =
+    index === -1
+      ? normalized.replace(/^node_modules\//, "")
+      : normalized.slice(index + marker.length);
+  if (!suffix || suffix.includes("node_modules/")) return null;
+  const parts = suffix.split("/");
+  return parts[0].startsWith("@") ? parts.slice(0, 2).join("/") : parts[0];
+}
+
+function auditInternalPackages(
+  project,
+  projectDirectory,
+  temporaryLock,
+  artifactMap
+) {
+  const records = [];
+  for (const [lockPath, lockEntry] of Object.entries(temporaryLock.packages)) {
+    if (!lockPath.includes("node_modules/")) continue;
+    const packageName = internalPackageName(lockPath);
+    const artifact = [...artifactMap.values()].find(
+      (candidate) => candidate.package === packageName
+    );
+    if (!artifact) continue;
+    if (!projectArtifactIds(project).includes(artifact.artifactId))
+      die(
+        `${project.id}: undeclared internal package entered the staged graph: ${packageName}`
+      );
+    const installedPath = path.join(projectDirectory, ...lockPath.split("/"));
+    if (!existsSync(installedPath))
+      die(`${project.id}: internal lock entry is not installed: ${lockPath}`);
+    const installedRealpath = realpathSync(installedPath);
+    const relative = path.relative(projectDirectory, installedRealpath);
+    const packageManifestPath = path.join(installedPath, "package.json");
+    const installedManifest = JSON.parse(
+      readFileSync(packageManifestPath, "utf8")
+    );
+    if (
+      relative.startsWith("..") ||
+      path.isAbsolute(relative) ||
+      lstatSync(installedPath).isSymbolicLink() ||
+      installedManifest.name !== packageName ||
+      installedManifest.version !== artifact.version ||
+      lockEntry.version !== artifact.version ||
+      lockEntry.integrity !== artifact.integrity ||
+      !String(lockEntry.resolved).endsWith(artifact.filename) ||
+      /^https?:/i.test(String(lockEntry.resolved))
+    )
+      die(`${project.id}: internal package provenance differs: ${lockPath}`);
+    records.push({
+      lockPath,
+      package: packageName,
+      expectedVersion: artifact.version,
+      artifactId: artifact.artifactId,
+      lockResolved: lockEntry.resolved,
+      lockIntegrity: lockEntry.integrity,
+      installedPath,
+      installedRealpath,
+      manifestSha256: sha256File(packageManifestPath),
+      insideSandbox: true,
+      symlink: false,
+    });
+  }
+  const expectedIds = projectArtifactIds(project);
+  const topLevelIds = records
+    .filter((record) => record.lockPath === `node_modules/${record.package}`)
+    .map((record) => record.artifactId)
+    .sort();
+  if (canonicalJson(topLevelIds) !== canonicalJson(expectedIds))
+    die(`${project.id}: complete top-level internal artifact closure differs`);
+  return records.sort((left, right) =>
+    left.lockPath.localeCompare(right.lockPath)
+  );
+}
+
+function auditLogicalOrigins(
+  project,
+  projectRoot,
+  projectDirectory,
+  temporaryLock,
+  artifactMap
+) {
+  const origins = [];
+  for (const rewrite of project.rewrites) {
+    const artifact = artifactMap.get(rewrite.artifactId);
+    const key = `node_modules/${rewrite.package}`;
+    const lockEntry = temporaryLock.packages[key];
+    const installedPath = path.join(projectDirectory, ...key.split("/"));
+    if (!lockEntry || !existsSync(installedPath))
+      die(`${project.id}: internal package is missing ${rewrite.package}`);
+    const packageManifestPath = path.join(installedPath, "package.json");
+    const installedManifest = JSON.parse(
+      readFileSync(packageManifestPath, "utf8")
+    );
+    const installedRealpath = realpathSync(installedPath);
+    const relative = path.relative(projectRoot, installedRealpath);
+    if (
+      relative.startsWith("..") ||
+      path.isAbsolute(relative) ||
+      lstatSync(installedPath).isSymbolicLink() ||
+      installedManifest.name !== rewrite.package ||
+      installedManifest.version !== rewrite.expectedVersion ||
+      lockEntry.version !== rewrite.expectedVersion ||
+      lockEntry.integrity !== artifact.integrity ||
+      !String(lockEntry.resolved).endsWith(artifact.filename) ||
+      /^https?:/i.test(String(lockEntry.resolved))
+    )
+      die(`${project.id}: internal origin differs for ${rewrite.package}`);
+    for (const edgeId of rewrite.edgeIds)
+      origins.push({
+        status: "verified",
+        edgeId,
+        package: rewrite.package,
+        expectedVersion: rewrite.expectedVersion,
+        artifactId: rewrite.artifactId,
+        lockResolved: lockEntry.resolved,
+        lockIntegrity: lockEntry.integrity,
+        installedPath,
+        installedRealpath,
+        manifestSha256: sha256File(packageManifestPath),
+        insideSandbox: true,
+        symlink: false,
+      });
+  }
+  return origins.sort((left, right) => left.edgeId.localeCompare(right.edgeId));
 }
 
 function nodeModulesSha256(projectDirectory) {
@@ -432,33 +705,77 @@ function nodeModulesSha256(projectDirectory) {
   return sha256(canonicalJson(records));
 }
 
+function executableFileHashes(root) {
+  const records = [];
+  function walk(directory) {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const absolute = path.join(directory, entry.name);
+      if (entry.isSymbolicLink())
+        die(`browser cache contains a symbolic link: ${absolute}`);
+      if (entry.isDirectory()) walk(absolute);
+      else if (entry.isFile() && statSync(absolute).mode & 0o111)
+        records.push({
+          path: path.relative(root, absolute).split(path.sep).join("/"),
+          sha256: sha256File(absolute),
+        });
+    }
+  }
+  walk(root);
+  return records.sort((left, right) => left.path.localeCompare(right.path));
+}
+
 function verifyBrowserInstall(
   projectDirectory,
   temporaryLock,
   { cacheRequired }
 ) {
+  const installer = temporaryLock.packages["node_modules/@playwright/test"];
+  const launcher = temporaryLock.packages["node_modules/playwright"];
   const core = temporaryLock.packages["node_modules/playwright-core"];
   const descriptor = path.join(
     projectDirectory,
     "node_modules/playwright-core/browsers.json"
   );
   if (
+    !installer ||
+    installer.version !== matrix.browser.installerVersion ||
+    installer.integrity !== matrix.browser.installerIntegrity ||
+    !launcher ||
+    launcher.version !== matrix.browser.launcherVersion ||
+    launcher.integrity !== matrix.browser.launcherIntegrity ||
     !core ||
     core.version !== matrix.browser.installerVersion ||
     core.integrity !== matrix.browser.coreIntegrity ||
     !existsSync(descriptor) ||
     sha256File(descriptor) !== matrix.browser.browsersJsonSha256
   )
-    die("installed Playwright browser descriptor differs from the matrix");
+    die("installed Playwright package provenance differs from the matrix");
+  const evidence = {
+    installerDirectorySha256: directorySha256(
+      path.join(projectDirectory, "node_modules/@playwright/test")
+    ),
+    launcherDirectorySha256: directorySha256(
+      path.join(projectDirectory, "node_modules/playwright")
+    ),
+    coreDirectorySha256: directorySha256(
+      path.join(projectDirectory, "node_modules/playwright-core")
+    ),
+    executableFiles: [],
+  };
   if (cacheRequired) {
-    const names = readdirSync(path.join(runRoot, "browser-cache"));
+    const browserRoot = path.join(runRoot, "browser-cache");
+    const names = readdirSync(browserRoot);
     for (const expected of [
       `${matrix.browser.name}-${matrix.browser.revision}`,
       `${matrix.browser.name}_headless_shell-${matrix.browser.revision}`,
     ])
       if (!names.includes(expected))
         die(`browser cache is missing ${expected}`);
+    evidence.executableFiles = executableFileHashes(browserRoot);
+    if (!evidence.executableFiles.length)
+      die("browser cache has no executable files to bind");
   }
+  return evidence;
 }
 
 function sentinelProbe(projectDirectory) {
@@ -523,11 +840,17 @@ function npmConfigSha256() {
   return sha256(
     canonicalJson({
       repositoryNpmrcSha256: sha256File(path.join(repository, ".npmrc")),
+      generatedNpmrcSha256: sha256(generatedNpmrcContents),
       registry: matrix.networkPolicy.registry,
       cache: environment.npm_config_cache,
-      ignoreScripts: true,
+      nodeExecutable,
+      nodeExecutableSha256: sha256File(nodeExecutable),
+      npmExecutable,
+      npmExecutableSha256: sha256File(npmExecutable),
+      effectiveEnvironment: environment,
       lockArgv: matrix.lockPolicy.lockArgv,
       installArgv: matrix.lockPolicy.installArgv,
+      reuseInstallArgv: matrix.lockPolicy.reuseInstallArgv,
     })
   );
 }
@@ -562,9 +885,7 @@ function resetInputs(project, artifacts, graphs = null) {
     browser: project.browser ? matrix.browser : null,
     tarballs: artifacts
       .filter((artifact) =>
-        project.rewrites.some(
-          (rewrite) => rewrite.artifactId === artifact.artifactId
-        )
+        projectArtifactIds(project).includes(artifact.artifactId)
       )
       .map(({ artifactId, sha256: digest }) => ({
         artifactId,
@@ -597,16 +918,33 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
   rmSync(bundle, { recursive: true, force: true });
   mkdirSync(bundle, { recursive: true });
   const files = new Map();
-  const addBytes = (name, relative, bytes) => {
+  const addBytes = (
+    name,
+    relative,
+    bytes,
+    status = "produced",
+    reason = null
+  ) => {
     const target = path.join(bundle, relative);
     mkdirSync(path.dirname(target), { recursive: true });
     writeFileSync(target, bytes);
-    files.set(name, relative);
+    files.set(name, { relative, status, reason });
   };
   const addSource = (name, relative, source) => {
     if (source && existsSync(source))
       addBytes(name, relative, readFileSync(source));
-    else addBytes(name, relative, Buffer.from("not-produced\n"));
+    else {
+      const reason = source ? "source-path-not-produced" : "phase-not-reached";
+      addBytes(
+        name,
+        relative,
+        Buffer.from(
+          `${JSON.stringify({ status: "unavailable", reason }, null, 2)}\n`
+        ),
+        "unavailable",
+        reason
+      );
+    }
   };
   addSource(
     "original-manifest",
@@ -627,16 +965,25 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
     "matrix-entry.json",
     Buffer.from(`${JSON.stringify(project, null, 2)}\n`)
   );
+  const detachedRunLock = {
+    ...state.runLock,
+    bundleState: "detached-pre-manifest",
+    failureBundle: null,
+  };
   addBytes(
     "run-lock",
     "run-lock.json",
-    Buffer.from(`${JSON.stringify(state.runLock, null, 2)}\n`)
+    Buffer.from(`${JSON.stringify(detachedRunLock, null, 2)}\n`)
   );
   const archiveDirectory = path.join(bundle, "artifacts");
   mkdirSync(archiveDirectory, { recursive: true });
   for (const artifact of state.artifacts ?? [])
     cpSync(artifact.path, path.join(archiveDirectory, artifact.filename));
-  files.set("artifact-archives", "artifacts");
+  files.set("artifact-archives", {
+    relative: "artifacts",
+    status: "produced",
+    reason: null,
+  });
   addSource(
     "artifact-hash-manifest",
     "artifacts/hashes.json",
@@ -652,21 +999,7 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
           browser: matrix.browser,
           lockPolicy: matrix.lockPolicy,
           commandAdapters: matrix.commandAdapters,
-          environment: Object.fromEntries(
-            Object.entries(state.selectedEnvironment ?? environment).filter(
-              ([key]) =>
-                [
-                  "CI",
-                  "HUSKY",
-                  "LC_ALL",
-                  "TZ",
-                  "PLAYWRIGHT_BROWSERS_PATH",
-                  "npm_config_cache",
-                  "npm_config_registry",
-                  "I02_COMMAND_ADAPTER_PATH",
-                ].includes(key)
-            )
-          ),
+          environment: state.selectedEnvironment ?? environment,
         },
         null,
         2
@@ -772,13 +1105,19 @@ function writeFailureBundle(project, projectOutput, projectRoot, state, error) {
     )
   );
   const contents = matrix.failureBundleContents.map((name) => {
-    const relative = files.get(name);
-    if (!relative) die(`failure bundle did not create ${name}`);
-    const absolute = path.join(bundle, relative);
+    const record = files.get(name);
+    if (!record) die(`failure bundle did not create ${name}`);
+    const absolute = path.join(bundle, record.relative);
     const digest = statSync(absolute).isDirectory()
       ? directorySha256(absolute)
       : sha256File(absolute);
-    return { name, path: relative, sha256: digest };
+    return {
+      name,
+      path: record.relative,
+      sha256: digest,
+      status: record.status,
+      reason: record.reason,
+    };
   });
   return { path: bundle, sha256: sha256(canonicalJson(contents)), contents };
 }
@@ -825,11 +1164,39 @@ try {
     const projectRoot = path.join(runRoot, "projects", slug);
     const projectOutput = path.join(outputRoot, "projects", slug);
     mkdirSync(projectOutput, { recursive: true });
-    const state = { artifacts, steps: [], origins: [], graphs: null };
+    const state = {
+      artifacts,
+      steps: [],
+      origins: [],
+      internalPackages: [],
+      browserProvenance: null,
+      currentPhase: null,
+      currentStderr: "",
+      graphs: null,
+    };
     const statePath = path.join(projectRoot, "state.json");
-    const previous = existsSync(statePath)
-      ? JSON.parse(readFileSync(statePath, "utf8"))
-      : null;
+    let previous = null;
+    let reusablePreconditionError = null;
+    try {
+      if (existsSync(projectRoot)) {
+        if (lstatSync(projectRoot).isSymbolicLink())
+          die(`${project.id}: reusable project root is a symbolic link`);
+        assertExternalSandbox(repository, projectRoot);
+        const reusableProjectDirectory = path.join(projectRoot, "project");
+        if (existsSync(reusableProjectDirectory)) {
+          if (lstatSync(reusableProjectDirectory).isSymbolicLink())
+            die(`${project.id}: reusable fixture root is a symbolic link`);
+          assertExternalSandbox(repository, reusableProjectDirectory);
+        }
+        if (existsSync(statePath)) {
+          if (lstatSync(statePath).isSymbolicLink())
+            die(`${project.id}: reusable state is a symbolic link`);
+          previous = JSON.parse(readFileSync(statePath, "utf8"));
+        }
+      }
+    } catch (error) {
+      reusablePreconditionError = error;
+    }
     let resetState = resetInputs(project, artifacts, previous?.graphs);
     writeFileSync(
       path.join(projectOutput, "reset-inputs.json"),
@@ -840,12 +1207,49 @@ try {
       )}\n`
     );
     let reused = false;
+    let reuseUpdated = false;
+    let changedArtifactIds = [];
     try {
+      if (reusablePreconditionError) throw reusablePreconditionError;
       if (mode === "reuse" && previous && !resetRequested) {
-        if (previous.resetInputsSha256 !== resetState.sha256)
-          die(
-            `${project.id}: reusable state is stale (${previous.resetInputsSha256} != ${resetState.sha256}); rerun with --reset`
+        if (previous.resetInputsSha256 !== resetState.sha256) {
+          const changedKeys = Object.keys(resetState.value).filter(
+            (key) =>
+              canonicalJson(resetState.value[key]) !==
+              canonicalJson(previous.resetInputs[key])
           );
+          const sortedChangedKeys = [...changedKeys].sort();
+          const allowedArtifactUpdate = [
+            ["tarballs"],
+            ["repositoryRevision", "tarballs"],
+          ].some(
+            (allowed) =>
+              canonicalJson(sortedChangedKeys) === canonicalJson(allowed)
+          );
+          if (!allowedArtifactUpdate)
+            die(
+              `${project.id}: reusable state is stale (${sortedChangedKeys.join(
+                ","
+              )}); rerun with --reset`
+            );
+          const priorTarballs = new Map(
+            previous.resetInputs.tarballs.map((record) => [
+              record.artifactId,
+              record.sha256,
+            ])
+          );
+          changedArtifactIds = resetState.value.tarballs
+            .filter(
+              (record) => priorTarballs.get(record.artifactId) !== record.sha256
+            )
+            .map((record) => record.artifactId)
+            .sort();
+          if (!changedArtifactIds.length)
+            die(
+              `${project.id}: reusable reset digest changed without changed artifacts`
+            );
+          reuseUpdated = true;
+        }
         reused = true;
       } else {
         rmSync(projectRoot, { recursive: true, force: true });
@@ -861,11 +1265,13 @@ try {
         state.commandAdapter = installCommandAdapter(project, projectRoot);
         const staged = stageManifest(project, copied.destination, artifactMap);
         state.manifestPath = staged.manifestPath;
+        state.currentPhase = "lock";
         state.currentCommand = matrix.lockPolicy.lockArgv;
         let result = commandResult(
           matrix.lockPolicy.lockArgv,
           copied.destination
         );
+        state.currentStderr = result.stderr;
         state.steps.push(
           stepRecord(
             "lock",
@@ -907,6 +1313,12 @@ try {
           copied.destination,
           temporaryLock
         );
+        state.internalPackages = auditInternalPackages(
+          project,
+          copied.destination,
+          temporaryLock,
+          artifactMap
+        );
         state.sentinel = sentinelProbe(copied.destination);
         const lsArgv = ["npm", "ls", "--all", "--json"];
         state.currentCommand = lsArgv;
@@ -917,62 +1329,12 @@ try {
         if (result.status !== 0)
           die(`${project.id}: npm ls failed (${result.status})`);
         const installedGraph = JSON.parse(result.stdout);
-        const origins = [];
-        for (const rewrite of project.rewrites) {
-          const artifact = artifactMap.get(rewrite.artifactId);
-          const key = `node_modules/${rewrite.package}`;
-          const lockEntry = temporaryLock.packages[key];
-          const installedPath = path.join(
-            copied.destination,
-            ...key.split("/")
-          );
-          if (!lockEntry || !existsSync(installedPath))
-            die(
-              `${project.id}: internal package is missing ${rewrite.package}`
-            );
-          const packageManifestPath = path.join(installedPath, "package.json");
-          const installedManifest = JSON.parse(
-            readFileSync(packageManifestPath, "utf8")
-          );
-          const installedRealpath = realpathSync(installedPath);
-          const relative = path.relative(projectRoot, installedRealpath);
-          if (relative.startsWith("..") || path.isAbsolute(relative))
-            die(
-              `${project.id}: internal package escapes sandbox ${rewrite.package}`
-            );
-          if (lstatSync(installedPath).isSymbolicLink())
-            die(
-              `${project.id}: internal package is a symlink ${rewrite.package}`
-            );
-          if (
-            installedManifest.name !== rewrite.package ||
-            installedManifest.version !== rewrite.expectedVersion ||
-            lockEntry.version !== rewrite.expectedVersion ||
-            lockEntry.integrity !== artifact.integrity ||
-            !String(lockEntry.resolved).endsWith(artifact.filename) ||
-            /^https?:/.test(String(lockEntry.resolved))
-          )
-            die(
-              `${project.id}: internal origin differs for ${rewrite.package}`
-            );
-          for (const edgeId of rewrite.edgeIds)
-            origins.push({
-              status: "verified",
-              edgeId,
-              package: rewrite.package,
-              expectedVersion: rewrite.expectedVersion,
-              artifactId: rewrite.artifactId,
-              lockResolved: lockEntry.resolved,
-              lockIntegrity: lockEntry.integrity,
-              installedPath,
-              installedRealpath,
-              manifestSha256: sha256File(packageManifestPath),
-              insideSandbox: true,
-              symlink: false,
-            });
-        }
-        state.origins = origins.sort((left, right) =>
-          left.edgeId.localeCompare(right.edgeId)
+        state.origins = auditLogicalOrigins(
+          project,
+          projectRoot,
+          copied.destination,
+          temporaryLock,
+          artifactMap
         );
         state.graphs = {
           externalBeforeSha256: project.externalGraph.sha256,
@@ -1000,9 +1362,11 @@ try {
           );
           if (result.status !== 0)
             die(`${project.id}: browser setup failed (${result.status})`);
-          verifyBrowserInstall(copied.destination, temporaryLock, {
-            cacheRequired: true,
-          });
+          state.browserProvenance = verifyBrowserInstall(
+            copied.destination,
+            temporaryLock,
+            { cacheRequired: true }
+          );
         }
         resetState = resetInputs(project, artifacts, state.graphs);
         writeFileSync(
@@ -1015,6 +1379,8 @@ try {
               lockSha256: sha256File(state.lockPath),
               graphs: state.graphs,
               origins: state.origins,
+              internalPackages: state.internalPackages,
+              browserProvenance: state.browserProvenance,
               sentinel: state.sentinel,
               linkScan: state.linkScan,
             },
@@ -1025,29 +1391,182 @@ try {
       }
 
       if (reused) {
-        const previous = JSON.parse(readFileSync(statePath, "utf8"));
         state.projectDirectory = path.join(projectRoot, "project");
+        assertExternalSandbox(repository, state.projectDirectory);
+        const freshLinkScanSha256 = assertNoLinksOrSharedFiles(
+          path.join(repository, path.dirname(project.manifest)),
+          state.projectDirectory
+        );
+        if (freshLinkScanSha256 !== previous.linkScan.sha256)
+          die(`${project.id}: reusable fixture topology is stale`);
         state.commandAdapter = installCommandAdapter(project, projectRoot);
         state.manifestPath = path.join(state.projectDirectory, "package.json");
         state.lockPath = path.join(state.projectDirectory, "package-lock.json");
         state.graphs = previous.graphs;
         state.origins = previous.origins;
+        state.internalPackages = previous.internalPackages;
+        state.browserProvenance = previous.browserProvenance;
         state.sentinel = sentinelProbe(state.projectDirectory);
-        state.linkScan = previous.linkScan;
+        state.linkScan = {
+          ...previous.linkScan,
+          sha256: freshLinkScanSha256,
+        };
         if (
           sha256File(state.manifestPath) !== previous.manifestSha256 ||
           sha256File(state.lockPath) !== previous.lockSha256
         )
           die(`${project.id}: reusable staged manifest or lock is stale`);
+        if (reuseUpdated) {
+          stageManifest(project, state.projectDirectory, artifactMap, true);
+          state.currentCommand = matrix.lockPolicy.lockArgv;
+          let updateResult = commandResult(
+            matrix.lockPolicy.lockArgv,
+            state.projectDirectory
+          );
+          state.steps.push(
+            stepRecord(
+              "reuse-lock",
+              matrix.lockPolicy.lockArgv,
+              updateResult,
+              path.join(projectOutput, "logs")
+            )
+          );
+          if (updateResult.status !== 0)
+            die(
+              `${project.id}: reusable lock update failed (${updateResult.status})`
+            );
+          const updatedLock = JSON.parse(readFileSync(state.lockPath, "utf8"));
+          const updatedExternal = installedExternalGraph(
+            updatedLock,
+            publishedNames
+          );
+          if (updatedExternal.sha256 !== project.expectedExternalGraphSha256)
+            die(`${project.id}: reusable external graph update differs`);
+          const updateArgv = [
+            ...matrix.lockPolicy.reuseInstallArgv,
+            ...changedArtifactIds.map(
+              (artifactId) => artifactMap.get(artifactId).path
+            ),
+          ];
+          state.currentCommand = updateArgv;
+          updateResult = commandResult(updateArgv, state.projectDirectory);
+          state.steps.push(
+            stepRecord(
+              "reuse-install",
+              updateArgv,
+              updateResult,
+              path.join(projectOutput, "logs")
+            )
+          );
+          if (updateResult.status !== 0)
+            die(
+              `${project.id}: reusable artifact install failed (${updateResult.status})`
+            );
+          const updatedLockSha256 = sha256File(state.lockPath);
+          const updatedInternalPackages = auditInternalPackages(
+            project,
+            state.projectDirectory,
+            updatedLock,
+            artifactMap
+          );
+          const updatedModuleAudit = sandboxModuleAudit(
+            state.projectDirectory,
+            updatedLock
+          );
+          const updateLsArgv = ["npm", "ls", "--all", "--json"];
+          state.currentCommand = updateLsArgv;
+          const updateLsResult = commandResult(
+            updateLsArgv,
+            state.projectDirectory
+          );
+          state.steps.push(
+            stepRecord(
+              "reuse-update-npm-ls",
+              updateLsArgv,
+              updateLsResult,
+              path.join(projectOutput, "logs")
+            )
+          );
+          if (updateLsResult.status !== 0)
+            die(
+              `${project.id}: reusable updated npm ls failed (${updateLsResult.status})`
+            );
+          const updatedInstalledGraph = JSON.parse(updateLsResult.stdout);
+          state.origins = auditLogicalOrigins(
+            project,
+            projectRoot,
+            state.projectDirectory,
+            updatedLock,
+            artifactMap
+          );
+          state.internalPackages = updatedInternalPackages;
+          state.graphs = {
+            externalBeforeSha256: project.externalGraph.sha256,
+            externalAfterSha256: updatedExternal.sha256,
+            lockSha256: updatedLockSha256,
+            installedSha256: sha256(canonicalJson(updatedInstalledGraph)),
+            peerSha256: sha256(
+              canonicalJson(updatedInstalledGraph.problems ?? [])
+            ),
+            moduleAuditSha256: sha256(canonicalJson(updatedModuleAudit)),
+            nodeModulesSha256: nodeModulesSha256(state.projectDirectory),
+          };
+          if (project.browser)
+            state.browserProvenance = verifyBrowserInstall(
+              state.projectDirectory,
+              updatedLock,
+              { cacheRequired: true }
+            );
+          resetState = resetInputs(project, artifacts, state.graphs);
+          writeFileSync(
+            statePath,
+            `${JSON.stringify(
+              {
+                resetInputs: resetState.value,
+                resetInputsSha256: resetState.sha256,
+                manifestSha256: sha256File(state.manifestPath),
+                lockSha256: sha256File(state.lockPath),
+                graphs: state.graphs,
+                origins: state.origins,
+                internalPackages: state.internalPackages,
+                browserProvenance: state.browserProvenance,
+                sentinel: state.sentinel,
+                linkScan: state.linkScan,
+              },
+              null,
+              2
+            )}\n`
+          );
+        }
         const reusedLock = JSON.parse(readFileSync(state.lockPath, "utf8"));
         const moduleAudit = sandboxModuleAudit(
           state.projectDirectory,
           reusedLock
         );
-        if (project.browser)
-          verifyBrowserInstall(state.projectDirectory, reusedLock, {
-            cacheRequired: true,
-          });
+        const reusedInternalPackages = auditInternalPackages(
+          project,
+          state.projectDirectory,
+          reusedLock,
+          artifactMap
+        );
+        if (
+          canonicalJson(reusedInternalPackages) !==
+          canonicalJson(state.internalPackages)
+        )
+          die(`${project.id}: reusable internal package provenance is stale`);
+        if (project.browser) {
+          const reusedBrowserProvenance = verifyBrowserInstall(
+            state.projectDirectory,
+            reusedLock,
+            { cacheRequired: true }
+          );
+          if (
+            canonicalJson(reusedBrowserProvenance) !==
+            canonicalJson(state.browserProvenance ?? previous.browserProvenance)
+          )
+            die(`${project.id}: reusable browser provenance is stale`);
+          state.browserProvenance = reusedBrowserProvenance;
+        }
         if (
           sha256(canonicalJson(moduleAudit)) !==
             state.graphs.moduleAuditSha256 ||
@@ -1117,6 +1636,15 @@ try {
             revision: matrix.browser.revision,
             browserVersion: matrix.browser.version,
             descriptorSha256: matrix.browser.browsersJsonSha256,
+            installerIntegrity: matrix.browser.installerIntegrity,
+            launcherIntegrity: matrix.browser.launcherIntegrity,
+            coreIntegrity: matrix.browser.coreIntegrity,
+            installerDirectorySha256:
+              state.browserProvenance.installerDirectorySha256,
+            launcherDirectorySha256:
+              state.browserProvenance.launcherDirectorySha256,
+            coreDirectorySha256: state.browserProvenance.coreDirectorySha256,
+            executableFiles: state.browserProvenance.executableFiles,
             installRootSha256: browserInstallSha256,
           }
         : null;
@@ -1125,6 +1653,7 @@ try {
       ).slice(0, 24);
       state.runLock = {
         schemaVersion: 1,
+        bundleState: "final",
         runId,
         fixtureId: project.id,
         mode,
@@ -1146,23 +1675,14 @@ try {
         toolchain: {
           node: process.version.slice(1),
           npm: matrix.runtime.npm,
+          nodeExecutable,
+          nodeExecutableSha256: sha256File(nodeExecutable),
+          npmExecutable,
+          npmExecutableSha256: sha256File(npmExecutable),
           npmConfigSha256: resetState.value.npmConfiguration,
         },
         browser: browserEvidence,
-        environment: Object.fromEntries(
-          Object.entries(selectedEnvironment).filter(([key]) =>
-            [
-              "CI",
-              "HUSKY",
-              "LC_ALL",
-              "TZ",
-              "PLAYWRIGHT_BROWSERS_PATH",
-              "npm_config_cache",
-              "npm_config_registry",
-              "I02_COMMAND_ADAPTER_PATH",
-            ].includes(key)
-          )
-        ),
+        environment: selectedEnvironment,
         commands: {
           lock: matrix.lockPolicy.lockArgv,
           install: matrix.lockPolicy.installArgv,
@@ -1178,6 +1698,8 @@ try {
           linkScanSha256: state.linkScan.sha256,
           resetInputsSha256: resetState.sha256,
           reused,
+          reuseUpdated,
+          changedArtifactIds,
         },
         sentinel: state.sentinel,
         original: {
@@ -1193,14 +1715,16 @@ try {
           lockPath: state.lockPath,
           lockSha256: sha256File(state.lockPath),
           rewriteIds: project.rewriteIds,
+          closureBindingIds: project.closureBindings.map(
+            (binding) => binding.id
+          ),
         },
         artifacts: evidenceArtifacts.filter((artifact) =>
-          project.rewrites.some(
-            (rewrite) => rewrite.artifactId === artifact.artifactId
-          )
+          projectArtifactIds(project).includes(artifact.artifactId)
         ),
         dependencyGraphs: state.graphs,
         origins: state.origins,
+        internalPackages: state.internalPackages,
         steps: state.steps,
         result: { status: "pass", waiver: null, failureReason: null },
         failureBundle: null,
@@ -1253,8 +1777,15 @@ try {
       if (mode === "clean" && !retain)
         rmSync(projectRoot, { recursive: true, force: true });
     } catch (error) {
-      runFailed = true;
       const reason = error instanceof Error ? error : new Error(String(error));
+      const failureText = `${reason.message}\n${state.currentStderr ?? ""}`;
+      const waived =
+        project.expectedResult === "waived-failure" &&
+        state.currentPhase === project.expectedFailure.phase &&
+        project.expectedFailure.contains.every((text) =>
+          failureText.includes(text)
+        );
+      if (!waived) runFailed = true;
       const unavailable = project.rewrites.flatMap((rewrite) =>
         rewrite.edgeIds.map((edgeId) =>
           incompleteOrigin(project, rewrite, edgeId, reason.message)
@@ -1285,29 +1816,31 @@ try {
         };
       state.linkScan ??= { sha256: zero, status: "not-completed" };
       const failureStatePath = path.join(projectOutput, "failure-state.json");
-      const failureBrowser =
-        project.browser &&
-        existsSync(
-          path.join(
-            runRoot,
-            "browser-cache",
-            `${matrix.browser.name}-${matrix.browser.revision}`
-          )
-        )
-          ? {
-              package: matrix.browser.installerPackage,
-              version: matrix.browser.installerVersion,
-              name: matrix.browser.name,
-              revision: matrix.browser.revision,
-              browserVersion: matrix.browser.version,
-              descriptorSha256: matrix.browser.browsersJsonSha256,
-              installRootSha256: directorySha256(
-                path.join(runRoot, "browser-cache")
-              ),
-            }
-          : null;
+      const failureBrowser = state.browserProvenance
+        ? {
+            package: matrix.browser.installerPackage,
+            version: matrix.browser.installerVersion,
+            name: matrix.browser.name,
+            revision: matrix.browser.revision,
+            browserVersion: matrix.browser.version,
+            descriptorSha256: matrix.browser.browsersJsonSha256,
+            installerIntegrity: matrix.browser.installerIntegrity,
+            launcherIntegrity: matrix.browser.launcherIntegrity,
+            coreIntegrity: matrix.browser.coreIntegrity,
+            installerDirectorySha256:
+              state.browserProvenance.installerDirectorySha256,
+            launcherDirectorySha256:
+              state.browserProvenance.launcherDirectorySha256,
+            coreDirectorySha256: state.browserProvenance.coreDirectorySha256,
+            executableFiles: state.browserProvenance.executableFiles,
+            installRootSha256: directorySha256(
+              path.join(runRoot, "browser-cache")
+            ),
+          }
+        : null;
       state.runLock = {
         schemaVersion: 1,
+        bundleState: "final",
         runId: sha256(
           canonicalJson({ project: project.id, mode, failure: reason.message })
         ).slice(0, 24),
@@ -1331,24 +1864,14 @@ try {
         toolchain: {
           node: process.version.slice(1),
           npm: matrix.runtime.npm,
+          nodeExecutable,
+          nodeExecutableSha256: sha256File(nodeExecutable),
+          npmExecutable,
+          npmExecutableSha256: sha256File(npmExecutable),
           npmConfigSha256: resetState.value.npmConfiguration,
         },
         browser: failureBrowser,
-        environment: Object.fromEntries(
-          Object.entries(state.selectedEnvironment ?? environment).filter(
-            ([key]) =>
-              [
-                "CI",
-                "HUSKY",
-                "LC_ALL",
-                "TZ",
-                "PLAYWRIGHT_BROWSERS_PATH",
-                "npm_config_cache",
-                "npm_config_registry",
-                "I02_COMMAND_ADAPTER_PATH",
-              ].includes(key)
-          )
-        ),
+        environment: state.selectedEnvironment ?? environment,
         commands: {
           lock: matrix.lockPolicy.lockArgv,
           install: matrix.lockPolicy.installArgv,
@@ -1370,6 +1893,8 @@ try {
           linkScanSha256: state.linkScan.sha256,
           resetInputsSha256: resetState.sha256,
           reused,
+          reuseUpdated,
+          changedArtifactIds,
         },
         sentinel: state.sentinel,
         original: {
@@ -1391,14 +1916,16 @@ try {
               ? sha256File(state.lockPath)
               : zero,
           rewriteIds: project.rewriteIds,
+          closureBindingIds: project.closureBindings.map(
+            (binding) => binding.id
+          ),
         },
         artifacts: evidenceArtifacts.filter((artifact) =>
-          project.rewrites.some(
-            (rewrite) => rewrite.artifactId === artifact.artifactId
-          )
+          projectArtifactIds(project).includes(artifact.artifactId)
         ),
         dependencyGraphs: state.graphs,
         origins: state.origins,
+        internalPackages: state.internalPackages,
         steps: state.steps.length
           ? state.steps
           : [
@@ -1414,9 +1941,9 @@ try {
               },
             ],
         result: {
-          status: "failure",
-          waiver: null,
-          failureReason: reason.message,
+          status: waived ? "waived-failure" : "failure",
+          waiver: waived ? project.waiver : null,
+          failureReason: failureText,
         },
         failureBundle: null,
         replay: {
@@ -1475,14 +2002,17 @@ try {
       );
       results.push({
         fixtureId: project.id,
-        status: "failure",
+        status: waived ? "waived-failure" : "failure",
+        runId: state.runLock.runId,
         mode,
-        reason: reason.message,
+        reused,
+        reason: failureText,
         failureBundle: bundle.path,
         retainedSandbox: projectRoot,
         runLock: path.relative(outputRoot, failureRunLock),
+        runLockSha256: sha256(canonicalJson(state.runLock)),
       });
-      break;
+      if (!waived) break;
     }
   }
 } finally {
@@ -1512,6 +2042,8 @@ const summary = {
   counts: {
     selected: selected.length,
     passed: results.filter((result) => result.status === "pass").length,
+    waived: results.filter((result) => result.status === "waived-failure")
+      .length,
     failed: results.filter((result) => result.status === "failure").length,
     logicalEdges: selected.reduce(
       (count, project) => count + project.edgeIds.length,
@@ -1540,19 +2072,79 @@ writeFileSync(
   `${JSON.stringify(summary, null, 2)}\n`
 );
 if (writeEvidence) {
+  if (
+    mode !== "clean" ||
+    runFailed ||
+    selected.length !== runnable.length ||
+    selected.some((project, index) => project.id !== runnable[index].id)
+  )
+    die("--write requires the complete successful clean runnable matrix");
+  const dynamicVerification = commandResult(
+    [
+      process.execPath,
+      path.join(repository, "tools/verify-integration-run.mjs"),
+      "--root",
+      outputRoot,
+    ],
+    repository
+  );
+  if (dynamicVerification.status !== 0)
+    die(
+      `refusing checked evidence: ${
+        dynamicVerification.stderr || dynamicVerification.stdout
+      }`
+    );
   const evidenceDirectory = path.join(repository, "migration/evidence/i02");
-  mkdirSync(evidenceDirectory, { recursive: true });
+  const checkedRunLocks = path.join(evidenceDirectory, "run-locks");
+  rmSync(checkedRunLocks, { recursive: true, force: true });
+  mkdirSync(checkedRunLocks, { recursive: true });
+  const checkedSummary = JSON.parse(JSON.stringify(summary));
+  checkedSummary.evidenceFormat = "compact-schema-validated-run-locks";
+  for (const result of checkedSummary.results) {
+    if (path.isAbsolute(result.runLock))
+      die(`${result.fixtureId}: dynamic run lock path must be relative`);
+    const source = path.resolve(outputRoot, result.runLock);
+    if (!lexicallyInside(outputRoot, source))
+      die(`${result.fixtureId}: dynamic run lock escapes output root`);
+    const relative = `run-locks/${projectSlug(result.fixtureId)}.json`;
+    const target = path.join(evidenceDirectory, relative);
+    cpSync(source, target, { force: true });
+    result.runLock = relative;
+  }
+  cpSync(
+    path.join(evidenceArtifactDirectory, "hashes.json"),
+    path.join(evidenceDirectory, "artifact-hashes.json"),
+    { force: true }
+  );
+  for (const artifact of checkedSummary.artifacts)
+    artifact.path = "artifact-hashes.json";
   writeFileSync(
     path.join(evidenceDirectory, "integration-proof.json"),
-    `${JSON.stringify(summary, null, 2)}\n`
+    `${JSON.stringify(checkedSummary, null, 2)}\n`
   );
+  const checkedVerification = commandResult(
+    [
+      process.execPath,
+      path.join(repository, "tools/verify-integration-evidence.mjs"),
+    ],
+    repository
+  );
+  if (checkedVerification.status !== 0)
+    die(
+      `refusing invalid checked evidence: ${
+        checkedVerification.stderr || checkedVerification.stdout
+      }`
+    );
 }
-if (mode === "clean" && !retain && !runFailed)
+const hasWaivedFailure = results.some(
+  (result) => result.status === "waived-failure"
+);
+if (mode === "clean" && !retain && !runFailed && !hasWaivedFailure)
   rmSync(runRoot, { recursive: true, force: true });
 if (runFailed) {
   console.error(`INTEGRATION_MATRIX_RUN_FAILED output=${outputRoot}`);
   process.exit(1);
 }
 console.log(
-  `INTEGRATION_MATRIX_RUN_OK mode=${mode} projects=${summary.counts.passed} edges=${summary.counts.logicalEdges} browser=${summary.counts.browserProjects} output=${outputRoot}`
+  `INTEGRATION_MATRIX_RUN_OK mode=${mode} passed=${summary.counts.passed} waived=${summary.counts.waived} edges=${summary.counts.logicalEdges} browser=${summary.counts.browserProjects} output=${outputRoot}`
 );

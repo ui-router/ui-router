@@ -145,6 +145,24 @@ const cases = [
     "browser misclassified",
     (value) => (value.projects.find((item) => item.browser).browser = false),
   ],
+  [
+    "transitive internal closure omitted",
+    (value) =>
+      value.projects
+        .find((item) => item.closureBindings.length)
+        .closureBindings.pop(),
+  ],
+  [
+    "browser installer integrity changed",
+    (value) => (value.browser.installerIntegrity = "sha512-invalid"),
+  ],
+  [
+    "expired integration waiver",
+    (value) =>
+      (value.projects.find(
+        (item) => item.expectedResult === "waived-failure"
+      ).waiver.expires = "2020-01-01"),
+  ],
 ];
 
 let passed = 0;

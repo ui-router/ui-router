@@ -19,7 +19,9 @@
     "logicalEdges": 37,
     "rewriteOperations": 26,
     "registryBaselineRecords": 21,
-    "artifactIds": 7
+    "artifactIds": 7,
+    "closureBindings": 21,
+    "waivedFailures": 1
   },
   "runtime": {
     "platform": "linux",
@@ -44,7 +46,11 @@
     "name": "chromium",
     "revision": "1234",
     "version": "151.0.7922.34",
-    "setupArgv": ["node_modules/.bin/playwright", "install", "chromium"]
+    "setupArgv": ["node_modules/.bin/playwright", "install", "chromium"],
+    "installerIntegrity": "sha512-DTcUc8qii+cpHvtOwggMtBRMjKZHXYWdw8syRYu2vtzuq4Wxphqq4NfCs5Zt44L6mA8rfDfj+PHnxFc/FeK6mQ==",
+    "launcherPackage": "playwright",
+    "launcherVersion": "1.62.1",
+    "launcherIntegrity": "sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg=="
   },
   "artifactPolicy": {
     "producerCommand": [
@@ -232,7 +238,11 @@
         "sha256": "e2a593b022140e9037d5ca836821ce211c2461b23c792b06d7ca810e57dc676d"
       },
       "expectedExternalGraphSha256": "1ac84e00341f4b934c7f902c37d93ad49e0ef58dd8e8420cd9abb67538eff656",
-      "allowedExternalGraphChanges": []
+      "allowedExternalGraphChanges": [],
+      "closureBindings": [],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "core/integration/typescript-5.4",
@@ -312,7 +322,11 @@
         "sha256": "b900026811c92f7f0d464e79ac06124190aa3576278b54cf91314d595792d654"
       },
       "expectedExternalGraphSha256": "59aec43a18a71ed951fe6c88c3dd8da153a6a74653b54839a637205b7600c0fc",
-      "allowedExternalGraphChanges": []
+      "allowedExternalGraphChanges": [],
+      "closureBindings": [],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angular/integration/angular-versions/v22",
@@ -464,13 +478,17 @@
             "os": ["linux"]
           },
           "triggeringArtifactIds": ["angular", "core", "rx"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angular/integration/angular-versions/v22-standalone",
@@ -622,13 +640,17 @@
             "os": ["linux"]
           },
           "triggeringArtifactIds": ["angular", "core", "rx"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angular/integration/angular-versions/v22-zoneless",
@@ -780,13 +802,17 @@
             "os": ["linux"]
           },
           "triggeringArtifactIds": ["angular", "core", "rx"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angular/integration/typescript-versions/scaffold",
@@ -843,7 +869,45 @@
         "sha256": "07ed5b2e7cf78fc2e3ecca785175667457147c6bbf930e8345af11a6cad98dcf"
       },
       "expectedExternalGraphSha256": null,
-      "allowedExternalGraphChanges": []
+      "allowedExternalGraphChanges": [],
+      "closureBindings": [
+        {
+          "id": "closure-framework-angular-integration-typescript-versions-scaffold-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angular", "rx"],
+          "productionEdgeIds": [
+            "edge-framework-angular-router-peerdependencies-uirouter-core",
+            "edge-plugins-rx-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-angular-integration-typescript-versions-scaffold-rx",
+          "owner": "ui-router-maintainers",
+          "artifactId": "rx",
+          "package": "@uirouter/rx",
+          "expectedVersion": "1.0.0",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angular"],
+          "productionEdgeIds": [
+            "edge-framework-angular-router-peerdependencies-uirouter-rx"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "inventory-only",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angular/integration/typescript-versions/typescript6",
@@ -923,8 +987,67 @@
         "path": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json",
         "sha256": "9f003ecc2f8bb6d284c55d811f00f240b684913ab5714cb6b6a9fc5acc645ca0"
       },
-      "expectedExternalGraphSha256": "c54d453cf330aeb8a93e2b24738abb35ce0b953421488beb74d1198d15640e78",
-      "allowedExternalGraphChanges": []
+      "expectedExternalGraphSha256": "8f0aab2a0590a3794d39b0a3a704ead225914c949169e68490eb2fe34c22e25e",
+      "allowedExternalGraphChanges": [
+        {
+          "key": "node_modules/@rollup/rollup-linux-x64-gnu",
+          "before": null,
+          "after": {
+            "version": "4.63.0",
+            "resolved": "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.63.0.tgz",
+            "integrity": "sha512-Adu/VttB1dpPNW+FEacrZ+xVm9tFty84+RrFzsqlFaPxoJB+9XXyDGtp5dCOoBwGBIEVH0To7lExFXEx0BIF4A==",
+            "cpu": ["x64"],
+            "libc": ["glibc"],
+            "license": "MIT",
+            "optional": true,
+            "os": ["linux"]
+          },
+          "triggeringArtifactIds": ["angular", "core", "rx"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-angular-integration-typescript-versions-typescript6-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angular", "rx"],
+          "productionEdgeIds": [
+            "edge-framework-angular-router-peerdependencies-uirouter-core",
+            "edge-plugins-rx-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-angular-integration-typescript-versions-typescript6-rx",
+          "owner": "ui-router-maintainers",
+          "artifactId": "rx",
+          "package": "@uirouter/rx",
+          "expectedVersion": "1.0.0",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angular"],
+          "productionEdgeIds": [
+            "edge-framework-angular-router-peerdependencies-uirouter-rx"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angularjs/integration/typescript-versions/3.9",
@@ -1005,7 +1128,28 @@
         "sha256": "dfde317f2d44b603ec3f7e6efe2837366dea8402fc0ad1fd3c079161f0b214e7"
       },
       "expectedExternalGraphSha256": "f645db066e3299a4e2bdfb929f6bdba086225ec5b6b18bb9be5cf173be67f738",
-      "allowedExternalGraphChanges": []
+      "allowedExternalGraphChanges": [],
+      "closureBindings": [
+        {
+          "id": "closure-framework-angularjs-integration-typescript-versions-3.9-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angularjs"],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/angularjs/integration/typescript-versions/template",
@@ -1062,7 +1206,28 @@
         "sha256": "8a4d242315ea21973e6e259bc5d4f9ce84027f4cc202df5a65ec05707f21ae97"
       },
       "expectedExternalGraphSha256": null,
-      "allowedExternalGraphChanges": []
+      "allowedExternalGraphChanges": [],
+      "closureBindings": [
+        {
+          "id": "closure-framework-angularjs-integration-typescript-versions-template-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["angularjs"],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "inventory-only",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react-hybrid/integration/react16",
@@ -1332,7 +1497,81 @@
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-hybrid-integration-react16-angularjs",
+          "owner": "ui-router-maintainers",
+          "artifactId": "angularjs",
+          "package": "@uirouter/angularjs",
+          "expectedVersion": "1.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react16-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": [
+            "angularjs",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+            "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+            "edge-framework-react-router-dependencies-uirouter-core",
+            "edge-plugins-visualizer-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react16-react",
+          "owner": "ui-router-maintainers",
+          "artifactId": "react",
+          "package": "@uirouter/react",
+          "expectedVersion": "1.0.8",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "waived-failure",
+      "waiver": {
+        "baselineId": "i02-react-hybrid-react16-peer-mismatch",
+        "owner": "ui-router-maintainers",
+        "reason": "The retained React 16 fixture conflicts with the exact local @uirouter/react 1.0.8 peer range even though @uirouter/react-hybrid 2.0.0 advertises React 16.8 support.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
+        "expires": "2026-10-31"
+      },
+      "expectedFailure": {
+        "phase": "lock",
+        "contains": [
+          "ERESOLVE unable to resolve dependency tree",
+          "peer react@\"^17.0.0 || ^18.0.0 || ^19.0.0\"",
+          "@uirouter/react@1.0.8"
+        ]
+      }
     },
     {
       "id": "framework/react-hybrid/integration/react17",
@@ -1440,7 +1679,7 @@
         "path": "frameworks/react-hybrid/integration-tests/react17/package.json",
         "sha256": "32a41b907f0dd1048fe3de871c405c804c0e2187aed97ff18aba3ccc7f243a31"
       },
-      "expectedExternalGraphSha256": "551cbec3f01cd536b286ebe0f79adfb8c1bdc2b31e8fb384154ab7dafdf4f7a4",
+      "expectedExternalGraphSha256": "3c97d1983162935c6fc4090b534e0e444fdd10d987502b0411a7552ce4f1cdcf",
       "allowedExternalGraphChanges": [
         {
           "key": "node_modules/@rolldown/binding-linux-x64-gnu",
@@ -1458,8 +1697,14 @@
               "node": "^20.19.0 || >=22.12.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1480,8 +1725,41 @@
               "node": ">=16.20.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/@uirouter/react/node_modules/prop-types",
+          "before": null,
+          "after": {
+            "version": "15.8.1",
+            "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+            "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
+            "license": "MIT",
+            "dependencies": {
+              "loose-envify": "^1.4.0",
+              "object-assign": "^4.1.1",
+              "react-is": "^16.13.1"
+            }
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1504,8 +1782,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1528,8 +1812,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1558,8 +1848,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1595,14 +1891,103 @@
               }
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/react-is",
+          "before": null,
+          "after": {
+            "version": "16.13.1",
+            "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+            "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
+            "license": "MIT"
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-hybrid-integration-react17-angularjs",
+          "owner": "ui-router-maintainers",
+          "artifactId": "angularjs",
+          "package": "@uirouter/angularjs",
+          "expectedVersion": "1.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react17-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": [
+            "angularjs",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+            "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+            "edge-framework-react-router-dependencies-uirouter-core",
+            "edge-plugins-visualizer-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react17-react",
+          "owner": "ui-router-maintainers",
+          "artifactId": "react",
+          "package": "@uirouter/react",
+          "expectedVersion": "1.0.8",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react-hybrid/integration/react18",
@@ -1710,7 +2095,7 @@
         "path": "frameworks/react-hybrid/integration-tests/react18/package.json",
         "sha256": "6ae5e0f299660482ede15da17e90d28b37166fd9240e75219923d444d10ff69b"
       },
-      "expectedExternalGraphSha256": "065502078198cd0870220ac921d05aafe311aedcd04e1439b8819ab0f3c247c2",
+      "expectedExternalGraphSha256": "feb3efa1d2ceaea807cedc5bd6c9ac369debe868080e26ab1e75cc90c74585d7",
       "allowedExternalGraphChanges": [
         {
           "key": "node_modules/@rolldown/binding-linux-x64-gnu",
@@ -1728,8 +2113,14 @@
               "node": "^20.19.0 || >=22.12.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1750,8 +2141,41 @@
               "node": ">=16.20.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/@uirouter/react/node_modules/prop-types",
+          "before": null,
+          "after": {
+            "version": "15.8.1",
+            "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+            "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
+            "license": "MIT",
+            "dependencies": {
+              "loose-envify": "^1.4.0",
+              "object-assign": "^4.1.1",
+              "react-is": "^16.13.1"
+            }
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1774,8 +2198,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1798,8 +2228,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1828,8 +2264,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -1865,14 +2307,103 @@
               }
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/react-is",
+          "before": null,
+          "after": {
+            "version": "16.13.1",
+            "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+            "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
+            "license": "MIT"
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-hybrid-integration-react18-angularjs",
+          "owner": "ui-router-maintainers",
+          "artifactId": "angularjs",
+          "package": "@uirouter/angularjs",
+          "expectedVersion": "1.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react18-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": [
+            "angularjs",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+            "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+            "edge-framework-react-router-dependencies-uirouter-core",
+            "edge-plugins-visualizer-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react18-react",
+          "owner": "ui-router-maintainers",
+          "artifactId": "react",
+          "package": "@uirouter/react",
+          "expectedVersion": "1.0.8",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react-hybrid/integration/react19",
@@ -1980,7 +2511,7 @@
         "path": "frameworks/react-hybrid/integration-tests/react19/package.json",
         "sha256": "57c7e9fc8ce27fb8d6828be4372952c69f502e5a4f1e2e532b2928fe42216acc"
       },
-      "expectedExternalGraphSha256": "790601f10dfff72d07e97ae1088c19e62a8fb2ec1acda5f9758fe7ac877945e7",
+      "expectedExternalGraphSha256": "ec1f624248733ea9812d20d9284b193be355884837268f584e34aae419817e43",
       "allowedExternalGraphChanges": [
         {
           "key": "node_modules/@rolldown/binding-linux-x64-gnu",
@@ -1998,8 +2529,14 @@
               "node": "^20.19.0 || >=22.12.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2020,8 +2557,41 @@
               "node": ">=16.20.0"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/@uirouter/react/node_modules/prop-types",
+          "before": null,
+          "after": {
+            "version": "15.8.1",
+            "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+            "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
+            "license": "MIT",
+            "dependencies": {
+              "loose-envify": "^1.4.0",
+              "object-assign": "^4.1.1",
+              "react-is": "^16.13.1"
+            }
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2044,8 +2614,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2068,8 +2644,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2098,8 +2680,14 @@
               "node": ">=12"
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2135,14 +2723,103 @@
               }
             }
           },
-          "triggeringArtifactIds": ["react-hybrid", "visualizer"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "key": "node_modules/react-is",
+          "before": null,
+          "after": {
+            "version": "16.13.1",
+            "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+            "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
+            "license": "MIT"
+          },
+          "triggeringArtifactIds": [
+            "angularjs",
+            "core",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-hybrid-integration-react19-angularjs",
+          "owner": "ui-router-maintainers",
+          "artifactId": "angularjs",
+          "package": "@uirouter/angularjs",
+          "expectedVersion": "1.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-angularjs"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react19-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": [
+            "angularjs",
+            "react",
+            "react-hybrid",
+            "visualizer"
+          ],
+          "productionEdgeIds": [
+            "edge-framework-angularjs-router-peerdependencies-uirouter-core",
+            "edge-framework-react-hybrid-router-dependencies-uirouter-core",
+            "edge-framework-react-router-dependencies-uirouter-core",
+            "edge-plugins-visualizer-peerdependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        },
+        {
+          "id": "closure-framework-react-hybrid-integration-react19-react",
+          "owner": "ui-router-maintainers",
+          "artifactId": "react",
+          "package": "@uirouter/react",
+          "expectedVersion": "1.0.8",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react-hybrid"],
+          "productionEdgeIds": [
+            "edge-framework-react-hybrid-router-dependencies-uirouter-react"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react/integration/react17",
@@ -2217,8 +2894,8 @@
             "integrity": "sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2238,8 +2915,8 @@
               "react-is": "^16.13.1"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2254,14 +2931,35 @@
             "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-integration-react17-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react"],
+          "productionEdgeIds": [
+            "edge-framework-react-router-dependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react/integration/react18",
@@ -2336,8 +3034,8 @@
             "integrity": "sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2355,8 +3053,8 @@
               "node": ">=0.10.0"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2376,8 +3074,8 @@
               "react-is": "^16.13.1"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2392,14 +3090,35 @@
             "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-integration-react18-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react"],
+          "productionEdgeIds": [
+            "edge-framework-react-router-dependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     },
     {
       "id": "framework/react/integration/react19",
@@ -2474,8 +3193,8 @@
             "integrity": "sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2496,8 +3215,8 @@
             "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2518,8 +3237,8 @@
               "loose-envify": "cli.js"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2537,8 +3256,8 @@
               "node": ">=0.10.0"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2558,8 +3277,8 @@
               "react-is": "^16.13.1"
             }
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
@@ -2574,14 +3293,35 @@
             "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
             "license": "MIT"
           },
-          "triggeringArtifactIds": ["react"],
-          "reason": "exact external graph effect of matrix-declared local artifacts",
+          "triggeringArtifactIds": ["core", "react"],
+          "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
             "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
           }
         }
-      ]
+      ],
+      "closureBindings": [
+        {
+          "id": "closure-framework-react-integration-react19-core",
+          "owner": "ui-router-maintainers",
+          "artifactId": "core",
+          "package": "@uirouter/core",
+          "expectedVersion": "6.1.2",
+          "manifestSection": "devDependencies",
+          "requiredByArtifactIds": ["react"],
+          "productionEdgeIds": [
+            "edge-framework-react-router-dependencies-uirouter-core"
+          ],
+          "evidence": {
+            "path": "migration/package-artifacts.json",
+            "sha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2"
+          }
+        }
+      ],
+      "expectedResult": "pass",
+      "waiver": null,
+      "expectedFailure": null
     }
   ],
   "commandAdapters": [

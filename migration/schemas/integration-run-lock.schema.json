@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": [
     "schemaVersion",
+    "bundleState",
     "runId",
     "fixtureId",
     "mode",
@@ -26,7 +27,8 @@
     "steps",
     "result",
     "failureBundle",
-    "replay"
+    "replay",
+    "internalPackages"
   ],
   "properties": {
     "schemaVersion": {
@@ -130,7 +132,15 @@
     "toolchain": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["node", "npm", "npmConfigSha256"],
+      "required": [
+        "node",
+        "npm",
+        "npmConfigSha256",
+        "nodeExecutable",
+        "nodeExecutableSha256",
+        "npmExecutable",
+        "npmExecutableSha256"
+      ],
       "properties": {
         "node": {
           "type": "string",
@@ -141,6 +151,22 @@
           "minLength": 1
         },
         "npmConfigSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "nodeExecutable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeExecutableSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "npmExecutable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "npmExecutableSha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
         }
@@ -161,7 +187,14 @@
             "revision",
             "browserVersion",
             "descriptorSha256",
-            "installRootSha256"
+            "installRootSha256",
+            "installerIntegrity",
+            "launcherIntegrity",
+            "coreIntegrity",
+            "installerDirectorySha256",
+            "launcherDirectorySha256",
+            "coreDirectorySha256",
+            "executableFiles"
           ],
           "properties": {
             "package": {
@@ -191,6 +224,50 @@
             "installRootSha256": {
               "type": "string",
               "pattern": "^[a-f0-9]{64}$"
+            },
+            "installerIntegrity": {
+              "type": "string",
+              "pattern": "^sha512-.+"
+            },
+            "launcherIntegrity": {
+              "type": "string",
+              "pattern": "^sha512-.+"
+            },
+            "coreIntegrity": {
+              "type": "string",
+              "pattern": "^sha512-.+"
+            },
+            "installerDirectorySha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "launcherDirectorySha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "coreDirectorySha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "executableFiles": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path", "sha256"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                }
+              }
             }
           }
         }
@@ -268,7 +345,9 @@
         "outsideRepositoryAncestry",
         "linkScanSha256",
         "resetInputsSha256",
-        "reused"
+        "reused",
+        "reuseUpdated",
+        "changedArtifactIds"
       ],
       "properties": {
         "path": {
@@ -295,6 +374,17 @@
         },
         "reused": {
           "type": "boolean"
+        },
+        "reuseUpdated": {
+          "type": "boolean"
+        },
+        "changedArtifactIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -369,7 +459,8 @@
         "manifestSha256",
         "lockPath",
         "lockSha256",
-        "rewriteIds"
+        "rewriteIds",
+        "closureBindingIds"
       ],
       "properties": {
         "manifestPath": {
@@ -396,6 +487,14 @@
           },
           "uniqueItems": true,
           "minItems": 1
+        },
+        "closureBindingIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -708,7 +807,8 @@
           "properties": {
             "path": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "pattern": "^/(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
             },
             "sha256": {
               "type": "string",
@@ -720,7 +820,7 @@
               "items": {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["name", "path", "sha256"],
+                "required": ["name", "path", "sha256", "status", "reason"],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -728,11 +828,26 @@
                   },
                   "path": {
                     "type": "string",
-                    "minLength": 1
+                    "minLength": 1,
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
                   },
                   "sha256": {
                     "type": "string",
                     "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "status": {
+                    "enum": ["produced", "unavailable"]
+                  },
+                  "reason": {
+                    "oneOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
                   }
                 }
               }
@@ -766,6 +881,73 @@
           "type": ["string", "null"]
         }
       }
+    },
+    "internalPackages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lockPath",
+          "package",
+          "expectedVersion",
+          "artifactId",
+          "lockResolved",
+          "lockIntegrity",
+          "installedPath",
+          "installedRealpath",
+          "manifestSha256",
+          "insideSandbox",
+          "symlink"
+        ],
+        "properties": {
+          "lockPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "package": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifactId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lockResolved": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lockIntegrity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "installedPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "installedRealpath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "manifestSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "insideSandbox": {
+            "const": true
+          },
+          "symlink": {
+            "const": false
+          }
+        }
+      }
+    },
+    "bundleState": {
+      "enum": ["final", "detached-pre-manifest"]
     }
   }
 }

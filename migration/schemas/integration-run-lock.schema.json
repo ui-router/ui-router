@@ -141,7 +141,8 @@
         "npmExecutable",
         "npmExecutableSha256",
         "projectNpmrc",
-        "effectiveNpmSettings"
+        "effectiveNpmSettings",
+        "npmEnvironment"
       ],
       "properties": {
         "node": {
@@ -213,6 +214,13 @@
             "offline",
             "bin-links"
           ]
+        },
+        "npmEnvironment": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },

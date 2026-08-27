@@ -321,7 +321,10 @@ for (const result of summary.results) {
     }
   }
 
-  if (Object.hasOwn(runLock.environment, "NODE_PATH"))
+  if (
+    Object.hasOwn(runLock.environment, "NODE_PATH") ||
+    Object.hasOwn(runLock.toolchain.npmEnvironment, "NODE_PATH")
+  )
     fail(`${result.fixtureId}: run lock retained NODE_PATH`);
   const allowedEnvironment = new Set([
     "PATH",
@@ -342,21 +345,50 @@ for (const result of summary.results) {
     "PLAYWRIGHT_BROWSERS_PATH",
     "I02_COMMAND_ADAPTER_PATH",
   ]);
-  for (const key of Object.keys(runLock.environment))
-    if (!allowedEnvironment.has(key))
-      fail(`${result.fixtureId}: unapproved effective environment key ${key}`);
+  for (const candidateEnvironment of [
+    runLock.environment,
+    runLock.toolchain.npmEnvironment,
+  ])
+    for (const key of Object.keys(candidateEnvironment))
+      if (!allowedEnvironment.has(key))
+        fail(
+          `${result.fixtureId}: unapproved effective environment key ${key}`
+        );
   for (const key of [
     "npm_config_legacy_peer_deps",
     "npm_config_force",
     "npm_config_offline",
   ])
-    if (runLock.environment[key] !== "false")
+    if (
+      runLock.environment[key] !== "false" ||
+      runLock.toolchain.npmEnvironment[key] !== "false"
+    )
       fail(`${result.fixtureId}: unsafe npm configuration ${key}`);
   if (
     runLock.environment.npm_config_registry !== matrix.networkPolicy.registry ||
-    runLock.environment.npm_config_ignore_scripts !== "true"
+    runLock.environment.npm_config_ignore_scripts !== "true" ||
+    runLock.toolchain.npmEnvironment.npm_config_registry !==
+      matrix.networkPolicy.registry ||
+    runLock.toolchain.npmEnvironment.npm_config_ignore_scripts !== "true"
   )
     fail(`${result.fixtureId}: effective npm policy differs`);
+  const adapter = matrix.commandAdapters.find((candidate) =>
+    candidate.allowedProjects.includes(project.id)
+  );
+  const expectedSelectedEnvironment =
+    adapter && result.status === "pass"
+      ? {
+          ...runLock.toolchain.npmEnvironment,
+          PATH: `${runLock.environment.I02_COMMAND_ADAPTER_PATH}${path.delimiter}${runLock.toolchain.npmEnvironment.PATH}`,
+          I02_COMMAND_ADAPTER_PATH:
+            runLock.environment.I02_COMMAND_ADAPTER_PATH,
+        }
+      : runLock.toolchain.npmEnvironment;
+  if (
+    canonicalJson(runLock.environment) !==
+    canonicalJson(expectedSelectedEnvironment)
+  )
+    fail(`${result.fixtureId}: selected command environment differs`);
   if (
     sha256File(runLock.toolchain.nodeExecutable) !==
       runLock.toolchain.nodeExecutableSha256 ||
@@ -377,7 +409,7 @@ for (const result of summary.results) {
     fail(`${result.fixtureId}: project npmrc bytes differ`);
   const expectedNpmSettings = {
     registry: matrix.networkPolicy.registry,
-    cache: runLock.environment.npm_config_cache,
+    cache: runLock.toolchain.npmEnvironment.npm_config_cache,
     "ignore-scripts": "true",
     audit: "false",
     fund: "false",
@@ -394,7 +426,7 @@ for (const result of summary.results) {
     fail(`${result.fixtureId}: effective npm configuration differs`);
   const generatedNpmrcContents = [
     `registry=${matrix.networkPolicy.registry}`,
-    `cache=${runLock.environment.npm_config_cache}`,
+    `cache=${runLock.toolchain.npmEnvironment.npm_config_cache}`,
     "ignore-scripts=true",
     "audit=false",
     "fund=false",
@@ -409,12 +441,12 @@ for (const result of summary.results) {
       repositoryNpmrcSha256: sha256File(path.join(repository, ".npmrc")),
       generatedNpmrcSha256: sha256(generatedNpmrcContents),
       registry: matrix.networkPolicy.registry,
-      cache: runLock.environment.npm_config_cache,
+      cache: runLock.toolchain.npmEnvironment.npm_config_cache,
       nodeExecutable: runLock.toolchain.nodeExecutable,
       nodeExecutableSha256: runLock.toolchain.nodeExecutableSha256,
       npmExecutable: runLock.toolchain.npmExecutable,
       npmExecutableSha256: runLock.toolchain.npmExecutableSha256,
-      effectiveEnvironment: runLock.environment,
+      effectiveEnvironment: runLock.toolchain.npmEnvironment,
       projectNpmrc: project.projectNpmrc,
       effectiveNpmSettings: expectedNpmSettings,
       lockArgv: matrix.lockPolicy.lockArgv,

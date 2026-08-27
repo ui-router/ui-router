@@ -438,7 +438,7 @@ for (const [index, result] of evidence.results.entries()) {
       fail(`${project.id}: checked failure bundle is missing or linked`);
     const checkedRelative = (relative) =>
       ["package.json", "package-lock.json"].includes(path.basename(relative))
-        ? `${relative.slice(0, -".json".length)}-json.evidence`
+        ? `${relative.slice(0, -".json".length)}.evidence.json`
         : relative;
     const names = runLock.failureBundle.contents.map((record) => record.name);
     if (canonicalJson(names) !== canonicalJson(matrix.failureBundleContents))

@@ -2235,7 +2235,7 @@ if (writeEvidence) {
         if (existsSync(sourcePath))
           renameSync(
             sourcePath,
-            `${sourcePath.slice(0, -".json".length)}-json.evidence`
+            `${sourcePath.slice(0, -".json".length)}.evidence.json`
           );
       }
       const checkedArchives = path.join(bundleTarget, "artifacts");

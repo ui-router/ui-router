@@ -59,17 +59,17 @@ try {
     candidate.decisionGates.reverse();
   });
   let awaitingApprovalRejected = false;
+  const awaitingApproval = structuredClone(original);
+  awaitingApproval.status = "ready-for-maintainer-approval";
   try {
-    requirePlanApproval(original);
+    requirePlanApproval(awaitingApproval);
   } catch {
     awaitingApprovalRejected = true;
   }
   if (!awaitingApprovalRejected)
     throw new Error("RELEASE_CUTOVER_PLAN_TEST_FAILED: accepted unapproved plan");
   cases += 1;
-  const approved = structuredClone(original);
-  approved.status = "approved";
-  requirePlanApproval(approved);
+  requirePlanApproval(original);
   cases += 1;
   console.log(`RELEASE_CUTOVER_PLAN_ADVERSARIAL_OK cases=${cases}`);
 } finally {

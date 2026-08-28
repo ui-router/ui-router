@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "task": "R01",
-  "status": "ready-for-maintainer-approval",
+  "status": "approved",
   "owner": "ui-router-maintainers",
   "a01": {
     "mergeCommit": "7edaccb36f310a8e14cdf5c7d0e1acc9b0affbf9",

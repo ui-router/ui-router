@@ -113,6 +113,7 @@
         "npm",
         "npmInstallCommand",
         "npmRegistryBootstrapCommand",
+        "uv",
         "turbo",
         "environment",
         "browser"
@@ -148,6 +149,32 @@
           "minItems": 2,
           "maxItems": 2
         },
+        "uv": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "version",
+            "versionOutput",
+            "archiveUrl",
+            "archiveSha256",
+            "bootstrapCommand"
+          ],
+          "properties": {
+            "version": { "const": "0.11.26" },
+            "versionOutput": { "const": "uv 0.11.26 (x86_64-unknown-linux-gnu)" },
+            "archiveUrl": { "const": "https://github.com/astral-sh/uv/releases/download/0.11.26/uv-x86_64-unknown-linux-gnu.tar.gz" },
+            "archiveSha256": { "$ref": "#/$defs/sha256" },
+            "bootstrapCommand": {
+              "type": "array",
+              "prefixItems": [
+                { "const": "node" },
+                { "const": "tools/bootstrap-ci-uv.mjs" }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
         "turbo": { "const": "2.10.12" },
         "environment": {
           "type": "object",
@@ -157,12 +184,14 @@
             "HUSKY",
             "LC_ALL",
             "TZ",
+            "UV_INDEX_URL",
+            "UV_CACHE_DIR",
             "PLAYWRIGHT_BROWSERS_PATH",
             "CYPRESS_CACHE_FOLDER",
             "CHROME_BIN"
           ],
-          "minProperties": 7,
-          "maxProperties": 7
+          "minProperties": 9,
+          "maxProperties": 9
         },
         "browser": {
           "type": "object",

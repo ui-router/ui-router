@@ -44,6 +44,8 @@
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
+      "UV_INDEX_URL": "https://pypi.org/simple",
+      "UV_CACHE_DIR": "/tmp/uirouter-ci-uv-cache",
       "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright",
       "CYPRESS_CACHE_FOLDER": "/root/.cache/Cypress",
       "CHROME_BIN": "/ms-playwright/chromium-1234/chrome-linux64/chrome"
@@ -52,6 +54,16 @@
       "node",
       "tools/bootstrap-ci-registry-tarballs.mjs"
     ],
+    "uv": {
+      "version": "0.11.26",
+      "versionOutput": "uv 0.11.26 (x86_64-unknown-linux-gnu)",
+      "archiveUrl": "https://github.com/astral-sh/uv/releases/download/0.11.26/uv-x86_64-unknown-linux-gnu.tar.gz",
+      "archiveSha256": "6426a73c3837e6e2483ee344cbc00f36394d179afcba6183cb77437e67db4af0",
+      "bootstrapCommand": [
+        "node",
+        "tools/bootstrap-ci-uv.mjs"
+      ]
+    },
     "browser": {
       "package": "@playwright/test",
       "version": "1.62.1",
@@ -242,7 +254,7 @@
         },
         {
           "id": "test",
-          "argv": ["npm", "run", "test", "--", "--cache=local:"],
+          "argv": ["npm", "run", "test", "--", "--cache=local:", "--env-mode=loose"],
           "timeoutMinutes": 30
         },
         {

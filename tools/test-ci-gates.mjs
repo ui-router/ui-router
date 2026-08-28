@@ -98,6 +98,9 @@ try {
   await rejectContract("npm-registry-bootstrap", (c) => {
     c.runtime.npmRegistryBootstrapCommand[1] = "tools/other.mjs";
   });
+  await rejectContract("uv-bootstrap", (c) => {
+    c.runtime.uv.archiveSha256 = "5".repeat(64);
+  });
   await rejectContract("turbo", (c) => {
     c.runtime.turbo = "2.10.11";
   });
@@ -145,6 +148,9 @@ try {
   });
   await rejectContract("source-cache", (c) => {
     c.jobs[1].commands[2].argv.pop();
+  });
+  await rejectContract("source-browser-environment", (c) => {
+    c.jobs[1].commands[5].argv.pop();
   });
   await rejectContract("package-producer", (c) => {
     c.jobs[2].commands[2].argv = ["true"];
@@ -281,6 +287,9 @@ try {
   );
   rejectWorkflow("npm-provisioning", (text) =>
     text.replace("npm@11.17.0", "npm@latest")
+  );
+  rejectWorkflow("uv-bootstrap", (text) =>
+    text.replace("      - name: Bootstrap pinned uv\n", "")
   );
   rejectWorkflow("artifact-name", (text) =>
     text.replace(original.workflow.packageArtifactName, "packages-unbound")

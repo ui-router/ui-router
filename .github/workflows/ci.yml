@@ -21,6 +21,8 @@ env:
   HUSKY: "0"
   LC_ALL: "C"
   TZ: "UTC"
+  UV_INDEX_URL: "https://pypi.org/simple"
+  UV_CACHE_DIR: "/tmp/uirouter-ci-uv-cache"
   PLAYWRIGHT_BROWSERS_PATH: "/ms-playwright"
   CYPRESS_CACHE_FOLDER: "/root/.cache/Cypress"
   CHROME_BIN: "/ms-playwright/chromium-1234/chrome-linux64/chrome"
@@ -48,6 +50,8 @@ jobs:
         run: npm install --global npm@11.17.0 --ignore-scripts --no-audit --no-fund
       - name: Bootstrap pinned registry tarballs
         run: node tools/bootstrap-ci-registry-tarballs.mjs
+      - name: Bootstrap pinned uv
+        run: node tools/bootstrap-ci-uv.mjs
       - name: Run contracts gate
         run: node tools/run-ci-gate.mjs --job contracts
       - name: Upload compact contracts failure evidence

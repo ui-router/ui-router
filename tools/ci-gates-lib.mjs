@@ -197,6 +197,22 @@ export async function validateCiGates(options = {}) {
   );
   if (!existsSync(path.join(root, contract.runtime.npmRegistryBootstrapCommand[1])))
     fail("npm registry bootstrap script is missing");
+  equal(
+    contract.runtime.uv,
+    {
+      version: "0.11.26",
+      versionOutput: "uv 0.11.26 (x86_64-unknown-linux-gnu)",
+      archiveUrl:
+        "https://github.com/astral-sh/uv/releases/download/0.11.26/uv-x86_64-unknown-linux-gnu.tar.gz",
+      archiveSha256:
+        "6426a73c3837e6e2483ee344cbc00f36394d179afcba6183cb77437e67db4af0",
+      bootstrapCommand: ["node", "tools/bootstrap-ci-uv.mjs"],
+    },
+    "uv bootstrap"
+  );
+  equal(contract.runtime.uv.versionOutput, execution.toolchain.uv, "uv pin");
+  if (!existsSync(path.join(root, contract.runtime.uv.bootstrapCommand[1])))
+    fail("uv bootstrap script is missing");
   equal(contract.runtime.turbo, "2.10.12", "Turbo pin");
   if (!contract.runtime.ciImage.endsWith(`@${contract.runtime.ciImageDigest}`))
     fail("CI image reference is not digest pinned");
@@ -239,6 +255,8 @@ export async function validateCiGates(options = {}) {
       HUSKY: "0",
       LC_ALL: "C",
       TZ: "UTC",
+      UV_INDEX_URL: "https://pypi.org/simple",
+      UV_CACHE_DIR: "/tmp/uirouter-ci-uv-cache",
       PLAYWRIGHT_BROWSERS_PATH: "/ms-playwright",
       CYPRESS_CACHE_FOLDER: "/root/.cache/Cypress",
       CHROME_BIN: "/ms-playwright/chromium-1234/chrome-linux64/chrome",
@@ -344,7 +362,17 @@ export async function validateCiGates(options = {}) {
         ],
       ],
       ["typecheck", ["npm", "run", "typecheck", "--", "--cache=local:"]],
-      ["test", ["npm", "run", "test", "--", "--cache=local:"]],
+      [
+        "test",
+        [
+          "npm",
+          "run",
+          "test",
+          "--",
+          "--cache=local:",
+          "--env-mode=loose",
+        ],
+      ],
       ["source-commands", ["npm", "run", "prove:source-commands"]],
       ["source-watch", ["npm", "run", "prove:source-watch"]],
       ["source-packs", ["npm", "run", "prove:source-packs"]],

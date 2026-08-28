@@ -35,7 +35,7 @@ function commonHeader(contract, job, extra = []) {
 }
 function commonSteps(contract, job, gateArgument = job.id) {
   const actions = contract.actions;
-  return [
+  const steps = [
     `    steps:`,
     `      - name: Check out exact revision`,
     `        uses: actions/checkout@${actions.checkout.sha} # ${actions.checkout.version}`,
@@ -52,6 +52,14 @@ function commonSteps(contract, job, gateArgument = job.id) {
     `        run: ${contract.runtime.npmInstallCommand.join(" ")}`,
     `      - name: Bootstrap pinned registry tarballs`,
     `        run: ${contract.runtime.npmRegistryBootstrapCommand.join(" ")}`,
+  ];
+  if (job.id === "contracts")
+    steps.push(
+      `      - name: Bootstrap pinned uv`,
+      `        run: ${contract.runtime.uv.bootstrapCommand.join(" ")}`
+    );
+  return [
+    ...steps,
     `      - name: Run ${gateArgument} gate`,
     `        run: node tools/run-ci-gate.mjs --job ${gateArgument}`,
   ];

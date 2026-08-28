@@ -94,6 +94,11 @@ const npmRegistryBootstrap = `        run: ${contract.runtime.npmRegistryBootstr
 )}`;
 if (actual.split(npmRegistryBootstrap).length - 1 !== 6)
   fail("workflow npm registry bootstrap count differs");
+const uvBootstrap = `        run: ${contract.runtime.uv.bootstrapCommand.join(
+  " "
+)}`;
+if (actual.split(uvBootstrap).length - 1 !== 1)
+  fail("workflow uv bootstrap count differs");
 for (const forbidden of [
   "pull_request_target",
   "schedule:",

@@ -170,6 +170,7 @@ const c01OwnedPaths = new Set([
   "plugins/dsr/examples/react-vite/vite.config.js",
   "plugins/sticky-states/examples/react-vite/vite.config.js",
   "tools/bootstrap-ci-registry-tarballs.mjs",
+  "tools/bootstrap-ci-uv.mjs",
   "tools/ci-gates-lib.mjs",
   "tools/ci-package-input-lib.mjs",
   "tools/prepare-workspace-browser.mjs",

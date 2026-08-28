@@ -46,8 +46,8 @@ try {
   await reject("c01-tree", (candidate) => {
     candidate.c01.tree = "0".repeat(40);
   });
-  await reject("c02-head", (candidate) => {
-    candidate.c02.head = "0".repeat(40);
+  await reject("c02-tree", (candidate) => {
+    candidate.c02.tree = "0".repeat(40);
   });
   await reject("command-omission", (candidate) => {
     candidate.requiredCommands.pop();

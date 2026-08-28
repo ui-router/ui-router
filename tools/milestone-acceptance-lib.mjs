@@ -79,14 +79,20 @@ function commitMap(root, source) {
   return result;
 }
 
-function validateMilestone(commit, root, label, requireHeadParent) {
+function validateMergeMilestone(commit, root, label) {
   if (commitTree(root, commit.head) !== commit.tree) fail(`${label} reviewed head tree differs`);
   if (commitTree(root, commit.mergeCommit) !== commit.tree) fail(`${label} merge tree differs`);
   if (!isAncestor(root, commit.mergeCommit)) fail(`${label} merge is not reachable from HEAD`);
-  if (requireHeadParent) {
-    const parents = git(root, ["show", "-s", "--format=%P", commit.mergeCommit]).split(" ").filter(Boolean);
-    if (parents.length !== 2 || !parents.includes(commit.head)) fail(`${label} merge does not retain its reviewed head`);
-  }
+  const parents = git(root, ["show", "-s", "--format=%P", commit.mergeCommit]).split(" ").filter(Boolean);
+  if (parents.length !== 2 || !parents.includes(commit.head)) fail(`${label} merge does not retain its reviewed head`);
+}
+
+function validateSquashMilestone(commit, root, label) {
+  // A squash merge retains its content tree but not its PR head object.  The
+  // head is therefore not reliably present in a clean CI checkout; bind the
+  // reachable merge commit and its exact tree instead.
+  if (commitTree(root, commit.mergeCommit) !== commit.tree) fail(`${label} merge tree differs`);
+  if (!isAncestor(root, commit.mergeCommit)) fail(`${label} merge is not reachable from HEAD`);
 }
 
 function validateHistory({ root, contract, sources, executionLock, importLock, summary }) {
@@ -201,8 +207,8 @@ export async function validateMilestoneAcceptance(options = {}) {
     if (contract.bindings[field] !== sha256File(path.join(root, relative)))
       fail(`${field} binding differs`);
   }
-  validateMilestone(contract.c01, root, "C01", true);
-  validateMilestone(contract.c02, root, "C02", false);
+  validateMergeMilestone(contract.c01, root, "C01");
+  validateSquashMilestone(contract.c02, root, "C02");
   if (git(root, ["show", "-s", "--format=%P", contract.c02.mergeCommit]).trim() !== contract.c01.mergeCommit)
     fail("C02 squash merge parent differs from C01 merge");
 

@@ -29,8 +29,8 @@
         "releaseTagCount": { "const": 475 }
       }
     },
-    "c01": { "$ref": "#/$defs/milestone" },
-    "c02": { "$ref": "#/$defs/milestone" },
+    "c01": { "$ref": "#/$defs/mergeMilestone" },
+    "c02": { "$ref": "#/$defs/squashMilestone" },
     "bindings": {
       "type": "object",
       "additionalProperties": false,
@@ -95,13 +95,22 @@
     "nonempty": { "type": "string", "minLength": 1 },
     "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
-    "milestone": {
+    "mergeMilestone": {
       "type": "object",
       "additionalProperties": false,
       "required": ["mergeCommit", "head", "tree"],
       "properties": {
         "mergeCommit": { "$ref": "#/$defs/commit" },
         "head": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "squashMilestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mergeCommit", "tree"],
+      "properties": {
+        "mergeCommit": { "$ref": "#/$defs/commit" },
         "tree": { "$ref": "#/$defs/commit" }
       }
     },

@@ -508,11 +508,20 @@ function consumerArtifactReferences(lock) {
   );
 }
 
-function consumerLockScalarDifferences(expected, generated, path = "", result = []) {
+function consumerLockScalarDifferences(
+  expected,
+  generated,
+  path = "",
+  result = []
+) {
   if (result.length >= 100) return result;
   const expectedType = Array.isArray(expected) ? "array" : typeof expected;
   const generatedType = Array.isArray(generated) ? "array" : typeof generated;
-  if (expectedType !== generatedType || expected === null || generated === null) {
+  if (
+    expectedType !== generatedType ||
+    expected === null ||
+    generated === null
+  ) {
     result.push({
       path,
       expected: expected ?? null,
@@ -602,6 +611,11 @@ async function runConsumer(contract, artifacts, proofRoot) {
     path.join(consumerRoot, "package.json"),
     `${JSON.stringify(manifest, null, 2)}\n`
   );
+  if (await exists(consumerLockFile))
+    await copyFile(
+      consumerLockFile,
+      path.join(consumerRoot, "package-lock.json")
+    );
   const environment = {
     ...process.env,
     ...contract.normalizedEnvironment,

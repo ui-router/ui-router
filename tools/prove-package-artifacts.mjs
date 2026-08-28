@@ -520,6 +520,19 @@ function consumerLockScalarDifferences(expected, generated, path = "", result = 
     });
     return result;
   }
+  if (expectedType === "array") {
+    const length = Math.max(expected.length, generated.length);
+    for (let index = 0; index < length; index += 1) {
+      if (result.length >= 100) break;
+      consumerLockScalarDifferences(
+        expected[index],
+        generated[index],
+        `${path}[${index}]`,
+        result
+      );
+    }
+    return result;
+  }
   if (expectedType !== "object") {
     if (expected !== generated) result.push({ path, expected, generated });
     return result;

@@ -492,6 +492,47 @@ async function verifyBins(contract, consumerRoot) {
   return cli.entrypoints.length;
 }
 
+function consumerArtifactReferences(lock) {
+  const dependencies = JSON.parse(lock.toString("utf8")).packages?.[""]
+    ?.dependencies;
+  if (!dependencies || typeof dependencies !== "object") return {};
+  return Object.fromEntries(
+    Object.entries(dependencies)
+      .filter(
+        ([packageName, specifier]) =>
+          packageName.startsWith("@uirouter/") &&
+          typeof specifier === "string" &&
+          specifier.startsWith("file:../artifacts/")
+      )
+      .sort(([left], [right]) => left.localeCompare(right))
+  );
+}
+
+function consumerLockDifference(expectedLock, generatedLock) {
+  const expectedReferences = consumerArtifactReferences(expectedLock);
+  const generatedReferences = consumerArtifactReferences(generatedLock);
+  const packageNames = new Set([
+    ...Object.keys(expectedReferences),
+    ...Object.keys(generatedReferences),
+  ]);
+  const artifactReferences = [...packageNames]
+    .sort()
+    .filter(
+      (packageName) =>
+        expectedReferences[packageName] !== generatedReferences[packageName]
+    )
+    .map((packageName) => ({
+      package: packageName,
+      expected: expectedReferences[packageName] ?? null,
+      generated: generatedReferences[packageName] ?? null,
+    }));
+  return JSON.stringify({
+    expectedSha256: sha256(expectedLock),
+    generatedSha256: sha256(generatedLock),
+    artifactReferences,
+  });
+}
+
 async function runConsumer(contract, artifacts, proofRoot) {
   const consumerRoot = path.join(proofRoot, "consumer");
   await mkdir(consumerRoot);
@@ -536,7 +577,12 @@ async function runConsumer(contract, artifacts, proofRoot) {
   } else {
     const expectedLock = await readFile(consumerLockFile);
     if (!generatedLock.equals(expectedLock))
-      fail("packed-consumer lock differs from checked-in evidence");
+      fail(
+        `packed-consumer lock differs from checked-in evidence: ${consumerLockDifference(
+          expectedLock,
+          generatedLock
+        )}`
+      );
   }
   run(
     contract.consumer.installArgv[0],

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "task": "A01",
+  "owner": "ui-router-maintainers",
+  "history": {
+    "importMergeCommit": "cb80720b8f0ceff309913f00a9dac147fa03752f",
+    "sourceCount": 16,
+    "releaseTagCount": 475
+  },
+  "c01": {
+    "mergeCommit": "ccdeafc6f51ce4ba175f8a590e2a615d6af3d1be",
+    "head": "7cd43281168dd15e20a1f64e9bda33bf98b5b231",
+    "tree": "a5e2d1bca11b54ccf64bc30eb146b03336fa6265"
+  },
+  "c02": {
+    "mergeCommit": "8e8bc0b634f3975705fa021da8042a970124d4fd",
+    "head": "4cd421d4a873fdf907c29e89bb312cf0fb8aac44",
+    "tree": "f6902f822704ec8ba07c4d0fc118ac67030b08ab"
+  },
+  "bindings": {
+    "sourcesSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
+    "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+    "importLockSha256": "b56528c2ca715016c71aa26db908c80d4d0337257757f8dc5032ade2b4d87bc5",
+    "importEvidenceSha256": "1bdc78fb5491334692fbf5e48c2db2b18079d2bc620794e2e36c369ed7f76d38",
+    "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+    "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "integrationMatrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
+    "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
+    "ciGatesSha256": "50153978dae47fc25684adf25aaf704c73019d7c945f00af66a8c3d2df78cba0",
+    "cleanReproducibilitySha256": "97b7f893e205cf80fe8726c338fe44aab6fce0cc851ffb92848da789e076e449",
+    "packageJsonSha256": "82ea8044b424d78f2e11c12c5ae07706aef3bc693f95f4f2d6625711a05ea1b8",
+    "packageLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
+    "turboSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10",
+    "workGraphSha256": "75fe6e9323318f8c72d633a0670b52689e28df01794f791ff153c27faa1f98c0"
+  },
+  "requiredCommands": [
+    "verify:root-config",
+    "verify:locks",
+    "verify:package-manager",
+    "verify:layout",
+    "verify:internal-deps",
+    "verify:source-aliases",
+    "verify:turbo",
+    "verify:isolated",
+    "verify:package-artifacts",
+    "verify:integration-matrix",
+    "verify:integration-evidence",
+    "verify:ci",
+    "verify:reproducibility",
+    "verify:contracts",
+    "verify:work-graph"
+  ],
+  "maintainerReview": {
+    "status": "pending",
+    "items": [
+      {
+        "id": "docs-source-container",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8",
+        "expires": "2026-09-30",
+        "summary": "Four retained source docs lanes call a mutable Docker image and remain waived in the pinned runtime."
+      },
+      {
+        "id": "react16-peer-range",
+        "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
+        "expires": "2026-10-31",
+        "summary": "The retained React 16 hybrid fixture conflicts with the exact local React package peer range."
+      },
+      {
+        "id": "angularjs-eslint-root-resolution",
+        "trackingIssue": "https://github.com/ui-router/ui-router/issues/22",
+        "expires": "2026-10-31",
+        "summary": "The legacy AngularJS ESLint lane resolves hoisted root tooling and remains an owned waiver."
+      }
+    ]
+  }
+}

@@ -207,6 +207,11 @@
           "timeoutMinutes": 30
         },
         {
+          "id": "test-a01",
+          "argv": ["npm", "run", "test:acceptance"],
+          "timeoutMinutes": 30
+        },
+        {
           "id": "test-history",
           "argv": ["npm", "run", "test:history-migration"],
           "timeoutMinutes": 30

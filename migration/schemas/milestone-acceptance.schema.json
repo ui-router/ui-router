@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/schemas/milestone-acceptance.schema.json",
+  "title": "UI-Router A01 milestone-one acceptance contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "task",
+    "owner",
+    "history",
+    "c01",
+    "c02",
+    "retainedInputs",
+    "bindings",
+    "requiredCommands",
+    "maintainerReview"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "task": { "const": "A01" },
+    "owner": { "$ref": "#/$defs/nonempty" },
+    "history": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["importMergeCommit", "sourceCount", "releaseTagCount"],
+      "properties": {
+        "importMergeCommit": { "$ref": "#/$defs/commit" },
+        "sourceCount": { "const": 16 },
+        "releaseTagCount": { "const": 475 }
+      }
+    },
+    "c01": { "$ref": "#/$defs/mergeMilestone" },
+    "c02": { "$ref": "#/$defs/squashMilestone" },
+    "retainedInputs": { "$ref": "#/$defs/sourceCheckoutRetention" },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourcesSha256",
+        "executionLockSha256",
+        "importLockSha256",
+        "importEvidenceSha256",
+        "baselinesSha256",
+        "packageClassificationSha256",
+        "packageArtifactsSha256",
+        "integrationMatrixSha256",
+        "sourceAliasesSha256",
+        "pathRepairsSha256",
+        "ciGatesSha256",
+        "cleanReproducibilitySha256",
+        "packageJsonSha256",
+        "packageLockSha256",
+        "turboSha256",
+        "workGraphSha256"
+      ],
+      "properties": {
+        "sourcesSha256": { "$ref": "#/$defs/sha256" },
+        "executionLockSha256": { "$ref": "#/$defs/sha256" },
+        "importLockSha256": { "$ref": "#/$defs/sha256" },
+        "importEvidenceSha256": { "$ref": "#/$defs/sha256" },
+        "baselinesSha256": { "$ref": "#/$defs/sha256" },
+        "packageClassificationSha256": { "$ref": "#/$defs/sha256" },
+        "packageArtifactsSha256": { "$ref": "#/$defs/sha256" },
+        "integrationMatrixSha256": { "$ref": "#/$defs/sha256" },
+        "sourceAliasesSha256": { "$ref": "#/$defs/sha256" },
+        "pathRepairsSha256": { "$ref": "#/$defs/sha256" },
+        "ciGatesSha256": { "$ref": "#/$defs/sha256" },
+        "cleanReproducibilitySha256": { "$ref": "#/$defs/sha256" },
+        "packageJsonSha256": { "$ref": "#/$defs/sha256" },
+        "packageLockSha256": { "$ref": "#/$defs/sha256" },
+        "turboSha256": { "$ref": "#/$defs/sha256" },
+        "workGraphSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "requiredCommands": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nonempty" }
+    },
+    "maintainerReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "items"],
+      "properties": {
+        "status": { "enum": ["pending", "approved"] },
+        "items": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "$ref": "#/$defs/reviewItem" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "mergeMilestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mergeCommit", "head", "tree"],
+      "properties": {
+        "mergeCommit": { "$ref": "#/$defs/commit" },
+        "head": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "squashMilestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mergeCommit", "tree"],
+      "properties": {
+        "mergeCommit": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "sourceCheckoutRetention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "checkoutRoot", "tagFallback"],
+      "properties": {
+        "mode": { "const": "source-checkouts" },
+        "checkoutRoot": { "const": ".." },
+        "tagFallback": { "const": "origin" }
+      }
+    },
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "trackingIssue", "expires", "summary"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "trackingIssue": { "type": "string", "pattern": "^https://github.com/ui-router/ui-router/(issues|pull)/[0-9]+$" },
+        "expires": { "type": "string", "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$" },
+        "summary": { "$ref": "#/$defs/nonempty" }
+      }
+    }
+  }
+}

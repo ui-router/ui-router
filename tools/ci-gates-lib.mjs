@@ -337,6 +337,7 @@ export async function validateCiGates(options = {}) {
       ["test-i02", ["npm", "run", "test:integration-matrix"]],
       ["test-c01", ["npm", "run", "test:ci-gates"]],
       ["test-c02", ["npm", "run", "test:reproducibility"]],
+      ["test-a01", ["npm", "run", "test:acceptance"]],
       ["test-history", ["npm", "run", "test:history-migration"]],
     ],
     source: [

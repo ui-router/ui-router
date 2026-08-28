@@ -21,6 +21,10 @@ Before the official run, H01 creates reviewed `execution-lock.json` beside this 
 
 The filter-repo artifact must already be retained under the control root and its digest approved before generation. `--write-filter-repo-wrapper` creates the only accepted wrapper shape: the locked absolute Python executable running that exact local artifact. The tool requires reviewed digests for the artifact, deterministic wrapper template, validator, and Python executable before any version probe; it rejects any other wrapper bytes and never resolves `uvx`, a registry, or a mutable cache. The execution lock also binds the complete `migration/schemas/` tree digest before contract validation.
 
+## A01 source-checkout recovery acceptance
+
+The original H01 mirrors and bundle files are the preferred offline reproduction inputs. If those derived archive files are unavailable after the import, A01 may use the maintainer-approved `source-checkouts` recovery mode instead. It checks the sibling source checkouts named by `migration/sources.json`, verifies that each locked default-head object is present locally, and verifies every locked tag object locally or, only when absent locally, against that checkout's `origin` remote. This proves that the source history needed to reconstruct the import remains available; it does not claim that the original byte-identical H01 bundle files were recovered.
+
 ```bash
 node tools/lock-history-inputs.mjs \
   --mode generate \

@@ -49,6 +49,9 @@ try {
   await reject("c02-tree", (candidate) => {
     candidate.c02.tree = "0".repeat(40);
   });
+  await reject("retained-input-policy", (candidate) => {
+    candidate.retainedInputs.tagFallback = "upstream";
+  });
   await reject("command-omission", (candidate) => {
     candidate.requiredCommands.pop();
   });

@@ -11,6 +11,7 @@
     "history",
     "c01",
     "c02",
+    "retainedInputs",
     "bindings",
     "requiredCommands",
     "maintainerReview"
@@ -31,6 +32,7 @@
     },
     "c01": { "$ref": "#/$defs/mergeMilestone" },
     "c02": { "$ref": "#/$defs/squashMilestone" },
+    "retainedInputs": { "$ref": "#/$defs/sourceCheckoutRetention" },
     "bindings": {
       "type": "object",
       "additionalProperties": false,
@@ -112,6 +114,16 @@
       "properties": {
         "mergeCommit": { "$ref": "#/$defs/commit" },
         "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "sourceCheckoutRetention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "checkoutRoot", "tagFallback"],
+      "properties": {
+        "mode": { "const": "source-checkouts" },
+        "checkoutRoot": { "const": ".." },
+        "tagFallback": { "const": "origin" }
       }
     },
     "reviewItem": {

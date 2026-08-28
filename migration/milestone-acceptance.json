@@ -16,6 +16,11 @@
     "mergeCommit": "8e8bc0b634f3975705fa021da8042a970124d4fd",
     "tree": "f6902f822704ec8ba07c4d0fc118ac67030b08ab"
   },
+  "retainedInputs": {
+    "mode": "source-checkouts",
+    "checkoutRoot": "..",
+    "tagFallback": "origin"
+  },
   "bindings": {
     "sourcesSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",

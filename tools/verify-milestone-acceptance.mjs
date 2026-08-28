@@ -17,6 +17,7 @@ function fail(message) {
 let contractPath = null;
 let requireReview = false;
 let requireRetainedInputs = false;
+let retainedSourceRoot = null;
 for (let index = 2; index < process.argv.length; index += 1) {
   const argument = process.argv[index];
   if (argument === "--require-maintainer-review") {
@@ -32,6 +33,11 @@ for (let index = 2; index < process.argv.length; index += 1) {
     index += 1;
     continue;
   }
+  if (argument === "--retained-source-root" && process.argv[index + 1]) {
+    retainedSourceRoot = path.resolve(process.argv[index + 1]);
+    index += 1;
+    continue;
+  }
   fail(`unknown argument ${argument}`);
 }
 
@@ -39,7 +45,10 @@ const { contract, releaseTagCount } = await validateMilestoneAcceptance({
   contract: contractPath ?? undefined,
 });
 if (requireReview) requireMaintainerApproval(contract);
-if (requireRetainedInputs) validateRetainedHistoryInputs(repository);
+let retained = null;
+if (requireRetainedInputs)
+  retained = validateRetainedHistoryInputs(repository, { contract, sourceRoot: retainedSourceRoot ?? undefined });
 console.log(
-  `MILESTONE_ACCEPTANCE_OK task=A01 sources=${contract.history.sourceCount} tags=${releaseTagCount} review=${contract.maintainerReview.status}`
+  `MILESTONE_ACCEPTANCE_OK task=A01 sources=${contract.history.sourceCount} tags=${releaseTagCount} review=${contract.maintainerReview.status}` +
+    (retained ? ` retainedCheckouts=${contract.history.sourceCount} remoteTagRecoveries=${retained.remoteRecoveries}` : "")
 );

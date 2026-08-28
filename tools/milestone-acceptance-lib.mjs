@@ -1,4 +1,4 @@
-import { existsSync, lstatSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, realpathSync } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 
@@ -59,6 +59,20 @@ function isAncestor(root, ancestor, descendant = "HEAD") {
 }
 function commitTree(root, commit) {
   return git(root, ["rev-parse", `${commit}^{tree}`]);
+}
+function gitResult(root, args) {
+  return spawnSync("git", ["-c", "core.fsmonitor=false", ...args], {
+    cwd: root,
+    encoding: "utf8",
+    maxBuffer: 128 * 1024 * 1024,
+  });
+}
+function gitOptional(root, args) {
+  const result = gitResult(root, args);
+  return result.status === 0 ? result.stdout.trim() : null;
+}
+function gitSucceeds(root, args) {
+  return gitResult(root, args).status === 0;
 }
 function tagNames(root) {
   return git(root, ["tag", "--list"]).split("\n").filter(Boolean).sort();
@@ -231,6 +245,11 @@ export async function validateMilestoneAcceptance(options = {}) {
     expectedReview,
     "maintainer review inventory"
   );
+  equal(
+    contract.retainedInputs,
+    { mode: "source-checkouts", checkoutRoot: "..", tagFallback: "origin" },
+    "retained H01 input policy"
+  );
   const waiverPairs = [
     ...ci.docsWaivers.map((item) => [item.waiver.trackingIssue, item.waiver.expires]),
     ...ci.currentWaivers.map((item) => [item.trackingIssue, item.expires]),
@@ -252,40 +271,45 @@ export function requireMaintainerApproval(contract) {
     fail("maintainer review is still pending");
 }
 
-export function validateRetainedHistoryInputs(root = repository) {
-  const executionLock = readJson(root, "migration/execution-lock.json");
-  const sources = readJson(root, "migration/sources.json");
-  const toolchain = executionLock.toolchain.gitFilterRepo;
-  for (const [label, relative, expected] of [
-    ["filter-repo artifact", toolchain.artifactPath, toolchain.artifactSha256],
-    ["filter-repo wrapper", toolchain.wrapperPath, toolchain.wrapperSha256],
-  ]) {
-    const absolute = path.join(root, relative);
-    if (!existsSync(absolute) || sha256File(absolute) !== expected)
-      fail(`${label} is absent or differs from the execution lock`);
-  }
-  for (const lockSource of executionLock.sources) {
-    const source = sources.sources.find((item) => item.name === lockSource.name);
-    if (!source) fail(`retained input source is absent from the source manifest: ${lockSource.name}`);
-    const mirror = path.join(root, lockSource.mirrorPath);
-    const bundle = path.join(root, lockSource.bundlePath);
-    if (!existsSync(mirror) || !lstatSync(mirror).isDirectory())
-      fail(`${lockSource.name} retained mirror is missing`);
-    if (!existsSync(bundle) || !lstatSync(bundle).isFile() || sha256File(bundle) !== lockSource.bundleSha256)
-      fail(`${lockSource.name} retained bundle is missing or differs`);
-    git(root, [`--git-dir=${mirror}`, "fsck", "--no-dangling"]);
-    git(root, ["bundle", "verify", bundle]);
-    const actualRefs = git(root, [
-      `--git-dir=${mirror}`,
-      "for-each-ref",
-      "--format=%(refname)",
-    ]).split("\n").filter(Boolean).sort();
-    equal(actualRefs, [...lockSource.includedRefs].sort(), `${lockSource.name} retained mirror refs`);
-    if (git(root, [`--git-dir=${mirror}`, "rev-parse", source.sourceRef]) !== source.defaultHead)
-      fail(`${lockSource.name} retained default head differs`);
+function validateSourceCheckoutInputs(root, sources, retention, sourceRootOverride) {
+  const requestedRoot = sourceRootOverride ?? path.resolve(root, retention.checkoutRoot);
+  if (!existsSync(requestedRoot)) fail("retained source checkout root is missing");
+  const checkoutRoot = realpathSync(requestedRoot);
+  let remoteRecoveries = 0;
+  for (const source of sources.sources) {
+    const checkout = path.join(checkoutRoot, source.name);
+    if (!existsSync(checkout) || gitOptional(root, ["-C", checkout, "rev-parse", "--is-inside-work-tree"]) !== "true")
+      fail(`${source.name} retained source checkout is missing`);
+    if (!gitSucceeds(root, ["-C", checkout, "cat-file", "-e", `${source.defaultHead}^{commit}`]))
+      fail(`${source.name} retained source checkout lacks its locked default head`);
+    let remoteTags = null;
     for (const tag of [...source.releaseTags, ...source.excludedTags]) {
-      if (git(root, [`--git-dir=${mirror}`, "rev-parse", tag.sourceRef]) !== tag.objectId)
-        fail(`${lockSource.name} retained tag differs: ${tag.name}`);
+      if (gitOptional(root, ["-C", checkout, "rev-parse", "--verify", tag.sourceRef]) === tag.objectId) continue;
+      if (!remoteTags) {
+        const output = git(root, ["-C", checkout, "ls-remote", "--tags", retention.tagFallback]);
+        remoteTags = new Map(
+          output
+            .split("\n")
+            .filter(Boolean)
+            .map((line) => line.split(/\s+/))
+            .filter((parts) => parts.length === 2 && !parts[1].endsWith("^{}"))
+            .map(([objectId, ref]) => [ref, objectId])
+        );
+      }
+      if (remoteTags.get(tag.sourceRef) !== tag.objectId)
+        fail(`${source.name} retained source tag differs or is unavailable: ${tag.name}`);
+      remoteRecoveries += 1;
     }
   }
+  return { checkoutRoot, remoteRecoveries };
+}
+
+export function validateRetainedHistoryInputs(root = repository, options = {}) {
+  const executionLock = readJson(root, "migration/execution-lock.json");
+  const sources = readJson(root, "migration/sources.json");
+  const contract = options.contract ?? readJson(root, contractPath);
+  if (contract.retainedInputs?.mode !== "source-checkouts") fail("retained H01 input policy is unsupported");
+  if (executionLock.sources.length !== sources.sources.length)
+    fail("execution lock source count differs from retained source manifest");
+  return validateSourceCheckoutInputs(root, sources, contract.retainedInputs, options.sourceRoot);
 }

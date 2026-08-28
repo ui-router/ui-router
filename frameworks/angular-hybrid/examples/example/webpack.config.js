@@ -3,7 +3,9 @@ var path = require("path");
 
 module.exports = {
   entry: {
-    app: "./src/main.ts",
+    // The hosted e2e server does not rely on external CDN scripts.  Load the
+    // Angular runtime zone before the application bootstrap instead.
+    app: ["zone.js", "./src/main.ts"],
   },
 
   mode: "development",

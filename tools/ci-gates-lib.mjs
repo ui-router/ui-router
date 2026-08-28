@@ -336,6 +336,7 @@ export async function validateCiGates(options = {}) {
       ["test-p01", ["npm", "run", "test:package-artifacts"]],
       ["test-i02", ["npm", "run", "test:integration-matrix"]],
       ["test-c01", ["npm", "run", "test:ci-gates"]],
+      ["test-c02", ["npm", "run", "test:reproducibility"]],
       ["test-history", ["npm", "run", "test:history-migration"]],
     ],
     source: [
@@ -669,7 +670,8 @@ export async function validateCiGates(options = {}) {
       (file) =>
         (file.startsWith(".github/workflows/") && /\.ya?ml$/.test(file)) ||
         /(^|\/)\.travis\.ya?ml$/.test(file)
-    );
+    )
+    .sort();
   const expectedWorkflow =
     options.workflow ?? path.join(root, contract.workflow.path);
   if (existsSync(expectedWorkflow)) {
@@ -679,7 +681,7 @@ export async function validateCiGates(options = {}) {
       .join("/");
     const expectedActive = options.workflow
       ? activeAutomation
-      : [contract.workflow.path];
+      : [contract.workflow.path, ".github/workflows/reproducibility.yml"];
     if (!options.workflow)
       equal(activeAutomation, expectedActive, "active workflow inventory");
     if (lstatSync(expectedWorkflow).isSymbolicLink())

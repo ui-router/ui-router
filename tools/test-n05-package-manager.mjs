@@ -69,6 +69,9 @@ try {
   expectFailure('active-nested-workflow', (root) => {
     cpSync(path.join(root, 'core/.github/workflows/ci.yml.legacy'), path.join(root, 'core/.github/workflows/ci.yml'));
   }, /active source-era workflow remains/);
+  expectFailure('unreviewed-root-workflow', (root) => {
+    writeFileSync(path.join(root, '.github/workflows/source-era.yml'), 'name: source-era\n');
+  }, /active source-era workflow remains/);
   expectFailure('active-travis', (root) => {
     cpSync(path.join(root, 'plugins/redux/.travis.yml.legacy'), path.join(root, 'plugins/redux/.travis.yml'));
   }, /active source-era Travis configuration remains/);

@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "task": "C02",
+  "owner": "ui-router-maintainers",
+  "c01": {
+    "mergeCommit": "ccdeafc6f51ce4ba175f8a590e2a615d6af3d1be",
+    "head": "7cd43281168dd15e20a1f64e9bda33bf98b5b231",
+    "tree": "a5e2d1bca11b54ccf64bc30eb146b03336fa6265"
+  },
+  "bindings": {
+    "ciGatesSha256": "104e8a207dc25b906b52ca20f1736676c2a4b2431a4a1187cd46e62b5a726dbc",
+    "packageJsonSha256": "9a589ce098733681ea3d5571403ae202c59d9463b5c11348daa9325aeca5fe67",
+    "packageLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
+    "turboSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+    "integrationMatrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
+  },
+  "runtime": {
+    "ciImage": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+    "ciImageDigest": "sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "architecture": "x64",
+    "environment": {
+      "CI": "1",
+      "HUSKY": "0",
+      "LC_ALL": "C",
+      "TZ": "UTC",
+      "UV_INDEX_URL": "https://pypi.org/simple",
+      "UV_CACHE_DIR": "/tmp/uirouter-ci-uv-cache",
+      "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright",
+      "CYPRESS_CACHE_FOLDER": "/root/.cache/Cypress",
+      "CHROME_BIN": "/ms-playwright/chromium-1234/chrome-linux64/chrome"
+    },
+    "npmInstallCommand": [
+      "npm",
+      "install",
+      "--global",
+      "npm@11.17.0",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund"
+    ],
+    "npmRegistryBootstrapCommand": [
+      "node",
+      "tools/bootstrap-ci-registry-tarballs.mjs"
+    ]
+  },
+  "actions": {
+    "checkout": {
+      "version": "v4.2.2",
+      "sha": "11bd71901bbe5b1630ceea73d27597364c9af683"
+    },
+    "setupNode": {
+      "version": "v4.4.0",
+      "sha": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+    },
+    "uploadArtifact": {
+      "version": "v4.6.2",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+    }
+  },
+  "workflow": {
+    "path": ".github/workflows/reproducibility.yml",
+    "name": "Clean reproducibility",
+    "runner": "ubuntu-24.04",
+    "triggers": {
+      "pullRequest": true,
+      "pushBranches": ["main"]
+    },
+    "permissions": {
+      "contents": "read"
+    },
+    "concurrency": {
+      "group": "reproducibility-${{ github.workflow }}-${{ github.ref }}",
+      "cancelInProgress": true
+    },
+    "timeoutMinutes": 180,
+    "artifactRetentionDays": 7,
+    "proofArtifactName": "clean-reproducibility-${{ github.sha }}"
+  },
+  "commands": [
+    {
+      "id": "install",
+      "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"]
+    },
+    {
+      "id": "prepare-browser",
+      "argv": ["node", "tools/prepare-workspace-browser.mjs"]
+    },
+    {
+      "id": "setup-browser",
+      "argv": ["npm", "run", "setup:browser", "--", "--concurrency=1", "--cache=local:"]
+    },
+    {
+      "id": "build",
+      "argv": ["npm", "run", "build", "--", "--cache=local:"]
+    },
+    {
+      "id": "test",
+      "argv": ["npm", "run", "test", "--", "--cache=local:", "--env-mode=loose"]
+    },
+    {
+      "id": "prove-packages",
+      "argv": ["npm", "run", "prove:package-artifacts"]
+    },
+    {
+      "id": "stage-packages",
+      "argv": ["node", "tools/stage-ci-package-artifacts.mjs", "--output", ".ci-artifacts/packages"]
+    },
+    {
+      "id": "verify-docs-waivers",
+      "argv": ["node", "tools/verify-ci-docs-waivers.mjs", "--output", ".ci-results/docs/waivers.json"]
+    },
+    {
+      "id": "cleanup-browser",
+      "argv": ["node", "tools/prepare-workspace-browser.mjs", "--cleanup"]
+    }
+  ],
+  "proof": {
+    "runs": 2,
+    "output": ".ci-results/reproducibility/proof.json",
+    "sourceSnapshot": "git-archive",
+    "cleanliness": "git-diff-and-lock"
+  }
+}

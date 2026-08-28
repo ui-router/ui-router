@@ -189,10 +189,14 @@ const forbiddenLockBasenames = new Set([
   'yalc.lock',
   'yarn.lock',
 ]);
+const reviewedWorkflows = new Set([
+  '.github/workflows/ci.yml',
+  '.github/workflows/reproducibility.yml',
+]);
 for (const path of files) {
   const basename = path.split('/').at(-1);
   if (forbiddenLockBasenames.has(basename)) fail(`forbidden current package-manager artifact: ${path}`);
-  if (/(^|\/)\.github\/workflows\/.*\.(?:yml|yaml)$/.test(path) && path !== '.github/workflows/ci.yml') {
+  if (/(^|\/)\.github\/workflows\/.*\.(?:yml|yaml)$/.test(path) && !reviewedWorkflows.has(path)) {
     fail(`active source-era workflow remains: ${path}`);
   }
   if (basename === '.travis.yml') fail(`active source-era Travis configuration remains: ${path}`);
@@ -316,10 +320,15 @@ for (const path of files.filter((path) => path.endsWith('package-lock.json'))) {
 
 const policyPaths = new Set([
   'SPEC.md',
+  'tools/clean-reproducibility-lib.mjs',
   'tools/ci-gates-lib.mjs',
+  'tools/prove-clean-reproducibility.mjs',
   'tools/render-ci-workflow.mjs',
+  'tools/render-reproducibility-workflow.mjs',
   'tools/test-ci-gates.mjs',
+  'tools/test-clean-reproducibility.mjs',
   'tools/verify-ci-gates.mjs',
+  'tools/verify-clean-reproducibility.mjs',
   'tools/test-isolated-projects.mjs',
   'tools/test-n05-package-manager.mjs',
   'tools/verify-isolated-projects.mjs',
@@ -328,6 +337,7 @@ const policyPaths = new Set([
 const migrationControlFiles = new Set([
   'migration/baselines.json',
   'migration/ci-gates.json',
+  'migration/clean-reproducibility.json',
   'migration/execution-lock.json',
   'migration/import-lock.json',
   'migration/integration-matrix.json',

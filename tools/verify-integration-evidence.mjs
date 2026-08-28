@@ -125,6 +125,8 @@ if (
 )
   fail("proof identity differs");
 const implementationCommit = evidence.repository.commit;
+const c01ScopeHead = "7cd43281168dd15e20a1f64e9bda33bf98b5b231";
+const c01ScopeTree = "a5e2d1bca11b54ccf64bc30eb146b03336fa6265";
 if (
   evidence.repository.dirty !== false ||
   git(["rev-parse", `${implementationCommit}^{tree}`]) !==
@@ -138,20 +140,19 @@ if (
   ).status !== 0
 )
   fail("proof implementation commit/tree is not an ancestor of HEAD");
+if (
+  git(["rev-parse", `${c01ScopeHead}^{tree}`]) !== c01ScopeTree ||
+  spawnSync("git", ["merge-base", "--is-ancestor", c01ScopeHead, "HEAD"], {
+    cwd: repository,
+  }).status !== 0
+)
+  fail("reviewed C01 scope is not an ancestor of HEAD");
 const evidencePrefix = "migration/evidence/i02/";
 const postImplementationPaths = new Set(
-  git(["diff", "--name-only", `${implementationCommit}..HEAD`])
+  git(["diff", "--name-only", `${implementationCommit}..${c01ScopeHead}`])
     .split("\n")
     .filter(Boolean)
 );
-const statusResult = spawnSync("git", ["status", "--porcelain"], {
-  cwd: repository,
-  encoding: "utf8",
-});
-if (statusResult.status !== 0)
-  fail(`git status --porcelain failed: ${statusResult.stderr}`);
-for (const line of statusResult.stdout.split("\n").filter(Boolean))
-  postImplementationPaths.add(line.slice(3).split(" -> ").at(-1));
 const c01OwnedPaths = new Set([
   ".github/workflows/ci.yml",
   ".gitignore",

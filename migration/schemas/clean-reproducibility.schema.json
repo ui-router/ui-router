@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/schemas/clean-reproducibility.schema.json",
+  "title": "UI-Router C02 clean reproducibility contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "task",
+    "owner",
+    "c01",
+    "bindings",
+    "runtime",
+    "actions",
+    "workflow",
+    "commands",
+    "proof"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "task": { "const": "C02" },
+    "owner": { "$ref": "#/$defs/nonempty" },
+    "c01": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mergeCommit", "head", "tree"],
+      "properties": {
+        "mergeCommit": { "$ref": "#/$defs/commit" },
+        "head": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ciGatesSha256",
+        "packageJsonSha256",
+        "packageLockSha256",
+        "turboSha256",
+        "packageArtifactsSha256",
+        "baselinesSha256",
+        "integrationMatrixSha256",
+        "executionLockSha256"
+      ],
+      "properties": {
+        "ciGatesSha256": { "$ref": "#/$defs/sha256" },
+        "packageJsonSha256": { "$ref": "#/$defs/sha256" },
+        "packageLockSha256": { "$ref": "#/$defs/sha256" },
+        "turboSha256": { "$ref": "#/$defs/sha256" },
+        "packageArtifactsSha256": { "$ref": "#/$defs/sha256" },
+        "baselinesSha256": { "$ref": "#/$defs/sha256" },
+        "integrationMatrixSha256": { "$ref": "#/$defs/sha256" },
+        "executionLockSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ciImage",
+        "ciImageDigest",
+        "node",
+        "npm",
+        "architecture",
+        "environment",
+        "npmInstallCommand",
+        "npmRegistryBootstrapCommand"
+      ],
+      "properties": {
+        "ciImage": { "type": "string", "pattern": "@sha256:[0-9a-f]{64}$" },
+        "ciImageDigest": { "$ref": "#/$defs/digest" },
+        "node": { "$ref": "#/$defs/nonempty" },
+        "npm": { "$ref": "#/$defs/nonempty" },
+        "architecture": { "const": "x64" },
+        "environment": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "minProperties": 9,
+          "maxProperties": 9
+        },
+        "npmInstallCommand": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonempty" },
+          "minItems": 7,
+          "maxItems": 7
+        },
+        "npmRegistryBootstrapCommand": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonempty" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checkout", "setupNode", "uploadArtifact"],
+      "properties": {
+        "checkout": { "$ref": "#/$defs/action" },
+        "setupNode": { "$ref": "#/$defs/action" },
+        "uploadArtifact": { "$ref": "#/$defs/action" }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "name",
+        "runner",
+        "triggers",
+        "permissions",
+        "concurrency",
+        "timeoutMinutes",
+        "artifactRetentionDays",
+        "proofArtifactName"
+      ],
+      "properties": {
+        "path": { "const": ".github/workflows/reproducibility.yml" },
+        "name": { "const": "Clean reproducibility" },
+        "runner": { "const": "ubuntu-24.04" },
+        "triggers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pullRequest", "pushBranches"],
+          "properties": {
+            "pullRequest": { "const": true },
+            "pushBranches": { "const": ["main"] }
+          }
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["contents"],
+          "properties": { "contents": { "const": "read" } }
+        },
+        "concurrency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["group", "cancelInProgress"],
+          "properties": {
+            "group": { "const": "reproducibility-${{ github.workflow }}-${{ github.ref }}" },
+            "cancelInProgress": { "const": true }
+          }
+        },
+        "timeoutMinutes": { "type": "integer", "minimum": 60, "maximum": 240 },
+        "artifactRetentionDays": { "type": "integer", "minimum": 1, "maximum": 14 },
+        "proofArtifactName": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "commands": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": { "$ref": "#/$defs/command" }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runs", "output", "sourceSnapshot", "cleanliness"],
+      "properties": {
+        "runs": { "const": 2 },
+        "output": { "const": ".ci-results/reproducibility/proof.json" },
+        "sourceSnapshot": { "const": "git-archive" },
+        "cleanliness": { "const": "git-diff-and-lock" }
+      }
+    }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "sha"],
+      "properties": {
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "argv"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "argv": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonempty" }
+        }
+      }
+    }
+  }
+}

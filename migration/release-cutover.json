@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "task": "R01",
+  "status": "ready-for-maintainer-approval",
+  "owner": "ui-router-maintainers",
+  "a01": {
+    "mergeCommit": "7edaccb36f310a8e14cdf5c7d0e1acc9b0affbf9",
+    "tree": "e3d27d2779ffdee4baa61d983a25bd403d7002ad"
+  },
+  "bindings": {
+    "sourcesSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+    "milestoneAcceptanceSha256": "ba3b6e1a4063c4552bf1a5b28c1ad4c4e3f7ec812933119d1941ca369a3f63e4",
+    "cleanReproducibilitySha256": "97b7f893e205cf80fe8726c338fe44aab6fce0cc851ffb92848da789e076e449",
+    "workGraphSha256": "75fe6e9323318f8c72d633a0670b52689e28df01794f791ff153c27faa1f98c0",
+    "planDocumentSha256": "2325a19e9d2200566d307648b1e5655a7689e0de336b4774cc4c4b9751ecf5db"
+  },
+  "scope": {
+    "mode": "design-only",
+    "requiresSeparateExecutionApproval": true,
+    "forbiddenActions": [
+      "npm publish",
+      "npm dist-tag",
+      "git tag",
+      "git push",
+      "create GitHub release",
+      "archive source repository",
+      "redirect source repository",
+      "change source repository permissions"
+    ]
+  },
+  "releaseInventory": {
+    "source": "migration/package-artifacts.json",
+    "count": 12,
+    "packages": [
+      { "id": "core", "name": "@uirouter/core", "version": "6.1.2" },
+      { "id": "angular", "name": "@uirouter/angular", "version": "22.0.0" },
+      { "id": "angular-hybrid", "name": "@uirouter/angular-hybrid", "version": "22.0.0" },
+      { "id": "angularjs", "name": "@uirouter/angularjs", "version": "1.1.2" },
+      { "id": "react", "name": "@uirouter/react", "version": "1.0.8" },
+      { "id": "react-hybrid", "name": "@uirouter/react-hybrid", "version": "2.0.0" },
+      { "id": "dsr", "name": "@uirouter/dsr", "version": "1.2.0" },
+      { "id": "redux", "name": "@uirouter/redux", "version": "1.0.0" },
+      { "id": "rx", "name": "@uirouter/rx", "version": "1.0.0" },
+      { "id": "sticky-states", "name": "@uirouter/sticky-states", "version": "1.5.1" },
+      { "id": "visualizer", "name": "@uirouter/visualizer", "version": "7.2.1" },
+      { "id": "publish-scripts", "name": "@uirouter/publish-scripts", "version": "2.8.0" }
+    ]
+  },
+  "sourceRepositories": {
+    "source": "migration/sources.json",
+    "count": 16,
+    "names": [
+      "core",
+      "dsr",
+      "rx",
+      "redux",
+      "sticky-states",
+      "visualizer",
+      "angularjs",
+      "sample-app-angularjs",
+      "angular",
+      "sample-app-angular",
+      "angular-hybrid",
+      "sample-app-angular-hybrid",
+      "react",
+      "sample-app-react",
+      "react-hybrid",
+      "publish-scripts"
+    ]
+  },
+  "decisionGates": [
+    {
+      "id": "release-policy",
+      "status": "pending",
+      "approval": "maintainer",
+      "evidence": [
+        "chosen versioning, changelog, and release tooling",
+        "first-release version and prerelease policy for every package",
+        "Angular and Angular Hybrid lockstep policy"
+      ]
+    },
+    {
+      "id": "registry-access-and-provenance",
+      "status": "pending",
+      "approval": "maintainer",
+      "evidence": [
+        "npm organization, ownership, 2FA, and recovery access verified",
+        "provenance and signing policy approved",
+        "least-privilege publish credential rehearsal"
+      ]
+    },
+    {
+      "id": "publish-order-and-promotion",
+      "status": "pending",
+      "approval": "maintainer",
+      "evidence": [
+        "dependency order derived from the final package graph",
+        "clean package and consumer dry-run evidence",
+        "dist-tag promotion, stop, and communication plan"
+      ]
+    },
+    {
+      "id": "source-repository-transition",
+      "status": "pending",
+      "approval": "maintainer",
+      "evidence": [
+        "per-repository archive, read-only, or retained-write policy for all 16 sources",
+        "redirect and documentation wording reviewed",
+        "source history, tags, issues, and releases preservation check"
+      ]
+    },
+    {
+      "id": "rollback-rehearsal",
+      "status": "pending",
+      "approval": "maintainer",
+      "evidence": [
+        "pre-publication rollback rehearsal",
+        "post-publication dist-tag, deprecation, and corrective-release rehearsal",
+        "incident owner and communication rehearsal"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "id": "freeze-and-eligibility",
+      "mode": "future-execution",
+      "requires": ["release-policy", "registry-access-and-provenance"],
+      "exit": "A clean, immutable release candidate has passed the full milestone-one validation and has an approved release manifest."
+    },
+    {
+      "id": "pack-and-consumer-dry-run",
+      "mode": "future-execution",
+      "requires": ["release-policy", "registry-access-and-provenance", "publish-order-and-promotion"],
+      "exit": "Every selected package is reproducibly packed, checked against its package contract, and installed by clean representative consumers without registry fallback."
+    },
+    {
+      "id": "publish-and-promotion",
+      "mode": "future-execution",
+      "requires": ["publish-order-and-promotion"],
+      "exit": "Packages are published in the approved dependency order, verified from the registry, and promoted only after the approved consumer checks pass."
+    },
+    {
+      "id": "git-release-and-observation",
+      "mode": "future-execution",
+      "requires": ["publish-order-and-promotion"],
+      "exit": "Git tags and release notes match the published package artifacts, and the agreed observation window has no unresolved release incident."
+    },
+    {
+      "id": "source-repository-transition",
+      "mode": "future-execution",
+      "requires": ["source-repository-transition"],
+      "exit": "Every original repository has its individually approved transition applied only after the stable-release observation window."
+    },
+    {
+      "id": "rollback-rehearsal-and-closeout",
+      "mode": "future-execution",
+      "requires": ["rollback-rehearsal"],
+      "exit": "The approved rollback paths have been rehearsed and the cutover evidence, owners, and follow-up work are recorded."
+    }
+  ],
+  "rollback": {
+    "beforePublication": "Stop the release, preserve the evidence, and revert or abandon the release branch. Do not change npm, GitHub releases, or source repositories.",
+    "afterPublication": "Do not rely on unpublishing. Stop promotion, restore or remove affected dist-tags, deprecate the bad version when appropriate, publish a corrective version, and communicate the incident.",
+    "sourceRepositories": "Do not archive, redirect, or change permissions until the release has completed its observation window; if a transition has already occurred, restore the approved write/archive state from the per-repository record."
+  }
+}

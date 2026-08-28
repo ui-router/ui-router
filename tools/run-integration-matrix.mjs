@@ -35,6 +35,7 @@ import {
   validateIntegrationMatrix,
 } from "./integration-matrix-lib.mjs";
 import { validateJsonSchema } from "./validate-migration-contract.mjs";
+import { validateCiPackageInput } from "./ci-package-input-lib.mjs";
 
 function die(message) {
   throw new Error(`INTEGRATION_RUN_FAILED: ${message}`);
@@ -55,6 +56,7 @@ const knownValueArguments = new Set([
   "--mode",
   "--cache-root",
   "--output",
+  "--artifacts",
 ]);
 const knownFlags = new Set(["--reset", "--retain", "--write"]);
 for (let index = 2; index < process.argv.length; index += 1) {
@@ -71,13 +73,14 @@ const resetRequested = process.argv.includes("--reset");
 const retain = process.argv.includes("--retain");
 const writeEvidence = process.argv.includes("--write");
 const cacheArgument = value("--cache-root");
+const artifactArgument = value("--artifacts");
 if (mode === "reuse" && !cacheArgument)
   die("reuse mode requires --cache-root outside repository ancestry");
 if (mode === "clean" && (cacheArgument || resetRequested))
   die("--cache-root and --reset are reuse-only");
 
 const validated = await validateIntegrationMatrix();
-const { matrix, packageArtifacts, artifactById, publishedNames } = validated;
+const { matrix, artifactById, publishedNames } = validated;
 if (process.version !== `v${matrix.runtime.node}`)
   die(`Node ${matrix.runtime.node} required, got ${process.version}`);
 const npmVersion = spawnSync("npm", ["--version"], { encoding: "utf8" });
@@ -129,6 +132,25 @@ if (
 )
   die(`unsafe output path: ${outputRoot}`);
 rejectSymlinkComponents(outputRoot);
+const prebuiltArtifactRoot = artifactArgument
+  ? path.resolve(repository, artifactArgument)
+  : null;
+if (prebuiltArtifactRoot) {
+  if (
+    lexicallyInside(outputRoot, prebuiltArtifactRoot) ||
+    lexicallyInside(prebuiltArtifactRoot, outputRoot)
+  )
+    die("prebuilt artifact input and output paths overlap");
+  rejectSymlinkComponents(prebuiltArtifactRoot);
+  if (
+    !existsSync(prebuiltArtifactRoot) ||
+    !lstatSync(prebuiltArtifactRoot).isDirectory() ||
+    lstatSync(prebuiltArtifactRoot).isSymbolicLink()
+  )
+    die(
+      `prebuilt artifact input is not a physical directory: ${prebuiltArtifactRoot}`
+    );
+}
 rmSync(outputRoot, { recursive: true, force: true });
 mkdirSync(outputRoot, { recursive: true });
 const cacheRoot = cacheArgument ? path.resolve(cacheArgument) : null;
@@ -344,19 +366,26 @@ function directorySha256(directory, ignored) {
   return sha256(canonicalJson(treeRecords(directory, ignored)));
 }
 
-function collectArtifacts() {
-  for (const entry of readdirSync(artifactStagingRoot)) {
-    const target = path.join(artifactStagingRoot, entry);
-    if (lstatSync(target).isSymbolicLink())
-      die(`artifact staging contains a symbolic link: ${target}`);
-    rmSync(target, { recursive: true, force: true });
-  }
+function copyArtifact(record, sourceTarball, records) {
+  const destination = path.join(runRoot, "artifacts", record.filename);
+  cpSync(sourceTarball, destination, { force: true });
+  const sourceStat = statSync(sourceTarball);
+  const destinationStat = statSync(destination);
+  if (
+    sourceStat.dev === destinationStat.dev &&
+    sourceStat.ino === destinationStat.ino
+  )
+    die(`${record.artifactId}: artifact staging used a hard link`);
+  if (sha256File(destination) !== record.sha256)
+    die(`${record.artifactId}: staged artifact digest differs`);
+  records.push({ ...record, path: destination });
+}
+function collectProducedArtifacts(records) {
   requiredCommand(
     matrix.artifactPolicy.producerCommand,
     repository,
     "P01 artifact producer"
   );
-  const records = [];
   for (const artifactId of matrix.artifactPolicy.artifactIds) {
     const contractRecord = artifactById.get(artifactId);
     const packageRoot = path.join(
@@ -390,29 +419,60 @@ function collectArtifacts() {
       !tarballName.includes(`-sha256-${metadata.sha256}.tgz`)
     )
       die(`${artifactId}: P01 artifact metadata differs`);
-    const destination = path.join(runRoot, "artifacts", tarballName);
-    cpSync(sourceTarball, destination, { force: true });
-    const sourceStat = statSync(sourceTarball);
-    const destinationStat = statSync(destination);
-    if (
-      sourceStat.dev === destinationStat.dev &&
-      sourceStat.ino === destinationStat.ino
-    )
-      die(`${artifactId}: artifact staging used a hard link`);
-    if (sha256File(destination) !== metadata.sha256)
-      die(`${artifactId}: staged artifact digest differs`);
-    records.push({
-      artifactId,
-      package: metadata.package,
-      version: metadata.version,
-      filename: tarballName,
-      path: destination,
-      sha256: metadata.sha256,
-      integrity: metadata.integrity,
-      metadataSha256: sha256(metadataBytes),
-      filesSha256: sha256(canonicalJson(metadata.files)),
-    });
+    copyArtifact(
+      {
+        artifactId,
+        package: metadata.package,
+        version: metadata.version,
+        filename: tarballName,
+        sha256: metadata.sha256,
+        integrity: metadata.integrity,
+        metadataSha256: sha256(metadataBytes),
+        filesSha256: sha256(canonicalJson(metadata.files)),
+      },
+      sourceTarball,
+      records
+    );
   }
+}
+function collectPrebuiltArtifacts(records) {
+  let supplied;
+  try {
+    supplied = validateCiPackageInput(prebuiltArtifactRoot, {
+      repository,
+      repositoryRevision: repositoryState.commit,
+      selectedIds: matrix.artifactPolicy.artifactIds,
+    });
+  } catch (error) {
+    die(error instanceof Error ? error.message : String(error));
+  }
+  for (const record of supplied) {
+    copyArtifact(
+      {
+        artifactId: record.artifactId,
+        package: record.package,
+        version: record.version,
+        filename: record.filename,
+        sha256: record.sha256,
+        integrity: record.integrity,
+        metadataSha256: record.metadataSha256,
+        filesSha256: record.filesSha256,
+      },
+      record.path,
+      records
+    );
+  }
+}
+function collectArtifacts() {
+  for (const entry of readdirSync(artifactStagingRoot)) {
+    const target = path.join(artifactStagingRoot, entry);
+    if (lstatSync(target).isSymbolicLink())
+      die(`artifact staging contains a symbolic link: ${target}`);
+    rmSync(target, { recursive: true, force: true });
+  }
+  const records = [];
+  if (prebuiltArtifactRoot) collectPrebuiltArtifacts(records);
+  else collectProducedArtifacts(records);
   records.sort((left, right) =>
     left.artifactId.localeCompare(right.artifactId)
   );

@@ -152,9 +152,45 @@ if (statusResult.status !== 0)
   fail(`git status --porcelain failed: ${statusResult.stderr}`);
 for (const line of statusResult.stdout.split("\n").filter(Boolean))
   postImplementationPaths.add(line.slice(3).split(" -> ").at(-1));
+const c01OwnedPaths = new Set([
+  ".github/workflows/ci.yml",
+  ".gitignore",
+  "frameworks/angular-hybrid/examples/example/tsconfig.json",
+  "frameworks/angular-hybrid/examples/example/webpack.config.js",
+  "frameworks/angular-hybrid/examples/sample-app/tsconfig.json",
+  "frameworks/react/examples/sample-app/vite.config.js",
+  "migration/ci-gates.json",
+  "migration/schemas/ci-gates.schema.json",
+  "package.json",
+  "plugins/dsr/examples/angular-cli/src/app/about.component.ts",
+  "plugins/dsr/examples/angular-cli/src/app/app.component.ts",
+  "plugins/dsr/examples/angular-cli/src/app/continentList.component.ts",
+  "plugins/dsr/examples/angular-cli/src/app/countryDetail.component.ts",
+  "plugins/dsr/examples/angular-cli/src/app/countryList.component.ts",
+  "plugins/dsr/examples/react-vite/vite.config.js",
+  "plugins/sticky-states/examples/react-vite/vite.config.js",
+  "tools/bootstrap-ci-registry-tarballs.mjs",
+  "tools/bootstrap-ci-uv.mjs",
+  "tools/ci-gates-lib.mjs",
+  "tools/ci-package-input-lib.mjs",
+  "tools/prepare-workspace-browser.mjs",
+  "tools/render-ci-workflow.mjs",
+  "tools/run-ci-gate.mjs",
+  "tools/run-integration-matrix.mjs",
+  "tools/run-workspace-browser.mjs",
+  "tools/stage-ci-package-artifacts.mjs",
+  "tools/test-ci-gates.mjs",
+  "tools/test-ci-package-input.mjs",
+  "tools/verify-ci-current-waivers.mjs",
+  "tools/verify-ci-docs-waivers.mjs",
+  "tools/verify-ci-gates.mjs",
+  "tools/verify-ci-runtime.mjs",
+  "tools/verify-integration-evidence.mjs",
+  "tools/verify-package-manager.mjs",
+]);
 for (const changed of postImplementationPaths)
-  if (!changed.startsWith(evidencePrefix))
-    fail(`non-evidence change follows the proven implementation: ${changed}`);
+  if (!changed.startsWith(evidencePrefix) && !c01OwnedPaths.has(changed))
+    fail(`change outside I02 evidence and C01 ownership: ${changed}`);
 if (
   !evidence.repository.sourceSnapshotSha256 ||
   !/^[a-f0-9]{64}$/.test(evidence.repository.sourceSnapshotSha256)

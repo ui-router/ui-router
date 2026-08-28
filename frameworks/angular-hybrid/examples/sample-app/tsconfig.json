@@ -8,14 +8,14 @@
     "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "module": "es2020",
+    "paths": {
+      "@uirouter/angular": ["../../../angular/uirouter-angular/dist"],
+      "@uirouter/angular-hybrid": ["../../uirouter-angular-hybrid/dist"]
+    },
+    "skipLibCheck": true,
     "strict": false,
     "useDefineForClassFields": false
   }

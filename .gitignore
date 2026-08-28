@@ -3,4 +3,8 @@ node_modules/
 .artifacts/
 .integration-cache/
 .migration-work/
+.ci-results/
+.ci-artifacts/
+.ci-input/
+.ci-work/
 *.tgz

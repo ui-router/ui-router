@@ -1,0 +1,1733 @@
+{
+  "schemaVersion": 1,
+  "owner": "ui-router-maintainers",
+  "bindings": {
+    "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
+    "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
+    "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
+    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
+    "integrationMatrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
+    "packageLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
+    "turboSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10"
+  },
+  "workflow": {
+    "path": ".github/workflows/ci.yml",
+    "name": "CI",
+    "runner": "ubuntu-24.04",
+    "triggers": {
+      "pullRequest": true,
+      "pushBranches": ["main"]
+    },
+    "permissions": {
+      "contents": "read"
+    },
+    "concurrency": {
+      "group": "ci-${{ github.workflow }}-${{ github.ref }}",
+      "cancelInProgress": true
+    },
+    "artifactRetentionDays": 7,
+    "packageArtifactName": "packages-${{ github.sha }}",
+    "aggregateJob": "required"
+  },
+  "runtime": {
+    "migrationImageDigest": "sha256:56ab6ddaab798f0664b18448a1226bfa9e43aefaa90af280ff79d05c350a2ef8",
+    "ciImage": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+    "ciImageDigest": "sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+    "os": "Ubuntu 24.04",
+    "architecture": "x64",
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "turbo": "2.10.12",
+    "environment": {
+      "CI": "1",
+      "HUSKY": "0",
+      "LC_ALL": "C",
+      "TZ": "UTC",
+      "UV_INDEX_URL": "https://pypi.org/simple",
+      "UV_CACHE_DIR": "/tmp/uirouter-ci-uv-cache",
+      "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright",
+      "CYPRESS_CACHE_FOLDER": "/root/.cache/Cypress",
+      "CHROME_BIN": "/ms-playwright/chromium-1234/chrome-linux64/chrome"
+    },
+    "npmRegistryBootstrapCommand": [
+      "node",
+      "tools/bootstrap-ci-registry-tarballs.mjs"
+    ],
+    "uv": {
+      "version": "0.11.26",
+      "versionOutput": "uv 0.11.26 (x86_64-unknown-linux-gnu)",
+      "archiveUrl": "https://github.com/astral-sh/uv/releases/download/0.11.26/uv-x86_64-unknown-linux-gnu.tar.gz",
+      "archiveSha256": "6426a73c3837e6e2483ee344cbc00f36394d179afcba6183cb77437e67db4af0",
+      "bootstrapCommand": [
+        "node",
+        "tools/bootstrap-ci-uv.mjs"
+      ]
+    },
+    "browser": {
+      "package": "@playwright/test",
+      "version": "1.62.1",
+      "name": "chromium",
+      "revision": "1234",
+      "versionString": "151.0.7922.34",
+      "executableSha256": "0b20b130e7edd9dd51873be867761295fe0cfad490c2b9a64f95bd3cfc08fa71"
+    },
+    "npmInstallCommand": [
+      "npm",
+      "install",
+      "--global",
+      "npm@11.17.0",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund"
+    ]
+  },
+  "actions": {
+    "checkout": {
+      "version": "v4.2.2",
+      "sha": "11bd71901bbe5b1630ceea73d27597364c9af683"
+    },
+    "setupNode": {
+      "version": "v4.4.0",
+      "sha": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+    },
+    "uploadArtifact": {
+      "version": "v4.6.2",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+    },
+    "downloadArtifact": {
+      "version": "v4.3.0",
+      "sha": "d3f86a106a0bac45b974a628896c90dbdf5c8093"
+    }
+  },
+  "gateIds": [
+    "history",
+    "layout",
+    "install",
+    "dependency-policy",
+    "static-quality",
+    "source-linked-tests",
+    "production-builds",
+    "packed-consumers",
+    "isolated-matrix",
+    "workspace-browser",
+    "docs"
+  ],
+  "jobs": [
+    {
+      "id": "contracts",
+      "needs": [],
+      "gateIds": [
+        "history",
+        "layout",
+        "install",
+        "dependency-policy",
+        "static-quality"
+      ],
+      "timeoutMinutes": 90,
+      "commands": [
+        {
+          "id": "runtime",
+          "argv": ["node", "tools/verify-ci-runtime.mjs"],
+          "timeoutMinutes": 2
+        },
+        {
+          "id": "check-locks",
+          "argv": ["npm", "run", "verify:locks"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "check-layout",
+          "argv": ["npm", "run", "verify:layout"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "prove-installs",
+          "argv": ["npm", "run", "prove:installs:ci"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "install",
+          "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "check-static",
+          "argv": ["npm", "run", "check:static:installed"],
+          "timeoutMinutes": 20
+        },
+        {
+          "id": "test-n04",
+          "argv": ["npm", "run", "test:n04-validators"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-n05",
+          "argv": ["npm", "run", "test:n05-package-manager"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-s01",
+          "argv": ["npm", "run", "test:s01"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-s02",
+          "argv": ["npm", "run", "test:source-aliases"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-s03",
+          "argv": ["npm", "run", "test:turbo"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-i01",
+          "argv": ["npm", "run", "test:isolated"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-p01",
+          "argv": ["npm", "run", "test:package-artifacts"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-i02",
+          "argv": ["npm", "run", "test:integration-matrix"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-c01",
+          "argv": ["npm", "run", "test:ci-gates"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-history",
+          "argv": ["npm", "run", "test:history-migration"],
+          "timeoutMinutes": 30
+        }
+      ],
+      "failurePaths": [".ci-results/contracts/**"]
+    },
+    {
+      "id": "source",
+      "needs": [],
+      "gateIds": ["static-quality", "source-linked-tests"],
+      "timeoutMinutes": 90,
+      "commands": [
+        {
+          "id": "runtime",
+          "argv": ["node", "tools/verify-ci-runtime.mjs"],
+          "timeoutMinutes": 2
+        },
+        {
+          "id": "install",
+          "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "lint",
+          "argv": [
+            "npm",
+            "run",
+            "lint",
+            "--",
+            "--filter=!@uirouter/angularjs",
+            "--cache=local:"
+          ],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "angularjs-lint-waiver",
+          "argv": [
+            "node",
+            "tools/verify-ci-current-waivers.mjs",
+            "--output",
+            ".ci-results/source/angularjs-lint-waiver.json"
+          ],
+          "timeoutMinutes": 5
+        },
+        {
+          "id": "typecheck",
+          "argv": ["npm", "run", "typecheck", "--", "--cache=local:"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test",
+          "argv": ["npm", "run", "test", "--", "--cache=local:", "--env-mode=loose"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "source-commands",
+          "argv": ["npm", "run", "prove:source-commands"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "source-watch",
+          "argv": ["npm", "run", "prove:source-watch"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "source-packs",
+          "argv": ["npm", "run", "prove:source-packs"],
+          "timeoutMinutes": 30
+        }
+      ],
+      "failurePaths": [".ci-results/source/**"]
+    },
+    {
+      "id": "packages",
+      "needs": [],
+      "gateIds": ["production-builds", "packed-consumers"],
+      "timeoutMinutes": 90,
+      "commands": [
+        {
+          "id": "runtime",
+          "argv": ["node", "tools/verify-ci-runtime.mjs"],
+          "timeoutMinutes": 2
+        },
+        {
+          "id": "install",
+          "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "prove-packages",
+          "argv": ["npm", "run", "prove:package-artifacts"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "stage-packages",
+          "argv": [
+            "node",
+            "tools/stage-ci-package-artifacts.mjs",
+            "--output",
+            ".ci-artifacts/packages"
+          ],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "test-package-input",
+          "argv": [
+            "node",
+            "tools/test-ci-package-input.mjs",
+            "--input",
+            ".ci-artifacts/packages"
+          ],
+          "timeoutMinutes": 10
+        }
+      ],
+      "failurePaths": [
+        ".ci-results/packages/**",
+        ".migration-work/package-proof/**",
+        ".ci-artifacts/packages/hashes.json"
+      ]
+    },
+    {
+      "id": "browser",
+      "needs": [],
+      "gateIds": ["workspace-browser"],
+      "timeoutMinutes": 90,
+      "commands": [
+        {
+          "id": "runtime",
+          "argv": ["node", "tools/verify-ci-runtime.mjs"],
+          "timeoutMinutes": 2
+        },
+        {
+          "id": "stage-install",
+          "argv": [
+            "node",
+            "tools/run-workspace-browser.mjs",
+            "--phase",
+            "install"
+          ],
+          "timeoutMinutes": 20
+        },
+        {
+          "id": "stage-build",
+          "argv": [
+            "node",
+            "tools/run-workspace-browser.mjs",
+            "--phase",
+            "build"
+          ],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "stage-setup",
+          "argv": [
+            "node",
+            "tools/run-workspace-browser.mjs",
+            "--phase",
+            "setup"
+          ],
+          "timeoutMinutes": 20
+        },
+        {
+          "id": "stage-e2e",
+          "argv": ["node", "tools/run-workspace-browser.mjs", "--phase", "e2e"],
+          "timeoutMinutes": 30
+        },
+        {
+          "id": "stage-cleanup",
+          "argv": [
+            "node",
+            "tools/run-workspace-browser.mjs",
+            "--phase",
+            "cleanup"
+          ],
+          "timeoutMinutes": 5
+        }
+      ],
+      "failurePaths": [
+        ".ci-results/browser/**",
+        "**/test-results/**",
+        "**/playwright-report/**",
+        "**/cypress/screenshots/**",
+        "**/cypress/videos/**"
+      ]
+    },
+    {
+      "id": "docs",
+      "needs": [],
+      "gateIds": ["docs"],
+      "timeoutMinutes": 10,
+      "commands": [
+        {
+          "id": "runtime",
+          "argv": ["node", "tools/verify-ci-runtime.mjs"],
+          "timeoutMinutes": 2
+        },
+        {
+          "id": "docs-waivers",
+          "argv": [
+            "node",
+            "tools/verify-ci-docs-waivers.mjs",
+            "--output",
+            ".ci-results/docs/waivers.json"
+          ],
+          "timeoutMinutes": 30
+        }
+      ],
+      "failurePaths": [".ci-results/docs/**"]
+    }
+  ],
+  "integration": {
+    "jobId": "integration",
+    "needs": ["packages"],
+    "gateIds": ["isolated-matrix"],
+    "failFast": false,
+    "inputDirectory": ".ci-input/packages",
+    "outputPrefix": ".migration-work/i02/ci-",
+    "shards": [
+      {
+        "id": "core",
+        "projectIds": [
+          "core/integration/typescript-3.9",
+          "core/integration/typescript-5.4"
+        ],
+        "commands": [
+          {
+            "id": "runtime",
+            "argv": ["node", "tools/verify-ci-runtime.mjs"],
+            "timeoutMinutes": 2
+          },
+          {
+            "id": "install",
+            "argv": [
+              "npm",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "timeoutMinutes": 10
+          },
+          {
+            "id": "integration",
+            "argv": [
+              "node",
+              "tools/run-integration-matrix.mjs",
+              "--mode",
+              "clean",
+              "--retain",
+              "--artifacts",
+              ".ci-input/packages",
+              "--output",
+              ".migration-work/i02/ci-core",
+              "--project",
+              "core/integration/typescript-3.9",
+              "--project",
+              "core/integration/typescript-5.4"
+            ],
+            "timeoutMinutes": 90
+          },
+          {
+            "id": "verify-integration",
+            "argv": [
+              "node",
+              "tools/verify-integration-run.mjs",
+              "--root",
+              ".migration-work/i02/ci-core"
+            ],
+            "timeoutMinutes": 10
+          }
+        ]
+      },
+      {
+        "id": "angular",
+        "projectIds": [
+          "framework/angular/integration/angular-versions/v22",
+          "framework/angular/integration/angular-versions/v22-standalone",
+          "framework/angular/integration/angular-versions/v22-zoneless",
+          "framework/angular/integration/typescript-versions/typescript6"
+        ],
+        "commands": [
+          {
+            "id": "runtime",
+            "argv": ["node", "tools/verify-ci-runtime.mjs"],
+            "timeoutMinutes": 2
+          },
+          {
+            "id": "install",
+            "argv": [
+              "npm",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "timeoutMinutes": 10
+          },
+          {
+            "id": "integration",
+            "argv": [
+              "node",
+              "tools/run-integration-matrix.mjs",
+              "--mode",
+              "clean",
+              "--retain",
+              "--artifacts",
+              ".ci-input/packages",
+              "--output",
+              ".migration-work/i02/ci-angular",
+              "--project",
+              "framework/angular/integration/angular-versions/v22",
+              "--project",
+              "framework/angular/integration/angular-versions/v22-standalone",
+              "--project",
+              "framework/angular/integration/angular-versions/v22-zoneless",
+              "--project",
+              "framework/angular/integration/typescript-versions/typescript6"
+            ],
+            "timeoutMinutes": 90
+          },
+          {
+            "id": "verify-integration",
+            "argv": [
+              "node",
+              "tools/verify-integration-run.mjs",
+              "--root",
+              ".migration-work/i02/ci-angular"
+            ],
+            "timeoutMinutes": 10
+          }
+        ]
+      },
+      {
+        "id": "angularjs",
+        "projectIds": [
+          "framework/angularjs/integration/typescript-versions/3.9"
+        ],
+        "commands": [
+          {
+            "id": "runtime",
+            "argv": ["node", "tools/verify-ci-runtime.mjs"],
+            "timeoutMinutes": 2
+          },
+          {
+            "id": "install",
+            "argv": [
+              "npm",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "timeoutMinutes": 10
+          },
+          {
+            "id": "integration",
+            "argv": [
+              "node",
+              "tools/run-integration-matrix.mjs",
+              "--mode",
+              "clean",
+              "--retain",
+              "--artifacts",
+              ".ci-input/packages",
+              "--output",
+              ".migration-work/i02/ci-angularjs",
+              "--project",
+              "framework/angularjs/integration/typescript-versions/3.9"
+            ],
+            "timeoutMinutes": 90
+          },
+          {
+            "id": "verify-integration",
+            "argv": [
+              "node",
+              "tools/verify-integration-run.mjs",
+              "--root",
+              ".migration-work/i02/ci-angularjs"
+            ],
+            "timeoutMinutes": 10
+          }
+        ]
+      },
+      {
+        "id": "react",
+        "projectIds": [
+          "framework/react/integration/react17",
+          "framework/react/integration/react18",
+          "framework/react/integration/react19"
+        ],
+        "commands": [
+          {
+            "id": "runtime",
+            "argv": ["node", "tools/verify-ci-runtime.mjs"],
+            "timeoutMinutes": 2
+          },
+          {
+            "id": "install",
+            "argv": [
+              "npm",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "timeoutMinutes": 10
+          },
+          {
+            "id": "integration",
+            "argv": [
+              "node",
+              "tools/run-integration-matrix.mjs",
+              "--mode",
+              "clean",
+              "--retain",
+              "--artifacts",
+              ".ci-input/packages",
+              "--output",
+              ".migration-work/i02/ci-react",
+              "--project",
+              "framework/react/integration/react17",
+              "--project",
+              "framework/react/integration/react18",
+              "--project",
+              "framework/react/integration/react19"
+            ],
+            "timeoutMinutes": 90
+          },
+          {
+            "id": "verify-integration",
+            "argv": [
+              "node",
+              "tools/verify-integration-run.mjs",
+              "--root",
+              ".migration-work/i02/ci-react"
+            ],
+            "timeoutMinutes": 10
+          }
+        ]
+      },
+      {
+        "id": "react-hybrid",
+        "projectIds": [
+          "framework/react-hybrid/integration/react16",
+          "framework/react-hybrid/integration/react17",
+          "framework/react-hybrid/integration/react18",
+          "framework/react-hybrid/integration/react19"
+        ],
+        "commands": [
+          {
+            "id": "runtime",
+            "argv": ["node", "tools/verify-ci-runtime.mjs"],
+            "timeoutMinutes": 2
+          },
+          {
+            "id": "install",
+            "argv": [
+              "npm",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "timeoutMinutes": 10
+          },
+          {
+            "id": "integration",
+            "argv": [
+              "node",
+              "tools/run-integration-matrix.mjs",
+              "--mode",
+              "clean",
+              "--retain",
+              "--artifacts",
+              ".ci-input/packages",
+              "--output",
+              ".migration-work/i02/ci-react-hybrid",
+              "--project",
+              "framework/react-hybrid/integration/react16",
+              "--project",
+              "framework/react-hybrid/integration/react17",
+              "--project",
+              "framework/react-hybrid/integration/react18",
+              "--project",
+              "framework/react-hybrid/integration/react19"
+            ],
+            "timeoutMinutes": 90
+          },
+          {
+            "id": "verify-integration",
+            "argv": [
+              "node",
+              "tools/verify-integration-run.mjs",
+              "--root",
+              ".migration-work/i02/ci-react-hybrid"
+            ],
+            "timeoutMinutes": 10
+          }
+        ]
+      }
+    ],
+    "failurePaths": [
+      ".ci-results/integration-${shard}/**",
+      ".migration-work/i02/ci-${shard}/**"
+    ]
+  },
+  "aggregate": {
+    "id": "required",
+    "needs": [
+      "contracts",
+      "source",
+      "packages",
+      "integration",
+      "browser",
+      "docs"
+    ],
+    "requireResult": "success"
+  },
+  "artifacts": {
+    "packages": {
+      "producerJob": "packages",
+      "consumerJob": "integration",
+      "directory": ".ci-artifacts/packages",
+      "inputDirectory": ".ci-input/packages",
+      "artifactIds": [
+        "angular",
+        "angular-hybrid",
+        "angularjs",
+        "core",
+        "dsr",
+        "publish-scripts",
+        "react",
+        "react-hybrid",
+        "redux",
+        "rx",
+        "sticky-states",
+        "visualizer"
+      ],
+      "integrationArtifactIds": [
+        "angular",
+        "angularjs",
+        "core",
+        "react",
+        "react-hybrid",
+        "rx",
+        "visualizer"
+      ],
+      "compressionLevel": 0,
+      "includeHiddenFiles": true,
+      "retentionDays": 7
+    }
+  },
+  "browserWorkspaces": [
+    "@uirouter/internal-framework-angular-examples-sample-app",
+    "@uirouter/internal-framework-angular-hybrid-examples-example",
+    "@uirouter/internal-framework-angular-hybrid-examples-sample-app",
+    "@uirouter/internal-framework-angularjs-examples-sample-app",
+    "@uirouter/internal-framework-react-examples-sample-app",
+    "@uirouter/internal-plugins-dsr-examples-angular-cli",
+    "@uirouter/internal-plugins-dsr-examples-angularjs-webpack",
+    "@uirouter/internal-plugins-dsr-examples-react-vite",
+    "@uirouter/internal-plugins-sticky-states-examples-angular-cli",
+    "@uirouter/internal-plugins-sticky-states-examples-angularjs-webpack",
+    "@uirouter/internal-plugins-sticky-states-examples-react-vite"
+  ],
+  "docsWaivers": [
+    {
+      "baselineId": "angular.root.docs",
+      "evidence": {
+        "path": "migration/control-evidence/baselines/angular.root.docs.json",
+        "sha256": "38953398097cb10038a3cb8b77c5388dde1156c18a1d71678204e2fa93160050"
+      },
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      }
+    },
+    {
+      "baselineId": "angularjs.root.docs",
+      "evidence": {
+        "path": "migration/control-evidence/baselines/angularjs.root.docs.json",
+        "sha256": "c49b955ce0152f418355379b86e40d57e7e812a8de7122a290022ebe3ee837a7"
+      },
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      }
+    },
+    {
+      "baselineId": "core.root.docs",
+      "evidence": {
+        "path": "migration/control-evidence/baselines/core.root.docs.json",
+        "sha256": "66b6bf387f39b2d7bb58c33a993e4dfbb805e784bef55c57440f6abba78968f3"
+      },
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      }
+    },
+    {
+      "baselineId": "react.root.docs",
+      "evidence": {
+        "path": "migration/control-evidence/baselines/react.root.docs.json",
+        "sha256": "a3c3a895df4b14c6a666b978855f06557dd5c62a82cb63ac432ba4337fe6b38b"
+      },
+      "waiver": {
+        "expires": "2026-09-30",
+        "owner": "ui-router-maintainers",
+        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
+        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
+      }
+    }
+  ],
+  "currentWaivers": [
+    {
+      "id": "i02-react-hybrid-react16-peer-mismatch",
+      "projectId": "framework/react-hybrid/integration/react16",
+      "baselineId": "i02-react-hybrid-react16-peer-mismatch",
+      "owner": "ui-router-maintainers",
+      "reason": "The retained React 16 fixture conflicts with the exact local @uirouter/react 1.0.8 peer range even though @uirouter/react-hybrid 2.0.0 advertises React 16.8 support.",
+      "trackingIssue": "https://github.com/ui-router/ui-router/issues/20",
+      "expires": "2026-10-31"
+    },
+    {
+      "id": "angularjs-eslint-root-resolution",
+      "projectId": "frameworks/angularjs/uirouter-angularjs",
+      "baselineId": "angularjs.manifest.root.static",
+      "owner": "ui-router-maintainers",
+      "reason": "The legacy AngularJS ESLint 7 and @typescript-eslint 3 lane resolves hoisted experimental utilities against root ESLint 8 and fails before linting. Other lint tasks remain active; no override or peer bypass is applied.",
+      "trackingIssue": "https://github.com/ui-router/ui-router/issues/22",
+      "expires": "2026-10-31"
+    }
+  ],
+  "baselineCoverage": [
+    {
+      "baselineId": "angular-hybrid.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.downstream.default.example.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.downstream.default.sample-app-angular-hybrid.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.manifest.example.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular-hybrid.v21.build",
+      "disposition": "historical-only",
+      "gateIds": ["history"],
+      "reason": "The approved Angular Hybrid 21 baseline is immutable pre-alignment evidence; current CI tests aligned version 22."
+    },
+    {
+      "baselineId": "angular-hybrid.v21.install",
+      "disposition": "historical-only",
+      "gateIds": ["history"],
+      "reason": "The approved Angular Hybrid 21 baseline is immutable pre-alignment evidence; current CI tests aligned version 22."
+    },
+    {
+      "baselineId": "angular-hybrid.v21.pack",
+      "disposition": "historical-only",
+      "gateIds": ["history"],
+      "reason": "The approved Angular Hybrid 21 baseline is immutable pre-alignment evidence; current CI tests aligned version 22."
+    },
+    {
+      "baselineId": "angular.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["isolated-matrix", "workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.downstream.default.angular22.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.downstream.default.angular22standalone.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.downstream.default.angular22zoneless.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.downstream.default.sample-app-angular.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.downstream.default.typescript6.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.test-angular-versions/v22-standalone.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.test-angular-versions/v22-zoneless.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.test-angular-versions/v22.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.test-typescript-versions/scaffold.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.manifest.test-typescript-versions/typescript6.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.root.docs",
+      "disposition": "carried-waiver",
+      "gateIds": ["docs"],
+      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+    },
+    {
+      "baselineId": "angular.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angular.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["isolated-matrix", "workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.downstream.default.sample-app-angularjs.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.downstream.typescript.typescript3.9.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.manifest.root.static",
+      "disposition": "current-waiver",
+      "gateIds": ["static-quality"],
+      "reason": "The source-era static lane passed in an isolated repository; the monorepo AngularJS lint command is retained as an exact, expiring current failure while issue #22 aligns its legacy ESLint graph."
+    },
+    {
+      "baselineId": "angularjs.manifest.test/typescript/3.9.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.manifest.test/typescript/template.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.root.docs",
+      "disposition": "carried-waiver",
+      "gateIds": ["docs"],
+      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+    },
+    {
+      "baselineId": "angularjs.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "angularjs.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.all",
+      "disposition": "final-fixed",
+      "gateIds": ["source-linked-tests", "isolated-matrix"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "core.downstream.angular.angular.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.angularjs.angularjs.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.other",
+      "disposition": "final-fixed",
+      "gateIds": ["source-linked-tests", "isolated-matrix"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "core.downstream.other.sticky-states.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.other.typescript3.9.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.other.typescript5.4.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.downstream.react.react.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.manifest.test/typescript3.9.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.manifest.test/typescript5.4.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.root.docs",
+      "disposition": "carried-waiver",
+      "gateIds": ["docs"],
+      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+    },
+    {
+      "baselineId": "core.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "core.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.downstream.angular.angular-cli.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.downstream.angularjs.angularjs-webpack.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.downstream.react.react-vite.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.manifest.examples/angular-cli.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.manifest.examples/angularjs-webpack.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.manifest.examples/react-vite.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "dsr.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "publish-scripts.manifest.actions/upgrade.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "publish-scripts.manifest.docgen.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "publish-scripts.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "publish-scripts.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "publish-scripts.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["isolated-matrix"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.downstream.integration.react16.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.downstream.integration.react17.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.downstream.integration.react18.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.downstream.integration.react19.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.manifest.integration/react16.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.manifest.integration/react17.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.manifest.integration/react18.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.manifest.integration/react19.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react-hybrid.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.downstream.all",
+      "disposition": "final-equivalent",
+      "gateIds": ["isolated-matrix", "workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.downstream.default.sample-app-react.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.downstream.react-versions.react17.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.downstream.react-versions.react18.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.downstream.react-versions.react19.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.examples/animating-transitions.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.examples/typescript.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.integration/react17.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.integration/react18.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.integration/react19.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.root.docs",
+      "disposition": "carried-waiver",
+      "gateIds": ["docs"],
+      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+    },
+    {
+      "baselineId": "react.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "react.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.manifest.examples/react.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.root.install.node10",
+      "disposition": "historical-only",
+      "gateIds": ["history"],
+      "reason": "The retained Node 10 source failure is immutable evidence; milestone-one CI is pinned to Node 24.19.0."
+    },
+    {
+      "baselineId": "redux.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "redux.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "rx.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "rx.root.build",
+      "disposition": "final-fixed",
+      "gateIds": ["production-builds"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "rx.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "rx.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "rx.root.unit",
+      "disposition": "final-fixed",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "sample-app-angular-hybrid.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular-hybrid.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular-hybrid.root.e2e",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular-hybrid.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular.root.e2e",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angular.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angularjs.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angularjs.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angularjs.root.e2e",
+      "disposition": "final-equivalent",
+      "gateIds": ["workspace-browser"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-angularjs.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-react.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sample-app-react.root.build",
+      "disposition": "final-fixed",
+      "gateIds": ["workspace-browser"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "sample-app-react.root.e2e",
+      "disposition": "final-fixed",
+      "gateIds": ["workspace-browser"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "sample-app-react.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.downstream.all",
+      "disposition": "final-fixed",
+      "gateIds": ["workspace-browser"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "sticky-states.downstream.angular.angular-cli.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.downstream.angularjs.angularjs-webpack.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.downstream.react.react-vite.discovery",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.manifest.examples/angular-cli.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.manifest.examples/angularjs-webpack.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.manifest.examples/react-vite.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.root.build",
+      "disposition": "final-fixed",
+      "gateIds": ["production-builds"],
+      "reason": "The source-era failure cause is removed; the mapped final npm gate must pass."
+    },
+    {
+      "baselineId": "sticky-states.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "sticky-states.root.unit",
+      "disposition": "final-equivalent",
+      "gateIds": ["source-linked-tests"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "visualizer.manifest.root.static",
+      "disposition": "final-equivalent",
+      "gateIds": ["layout", "dependency-policy", "static-quality"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "visualizer.root.build",
+      "disposition": "final-equivalent",
+      "gateIds": ["production-builds"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "visualizer.root.install",
+      "disposition": "final-equivalent",
+      "gateIds": ["install", "dependency-policy"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    },
+    {
+      "baselineId": "visualizer.root.pack",
+      "disposition": "final-equivalent",
+      "gateIds": ["packed-consumers"],
+      "reason": "The mapped final npm gate executes the migrated equivalent."
+    }
+  ],
+  "counts": {
+    "baselineRecords": 145,
+    "baselineWaivers": 13,
+    "logicalGates": 11,
+    "executableJobs": 6,
+    "integrationShards": 5,
+    "integrationProjects": 14,
+    "integrationTemplates": 2,
+    "packageArtifacts": 12,
+    "sourceTestPackages": 8,
+    "sourceEdges": 19,
+    "buildOwners": 24,
+    "ordinaryExamples": 14,
+    "ordinaryBrowserProjects": 11,
+    "docsWaivers": 4
+  }
+}

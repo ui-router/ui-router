@@ -2,6 +2,7 @@ import { Input, Component } from '@angular/core';
 
 @Component({
   selector: 'continent-list-cmp',
+  standalone: false,
   template: `
     <h3>Continents</h3>
 

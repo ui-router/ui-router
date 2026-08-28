@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'generic-cmp',
+  standalone: false,
   template: `
     <h1>This is a trivial Deep State Redirect example app</h1>
     <ol>

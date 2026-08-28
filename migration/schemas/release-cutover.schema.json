@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/schemas/release-cutover.schema.json",
+  "title": "UI-Router R01 release and cutover planning contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "task",
+    "status",
+    "owner",
+    "a01",
+    "bindings",
+    "scope",
+    "releaseInventory",
+    "sourceRepositories",
+    "decisionGates",
+    "phases",
+    "rollback"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "task": { "const": "R01" },
+    "status": { "enum": ["ready-for-maintainer-approval", "approved"] },
+    "owner": { "$ref": "#/$defs/nonempty" },
+    "a01": { "$ref": "#/$defs/a01" },
+    "bindings": { "$ref": "#/$defs/bindings" },
+    "scope": { "$ref": "#/$defs/scope" },
+    "releaseInventory": { "$ref": "#/$defs/releaseInventory" },
+    "sourceRepositories": { "$ref": "#/$defs/sourceRepositories" },
+    "decisionGates": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/decisionGate" }
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/phase" }
+    },
+    "rollback": { "$ref": "#/$defs/rollback" }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "a01": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mergeCommit", "tree"],
+      "properties": {
+        "mergeCommit": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourcesSha256",
+        "packageArtifactsSha256",
+        "packageClassificationSha256",
+        "milestoneAcceptanceSha256",
+        "cleanReproducibilitySha256",
+        "workGraphSha256",
+        "planDocumentSha256"
+      ],
+      "properties": {
+        "sourcesSha256": { "$ref": "#/$defs/sha256" },
+        "packageArtifactsSha256": { "$ref": "#/$defs/sha256" },
+        "packageClassificationSha256": { "$ref": "#/$defs/sha256" },
+        "milestoneAcceptanceSha256": { "$ref": "#/$defs/sha256" },
+        "cleanReproducibilitySha256": { "$ref": "#/$defs/sha256" },
+        "workGraphSha256": { "$ref": "#/$defs/sha256" },
+        "planDocumentSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "requiresSeparateExecutionApproval", "forbiddenActions"],
+      "properties": {
+        "mode": { "const": "design-only" },
+        "requiresSeparateExecutionApproval": { "const": true },
+        "forbiddenActions": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        }
+      }
+    },
+    "releaseInventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "count", "packages"],
+      "properties": {
+        "source": { "const": "migration/package-artifacts.json" },
+        "count": { "const": 12 },
+        "packages": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/package" }
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "name": { "type": "string", "pattern": "^@uirouter/" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$" }
+      }
+    },
+    "sourceRepositories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "count", "names"],
+      "properties": {
+        "source": { "const": "migration/sources.json" },
+        "count": { "const": 16 },
+        "names": {
+          "type": "array",
+          "minItems": 16,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        }
+      }
+    },
+    "decisionGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "approval", "evidence"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "status": { "const": "pending" },
+        "approval": { "const": "maintainer" },
+        "evidence": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "$ref": "#/$defs/nonempty" }
+        }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "mode", "requires", "exit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonempty" },
+        "mode": { "const": "future-execution" },
+        "requires": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty" }
+        },
+        "exit": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["beforePublication", "afterPublication", "sourceRepositories"],
+      "properties": {
+        "beforePublication": { "$ref": "#/$defs/nonempty" },
+        "afterPublication": { "$ref": "#/$defs/nonempty" },
+        "sourceRepositories": { "$ref": "#/$defs/nonempty" }
+      }
+    }
+  }
+}

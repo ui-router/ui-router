@@ -4,6 +4,8 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { validateReleaseCutoverPlan } from './release-cutover-lib.mjs';
+
 function fail(message) {
   throw new Error(message);
 }
@@ -46,5 +48,11 @@ function visit(node, filename, location = '#') {
   for (const [key, value] of Object.entries(node)) visit(value, filename, `${location}/${key}`);
 }
 for (const [filename, schema] of schemas) visit(schema, filename);
+
+// R01 is deliberately a design-only contract, so its independent semantic
+// gate is part of the ordinary contract check rather than a release command.
+// This keeps every CI run from accepting a plan that silently changes the
+// accepted A01 inputs, release inventory, or its no-live-actions boundary.
+await validateReleaseCutoverPlan();
 
 console.log(`CONTRACT_SCHEMAS_OK schemas=${schemas.size}`);

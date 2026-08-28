@@ -321,6 +321,7 @@ for (const path of files.filter((path) => path.endsWith('package-lock.json'))) {
 const policyPaths = new Set([
   'SPEC.md',
   'tools/clean-reproducibility-lib.mjs',
+  'tools/c01-final-head-review-lib.mjs',
   'tools/ci-gates-lib.mjs',
   'tools/milestone-acceptance-lib.mjs',
   'tools/release-cutover-lib.mjs',
@@ -328,6 +329,7 @@ const policyPaths = new Set([
   'tools/render-ci-workflow.mjs',
   'tools/render-reproducibility-workflow.mjs',
   'tools/test-ci-gates.mjs',
+  'tools/test-c01-final-head-review.mjs',
   'tools/test-clean-reproducibility.mjs',
   'tools/test-milestone-acceptance.mjs',
   'tools/test-release-cutover.mjs',
@@ -342,6 +344,7 @@ const policyPaths = new Set([
 ]);
 const migrationControlFiles = new Set([
   'migration/baselines.json',
+  'migration/c01-final-head-review.json',
   'migration/ci-gates.json',
   'migration/clean-reproducibility.json',
   'migration/milestone-acceptance.json',

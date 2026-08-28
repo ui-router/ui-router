@@ -4,6 +4,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { validateC01FinalHeadReview } from './c01-final-head-review-lib.mjs';
 import { validateReleaseCutoverPlan } from './release-cutover-lib.mjs';
 
 function fail(message) {
@@ -53,6 +54,7 @@ for (const [filename, schema] of schemas) visit(schema, filename);
 // gate is part of the ordinary contract check rather than a release command.
 // This keeps every CI run from accepting a plan that silently changes the
 // accepted A01 inputs, release inventory, or its no-live-actions boundary.
+await validateC01FinalHeadReview();
 await validateReleaseCutoverPlan();
 
 console.log(`CONTRACT_SCHEMAS_OK schemas=${schemas.size}`);

@@ -25,6 +25,8 @@ The filter-repo artifact must already be retained under the control root and its
 
 The original H01 mirrors and bundle files are the preferred offline reproduction inputs. If those derived archive files are unavailable after the import, A01 may use the maintainer-approved `source-checkouts` recovery mode instead. It checks the sibling source checkouts named by `migration/sources.json`, verifies that each locked default-head object is present locally, and verifies every locked tag object locally or, only when absent locally, against that checkout's `origin` remote. This proves that the source history needed to reconstruct the import remains available; it does not claim that the original byte-identical H01 bundle files were recovered.
 
+The exact A01 approval, exception, scope, and follow-up are machine-checked in `migration/milestone-acceptance.json`. This recovery mode is an accepted exception for A01, not a replacement for the normal H01 mirror/bundle identity requirement.
+
 ```bash
 node tools/lock-history-inputs.mjs \
   --mode generate \

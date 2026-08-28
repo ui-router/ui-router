@@ -411,6 +411,10 @@ All must be true:
 - [ ] The final ref namespace equals the locked target refs plus the output branch and accepted tags—no extra branch, remote, note, stash, replace, or import ref remains.
 - [ ] Remote, retained-mirror, and offline-bundle rerun identity plus independent verification pass under the exact locked history toolchain.
 
+#### Recorded A01 exception
+
+The last item remains the normal requirement for any future history import. A01 was accepted with the explicit exception recorded in `migration/milestone-acceptance.json`: the original H01 mirrors, offline bundles, and wrapper artifact were unavailable to the acceptance workspace. The approved fallback checked the 16 sibling source checkouts against every locked default commit and tag object, and all imported-history checks still passed. It proves that the locked source objects remain available; it does **not** prove that the original archive bytes remain available or that the old toolchain can reproduce byte-identical remote, mirror, and bundle outputs. This exception does not weaken the normal requirement and must be considered again before a future history rerun or release/cutover execution.
+
 ### npm and metadata
 
 - [ ] Exact final Node/npm and per-source baseline package-manager/runtime/browser pins and artifact checksums are documented and CI-enforced in their respective lanes.

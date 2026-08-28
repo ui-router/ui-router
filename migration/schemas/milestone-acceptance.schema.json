@@ -12,6 +12,7 @@
     "c01",
     "c02",
     "retainedInputs",
+    "acceptance",
     "bindings",
     "requiredCommands",
     "maintainerReview"
@@ -33,6 +34,7 @@
     "c01": { "$ref": "#/$defs/mergeMilestone" },
     "c02": { "$ref": "#/$defs/squashMilestone" },
     "retainedInputs": { "$ref": "#/$defs/sourceCheckoutRetention" },
+    "acceptance": { "$ref": "#/$defs/acceptance" },
     "bindings": {
       "type": "object",
       "additionalProperties": false,
@@ -124,6 +126,30 @@
         "mode": { "const": "source-checkouts" },
         "checkoutRoot": { "const": ".." },
         "tagFallback": { "const": "origin" }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "approvedBy", "recordedOn", "exception"],
+      "properties": {
+        "status": { "const": "approved-with-exception" },
+        "approvedBy": { "const": "christopherthielen" },
+        "recordedOn": { "const": "2026-08-28" },
+        "exception": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "originalCriterion", "reason", "fallback", "proves", "doesNotProve", "followUp"],
+          "properties": {
+            "id": { "const": "h01-retained-archive-unavailable" },
+            "originalCriterion": { "$ref": "#/$defs/nonempty" },
+            "reason": { "$ref": "#/$defs/nonempty" },
+            "fallback": { "$ref": "#/$defs/nonempty" },
+            "proves": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/nonempty" } },
+            "doesNotProve": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "#/$defs/nonempty" } },
+            "followUp": { "$ref": "#/$defs/nonempty" }
+          }
+        }
       }
     },
     "reviewItem": {

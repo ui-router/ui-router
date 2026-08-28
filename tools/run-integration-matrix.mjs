@@ -603,6 +603,32 @@ function stageManifest(
   return { manifestPath, manifest, changed };
 }
 
+function seedAllowedExternalGraph(project, projectDirectory, publishedNames) {
+  const lockPath = path.join(projectDirectory, "package-lock.json");
+  if (!existsSync(lockPath))
+    die(`${project.id}: staged fixture has no package lock to seed`);
+  const lock = JSON.parse(readFileSync(lockPath, "utf8"));
+  if (
+    lock.lockfileVersion !== 3 ||
+    !lock.packages ||
+    typeof lock.packages !== "object"
+  )
+    die(`${project.id}: staged fixture lock is not a lockfile v3 package map`);
+  for (const change of project.allowedExternalGraphChanges) {
+    const before = lock.packages[change.key] ?? null;
+    if (canonicalJson(before) !== canonicalJson(change.before))
+      die(`${project.id}: staged lock differs before seeding ${change.key}`);
+    if (change.after === null) delete lock.packages[change.key];
+    else lock.packages[change.key] = change.after;
+  }
+  const graph = installedExternalGraph(lock, publishedNames);
+  if (graph.sha256 !== project.expectedExternalGraphSha256)
+    die(
+      `${project.id}: staged lock seed does not match allowed external graph`
+    );
+  writeFileSync(lockPath, `${JSON.stringify(lock, null, 2)}\n`);
+}
+
 function sandboxModuleAudit(projectDirectory, temporaryLock) {
   const records = [];
   for (const [key, entry] of Object.entries(temporaryLock.packages)) {
@@ -1418,6 +1444,7 @@ try {
         state.commandAdapter = installCommandAdapter(project, projectRoot);
         const staged = stageManifest(project, copied.destination, artifactMap);
         state.manifestPath = staged.manifestPath;
+        seedAllowedExternalGraph(project, copied.destination, publishedNames);
         state.currentPhase = "lock";
         state.currentCommand = matrix.lockPolicy.lockArgv;
         let result = commandResult(

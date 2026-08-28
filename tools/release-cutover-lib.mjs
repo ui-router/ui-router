@@ -47,6 +47,12 @@ const requiredPlanHeadings = [
   "## 5. Rehearse rollback before cutover",
   "## What approval of R01 means",
 ];
+const expectedApproval = {
+  approvedBy: "christopherthielen",
+  recordedOn: "2026-08-28",
+  scope: "R01 planning contract only; it does not approve package publication, Git tags or releases, source-repository archival or redirects, or permission changes.",
+  evidence: "Maintainer approval was recorded in the Codex migration task before pull request #27 was merged.",
+};
 
 function fail(message) {
   throw new Error(`RELEASE_CUTOVER_PLAN_FAILED: ${message}`);
@@ -113,6 +119,7 @@ function validateA01(root, contract) {
 }
 
 function validatePlan(root, contract) {
+  equal(contract.approval, expectedApproval, "R01 maintainer approval record");
   equal(contract.scope.mode, "design-only", "R01 mode");
   equal(contract.scope.requiresSeparateExecutionApproval, true, "separate execution approval policy");
   equal(contract.scope.forbiddenActions, expectedForbiddenActions, "forbidden live action inventory");

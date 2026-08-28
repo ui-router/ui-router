@@ -31,6 +31,27 @@ const expectedReview = [
   ["react16-peer-range", "https://github.com/ui-router/ui-router/issues/20", "2026-10-31"],
   ["angularjs-eslint-root-resolution", "https://github.com/ui-router/ui-router/issues/22", "2026-10-31"],
 ];
+const expectedAcceptance = {
+  status: "approved-with-exception",
+  approvedBy: "christopherthielen",
+  recordedOn: "2026-08-28",
+  exception: {
+    id: "h01-retained-archive-unavailable",
+    originalCriterion: "Remote, retained-mirror, and offline-bundle rerun identity plus independent verification pass under the exact locked history toolchain.",
+    reason: "The locked H01 mirrors, offline bundles, and wrapper artifact were unavailable to the A01 acceptance workspace after the import.",
+    fallback: "Validate the 16 sibling source checkouts against the locked default commits and tag objects, using each checkout's origin only when a locked tag object is absent locally.",
+    proves: [
+      "Every locked default-head object remains available in a source checkout.",
+      "Every locked accepted or excluded tag object remains available locally or from the recorded origin remote.",
+      "The imported history, accepted tags, and all other A01 checks remain internally consistent.",
+    ],
+    doesNotProve: [
+      "The original H01 mirror and offline-bundle bytes were retained.",
+      "A rerun under the original locked wrapper and toolchain produces byte-identical remote, mirror, and bundle import outputs.",
+    ],
+    followUp: "A future history rerun or release/cutover execution must not treat this fallback as proof of byte-identical H01 archive reproduction.",
+  },
+};
 
 function fail(message) {
   throw new Error(`MILESTONE_ACCEPTANCE_FAILED: ${message}`);
@@ -250,6 +271,7 @@ export async function validateMilestoneAcceptance(options = {}) {
     { mode: "source-checkouts", checkoutRoot: "..", tagFallback: "origin" },
     "retained H01 input policy"
   );
+  equal(contract.acceptance, expectedAcceptance, "A01 approved exception record");
   const waiverPairs = [
     ...ci.docsWaivers.map((item) => [item.waiver.trackingIssue, item.waiver.expires]),
     ...ci.currentWaivers.map((item) => [item.trackingIssue, item.expires]),
@@ -269,6 +291,8 @@ export async function validateMilestoneAcceptance(options = {}) {
 export function requireMaintainerApproval(contract) {
   if (contract.maintainerReview.status !== "approved")
     fail("maintainer review is still pending");
+  if (contract.acceptance.status !== "approved-with-exception")
+    fail("A01 exception has not been approved");
 }
 
 function validateSourceCheckoutInputs(root, sources, retention, sourceRootOverride) {

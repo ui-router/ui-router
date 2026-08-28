@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "task": "C01",
+  "pullRequest": "https://github.com/ui-router/ui-router/pull/24",
+  "readyForReviewCommit": "46ec762a3a52ed81d6c09389388550fcf16d4dc5",
+  "finalHead": {
+    "commit": "7cd43281168dd15e20a1f64e9bda33bf98b5b231",
+    "tree": "a5e2d1bca11b54ccf64bc30eb146b03336fa6265",
+    "mergeCommit": "ccdeafc6f51ce4ba175f8a590e2a615d6af3d1be"
+  },
+  "finalCi": {
+    "workflow": "CI",
+    "run": "https://github.com/ui-router/ui-router/actions/runs/33129132525",
+    "conclusion": "success"
+  },
+  "postReadyFixes": [
+    {
+      "commit": "8de3921f0222440f6ec3b1e57966a44ead7d2e35",
+      "subject": "fix(ci): trust checked-out container worktree",
+      "files": ["tools/run-ci-gate.mjs"],
+      "purpose": "Make the CI cleanliness probe trust the checked-out workspace without weakening the probe."
+    },
+    {
+      "commit": "bee278053a4082d55661281221a6ab92fc5103ef",
+      "subject": "fix(ci): prepare container checkouts for migration gates",
+      "files": [
+        ".github/workflows/ci.yml",
+        "tools/render-ci-workflow.mjs",
+        "tools/test-ci-gates.mjs",
+        "tools/verify-ci-gates.mjs"
+      ],
+      "purpose": "Require full checkout history and an explicit safe-directory declaration in every executable CI job."
+    },
+    {
+      "commit": "1276bbe6c746939111f04a0423fb6202cdf28335",
+      "subject": "fix(ci): bootstrap reviewed registry tarballs",
+      "files": [
+        ".github/workflows/ci.yml",
+        "migration/ci-gates.json",
+        "migration/schemas/ci-gates.schema.json",
+        "tools/bootstrap-ci-registry-tarballs.mjs",
+        "tools/ci-gates-lib.mjs",
+        "tools/render-ci-workflow.mjs",
+        "tools/test-ci-gates.mjs",
+        "tools/verify-ci-gates.mjs",
+        "tools/verify-integration-evidence.mjs"
+      ],
+      "purpose": "Cache the lock-pinned Turbo tarballs from npm before installation and validate that bootstrap in the CI contract."
+    },
+    {
+      "commit": "d86246f2a3f11075fa8fa7696a467900460001c5",
+      "subject": "fix(ci): provision pinned history toolchain",
+      "files": [
+        ".github/workflows/ci.yml",
+        "migration/ci-gates.json",
+        "migration/schemas/ci-gates.schema.json",
+        "tools/bootstrap-ci-uv.mjs",
+        "tools/ci-gates-lib.mjs",
+        "tools/render-ci-workflow.mjs",
+        "tools/test-ci-gates.mjs",
+        "tools/verify-ci-gates.mjs",
+        "tools/verify-integration-evidence.mjs"
+      ],
+      "purpose": "Download, hash-check, and expose the exact H01 uv binary before the contracts gate."
+    },
+    {
+      "commit": "7cd43281168dd15e20a1f64e9bda33bf98b5b231",
+      "subject": "fix(angular-hybrid): bundle Zone.js for e2e",
+      "files": ["frameworks/angular-hybrid/examples/example/webpack.config.js"],
+      "purpose": "Bundle Zone.js before the Angular Hybrid example bootstrap so hosted e2e does not rely on a CDN script."
+    }
+  ],
+  "independentReview": {
+    "status": "completed",
+    "reviewer": "Codex",
+    "recordedOn": "2026-08-28",
+    "scope": "Review the exact five post-ready commits, their final tree, the generated CI contract/workflow protections, and the successful final-head CI run.",
+    "conclusion": "The final-head fixes repair CI/environment and Angular Hybrid e2e prerequisites without removing a required validation gate or authorizing a release side effect."
+  },
+  "maintainerApproval": {
+    "approvedBy": "christopherthielen",
+    "recordedOn": "2026-08-28",
+    "scope": "Merge pull request #24 after its exact final head and successful CI were reviewed.",
+    "evidence": "Maintainer authorization was recorded in the Codex migration task before C01 was merged."
+  }
+}

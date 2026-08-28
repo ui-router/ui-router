@@ -52,6 +52,12 @@ try {
   await reject("retained-input-policy", (candidate) => {
     candidate.retainedInputs.tagFallback = "upstream";
   });
+  await reject("acceptance-exception", (candidate) => {
+    candidate.acceptance.exception.doesNotProve.pop();
+  });
+  await reject("acceptance-approver", (candidate) => {
+    candidate.acceptance.approvedBy = "someone-else";
+  });
   await reject("command-omission", (candidate) => {
     candidate.requiredCommands.pop();
   });

@@ -9,6 +9,7 @@
     "task",
     "status",
     "owner",
+    "approval",
     "a01",
     "bindings",
     "scope",
@@ -23,6 +24,7 @@
     "task": { "const": "R01" },
     "status": { "enum": ["ready-for-maintainer-approval", "approved"] },
     "owner": { "$ref": "#/$defs/nonempty" },
+    "approval": { "$ref": "#/$defs/approval" },
     "a01": { "$ref": "#/$defs/a01" },
     "bindings": { "$ref": "#/$defs/bindings" },
     "scope": { "$ref": "#/$defs/scope" },
@@ -48,6 +50,17 @@
     "nonempty": { "type": "string", "minLength": 1 },
     "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvedBy", "recordedOn", "scope", "evidence"],
+      "properties": {
+        "approvedBy": { "const": "christopherthielen" },
+        "recordedOn": { "const": "2026-08-28" },
+        "scope": { "$ref": "#/$defs/nonempty" },
+        "evidence": { "$ref": "#/$defs/nonempty" }
+      }
+    },
     "a01": {
       "type": "object",
       "additionalProperties": false,

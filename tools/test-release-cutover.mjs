@@ -39,6 +39,9 @@ try {
   await reject("a01-tree", (candidate) => {
     candidate.a01.tree = "0".repeat(40);
   });
+  await reject("approval-record", (candidate) => {
+    candidate.approval.approvedBy = "someone-else";
+  });
   await reject("source-omission", (candidate) => {
     candidate.sourceRepositories.names.pop();
     candidate.sourceRepositories.count = 15;

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-router.github.io/schemas/c01-final-head-review.schema.json",
+  "title": "UI-Router C01 final-head review record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "task",
+    "pullRequest",
+    "readyForReviewCommit",
+    "finalHead",
+    "finalCi",
+    "postReadyFixes",
+    "independentReview",
+    "maintainerApproval"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "task": { "const": "C01" },
+    "pullRequest": { "const": "https://github.com/ui-router/ui-router/pull/24" },
+    "readyForReviewCommit": { "$ref": "#/$defs/commit" },
+    "finalHead": { "$ref": "#/$defs/finalHead" },
+    "finalCi": { "$ref": "#/$defs/finalCi" },
+    "postReadyFixes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/fix" }
+    },
+    "independentReview": { "$ref": "#/$defs/independentReview" },
+    "maintainerApproval": { "$ref": "#/$defs/approval" }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "finalHead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "tree", "mergeCommit"],
+      "properties": {
+        "commit": { "$ref": "#/$defs/commit" },
+        "tree": { "$ref": "#/$defs/commit" },
+        "mergeCommit": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "finalCi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "run", "conclusion"],
+      "properties": {
+        "workflow": { "const": "CI" },
+        "run": { "const": "https://github.com/ui-router/ui-router/actions/runs/33129132525" },
+        "conclusion": { "const": "success" }
+      }
+    },
+    "fix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "subject", "files", "purpose"],
+      "properties": {
+        "commit": { "$ref": "#/$defs/commit" },
+        "subject": { "$ref": "#/$defs/nonempty" },
+        "files": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonempty" } },
+        "purpose": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "independentReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "recordedOn", "scope", "conclusion"],
+      "properties": {
+        "status": { "const": "completed" },
+        "reviewer": { "const": "Codex" },
+        "recordedOn": { "const": "2026-08-28" },
+        "scope": { "$ref": "#/$defs/nonempty" },
+        "conclusion": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvedBy", "recordedOn", "scope", "evidence"],
+      "properties": {
+        "approvedBy": { "const": "christopherthielen" },
+        "recordedOn": { "const": "2026-08-28" },
+        "scope": { "$ref": "#/$defs/nonempty" },
+        "evidence": { "$ref": "#/$defs/nonempty" }
+      }
+    }
+  }
+}

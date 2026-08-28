@@ -508,7 +508,38 @@ function consumerArtifactReferences(lock) {
   );
 }
 
+function consumerLockScalarDifferences(expected, generated, path = "", result = []) {
+  if (result.length >= 100) return result;
+  const expectedType = Array.isArray(expected) ? "array" : typeof expected;
+  const generatedType = Array.isArray(generated) ? "array" : typeof generated;
+  if (expectedType !== generatedType || expected === null || generated === null) {
+    result.push({
+      path,
+      expected: expected ?? null,
+      generated: generated ?? null,
+    });
+    return result;
+  }
+  if (expectedType !== "object") {
+    if (expected !== generated) result.push({ path, expected, generated });
+    return result;
+  }
+  const keys = new Set([...Object.keys(expected), ...Object.keys(generated)]);
+  for (const key of [...keys].sort()) {
+    if (result.length >= 100) break;
+    consumerLockScalarDifferences(
+      expected[key],
+      generated[key],
+      path ? `${path}.${key}` : key,
+      result
+    );
+  }
+  return result;
+}
+
 function consumerLockDifference(expectedLock, generatedLock) {
+  const expected = JSON.parse(expectedLock.toString("utf8"));
+  const generated = JSON.parse(generatedLock.toString("utf8"));
   const expectedReferences = consumerArtifactReferences(expectedLock);
   const generatedReferences = consumerArtifactReferences(generatedLock);
   const packageNames = new Set([
@@ -530,6 +561,7 @@ function consumerLockDifference(expectedLock, generatedLock) {
     expectedSha256: sha256(expectedLock),
     generatedSha256: sha256(generatedLock),
     artifactReferences,
+    scalarDifferences: consumerLockScalarDifferences(expected, generated),
   });
 }
 

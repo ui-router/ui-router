@@ -52,7 +52,7 @@
     "verify:work-graph"
   ],
   "maintainerReview": {
-    "status": "pending",
+    "status": "approved",
     "items": [
       {
         "id": "docs-source-container",

@@ -59,8 +59,10 @@ try {
     candidate.maintainerReview.items[2].expires = "2027-01-01";
   });
   let pendingRejected = false;
+  const pending = structuredClone(original);
+  pending.maintainerReview.status = "pending";
   try {
-    requireMaintainerApproval(original);
+    requireMaintainerApproval(pending);
   } catch {
     pendingRejected = true;
   }

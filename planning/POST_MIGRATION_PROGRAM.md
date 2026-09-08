@@ -12,8 +12,8 @@ from the original repositories.
 
 1. One maintainable toolchain for tests, browser tests, linting, and shared
    development dependencies.
-2. No remaining migration waivers for documentation, React 16, or AngularJS
-   linting.
+2. No remaining migration waivers for documentation or AngularJS linting, and
+   no unsupported React 16 compatibility claim.
 3. A repeatable, audited npm release process with normal and pre-release
    paths.
 4. A redesigned documentation site with useful framework guides, tutorials,
@@ -111,7 +111,7 @@ already-working Playwright projects.
 | Waiver | Work | Proof required |
 | --- | --- | --- |
 | Docs source container (expires 2026-09-30) | Replace the mutable source-docs container assumption with a deterministic, digest-pinned build or a checked Node-only build.  This is containment of the old docs lanes, not the full documentation redesign. | The four former source-docs commands run with a declared, immutable toolchain and no waiver. |
-| React 16 peer range (expires 2026-10-31) | Exercise the React 16 Hybrid tarball consumer.  If the code is compatible, widen `@uirouter/react` only to the tested React 16.8+ range and retain the React 17--19 coverage. | A clean npm install without `--legacy-peer-deps`, plus the React 16 browser/type/runtime consumer test. |
+| React 16 peer range (expires 2026-10-31) | Retire React 16 support.  Require React 17--19 in `@uirouter/react-hybrid`, keep the legacy entry point for React 17 only, and remove React 16 from the active downstream matrix.  Preserve the old fixture and failure proof only as historical migration evidence.  This is a breaking package change and must receive the appropriate release entry. | Clean tarball installs and browser/type/runtime coverage for React 17, 18, and 19; no active manifest, documentation, or peer range claims React 16 support. |
 | AngularJS ESLint root resolution (expires 2026-10-31) | Make the AngularJS lint lane resolve its declared tooling locally and consistently, then modernize its configuration only as far as the test proves safe. | The AngularJS lint command works from an isolated clean workspace without relying on a hoisted root copy. |
 
 Each successful item removes its waiver, updates the appropriate migration
@@ -199,7 +199,7 @@ history or rely on an organization-wide blanket switch.
 
 1. Land P01's inventory-backed `syncpack` policy and the version-convergence
    proposal, without upgrading tools blindly.
-2. Land P03's React 16 and AngularJS fixes in separate pull requests.
+2. Land P03's React 16 retirement and AngularJS fix in separate pull requests.
 3. Land the deterministic containment for the September documentation waiver.
 4. Port the single remaining Cypress lane after the Playwright baseline is
    settled.

@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/syncpack/schema.json",
+  "source": [
+    "package.json",
+    "core/**/package.json",
+    "frameworks/**/package.json",
+    "plugins/**/package.json",
+    "tools/**/package.json",
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/lib/**",
+    "!**/lib-esm/**",
+    "!**/_bundles/**"
+  ],
+  "versionGroups": [
+    {
+      "label": "Playwright fixture ranges stay frozen with the I01 migration record",
+      "dependencies": ["@playwright/test"],
+      "dependencyTypes": ["dev"],
+      "isIgnored": true
+    },
+    {
+      "label": "Vitest workspaces use one tested line",
+      "dependencies": ["vitest"],
+      "dependencyTypes": ["dev"],
+      "pinVersion": "^4.0.16"
+    },
+    {
+      "label": "Published dependency and peer ranges are compatibility promises",
+      "dependencyTypes": ["peer", "prod"],
+      "isIgnored": true
+    },
+    {
+      "label": "Other version convergence is staged behind its own validation",
+      "isIgnored": true
+    }
+  ],
+  "semverGroups": [
+    {
+      "label": "Shared test tools use compatible caret ranges",
+      "dependencies": ["vitest"],
+      "dependencyTypes": ["dev"],
+      "range": "^"
+    },
+    {
+      "label": "Other range policies are intentionally out of scope for this first lane",
+      "isIgnored": true
+    }
+  ]
+}

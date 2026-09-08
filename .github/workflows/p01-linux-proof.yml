@@ -1,0 +1,46 @@
+name: P01 Linux proof
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    if: github.event.pull_request.head.ref == 'codex/tooling-convergence'
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac
+    timeout-minutes: 120
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Trust checked-out worktree
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+          check-latest: false
+      - name: Install pinned npm
+        run: npm install --global npm@11.17.0 --ignore-scripts --no-audit --no-fund
+      - name: Bootstrap pinned registry tarballs
+        run: node tools/bootstrap-ci-registry-tarballs.mjs
+      - name: Install workspace
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build verified package artifacts
+        run: npm run prove:package-artifacts
+      - name: Produce complete Linux integration evidence
+        run: node tools/run-integration-matrix.mjs --write
+      - name: Upload refreshed evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: p01-linux-evidence-${{ github.sha }}
+          path: migration/evidence/i02/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1

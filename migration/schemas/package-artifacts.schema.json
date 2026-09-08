@@ -11,6 +11,7 @@
     "turboJsonSha256",
     "rootLockPredecessorSha256",
     "rootLockSha256",
+    "rootLockPackageEntries",
     "runtime",
     "normalizedEnvironment",
     "artifactPolicy",
@@ -33,6 +34,7 @@
       "$ref": "contract-common.schema.json#/$defs/sha256"
     },
     "rootLockSha256": { "$ref": "contract-common.schema.json#/$defs/sha256" },
+    "rootLockPackageEntries": { "type": "integer", "minimum": 1 },
     "runtime": {
       "type": "object",
       "additionalProperties": false,

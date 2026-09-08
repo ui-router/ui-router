@@ -249,6 +249,7 @@ const genericTasks = {
     dependsOn: ["^build", "build"],
     cache: false,
     outputs: [".artifacts/packages/**"],
+    env: ["npm_config_cache"],
   },
   docs: {
     dependsOn: ["^build", "build"],

@@ -39,6 +39,24 @@ if (forbidden.status !== 64)
   throw new Error("command adapter accepted a non-serve package");
 cases.push("adapter-package-allowlist");
 
+const retired = spawnSync(
+  process.execPath,
+  [
+    path.join(repository, "tools/run-integration-matrix.mjs"),
+    "--project",
+    "framework/react-hybrid/integration/react16",
+  ],
+  { encoding: "utf8" }
+);
+if (
+  retired.status === 0 ||
+  !`${retired.stdout}\n${retired.stderr}`.includes(
+    "is retired from active integration"
+  )
+)
+  throw new Error("integration runner accepted the retired React 16 project");
+cases.push("retired-project-rejected");
+
 const fixture = mkdtempSync(
   path.join(os.tmpdir(), "uirouter-i02-runner-test-")
 );

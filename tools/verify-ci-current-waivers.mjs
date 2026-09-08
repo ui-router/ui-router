@@ -36,27 +36,12 @@ const contractBytes = readFileSync(
   path.join(repository, "migration/ci-gates.json")
 );
 const contract = JSON.parse(contractBytes);
-const matrix = JSON.parse(
-  readFileSync(
-    path.join(repository, "migration/integration-matrix.json"),
-    "utf8"
-  )
-);
-const react16 = matrix.projects.find(
-  (project) => project.id === "framework/react-hybrid/integration/react16"
-);
-const expectedReact = {
-  id: react16.waiver.baselineId,
-  projectId: react16.id,
-  ...react16.waiver,
-};
 const angular = contract.currentWaivers.find(
   (waiver) => waiver.id === "angularjs-eslint-root-resolution"
 );
 if (
-  JSON.stringify(contract.currentWaivers[0]) !==
-    JSON.stringify(expectedReact) ||
-  contract.currentWaivers.length !== 2 ||
+  contract.currentWaivers.length !== 1 ||
+  contract.currentWaivers[0] !== angular ||
   !angular ||
   angular.projectId !== "frameworks/angularjs/uirouter-angularjs" ||
   angular.baselineId !== "angularjs.manifest.root.static" ||

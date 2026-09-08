@@ -15,10 +15,10 @@
   },
   "bindings": {
     "sourcesSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
-    "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
+    "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
-    "milestoneAcceptanceSha256": "fd331928f9897dde853783d439ebab7b677566581d35c6ebfea345c70f2c281b",
-    "cleanReproducibilitySha256": "d4878186c6c82dcaf15bb75bdfcfff008fdd6f8209b30339492c4537179017cf",
+    "milestoneAcceptanceSha256": "0b7cf03f8548843727ac2c54fcf7f922175d6ab159aad865e556f904411ba0cc",
+    "cleanReproducibilitySha256": "7597848ddd21f0483a9e05f56ea2ea4e2ae8f51269c4fb6011f28ba4fed1aac4",
     "workGraphSha256": "75fe6e9323318f8c72d633a0670b52689e28df01794f791ff153c27faa1f98c0",
     "planDocumentSha256": "2325a19e9d2200566d307648b1e5655a7689e0de336b4774cc4c4b9751ecf5db"
   },
@@ -42,16 +42,36 @@
     "packages": [
       { "id": "core", "name": "@uirouter/core", "version": "6.1.2" },
       { "id": "angular", "name": "@uirouter/angular", "version": "22.0.0" },
-      { "id": "angular-hybrid", "name": "@uirouter/angular-hybrid", "version": "22.0.0" },
+      {
+        "id": "angular-hybrid",
+        "name": "@uirouter/angular-hybrid",
+        "version": "22.0.0"
+      },
       { "id": "angularjs", "name": "@uirouter/angularjs", "version": "1.1.2" },
       { "id": "react", "name": "@uirouter/react", "version": "1.0.8" },
-      { "id": "react-hybrid", "name": "@uirouter/react-hybrid", "version": "2.0.0" },
+      {
+        "id": "react-hybrid",
+        "name": "@uirouter/react-hybrid",
+        "version": "3.0.0"
+      },
       { "id": "dsr", "name": "@uirouter/dsr", "version": "1.2.0" },
       { "id": "redux", "name": "@uirouter/redux", "version": "1.0.0" },
       { "id": "rx", "name": "@uirouter/rx", "version": "1.0.0" },
-      { "id": "sticky-states", "name": "@uirouter/sticky-states", "version": "1.5.1" },
-      { "id": "visualizer", "name": "@uirouter/visualizer", "version": "7.2.1" },
-      { "id": "publish-scripts", "name": "@uirouter/publish-scripts", "version": "2.8.0" }
+      {
+        "id": "sticky-states",
+        "name": "@uirouter/sticky-states",
+        "version": "1.5.1"
+      },
+      {
+        "id": "visualizer",
+        "name": "@uirouter/visualizer",
+        "version": "7.2.1"
+      },
+      {
+        "id": "publish-scripts",
+        "name": "@uirouter/publish-scripts",
+        "version": "2.8.0"
+      }
     ]
   },
   "sourceRepositories": {
@@ -138,7 +158,11 @@
     {
       "id": "pack-and-consumer-dry-run",
       "mode": "future-execution",
-      "requires": ["release-policy", "registry-access-and-provenance", "publish-order-and-promotion"],
+      "requires": [
+        "release-policy",
+        "registry-access-and-provenance",
+        "publish-order-and-promotion"
+      ],
       "exit": "Every selected package is reproducibly packed, checked against its package contract, and installed by clean representative consumers without registry fallback."
     },
     {

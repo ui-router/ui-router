@@ -1,3 +1,10 @@
+# 3.0.0 (2026-09-08)
+[Compare `@uirouter/react-hybrid` versions 2.0.0 and 3.0.0](https://github.com/ui-router/react-hybrid/compare/2.0.0...3.0.0)
+
+# BREAKING CHANGES
+
+* Drop support for React 16
+
 # 2.0.0 (2026-01-08)
 [Compare `@uirouter/react-hybrid` versions 1.0.5 and 2.0.0](https://github.com/ui-router/react-hybrid/compare/1.0.5...2.0.0)
 
@@ -982,4 +989,3 @@ Fix botched 0.0.11 release
 * chore(build): Build lib and lib-esm ([744c49e](https://github.com/ui-router/react-hybrid/commit/744c49e))
 * chore(readme): Update README ([83dc68a](https://github.com/ui-router/react-hybrid/commit/83dc68a))
 * Initial commit ([5ae2db5](https://github.com/ui-router/react-hybrid/commit/5ae2db5))
-

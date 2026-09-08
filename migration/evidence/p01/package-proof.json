@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "task": "P01",
   "owner": "ui-router-maintainers",
-  "contractSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
-  "rootLockSha256": "be50aeabe6ab354b1bd58f42783ac9cafd9c052ca28fdbabb3a74f69a93dcc6d",
+  "contractSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
+  "rootLockSha256": "d14260995ec485f07bfad18c8f57c2bba422b242ce7d4aeb9725d7339c022649",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -19,7 +19,7 @@
   "repetitions": 2,
   "builds": {
     "fileCount": 1062,
-    "sha256": "0becfad7a392d7e6d2cd7a075988a8034f50e8601452cee60c1db22990b62fdb",
+    "sha256": "f61b20aa569d85d0925e7c4f34911fe904beb5ed6cd6c2f3ec64042a39f2fb2c",
     "identical": true
   },
   "packages": [
@@ -117,15 +117,15 @@
     {
       "artifactId": "react-hybrid",
       "package": "@uirouter/react-hybrid",
-      "version": "2.0.0",
-      "filename": "uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "sha256": "58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069",
-      "shasum": "4e0052554e174eafa86056153c38b3b689bd89a3",
-      "integrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
-      "size": 69139,
-      "unpackedSize": 361084,
+      "version": "3.0.0",
+      "filename": "uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8",
+      "shasum": "d8eb588b56a8030066440d023278f6788340d55f",
+      "integrity": "sha512-0AGGOaFWMBCViF8hR7Sf96JjQWM/4f6hT9GJwlXNLZwSHxTJppZiRgO2Ddk+ZIf0i/IMY+7+INx3tEqrnyVdlQ==",
+      "size": 69131,
+      "unpackedSize": 361073,
       "fileCount": 95,
-      "filesSha256": "817e0a16c51a99fc028d686aadf5be33fe1992cdb32286c964cd4dfdb8d238a2"
+      "filesSha256": "8948b5a16806c4faf14bb868b8ee7a9a6ec6f95e6c6f722138d1a1e031f6be0f"
     },
     {
       "artifactId": "redux",
@@ -182,9 +182,9 @@
   ],
   "productionEdges": 15,
   "consumer": {
-    "lockSha256": "e916f05b3777737e13dae5c17ea967d7f1bdfe4e75de2e4b97307f5cd9cd9619",
+    "lockSha256": "647637b270e627ab3c7997702aa0007076634840f6b960f2fa6270a9adb72b47",
     "dependencyRecords": 443,
-    "dependencyGraphSha256": "ea0b2ce3c896a6bc98fad393f1a511eb9df3eeac9b03199b7609ad7a1a32efd9",
+    "dependencyGraphSha256": "1a85aa10cef1a4f37e2ee354a7f5b26fb14fca2c207392d43dd7f42577e8c41e",
     "internalPackages": 12,
     "installedFiles": 968,
     "entrypoints": 46,

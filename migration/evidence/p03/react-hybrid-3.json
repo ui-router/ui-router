@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-react16-retirement",
+  "recordedOn": "2026-09-08",
+  "source": {
+    "repository": "https://github.com/ui-router/react-hybrid.git",
+    "tag": "3.0.0",
+    "commit": "2779bd13aeae470276812d187214e03486e4d9da",
+    "tree": "fececc538eea5f04b2be64071eb4edfd43db3bea"
+  },
+  "npm": {
+    "package": "@uirouter/react-hybrid",
+    "version": "3.0.0",
+    "publishedAt": "2026-09-08T04:12:22.874Z",
+    "gitHead": "2779bd13aeae470276812d187214e03486e4d9da",
+    "integrity": "sha512-voWGcdaYKy+y1hdbFdc7XUzJin6E7FsluscJ/Ci/G2O0MqraAG1BTXhv/uXNnl9MwsB74np4vsdIkilR8mRNKA==",
+    "shasum": "c10b6e12ce2b51239b47ed327c7c43a94619653b",
+    "peerDependencies": {
+      "angular": "^1.5.0",
+      "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    },
+    "dependencies": {
+      "@uirouter/angularjs": "1.1.2",
+      "@uirouter/core": "6.1.2",
+      "@uirouter/react": "1.0.8"
+    }
+  },
+  "port": {
+    "packageManifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+    "activeDownstreamProjects": [
+      "framework/react-hybrid/integration/react17",
+      "framework/react-hybrid/integration/react18",
+      "framework/react-hybrid/integration/react19"
+    ],
+    "retiredProject": "framework/react-hybrid/integration/react16",
+    "retainedFixture": "frameworks/react-hybrid/integration-tests/react16",
+    "retainedReason": "The React 16 fixture remains byte-for-byte only because the accepted I01 migration proof binds that path. It is excluded from active downstream and CI execution.",
+    "normalizedDifferences": {
+      "@uirouter/publish-scripts": "The upstream 3.0.0 source asks for ^2.8.0. The monorepo retains its normalized ^2.7.0 workspace range, which admits the local 2.8.0 package without raising the established minimum."
+    },
+    "retainedFailureProof": "migration/evidence/i02/failure-bundles/framework__react-hybrid__integration__react16",
+    "retainedFailureFiles": {
+      "failure.json": "a6d7cf952c3b4e252696a26460d6a8470e2d2899c0dcbd2cf6bac16e29269caf",
+      "run-lock.json": "e5f6e72a1740c04d476d28260f76ec759d58df5d27b71726aa4542b4e74d5bb1",
+      "artifacts/hashes.json": "3d255ede1902cf2cb17931d46a5199c4e2fe7e98b5aa69c3a0003bc33e446120"
+    }
+  }
+}

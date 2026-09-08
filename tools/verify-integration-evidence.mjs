@@ -26,11 +26,15 @@ function fail(message) {
   throw new Error(`INTEGRATION_EVIDENCE_VERIFY_FAILED: ${message}`);
 }
 function git(args) {
-  const result = spawnSync("git", ["-c", `safe.directory=${repository}`, ...args], {
-    cwd: repository,
-    encoding: "utf8",
-    maxBuffer: 64 * 1024 * 1024,
-  });
+  const result = spawnSync(
+    "git",
+    ["-c", `safe.directory=${repository}`, ...args],
+    {
+      cwd: repository,
+      encoding: "utf8",
+      maxBuffer: 64 * 1024 * 1024,
+    }
+  );
   if (result.status !== 0)
     fail(`git ${args.join(" ")} failed: ${result.stderr}`);
   return result.stdout.trim();
@@ -99,7 +103,7 @@ function directorySha256(directory) {
   walk(directory);
   return sha256(canonicalJson(records));
 }
-const { matrix } = await validateIntegrationMatrix();
+const { matrix, retiredProjectIds } = await validateIntegrationMatrix();
 const evidencePath = path.join(
   repository,
   "migration/evidence/i02/integration-proof.json"
@@ -125,8 +129,8 @@ if (
 )
   fail("proof identity differs");
 const implementationCommit = evidence.repository.commit;
-const reviewedScopeHead = "7336f59d42f25e97a0fab0baf62333153c3b230e";
-const reviewedScopeTree = "9fe7ef7d96251ff121791934c8292e55ea8de269";
+const reviewedScopeHead = "9fb4518698f4cb62193abc440c38b9b2330e5e22";
+const reviewedScopeTree = "dff8d6c3f84b852ac8426c4dd1193a6a97cd247d";
 if (
   evidence.repository.dirty !== false ||
   git(["rev-parse", `${implementationCommit}^{tree}`]) !==
@@ -189,9 +193,49 @@ const c01OwnedPaths = new Set([
   "tools/verify-integration-evidence.mjs",
   "tools/verify-package-manager.mjs",
 ]);
+const p03OwnedPaths = new Set([
+  ".github/workflows/p03-linux-proof.yml",
+  "frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md",
+  "frameworks/react-hybrid/uirouter-react-hybrid/README.md",
+  "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+  "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+  "frameworks/react-hybrid/uirouter-react-hybrid/rollup.config.mjs",
+  "frameworks/react-hybrid/uirouter-react-hybrid/src/angularjs/ReactUIViewAdapterComponentLegacy.tsx",
+  "frameworks/react-hybrid/uirouter-react-hybrid/src/legacy.ts",
+  "migration/ci-gates.json",
+  "migration/clean-reproducibility.json",
+  "migration/evidence/p01/consumer-package-lock.json",
+  "migration/evidence/p01/package-proof.json",
+  "migration/evidence/p03/react-hybrid-3.json",
+  "migration/evidence/n05/package-manager-allowlist.json",
+  "migration/integration-matrix.json",
+  "migration/milestone-acceptance.json",
+  "migration/package-artifacts.json",
+  "migration/release-cutover.json",
+  "migration/schemas/ci-gates.schema.json",
+  "migration/schemas/integration-matrix.schema.json",
+  "package-lock.json",
+  "package.json",
+  "tools/ci-gates-lib.mjs",
+  "tools/integration-matrix-lib.mjs",
+  "tools/milestone-acceptance-lib.mjs",
+  "tools/refresh-validation-bindings.mjs",
+  "tools/run-integration-matrix.mjs",
+  "tools/test-integration-matrix.mjs",
+  "tools/test-integration-runner.mjs",
+  "tools/verify-ci-current-waivers.mjs",
+  "tools/verify-integration-evidence.mjs",
+  "tools/verify-internal-deps.mjs",
+  "tools/verify-package-manager.mjs",
+  "tools/verify-react-hybrid-retirement.mjs",
+]);
 for (const changed of postImplementationPaths)
-  if (!changed.startsWith(evidencePrefix) && !c01OwnedPaths.has(changed))
-    fail(`change outside I02 evidence and C01 ownership: ${changed}`);
+  if (
+    !changed.startsWith(evidencePrefix) &&
+    !c01OwnedPaths.has(changed) &&
+    !p03OwnedPaths.has(changed)
+  )
+    fail(`change outside I02 evidence, C01, and P03 ownership: ${changed}`);
 if (
   !evidence.repository.sourceSnapshotSha256 ||
   !/^[a-f0-9]{64}$/.test(evidence.repository.sourceSnapshotSha256)
@@ -210,7 +254,7 @@ if (
 )
   fail("proof runtime differs");
 const runnable = matrix.projects.filter(
-  (project) => project.mode === "runnable"
+  (project) => project.mode === "runnable" && !retiredProjectIds.has(project.id)
 );
 if (
   canonicalJson(evidence.selected) !==
@@ -218,16 +262,16 @@ if (
 )
   fail("proof runnable selection differs");
 const expectedCounts = {
-  selected: matrix.counts.runnable,
+  selected: matrix.counts.activeRunnable,
   passed: runnable.filter((project) => project.expectedResult === "pass")
     .length,
-  waived: matrix.counts.waivedFailures,
+  waived: matrix.counts.activeWaivedFailures,
   failed: 0,
   logicalEdges: runnable.reduce(
     (count, project) => count + project.edgeIds.length,
     0
   ),
-  browserProjects: matrix.counts.browserProjects,
+  browserProjects: matrix.counts.activeBrowserProjects,
 };
 if (canonicalJson(evidence.counts) !== canonicalJson(expectedCounts))
   fail("proof result counts differ");
@@ -236,12 +280,12 @@ const templateEdges = matrix.projects
   .reduce((count, project) => count + project.edgeIds.length, 0);
 const expectedCoverage = {
   matrixProjects: matrix.counts.projects,
-  runnableProjects: matrix.counts.runnable,
+  runnableProjects: matrix.counts.activeRunnable,
   templateProjects: matrix.counts.templates,
   matrixLogicalEdges: matrix.counts.logicalEdges,
   runnableLogicalEdges: expectedCounts.logicalEdges,
   templateLogicalEdges: templateEdges,
-  browserProjects: matrix.counts.browserProjects,
+  browserProjects: matrix.counts.activeBrowserProjects,
 };
 if (canonicalJson(evidence.coverage) !== canonicalJson(expectedCoverage))
   fail("proof matrix coverage differs");

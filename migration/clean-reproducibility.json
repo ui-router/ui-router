@@ -8,13 +8,13 @@
     "tree": "a5e2d1bca11b54ccf64bc30eb146b03336fa6265"
   },
   "bindings": {
-    "ciGatesSha256": "6ac12dd0654c72863807538fbee51a05500ef3fb876953b018824b738c68cc9f",
-    "packageJsonSha256": "4b4487affee07e57593376bb7ad60c7a6eac5a303ed1c5ec787b2f95844cb274",
-    "packageLockSha256": "be50aeabe6ab354b1bd58f42783ac9cafd9c052ca28fdbabb3a74f69a93dcc6d",
+    "ciGatesSha256": "06d3338450eeaf46a3efb3265d1c08d1e7556eca7931e8d9ce4475c6dbfee378",
+    "packageJsonSha256": "6d0de499b823c203c13b6bada6324a334b0b510dac6b2de23414f5cad1b4f9b6",
+    "packageLockSha256": "d14260995ec485f07bfad18c8f57c2bba422b242ce7d4aeb9725d7339c022649",
     "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
-    "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
+    "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
-    "integrationMatrixSha256": "ac735159ad3d3acbaa5fef04d1d739ed3f342ce45abb437d7b2fc2e628585e3d",
+    "integrationMatrixSha256": "0b48dd90c4e1b1b74e65991c9b6f375e15bd66c549f502fcb2209763a038ba0f",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
   },
   "runtime": {
@@ -92,7 +92,14 @@
     },
     {
       "id": "setup-browser",
-      "argv": ["npm", "run", "setup:browser", "--", "--concurrency=1", "--cache=local:"]
+      "argv": [
+        "npm",
+        "run",
+        "setup:browser",
+        "--",
+        "--concurrency=1",
+        "--cache=local:"
+      ]
     },
     {
       "id": "build",
@@ -108,11 +115,21 @@
     },
     {
       "id": "stage-packages",
-      "argv": ["node", "tools/stage-ci-package-artifacts.mjs", "--output", ".ci-artifacts/packages"]
+      "argv": [
+        "node",
+        "tools/stage-ci-package-artifacts.mjs",
+        "--output",
+        ".ci-artifacts/packages"
+      ]
     },
     {
       "id": "verify-docs-waivers",
-      "argv": ["node", "tools/verify-ci-docs-waivers.mjs", "--output", ".ci-results/docs/waivers.json"]
+      "argv": [
+        "node",
+        "tools/verify-ci-docs-waivers.mjs",
+        "--output",
+        ".ci-results/docs/waivers.json"
+      ]
     },
     {
       "id": "cleanup-browser",

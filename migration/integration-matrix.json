@@ -5,8 +5,25 @@
     "path": "migration/evidence/i01/install-proof.json",
     "sha256": "f605eae4bd070bc9b4e5ca5a48f96faff20b81aa9016e592d8762c85bc2cda94"
   },
+  "retirements": [
+    {
+      "projectId": "framework/react-hybrid/integration/react16",
+      "retiredOn": "2026-09-08",
+      "reason": "React 16 support was removed in @uirouter/react-hybrid 3.0.0. The fixture remains only as immutable I01 migration evidence and is not selected by current integration runs.",
+      "retainedFixture": "frameworks/react-hybrid/integration-tests/react16",
+      "replacementProjectIds": [
+        "framework/react-hybrid/integration/react17",
+        "framework/react-hybrid/integration/react18",
+        "framework/react-hybrid/integration/react19"
+      ],
+      "evidence": {
+        "path": "migration/evidence/p03/react-hybrid-3.json",
+        "sha256": "5e7e729b0930a7b11fdf36d8b20b593b7c76286879c1cd2045a4e2bad5f9362b"
+      }
+    }
+  ],
   "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
-  "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
+  "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
   "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
   "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
   "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
@@ -21,7 +38,11 @@
     "registryBaselineRecords": 21,
     "artifactIds": 7,
     "closureBindings": 21,
-    "waivedFailures": 1
+    "waivedFailures": 1,
+    "activeRunnable": 13,
+    "activeBrowserProjects": 9,
+    "activeWaivedFailures": 0,
+    "retiredProjects": 1
   },
   "runtime": {
     "platform": "linux",
@@ -549,7 +570,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -712,7 +733,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -875,7 +896,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -956,7 +977,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -972,7 +993,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1078,7 +1099,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1097,7 +1118,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1113,7 +1134,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1216,7 +1237,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1295,7 +1316,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1362,7 +1383,7 @@
           "owner": "ui-router-maintainers",
           "package": "@uirouter/react-hybrid",
           "artifactId": "react-hybrid",
-          "expectedVersion": "2.0.0",
+          "expectedVersion": "3.0.0",
           "operation": "replace-declared",
           "manifestSection": "dependencies",
           "declaredSpec": "latest",
@@ -1432,7 +1453,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1454,7 +1475,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1478,7 +1499,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1502,7 +1523,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1532,7 +1553,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1569,7 +1590,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1587,7 +1608,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1611,7 +1632,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1627,7 +1648,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -1713,7 +1734,7 @@
           "owner": "ui-router-maintainers",
           "package": "@uirouter/react-hybrid",
           "artifactId": "react-hybrid",
-          "expectedVersion": "2.0.0",
+          "expectedVersion": "3.0.0",
           "operation": "replace-declared",
           "manifestSection": "dependencies",
           "declaredSpec": "latest",
@@ -1789,7 +1810,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1817,7 +1838,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1844,7 +1865,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1874,7 +1895,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1904,7 +1925,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1940,7 +1961,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -1983,7 +2004,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2005,7 +2026,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -2023,7 +2044,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2047,7 +2068,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2063,7 +2084,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -2136,7 +2157,7 @@
           "owner": "ui-router-maintainers",
           "package": "@uirouter/react-hybrid",
           "artifactId": "react-hybrid",
-          "expectedVersion": "2.0.0",
+          "expectedVersion": "3.0.0",
           "operation": "replace-declared",
           "manifestSection": "dependencies",
           "declaredSpec": "latest",
@@ -2212,7 +2233,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2240,7 +2261,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2267,7 +2288,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2297,7 +2318,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2327,7 +2348,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2363,7 +2384,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2406,7 +2427,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2428,7 +2449,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -2446,7 +2467,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2470,7 +2491,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2486,7 +2507,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -2559,7 +2580,7 @@
           "owner": "ui-router-maintainers",
           "package": "@uirouter/react-hybrid",
           "artifactId": "react-hybrid",
-          "expectedVersion": "2.0.0",
+          "expectedVersion": "3.0.0",
           "operation": "replace-declared",
           "manifestSection": "dependencies",
           "declaredSpec": "latest",
@@ -2635,7 +2656,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2663,7 +2684,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2690,7 +2711,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2720,7 +2741,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2750,7 +2771,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2786,7 +2807,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2829,7 +2850,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2851,7 +2872,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -2869,7 +2890,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2893,7 +2914,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -2909,7 +2930,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3001,7 +3022,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3022,7 +3043,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3038,7 +3059,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3056,7 +3077,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3142,7 +3163,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3161,7 +3182,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3182,7 +3203,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3198,7 +3219,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3216,7 +3237,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3302,7 +3323,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3324,7 +3345,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3346,7 +3367,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3365,7 +3386,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3386,7 +3407,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         },
         {
@@ -3402,7 +3423,7 @@
           "reason": "exact external graph effect of matrix-declared local artifacts and their complete P01 internal closure",
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],
@@ -3420,7 +3441,7 @@
           ],
           "evidence": {
             "path": "migration/package-artifacts.json",
-            "sha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240"
+            "sha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f"
           }
         }
       ],

@@ -82,7 +82,11 @@ function patchJson(text, before, after, jsonPath = []) {
           : applyEdits(
               result,
               modify(result, [...jsonPath, key], after[key], {
-                formattingOptions: { insertSpaces: true, tabSize: 2, eol: "\n" },
+                formattingOptions: {
+                  insertSpaces: true,
+                  tabSize: 2,
+                  eol: "\n",
+                },
               })
             );
     }
@@ -145,10 +149,16 @@ function canonicalJson(value) {
 
 function refreshMatrixProject(project, isolatedById) {
   const source = isolatedById.get(project.id);
-  if (!source) throw new Error(`integration project is not isolated: ${project.id}`);
+  if (!source)
+    throw new Error(`integration project is not isolated: ${project.id}`);
 
   const manifestSha256 = sha256File(project.manifest);
-  update(source, "manifestSha256", manifestSha256, `${project.id} isolated manifest`);
+  update(
+    source,
+    "manifestSha256",
+    manifestSha256,
+    `${project.id} isolated manifest`
+  );
   update(
     project,
     "committedManifestSha256",
@@ -226,6 +236,7 @@ update(
 );
 for (const record of packageArtifacts.packages) {
   const manifest = readJson(record.manifest);
+  update(record, "version", manifest.version, `${record.id} package version`);
   update(
     record,
     "manifestSha256",
@@ -240,11 +251,17 @@ for (const record of packageArtifacts.packages) {
   );
 }
 writeJson("migration/package-artifacts.json", packageArtifacts);
+const artifactById = new Map(
+  packageArtifacts.packages.map((record) => [record.id, record])
+);
 
 const isolated = readJson("migration/isolated-projects.json");
-const isolatedById = new Map(isolated.projects.map((project) => [project.id, project]));
+const isolatedById = new Map(
+  isolated.projects.map((project) => [project.id, project])
+);
 const matrix = readJson("migration/integration-matrix.json");
-for (const project of matrix.projects) refreshMatrixProject(project, isolatedById);
+for (const project of matrix.projects)
+  refreshMatrixProject(project, isolatedById);
 writeJson("migration/isolated-projects.json", isolated);
 
 update(
@@ -260,7 +277,31 @@ update(
   "package artifacts binding"
 );
 for (const project of matrix.projects) {
+  for (const rewrite of project.rewrites) {
+    const artifact = artifactById.get(rewrite.artifactId);
+    if (!artifact)
+      throw new Error(
+        `${project.id} rewrite has unknown artifact ${rewrite.artifactId}`
+      );
+    update(
+      rewrite,
+      "expectedVersion",
+      artifact.version,
+      `${project.id} rewrite version`
+    );
+  }
   for (const binding of project.closureBindings) {
+    const artifact = artifactById.get(binding.artifactId);
+    if (!artifact)
+      throw new Error(
+        `${project.id} closure has unknown artifact ${binding.artifactId}`
+      );
+    update(
+      binding,
+      "expectedVersion",
+      artifact.version,
+      `${project.id} closure version`
+    );
     if (binding.evidence.path === "migration/package-artifacts.json")
       update(
         binding.evidence,
@@ -279,6 +320,13 @@ for (const project of matrix.projects) {
       );
   }
 }
+for (const retirement of matrix.retirements)
+  update(
+    retirement.evidence,
+    "sha256",
+    sha256File(retirement.evidence.path),
+    `${retirement.projectId} retirement evidence`
+  );
 writeJson("migration/integration-matrix.json", matrix);
 
 const ci = readJson("migration/ci-gates.json");
@@ -294,8 +342,15 @@ refreshBindings(ci, {
 });
 writeJson("migration/ci-gates.json", ci);
 const ciWorkflow = renderWorkflow(ci);
-if (readFileSync(path.join(repository, ".github/workflows/ci.yml"), "utf8") !== ciWorkflow) {
-  if (write) writeFileSync(path.join(repository, ".github/workflows/ci.yml"), ciWorkflow);
+if (
+  readFileSync(path.join(repository, ".github/workflows/ci.yml"), "utf8") !==
+  ciWorkflow
+) {
+  if (write)
+    writeFileSync(
+      path.join(repository, ".github/workflows/ci.yml"),
+      ciWorkflow
+    );
   changes.push(".github/workflows/ci.yml");
 }
 
@@ -313,8 +368,10 @@ refreshBindings(reproducibility, {
 writeJson("migration/clean-reproducibility.json", reproducibility);
 const reproducibilityWorkflow = renderReproducibilityWorkflow(reproducibility);
 if (
-  readFileSync(path.join(repository, ".github/workflows/reproducibility.yml"), "utf8") !==
-  reproducibilityWorkflow
+  readFileSync(
+    path.join(repository, ".github/workflows/reproducibility.yml"),
+    "utf8"
+  ) !== reproducibilityWorkflow
 ) {
   if (write)
     writeFileSync(
@@ -346,6 +403,9 @@ refreshBindings(milestone, {
 writeJson("migration/milestone-acceptance.json", milestone);
 
 const release = readJson("migration/release-cutover.json");
+release.releaseInventory.packages = packageArtifacts.packages.map(
+  ({ id, package: name, version }) => ({ id, name, version })
+);
 refreshBindings(release, {
   sourcesSha256: "migration/sources.json",
   packageArtifactsSha256: "migration/package-artifacts.json",
@@ -359,8 +419,12 @@ writeJson("migration/release-cutover.json", release);
 
 if (!changes.length) console.log("VALIDATION_BINDINGS_OK changes=0");
 else if (write)
-  console.log(`VALIDATION_BINDINGS_REFRESHED changes=${[...new Set(changes)].length}`);
+  console.log(
+    `VALIDATION_BINDINGS_REFRESHED changes=${[...new Set(changes)].length}`
+  );
 else
   console.log(
-    `VALIDATION_BINDINGS_OUTDATED changes=${[...new Set(changes)].length}; rerun with --write`
+    `VALIDATION_BINDINGS_OUTDATED changes=${
+      [...new Set(changes)].length
+    }; rerun with --write`
   );

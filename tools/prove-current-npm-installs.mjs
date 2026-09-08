@@ -7,6 +7,8 @@ import { dirname, join, relative, resolve, sep } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
+import { loadCurrentNpmLsPolicy } from './current-npm-ls-policy.mjs';
+
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const readJson = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 const sha256 = (path) => createHash('sha256').update(readFileSync(path)).digest('hex');
@@ -34,12 +36,23 @@ const run = (command, args, cwd, allowedStatuses = [0]) => {
   }
   return result;
 };
-const normalizeProblem = (problem, sandbox) => problem.replaceAll(`${sandbox}${sep}`, '<root>/').replaceAll(`${sandbox}/`, '<root>/');
+const normalizeProblem = (problem, sandbox) => {
+  const canonicalSandbox = realpathSync(sandbox);
+  return problem
+    .replaceAll(`${canonicalSandbox}${sep}`, '<root>/')
+    .replaceAll(`${canonicalSandbox}/`, '<root>/')
+    .replaceAll(`${sandbox}${sep}`, '<root>/')
+    .replaceAll(`${sandbox}/`, '<root>/');
+};
 
 const classification = readJson('migration/package-classification.json');
 const pathRepairs = readJson('migration/path-repairs.json');
-const expectedProblems = readJson('migration/evidence/n03/root-npm-ls-problems.json');
 const expectedInternal = readJson('migration/evidence/n03/root-npm-ls-internal.json');
+const currentPolicy = loadCurrentNpmLsPolicy(root);
+const expectedProblems = {
+  exitStatus: currentPolicy.expectedExitStatus,
+  problems: currentPolicy.expectedProblems,
+};
 const movePath = (input) => {
   let output = input;
   for (const move of pathRepairs.moves) {
@@ -53,7 +66,7 @@ const npmVersion = execFileSync('npm', ['--version'], { encoding: 'utf8' }).trim
 if (npmVersion !== '11.17.0') fail(`npm must be 11.17.0, got ${npmVersion}`);
 const gitArgs = ['-c', `safe.directory=${root}`, '-C', root];
 const statusBefore = execFileSync('git', [...gitArgs, 'status', '--porcelain=v1'], { encoding: 'utf8' });
-const sandboxRoot = mkdtempSync(join(tmpdir(), 'uirouter-n03-proof-'));
+const sandboxRoot = mkdtempSync(join(tmpdir(), 'uirouter-p01-proof-'));
 if (realpathSync(sandboxRoot).startsWith(`${realpathSync(root)}${sep}`)) fail('sandbox is inside repository ancestry');
 
 try {
@@ -72,7 +85,7 @@ try {
   const npmLsJson = JSON.parse(npmLs.stdout);
   const problems = (npmLsJson.problems ?? []).map((problem) => normalizeProblem(problem, rootSandbox));
   if (npmLs.status !== expectedProblems.exitStatus || JSON.stringify(problems) !== JSON.stringify(expectedProblems.problems)) {
-    fail('root npm ls problem set differs from the reviewed S01 waiver');
+    fail(`root npm ls problem set differs from the reviewed S01 waiver\nexpected: ${JSON.stringify(expectedProblems.problems)}\nactual: ${JSON.stringify(problems)}`);
   }
   run(process.execPath, [join(root, 'tools/verify-npm-locks.mjs'), '--installed-root', rootSandbox], root);
 
@@ -164,7 +177,7 @@ try {
   }
   const statusAfter = execFileSync('git', [...gitArgs, 'status', '--porcelain=v1'], { encoding: 'utf8' });
   if (statusAfter !== statusBefore && !outputPath) fail('proof mutated the source tree');
-  console.log(`NPM_INSTALL_PROOF_OK root=1 local=${localRuns.length} internal=${internal.length} npmLsProblems=${problems.length}`);
+  console.log(`CURRENT_NPM_INSTALL_PROOF_OK root=1 local=${localRuns.length} internal=${internal.length} npmLsProblems=${problems.length}`);
 } finally {
   rmSync(sandboxRoot, { recursive: true, force: true });
 }

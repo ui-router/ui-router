@@ -17,8 +17,8 @@
     "sourcesSha256": "35d5e53ca38105779af4758bc8ee22ab90ae487f8e64c294bd8eb825634c92a9",
     "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
-    "milestoneAcceptanceSha256": "488c319e595dc216b71ca417d74d8b81ed1f25da38ff1741ccb852fd7b80dc81",
-    "cleanReproducibilitySha256": "ac3cac26cbf975c8df4e4004672a64a03a0f86c15a884061bae8ecc789b542cd",
+    "milestoneAcceptanceSha256": "fd331928f9897dde853783d439ebab7b677566581d35c6ebfea345c70f2c281b",
+    "cleanReproducibilitySha256": "d4878186c6c82dcaf15bb75bdfcfff008fdd6f8209b30339492c4537179017cf",
     "workGraphSha256": "75fe6e9323318f8c72d633a0670b52689e28df01794f791ff153c27faa1f98c0",
     "planDocumentSha256": "2325a19e9d2200566d307648b1e5655a7689e0de336b4774cc4c4b9751ecf5db"
   },

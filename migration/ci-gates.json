@@ -167,6 +167,11 @@
           "timeoutMinutes": 30
         },
         {
+          "id": "test-current-installs",
+          "argv": ["npm", "run", "test:current-installs"],
+          "timeoutMinutes": 10
+        },
+        {
           "id": "test-s01",
           "argv": ["npm", "run", "test:s01"],
           "timeoutMinutes": 30

@@ -10,6 +10,8 @@
   "resolved": [
     {
       "problem": "invalid: vitest@3.2.7 <root>/plugins/dsr/node_modules/vitest",
+      "dependency": "vitest",
+      "dependencyType": "devDependencies",
       "reason": "Every active Vitest manifest now requests the same ^4.0.16 line, so npm no longer installs an incompatible Vitest 3 copy below plugins/dsr.",
       "manifests": [
         "frameworks/angular/uirouter-angular/package.json",

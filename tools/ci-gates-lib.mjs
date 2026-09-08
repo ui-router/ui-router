@@ -329,6 +329,7 @@ export async function validateCiGates(options = {}) {
       ["check-static", ["npm", "run", "check:static:installed"]],
       ["test-n04", ["npm", "run", "test:n04-validators"]],
       ["test-n05", ["npm", "run", "test:n05-package-manager"]],
+      ["test-current-installs", ["npm", "run", "test:current-installs"]],
       ["test-s01", ["npm", "run", "test:s01"]],
       ["test-s02", ["npm", "run", "test:source-aliases"]],
       ["test-s03", ["npm", "run", "test:turbo"]],

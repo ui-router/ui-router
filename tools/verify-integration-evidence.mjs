@@ -129,15 +129,22 @@ if (
 )
   fail("proof identity differs");
 const implementationCommit = evidence.repository.commit;
-const reviewedScopeHead = "9fb4518698f4cb62193abc440c38b9b2330e5e22";
-const reviewedScopeTree = "dff8d6c3f84b852ac8426c4dd1193a6a97cd247d";
+const reviewedScopeHead = "e4a4059ead1f44e21711ff1b6b9785456d05fb47";
+const reviewedScopeTree = "cdb3ed68dc48bc6b563ce158703d199e545eaa7f";
 if (
   evidence.repository.dirty !== false ||
   git(["rev-parse", `${implementationCommit}^{tree}`]) !==
     evidence.repository.tree ||
   spawnSync(
     "git",
-    ["merge-base", "--is-ancestor", implementationCommit, "HEAD"],
+    [
+      "-c",
+      `safe.directory=${repository}`,
+      "merge-base",
+      "--is-ancestor",
+      implementationCommit,
+      "HEAD",
+    ],
     {
       cwd: repository,
     }
@@ -146,9 +153,18 @@ if (
   fail("proof implementation commit/tree is not an ancestor of HEAD");
 if (
   git(["rev-parse", `${reviewedScopeHead}^{tree}`]) !== reviewedScopeTree ||
-  spawnSync("git", ["merge-base", "--is-ancestor", reviewedScopeHead, "HEAD"], {
-    cwd: repository,
-  }).status !== 0
+  spawnSync(
+    "git",
+    [
+      "-c",
+      `safe.directory=${repository}`,
+      "merge-base",
+      "--is-ancestor",
+      reviewedScopeHead,
+      "HEAD",
+    ],
+    { cwd: repository },
+  ).status !== 0
 )
   fail("reviewed integration-proof scope is not an ancestor of HEAD");
 const evidencePrefix = "migration/evidence/i02/";
@@ -618,8 +634,22 @@ const artifactManifest = JSON.parse(readFileSync(artifactManifestPath, "utf8"));
 const artifactIds = evidence.artifacts.map((record) => record.artifactId);
 if (canonicalJson(artifactIds) !== canonicalJson(expectedArtifactIds))
   fail("proof artifact coverage differs");
+const retainedArtifactArchiveRoot = safeEvidencePath(
+  "artifacts",
+  "retained artifact archives"
+);
+if (existsSync(retainedArtifactArchiveRoot))
+  checkedArtifactArchiveRoot = retainedArtifactArchiveRoot;
 if (!checkedArtifactArchiveRoot)
   fail("checked proof lacks a retained artifact archive set");
+const expectedArchiveFiles = evidence.artifacts
+  .map((artifact) => `${artifact.filename}.json`)
+  .sort();
+if (
+  canonicalJson(readdirSync(checkedArtifactArchiveRoot).sort()) !==
+  canonicalJson(expectedArchiveFiles)
+)
+  fail("retained artifact archive inventory differs");
 for (const artifact of evidence.artifacts) {
   const archive = safeEvidencePath(
     `${artifact.filename}.json`,

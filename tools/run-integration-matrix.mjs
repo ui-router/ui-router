@@ -2291,9 +2291,32 @@ if (writeEvidence) {
   const evidenceDirectory = path.join(repository, "migration/evidence/i02");
   const checkedRunLocks = path.join(evidenceDirectory, "run-locks");
   const checkedFailureBundles = path.join(evidenceDirectory, "failure-bundles");
+  const checkedArtifactArchives = path.join(evidenceDirectory, "artifacts");
   rmSync(checkedRunLocks, { recursive: true, force: true });
+  rmSync(checkedArtifactArchives, { recursive: true, force: true });
   mkdirSync(checkedRunLocks, { recursive: true });
   mkdirSync(checkedFailureBundles, { recursive: true });
+  mkdirSync(checkedArtifactArchives, { recursive: true });
+  for (const filename of readdirSync(evidenceArtifactDirectory).filter((name) =>
+    name.endsWith(".tgz")
+  )) {
+    const archivePath = path.join(evidenceArtifactDirectory, filename);
+    const bytes = readFileSync(archivePath);
+    writeFileSync(
+      path.join(checkedArtifactArchives, `${filename}.json`),
+      `${JSON.stringify(
+        {
+          filename,
+          sha256: sha256(bytes),
+          size: bytes.length,
+          encoding: "base64",
+          bytes: bytes.toString("base64"),
+        },
+        null,
+        2
+      )}\n`
+    );
+  }
   const retainedFailureBundles = new Set(
     matrix.retirements.map((retirement) => projectSlug(retirement.projectId))
   );

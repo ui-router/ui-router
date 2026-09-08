@@ -468,6 +468,7 @@ function typeProbeSource(contract) {
 async function verifyBins(contract, consumerRoot) {
   const cli = contract.packages.find((record) => record.kind === "cli");
   const installedRoot = path.join(consumerRoot, "node_modules", cli.package);
+  const installedRealpath = await realpath(installedRoot);
   const manifest = JSON.parse(
     await readFile(path.join(installedRoot, "package.json"), "utf8")
   );
@@ -483,7 +484,7 @@ async function verifyBins(contract, consumerRoot) {
       entrypoint.specifier
     );
     const binRealpath = await realpath(bin);
-    if (!pathInside(installedRoot, binRealpath))
+    if (!pathInside(installedRealpath, binRealpath))
       fail(`${entrypoint.id} installed bin escapes its tarball package`);
     const target = await readFile(binRealpath, "utf8");
     if (!target.startsWith("#!"))

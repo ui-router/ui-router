@@ -5,11 +5,11 @@
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
-    "packageArtifactsSha256": "bc482a8961863592e944e5f7ee077568b0ac39600ab7a40d13e550ffef2a18e2",
-    "integrationMatrixSha256": "54579328329800349f2e49c741837d23a6e4c9a0e92259f157145f720a0dec6f",
+    "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
+    "integrationMatrixSha256": "ac735159ad3d3acbaa5fef04d1d739ed3f342ce45abb437d7b2fc2e628585e3d",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
-    "packageLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
-    "turboSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10"
+    "packageLockSha256": "be50aeabe6ab354b1bd58f42783ac9cafd9c052ca28fdbabb3a74f69a93dcc6d",
+    "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7"
   },
   "workflow": {
     "path": ".github/workflows/ci.yml",
@@ -165,6 +165,11 @@
           "id": "test-n05",
           "argv": ["npm", "run", "test:n05-package-manager"],
           "timeoutMinutes": 30
+        },
+        {
+          "id": "test-current-installs",
+          "argv": ["npm", "run", "test:current-installs"],
+          "timeoutMinutes": 10
         },
         {
           "id": "test-s01",

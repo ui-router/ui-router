@@ -3,9 +3,9 @@
   "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
   "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
   "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
-  "turboJsonSha256": "c82a51a5bd800b78d3e78479bf7a3d0554a9143726724adee91b98753252ed10",
+  "turboJsonSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
   "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
-  "rootLockSha256": "181268aa06618e964525f0a9ee7a0f956592bf8e366ec3b21ec5a2f0e67688fd",
+  "rootLockSha256": "be50aeabe6ab354b1bd58f42783ac9cafd9c052ca28fdbabb3a74f69a93dcc6d",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -171,7 +171,7 @@
       "owner": "p01-production-pack",
       "sourceManifest": "framework/angular/router/package.json",
       "manifest": "frameworks/angular/uirouter-angular/package.json",
-      "manifestSha256": "02989715b0c8fada8246e8d6c5a1b303ab69e6542d44888957395b2d299d4c00",
+      "manifestSha256": "5ff29ef2b32d03fcd6cc05d862d46dc13a6ac8f539220f438d49100384278d37",
       "scriptsSha256": "cc5f7db456a54abd1250922f6d2339472290c6e8ead4f571e85055f03ff63c8c",
       "package": "@uirouter/angular",
       "version": "22.0.0",
@@ -487,7 +487,7 @@
       "owner": "p01-production-pack",
       "sourceManifest": "plugins/dsr/package.json",
       "manifest": "plugins/dsr/package.json",
-      "manifestSha256": "4e0aa3f46e4c064339faaeb97072b6c81a1065a40ef13c997f68aa37ac90a2a2",
+      "manifestSha256": "844736026c897a7b4a360090fe25d41d8ce13e7953ecb06cf098185df0ba6dc6",
       "scriptsSha256": "60a3c49742bebee9e88fac58148cdb8d419e95c4dc44fa5277980b979ef39ab8",
       "package": "@uirouter/dsr",
       "version": "1.2.0",
@@ -539,7 +539,7 @@
       "owner": "p01-production-pack",
       "sourceManifest": "plugins/redux/package.json",
       "manifest": "plugins/redux/package.json",
-      "manifestSha256": "db3f692d7eafd7b1fd9cb77afb675cef78e3b770fd06557b9c015dea96b5cdb0",
+      "manifestSha256": "7dae79da30d8ba131759f00e70d72076b9d0923d4a4060093a4fa2343bc094b5",
       "scriptsSha256": "1ac511fea155b0abed00da779f0fd385ac22abab5d02d14f47cd3d80e5e77d78",
       "package": "@uirouter/redux",
       "version": "1.0.0",
@@ -906,5 +906,6 @@
         }
       ]
     }
-  ]
+  ],
+  "rootLockPackageEntries": 4279
 }

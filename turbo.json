@@ -39,7 +39,8 @@
     "pack": {
       "dependsOn": ["^build", "build"],
       "cache": false,
-      "outputs": [".artifacts/packages/**"]
+      "outputs": [".artifacts/packages/**"],
+      "env": ["npm_config_cache"]
     },
     "docs": {
       "dependsOn": ["^build", "build"],

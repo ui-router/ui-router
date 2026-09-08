@@ -80,7 +80,7 @@ requireEqual('Turbo lock predecessor entries', turboEvidence.rootLock.beforePack
 requireEqual('P01 lock predecessor digest', packageArtifactsContract.rootLockPredecessorSha256, turboEvidence.rootLock.afterSha256);
 requireEqual('P01 current lock digest', packageArtifactsContract.rootLockSha256, sha256('package-lock.json'));
 const currentRootLock = readJson('package-lock.json');
-requireEqual('P01 current lock entries', Object.keys(currentRootLock.packages).length, turboEvidence.rootLock.afterPackageEntries + 5);
+requireEqual('P01 current lock entries', Object.keys(currentRootLock.packages).length, packageArtifactsContract.rootLockPackageEntries);
 const reactHybridManifest = readJson('frameworks/react-hybrid/uirouter-react-hybrid/package.json');
 const reduxManifest = readJson('plugins/redux/package.json');
 requireEqual('P01 React Hybrid lock record', currentRootLock.packages['frameworks/react-hybrid/uirouter-react-hybrid'].devDependencies, reactHybridManifest.devDependencies);

@@ -38,8 +38,8 @@
     "setup:browser": "turbo run setup:browser --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
     "e2e": "turbo run e2e --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
     "check": "npm run verify:turbo && node tools/run-clean-static-gates.mjs && npm run prove:package-artifacts",
-    "check:static": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:turbo && npm run verify:isolated && npm run verify:package-artifacts && npm run verify:integration-matrix && npm run verify:integration-evidence && npm run verify:ci && npm run verify:reproducibility && npm run verify:acceptance && npm run verify:contracts && npm run verify:work-graph",
-    "check:static:installed": "npm run verify:root-config && npm run verify:manifests && npm run verify:package-manager && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:turbo && npm run verify:isolated && npm run verify:package-artifacts && npm run verify:integration-matrix && npm run verify:integration-evidence && npm run verify:ci && npm run verify:reproducibility && npm run verify:acceptance && npm run verify:contracts && npm run verify:work-graph",
+    "check:static": "npm run verify:root-config && npm run verify:manifests && npm run verify:locks && npm run verify:package-manager && npm run verify:current-installs && npm run verify:layout && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:turbo && npm run verify:isolated && npm run verify:package-artifacts && npm run verify:integration-matrix && npm run verify:integration-evidence && npm run verify:ci && npm run verify:reproducibility && npm run verify:acceptance && npm run verify:contracts && npm run verify:work-graph && npm run verify:tooling-versions",
+    "check:static:installed": "npm run verify:root-config && npm run verify:manifests && npm run verify:package-manager && npm run verify:current-installs && npm run verify:internal-deps && npm run verify:s01 && npm run verify:source-aliases && npm run verify:turbo && npm run verify:isolated && npm run verify:package-artifacts && npm run verify:integration-matrix && npm run verify:integration-evidence && npm run verify:ci && npm run verify:reproducibility && npm run verify:acceptance && npm run verify:contracts && npm run verify:work-graph && npm run verify:tooling-versions",
     "verify:root-config": "node tools/verify-root-config.mjs",
     "verify:manifests": "node tools/verify-manifest-normalization.mjs",
     "verify:locks": "node tools/verify-npm-locks.mjs",
@@ -79,13 +79,19 @@
     "test:n04-validators": "node tools/test-n04-validators.mjs",
     "test:n04-installed": "node tools/test-n04-installed.mjs",
     "test:n05-package-manager": "node tools/test-n05-package-manager.mjs",
+    "verify:current-installs": "node tools/verify-current-npm-ls-policy.mjs",
+    "test:current-installs": "node tools/test-current-npm-ls-policy.mjs",
     "prove:installs": "node tools/prove-npm-installs.mjs",
-    "prove:installs:ci": "node tools/prove-npm-installs.mjs --write .ci-results/contracts/install-proof.json",
+    "prove:installs:ci": "node tools/prove-current-npm-installs.mjs --write .ci-results/contracts/install-proof.json",
     "verify:contracts": "node tools/verify-contract-schemas.mjs",
     "verify:work-graph": "node tools/verify-work-graph.mjs",
+    "verify:tooling-versions": "syncpack lint",
+    "refresh:validation-bindings": "node tools/refresh-validation-bindings.mjs --write",
     "test:history-migration": "node tools/test-history-migration.mjs"
   },
   "devDependencies": {
+    "jsonc-parser": "^3.3.1",
+    "syncpack": "^15.3.3",
     "turbo": "2.10.12",
     "typescript-p01": "npm:typescript@5.9.3"
   }

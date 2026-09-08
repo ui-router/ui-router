@@ -1,14 +1,15 @@
 name: P01 Linux proof
 
 on:
-  pull_request:
+  push:
+    branches:
+      - codex/tooling-convergence
 
 permissions:
   contents: read
 
 jobs:
   prove:
-    if: github.event.pull_request.head.ref == 'codex/tooling-convergence'
     runs-on: ubuntu-24.04
     container:
       image: mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac

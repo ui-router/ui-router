@@ -26,7 +26,7 @@ function fail(message) {
   throw new Error(`INTEGRATION_EVIDENCE_VERIFY_FAILED: ${message}`);
 }
 function git(args) {
-  const result = spawnSync("git", args, {
+  const result = spawnSync("git", ["-c", `safe.directory=${repository}`, ...args], {
     cwd: repository,
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,

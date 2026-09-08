@@ -34,12 +34,48 @@ const run = (command, args, cwd, allowedStatuses = [0]) => {
   }
   return result;
 };
-const normalizeProblem = (problem, sandbox) => problem.replaceAll(`${sandbox}${sep}`, '<root>/').replaceAll(`${sandbox}/`, '<root>/');
+const normalizeProblem = (problem, sandbox) => {
+  const canonicalSandbox = realpathSync(sandbox);
+  return problem
+    .replaceAll(`${canonicalSandbox}${sep}`, '<root>/')
+    .replaceAll(`${canonicalSandbox}/`, '<root>/')
+    .replaceAll(`${sandbox}${sep}`, '<root>/')
+    .replaceAll(`${sandbox}/`, '<root>/');
+};
 
 const classification = readJson('migration/package-classification.json');
 const pathRepairs = readJson('migration/path-repairs.json');
-const expectedProblems = readJson('migration/evidence/n03/root-npm-ls-problems.json');
+const baselineProblemsPath = 'migration/evidence/n03/root-npm-ls-problems.json';
+const baselineProblems = readJson(baselineProblemsPath);
+const problemResolutions = readJson('migration/evidence/p01/npm-ls-resolutions.json');
 const expectedInternal = readJson('migration/evidence/n03/root-npm-ls-internal.json');
+
+if (
+  problemResolutions.schemaVersion !== 1 ||
+  problemResolutions.task !== 'P01' ||
+  problemResolutions.baseline.path !== baselineProblemsPath ||
+  problemResolutions.baseline.sha256 !== sha256(join(root, baselineProblemsPath)) ||
+  problemResolutions.baseline.problemCount !== baselineProblems.problemCount
+) fail('P01 npm-ls resolution record is not bound to the reviewed N03 baseline');
+const resolvedProblems = new Set();
+for (const resolution of problemResolutions.resolved) {
+  if (!baselineProblems.problems.includes(resolution.problem)) fail(`P01 resolves an unknown npm-ls problem: ${resolution.problem}`);
+  if (resolvedProblems.has(resolution.problem)) fail(`P01 resolves the same npm-ls problem twice: ${resolution.problem}`);
+  resolvedProblems.add(resolution.problem);
+  for (const manifestPath of resolution.manifests) {
+    const manifest = readJson(manifestPath);
+    if (manifest.devDependencies?.vitest !== resolution.requiredRange) {
+      fail(`${manifestPath} does not prove the recorded Vitest resolution`);
+    }
+  }
+}
+const expectedProblems = {
+  exitStatus: baselineProblems.exitStatus,
+  problems: baselineProblems.problems.filter((problem) => !resolvedProblems.has(problem)),
+};
+if (expectedProblems.problems.length !== problemResolutions.currentProblemCount) {
+  fail('P01 npm-ls current problem count does not match its explicit resolutions');
+}
 const movePath = (input) => {
   let output = input;
   for (const move of pathRepairs.moves) {
@@ -72,7 +108,7 @@ try {
   const npmLsJson = JSON.parse(npmLs.stdout);
   const problems = (npmLsJson.problems ?? []).map((problem) => normalizeProblem(problem, rootSandbox));
   if (npmLs.status !== expectedProblems.exitStatus || JSON.stringify(problems) !== JSON.stringify(expectedProblems.problems)) {
-    fail('root npm ls problem set differs from the reviewed S01 waiver');
+    fail(`root npm ls problem set differs from the reviewed S01 waiver\nexpected: ${JSON.stringify(expectedProblems.problems)}\nactual: ${JSON.stringify(problems)}`);
   }
   run(process.execPath, [join(root, 'tools/verify-npm-locks.mjs'), '--installed-root', rootSandbox], root);
 

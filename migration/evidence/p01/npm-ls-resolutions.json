@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "task": "P01",
+  "baseline": {
+    "path": "migration/evidence/n03/root-npm-ls-problems.json",
+    "sha256": "98f9f6d99688a597ea73b8035e588424cc689d4a86b822368ac7abe0860a076e",
+    "problemCount": 15
+  },
+  "currentProblemCount": 14,
+  "resolved": [
+    {
+      "problem": "invalid: vitest@3.2.7 <root>/plugins/dsr/node_modules/vitest",
+      "reason": "Every active Vitest manifest now requests the same ^4.0.16 line, so npm no longer installs an incompatible Vitest 3 copy below plugins/dsr.",
+      "manifests": [
+        "frameworks/angular/uirouter-angular/package.json",
+        "frameworks/react/integration-tests/react17/package.json",
+        "frameworks/react/integration-tests/react18/package.json",
+        "frameworks/react/integration-tests/react19/package.json",
+        "frameworks/react/uirouter-react/package.json",
+        "plugins/dsr/package.json",
+        "plugins/redux/package.json",
+        "plugins/rx/package.json",
+        "plugins/sticky-states/package.json"
+      ],
+      "requiredRange": "^4.0.16"
+    }
+  ]
+}

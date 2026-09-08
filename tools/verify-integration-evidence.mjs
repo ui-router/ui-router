@@ -125,8 +125,8 @@ if (
 )
   fail("proof identity differs");
 const implementationCommit = evidence.repository.commit;
-const c01ScopeHead = "7cd43281168dd15e20a1f64e9bda33bf98b5b231";
-const c01ScopeTree = "a5e2d1bca11b54ccf64bc30eb146b03336fa6265";
+const reviewedScopeHead = "7336f59d42f25e97a0fab0baf62333153c3b230e";
+const reviewedScopeTree = "9fe7ef7d96251ff121791934c8292e55ea8de269";
 if (
   evidence.repository.dirty !== false ||
   git(["rev-parse", `${implementationCommit}^{tree}`]) !==
@@ -141,15 +141,15 @@ if (
 )
   fail("proof implementation commit/tree is not an ancestor of HEAD");
 if (
-  git(["rev-parse", `${c01ScopeHead}^{tree}`]) !== c01ScopeTree ||
-  spawnSync("git", ["merge-base", "--is-ancestor", c01ScopeHead, "HEAD"], {
+  git(["rev-parse", `${reviewedScopeHead}^{tree}`]) !== reviewedScopeTree ||
+  spawnSync("git", ["merge-base", "--is-ancestor", reviewedScopeHead, "HEAD"], {
     cwd: repository,
   }).status !== 0
 )
-  fail("reviewed C01 scope is not an ancestor of HEAD");
+  fail("reviewed integration-proof scope is not an ancestor of HEAD");
 const evidencePrefix = "migration/evidence/i02/";
 const postImplementationPaths = new Set(
-  git(["diff", "--name-only", `${implementationCommit}..${c01ScopeHead}`])
+  git(["diff", "--name-only", `${implementationCommit}..${reviewedScopeHead}`])
     .split("\n")
     .filter(Boolean)
 );

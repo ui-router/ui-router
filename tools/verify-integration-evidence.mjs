@@ -129,8 +129,8 @@ if (
 )
   fail("proof identity differs");
 const implementationCommit = evidence.repository.commit;
-const reviewedScopeHead = "e4a4059ead1f44e21711ff1b6b9785456d05fb47";
-const reviewedScopeTree = "cdb3ed68dc48bc6b563ce158703d199e545eaa7f";
+const reviewedScopeHead = "cc2f4c6d9f018d49b869087bfd1eb79eeb1cf7f7";
+const reviewedScopeTree = "b9955489a75043658163c3679b4ab1a05cf78155";
 if (
   evidence.repository.dirty !== false ||
   git(["rev-parse", `${implementationCommit}^{tree}`]) !==

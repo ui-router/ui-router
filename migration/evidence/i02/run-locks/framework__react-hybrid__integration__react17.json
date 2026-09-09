@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "bundleState": "final",
-  "runId": "f2608f15dfd48365bac76db0",
+  "runId": "b9a36e6b7639a783db31cffe",
   "fixtureId": "framework/react-hybrid/integration/react17",
   "mode": "clean",
   "repository": {
-    "commit": "7336f59d42f25e97a0fab0baf62333153c3b230e",
-    "tree": "9fe7ef7d96251ff121791934c8292e55ea8de269",
+    "commit": "cc2f4c6d9f018d49b869087bfd1eb79eeb1cf7f7",
+    "tree": "b9955489a75043658163c3679b4ab1a05cf78155",
     "dirty": false,
-    "sourceSnapshotSha256": "8dfd1874f4390b9c7ed6f637d5c18fd898cfdb2fa5595df462236e87296de5f7"
+    "sourceSnapshotSha256": "5a53373d88f1f0e9dbe4fd46e15bbeb8d66d421901baca236895b993f686ed92"
   },
   "contracts": {
-    "matrixSha256": "ac735159ad3d3acbaa5fef04d1d739ed3f342ce45abb437d7b2fc2e628585e3d",
+    "matrixSha256": "0b48dd90c4e1b1b74e65991c9b6f375e15bd66c549f502fcb2209763a038ba0f",
     "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
-    "packageArtifactsSha256": "288e102b4beae0b48980ff7f6ff612bf3c0d73eb0b8d99fdb5a3ac610fc94240",
+    "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
@@ -40,15 +40,15 @@
     },
     "npmEnvironment": {
       "PATH": "/__t/node/24.19.0/x64/bin:/__t/node/24.19.0/x64/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-7e5pDK/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-7e5pDK/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-V6mUiQ/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-V6mUiQ/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-7e5pDK/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-V6mUiQ/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-7e5pDK/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-V6mUiQ/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -57,11 +57,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-7e5pDK/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-V6mUiQ/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-7e5pDK/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-V6mUiQ/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -71,7 +71,7 @@
       "bin-links": "true",
       "prefer-dedupe": "true"
     },
-    "npmConfigSha256": "662f9944cc419fe6e9b39e637d7804ee96ff2274220f93234a211c23eba3f3ae"
+    "npmConfigSha256": "e64e332271d7a0cfe78e933073d246e5ee31e2b3994761de7130facb063ae816"
   },
   "browser": {
     "package": "@playwright/test",
@@ -152,16 +152,16 @@
     "installRootSha256": "620d7bcc2da802d7d2889db39d6d7fac729587e0aae85ea0347987e9258f53b4"
   },
   "environment": {
-    "PATH": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/command-adapters:/__t/node/24.19.0/x64/bin:/__t/node/24.19.0/x64/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-7e5pDK/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-7e5pDK/tmp",
+    "PATH": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/command-adapters:/__t/node/24.19.0/x64/bin:/__t/node/24.19.0/x64/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
+    "HOME": "/tmp/uirouter-i02-clean-V6mUiQ/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-V6mUiQ/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-7e5pDK/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-V6mUiQ/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-7e5pDK/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-V6mUiQ/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -170,8 +170,8 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-7e5pDK/browser-cache",
-    "I02_COMMAND_ADAPTER_PATH": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/command-adapters"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-V6mUiQ/browser-cache",
+    "I02_COMMAND_ADAPTER_PATH": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/command-adapters"
   },
   "commands": {
     "lock": [
@@ -204,13 +204,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17",
-    "realpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17",
+    "path": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17",
+    "realpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-7e5pDK/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "a8ebccd04aed02f5e7877c5b59d8e1f750ba394384472c0777099397b91d68f5",
-    "resetInputsSha256": "9d9ccf3484365a4a46862e27d061594d8be9f0ac09df7544f224df27274895f1",
+    "resetInputsSha256": "1eac2bc755d588666b743c5bc1355d42dd1a64a6d962a7cf579fd04dbeb5a06b",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -229,10 +229,10 @@
     "lockSha256": "166a596a6a1d197bbb5529a4b9c7f9a3eb85528db4c501694ae686f539bc0c8a"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/package.json",
-    "manifestSha256": "a7434c45f50c3601ac03c924ccb17524fd9d71f9afda4fcb616fb78b63534de1",
-    "lockPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/package-lock.json",
-    "lockSha256": "76cb94aaf13c6871937bcbdd12200acfdcd533e8f2ddeea6f9c105d37b54bc9e",
+    "manifestPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/package.json",
+    "manifestSha256": "fff6db41309d732f02f19eacaa1525299feb97f107d25ea932d01e20d771e790",
+    "lockPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/package-lock.json",
+    "lockSha256": "afdbde2b6f99d9b9089ce120c9b046e42f7a638747cdeaa39b515668a39800d6",
     "rewriteIds": [
       "rewrite-framework-react-hybrid-integration-react17-react-hybrid",
       "rewrite-framework-react-hybrid-integration-react17-visualizer"
@@ -280,13 +280,13 @@
     {
       "artifactId": "react-hybrid",
       "package": "@uirouter/react-hybrid",
-      "version": "2.0.0",
-      "filename": "uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "sha256": "58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069",
-      "integrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
-      "metadataSha256": "6b291c968c04af213f00ffd4f813f4c99b23520119ba10d4d46db8c3b1f9669e",
-      "filesSha256": "817e0a16c51a99fc028d686aadf5be33fe1992cdb32286c964cd4dfdb8d238a2",
-      "path": "artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz"
+      "version": "3.0.0",
+      "filename": "uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8",
+      "integrity": "sha512-0AGGOaFWMBCViF8hR7Sf96JjQWM/4f6hT9GJwlXNLZwSHxTJppZiRgO2Ddk+ZIf0i/IMY+7+INx3tEqrnyVdlQ==",
+      "metadataSha256": "67c2e1d8e86404fe3014959c7ceb055324dce8a041d49a8d6dcc1790c6454e94",
+      "filesSha256": "8948b5a16806c4faf14bb868b8ee7a9a6ec6f95e6c6f722138d1a1e031f6be0f",
+      "path": "artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz"
     },
     {
       "artifactId": "visualizer",
@@ -303,27 +303,27 @@
   "dependencyGraphs": {
     "externalBeforeSha256": "25ebb66de1b6fc022eb141a52f5ac9f77c3edaaf52a673c9aefe1156e1561045",
     "externalAfterSha256": "3c97d1983162935c6fc4090b534e0e444fdd10d987502b0411a7552ce4f1cdcf",
-    "lockSha256": "76cb94aaf13c6871937bcbdd12200acfdcd533e8f2ddeea6f9c105d37b54bc9e",
-    "installedSha256": "610f960ec22c874e60ed3ff4adeb9dc874713f6486e0bf21bc1a692945cfa7ae",
+    "lockSha256": "afdbde2b6f99d9b9089ce120c9b046e42f7a638747cdeaa39b515668a39800d6",
+    "installedSha256": "55cbcb8b6a166ecfc144f792bb9e2fce7aa0be59e538b3d7c72a746c31756c40",
     "peerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "moduleAuditSha256": "4d15c8e224ac0075a1909109041e00d50182d8b249bad9df6fd8fe6b91234229",
-    "nodeModulesSha256": "e8bf87d521ad6f339817977193f23c7e3688ac2efdc531e97142b6319b1a64c7"
+    "moduleAuditSha256": "ddd8b1f1ddbb12d0480851c30ac993b4d17ce2af4cc71755bf43fd974b463761",
+    "nodeModulesSha256": "1b6302dc458003a1c627deac7c169575234bc96070ec6ba4a58ca72b329663c1"
   },
   "origins": [
     {
       "status": "verified",
       "edgeId": "edge-framework-react-hybrid-integration-react17-dependencies-uirouter-react-hybrid",
       "package": "@uirouter/react-hybrid",
-      "expectedVersion": "2.0.0",
+      "expectedVersion": "3.0.0",
       "artifactId": "react-hybrid",
-      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "lockIntegrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "manifestSha256": "c724c7500d7dc4237a1564cef58e4f31051a7be438e1aba9315f1d1bb7003d37",
+      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "lockIntegrity": "sha512-0AGGOaFWMBCViF8hR7Sf96JjQWM/4f6hT9GJwlXNLZwSHxTJppZiRgO2Ddk+ZIf0i/IMY+7+INx3tEqrnyVdlQ==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "manifestSha256": "f3731b1defeea2290400a69a0538e06ff6886790faa00a54b23e8e8fbc9e246a",
       "insideSandbox": true,
       "symlink": false
     },
@@ -336,10 +336,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
       "lockIntegrity": "sha512-K8/qPad9DDfCYzs8GodV3ovzoLxrOwndaa9iC8jsak5tfzWgzHlE3p5EpBW6q3an1N4RqQe95FQCuoSQ4dLnhw==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
       "manifestSha256": "4880538bea619275e1dfb71302b86e56ff099ddc0a34542a6f92792bce01d46c",
       "insideSandbox": true,
       "symlink": false
@@ -348,16 +348,16 @@
       "status": "verified",
       "edgeId": "edge-framework-react-hybrid-integration-react17-legacy-injected-uirouter-react-hybrid-integration-react17",
       "package": "@uirouter/react-hybrid",
-      "expectedVersion": "2.0.0",
+      "expectedVersion": "3.0.0",
       "artifactId": "react-hybrid",
-      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "lockIntegrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "manifestSha256": "c724c7500d7dc4237a1564cef58e4f31051a7be438e1aba9315f1d1bb7003d37",
+      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "lockIntegrity": "sha512-0AGGOaFWMBCViF8hR7Sf96JjQWM/4f6hT9GJwlXNLZwSHxTJppZiRgO2Ddk+ZIf0i/IMY+7+INx3tEqrnyVdlQ==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "manifestSha256": "f3731b1defeea2290400a69a0538e06ff6886790faa00a54b23e8e8fbc9e246a",
       "insideSandbox": true,
       "symlink": false
     }
@@ -371,10 +371,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
       "lockIntegrity": "sha512-NB6nvktYFfIErp7lAdERRtHOieBResSYkY3XCjv60hRZiOGJcBgB3C/S8lPQo108Tjdr+Fb1aM1nmUYqth3oHA==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/angularjs",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/angularjs",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-angularjs-1.1.2-sha256-660e42eb5d1c9006450d7b63893678ee8d8e97cc6a83f1e81223e7a1b2f4c8e5.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/angularjs",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/angularjs",
       "manifestSha256": "cc7974d529dc93fcbcc796705607939cbc6db9bb470cb079b912a9b8efa30ef5",
       "insideSandbox": true,
       "symlink": false
@@ -387,10 +387,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
       "lockIntegrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/core",
       "manifestSha256": "9d4687498fa13540c0533baa70d1f6b0e020a3076d3e78860af8d8331b938d75",
       "insideSandbox": true,
       "symlink": false
@@ -403,10 +403,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
       "lockIntegrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react",
       "manifestSha256": "2e04b1d6a6e10623bcd4b7bbd0b5a265f220766fedc17a91c5ac9ad4cedd77ad",
       "insideSandbox": true,
       "symlink": false
@@ -414,16 +414,16 @@
     {
       "lockPath": "node_modules/@uirouter/react-hybrid",
       "package": "@uirouter/react-hybrid",
-      "expectedVersion": "2.0.0",
+      "expectedVersion": "3.0.0",
       "artifactId": "react-hybrid",
-      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "lockIntegrity": "sha512-+AxiCHIOOD0BfgpYkZ9gxLQEMupstpUFMRAPxTS4bDxroIW9Q4fAvMnLbOYVTsxh887qrIM3H/psqwUhljuSmA==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-react-hybrid-2.0.0-sha256-58cf1dad6dae934248358589493411d2eb77a5d37c98253c2dd36df614c51069.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
-      "manifestSha256": "c724c7500d7dc4237a1564cef58e4f31051a7be438e1aba9315f1d1bb7003d37",
+      "lockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "lockIntegrity": "sha512-0AGGOaFWMBCViF8hR7Sf96JjQWM/4f6hT9GJwlXNLZwSHxTJppZiRgO2Ddk+ZIf0i/IMY+7+INx3tEqrnyVdlQ==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-react-hybrid-3.0.0-sha256-f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/react-hybrid",
+      "manifestSha256": "f3731b1defeea2290400a69a0538e06ff6886790faa00a54b23e8e8fbc9e246a",
       "insideSandbox": true,
       "symlink": false
     },
@@ -435,10 +435,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
       "lockIntegrity": "sha512-K8/qPad9DDfCYzs8GodV3ovzoLxrOwndaa9iC8jsak5tfzWgzHlE3p5EpBW6q3an1N4RqQe95FQCuoSQ4dLnhw==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-7e5pDK/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
-      "installedRealpath": "/tmp/uirouter-i02-clean-7e5pDK/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/artifacts/uirouter-visualizer-7.2.1-sha256-ac5fc7247e217588f8b065b6b1862a8b484e1b3d0be20f3485a18404a9f79c2d.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
+      "installedRealpath": "/tmp/uirouter-i02-clean-V6mUiQ/projects/framework__react-hybrid__integration__react17/project/node_modules/@uirouter/visualizer",
       "manifestSha256": "4880538bea619275e1dfb71302b86e56ff099ddc0a34542a6f92792bce01d46c",
       "insideSandbox": true,
       "symlink": false
@@ -457,7 +457,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "d83bfb878a5dc4f7325a039683ab5fd63fc5055932ce1cae1631a7c58b04b0e1",
+      "stdoutSha256": "b125771fda8addd462adfe7f7b03299feb35e28badbb2d16ae8589e371216f8f",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -471,7 +471,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "a4ddcf7e2d8b888f7c62243d000782548a78157a28fd9d318c4c029d82504cb0",
+      "stdoutSha256": "341af8c932ab7142864792523a72051b67fa66eeaa927584913b1fb25ceb8646",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -483,7 +483,7 @@
         "--json"
       ],
       "status": 0,
-      "stdoutSha256": "20e6ba7ce6a9903127901131582cf04c59e0def353f8b9146ec65a7f546758e8",
+      "stdoutSha256": "1ba23ea4d94610e8d88a07656c83a42942c962282ff64db08d7d6ac194d42315",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -505,7 +505,7 @@
         "test"
       ],
       "status": 0,
-      "stdoutSha256": "c7c82f75760d5ea5a4ca1d61b87100a4bb9e176f51e702de9a6f319eb09ed455",
+      "stdoutSha256": "b5515726367e16f1cb9e04ed020236c5405950030c84dce30e7c01a767321dc8",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],

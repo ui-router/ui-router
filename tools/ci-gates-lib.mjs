@@ -681,11 +681,6 @@ export async function validateCiGates(options = {}) {
       : [
           contract.workflow.path,
           ".github/workflows/reproducibility.yml",
-          ...(existsSync(
-            path.join(root, ".github/workflows/p03-linux-proof.yml")
-          )
-            ? [".github/workflows/p03-linux-proof.yml"]
-            : []),
         ].sort();
     if (!options.workflow)
       equal(activeAutomation, expectedActive, "active workflow inventory");

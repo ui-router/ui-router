@@ -236,6 +236,7 @@ const p03OwnedPaths = new Set([
   "tools/integration-matrix-lib.mjs",
   "tools/milestone-acceptance-lib.mjs",
   "tools/refresh-validation-bindings.mjs",
+  "tools/run-immutable-i01-gate.mjs",
   "tools/run-integration-matrix.mjs",
   "tools/test-integration-matrix.mjs",
   "tools/test-integration-runner.mjs",

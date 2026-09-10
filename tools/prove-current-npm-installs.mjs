@@ -47,7 +47,7 @@ const normalizeProblem = (problem, sandbox) => {
 
 const classification = readJson('migration/package-classification.json');
 const pathRepairs = readJson('migration/path-repairs.json');
-const expectedInternal = readJson('migration/evidence/n03/root-npm-ls-internal.json');
+const historicalInternalLayout = readJson('migration/evidence/n03/root-npm-ls-internal.json');
 const currentPolicy = loadCurrentNpmLsPolicy(root);
 const expectedProblems = {
   exitStatus: currentPolicy.expectedExitStatus,
@@ -90,9 +90,11 @@ try {
   run(process.execPath, [join(root, 'tools/verify-npm-locks.mjs'), '--installed-root', rootSandbox], root);
 
   const internal = [];
+  const currentVersions = new Map();
   for (const record of classification.manifests.filter((candidate) => candidate.published)) {
     const manifestPath = movePath(record.path);
     const manifest = readJson(manifestPath);
+    currentVersions.set(manifest.name, manifest.version);
     const installed = npmLsJson.dependencies?.[manifest.name];
     if (!installed || installed.invalid || installed.overridden || !installed.resolved?.startsWith('file:')) {
       fail(`npm ls did not report a valid workspace link for ${manifest.name}`);
@@ -107,7 +109,13 @@ try {
     });
   }
   internal.sort((left, right) => left.package.localeCompare(right.package));
-  if (JSON.stringify(internal) !== JSON.stringify(expectedInternal.packages)) fail('root npm ls internal package proof differs');
+  const expectedCurrentInternal = historicalInternalLayout.packages.map((record) => {
+    const version = currentVersions.get(record.package);
+    if (!version) fail(`current package inventory is missing ${record.package}`);
+    return { ...record, version };
+  });
+  if (currentVersions.size !== expectedCurrentInternal.length) fail('current package inventory differs from the reviewed workspace layout');
+  if (JSON.stringify(internal) !== JSON.stringify(expectedCurrentInternal)) fail('root npm ls internal package proof differs');
 
   const localRuns = [];
   for (const record of classification.manifests.filter((candidate) => candidate.lockOwner === 'local')) {

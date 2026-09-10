@@ -235,6 +235,7 @@ const p03OwnedPaths = new Set([
   "tools/ci-gates-lib.mjs",
   "tools/integration-matrix-lib.mjs",
   "tools/milestone-acceptance-lib.mjs",
+  "tools/prove-current-npm-installs.mjs",
   "tools/refresh-validation-bindings.mjs",
   "tools/run-immutable-i01-gate.mjs",
   "tools/run-integration-matrix.mjs",
@@ -243,6 +244,7 @@ const p03OwnedPaths = new Set([
   "tools/verify-ci-current-waivers.mjs",
   "tools/verify-integration-evidence.mjs",
   "tools/verify-internal-deps.mjs",
+  "tools/verify-npm-locks.mjs",
   "tools/verify-package-manager.mjs",
   "tools/verify-react-hybrid-retirement.mjs",
 ]);

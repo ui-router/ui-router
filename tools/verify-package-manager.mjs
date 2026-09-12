@@ -200,6 +200,7 @@ const forbiddenLockBasenames = new Set([
 ]);
 const reviewedWorkflows = new Set([
   '.github/workflows/ci.yml',
+  '.github/workflows/p03-angularjs-linux-proof.yml',
   '.github/workflows/reproducibility.yml',
 ]);
 for (const path of files) {

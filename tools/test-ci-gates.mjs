@@ -221,14 +221,16 @@ try {
   await rejectContract("docs-waiver-evidence", (c) => {
     c.docsWaivers[0].evidence.sha256 = "4".repeat(64);
   });
-  await rejectContract("current-waiver-omission", (c) => {
-    c.currentWaivers = [];
-  });
-  await rejectContract("current-waiver-expiry", (c) => {
-    c.currentWaivers[0].expires = "2000-01-01";
-  });
-  await rejectContract("current-waiver-issue", (c) => {
-    c.currentWaivers[0].trackingIssue = "https://example.invalid/issue";
+  await rejectContract("current-waiver-addition", (c) => {
+    c.currentWaivers.push({
+      id: "unexpected-waiver",
+      projectId: "frameworks/angularjs/uirouter-angularjs",
+      baselineId: "angularjs.manifest.root.static",
+      owner: "ui-router-maintainers",
+      reason: "Unexpected waiver added by adversarial test.",
+      trackingIssue: "https://example.invalid/issue",
+      expires: "2026-10-31",
+    });
   });
   await rejectContract("baseline-omission", (c) => {
     c.baselineCoverage.pop();

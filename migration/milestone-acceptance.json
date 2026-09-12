@@ -49,14 +49,14 @@
     "importEvidenceSha256": "1bdc78fb5491334692fbf5e48c2db2b18079d2bc620794e2e36c369ed7f76d38",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
-    "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
-    "integrationMatrixSha256": "0b48dd90c4e1b1b74e65991c9b6f375e15bd66c549f502fcb2209763a038ba0f",
+    "packageArtifactsSha256": "c6dbbbb1f052d79be97c3bd049b6a21fe0c4f18bda6ef5717321a0c6b571082c",
+    "integrationMatrixSha256": "f5121b2a50e39fc04a746c4a709cde6befa3fa371964aff2a5a80c2e829a1fdf",
     "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
     "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
-    "ciGatesSha256": "06d3338450eeaf46a3efb3265d1c08d1e7556eca7931e8d9ce4475c6dbfee378",
-    "cleanReproducibilitySha256": "7597848ddd21f0483a9e05f56ea2ea4e2ae8f51269c4fb6011f28ba4fed1aac4",
-    "packageJsonSha256": "6d0de499b823c203c13b6bada6324a334b0b510dac6b2de23414f5cad1b4f9b6",
-    "packageLockSha256": "d14260995ec485f07bfad18c8f57c2bba422b242ce7d4aeb9725d7339c022649",
+    "ciGatesSha256": "5d1a49844799f3bb13c4952229258477dc7d595c1c4ffe4b0371de72897484df",
+    "cleanReproducibilitySha256": "00adeef7c62d439e5a6325eeb1721cbaeb28f77974bd4393379b2c050957732c",
+    "packageJsonSha256": "da5f26866dc4b0f823477b63c1690a686643e5cd02ca1828e41e26f831e84a06",
+    "packageLockSha256": "9f63150a42a4442a3b5bba34ca966b5356b7115e2f78e4235a08cdf91dfa935e",
     "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
     "workGraphSha256": "75fe6e9323318f8c72d633a0670b52689e28df01794f791ff153c27faa1f98c0"
   },
@@ -96,7 +96,7 @@
         "id": "angularjs-eslint-root-resolution",
         "trackingIssue": "https://github.com/ui-router/ui-router/issues/22",
         "expires": "2026-10-31",
-        "summary": "The legacy AngularJS ESLint lane resolves hoisted root tooling and remains an owned waiver."
+        "summary": "At A01, the legacy AngularJS ESLint lane resolved incompatible hoisted tooling and was approved temporarily; P03 later aligned it with the root toolchain and removed the waiver."
       }
     ]
   }

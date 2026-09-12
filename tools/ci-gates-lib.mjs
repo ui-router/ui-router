@@ -60,8 +60,6 @@ function canonicalize(input, repairs) {
   return current;
 }
 function expectedCoverage(entry) {
-  if (entry.id === "angularjs.manifest.root.static")
-    return { disposition: "current-waiver", gateIds: ["static-quality"] };
   if (entry.id.startsWith("angular-hybrid.v21."))
     return { disposition: "historical-only", gateIds: ["history"] };
   if (entry.id === "redux.root.install.node10")
@@ -348,24 +346,14 @@ export async function validateCiGates(options = {}) {
     source: [
       ["runtime", runtimeCommand],
       ["install", installCommand],
+      ["lint", ["npm", "run", "lint", "--", "--cache=local:"]],
       [
-        "lint",
-        [
-          "npm",
-          "run",
-          "lint",
-          "--",
-          "--filter=!@uirouter/angularjs",
-          "--cache=local:",
-        ],
-      ],
-      [
-        "angularjs-lint-waiver",
+        "angularjs-lint-proof",
         [
           "node",
-          "tools/verify-ci-current-waivers.mjs",
+          "tools/verify-angularjs-lint.mjs",
           "--output",
-          ".ci-results/source/angularjs-lint-waiver.json",
+          ".ci-results/source/angularjs-lint.json",
         ],
       ],
       ["typecheck", ["npm", "run", "typecheck", "--", "--cache=local:"]],
@@ -618,22 +606,7 @@ export async function validateCiGates(options = {}) {
     )
       fail(`${record.baselineId} waiver is missing or expired`);
   }
-  equal(
-    contract.currentWaivers,
-    [
-      {
-        id: "angularjs-eslint-root-resolution",
-        projectId: "frameworks/angularjs/uirouter-angularjs",
-        baselineId: "angularjs.manifest.root.static",
-        owner: "ui-router-maintainers",
-        reason:
-          "The legacy AngularJS ESLint 7 and @typescript-eslint 3 lane resolves hoisted experimental utilities against root ESLint 8 and fails before linting. Other lint tasks remain active; no override or peer bypass is applied.",
-        trackingIssue: "https://github.com/ui-router/ui-router/issues/22",
-        expires: "2026-10-31",
-      },
-    ],
-    "current waiver set"
-  );
+  equal(contract.currentWaivers, [], "current waiver set");
   for (const waiver of contract.currentWaivers)
     if (Date.parse(`${waiver.expires}T23:59:59Z`) <= Date.now())
       fail(`${waiver.id} waiver is expired`);
@@ -680,6 +653,14 @@ export async function validateCiGates(options = {}) {
       ? activeAutomation
       : [
           contract.workflow.path,
+          ...(existsSync(
+            path.join(
+              root,
+              ".github/workflows/p03-angularjs-linux-proof.yml"
+            )
+          )
+            ? [".github/workflows/p03-angularjs-linux-proof.yml"]
+            : []),
           ".github/workflows/reproducibility.yml",
         ].sort();
     if (!options.workflow)

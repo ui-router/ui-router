@@ -259,7 +259,7 @@ export async function validateMilestoneAcceptance(options = {}) {
     if (typeof packageJson.scripts?.[command] !== "string") fail(`root script is missing: ${command}`);
   }
   const ci = readJson(root, "migration/ci-gates.json");
-  if (ci.docsWaivers.length !== 4 || ci.currentWaivers.length !== 1)
+  if (ci.docsWaivers.length !== 4 || ci.currentWaivers.length !== 0)
     fail("CI waiver inventory differs");
   equal(
     contract.maintainerReview.items.map((item) => [item.id, item.trackingIssue, item.expires]),
@@ -278,10 +278,7 @@ export async function validateMilestoneAcceptance(options = {}) {
   ];
   equal(
     [...new Set(waiverPairs.map((item) => canonicalJson(item)))].sort(),
-    [
-      canonicalJson(["https://github.com/ui-router/ui-router/issues/22", "2026-10-31"]),
-      canonicalJson(["https://github.com/ui-router/ui-router/pull/8", "2026-09-30"]),
-    ].sort(),
+    [canonicalJson(["https://github.com/ui-router/ui-router/pull/8", "2026-09-30"])],
     "CI waiver risk inventory"
   );
   return { contract, root, releaseTagCount: contract.history.releaseTagCount };

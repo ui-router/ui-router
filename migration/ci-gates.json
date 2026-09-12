@@ -5,10 +5,10 @@
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
-    "packageArtifactsSha256": "30fec1377864b95dc4a04395a6b6ce76835444ed31ed986b0c722ec6c7de3f0f",
-    "integrationMatrixSha256": "0b48dd90c4e1b1b74e65991c9b6f375e15bd66c549f502fcb2209763a038ba0f",
+    "packageArtifactsSha256": "c6dbbbb1f052d79be97c3bd049b6a21fe0c4f18bda6ef5717321a0c6b571082c",
+    "integrationMatrixSha256": "f5121b2a50e39fc04a746c4a709cde6befa3fa371964aff2a5a80c2e829a1fdf",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
-    "packageLockSha256": "d14260995ec485f07bfad18c8f57c2bba422b242ce7d4aeb9725d7339c022649",
+    "packageLockSha256": "9f63150a42a4442a3b5bba34ca966b5356b7115e2f78e4235a08cdf91dfa935e",
     "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7"
   },
   "workflow": {
@@ -244,18 +244,17 @@
             "run",
             "lint",
             "--",
-            "--filter=!@uirouter/angularjs",
             "--cache=local:"
           ],
           "timeoutMinutes": 30
         },
         {
-          "id": "angularjs-lint-waiver",
+          "id": "angularjs-lint-proof",
           "argv": [
             "node",
-            "tools/verify-ci-current-waivers.mjs",
+            "tools/verify-angularjs-lint.mjs",
             "--output",
-            ".ci-results/source/angularjs-lint-waiver.json"
+            ".ci-results/source/angularjs-lint.json"
           ],
           "timeoutMinutes": 5
         },
@@ -838,17 +837,7 @@
       }
     }
   ],
-  "currentWaivers": [
-    {
-      "id": "angularjs-eslint-root-resolution",
-      "projectId": "frameworks/angularjs/uirouter-angularjs",
-      "baselineId": "angularjs.manifest.root.static",
-      "owner": "ui-router-maintainers",
-      "reason": "The legacy AngularJS ESLint 7 and @typescript-eslint 3 lane resolves hoisted experimental utilities against root ESLint 8 and fails before linting. Other lint tasks remain active; no override or peer bypass is applied.",
-      "trackingIssue": "https://github.com/ui-router/ui-router/issues/22",
-      "expires": "2026-10-31"
-    }
-  ],
+  "currentWaivers": [],
   "baselineCoverage": [
     {
       "baselineId": "angular-hybrid.downstream.all",
@@ -1038,9 +1027,13 @@
     },
     {
       "baselineId": "angularjs.manifest.root.static",
-      "disposition": "current-waiver",
-      "gateIds": ["static-quality"],
-      "reason": "The source-era static lane passed in an isolated repository; the monorepo AngularJS lint command is retained as an exact, expiring current failure while issue #22 aligns its legacy ESLint graph."
+      "disposition": "final-equivalent",
+      "gateIds": [
+        "layout",
+        "dependency-policy",
+        "static-quality"
+      ],
+      "reason": "The AngularJS workspace declares the root-compatible ESLint toolchain directly and its source-era lint command passes in the clean root workspace."
     },
     {
       "baselineId": "angularjs.manifest.test/typescript/3.9.static",

@@ -163,7 +163,7 @@ if (
       reviewedScopeHead,
       "HEAD",
     ],
-    { cwd: repository },
+    { cwd: repository }
   ).status !== 0
 )
   fail("reviewed integration-proof scope is not an ancestor of HEAD");
@@ -210,6 +210,7 @@ const c01OwnedPaths = new Set([
   "tools/verify-package-manager.mjs",
 ]);
 const p03OwnedPaths = new Set([
+  "frameworks/angularjs/uirouter-angularjs/package.json",
   ".github/workflows/p03-linux-proof.yml",
   "frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md",
   "frameworks/react-hybrid/uirouter-react-hybrid/README.md",
@@ -241,6 +242,7 @@ const p03OwnedPaths = new Set([
   "tools/run-integration-matrix.mjs",
   "tools/test-integration-matrix.mjs",
   "tools/test-integration-runner.mjs",
+  "tools/verify-angularjs-lint.mjs",
   "tools/verify-ci-current-waivers.mjs",
   "tools/verify-integration-evidence.mjs",
   "tools/verify-internal-deps.mjs",

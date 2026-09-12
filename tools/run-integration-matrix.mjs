@@ -80,7 +80,7 @@ if (mode === "clean" && (cacheArgument || resetRequested))
   die("--cache-root and --reset are reuse-only");
 
 const validated = await validateIntegrationMatrix();
-const { matrix, artifactById, publishedNames } = validated;
+const { matrix, artifactById, publishedNames, retiredProjectIds } = validated;
 if (process.version !== `v${matrix.runtime.node}`)
   die(`Node ${matrix.runtime.node} required, got ${process.version}`);
 const npmVersion = spawnSync("npm", ["--version"], { encoding: "utf8" });
@@ -89,13 +89,15 @@ if (npmVersion.status !== 0 || npmVersion.stdout.trim() !== matrix.runtime.npm)
 
 const requestedIds = values("--project");
 const runnable = matrix.projects.filter(
-  (project) => project.mode === "runnable"
+  (project) => project.mode === "runnable" && !retiredProjectIds.has(project.id)
 );
 const selected = requestedIds.length
   ? requestedIds.map((id) => {
       const project = matrix.projects.find((candidate) => candidate.id === id);
       if (!project) die(`unknown project ${id}`);
       if (project.mode !== "runnable") die(`${id} is a lockless template`);
+      if (retiredProjectIds.has(id))
+        die(`${id} is retired from active integration`);
       return project;
     })
   : runnable;
@@ -2245,7 +2247,7 @@ const summary = {
   },
   coverage: {
     matrixProjects: matrix.counts.projects,
-    runnableProjects: matrix.counts.runnable,
+    runnableProjects: matrix.counts.activeRunnable,
     templateProjects: matrix.counts.templates,
     matrixLogicalEdges: matrix.counts.logicalEdges,
     runnableLogicalEdges: runnable.reduce(
@@ -2255,7 +2257,7 @@ const summary = {
     templateLogicalEdges: matrix.projects
       .filter((project) => project.mode === "template")
       .reduce((count, project) => count + project.edgeIds.length, 0),
-    browserProjects: matrix.counts.browserProjects,
+    browserProjects: matrix.counts.activeBrowserProjects,
   },
   results,
 };
@@ -2289,10 +2291,41 @@ if (writeEvidence) {
   const evidenceDirectory = path.join(repository, "migration/evidence/i02");
   const checkedRunLocks = path.join(evidenceDirectory, "run-locks");
   const checkedFailureBundles = path.join(evidenceDirectory, "failure-bundles");
+  const checkedArtifactArchives = path.join(evidenceDirectory, "artifacts");
   rmSync(checkedRunLocks, { recursive: true, force: true });
-  rmSync(checkedFailureBundles, { recursive: true, force: true });
+  rmSync(checkedArtifactArchives, { recursive: true, force: true });
   mkdirSync(checkedRunLocks, { recursive: true });
   mkdirSync(checkedFailureBundles, { recursive: true });
+  mkdirSync(checkedArtifactArchives, { recursive: true });
+  for (const filename of readdirSync(evidenceArtifactDirectory).filter((name) =>
+    name.endsWith(".tgz")
+  )) {
+    const archivePath = path.join(evidenceArtifactDirectory, filename);
+    const bytes = readFileSync(archivePath);
+    writeFileSync(
+      path.join(checkedArtifactArchives, `${filename}.json`),
+      `${JSON.stringify(
+        {
+          filename,
+          sha256: sha256(bytes),
+          size: bytes.length,
+          encoding: "base64",
+          bytes: bytes.toString("base64"),
+        },
+        null,
+        2
+      )}\n`
+    );
+  }
+  const retainedFailureBundles = new Set(
+    matrix.retirements.map((retirement) => projectSlug(retirement.projectId))
+  );
+  for (const entry of readdirSync(checkedFailureBundles))
+    if (!retainedFailureBundles.has(entry))
+      rmSync(path.join(checkedFailureBundles, entry), {
+        recursive: true,
+        force: true,
+      });
   const checkedSummary = JSON.parse(JSON.stringify(summary));
   checkedSummary.evidenceFormat = "compact-schema-validated-run-locks";
   for (const result of checkedSummary.results) {

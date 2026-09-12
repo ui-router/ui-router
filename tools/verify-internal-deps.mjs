@@ -12,10 +12,18 @@ const classification = readJsonAt(repository, 'migration/package-classification.
 const pathRepairs = readJsonAt(repository, 'migration/path-repairs.json');
 const sources = readJsonAt(repository, 'migration/sources.json');
 const sourceInventory = readJsonAt(repository, 'migration/evidence/control/n00/inventory.json');
+const integrationMatrix = readJsonAt(repository, 'migration/integration-matrix.json');
 const sections = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'];
 const npmCli = realpathSync(execFileSync('which', ['npm'], { encoding: 'utf8' }).trim());
 const npmRequire = createRequire(path.join(path.dirname(npmCli), '..', 'package.json'));
 const semver = npmRequire('semver');
+const integrationProjectById = new Map(integrationMatrix.projects.map((project) => [project.id, project]));
+const retiredEdgeIds = new Set();
+for (const retirement of integrationMatrix.retirements ?? []) {
+  const project = integrationProjectById.get(retirement.projectId);
+  if (!project) fail(`retired integration project is missing: ${retirement.projectId}`);
+  for (const edgeId of project.edgeIds) retiredEdgeIds.add(edgeId);
+}
 
 function canonicalize(input) {
   let current = input;
@@ -73,16 +81,16 @@ function satisfies(version, range) {
   return semver.satisfies(version, range, { includePrerelease: false });
 }
 
-function expectedOriginFor(target, mode) {
+function expectedOriginFor(target, mode, version = target.manifest.version) {
   if (mode === 'workspace') return `workspace:${target.record.path}`;
-  if (mode === 'local-tarball') return `packed-artifact:${target.manifest.name}@${target.manifest.version}`;
-  return `published-registry:${target.manifest.name}@${target.manifest.version}`;
+  if (mode === 'local-tarball') return `packed-artifact:${target.manifest.name}@${version}`;
+  return `published-registry:${target.manifest.name}@${version}`;
 }
 
 function validateEdgeContract(edge, consumer, target, actualSpec, sourceSpec) {
   if (edge.owningLane !== consumer.record.owningLane) fail(`${edge.id}: owningLane differs from consumer classification`);
-  if (edge.expectedVersion !== target.manifest.version) fail(`${edge.id}: expectedVersion ${edge.expectedVersion} != target ${target.manifest.version}`);
-  const expectedOrigin = expectedOriginFor(target, edge.resolutionMode);
+  if (edge.resolutionMode !== 'local-tarball' && edge.expectedVersion !== target.manifest.version) fail(`${edge.id}: expectedVersion ${edge.expectedVersion} != target ${target.manifest.version}`);
+  const expectedOrigin = expectedOriginFor(target, edge.resolutionMode, edge.expectedVersion);
   if (edge.expectedOrigin !== expectedOrigin) fail(`${edge.id}: expectedOrigin ${edge.expectedOrigin} != independently derived ${expectedOrigin}`);
   if (edge.declaredSpec !== sourceSpec) fail(`${edge.id}: declaredSpec ${JSON.stringify(edge.declaredSpec)} != source snapshot ${JSON.stringify(sourceSpec)}`);
   if (edge.resolutionMode === 'workspace') {
@@ -101,7 +109,7 @@ function validateEdgeContract(edge, consumer, target, actualSpec, sourceSpec) {
       if (actualSpec !== sourceSpec) fail(`${edge.id}: committed local manifest must retain source spec ${sourceSpec}, got ${actualSpec}`);
       if (actualSpec.startsWith('workspace:') || actualSpec.startsWith('file:')) fail(`${edge.id}: committed local baseline uses ${actualSpec}`);
     }
-    if (edge.finalSpec !== `artifact:${target.manifest.name}@${target.manifest.version}`) fail(`${edge.id}: invalid artifact token ${edge.finalSpec}`);
+    if (edge.finalSpec !== `artifact:${target.manifest.name}@${edge.expectedVersion}`) fail(`${edge.id}: invalid artifact token ${edge.finalSpec}`);
     if (edge.packedExpectation !== 'local-tarball') fail(`${edge.id}: local-tarball packedExpectation mismatch`);
   } else {
     fail(`${edge.id}: unexpected published-registry internal edge`);
@@ -221,6 +229,21 @@ function deriveLegacy(universe, classifiedById) {
       if (edge.resolutionMode !== mode) fail(`${id}: resolutionMode ${edge.resolutionMode} != consumer mode ${mode}`);
       validateEdgeContract(edge, consumer, producer, null, null);
       derived.set(id, { edge, consumer, target: producer });
+    }
+  }
+  for (const retirement of integrationMatrix.retirements ?? []) {
+    const project = integrationProjectById.get(retirement.projectId);
+    const consumer = universe.byCanonicalPath.get(project.manifest);
+    if (!consumer) fail(`retired integration manifest is not classified: ${project.manifest}`);
+    for (const id of project.edgeIds) {
+      const edge = classifiedById.get(id);
+      if (!edge) fail(`retired integration edge is not classified: ${id}`);
+      if (edge.manifestSection !== 'legacy-injected') continue;
+      if (derived.has(id)) fail(`retired downstream relationship remains active: ${id}`);
+      const target = universe.byName.get(edge.package);
+      if (!target) fail(`retired integration edge target is missing: ${edge.package}`);
+      validateEdgeContract(edge, consumer, target, null, null);
+      derived.set(id, { edge, consumer, target });
     }
   }
   return derived;
@@ -529,7 +552,12 @@ function validateInstalled(installedRoot, workspaceEdges, localEdges, universe) 
       for (const field of ['version', 'resolved', 'integrity']) if (installed?.[field] !== committed?.[field]) fail(`${edge.id}: installed ${field} differs from committed registry baseline`);
       if (installed?.link === true) fail(`${edge.id}: installed local package is linked`);
     }
-    assertInternalNpmLs(context, expectedVersions, required, forbidden);
+    const contextExpectedVersions = new Map(expectedVersions);
+    for (const [packageName, records] of byPackage) {
+      const declared = records.find(({ edge }) => edge.declaredSpec !== null);
+      if (declared) contextExpectedVersions.set(packageName, declared.edge.expectedVersion);
+    }
+    assertInternalNpmLs(context, contextExpectedVersions, required, forbidden);
   }
 }
 

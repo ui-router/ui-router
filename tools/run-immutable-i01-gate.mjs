@@ -66,14 +66,17 @@ async function verifyCurrentTree() {
     run("git", ["archive", "--format=tar", "--output", archive, "HEAD"]);
     run("tar", ["--extract", "--file", archive, "--directory", fixture]);
     await unlink(archive);
-    const historicalLock = run(
-      "git",
-      ["show", `${taskCommit}:package-lock.json`],
-      {
-        encoding: "buffer",
-      }
-    );
-    await writeFile(path.join(fixture, "package-lock.json"), historicalLock);
+    for (const filename of [
+      "package-lock.json",
+      "frameworks/react-hybrid/uirouter-react-hybrid/downstream_projects.json",
+    ]) {
+      const historicalInput = run(
+        "git",
+        ["show", `${taskCommit}:${filename}`],
+        { encoding: "buffer" }
+      );
+      await writeFile(path.join(fixture, filename), historicalInput);
+    }
     const output = run(
       "node",
       [

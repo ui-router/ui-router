@@ -212,6 +212,42 @@ export async function validateIntegrationMatrix(
   const projectById = new Map(
     isolated.projects.map((record) => [record.id, record])
   );
+  assertUnique(
+    matrix.retirements,
+    (record) => record.projectId,
+    "retired project id"
+  );
+  const retiredProjectIds = new Set(
+    matrix.retirements.map((record) => record.projectId)
+  );
+  for (const retirement of matrix.retirements) {
+    const source = projectById.get(retirement.projectId);
+    if (!source || source.mode !== "runnable")
+      fail(
+        `${retirement.projectId}: retired project is not runnable I01 input`
+      );
+    if (
+      retirement.retainedFixture !== path.posix.dirname(source.manifest) ||
+      !existsSync(path.join(root, retirement.retainedFixture))
+    )
+      fail(`${retirement.projectId}: retained fixture differs`);
+    if (
+      sha256File(path.join(root, retirement.evidence.path)) !==
+      retirement.evidence.sha256
+    )
+      fail(`${retirement.projectId}: retirement evidence differs`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(retirement.retiredOn))
+      fail(`${retirement.projectId}: retirement date differs`);
+    for (const replacementId of retirement.replacementProjectIds) {
+      const replacement = projectById.get(replacementId);
+      if (
+        !replacement ||
+        replacement.mode !== "runnable" ||
+        retiredProjectIds.has(replacementId)
+      )
+        fail(`${retirement.projectId}: invalid replacement ${replacementId}`);
+    }
+  }
 
   assertUnique(matrix.projects, (record) => record.id, "project id");
   assertUnique(
@@ -340,7 +376,10 @@ export async function validateIntegrationMatrix(
           project.owner !== matrix.owner
         )
           fail(`${project.id}: waiver owner differs from matrix ownership`);
-        if (new Date(`${project.waiver.expires}T00:00:00Z`) <= new Date())
+        if (
+          !retiredProjectIds.has(project.id) &&
+          new Date(`${project.waiver.expires}T00:00:00Z`) <= new Date()
+        )
           fail(`${project.id}: waiver is expired`);
       } else fail(`${project.id}: unsupported expected result`);
     } else {
@@ -420,7 +459,7 @@ export async function validateIntegrationMatrix(
           owner: "ui-router-maintainers",
           package: packageName,
           artifactId: artifact.id,
-          expectedVersion: [...versions][0],
+          expectedVersion: artifact.version,
           operation: declaration ? "replace-declared" : "inject-legacy",
           manifestSection: section,
           declaredSpec: declaration
@@ -602,6 +641,19 @@ export async function validateIntegrationMatrix(
     waivedFailures: matrix.projects.filter(
       (project) => project.expectedResult === "waived-failure"
     ).length,
+    activeRunnable: matrix.projects.filter(
+      (project) =>
+        project.mode === "runnable" && !retiredProjectIds.has(project.id)
+    ).length,
+    activeBrowserProjects: matrix.projects.filter(
+      (project) => project.browser && !retiredProjectIds.has(project.id)
+    ).length,
+    activeWaivedFailures: matrix.projects.filter(
+      (project) =>
+        project.expectedResult === "waived-failure" &&
+        !retiredProjectIds.has(project.id)
+    ).length,
+    retiredProjects: retiredProjectIds.size,
     registryBaselineRecords: allRegistryRecords.length,
     artifactIds: usedArtifactIds.size,
   };
@@ -669,6 +721,7 @@ export async function validateIntegrationMatrix(
     artifactByPackage,
     edgeById,
     publishedNames,
+    retiredProjectIds,
   };
 }
 

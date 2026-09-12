@@ -260,7 +260,9 @@ const npmLsInternalByName = new Map(npmLsInternal.packages.map((record) => [reco
 for (const [name, target] of published) {
   const record = npmLsInternalByName.get(name);
   if (!record) fail(`root npm ls proof is missing ${name}`);
-  requireEqual(`${name} npm ls version`, record.version, target.version);
+  const approvedWorkspace = approvedRootLock.packages[target.path];
+  if (!approvedWorkspace) fail(`approved root lock is missing workspace ${target.path}`);
+  requireEqual(`${name} npm ls version`, record.version, approvedWorkspace.version);
   requireEqual(`${name} npm ls workspace`, record.workspacePath, target.path);
   requireEqual(`${name} npm ls invalid`, record.invalid, false);
   requireEqual(`${name} npm ls overridden`, record.overridden, false);

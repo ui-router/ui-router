@@ -195,7 +195,11 @@ export async function validateCiGates(options = {}) {
     ["node", "tools/bootstrap-ci-registry-tarballs.mjs"],
     "npm registry bootstrap command"
   );
-  if (!existsSync(path.join(root, contract.runtime.npmRegistryBootstrapCommand[1])))
+  if (
+    !existsSync(
+      path.join(root, contract.runtime.npmRegistryBootstrapCommand[1])
+    )
+  )
     fail("npm registry bootstrap script is missing");
   equal(
     contract.runtime.uv,
@@ -367,14 +371,7 @@ export async function validateCiGates(options = {}) {
       ["typecheck", ["npm", "run", "typecheck", "--", "--cache=local:"]],
       [
         "test",
-        [
-          "npm",
-          "run",
-          "test",
-          "--",
-          "--cache=local:",
-          "--env-mode=loose",
-        ],
+        ["npm", "run", "test", "--", "--cache=local:", "--env-mode=loose"],
       ],
       ["source-commands", ["npm", "run", "prove:source-commands"]],
       ["source-watch", ["npm", "run", "prove:source-watch"]],
@@ -445,7 +442,13 @@ export async function validateCiGates(options = {}) {
     "integration shard id"
   );
   const runnable = matrix.projects
-    .filter((project) => project.mode === "runnable")
+    .filter(
+      (project) =>
+        project.mode === "runnable" &&
+        !matrix.retirements.some(
+          (retirement) => retirement.projectId === project.id
+        )
+    )
     .map((project) => project.id)
     .sort();
   const sharded = contract.integration.shards
@@ -615,17 +618,9 @@ export async function validateCiGates(options = {}) {
     )
       fail(`${record.baselineId} waiver is missing or expired`);
   }
-  const react16 = matrix.projects.find(
-    (project) => project.id === "framework/react-hybrid/integration/react16"
-  );
   equal(
     contract.currentWaivers,
     [
-      {
-        id: react16.waiver.baselineId,
-        projectId: react16.id,
-        ...react16.waiver,
-      },
       {
         id: "angularjs-eslint-root-resolution",
         projectId: "frameworks/angularjs/uirouter-angularjs",
@@ -683,7 +678,10 @@ export async function validateCiGates(options = {}) {
       .join("/");
     const expectedActive = options.workflow
       ? activeAutomation
-      : [contract.workflow.path, ".github/workflows/reproducibility.yml"];
+      : [
+          contract.workflow.path,
+          ".github/workflows/reproducibility.yml",
+        ].sort();
     if (!options.workflow)
       equal(activeAutomation, expectedActive, "active workflow inventory");
     if (lstatSync(expectedWorkflow).isSymbolicLink())

@@ -5,7 +5,7 @@
   "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
   "turboJsonSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
   "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
-  "rootLockSha256": "be50aeabe6ab354b1bd58f42783ac9cafd9c052ca28fdbabb3a74f69a93dcc6d",
+  "rootLockSha256": "d14260995ec485f07bfad18c8f57c2bba422b242ce7d4aeb9725d7339c022649",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -401,10 +401,10 @@
       "owner": "p01-production-pack",
       "sourceManifest": "framework/react-hybrid/router/package.json",
       "manifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
-      "manifestSha256": "c724c7500d7dc4237a1564cef58e4f31051a7be438e1aba9315f1d1bb7003d37",
+      "manifestSha256": "f3731b1defeea2290400a69a0538e06ff6886790faa00a54b23e8e8fbc9e246a",
       "scriptsSha256": "d31216da1ebd6aa837d944fcbaad0d1fd4d728887678df650859b6bb7470a059",
       "package": "@uirouter/react-hybrid",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "kind": "library",
       "build": {
         "script": "build",

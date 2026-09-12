@@ -151,6 +151,15 @@ for (const entry of allowlist.entries) {
   if (entry.path === 'tools/publish-scripts/util.js') {
     requireEqual('P01 predecessor util.js allowlist hash', entry.sha256, '927500e30b88271b2f30aa5d16911404b76cbba92d2d621f2abb0e5eb981d6dc');
     requireEqual('P01 executable util.js hash', sha256(entry.path), '25368d23bb89f4c60401191dd117d6b9ea632b8e3e42e84e683238839f4e8acd');
+  } else if (entry.path === 'tools/verify-internal-deps.mjs') {
+    requireEqual('P03 predecessor internal dependency verifier hash', entry.sha256, '36692b48feccece6261e8092f9f8f9975793dc8c138ae4ef1a55d03f77136660');
+    requireEqual('P03 retirement-aware internal dependency verifier hash', sha256(entry.path), 'f7d46a320fcd5b0f5907dcec6c01379440c2b8c26e3b4f8c7da32a00e3399338');
+  } else if (entry.path === 'tools/verify-npm-locks.mjs') {
+    requireEqual('P03 predecessor lock verifier hash', entry.sha256, '7164d6a69517a6763a066fbf81a197e64424ef696a8e872e15663b2b470fa787');
+    requireEqual('P03 forward-compatible lock verifier hash', sha256(entry.path), '8732c00b5b358f87fd62443fa4c6763c92d6287801cc405e5d5d154e9302a7aa');
+  } else if (entry.path === 'frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md') {
+    requireEqual('P03 predecessor React Hybrid changelog hash', entry.sha256, '05e7f9513038416f5d3ee5cadcf6b9e2d8097f98fe5e2bffad160585af1aec2a');
+    requireEqual('P03 React Hybrid 3.0.0 changelog hash', sha256(entry.path), '4073c72364141984c3a3fda7be534de93da56cd0a3e246bf9281f1c58d530c7a');
   } else requireEqual(`${entry.path} allowlist hash`, sha256(entry.path), entry.sha256);
   requireEqual(`${entry.path} executable disposition`, Boolean(statSync(join(root, entry.path)).mode & 0o111), entry.executable);
   if (entry.path.includes('.legacy') && entry.executable) fail(`legacy file remains executable: ${entry.path}`);

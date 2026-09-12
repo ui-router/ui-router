@@ -156,12 +156,13 @@ const cases = [
     "browser installer integrity changed",
     (value) => (value.browser.installerIntegrity = "sha512-invalid"),
   ],
+  ["retirement omitted", (value) => value.retirements.pop()],
   [
-    "expired integration waiver",
+    "retirement replacement invalid",
     (value) =>
-      (value.projects.find(
-        (item) => item.expectedResult === "waived-failure"
-      ).waiver.expires = "2020-01-01"),
+      value.retirements[0].replacementProjectIds.push(
+        value.retirements[0].projectId
+      ),
   ],
   [
     "waiver owner changed",

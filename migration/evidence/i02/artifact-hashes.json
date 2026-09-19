@@ -14,34 +14,34 @@
     "artifactId": "angularjs",
     "package": "@uirouter/angularjs",
     "version": "1.1.2",
-    "filename": "uirouter-angularjs-1.1.2-sha256-50281aea49952ddf9df781c449782802b9e89240edf88d7c9a48c372609cd39a.tgz",
-    "sha256": "50281aea49952ddf9df781c449782802b9e89240edf88d7c9a48c372609cd39a",
-    "integrity": "sha512-a5IpnRQsjs/EuxtYfb96FLLi3tEU1m6JEroyVTesgeDRIT0483rEvJmhp0enKiDn3f0ygFK7jRUf15rhWhubYQ==",
-    "metadataSha256": "895d701c08e109fee71a98ad145ee183130c398276c60231f36f68df3c3f5fab",
-    "filesSha256": "ad976ea8e2c478952b74870b10ef4b453638cd93e4bb992ed5b0fdc3c24d1535",
-    "path": "artifacts/uirouter-angularjs-1.1.2-sha256-50281aea49952ddf9df781c449782802b9e89240edf88d7c9a48c372609cd39a.tgz"
+    "filename": "uirouter-angularjs-1.1.2-sha256-e0d4728bd80f899588ab7721d2e70160bb617d0717eff55f49d5496c2c6bc427.tgz",
+    "sha256": "e0d4728bd80f899588ab7721d2e70160bb617d0717eff55f49d5496c2c6bc427",
+    "integrity": "sha512-uI60cxpHKRb9lsLIdHdwMoqmdr3FXYxGyrPzzZFqVTP/09HzrF+fx7+Y7dY6GzZ2SDDRyMCZd4d3w4aNep/7wQ==",
+    "metadataSha256": "3207ee3c4b0379a74b07565742225bd3160f6da6131f9df401b95f21b9b45191",
+    "filesSha256": "d442801fa729699cb272377c089d7f1ae3ce92e26820483d98c1cbf738308c3a",
+    "path": "artifacts/uirouter-angularjs-1.1.2-sha256-e0d4728bd80f899588ab7721d2e70160bb617d0717eff55f49d5496c2c6bc427.tgz"
   },
   {
     "artifactId": "core",
     "package": "@uirouter/core",
     "version": "6.1.2",
-    "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-    "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
-    "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
-    "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
-    "filesSha256": "7ac3c44a82f54339940630fd7da8481f43c5450fff60d1cebde78199659a4057",
-    "path": "artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz"
+    "filename": "uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+    "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18",
+    "integrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
+    "metadataSha256": "e5e92993c1efd2e02b55e80c840289b500de86d5a452a45ae9e0ab170985c81f",
+    "filesSha256": "8253dad1d27c02beeb7ef4a41847d9f94d79e6b8b5509e6ec50dfabbe2397fb5",
+    "path": "artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz"
   },
   {
     "artifactId": "react",
     "package": "@uirouter/react",
     "version": "1.0.8",
-    "filename": "uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-    "sha256": "79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61",
-    "integrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
-    "metadataSha256": "c4f730c43f07abed3404cd6e4a132e43a0d66542d6334d596697ab3df7f7fabe",
-    "filesSha256": "fdd273ea44e0895a6a05d90e8e8de57aadb23e0bf9f34bee362f34449a41aa63",
-    "path": "artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz"
+    "filename": "uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+    "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692",
+    "integrity": "sha512-bCrs9uVywSov02ureU+EzVDnvy4bBaCwySL0PrsDylcw/4VLUmrLgfA/b9r2ZS7iLQUPN8lxdYdTP/rkImD/pA==",
+    "metadataSha256": "446642c739f0ba8e3a19897450e1dff85830cde69fde4028eac9c38b99ea1bab",
+    "filesSha256": "d129c294e040d9f1f2807df47df3ace69094403ecdbccf2c5d4088b2ecefbc04",
+    "path": "artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz"
   },
   {
     "artifactId": "react-hybrid",

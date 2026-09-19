@@ -130,6 +130,9 @@ const results = [];
 for (const project of selected) {
   const directory = path.join(repository, project.directory);
   const config = path.join(directory, "typedoc.json");
+  const configValue = JSON.parse(readFileSync(config, "utf8"));
+  const tsconfig = path.resolve(directory, configValue.tsconfig);
+  if (!existsSync(tsconfig)) fail(`${project.id} TypeScript config is missing`);
   const output = outputRoot
     ? path.join(outputRoot, project.id)
     : path.join(directory, "_doc");
@@ -159,6 +162,8 @@ for (const project of selected) {
     package: project.package,
     config: portable(config),
     configSha256: sha256(readFileSync(config)),
+    tsconfig: portable(tsconfig),
+    tsconfigSha256: sha256(readFileSync(tsconfig)),
     output: portable(output),
     ...digest,
   });

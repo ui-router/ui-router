@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "bundleState": "final",
-  "runId": "91871791bfa032bb70a3428c",
+  "runId": "d651626298e1080950650da6",
   "fixtureId": "framework/react/integration/react17",
   "mode": "clean",
   "repository": {
-    "commit": "336a303250888e3351fb7afbd03208e7f1236744",
-    "tree": "dc9e0ea0fcf042c48e84473f0ddd8467090c5572",
+    "commit": "cb12edca238e1ff08bc1ea65f7018f43d2542d02",
+    "tree": "a250cf727d310a549334f079e93620f07e64a163",
     "dirty": false,
-    "sourceSnapshotSha256": "e1b4ceed55cc2d9b991b611e766366af6ed7332e1b9ebc3563a55079209e0c44"
+    "sourceSnapshotSha256": "888d4a9ad16898aec638b57d3687ed132b1ab9af69af822df7c78f124e39ecbc"
   },
   "contracts": {
-    "matrixSha256": "f5121b2a50e39fc04a746c4a709cde6befa3fa371964aff2a5a80c2e829a1fdf",
+    "matrixSha256": "dd337f1b41f994e6e68c7faffe6dda59eae8ac2e1c60b0d8516bb466a11f4690",
     "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
-    "packageArtifactsSha256": "c6dbbbb1f052d79be97c3bd049b6a21fe0c4f18bda6ef5717321a0c6b571082c",
+    "packageArtifactsSha256": "de5d146580e8f99105bfc5ed9a4d72e1e2d6059dcab260b4b1b8cb3ea5dce393",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
@@ -34,15 +34,15 @@
     "projectNpmrc": null,
     "npmEnvironment": {
       "PATH": "/__t/node/24.19.0/x64/bin:/__t/node/24.19.0/x64/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-e2oGlk/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-e2oGlk/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-HpvmND/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-HpvmND/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-e2oGlk/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-HpvmND/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-e2oGlk/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-HpvmND/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -51,11 +51,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-e2oGlk/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-HpvmND/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-e2oGlk/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-HpvmND/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -64,7 +64,7 @@
       "offline": "false",
       "bin-links": "true"
     },
-    "npmConfigSha256": "d95ea753cc28335d25b89611206b4e61a517629e9b1e925217f0699b685fc8de"
+    "npmConfigSha256": "a90e5d8f21ea421393e55b208ab5f0d3c82a4bb8cea829c7c74d6116d50f1e73"
   },
   "browser": {
     "package": "@playwright/test",
@@ -146,15 +146,15 @@
   },
   "environment": {
     "PATH": "/__t/node/24.19.0/x64/bin:/__t/node/24.19.0/x64/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-e2oGlk/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-e2oGlk/tmp",
+    "HOME": "/tmp/uirouter-i02-clean-HpvmND/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-HpvmND/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-e2oGlk/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-HpvmND/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-e2oGlk/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-HpvmND/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -163,7 +163,7 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-e2oGlk/browser-cache"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-HpvmND/browser-cache"
   },
   "commands": {
     "lock": [
@@ -196,13 +196,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17",
-    "realpath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17",
+    "path": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17",
+    "realpath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-e2oGlk/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-HpvmND/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "d80c3f5118f316cb5203a48bc87cf90222b35a97b3b4f0dd921a84040d304f52",
-    "resetInputsSha256": "00cce025a04e54074bbae54ad55d7ea0294bfa288c3a1a170c1a22d4e1ec3b51",
+    "resetInputsSha256": "8d94e415597e972f6f37641fe5dc7c827e701c3e740efb481631a433d8b1f3f7",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -221,10 +221,10 @@
     "lockSha256": "117aaccd22b9c020d0e17ee6f14cbd059f716e3d5e7300b85eb88ec6cfdcc2e8"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/package.json",
-    "manifestSha256": "9283ea76d6a43628044fa1a316b29e75eff7e7681b97c2e252dac286eb7c6979",
-    "lockPath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/package-lock.json",
-    "lockSha256": "78dfb35fef7280ca9622d2235d19c50c8d04cbc69f1d11f538c6839aa15931c7",
+    "manifestPath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/package.json",
+    "manifestSha256": "10ffa0df8551d9b34fca9634d7187c382dfa177ca74790dbaba3b4ebc5e146b2",
+    "lockPath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/package-lock.json",
+    "lockSha256": "e150e5f54c0e47ef85857170b534bb98d45062427354426981d1e302f018b928",
     "rewriteIds": [
       "rewrite-framework-react-integration-react17-react"
     ],
@@ -237,33 +237,33 @@
       "artifactId": "core",
       "package": "@uirouter/core",
       "version": "6.1.2",
-      "filename": "uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "sha256": "3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3",
-      "integrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
-      "metadataSha256": "27215db24af162e9409aa1bc992da054d7e43068ea8f4bd65bb8cd9965f537a0",
-      "filesSha256": "7ac3c44a82f54339940630fd7da8481f43c5450fff60d1cebde78199659a4057",
-      "path": "artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz"
+      "filename": "uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18",
+      "integrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
+      "metadataSha256": "e5e92993c1efd2e02b55e80c840289b500de86d5a452a45ae9e0ab170985c81f",
+      "filesSha256": "8253dad1d27c02beeb7ef4a41847d9f94d79e6b8b5509e6ec50dfabbe2397fb5",
+      "path": "artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz"
     },
     {
       "artifactId": "react",
       "package": "@uirouter/react",
       "version": "1.0.8",
-      "filename": "uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "sha256": "79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61",
-      "integrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
-      "metadataSha256": "c4f730c43f07abed3404cd6e4a132e43a0d66542d6334d596697ab3df7f7fabe",
-      "filesSha256": "fdd273ea44e0895a6a05d90e8e8de57aadb23e0bf9f34bee362f34449a41aa63",
-      "path": "artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz"
+      "filename": "uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692",
+      "integrity": "sha512-bCrs9uVywSov02ureU+EzVDnvy4bBaCwySL0PrsDylcw/4VLUmrLgfA/b9r2ZS7iLQUPN8lxdYdTP/rkImD/pA==",
+      "metadataSha256": "446642c739f0ba8e3a19897450e1dff85830cde69fde4028eac9c38b99ea1bab",
+      "filesSha256": "d129c294e040d9f1f2807df47df3ace69094403ecdbccf2c5d4088b2ecefbc04",
+      "path": "artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz"
     }
   ],
   "dependencyGraphs": {
     "externalBeforeSha256": "809691b8e5c198e88f2e038384d9bc3234e0f15d20b5e506010fbd2d4d8d6585",
     "externalAfterSha256": "bbff4db9b6b5e1a5e089842e4f59fccb5514a5d90e32bd0669c9578a0246e117",
-    "lockSha256": "78dfb35fef7280ca9622d2235d19c50c8d04cbc69f1d11f538c6839aa15931c7",
-    "installedSha256": "3988956ebbce69e969c714f940a81db4e27a999aad1cf59c59af2f5d80138730",
+    "lockSha256": "e150e5f54c0e47ef85857170b534bb98d45062427354426981d1e302f018b928",
+    "installedSha256": "2ba8ea4221d47329ba1ad40f0ccaac2c11e178e4980922bc10acf0d7b9b4b5b6",
     "peerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "moduleAuditSha256": "292bde7cca618087155f71d66dfc1999a112f30bf18fc9ed786e4b4939bc9899",
-    "nodeModulesSha256": "de656b9be1d29f1678dbec4848b09a2c77aef64a87095ebdad8156ec2994a106"
+    "moduleAuditSha256": "59c5f79452fa9bdd78cbb90ba4882534d69c2ad43f5adacce778322db46d8046",
+    "nodeModulesSha256": "f0ba2fa28bfe4199937dd045c9a281d35c29607ddb9245bae14c97697f98394f"
   },
   "origins": [
     {
@@ -272,14 +272,14 @@
       "package": "@uirouter/react",
       "expectedVersion": "1.0.8",
       "artifactId": "react",
-      "lockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "lockIntegrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
-      "installedRealpath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
-      "manifestSha256": "2e04b1d6a6e10623bcd4b7bbd0b5a265f220766fedc17a91c5ac9ad4cedd77ad",
+      "lockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "lockIntegrity": "sha512-bCrs9uVywSov02ureU+EzVDnvy4bBaCwySL0PrsDylcw/4VLUmrLgfA/b9r2ZS7iLQUPN8lxdYdTP/rkImD/pA==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
+      "installedRealpath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
+      "manifestSha256": "aaa5131c71e205bb73f6d05488d072ead4c56cee80d2c8e56ad7cfc475530ba2",
       "insideSandbox": true,
       "symlink": false
     }
@@ -290,14 +290,14 @@
       "package": "@uirouter/core",
       "expectedVersion": "6.1.2",
       "artifactId": "core",
-      "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "lockIntegrity": "sha512-1qL99hTzH5PUKBythfmg92WuFoFRHCaRJK5oazvANFmnUlWT5vAUNh8BmKBNvNyqaIGtvI357JqWGn/mTB3kXg==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-core-6.1.2-sha256-3fd0f15c08c02db3efb9581071f19efc101ee651744cf8bc69aabc94c524a8f3.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/core",
-      "manifestSha256": "9d4687498fa13540c0533baa70d1f6b0e020a3076d3e78860af8d8331b938d75",
+      "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/core",
+      "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
     },
@@ -306,14 +306,14 @@
       "package": "@uirouter/react",
       "expectedVersion": "1.0.8",
       "artifactId": "react",
-      "lockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "expectedLockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "lockIntegrity": "sha512-hXbYDH9xQT7oG0AuMr3WoXpa59xhWE2NB3CEZk9/JQdDr9+ATgZ8hBPSW8IeIS/7c5OREi8RX5BKS4bSb1MB8Q==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-e2oGlk/artifacts/uirouter-react-1.0.8-sha256-79523d148956a128666939033a7ff06786c717c971df5ea240c36dcaf275ec61.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
-      "installedRealpath": "/tmp/uirouter-i02-clean-e2oGlk/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
-      "manifestSha256": "2e04b1d6a6e10623bcd4b7bbd0b5a265f220766fedc17a91c5ac9ad4cedd77ad",
+      "lockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "expectedLockResolved": "file:../../../artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "lockIntegrity": "sha512-bCrs9uVywSov02ureU+EzVDnvy4bBaCwySL0PrsDylcw/4VLUmrLgfA/b9r2ZS7iLQUPN8lxdYdTP/rkImD/pA==",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-HpvmND/artifacts/uirouter-react-1.0.8-sha256-3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
+      "installedRealpath": "/tmp/uirouter-i02-clean-HpvmND/projects/framework__react__integration__react17/project/node_modules/@uirouter/react",
+      "manifestSha256": "aaa5131c71e205bb73f6d05488d072ead4c56cee80d2c8e56ad7cfc475530ba2",
       "insideSandbox": true,
       "symlink": false
     }
@@ -331,7 +331,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "603bf98618750831db9e0160b097e186643f2fb70ace2848e7beaf91c8511a32",
+      "stdoutSha256": "ac72d3c440e6b84b68914dd823a40e0f6e1ca34b4fe3a9962592af02718ee36b",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -357,7 +357,7 @@
         "--json"
       ],
       "status": 0,
-      "stdoutSha256": "b042c8f5a5a62efa82a3fcd5e4d0f5f5e5d76f5c68390454d606cb8cf71b97ee",
+      "stdoutSha256": "48399880fe3f4d0fe968bb18cf9904eb3abf3f045666fccfd472e9eed4efacdc",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -379,7 +379,7 @@
         "test"
       ],
       "status": 0,
-      "stdoutSha256": "707ef99ca5c42eb46742ccce8c7ae4c0b153438fbe84ee47f44dc50d0ed972b4",
+      "stdoutSha256": "13ddde09292262720509d1cafa1a72462a9c0b302b271ab38d50457a79d5196f",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],

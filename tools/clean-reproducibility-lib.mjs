@@ -140,21 +140,29 @@ export function cleanReproducibilityFingerprint({
       fail(`package artifact fingerprint is malformed: ${artifact.artifactId}`);
   }
   const expectedDocs = [
-    ["core", "@uirouter/core", "core/typedoc.json"],
+    [
+      "core",
+      "@uirouter/core",
+      "core/typedoc.json",
+      "core/tsconfig.docgen.json",
+    ],
     [
       "angular",
       "@uirouter/angular",
       "frameworks/angular/uirouter-angular/typedoc.json",
+      "frameworks/angular/uirouter-angular/tsconfig.docgen.json",
     ],
     [
       "angularjs",
       "@uirouter/angularjs",
       "frameworks/angularjs/uirouter-angularjs/typedoc.json",
+      "frameworks/angularjs/uirouter-angularjs/tsconfig.docgen.json",
     ],
     [
       "react",
       "@uirouter/react",
       "frameworks/react/uirouter-react/typedoc.json",
+      "frameworks/react/uirouter-react/tsconfig.docgen.json",
     ],
   ];
   if (
@@ -167,13 +175,15 @@ export function cleanReproducibilityFingerprint({
   )
     fail("documentation proof identity differs");
   for (const [index, record] of docsProof.projects.entries()) {
-    const [id, packageName, config] = expectedDocs[index];
+    const [id, packageName, config, tsconfig] = expectedDocs[index];
     if (
       record.id !== id ||
       record.package !== packageName ||
       record.config !== config ||
+      record.tsconfig !== tsconfig ||
       record.output !== `.ci-results/docs/site/${id}` ||
       record.configSha256 !== sha256File(path.join(repository, config)) ||
+      record.tsconfigSha256 !== sha256File(path.join(repository, tsconfig)) ||
       !Number.isInteger(record.fileCount) ||
       record.fileCount < 5 ||
       !Number.isInteger(record.bytes) ||

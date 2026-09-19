@@ -12,7 +12,7 @@ const repository = path.resolve(
 );
 const turboVersion = "2.10.12";
 const privateRegistry =
-  "https://artifacts.netflix.net/api/npm/npm-netflix/_relative/";
+  "https://registry.npmjs.org/";
 const tarballs = [
   ["@turbo/darwin-64", "darwin-64"],
   ["@turbo/darwin-arm64", "darwin-arm64"],

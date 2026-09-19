@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "task": "P01",
   "owner": "ui-router-maintainers",
-  "contractSha256": "c6dbbbb1f052d79be97c3bd049b6a21fe0c4f18bda6ef5717321a0c6b571082c",
-  "rootLockSha256": "9f63150a42a4442a3b5bba34ca966b5356b7115e2f78e4235a08cdf91dfa935e",
+  "contractSha256": "2078a028a8301c2e6c50a60735b40f1b2df5afcdace4d9dd521a655123eea0ba",
+  "rootLockSha256": "24079c60227c102c70877e4c1cdb6cfdab2462d3a1d11c3434beebb75383ad05",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",

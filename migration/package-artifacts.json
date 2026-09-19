@@ -5,7 +5,7 @@
   "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
   "turboJsonSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
   "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
-  "rootLockSha256": "9f63150a42a4442a3b5bba34ca966b5356b7115e2f78e4235a08cdf91dfa935e",
+  "rootLockSha256": "24079c60227c102c70877e4c1cdb6cfdab2462d3a1d11c3434beebb75383ad05",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",

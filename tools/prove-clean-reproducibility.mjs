@@ -144,8 +144,8 @@ function runArchiveWorkspace({
     const packageManifest = JSON.parse(
       readFileSync(path.join(workspace, ".ci-artifacts/packages/hashes.json"), "utf8")
     );
-    const docsWaivers = JSON.parse(
-      readFileSync(path.join(workspace, ".ci-results/docs/waivers.json"), "utf8")
+    const docsProof = JSON.parse(
+      readFileSync(path.join(workspace, ".ci-results/docs/proof.json"), "utf8")
     );
     const fingerprint = cleanReproducibilityFingerprint({
       revision,
@@ -154,7 +154,7 @@ function runArchiveWorkspace({
       contract,
       packageManifest,
       packageArtifacts,
-      docsWaivers,
+      docsProof,
       ci,
     });
     return {

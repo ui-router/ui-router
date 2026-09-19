@@ -347,8 +347,8 @@
     },
     "docsWaivers": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 4,
+      "minItems": 0,
+      "maxItems": 0,
       "items": { "$ref": "#/$defs/docsWaiver" }
     },
     "currentWaivers": {
@@ -396,7 +396,7 @@
         "buildOwners": { "const": 24 },
         "ordinaryExamples": { "const": 14 },
         "ordinaryBrowserProjects": { "const": 11 },
-        "docsWaivers": { "const": 4 }
+        "docsWaivers": { "const": 0 }
       }
     }
   },

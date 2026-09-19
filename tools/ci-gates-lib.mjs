@@ -65,7 +65,7 @@ function expectedCoverage(entry) {
   if (entry.id === "redux.root.install.node10")
     return { disposition: "historical-only", gateIds: ["history"] };
   if (entry.lane === "docs")
-    return { disposition: "carried-waiver", gateIds: ["docs"] };
+    return { disposition: "final-fixed", gateIds: ["docs"] };
   let gateIds;
   if (entry.lane === "static")
     gateIds = ["layout", "dependency-policy", "static-quality"];
@@ -397,15 +397,8 @@ export async function validateCiGates(options = {}) {
     ],
     docs: [
       ["runtime", runtimeCommand],
-      [
-        "docs-waivers",
-        [
-          "node",
-          "tools/verify-ci-docs-waivers.mjs",
-          "--output",
-          ".ci-results/docs/waivers.json",
-        ],
-      ],
+      ["install", installCommand],
+      ["generate", ["npm", "run", "docs:verify"]],
     ],
   };
   for (const job of contract.jobs) {
@@ -418,10 +411,7 @@ export async function validateCiGates(options = {}) {
     const installIndex = job.id === "contracts" ? 4 : 1;
     const expectedInstallId =
       job.id === "browser" ? "stage-install" : "install";
-    if (
-      job.id !== "docs" &&
-      job.commands[installIndex].id !== expectedInstallId
-    )
+    if (job.commands[installIndex].id !== expectedInstallId)
       fail(`${job.id} install ordering differs`);
   }
 
@@ -590,14 +580,7 @@ export async function validateCiGates(options = {}) {
         fail(`${entry.id} references unknown gate ${gate}`);
   }
 
-  const expectedDocs = baselines.entries
-    .filter((entry) => entry.lane === "docs")
-    .map((entry) => ({
-      baselineId: entry.id,
-      evidence: entry.evidence,
-      waiver: entry.waiver,
-    }))
-    .sort((a, b) => a.baselineId.localeCompare(b.baselineId));
+  const expectedDocs = [];
   equal(contract.docsWaivers, expectedDocs, "docs waivers");
   for (const record of contract.docsWaivers) {
     if (

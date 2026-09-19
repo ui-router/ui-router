@@ -5,10 +5,10 @@
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
-    "packageArtifactsSha256": "c6dbbbb1f052d79be97c3bd049b6a21fe0c4f18bda6ef5717321a0c6b571082c",
-    "integrationMatrixSha256": "f5121b2a50e39fc04a746c4a709cde6befa3fa371964aff2a5a80c2e829a1fdf",
+    "packageArtifactsSha256": "de5d146580e8f99105bfc5ed9a4d72e1e2d6059dcab260b4b1b8cb3ea5dce393",
+    "integrationMatrixSha256": "dd337f1b41f994e6e68c7faffe6dda59eae8ac2e1c60b0d8516bb466a11f4690",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed",
-    "packageLockSha256": "9f63150a42a4442a3b5bba34ca966b5356b7115e2f78e4235a08cdf91dfa935e",
+    "packageLockSha256": "39371228de83cb8b4e157f661c776496582985eba09bf7eb279ea4b09882fa7f",
     "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7"
   },
   "workflow": {
@@ -410,7 +410,7 @@
       "id": "docs",
       "needs": [],
       "gateIds": ["docs"],
-      "timeoutMinutes": 10,
+      "timeoutMinutes": 30,
       "commands": [
         {
           "id": "runtime",
@@ -418,14 +418,14 @@
           "timeoutMinutes": 2
         },
         {
-          "id": "docs-waivers",
-          "argv": [
-            "node",
-            "tools/verify-ci-docs-waivers.mjs",
-            "--output",
-            ".ci-results/docs/waivers.json"
-          ],
-          "timeoutMinutes": 30
+          "id": "install",
+          "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+          "timeoutMinutes": 10
+        },
+        {
+          "id": "generate",
+          "argv": ["npm", "run", "docs:verify"],
+          "timeoutMinutes": 10
         }
       ],
       "failurePaths": [".ci-results/docs/**"]
@@ -783,60 +783,7 @@
     "@uirouter/internal-plugins-sticky-states-examples-angularjs-webpack",
     "@uirouter/internal-plugins-sticky-states-examples-react-vite"
   ],
-  "docsWaivers": [
-    {
-      "baselineId": "angular.root.docs",
-      "evidence": {
-        "path": "migration/control-evidence/baselines/angular.root.docs.json",
-        "sha256": "38953398097cb10038a3cb8b77c5388dde1156c18a1d71678204e2fa93160050"
-      },
-      "waiver": {
-        "expires": "2026-09-30",
-        "owner": "ui-router-maintainers",
-        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
-        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
-      }
-    },
-    {
-      "baselineId": "angularjs.root.docs",
-      "evidence": {
-        "path": "migration/control-evidence/baselines/angularjs.root.docs.json",
-        "sha256": "c49b955ce0152f418355379b86e40d57e7e812a8de7122a290022ebe3ee837a7"
-      },
-      "waiver": {
-        "expires": "2026-09-30",
-        "owner": "ui-router-maintainers",
-        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
-        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
-      }
-    },
-    {
-      "baselineId": "core.root.docs",
-      "evidence": {
-        "path": "migration/control-evidence/baselines/core.root.docs.json",
-        "sha256": "66b6bf387f39b2d7bb58c33a993e4dfbb805e784bef55c57440f6abba78968f3"
-      },
-      "waiver": {
-        "expires": "2026-09-30",
-        "owner": "ui-router-maintainers",
-        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
-        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
-      }
-    },
-    {
-      "baselineId": "react.root.docs",
-      "evidence": {
-        "path": "migration/control-evidence/baselines/react.root.docs.json",
-        "sha256": "a3c3a895df4b14c6a666b978855f06557dd5c62a82cb63ac432ba4337fe6b38b"
-      },
-      "waiver": {
-        "expires": "2026-09-30",
-        "owner": "ui-router-maintainers",
-        "reason": "The source docs command shells out to the mutable uirouter/docgen:stable Docker image, which is unavailable inside the pinned baseline runtime.",
-        "trackingIssue": "https://github.com/ui-router/ui-router/pull/8"
-      }
-    }
-  ],
+  "docsWaivers": [],
   "currentWaivers": [],
   "baselineCoverage": [
     {
@@ -985,9 +932,9 @@
     },
     {
       "baselineId": "angular.root.docs",
-      "disposition": "carried-waiver",
+      "disposition": "final-fixed",
       "gateIds": ["docs"],
-      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+      "reason": "The final docs gate generates the package API documentation with the pinned local TypeDoc toolchain."
     },
     {
       "baselineId": "angular.root.install",
@@ -1055,9 +1002,9 @@
     },
     {
       "baselineId": "angularjs.root.docs",
-      "disposition": "carried-waiver",
+      "disposition": "final-fixed",
       "gateIds": ["docs"],
-      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+      "reason": "The final docs gate generates the package API documentation with the pinned local TypeDoc toolchain."
     },
     {
       "baselineId": "angularjs.root.install",
@@ -1151,9 +1098,9 @@
     },
     {
       "baselineId": "core.root.docs",
-      "disposition": "carried-waiver",
+      "disposition": "final-fixed",
       "gateIds": ["docs"],
-      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+      "reason": "The final docs gate generates the package API documentation with the pinned local TypeDoc toolchain."
     },
     {
       "baselineId": "core.root.install",
@@ -1427,9 +1374,9 @@
     },
     {
       "baselineId": "react.root.docs",
-      "disposition": "carried-waiver",
+      "disposition": "final-fixed",
       "gateIds": ["docs"],
-      "reason": "No source docs lane was green; CI validates the exact owned source-era waiver."
+      "reason": "The final docs gate generates the package API documentation with the pinned local TypeDoc toolchain."
     },
     {
       "baselineId": "react.root.install",
@@ -1728,6 +1675,6 @@
     "buildOwners": 24,
     "ordinaryExamples": 14,
     "ordinaryBrowserProjects": 11,
-    "docsWaivers": 4
+    "docsWaivers": 0
   }
 }

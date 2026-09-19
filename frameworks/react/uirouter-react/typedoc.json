@@ -1,8 +1,11 @@
 {
+  "entryPoints": ["src/index.ts"],
+  "tsconfig": "tsconfig.json",
   "readme": "DOCS.md",
   "name": "@uirouter/react",
   "out": "_doc",
+  "excludeInternal": true,
   "excludePrivate": true,
-  "excludeNotExported": true,
-  "stripInternal": true
+  "skipErrorChecking": true,
+  "disableSources": true
 }

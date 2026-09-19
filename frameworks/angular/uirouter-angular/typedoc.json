@@ -1,8 +1,11 @@
 {
+  "entryPoints": ["src/index.ts"],
+  "tsconfig": "tsconfig.json",
   "name": "@uirouter/angular",
   "readme": "README.md",
-  "out": "project/_doc",
-  "stripInternal": true,
-  "excludeNotExported": true,
-  "excludePrivate": true
+  "out": "_doc",
+  "excludeInternal": true,
+  "excludePrivate": true,
+  "skipErrorChecking": true,
+  "disableSources": true
 }

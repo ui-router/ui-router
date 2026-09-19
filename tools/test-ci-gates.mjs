@@ -212,14 +212,20 @@ try {
   await rejectContract("browser-workspace", (c) => {
     c.browserWorkspaces.pop();
   });
-  await rejectContract("docs-waiver-omission", (c) => {
-    c.docsWaivers.pop();
-  });
-  await rejectContract("docs-waiver-expiry", (c) => {
-    c.docsWaivers[0].waiver.expires = "2000-01-01";
-  });
-  await rejectContract("docs-waiver-evidence", (c) => {
-    c.docsWaivers[0].evidence.sha256 = "4".repeat(64);
+  await rejectContract("docs-waiver-addition", (c) => {
+    c.docsWaivers.push({
+      baselineId: "core.root.docs",
+      evidence: {
+        path: "migration/control-evidence/baselines/core.root.docs.json",
+        sha256: "4".repeat(64),
+      },
+      waiver: {
+        expires: "2099-01-01",
+        owner: "nobody",
+        reason: "Unexpected waiver added by adversarial test.",
+        trackingIssue: "https://example.invalid/issue",
+      },
+    });
   });
   await rejectContract("current-waiver-addition", (c) => {
     c.currentWaivers.push({

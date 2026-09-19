@@ -30,8 +30,8 @@
     "test:downstream": "test_downstream_projects",
     "watch": "jest --watchAll",
     "debug": "npm run test:debug",
-    "docs": "generate_docs",
-    "docs:publish": "generate_docs && publish_docs",
+    "docs": "node ../../../tools/generate-api-docs.mjs --project angularjs",
+    "docs:publish": "npm run docs && publish_docs",
     "release": "release --deps @uirouter/core && node ./scripts/npm_angular_ui_router_release.js && node ./scripts/bower_release.js",
     "artifacts": "artifact_tagging",
     "build:publish": "npm run build"

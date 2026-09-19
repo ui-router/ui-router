@@ -211,12 +211,16 @@ const c01OwnedPaths = new Set([
 ]);
 const p03OwnedPaths = new Set([
   "core/package.json",
+  "core/tsconfig.docgen.json",
   "core/typedoc.json",
   "frameworks/angular/uirouter-angular/package.json",
+  "frameworks/angular/uirouter-angular/tsconfig.docgen.json",
   "frameworks/angular/uirouter-angular/typedoc.json",
   "frameworks/angularjs/uirouter-angularjs/package.json",
+  "frameworks/angularjs/uirouter-angularjs/tsconfig.docgen.json",
   "frameworks/angularjs/uirouter-angularjs/typedoc.json",
   "frameworks/react/uirouter-react/package.json",
+  "frameworks/react/uirouter-react/tsconfig.docgen.json",
   "frameworks/react/uirouter-react/typedoc.json",
   ".github/workflows/p03-angularjs-linux-proof.yml",
   ".github/workflows/p03-linux-proof.yml",

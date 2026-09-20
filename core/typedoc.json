@@ -1,8 +1,12 @@
 {
+  "entryPoints": ["src/index.ts"],
+  "tsconfig": "tsconfig.docgen.json",
   "readme": "README.md",
   "name": "@uirouter/core",
   "out": "_doc",
-  "stripInternal": true,
+  "excludeInternal": true,
+  "excludeExternals": true,
   "excludePrivate": true,
-  "excludeNotExported": true
+  "skipErrorChecking": true,
+  "disableSources": true
 }

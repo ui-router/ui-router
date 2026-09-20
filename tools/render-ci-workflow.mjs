@@ -17,7 +17,7 @@ const displayNames = {
   source: "Source-linked quality and tests",
   packages: "Production packages and consumers",
   browser: "Workspace browser E2E",
-  docs: "Documentation waiver gate",
+  docs: "Documentation build",
 };
 function linesForFailurePaths(paths, indent) {
   return paths.map((entry) => `${" ".repeat(indent)}${entry}`).join("\n");

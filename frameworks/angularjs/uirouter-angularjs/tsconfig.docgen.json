@@ -2,12 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "baseUrl": ".",
+    "baseUrl": "../../..",
     "paths": {
-      "@uirouter/core": ["src/includes/@uirouter/core/src"],
-      "@uirouter/core/lib/globals": ["src/includes/@uirouter/core/src/globals"],
-      "@uirouter/core/lib/state/stateRegistry": ["src/includes/@uirouter/core/src/state/stateRegistry"],
-      "@uirouter/core/lib/router": ["src/includes/@uirouter/core/src/router"]
+      "@uirouter/core": ["core/src/index.ts"],
+      "@uirouter/core/lib/*": ["core/src/*"]
     }
   }
 }

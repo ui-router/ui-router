@@ -35,6 +35,7 @@
     "test": "turbo run test --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
     "test:watch": "turbo run test:watch --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*' --concurrency=16",
     "docs": "turbo run docs --filter='./core' --filter='./frameworks/*/uirouter-*' --filter='./plugins/*'",
+    "docs:verify": "node tools/generate-api-docs.mjs --all --output-root .ci-results/docs/site --proof .ci-results/docs/proof.json",
     "setup:browser": "turbo run setup:browser --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
     "e2e": "turbo run e2e --filter='./frameworks/*/examples/*' --filter='./plugins/*/examples/*'",
     "check": "npm run verify:turbo && node tools/run-clean-static-gates.mjs && npm run prove:package-artifacts",
@@ -76,7 +77,6 @@
     "verify:acceptance": "node tools/verify-milestone-acceptance.mjs",
     "test:acceptance": "node tools/test-milestone-acceptance.mjs",
     "accept:milestone": "node tools/verify-milestone-acceptance.mjs --require-maintainer-review --require-retained-inputs",
-    "verify:docs-waivers": "node tools/verify-ci-docs-waivers.mjs --output .ci-results/docs/waivers.json",
     "prove:integration-matrix": "node tools/run-integration-matrix.mjs --write",
     "test:n04-validators": "node tools/test-n04-validators.mjs",
     "test:n04-installed": "node tools/test-n04-installed.mjs",
@@ -95,6 +95,7 @@
     "jsonc-parser": "^3.3.1",
     "syncpack": "^15.3.3",
     "turbo": "2.10.12",
+    "typedoc": "0.28.20",
     "typescript-p01": "npm:typescript@5.9.3"
   }
 }

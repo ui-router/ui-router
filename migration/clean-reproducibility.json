@@ -8,13 +8,13 @@
     "tree": "a5e2d1bca11b54ccf64bc30eb146b03336fa6265"
   },
   "bindings": {
-    "ciGatesSha256": "547adde075d08a88df054ecbd20d68a4aea8f6e18c18fe5cf8c07296dbc9d72c",
-    "packageJsonSha256": "da5f26866dc4b0f823477b63c1690a686643e5cd02ca1828e41e26f831e84a06",
-    "packageLockSha256": "24079c60227c102c70877e4c1cdb6cfdab2462d3a1d11c3434beebb75383ad05",
+    "ciGatesSha256": "f34783082ba3fb89ad159d9b315233d4e1e1d4eaa8c3ffd98b565abcf250e2d4",
+    "packageJsonSha256": "25a6e83d09a91c32992d636387e436c52384374e8f7e15e8612da927ea36621c",
+    "packageLockSha256": "8dd18584b2002674b6d4578f5122cebe87487720589316fe7819518298ac7896",
     "turboSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
-    "packageArtifactsSha256": "2078a028a8301c2e6c50a60735b40f1b2df5afcdace4d9dd521a655123eea0ba",
+    "packageArtifactsSha256": "056cefaa79d3ff044719442bcbc916c7ccf89db4e612b99abcc53a087413f2e6",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
-    "integrationMatrixSha256": "89bbafee99d630c6e37637f166fed97385035b6621475326969ece5967aa3bf3",
+    "integrationMatrixSha256": "2a2edbdf9a05304f6109968d585fdadcd8a293f326f4a08513365dea4d9bec20",
     "executionLockSha256": "c91e729ab343ffc652216dbcf9e4b8b3d650a6f1fecb8562dad7f419ba967aed"
   },
   "runtime": {
@@ -123,13 +123,8 @@
       ]
     },
     {
-      "id": "verify-docs-waivers",
-      "argv": [
-        "node",
-        "tools/verify-ci-docs-waivers.mjs",
-        "--output",
-        ".ci-results/docs/waivers.json"
-      ]
+      "id": "verify-docs",
+      "argv": ["npm", "run", "docs:verify"]
     },
     {
       "id": "cleanup-browser",

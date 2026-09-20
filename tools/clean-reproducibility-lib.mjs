@@ -81,13 +81,8 @@ function expectedCommands() {
       ],
     },
     {
-      id: "verify-docs-waivers",
-      argv: [
-        "node",
-        "tools/verify-ci-docs-waivers.mjs",
-        "--output",
-        ".ci-results/docs/waivers.json",
-      ],
+      id: "verify-docs",
+      argv: ["npm", "run", "docs:verify"],
     },
     {
       id: "cleanup-browser",
@@ -103,7 +98,7 @@ export function cleanReproducibilityFingerprint({
   contract,
   packageManifest,
   packageArtifacts,
-  docsWaivers,
+  docsProof,
   ci,
 }) {
   const expectedArtifactIds = ci.artifacts.packages.artifactIds;
@@ -144,34 +139,59 @@ export function cleanReproducibilityFingerprint({
     )
       fail(`package artifact fingerprint is malformed: ${artifact.artifactId}`);
   }
+  const expectedDocs = [
+    [
+      "core",
+      "@uirouter/core",
+      "core/typedoc.json",
+      "core/tsconfig.docgen.json",
+    ],
+    [
+      "angular",
+      "@uirouter/angular",
+      "frameworks/angular/uirouter-angular/typedoc.json",
+      "frameworks/angular/uirouter-angular/tsconfig.docgen.json",
+    ],
+    [
+      "angularjs",
+      "@uirouter/angularjs",
+      "frameworks/angularjs/uirouter-angularjs/typedoc.json",
+      "frameworks/angularjs/uirouter-angularjs/tsconfig.docgen.json",
+    ],
+    [
+      "react",
+      "@uirouter/react",
+      "frameworks/react/uirouter-react/typedoc.json",
+      "frameworks/react/uirouter-react/tsconfig.docgen.json",
+    ],
+  ];
   if (
-    docsWaivers.status !== "ok" ||
-    docsWaivers.contractSha256 !== contract.bindings.ciGatesSha256 ||
-    docsWaivers.baselinesSha256 !== contract.bindings.baselinesSha256 ||
-    !Array.isArray(docsWaivers.records) ||
-    docsWaivers.records.length !== ci.docsWaivers.length
+    docsProof.schemaVersion !== 1 ||
+    docsProof.status !== "ok" ||
+    canonicalJson(docsProof.generator) !==
+      canonicalJson({ package: "typedoc", version: "0.28.20" }) ||
+    !Array.isArray(docsProof.projects) ||
+    docsProof.projects.length !== expectedDocs.length
   )
-    fail("documentation waiver output differs");
-  const docs = docsWaivers.records.map((record) => ({
-    baselineId: record.baselineId,
-    status: record.status,
-    owner: record.owner,
-    reason: record.reason,
-    trackingIssue: record.trackingIssue,
-    expires: record.expires,
-    evidenceSha256: record.evidenceSha256,
-  }));
-  const expectedDocs = ci.docsWaivers.map((record) => ({
-    baselineId: record.baselineId,
-    status: "waived-failure",
-    owner: record.waiver.owner,
-    reason: record.waiver.reason,
-    trackingIssue: record.waiver.trackingIssue,
-    expires: record.waiver.expires,
-    evidenceSha256: record.evidence.sha256,
-  }));
-  if (canonicalJson(docs) !== canonicalJson(expectedDocs))
-    fail("documentation waiver inventory differs");
+    fail("documentation proof identity differs");
+  for (const [index, record] of docsProof.projects.entries()) {
+    const [id, packageName, config, tsconfig] = expectedDocs[index];
+    if (
+      record.id !== id ||
+      record.package !== packageName ||
+      record.config !== config ||
+      record.tsconfig !== tsconfig ||
+      record.output !== `.ci-results/docs/site/${id}` ||
+      record.configSha256 !== sha256File(path.join(repository, config)) ||
+      record.tsconfigSha256 !== sha256File(path.join(repository, tsconfig)) ||
+      !Number.isInteger(record.fileCount) ||
+      record.fileCount < 5 ||
+      !Number.isInteger(record.bytes) ||
+      record.bytes < 1_000 ||
+      !/^[a-f0-9]{64}$/.test(record.sha256)
+    )
+      fail(`documentation proof differs: ${id}`);
+  }
   return {
     source: {
       revision,
@@ -181,8 +201,11 @@ export function cleanReproducibilityFingerprint({
     },
     bindings: contract.bindings,
     packages: artifacts,
+    docs: {
+      generator: docsProof.generator,
+      projects: docsProof.projects,
+    },
     waivers: {
-      docs,
       current: ci.currentWaivers,
     },
   };
@@ -323,11 +346,11 @@ export function verifyCleanReproducibilityProof({
       contract,
       packageManifest: { artifacts: run.fingerprint.packages },
       packageArtifacts,
-      docsWaivers: {
+      docsProof: {
+        schemaVersion: 1,
         status: "ok",
-        contractSha256: contract.bindings.ciGatesSha256,
-        baselinesSha256: contract.bindings.baselinesSha256,
-        records: run.fingerprint.waivers?.docs,
+        generator: run.fingerprint.docs?.generator,
+        projects: run.fingerprint.docs?.projects,
       },
       ci,
     });

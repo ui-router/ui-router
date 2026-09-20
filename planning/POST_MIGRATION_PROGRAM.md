@@ -8,6 +8,47 @@ The order is intentional.  We should make ordinary development reliable before
 we automate releases, and prove a stable release before pointing users away
 from the original repositories.
 
+## Checkpoint: 2026-09-20
+
+The repository migration (milestone A01) is accepted. The post-migration
+program below is still in progress. Current main is
+`d05a262929629b69565df6d670579f022b15c4a4` after PR #35.
+
+- **P01 partial:** PR #31 introduced syncpack and aligned Vitest; PR #35 added
+  ESLint to Redux while retaining Oxc. AngularJS's legacy ESLint configuration,
+  remaining ESLint declarations, Playwright convergence, and explicit policy
+  groups/exceptions for other compatible tools remain.
+- **P02 pending:** the Angular Hybrid example still needs its Cypress-to-
+  Playwright migration and removal of active Cypress tooling.
+- **P03 complete:** React 16 retirement (#32), restored AngularJS lint (#33),
+  and deterministic local TypeDoc builds (#34) are merged. These are normal
+  checks rather than active migration waivers.
+- **P04 pending:** the release/cutover plan exists; the detailed release design
+  and dry-run workflows still need implementation and review.
+- **P05 specification only:** `DOCUMENTATION_SPEC.md` exists; content inventory,
+  generator comparison, prototype, and site implementation remain.
+- **P06/P07 pending:** production release and source-repository transitions
+  remain separately authorized future work.
+
+A01 retains its recorded historical-input exception: the sixteen source
+checkouts were verified when the original import archives/tooling inputs were
+unavailable. This does not claim byte-identical reproduction of the original
+history import; see `migration/milestone-acceptance.json` on main.
+
+### Maintainer direction: eventual Oxlint migration
+
+The agreed final lint target is **Oxlint across the monorepo**. Finish the
+bounded ESLint alignment of existing lint lanes first, then migrate them
+coherently to Oxlint. Avoid adding extensive new ESLint coverage to packages
+that currently have no lint task merely to replace it in the next phase.
+
+The Oxlint follow-up must inventory existing rules and file coverage, prove
+which rules have equivalents, and document any temporary ESLint exceptions
+for remaining gaps. Expand lint coverage as part of that coordinated work.
+Keep equivalent checks and failure behavior throughout; do not silently drop
+rules to make the migration pass. This follow-up is additional work, not a
+claim that P01 makes ESLint the permanent target.
+
 ## Outcomes
 
 1. One maintainable toolchain for tests, browser tests, linting, and shared
@@ -75,8 +116,9 @@ Angular-ESLint integration and any legacy lane retained temporarily.
 
 ### Choose and apply supported tool lanes
 
-The current repository has several Playwright ranges, Vitest 3 and 4, ESLint
-7, 8, and 9, plus a separate Oxc lint command.  The proposed target is:
+At program drafting, the repository had several Playwright ranges, Vitest 3
+and 4, ESLint 7, 8, and 9, plus a separate Oxc lint command. The interim target
+is (see the checkpoint above for completed work):
 
 - Use one tested Playwright line throughout active browser projects.  Update
   the pinned Playwright CI image and browser path in the same pull request, so
@@ -84,13 +126,16 @@ The current repository has several Playwright ranges, Vitest 3 and 4, ESLint
 - Move packages already using Vitest to one tested Vitest 4 line.  Do not
   replace AngularJS's legacy Jest lane as collateral work; make that a later,
   separately tested modernization decision.
-- Make ESLint 9 plus `typescript-eslint` 8 the common rule-engine baseline.
+- Make ESLint 9 plus `typescript-eslint` 8 the interim baseline for existing
+  lint lanes, before the coordinated Oxlint follow-up.
   Angular continues to use the Angular ESLint packages on that baseline.
   Migrate the Redux Oxc-only check to the shared ESLint command or document it
   as an additional fast check; it must not be the only lint policy.
 
-P01 passes only when every relevant workspace runs the policy through Turbo,
-`syncpack lint` has no unexplained mismatch, and the normal CI matrix passes.
+P01 passes only when every existing applicable lint/test workspace runs the
+policy through Turbo, `syncpack lint` has no unexplained mismatch, and the
+normal CI matrix passes. New lint coverage belongs to the coordinated Oxlint
+follow-up rather than an expansion of this interim ESLint scope.
 
 ## P02: Cypress to Playwright
 
@@ -197,11 +242,14 @@ history or rely on an organization-wide blanket switch.
 
 ## Immediate implementation order
 
-1. Land P01's inventory-backed `syncpack` policy and the version-convergence
-   proposal, without upgrading tools blindly.
-2. Land P03's React 16 retirement and AngularJS fix in separate pull requests.
-3. Land the deterministic containment for the September documentation waiver.
-4. Port the single remaining Cypress lane after the Playwright baseline is
-   settled.
+1. Finish P01's existing ESLint lanes, starting with AngularJS, and record
+   compatible declaration groups and explicit exceptions.
+2. Finish the tested Playwright baseline and its syncpack policy.
+3. Port the single remaining Cypress lane and remove active Cypress tooling.
+4. Carry out the coordinated Oxlint migration described above after the
+   interim lint alignment, with explicit rule/coverage parity evidence.
 5. Turn the proposed P04 design into a release-execution specification and
    dry-run-only workflows for maintainer approval.
+6. Continue the P05 inventory/prototype and later site implementation in the
+   order described above; production release and repository transitions stay
+   behind their separate approvals.

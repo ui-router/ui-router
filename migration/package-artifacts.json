@@ -5,7 +5,7 @@
   "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
   "turboJsonSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
   "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
-  "rootLockSha256": "8dd18584b2002674b6d4578f5122cebe87487720589316fe7819518298ac7896",
+  "rootLockSha256": "213cb2ebf0490843bb7008769183c258f144ad8d6b3f5401e58f026989aff504",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -539,8 +539,8 @@
       "owner": "p01-production-pack",
       "sourceManifest": "plugins/redux/package.json",
       "manifest": "plugins/redux/package.json",
-      "manifestSha256": "7dae79da30d8ba131759f00e70d72076b9d0923d4a4060093a4fa2343bc094b5",
-      "scriptsSha256": "1ac511fea155b0abed00da779f0fd385ac22abab5d02d14f47cd3d80e5e77d78",
+      "manifestSha256": "79e76323a8c5a818e4de979b143327b9a27f8b93480e837c8920a7f11787cce3",
+      "scriptsSha256": "909ee276eb466f71a696dddfbe69e4d1a49dfa8a798e463e54a91251113a3cad",
       "package": "@uirouter/redux",
       "version": "1.0.0",
       "kind": "library",
@@ -907,5 +907,5 @@
       ]
     }
   ],
-  "rootLockPackageEntries": 4266
+  "rootLockPackageEntries": 4269
 }

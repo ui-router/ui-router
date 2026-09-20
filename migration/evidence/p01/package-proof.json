@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "task": "P01",
   "owner": "ui-router-maintainers",
-  "contractSha256": "6cd3acba69f85d114ee6af72bf5626d26f5dd794d4e56be9084d83fd1b1651d7",
-  "rootLockSha256": "213cb2ebf0490843bb7008769183c258f144ad8d6b3f5401e58f026989aff504",
+  "contractSha256": "99cd8e000cc3605ea3bf04902a76bb4bdd241eac0d7f73ecb4d9bb1ae20c3c06",
+  "rootLockSha256": "20af880a5aada78ea950e515adaffbf5ae67ac497b0755e4070cda676168b996",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -19,7 +19,7 @@
   "repetitions": 2,
   "builds": {
     "fileCount": 1062,
-    "sha256": "f61b20aa569d85d0925e7c4f34911fe904beb5ed6cd6c2f3ec64042a39f2fb2c",
+    "sha256": "d6d6ff0767d3a6b71c55e4acb345a10f8b3a59dee9ba129ca3f8003ac0acfdb9",
     "identical": true
   },
   "packages": [
@@ -53,14 +53,14 @@
       "artifactId": "angularjs",
       "package": "@uirouter/angularjs",
       "version": "1.1.2",
-      "filename": "uirouter-angularjs-1.1.2-sha256-e0d4728bd80f899588ab7721d2e70160bb617d0717eff55f49d5496c2c6bc427.tgz",
-      "sha256": "e0d4728bd80f899588ab7721d2e70160bb617d0717eff55f49d5496c2c6bc427",
-      "shasum": "be45227de7fd077af907f65ebd99006826aad2f8",
-      "integrity": "sha512-uI60cxpHKRb9lsLIdHdwMoqmdr3FXYxGyrPzzZFqVTP/09HzrF+fx7+Y7dY6GzZ2SDDRyMCZd4d3w4aNep/7wQ==",
-      "size": 750877,
-      "unpackedSize": 3341216,
+      "filename": "uirouter-angularjs-1.1.2-sha256-fa7afc31f82a3b7e4c1a61b9b0da06ef3c0fe5fbd144498435f612512f6569fc.tgz",
+      "sha256": "fa7afc31f82a3b7e4c1a61b9b0da06ef3c0fe5fbd144498435f612512f6569fc",
+      "shasum": "98c4d8026a43328cbc6cc2d1830cf37c7558c3bf",
+      "integrity": "sha512-bm8whNq4HwX3FZndtMe6iuqGSG3qoR0j4v+A7yaNZF3mluEfibpbDiKhq8m8NpRZFIB+QQqOEHNOSUfNCOUAQA==",
+      "size": 751040,
+      "unpackedSize": 3340655,
       "fileCount": 122,
-      "filesSha256": "d442801fa729699cb272377c089d7f1ae3ce92e26820483d98c1cbf738308c3a"
+      "filesSha256": "401d495eb3a47301252e0389e2829e7fd4d1068c27bc8a43d48521169933e32c"
     },
     {
       "artifactId": "core",
@@ -182,9 +182,9 @@
   ],
   "productionEdges": 15,
   "consumer": {
-    "lockSha256": "c5ef3f2f28a07f8195c025b15618c7ce66472b473a4143411822c210dd97e7e9",
+    "lockSha256": "8795210ae99bc684d0bbb2a4b288aaba02dd1b354e7b5b6342d9ff03779a220f",
     "dependencyRecords": 443,
-    "dependencyGraphSha256": "f4bf1c9a2136e28b0f491f6f786ff936100b412f3c0f9514187dcdfebe1cd544",
+    "dependencyGraphSha256": "e2af5532b61e6b1d207d0bb6f0a88d264581d5c4dda075e05610699bf4ac2ca7",
     "internalPackages": 12,
     "installedFiles": 968,
     "entrypoints": 46,

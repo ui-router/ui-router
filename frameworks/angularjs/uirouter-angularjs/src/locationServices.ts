@@ -49,7 +49,6 @@ export class Ng1LocationServices implements LocationConfig, LocationServices {
       x != null ? x.toString().replace(/(~~|~2F)/g, (m) => ({ '~~': '~', '~2F': '/' }[m])) : x;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   dispose() {}
 
   constructor($locationProvider: ILocationProvider) {

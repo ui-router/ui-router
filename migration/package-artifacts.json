@@ -5,7 +5,7 @@
   "sourceAliasesSha256": "9cd5ee9d7f562643132f93326f8bf88ff96dfb4b03291fb3827437517af2dd57",
   "turboJsonSha256": "4986207ed3f2a393671625acbf4f8fa06947696379423e2c046e2d8e9093d4c7",
   "rootLockPredecessorSha256": "48658cc4a8d4c76a9a6eb314c9da54afd54ccea370d6c0c337d6095efbe8d258",
-  "rootLockSha256": "213cb2ebf0490843bb7008769183c258f144ad8d6b3f5401e58f026989aff504",
+  "rootLockSha256": "20af880a5aada78ea950e515adaffbf5ae67ac497b0755e4070cda676168b996",
   "runtime": {
     "node": "v24.19.0",
     "npm": "11.17.0",
@@ -276,8 +276,8 @@
       "owner": "p01-production-pack",
       "sourceManifest": "framework/angularjs/router/package.json",
       "manifest": "frameworks/angularjs/uirouter-angularjs/package.json",
-      "manifestSha256": "68b4c4eadfca1c73f12a2b2b894480f5b7ef061d933bc6cf20670877e536a279",
-      "scriptsSha256": "4337e20e9c190af58f43f6951e3ffcf7808e3dc778736f1b5dd8c6e98a65b798",
+      "manifestSha256": "7096be053acec32dd2070f913cfd7e5170c9d023307fc7898babd9f43b387b0a",
+      "scriptsSha256": "2d8b00f9b97c70a4adab87b2745382a0c6fb8fc6e5431ed2180a8a29f9bde501",
       "package": "@uirouter/angularjs",
       "version": "1.1.2",
       "kind": "library",
@@ -907,5 +907,5 @@
       ]
     }
   ],
-  "rootLockPackageEntries": 4269
+  "rootLockPackageEntries": 4276
 }

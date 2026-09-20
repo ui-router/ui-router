@@ -11,7 +11,7 @@
     "fixmaps:bundle": "tweak_sourcemap_paths -a --include 'release/**/*.js.map'",
     "build": "npm run clean && npm run compile && npm run bundle && npm run fixmaps:lib && npm run fixmaps:bundle",
     "pack": "node ../../../tools/pack-package.mjs",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint \"src/**/*.ts\"",
     "package": "npm run build",
     "bundle": "npm run bundle_router && npm run bundle_monolithic_router && npm run bundle_events && npm run bundle_resolve",
     "bundle_monolithic_router": "rollup -c --environment ROUTER,MONOLITHIC  && rollup -c --environment ROUTER,MINIFY,MONOLITHIC",
@@ -88,13 +88,11 @@
     "@types/angular-animate": "^1.5.10",
     "@types/angular-mocks": "^1.7.0",
     "@types/jest": "^26.0.5",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
     "@uirouter/core": "^6.1.2",
     "@uirouter/publish-scripts": "^2.6.4",
     "angular": "1.8.0",
     "dts-downlevel": "^0.4.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.28.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
@@ -106,7 +104,10 @@
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^26.0.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "typescript-eslint": "^8.51.0",
+    "@eslint/js": "^9.28.0",
+    "globals": "^13.24.0"
   },
   "husky": {
     "hooks": {

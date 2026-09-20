@@ -270,14 +270,32 @@ const reduxToolingOwnedPaths = new Set([
   "plugins/redux/package.json",
   "plugins/redux/eslint.config.mjs",
 ]);
+// AngularJS ESLint 9 changes its configuration and lint-only source directives.
+const angularjsLintOwnedPaths = new Set([
+  "frameworks/angularjs/uirouter-angularjs/.eslintrc.js",
+  "frameworks/angularjs/uirouter-angularjs/eslint.config.mjs",
+  "frameworks/angularjs/uirouter-angularjs/src/directives/stateDirectives.ts",
+  "frameworks/angularjs/uirouter-angularjs/src/interface.ts",
+  "frameworks/angularjs/uirouter-angularjs/src/locationServices.ts",
+  "frameworks/angularjs/uirouter-angularjs/src/services.ts",
+]);
+// Maintainer-merged PR #29 contains planning documents, not runtime inputs.
+const planningOwnedPaths = new Set([
+  "planning/POST_MIGRATION_PROGRAM.md",
+  "planning/DOCUMENTATION_SPEC.md",
+]);
 for (const changed of postImplementationPaths)
   if (
     !changed.startsWith(evidencePrefix) &&
     !c01OwnedPaths.has(changed) &&
     !p03OwnedPaths.has(changed) &&
-    !reduxToolingOwnedPaths.has(changed)
+    !reduxToolingOwnedPaths.has(changed) &&
+    !angularjsLintOwnedPaths.has(changed) &&
+    !planningOwnedPaths.has(changed)
   )
-    fail(`change outside I02 evidence, C01, P03, and Redux tooling ownership: ${changed}`);
+    fail(
+      `change outside I02 evidence and reviewed migration/tooling/planning ownership: ${changed}`
+    );
 if (
   !evidence.repository.sourceSnapshotSha256 ||
   !/^[a-f0-9]{64}$/.test(evidence.repository.sourceSnapshotSha256)

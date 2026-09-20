@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint @typescript-eslint/no-empty-object-type: ["error", { "allowInterfaces": "always" }] */
 /* eslint-disable prefer-const */
 /**
  * # Angular 1 Directives

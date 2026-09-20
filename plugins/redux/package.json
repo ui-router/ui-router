@@ -46,14 +46,15 @@
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "test:ci": "vitest run",
-    "lint": "oxlint -c oxlint.json core react",
-    "lint:fix": "oxlint -c oxlint.json --fix core react",
+    "lint": "eslint core react && npm run lint:oxlint",
+    "lint:fix": "eslint core react --fix && npm run lint:oxlint -- --fix",
     "format": "oxfmt --write core react",
     "format:check": "oxfmt --check core react",
     "clean": "shx rm -rf dist",
     "build": "npm run clean && tsdown",
     "pack": "node ../../tools/pack-package.mjs",
-    "release": "release"
+    "release": "release",
+    "lint:oxlint": "oxlint -c oxlint.json core react"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -74,7 +75,9 @@
     "shx": "^0.3.4",
     "tsdown": "^0.20.1",
     "typescript": "^5.8.3",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.16",
+    "eslint": "^9.28.0",
+    "typescript-eslint": "^8.51.0"
   },
   "peerDependencies": {
     "@uirouter/core": ">=5.0.0",

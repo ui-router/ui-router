@@ -265,13 +265,19 @@ const p03OwnedPaths = new Set([
   "tools/verify-package-manager.mjs",
   "tools/verify-react-hybrid-retirement.mjs",
 ]);
+// P01 Redux lint convergence changes only its tooling and package declaration.
+const reduxToolingOwnedPaths = new Set([
+  "plugins/redux/package.json",
+  "plugins/redux/eslint.config.mjs",
+]);
 for (const changed of postImplementationPaths)
   if (
     !changed.startsWith(evidencePrefix) &&
     !c01OwnedPaths.has(changed) &&
-    !p03OwnedPaths.has(changed)
+    !p03OwnedPaths.has(changed) &&
+    !reduxToolingOwnedPaths.has(changed)
   )
-    fail(`change outside I02 evidence, C01, and P03 ownership: ${changed}`);
+    fail(`change outside I02 evidence, C01, P03, and Redux tooling ownership: ${changed}`);
 if (
   !evidence.repository.sourceSnapshotSha256 ||
   !/^[a-f0-9]{64}$/.test(evidence.repository.sourceSnapshotSha256)

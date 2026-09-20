@@ -1,4 +1,5 @@
 /** @publicapi @module ng1 */ /** */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- StateRegistry is referenced by API documentation links.
 import { StateDeclaration, _ViewDeclaration, IInjectable, Transition, HookResult, StateRegistry } from '@uirouter/core';
 
 /**

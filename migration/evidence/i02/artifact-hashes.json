@@ -14,12 +14,12 @@
     "artifactId": "angularjs",
     "package": "@uirouter/angularjs",
     "version": "1.1.2",
-    "filename": "uirouter-angularjs-1.1.2-sha256-fa7afc31f82a3b7e4c1a61b9b0da06ef3c0fe5fbd144498435f612512f6569fc.tgz",
-    "sha256": "fa7afc31f82a3b7e4c1a61b9b0da06ef3c0fe5fbd144498435f612512f6569fc",
-    "integrity": "sha512-bm8whNq4HwX3FZndtMe6iuqGSG3qoR0j4v+A7yaNZF3mluEfibpbDiKhq8m8NpRZFIB+QQqOEHNOSUfNCOUAQA==",
-    "metadataSha256": "7b7e1f1d7d5abb41d3774efeb22c1bd383596a3da37e5961647cfdeeff406e63",
-    "filesSha256": "401d495eb3a47301252e0389e2829e7fd4d1068c27bc8a43d48521169933e32c",
-    "path": "artifacts/uirouter-angularjs-1.1.2-sha256-fa7afc31f82a3b7e4c1a61b9b0da06ef3c0fe5fbd144498435f612512f6569fc.tgz"
+    "filename": "uirouter-angularjs-1.1.2-sha256-889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23.tgz",
+    "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23",
+    "integrity": "sha512-605nmZhJTKOuqIWfFV7DERRWI1B8jKEXRn6AjID1eFsCG2aTp1AAFzbd4u6ZibkNyX3DsRWe60Fpb5EPq0kAJw==",
+    "metadataSha256": "8237b1254f64c42451481a2f8c06e75f6c762fc660fa9a990b92280dae96175d",
+    "filesSha256": "7e1fd026867904fac3cee7a55efd22604ab24755f0745190fd5aaa981b2a72d7",
+    "path": "artifacts/uirouter-angularjs-1.1.2-sha256-889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23.tgz"
   },
   {
     "artifactId": "core",

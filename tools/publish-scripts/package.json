@@ -10,6 +10,7 @@
     "publish_docs.js",
     "publish_yalc_package.js",
     "release.js",
+    "prepare_release.js",
     "show_changelog.js",
     "show_version.js",
     "test_downstream_projects.js",

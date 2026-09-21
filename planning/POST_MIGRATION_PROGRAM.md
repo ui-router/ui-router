@@ -12,7 +12,7 @@ from the original repositories.
 
 The repository migration (milestone A01) is accepted. The post-migration
 program below is still in progress. Current main is
-`deae8472a36e0b8e2e900720ac5fb10971e0d4be` after PR #36.
+`cc12c449a17ba4487dc7ae312ff3626126b45c2e` after PR #37.
 
 - **P01 partial:** PR #31 introduced syncpack and aligned Vitest; PR #35 added
   ESLint to Redux while retaining Oxc; PR #36 migrated AngularJS to ESLint 9
@@ -24,8 +24,9 @@ program below is still in progress. Current main is
 - **P03 complete:** React 16 retirement (#32), restored AngularJS lint (#33),
   and deterministic local TypeDoc builds (#34) are merged. These are normal
   checks rather than active migration waivers.
-- **P04 pending:** the release/cutover plan exists; the detailed release design
-  and local release implementation still need review and completion.
+- **P04 partial:** PR #37 added a safe release preview. Local version/changelog
+  preparation is the current step; release validation, publishing rehearsal,
+  authentication, and live publishing remain.
 - **P05 specification only:** `DOCUMENTATION_SPEC.md` exists; content inventory,
   generator comparison, prototype, and site implementation remain.
 - **P06/P07 pending:** production release and source-repository transitions
@@ -197,11 +198,10 @@ The implementation sequence is:
    Publish the approved artifact, verify it and its consumers, then promote the
    agreed dist-tag and create matching Git tags/releases, as R01 requires.
 
-The current scripts assume `master`, bare version tags, package manifests at
-Git root, and package-local dependency resolution. Their old dry run still
-writes files and can publish docs; AngularJS chains extra publishing commands.
-They also push tags before npm publication. These are migration gaps to fix,
-not a working release procedure to execute on main.
+The remaining live scripts assume `master`, bare version tags, manifests at
+Git root, and package-local dependency resolution. They push tags before npm
+publication. Live monorepo execution remains disabled while these gaps are
+resolved.
 
 P04 is complete when a non-production rehearsal produces the exact version
 plan, package changelogs, reproducible artifacts, dependency order, and clean
@@ -209,13 +209,29 @@ consumer evidence. Authentication, provenance, prerelease/stable promotion,
 and recovery decisions must be documented before the separately authorized
 P06 production release. No production publication is authorized by this plan.
 
-The first implementation supports `npm run release -- --dry-run --bump patch`
-from a package directory, or `npm run release --workspace=@uirouter/core --
---dry-run --bump patch` from root. Preview bumps are `none` (the default),
-`patch`, `minor`, and `major`. It lists package-scoped commits for review; it
-does not generate the final changelog or prepare artifacts. Live monorepo
-release execution stops with an explanation until the remaining steps above
-are implemented.
+From a package directory, inspect the existing preview with
+`npm run release -- --dry-run --bump patch`. To preview the complete preparation
+plan, use `npm run release -- --prepare --dry-run --bump patch`. From a clean
+branch, remove `--dry-run` to write the planned manifests, changelogs, and root
+lockfile. Root invocation also works with `--workspace=@uirouter/core` before
+the `--` separator.
+
+Preparation includes dependent packages when an exact internal version must
+advance. It keeps an already assigned unreleased version; otherwise it proposes
+a patch. Compatible ranges remain unchanged, and incompatible ranges stop the
+operation for explicit compatibility review. Angular and Angular Hybrid are
+prepared together on their supported Angular major. Requested `--deps` produce
+range-change summaries without cloning repositories. Authored release notes
+are retained, including existing breaking-change text. No registry request,
+lifecycle script, commit, tag, or push is part of preparation.
+
+Prepared files are drafts for review, not an approved release candidate. The
+current migration checks still pin accepted versions and internal ranges.
+Before the first versioned candidate can pass all gates, make a reviewed update
+to the current version checks while preserving the historical migration audit,
+then regenerate package and isolated-consumer proofs. Preparation deliberately
+does not rewrite those historical contracts or label old proof as current.
+Publishing rehearsal and individual npm authentication follow that work.
 
 ### Next AngularJS release notes
 

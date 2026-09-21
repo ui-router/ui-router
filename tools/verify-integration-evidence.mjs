@@ -282,6 +282,8 @@ const angularjsLintOwnedPaths = new Set([
 // P04 local release preview and maintainer-directed Bower retirement.
 const localReleaseOwnedPaths = new Set([
   "tools/publish-scripts/release.js",
+  "tools/publish-scripts/prepare_release.js",
+  "tools/publish-scripts/package.json",
   "tools/test-local-release.mjs",
   "frameworks/angularjs/uirouter-angularjs/bower.json",
   "frameworks/angularjs/uirouter-angularjs/scripts/bower_release.js",

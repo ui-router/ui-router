@@ -31,14 +31,6 @@ UI-Router applications are modeled as a hierarchical tree of states. UI-Router p
 [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine) to manage the transitions between those 
 application states in a transaction-like manner. 
 
-## Distribution
-
-New monorepo releases retire Bower publishing. Existing Bower releases remain
-available from the historical distribution repository and tags.
-The release process will retain npm dual publishing as `@uirouter/angularjs`
-and the legacy `angular-ui-router` package for now. Prefer `@uirouter/angularjs`
-for new installations.
-
 ## Get Started
 
 

@@ -53,14 +53,14 @@
       "artifactId": "angularjs",
       "package": "@uirouter/angularjs",
       "version": "1.1.2",
-      "filename": "uirouter-angularjs-1.1.2-sha256-50885fbf269360af3e48b2027c14fcc4d44379a542149d41d856c794dc0db132.tgz",
-      "sha256": "50885fbf269360af3e48b2027c14fcc4d44379a542149d41d856c794dc0db132",
-      "shasum": "bcb1d663e91a8991e5cacc1026b44929de182f15",
-      "integrity": "sha512-06ByvrT3oBHmdLiV/SYxObHa1f39l2xTCIxo/3l+z/Fe4Rab+hs6Dezk7AfvEEFdHzmH14jusuw0DPWfyxbqZg==",
-      "size": 751153,
-      "unpackedSize": 3340929,
+      "filename": "uirouter-angularjs-1.1.2-sha256-889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23.tgz",
+      "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23",
+      "shasum": "4842704a557d388f8c37e73f9b5234f207ccd207",
+      "integrity": "sha512-605nmZhJTKOuqIWfFV7DERRWI1B8jKEXRn6AjID1eFsCG2aTp1AAFzbd4u6ZibkNyX3DsRWe60Fpb5EPq0kAJw==",
+      "size": 751010,
+      "unpackedSize": 3340588,
       "fileCount": 122,
-      "filesSha256": "40b4b639b3c5e45a2a6becbc0b95208912acdb115e5f22ad76b7fb26cf0f94fe"
+      "filesSha256": "7e1fd026867904fac3cee7a55efd22604ab24755f0745190fd5aaa981b2a72d7"
     },
     {
       "artifactId": "core",
@@ -182,9 +182,9 @@
   ],
   "productionEdges": 15,
   "consumer": {
-    "lockSha256": "4af036442ef3429701e16bc09fbb498c1236c6b873617121b72b5cc42aaeb51e",
+    "lockSha256": "b28c5e0ccc060a4ff41fb7887ac577588df16bdd433863085c44693ab1b82324",
     "dependencyRecords": 443,
-    "dependencyGraphSha256": "9dad5fbf7cac208c40546961456a59913fe6750bb67302d411b730b8d9ef2d49",
+    "dependencyGraphSha256": "0cdad68335842ecc7484cb3d7f13fd5faf13e3f49d40b584b8817fbd1b312145",
     "internalPackages": 12,
     "installedFiles": 968,
     "entrypoints": 46,

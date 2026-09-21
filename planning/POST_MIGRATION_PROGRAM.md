@@ -8,15 +8,16 @@ The order is intentional.  We should make ordinary development reliable before
 we automate releases, and prove a stable release before pointing users away
 from the original repositories.
 
-## Checkpoint: 2026-09-20
+## Checkpoint: 2026-09-21
 
 The repository migration (milestone A01) is accepted. The post-migration
 program below is still in progress. Current main is
-`d05a262929629b69565df6d670579f022b15c4a4` after PR #35.
+`deae8472a36e0b8e2e900720ac5fb10971e0d4be` after PR #36.
 
 - **P01 partial:** PR #31 introduced syncpack and aligned Vitest; PR #35 added
-  ESLint to Redux while retaining Oxc. AngularJS's legacy ESLint configuration,
-  remaining ESLint declarations, Playwright convergence, and explicit policy
+  ESLint to Redux while retaining Oxc; PR #36 migrated AngularJS to ESLint 9
+  and typescript-eslint 8. Remaining ESLint declarations, Playwright
+  convergence, and explicit policy
   groups/exceptions for other compatible tools remain.
 - **P02 pending:** the Angular Hybrid example still needs its Cypress-to-
   Playwright migration and removal of active Cypress tooling.
@@ -24,7 +25,7 @@ program below is still in progress. Current main is
   and deterministic local TypeDoc builds (#34) are merged. These are normal
   checks rather than active migration waivers.
 - **P04 pending:** the release/cutover plan exists; the detailed release design
-  and dry-run workflows still need implementation and review.
+  and local release implementation still need review and completion.
 - **P05 specification only:** `DOCUMENTATION_SPEC.md` exists; content inventory,
   generator comparison, prototype, and site implementation remain.
 - **P06/P07 pending:** production release and source-repository transitions
@@ -74,8 +75,10 @@ claim that P01 makes ESLint the permanent target.
   release job.
 - The Angular package may use Angular ESLint where that makes Angular tooling
   work better, but it must still satisfy the common ESLint policy.
-- A release workflow does not receive a long-lived npm token.  Live registry
-  work remains separately gated by the approved release-execution plan.
+- Local releases use the individual maintainer's npm authentication. Keep
+  credentials outside the repository. Future GitHub Actions publishing is a
+  separate workstream; live registry work remains gated by the approved
+  release-execution plan.
 
 ## Sequence
 
@@ -164,61 +167,63 @@ contract/evidence, and adds the passing command to the regular CI gate.
 
 ## P04: release and publish system
 
-### Proposed release tool: Changesets
+### First workstream: existing local scripts
 
-Use Changesets as the release-intent and versioning tool.  It is designed for
-multi-package repositories, supports package groups and prereleases, and lets
-us supply a custom changelog writer.  The recommended configuration will use a
-fixed group for `@uirouter/angular` and `@uirouter/angular-hybrid`, plus a
-repository validator that requires both package majors to equal the supported
-Angular major.  A future Angular 23 update therefore cannot publish either
-package on a mismatched major line.
+Maintainer direction on 2026-09-21 is to adapt the existing publish scripts to
+this monorepo, step by step. Preserve the local `npm run release` entry point
+and individual maintainer npm authentication. Start with the existing
+package-directory commands; a root package selector is a separate convenience.
+Changesets is no longer the proposed prerequisite for this work.
 
-Changesets is preferable here to Release Please because the immediate problem
-is independently releasable packages with a small lock-step group, not a
-single repository release PR.  This is still a proposed decision until the
-release design review approves it.
+The implementation sequence is:
 
-### Changelogs and dependency ranges
+1. Make a read-only release preview that identifies the selected package,
+   proposed version, namespaced tag, history range, and publish directory.
+   `--dry-run` must not edit manifests or changelogs, prompt for authentication,
+   create commits/tags, push, publish packages/docs, or invoke legacy follow-ons.
+   This preview is not yet the complete package/consumer rehearsal below.
+2. Adapt version preparation and changelogs to package-scoped history, including
+   imported tags at their historical paths. Update the shared root lock and
+   affected internal dependencies deliberately. Preserve public compatibility
+   ranges and coordinate Angular/Angular Hybrid majors with the supported
+   Angular major. Keep release notes for breaking changes such as React Hybrid 3.
+3. Build and pack the selected packages, prove clean tarball consumers, and
+   rehearse the publishing sequence against a non-production registry. Resolve
+   AngularJS's additional `angular-ui-router` and Bower release paths explicitly;
+   they must not run accidentally during a primary-package rehearsal.
+4. Restore the live local path with individual npm login/2FA, explicit package
+   selection and dependency order, failure recovery, and registry readback.
+   Publish the approved artifact, verify it and its consumers, then promote the
+   agreed dist-tag and create matching Git tags/releases, as R01 requires.
 
-Generate a per-package changelog from authored changesets.  Group internal
-dependency moves in a short **Dependencies** section so users see relevant
-compatibility information without a generated entry for every transitive
-release.  Do not loosen top-level dependency or peer ranges merely to make the
-changelog quieter.  A range changes only after its clean-consumer compatibility
-matrix proves it.
+The current scripts assume `master`, bare version tags, package manifests at
+Git root, and package-local dependency resolution. Their old dry run still
+writes files and can publish docs; AngularJS chains extra publishing commands.
+They also push tags before npm publication. These are migration gaps to fix,
+not a working release procedure to execute on main.
 
-### Workflows
+P04 is complete when a non-production rehearsal produces the exact version
+plan, package changelogs, reproducible artifacts, dependency order, and clean
+consumer evidence. Authentication, provenance, prerelease/stable promotion,
+and recovery decisions must be documented before the separately authorized
+P06 production release. No production publication is authorized by this plan.
 
-Create two workflows, both starting with the existing full validation and
-package/consumer proofs:
+The first implementation supports `npm run release -- --dry-run --bump patch`
+from a package directory, or `npm run release --workspace=@uirouter/core --
+--dry-run --bump patch` from root. Preview bumps are `none` (the default),
+`patch`, `minor`, and `major`. It lists package-scoped commits for review; it
+does not generate the final changelog or prepare artifacts. Live monorepo
+release execution stops with an explanation until the remaining steps above
+are implemented.
 
-1. **Release preparation** validates changesets, the version plan, the
-   Angular lock-step rule, package order, reproducible packs, and a local
-   tarball consumer dry run.  It creates no npm or GitHub release.
-2. **Release publish** is a protected `workflow_dispatch` for an immutable
-   release commit.  It repeats the checks, publishes in dependency order,
-   reads every tarball back from npm, runs selected consumers, then promotes
-   the agreed dist-tag.  Git tags and GitHub releases happen only after that
-   registry proof.
+### Later workstream: GitHub Actions publishing
 
-Use npm trusted publishing: the workflow receives a short-lived GitHub OIDC
-identity with `id-token: write`, and npm accepts it for the configured publish
-workflow.  It stores no npm automation token.  Configure an npm trusted
-publisher for each public package and a protected GitHub `npm-publish`
-environment.  The remaining governance decision is the exact GitHub team or
-environment rule that lets any intended UI-Router organization maintainer
-start a release while preserving an audit trail.
-
-Support release candidates using a Changesets prerelease mode and the `next`
-dist-tag.  Stable releases use `latest` only after consumer verification.  The
-first implementation does not add unattended snapshot publishing; we can add
-that later if release-candidate use proves too heavy.
-
-P04 is complete when a non-production dry run produces the exact version plan,
-changelogs, packages, dependency order, provenance configuration, and consumer
-evidence.  Publishing, tag creation, and npm/GitHub configuration require the
-separate P06 execution approval already required by R01.
+Address Actions publishing only after the local process works. It should reuse
+the tested preparation, packing, and verification logic. Decide protected
+execution, npm trusted publishing/OIDC, provenance, and maintainer access in
+that workstream. It is not an acceptance requirement for the first local
+release implementation. Changesets or another versioning system can be
+considered separately if the existing scripts prove insufficient.
 
 ## P05: documentation workstream
 
@@ -242,14 +247,16 @@ history or rely on an organization-wide blanket switch.
 
 ## Immediate implementation order
 
-1. Finish P01's existing ESLint lanes, starting with AngularJS, and record
+1. Finish P01's remaining existing ESLint declarations and record
    compatible declaration groups and explicit exceptions.
 2. Finish the tested Playwright baseline and its syncpack policy.
 3. Port the single remaining Cypress lane and remove active Cypress tooling.
 4. Carry out the coordinated Oxlint migration described above after the
    interim lint alignment, with explicit rule/coverage parity evidence.
-5. Turn the proposed P04 design into a release-execution specification and
-   dry-run-only workflows for maintainer approval.
+5. Continue P04 with the existing local release scripts and individual npm
+   authentication, starting with the read-only preview. Keep future Actions
+   publishing separate. This work can begin alongside tooling convergence;
+   production release still waits for P01--P03 and P06 approval.
 6. Continue the P05 inventory/prototype and later site implementation in the
    order described above; production release and repository transitions stay
    behind their separate approvals.

@@ -15,8 +15,18 @@ const modifiedFiles = [];
 const yargs = require('yargs')
   .option('dryrun', {
     alias: ['dry-run', 'd'],
-    description: 'Dry run: Ignores dirty working copy and does not commit or publish anything.',
+    description: 'Print a read-only release preview; do not prepare or publish a release.',
     boolean: true,
+  })
+  .option('bump', {
+    description: 'Version bump for the read-only preview',
+    choices: ['patch', 'minor', 'major', 'none'],
+    default: 'none',
+  })
+  .option('legacy-angularjs', {
+    description: 'Run the existing AngularJS secondary release scripts after a live release',
+    boolean: true,
+    default: false,
   })
   .option('deps', {
     description: 'Deps to include in changelog',
@@ -34,10 +44,102 @@ const _exec = util._exec;
 const _execInteractive = util._execInteractive;
 const pkgMgrCmd = util.pkgMgrCommands();
 
+// Dispatch previews before any interactive, writing, authentication, or publish path.
+const { execFileSync } = require('child_process');
+const repositoryRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
+const git = (...args) =>
+  execFileSync('git', args, { cwd: repositoryRoot, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }).trim();
+const artifactsPath = path.join(repositoryRoot, 'migration/package-artifacts.json');
+const isMonorepo = fs.existsSync(artifactsPath);
+
 if (yargs.argv.dryrun) {
-  console.log('Dry run mode...');
-} else {
-  util.ensureCleanMaster('master');
+  try {
+    console.log(JSON.stringify(releasePreview(), null, 2));
+    process.exit(0);
+  } catch (error) {
+    console.error(`Release preview failed: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+if (isMonorepo) {
+  console.error(
+    'Live monorepo releases are not implemented yet. Use npm run release -- --dry-run for a read-only preview.'
+  );
+  process.exit(1);
+}
+util.ensureCleanMaster('master');
+
+function releasePreview() {
+  if (packageJson.private) throw new Error('Select a public package directory.');
+  const packageDirectory = path.relative(repositoryRoot, process.cwd()).split(path.sep).join('/');
+  const artifacts = isMonorepo ? JSON.parse(fs.readFileSync(artifactsPath)) : null;
+  const record = artifacts && artifacts.packages.find((item) => item.manifest === `${packageDirectory}/package.json`);
+  if (isMonorepo && (!record || record.package !== packageJson.name)) {
+    throw new Error('The current package is not in the release package inventory.');
+  }
+  const sources = isMonorepo
+    ? JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'migration/sources.json'))).sources
+    : [];
+  const source = record && sources.find((item) => item.name === record.id);
+  if (isMonorepo && !source) throw new Error('Missing imported history mapping.');
+  const namespace = source ? source.tagNamespace : '';
+  const tags = git('tag', '--merged', 'HEAD', '--list', `${namespace}*`)
+    .split('\n')
+    .map((tag) => ({ tag, version: semver.valid(tag.slice(namespace.length)) }))
+    .filter((item) => item.version)
+    .sort((left, right) => semver.rcompare(left.version, right.version) || left.tag.localeCompare(right.tag));
+  const previous = tags[0];
+  let previousManifest = null;
+  let previousVersion = null;
+  if (previous) {
+    const historical = source && source.releaseTags.some((item) => item.targetName === previous.tag);
+    previousManifest = historical
+      ? `${source.destinationPrefix}/package.json`
+      : packageDirectory
+      ? `${packageDirectory}/package.json`
+      : 'package.json';
+    const manifest = JSON.parse(git('show', `refs/tags/${previous.tag}:${previousManifest}`));
+    previousVersion = manifest.version;
+  }
+  const version = yargs.argv.bump === 'none' ? packageJson.version : semver.inc(packageJson.version, yargs.argv.bump);
+  if (!semver.valid(version)) throw new Error('Invalid proposed package version.');
+  const tag = `${namespace}${version}`;
+  const existingTags = git('tag', '--list', tag);
+  const historyPaths = [...new Set([packageDirectory || '.', source && source.destinationPrefix].filter(Boolean))];
+  const commits = git(
+    'log',
+    '--format=%H %s',
+    previous ? `refs/tags/${previous.tag}..HEAD` : 'HEAD',
+    '--',
+    ...historyPaths
+  );
+  return {
+    mode: 'read-only-preview',
+    package: packageJson.name,
+    packageDirectory: packageDirectory || '.',
+    currentVersion: packageJson.version,
+    proposedVersion: version,
+    proposedTag: tag,
+    tagAlreadyExists: Boolean(existingTags),
+    previousTag: previous ? previous.tag : null,
+    previousVersion,
+    previousManifest,
+    historyPaths,
+    commits: commits ? commits.split('\n') : [],
+    changelogDependencies: yargs.argv.deps || [],
+    publishDirectory:
+      path.posix.join(packageDirectory, record ? record.pack.directory : packageJson.distDir || '.') || '.',
+    branch: git('branch', '--show-current') || null,
+    dirty: Boolean(git('status', '--porcelain')),
+    authentication: 'individual maintainer npm login/2FA (not contacted by preview)',
+    legacyAngularjsFollowOns: yargs.argv['legacy-angularjs'] ? 'skipped; separate migration work required' : null,
+    remaining: [
+      'version/changelog/shared-lock preparation',
+      'package and consumer rehearsal',
+      'authenticated publication and registry readback',
+    ],
+  };
 }
 
 // Bump version
@@ -195,4 +297,11 @@ util.packageDir();
 if (fs.existsSync('typedoc.json') && readlineSync.keyInYN('Generate docs?')) {
   _exec('generate_docs');
   _exec('publish_docs');
+}
+
+// Keep the old secondary releases inside the live path so npm forwards preview
+// flags to one process instead of only the last command in a shell chain.
+if (yargs.argv['legacy-angularjs']) {
+  _exec('node ./scripts/npm_angular_ui_router_release.js');
+  _exec('node ./scripts/bower_release.js');
 }

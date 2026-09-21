@@ -279,10 +279,18 @@ const angularjsLintOwnedPaths = new Set([
   "frameworks/angularjs/uirouter-angularjs/src/locationServices.ts",
   "frameworks/angularjs/uirouter-angularjs/src/services.ts",
 ]);
-// P04 local release preview changes the CLI and its regression test.
+// P04 local release preview and maintainer-directed Bower retirement.
 const localReleaseOwnedPaths = new Set([
   "tools/publish-scripts/release.js",
   "tools/test-local-release.mjs",
+  "frameworks/angularjs/uirouter-angularjs/bower.json",
+  "frameworks/angularjs/uirouter-angularjs/scripts/bower_release.js",
+  "frameworks/angularjs/uirouter-angularjs/.npmignore",
+  "frameworks/angularjs/uirouter-angularjs/.prettierignore",
+  "frameworks/angularjs/uirouter-angularjs/README.md",
+  "plugins/dsr/README.md",
+  "plugins/dsr/examples/angularjs-webpack/README.md",
+  "plugins/sticky-states/examples/angularjs-webpack/README.md",
 ]);
 // Maintainer-merged PR #29 contains planning documents, not runtime inputs.
 const planningOwnedPaths = new Set([

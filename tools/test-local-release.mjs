@@ -148,6 +148,9 @@ test("preview uses imported paths, filters history, handles versions, and cannot
     assert.match(blocked.stderr, /Live monorepo releases are not implemented/);
     assert.equal(run(cwd, ["--dry-run", "--bump", "invalid"]).status, 1);
     assert.equal(run(dir, ["--dry-run"]).status, 1);
+    const retired = run(cwd, ["--dry-run", "--bower"]);
+    assert.equal(retired.status, 1);
+    assert.match(retired.stderr, /Bower publishing is retired/);
     assert.deepEqual(snapshot(dir), before);
     git(dir, "tag", "-d", "demo@1.2.3");
     const firstRelease = JSON.parse(run(cwd, ["--dry-run"]).stdout);
@@ -182,8 +185,18 @@ test("all twelve real npm release commands forward dry-run flags without alterin
     assert.equal(preview.package, record.package);
     assert.equal(preview.mode, "read-only-preview");
     assert.ok(preview.proposedTag.startsWith(`${record.id}@`));
-    if (record.id === "angularjs")
-      assert.match(preview.legacyAngularjsFollowOns, /skipped/);
+    assert.deepEqual(
+      preview.npmPackages,
+      record.id === "angularjs"
+        ? ["@uirouter/angularjs", "angular-ui-router"]
+        : [record.package]
+    );
+    if (record.id === "angularjs") {
+      assert.match(
+        preview.legacyAngularjsFollowOns,
+        /npm dual publish retained; skipped/
+      );
+    }
   }
   assert.deepEqual(
     [

@@ -1,4 +1,4 @@
-# bower + script tags
+# AngularJS + npm + webpack
 
 Example showing sticky states installed via npm packages.
 The app is bundled using webpack.

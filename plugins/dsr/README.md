@@ -47,7 +47,6 @@ router.plugin(DSRPlugin, { dataStore: new LocalStorageDataStore() });
 The [`/examples` directory](https://github.com/ui-router/dsr/tree/master/examples) contains example setups for:
 
 - Angular-CLI
-- AngularJS + bower + script tags
 - AngularJS + npm + script tags
 - AngularJS + webpack
 - Create-React-App

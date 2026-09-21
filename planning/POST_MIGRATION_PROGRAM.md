@@ -188,9 +188,10 @@ The implementation sequence is:
    ranges and coordinate Angular/Angular Hybrid majors with the supported
    Angular major. Keep release notes for breaking changes such as React Hybrid 3.
 3. Build and pack the selected packages, prove clean tarball consumers, and
-   rehearse the publishing sequence against a non-production registry. Resolve
-   AngularJS's additional `angular-ui-router` and Bower release paths explicitly;
-   they must not run accidentally during a primary-package rehearsal.
+   rehearse the publishing sequence against a non-production registry.
+   Retain AngularJS npm dual publishing as `@uirouter/angularjs` and
+   `angular-ui-router`. Both names need artifact/readback proof; the legacy npm
+   publish must not run during a preview. Bower publishing is retired.
 4. Restore the live local path with individual npm login/2FA, explicit package
    selection and dependency order, failure recovery, and registry readback.
    Publish the approved artifact, verify it and its consumers, then promote the
@@ -215,6 +216,16 @@ from a package directory, or `npm run release --workspace=@uirouter/core --
 does not generate the final changelog or prepare artifacts. Live monorepo
 release execution stops with an explanation until the remaining steps above
 are implemented.
+
+### Bower retirement and legacy npm compatibility
+
+Maintainer direction: retire Bower publishing and retain the legacy
+`angular-ui-router` npm dual publish for now. Remove the Bower manifest,
+release script, and invocation from the active monorepo. Preserve historical
+migration evidence and the existing distribution repository, registry entry,
+and tags so old releases remain installable. Document retirement in the first
+monorepo release notes; do not publish new versions to Bower. Bower retirement
+does not retire the legacy npm name or the browser bundles shipped through npm.
 
 ### Later workstream: GitHub Actions publishing
 

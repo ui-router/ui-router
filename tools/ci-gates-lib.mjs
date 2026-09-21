@@ -342,6 +342,7 @@ export async function validateCiGates(options = {}) {
       ["test-c02", ["npm", "run", "test:reproducibility"]],
       ["test-a01", ["npm", "run", "test:acceptance"]],
       ["test-history", ["npm", "run", "test:history-migration"]],
+      ["test-local-release", ["node", "--test", "tools/test-local-release.mjs"]],
     ],
     source: [
       ["runtime", runtimeCommand],

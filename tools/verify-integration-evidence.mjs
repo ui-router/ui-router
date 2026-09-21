@@ -279,6 +279,11 @@ const angularjsLintOwnedPaths = new Set([
   "frameworks/angularjs/uirouter-angularjs/src/locationServices.ts",
   "frameworks/angularjs/uirouter-angularjs/src/services.ts",
 ]);
+// P04 local release preview changes the CLI and its regression test.
+const localReleaseOwnedPaths = new Set([
+  "tools/publish-scripts/release.js",
+  "tools/test-local-release.mjs",
+]);
 // Maintainer-merged PR #29 contains planning documents, not runtime inputs.
 const planningOwnedPaths = new Set([
   "planning/POST_MIGRATION_PROGRAM.md",
@@ -291,6 +296,7 @@ for (const changed of postImplementationPaths)
     !p03OwnedPaths.has(changed) &&
     !reduxToolingOwnedPaths.has(changed) &&
     !angularjsLintOwnedPaths.has(changed) &&
+    !localReleaseOwnedPaths.has(changed) &&
     !planningOwnedPaths.has(changed)
   )
     fail(

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "bundleState": "final",
-  "runId": "44433963715f05237812e2e4",
+  "runId": "73618246fc6e7e79ff49c276",
   "fixtureId": "framework/angular/integration/angular-versions/v22-standalone",
   "mode": "clean",
   "repository": {
-    "commit": "3aee282631aa53c754fcf72caedd38434051115b",
-    "tree": "fd2d2a6af54e1d9c308c1b7b1b7256316e2f0913",
+    "commit": "f9739aa3314b27ca15355317e68b05f3880c15ba",
+    "tree": "4e0eb61d3e9eacf62f510771cac299140f5e529a",
     "dirty": false,
-    "sourceSnapshotSha256": "45e988fec518faf621c9bc510aa976e8db0c615291b3cb9e0c6c6e14edff68e2"
+    "sourceSnapshotSha256": "5bfd61c3d8bdde7b35aeeb374aeedea43b46f0f9e26dca5f1ff81422875ab8c2"
   },
   "contracts": {
     "matrixSha256": "754caee96e2928a2da3e01dde10cfdc911ff426ea2b1f9c7aa8e0422ef95d8bd",
@@ -34,15 +34,15 @@
     "projectNpmrc": null,
     "npmEnvironment": {
       "PATH": "/usr/local/bin:/usr/local/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-4fFMgp/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-4fFMgp/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-WfgHnO/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-WfgHnO/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-4fFMgp/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-4fFMgp/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-WfgHnO/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -51,11 +51,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-4fFMgp/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WfgHnO/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-4fFMgp/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -64,7 +64,7 @@
       "offline": "false",
       "bin-links": "true"
     },
-    "npmConfigSha256": "e3cbe869116b7ac05804151bb01778592ed4a1abe48c73705bc400eb4075e535"
+    "npmConfigSha256": "b12695032172c7a0a8f1caaa72990c9f86fcc51f33640b60aed3cb9ec011746a"
   },
   "browser": {
     "package": "@playwright/test",
@@ -145,16 +145,16 @@
     "installRootSha256": "620d7bcc2da802d7d2889db39d6d7fac729587e0aae85ea0347987e9258f53b4"
   },
   "environment": {
-    "PATH": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/command-adapters:/usr/local/bin:/usr/local/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-4fFMgp/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-4fFMgp/tmp",
+    "PATH": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/command-adapters:/usr/local/bin:/usr/local/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
+    "HOME": "/tmp/uirouter-i02-clean-WfgHnO/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-WfgHnO/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-4fFMgp/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-4fFMgp/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-WfgHnO/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -163,8 +163,8 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-4fFMgp/browser-cache",
-    "I02_COMMAND_ADAPTER_PATH": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/command-adapters"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WfgHnO/browser-cache",
+    "I02_COMMAND_ADAPTER_PATH": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/command-adapters"
   },
   "commands": {
     "lock": [
@@ -197,13 +197,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone",
-    "realpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone",
+    "path": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone",
+    "realpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-4fFMgp/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-WfgHnO/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "831db58161d7ea43bb11a2bdba009d19b18ff2fba2c7f7f31e1a908e44015987",
-    "resetInputsSha256": "98ea1ac5e148070c29dbb392301dffa35b5103a0bc0cb932c3fa55dc7f2df8d5",
+    "resetInputsSha256": "e7f619ebd7fe481685eb684fc63c4d32f0621509aa2f983cf957836c28f31f44",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -222,9 +222,9 @@
     "lockSha256": "13bfd3403325e990b6b43cc928173d491b665ab1f328fb80a173724a700b5132"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/package.json",
+    "manifestPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/package.json",
     "manifestSha256": "5c554551d7a163c0e80b5ef8681c7557d9eb8cabf0497b9d1fe9f90d08c29fb2",
-    "lockPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/package-lock.json",
+    "lockPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/package-lock.json",
     "lockSha256": "8faaa687d0f5923e6aed45e25c6b91ad0716eb8aeedd8a8c1a063c245158c3f9",
     "rewriteIds": [
       "rewrite-framework-angular-integration-angular-versions-v22-standalone-angular",
@@ -272,9 +272,9 @@
     "externalBeforeSha256": "c6a5314d654631aa667f961338b7afcb3bd3f4aa5257f5c3a5585fdfc1e53d33",
     "externalAfterSha256": "0a3f60486b229d96f63242e7e82392ed120b9041d811ee91ee53055a62046172",
     "lockSha256": "8faaa687d0f5923e6aed45e25c6b91ad0716eb8aeedd8a8c1a063c245158c3f9",
-    "installedSha256": "bfc64ac435527268aba4926b7fd6e612901cca1a58980af271835700ecc73b69",
+    "installedSha256": "b4fcbe0b3f944f566efc70987d1f3b49500d9c7b9c1abcd16909ec0c2f03a5e5",
     "peerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "moduleAuditSha256": "cb33dcdef10dfddac4a89beb093e6e41aa16e2a936275191fccc526cd9192bec",
+    "moduleAuditSha256": "328ade39796722cab125da1018054d4b7ec4b02b87c511d1e2c9f3626b7e5ab9",
     "nodeModulesSha256": "3267696c1ab0974e7a7b0b0a171406780855b02d17f972a8cfdffe676995f393"
   },
   "origins": [
@@ -287,10 +287,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "lockIntegrity": "sha512-ux0DtQdGXeBovz7UZX4gUnzsOpowOooMlla1ju5JsKDrmgfTHOMYO5GEkRcF+BBX5B+GLoX0cdYC8ALZAee78g==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
       "manifestSha256": "5d47c594b614486eba1720a9c60c51bdf9045b9830258e1c391240db98271090",
       "insideSandbox": true,
       "symlink": false
@@ -304,10 +304,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
       "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
@@ -321,10 +321,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
       "lockIntegrity": "sha512-aipGWjaWBL1FdgEdnRO2qn8ZlgI6saJQJ8H4QQHIvZDeVUPiHxLBf8s1NBDyUF4+OfQGuICZwFfpYYUp+DbLzQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
       "manifestSha256": "1a98240c3dd650b3f3d7762f771841531a935b81e1f8e31396e11962f9f1efc8",
       "insideSandbox": true,
       "symlink": false
@@ -338,10 +338,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "lockIntegrity": "sha512-ux0DtQdGXeBovz7UZX4gUnzsOpowOooMlla1ju5JsKDrmgfTHOMYO5GEkRcF+BBX5B+GLoX0cdYC8ALZAee78g==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
       "manifestSha256": "5d47c594b614486eba1720a9c60c51bdf9045b9830258e1c391240db98271090",
       "insideSandbox": true,
       "symlink": false
@@ -356,10 +356,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
       "lockIntegrity": "sha512-ux0DtQdGXeBovz7UZX4gUnzsOpowOooMlla1ju5JsKDrmgfTHOMYO5GEkRcF+BBX5B+GLoX0cdYC8ALZAee78g==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-angular-22.0.0-sha256-31c2539ec69d7ec296c6574782581c97d9e6d3c46ad9492af18109e81c4b685a.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/angular",
       "manifestSha256": "5d47c594b614486eba1720a9c60c51bdf9045b9830258e1c391240db98271090",
       "insideSandbox": true,
       "symlink": false
@@ -372,10 +372,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/core",
       "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
@@ -388,10 +388,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
       "lockIntegrity": "sha512-aipGWjaWBL1FdgEdnRO2qn8ZlgI6saJQJ8H4QQHIvZDeVUPiHxLBf8s1NBDyUF4+OfQGuICZwFfpYYUp+DbLzQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-4fFMgp/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
-      "installedRealpath": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-rx-1.0.0-sha256-7711a137e3f40eb6a18109d9fbb754e9bad6c6a3ad4b3e04d5cb2b3f07d4f11c.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
+      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone/project/node_modules/@uirouter/rx",
       "manifestSha256": "1a98240c3dd650b3f3d7762f771841531a935b81e1f8e31396e11962f9f1efc8",
       "insideSandbox": true,
       "symlink": false
@@ -410,7 +410,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "0ae38a824fad0e2d2c3c8654d414671a07fb82a1d72014f1afa8bccf29f3257a",
+      "stdoutSha256": "b125771fda8addd462adfe7f7b03299feb35e28badbb2d16ae8589e371216f8f",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -436,7 +436,7 @@
         "--json"
       ],
       "status": 0,
-      "stdoutSha256": "b904b482b11a9b7e7517d84b30c8717c37c14a6efe9a2cfec7fca4ed70993860",
+      "stdoutSha256": "aee69aa9c6e745f2b523d6dec0c7382a5c7982a99e56d3157b0bbeedb5629d79",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -458,7 +458,7 @@
         "test"
       ],
       "status": 0,
-      "stdoutSha256": "1b9b50acd92cbc7f4c215d4490a7934a3e88113fcaf0f839978e73be5f77ce32",
+      "stdoutSha256": "d90c3c5c75970670e183402b6c0b95a602fa2c1c869fd5b5cc3b0d6611308393",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
@@ -489,6 +489,6 @@
       "<external-cache-root>",
       "--reset"
     ],
-    "retainedSandbox": "/tmp/uirouter-i02-clean-4fFMgp/projects/framework__angular__integration__angular-versions__v22-standalone"
+    "retainedSandbox": "/tmp/uirouter-i02-clean-WfgHnO/projects/framework__angular__integration__angular-versions__v22-standalone"
   }
 }

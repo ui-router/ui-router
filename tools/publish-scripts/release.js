@@ -24,7 +24,7 @@ const yargs = require('yargs')
     default: 'none',
   })
   .option('legacy-angularjs', {
-    description: 'Run the existing AngularJS secondary release scripts after a live release',
+    description: 'Also publish the legacy angular-ui-router npm package after a live release',
     boolean: true,
     default: false,
   })
@@ -37,6 +37,12 @@ const yargs = require('yargs')
     description: 'Skip npm publish and print instructions for manual publishing',
     boolean: true,
     default: false,
+  })
+  .check((argv) => {
+    if (Object.prototype.hasOwnProperty.call(argv, 'bower')) {
+      throw new Error('Bower publishing is retired. Use the npm release path.');
+    }
+    return true;
   });
 
 const util = require('./util');
@@ -133,7 +139,10 @@ function releasePreview() {
     branch: git('branch', '--show-current') || null,
     dirty: Boolean(git('status', '--porcelain')),
     authentication: 'individual maintainer npm login/2FA (not contacted by preview)',
-    legacyAngularjsFollowOns: yargs.argv['legacy-angularjs'] ? 'skipped; separate migration work required' : null,
+    npmPackages: yargs.argv['legacy-angularjs'] ? [packageJson.name, 'angular-ui-router'] : [packageJson.name],
+    legacyAngularjsFollowOns: yargs.argv['legacy-angularjs']
+      ? 'angular-ui-router npm dual publish retained; skipped during preview'
+      : null,
     remaining: [
       'version/changelog/shared-lock preparation',
       'package and consumer rehearsal',
@@ -161,13 +170,6 @@ if (versionBump !== 'none') {
   packageJson.version = version;
   fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2) + '\n');
   modifiedFiles.push('package.json');
-
-  if (yargs.argv.bower) {
-    const bowerJson = fs.readFileSync('bower.json');
-    bowerJson.version = version;
-    fs.writeFileSync('bower.json', JSON.stringify(bowerJson, null, 2) + '\n');
-    modifiedFiles.push('bower.json');
-  }
 }
 
 // Generate changelog
@@ -299,9 +301,8 @@ if (fs.existsSync('typedoc.json') && readlineSync.keyInYN('Generate docs?')) {
   _exec('publish_docs');
 }
 
-// Keep the old secondary releases inside the live path so npm forwards preview
+// Keep the legacy npm dual publish inside the live path so npm forwards preview
 // flags to one process instead of only the last command in a shell chain.
 if (yargs.argv['legacy-angularjs']) {
   _exec('node ./scripts/npm_angular_ui_router_release.js');
-  _exec('node ./scripts/bower_release.js');
 }

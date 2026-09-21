@@ -7,7 +7,6 @@ src
 test
 _docs
 
-bower.json
 karma.conf.js
 tsconfig.json
 tsconfig.**.json

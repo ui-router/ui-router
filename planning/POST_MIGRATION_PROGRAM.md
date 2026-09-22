@@ -286,12 +286,20 @@ Publishing rehearsal and individual npm authentication follow that work.
 
 The local continuation adds a separate candidate version plan; see
 [`release/README.md`](../release/README.md). After preparation,
-`node tools/prepare-release-validation.mjs --base <full-source-commit> --write`
+`node tools/prepare-release-validation.mjs --base <full-source-commit> --package <selected-package> --write`
 records the draft version/dependency changes for review. Current workspace
 validation consumes that plan without changing the migration classification,
 historical N02/N03 evidence, or isolated registry baselines. Candidate package
 and consumer proofs still need to be regenerated; the plan does not approve
 publication or certify old artifacts for new versions.
+
+Review fixes add an independent current-version baseline for every published
+package, explicit selection of assigned unreleased versions, and release-tag
+eligibility checks. Candidate test fixtures retain their Git ancestry; release
+preparation tests create a branch at the exact tested revision so detached CI
+checkouts work. The migration classification and historical proofs remain
+unchanged. A baseline update for another release cycle is a separate reviewed
+change, never an inferred result of changing the preparation base.
 
 Local validation on Node 24.19.0 / npm 11.17.0 covers the existing release
 tests plus a real disposable Core preparation, adversarial version-plan

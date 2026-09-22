@@ -16,6 +16,7 @@ import {
 } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { releaseVersionPlanSha256 } from "./release-version-plan.mjs";
 
 import {
   artifactStem,
@@ -789,6 +790,7 @@ try {
     task: "P01",
     owner: "ui-router-maintainers",
     contractSha256: await sha256File(path.join(repository, contractPath)),
+    releaseVersionPlanSha256: releaseVersionPlanSha256(repository),
     rootLockSha256: contract.rootLockSha256,
     runtime: contract.runtime,
     normalizedEnvironment: contract.normalizedEnvironment,

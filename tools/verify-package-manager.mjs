@@ -157,6 +157,9 @@ for (const entry of allowlist.entries) {
   } else if (entry.path === 'tools/verify-npm-locks.mjs') {
     requireEqual('P03 predecessor lock verifier hash', entry.sha256, '7164d6a69517a6763a066fbf81a197e64424ef696a8e872e15663b2b470fa787');
     requireEqual('P04 release-aware lock verifier hash', sha256(entry.path), '943902acd3dda19fec238b94283d4fe2daf1022b53e819d264fe0e89fb3dc1a6');
+  } else if (entry.path === 'tools/test-n04-validators.mjs') {
+    requireEqual('N05 predecessor N04 adversarial suite hash', entry.sha256, 'c7021c0117129fc6297d85cb2fcd5c3efa7f90e815320931628207d4ee8f7a9d');
+    requireEqual('P04 release-aware N04 adversarial suite hash', sha256(entry.path), '9079fddf7e72d430d4cb587859ddc015f63d24d6eeaa258b874c1b8dd1c9e17f');
   } else if (entry.path === 'frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md') {
     requireEqual('P03 predecessor React Hybrid changelog hash', entry.sha256, '05e7f9513038416f5d3ee5cadcf6b9e2d8097f98fe5e2bffad160585af1aec2a');
     requireEqual('P03 React Hybrid 3.0.0 changelog hash', sha256(entry.path), '4073c72364141984c3a3fda7be534de93da56cd0a3e246bf9281f1c58d530c7a');

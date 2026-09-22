@@ -6,8 +6,10 @@ import path from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 
 export const releaseVersionPlanPath = 'release/version-plan.json';
+export const releaseVersionBaselinePath = 'release/version-baseline.json';
 const classificationPath = 'migration/package-classification.json';
 const repairsPath = 'migration/path-repairs.json';
+const sourcesPath = 'migration/sources.json';
 const sections = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'];
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const fail = (message) => {
@@ -38,10 +40,21 @@ function inputs(root, baseCommit) {
   }
   const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
   const before = (file) => JSON.parse(git('show', `${baseCommit}:${file}`).toString('utf8'));
-  const bindings = {};
+  const baselineBytes = readFileSync(path.join(root, releaseVersionBaselinePath));
+  const baseline = JSON.parse(baselineBytes);
+  shape(baseline, ['schemaVersion', 'sourceCommit'], 'version baseline');
+  if (baseline.schemaVersion !== 1 || !/^[a-f0-9]{40}$/.test(baseline.sourceCommit))
+    fail('version baseline requires schemaVersion 1 and a full immutable sourceCommit');
+  try {
+    git('merge-base', '--is-ancestor', baseline.sourceCommit, baseCommit);
+  } catch {
+    fail('version baseline must be available and ancestral to baseCommit');
+  }
+  const bindings = { versionBaselineSha256: hash(baselineBytes) };
   for (const [field, file] of [
     ['classificationSha256', classificationPath],
     ['pathRepairsSha256', repairsPath],
+    ['sourcesSha256', sourcesPath],
   ]) {
     const bytes = readFileSync(path.join(root, file));
     bindings[field] = hash(bytes);
@@ -60,9 +73,17 @@ function inputs(root, baseCommit) {
     classification.manifests.map((record) => {
       const file = canonical(record.path);
       return [file, { record, file, before: before(file), current: read(file) }];
-    })
+    }),
   );
   const byName = new Map([...manifests.values()].map((item) => [item.record.finalName, item]));
+  // Some published packages have no incoming workspace edges. Check all starting
+  // versions against a separately reviewed baseline, not the proposed base itself.
+  for (const item of manifests.values()) {
+    if (!item.record.published) continue;
+    const accepted = JSON.parse(git('show', `${baseline.sourceCommit}:${item.file}`).toString('utf8'));
+    equal(item.before.name, accepted.name, `${item.file} baseline name`);
+    equal(item.before.version, accepted.version, `${item.file} baseline version`);
+  }
   // The base is the accepted workspace graph, never a self-certifying candidate.
   // Isolated registry baselines are deliberately not projected onto new versions.
   for (const edge of classification.edges.filter((edge) => edge.resolutionMode === 'workspace')) {
@@ -71,11 +92,40 @@ function inputs(root, baseCommit) {
       equal(
         manifests.get(canonical(edge.consumerManifest))?.before[edge.manifestSection]?.[edge.package],
         edge.finalSpec,
-        `${edge.id} base range`
+        `${edge.id} base range`,
       );
     }
   }
-  return { read, before, bindings, classification, canonical, manifests, byName };
+  return { read, before, bindings, classification, canonical, manifests, byName, git };
+}
+
+function releaseEligibility({ read, canonical, git }, semver) {
+  const sources = read(sourcesPath).sources;
+  const tags = git('tag', '--list').toString('utf8').trim().split('\n');
+  const mergedTags = new Set(git('tag', '--merged', 'HEAD', '--list').toString('utf8').trim().split('\n'));
+  return (item, version) => {
+    const source = sources.find((source) => canonical(`${source.destinationPrefix}/package.json`) === item.file);
+    if (!source?.tagNamespace || !Array.isArray(source.releaseTags))
+      fail(`${item.file}: missing release history mapping`);
+    // Imported release records also prevent deleting a local tag from making an
+    // already published version appear available. No registry access is needed.
+    const knownTags = new Set([...tags, ...source.releaseTags.map((tag) => tag.targetName)]);
+    const versions = [...knownTags]
+      .filter((tag) => tag.startsWith(source.tagNamespace))
+      .map((tag) => ({ tag, version: semver.valid(tag.slice(source.tagNamespace.length)) }))
+      .filter((tag) => tag.version);
+    if (versions.some((tag) => semver.eq(tag.version, version)))
+      fail(`${item.record.finalName}: release version ${version} is already tagged`);
+    const previous = versions
+      .filter(
+        (tag) =>
+          mergedTags.has(tag.tag) ||
+          source.releaseTags.some((imported) => imported.targetName === tag.tag && imported.reachableFromDefault),
+      )
+      .sort((a, b) => semver.rcompare(a.version, b.version))[0];
+    if (previous && !semver.gt(version, previous.version))
+      fail(`${item.record.finalName}: release version must be newer than ${previous.tag}`);
+  };
 }
 
 // A plan is reviewable input, not a claim that a maintainer approved publication.
@@ -83,8 +133,17 @@ function inputs(root, baseCommit) {
 export function validateReleaseVersionPlan(root, plan) {
   shape(
     plan,
-    ['schemaVersion', 'baseCommit', 'classificationSha256', 'pathRepairsSha256', 'packages', 'dependencyUpdates'],
-    'plan'
+    [
+      'schemaVersion',
+      'baseCommit',
+      'versionBaselineSha256',
+      'classificationSha256',
+      'pathRepairsSha256',
+      'sourcesSha256',
+      'packages',
+      'dependencyUpdates',
+    ],
+    'plan',
   );
   if (
     plan.schemaVersion !== 1 ||
@@ -97,6 +156,7 @@ export function validateReleaseVersionPlan(root, plan) {
   const { read, before, bindings, classification, canonical, manifests, byName } = context;
   for (const [key, value] of Object.entries(bindings)) equal(plan[key], value, key);
   const semver = semverApi();
+  const checkEligibility = releaseEligibility(context, semver);
   const packages = new Map();
   const expectedManifests = new Map([...manifests].map(([file, item]) => [file, structuredClone(item.before)]));
   const lock = before('package-lock.json');
@@ -117,6 +177,9 @@ export function validateReleaseVersionPlan(root, plan) {
     equal(item.from, source.before.version, `${item.name} previous version`);
     if (semver.valid(item.to) !== item.to || semver.lt(item.to, item.from))
       fail(`${item.name} requires a valid, non-decreasing version`);
+    // An assigned unreleased version (for example React Hybrid 3.0.0) can be
+    // selected without dependency edits; it must still pass release eligibility.
+    checkEligibility(source, item.to);
     packages.set(item.name, item);
     expectedManifests.get(item.manifest).version = item.to;
     lock.packages[path.posix.dirname(item.manifest)].version = item.to;
@@ -139,7 +202,7 @@ export function validateReleaseVersionPlan(root, plan) {
       update.to === update.from
     ) {
       fail(
-        `${edge.id}: only exact internal updates within the same major are allowed; review compatibility separately`
+        `${edge.id}: only exact internal updates within the same major are allowed; review compatibility separately`,
       );
     }
     const file = canonical(edge.consumerManifest);
@@ -150,13 +213,6 @@ export function validateReleaseVersionPlan(root, plan) {
     lock.packages[path.posix.dirname(file)][edge.manifestSection][edge.package] = update.to;
     updates.set(edge.id, update);
   }
-  for (const item of plan.packages) {
-    if (
-      item.from === item.to &&
-      !plan.dependencyUpdates.some((update) => canonical(edges.get(update.edgeId).consumerManifest) === item.manifest)
-    )
-      fail(`${item.name}: unchanged package has no dependency update`);
-  }
   const angularNames = ['@uirouter/angular', '@uirouter/angular-hybrid'];
   if (angularNames.some((name) => packages.has(name))) {
     const [angular, hybrid] = angularNames.map((name) => packages.get(name));
@@ -166,12 +222,14 @@ export function validateReleaseVersionPlan(root, plan) {
       if (
         !semver.satisfies(
           `${semver.major(item.to)}.0.0`,
-          byName.get(item.name).before.peerDependencies?.['@angular/core'] || ''
+          byName.get(item.name).before.peerDependencies?.['@angular/core'] || '',
         )
       )
         fail('Angular release major differs from its supported peer range');
     }
   }
+  // Compare whole documents: preparation may change only the listed versions
+  // and exact internal specs, never silently re-resolve the external lock graph.
   for (const [file, expected] of expectedManifests) equal(read(file), expected, `${file} manifest`);
   equal(read('package.json'), before('package.json'), 'root manifest');
   equal(read('package-lock.json'), lock, 'root lock');
@@ -195,8 +253,18 @@ export function currentReleaseClassification(root, classification) {
   return validateReleaseVersionPlan(root, JSON.parse(readFileSync(file, 'utf8')));
 }
 
-export function createReleaseVersionPlan(root, baseCommit) {
-  const { bindings, classification, canonical, manifests } = inputs(root, baseCommit);
+export function releaseVersionPlanSha256(root) {
+  const file = path.join(root, releaseVersionPlanPath);
+  return existsSync(file) ? hash(readFileSync(file)) : undefined;
+}
+
+export function createReleaseVersionPlan(root, baseCommit, selectedPackages = []) {
+  const { bindings, classification, canonical, manifests, byName } = inputs(root, baseCommit);
+  if (!Array.isArray(selectedPackages) || new Set(selectedPackages).size !== selectedPackages.length)
+    fail('selected packages must be a list without duplicates');
+  for (const name of selectedPackages)
+    if (!byName.get(name)?.record.published) fail(`unknown selected release package: ${name}`);
+  const selected = new Set(selectedPackages);
   const dependencyUpdates = classification.edges
     .filter((edge) => edge.resolutionMode === 'workspace' && edge.declaredSpec !== null)
     .flatMap((edge) => {
@@ -205,12 +273,16 @@ export function createReleaseVersionPlan(root, baseCommit) {
     });
   const changedOwners = new Set(
     dependencyUpdates.map((update) =>
-      canonical(classification.edges.find((edge) => edge.id === update.edgeId).consumerManifest)
-    )
+      canonical(classification.edges.find((edge) => edge.id === update.edgeId).consumerManifest),
+    ),
   );
   const packages = [...manifests.values()]
     .filter(
-      (item) => item.record.published && (item.before.version !== item.current.version || changedOwners.has(item.file))
+      (item) =>
+        item.record.published &&
+        (selected.has(item.record.finalName) ||
+          item.before.version !== item.current.version ||
+          changedOwners.has(item.file)),
     )
     .map((item) => ({
       name: item.record.finalName,

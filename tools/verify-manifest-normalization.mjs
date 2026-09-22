@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { currentReleaseClassification } from './release-version-plan.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const readText = (path) => readFileSync(join(root, path), 'utf8');
@@ -26,6 +27,7 @@ const require = createRequire(import.meta.url);
 const semver = require(join(npmRoot, 'npm/node_modules/semver'));
 const rootPackage = readJson('package.json');
 const classification = readJson('migration/package-classification.json');
+const currentClassification = currentReleaseClassification(root, classification);
 const pathRepairs = readJson('migration/path-repairs.json');
 const evidencePath = 'migration/evidence/n02/manifest-normalization.json';
 const evidence = readJson(evidencePath);
@@ -180,7 +182,7 @@ for (const record of classification.manifests) {
 }
 
 let workspaceEdges = 0;
-for (const edge of classification.edges) {
+for (const edge of currentClassification.edges) {
   if (edge.resolutionMode !== 'workspace' || edge.declaredSpec === null) continue;
   const path = movePath(edge.consumerManifest);
   const manifest = readJson(path);

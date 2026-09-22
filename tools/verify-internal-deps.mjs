@@ -4,11 +4,12 @@ import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync } from '
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import process from 'node:process';
+import { currentReleaseClassification } from './release-version-plan.mjs';
 
 const repository = realpathSync(path.resolve(import.meta.dirname, '..'));
 const fail = (message) => { throw new Error(message); };
 const readJsonAt = (base, file) => JSON.parse(readFileSync(path.join(base, file), 'utf8'));
-const classification = readJsonAt(repository, 'migration/package-classification.json');
+const classification = currentReleaseClassification(repository, readJsonAt(repository, 'migration/package-classification.json'));
 const pathRepairs = readJsonAt(repository, 'migration/path-repairs.json');
 const sources = readJsonAt(repository, 'migration/sources.json');
 const sourceInventory = readJsonAt(repository, 'migration/evidence/control/n00/inventory.json');

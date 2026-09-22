@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { currentReleaseClassification } from './release-version-plan.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const readText = (path) => readFileSync(join(root, path), 'utf8');
@@ -21,6 +22,7 @@ const requireEqual = (label, actual, expected) => {
 };
 
 const classification = readJson('migration/package-classification.json');
+const currentClassification = currentReleaseClassification(root, classification);
 const pathRepairs = readJson('migration/path-repairs.json');
 const evidencePath = 'migration/evidence/n03/lock-conversion.json';
 const evidence = readJson(evidencePath);
@@ -182,7 +184,7 @@ for (const record of rootOwned) {
 }
 
 let workspaceEdges = 0;
-for (const edge of classification.edges) {
+for (const edge of currentClassification.edges) {
   if (edge.resolutionMode !== 'workspace' || edge.declaredSpec === null) continue;
   const manifestPath = movePath(edge.consumerManifest);
   const manifest = readJson(manifestPath);
@@ -327,7 +329,7 @@ if (installedFlag !== -1) {
       directory = parent;
     }
   };
-  for (const edge of classification.edges) {
+  for (const edge of currentClassification.edges) {
     if (edge.resolutionMode !== 'workspace' || edge.declaredSpec === null) continue;
     const consumerPath = movePath(edge.consumerManifest);
     const target = published.get(edge.package);

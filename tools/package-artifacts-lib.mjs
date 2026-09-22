@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile, realpath } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { currentReleaseClassification } from "./release-version-plan.mjs";
 
 import { validateJsonSchema } from "./validate-migration-contract.mjs";
 
@@ -435,7 +436,7 @@ export async function validatePackageArtifactsContract({
     published.map((manifest) => manifest.finalName)
   );
   const productionEdges = expectedPublishedEdges(
-    classification,
+    currentReleaseClassification(root, classification),
     publishedNames
   );
   const expectedEdgeIds = productionEdges.map((edge) => edge.id).sort();

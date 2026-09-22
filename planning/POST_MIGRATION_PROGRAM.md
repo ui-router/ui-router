@@ -284,6 +284,26 @@ then regenerate package and isolated-consumer proofs. Preparation deliberately
 does not rewrite those historical contracts or label old proof as current.
 Publishing rehearsal and individual npm authentication follow that work.
 
+The local continuation adds a separate candidate version plan; see
+[`release/README.md`](../release/README.md). After preparation,
+`node tools/prepare-release-validation.mjs --base <full-source-commit> --write`
+records the draft version/dependency changes for review. Current workspace
+validation consumes that plan without changing the migration classification,
+historical N02/N03 evidence, or isolated registry baselines. Candidate package
+and consumer proofs still need to be regenerated; the plan does not approve
+publication or certify old artifacts for new versions.
+
+Local validation on Node 24.19.0 / npm 11.17.0 covers the existing release
+tests plus a real disposable Core preparation, adversarial version-plan
+checks, and Angular coordination. The disposable Core candidate passes
+manifest, internal-dependency, and root-lock verification. Its refreshed
+package contract passes while its old artifact proof is rejected. The
+implementation checkout also passes `npm run check:static:installed`, the
+39-case N04 validator suite, and the 45-case package-artifact suite. No
+candidate versions or regenerated candidate proofs are retained in this
+implementation checkpoint. The next focused task is candidate package and
+consumer proof regeneration; registry rehearsal remains approval-gated.
+
 ### Next AngularJS release notes
 
 Before the next AngularJS publish, add a release-note warning that new Bower

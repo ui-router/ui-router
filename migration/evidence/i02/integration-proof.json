@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "task": "I02",
   "owner": "ui-router-maintainers",
-  "matrixSha256": "982ccc82ba96f16aa35fa4a0f3ce319272bac9beb9d306419d356a9b42595821",
+  "matrixSha256": "7bf45deef739392793f188e837147433cbb5715cb8c3cf7b20036de9a3626a55",
   "repository": {
-    "commit": "addfd53ea4e5bd9b66db67f35eb66a7a4b37487d",
-    "tree": "f567995640b4f2d0e519e3a0e9f46969aa2ba74a",
+    "commit": "da4a0ba03c52a1dc8e58b30ce20098746e4a4476",
+    "tree": "c0bbd664498484cebae6c605abc2d29659b6df74",
     "dirty": false,
-    "sourceSnapshotSha256": "7e0152b7d60ced90870f21b8a6e576337262e39a0021b09730dd444d60cc2ddd"
+    "sourceSnapshotSha256": "d1dce82045aee3746a4d5a66d4876f73696d947d65e8117eaae3bec8d7f0cdd5"
   },
   "runtime": {
     "platform": "linux",
@@ -141,118 +141,118 @@
     {
       "fixtureId": "core/integration/typescript-3.9",
       "status": "pass",
-      "runId": "4af1297f19100ed944b586d6",
+      "runId": "216985243de02ce180165217",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "ef6012784fd41df9c9891b3749ab957ec93348d19083a7effa8b20f70cf7012b",
+      "runLockSha256": "d164fe2e184065a63af3b79eea7b58ec562cba1a81215759f2d06e20a0f38d3f",
       "runLock": "run-locks/core__integration__typescript-3.9.json"
     },
     {
       "fixtureId": "core/integration/typescript-5.4",
       "status": "pass",
-      "runId": "02c6aaa484163744b82d56b7",
+      "runId": "ee7726346da6e0cec4ade3aa",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "16ce91635fd7705969d9abc3b2642b00e9b6affde58fe9977a1614f9e8dc51f0",
+      "runLockSha256": "5ae147431719fa153199f00687aea74006f4415c32253d1100193e57d38ee697",
       "runLock": "run-locks/core__integration__typescript-5.4.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22",
       "status": "pass",
-      "runId": "80de1978059c7c38f1995215",
+      "runId": "bf255a0eb5bc29d30c976337",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "750854d2054ac8c997387aa007292b40dea548387dc8ecbc876e222b83177afa",
+      "runLockSha256": "8207a544e26f29d48aafa30b164349e5b51693e9bf707ebcb28a382aea52523e",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-standalone",
       "status": "pass",
-      "runId": "8a34413fecfa93340cb10293",
+      "runId": "72a81c933080ebcacd0751bc",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "6609b87d619a22bf8bf16a9183b93809a7e0e39038266605541249cfe6d34188",
+      "runLockSha256": "6978d682c1c8d694d1076a19042611c68b7ac7408de43bb4b008daaeaa89a0ef",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22-standalone.json"
     },
     {
       "fixtureId": "framework/angular/integration/angular-versions/v22-zoneless",
       "status": "pass",
-      "runId": "b9d0a5f77d78e93ff6c0a0a9",
+      "runId": "0447c7f28f307c086ad03eec",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "69f3518ad42e26297afb5a8b800319c19ecd83dc81651e483fe570dc137ae7bb",
+      "runLockSha256": "635f5749e63621f6db394982666449b1aa82d69caafbaa9c987627b15188b548",
       "runLock": "run-locks/framework__angular__integration__angular-versions__v22-zoneless.json"
     },
     {
       "fixtureId": "framework/angular/integration/typescript-versions/typescript6",
       "status": "pass",
-      "runId": "b84a4894fb2a04fd29dd1576",
+      "runId": "2b5dc2c57aac4b358f5404a8",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "f36f1a5760dd8d4583ad596474124f5237f6eca0d09a5f64ecae8c7caa18eae6",
+      "runLockSha256": "45286b0e2d1f8de0c94afb9c657de420be6c36ae45e4a0464dc7bd0c52258e84",
       "runLock": "run-locks/framework__angular__integration__typescript-versions__typescript6.json"
     },
     {
       "fixtureId": "framework/angularjs/integration/typescript-versions/3.9",
       "status": "pass",
-      "runId": "d169cacd368459c30ab24983",
+      "runId": "149873c319576886cce3ea0b",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "26b68cb04da1fcb29ae0e28e99e0b395f60788b5637433c54902ecea1ec32e7c",
+      "runLockSha256": "febe73ab8939ff5a584c501f4deed8e2de7404bf694f364db44461127b457d53",
       "runLock": "run-locks/framework__angularjs__integration__typescript-versions__3.9.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react17",
       "status": "pass",
-      "runId": "657a79d4418a1957d11b859d",
+      "runId": "8867aaffd3198933937c26c2",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "f01b0ddb837505a379f2ad7df55537a7b8601f438eae0b22b13bb8ff353f03b7",
+      "runLockSha256": "001dccac40adfac85d985749a093682208a95824360f211af1761881c81bee25",
       "runLock": "run-locks/framework__react-hybrid__integration__react17.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react18",
       "status": "pass",
-      "runId": "675d9fb1fdd56bfbfb1b52e1",
+      "runId": "c287866ccc9603f4f5f58d51",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "b4dbb25fb323204c11dc79fe9230bbb6aa5a643364bea7fe9355732147421285",
+      "runLockSha256": "9afc3bbc4421544690008fdfaa397dc2df1f4c893c21cd824e7db8890753282d",
       "runLock": "run-locks/framework__react-hybrid__integration__react18.json"
     },
     {
       "fixtureId": "framework/react-hybrid/integration/react19",
       "status": "pass",
-      "runId": "157c0bc3ee8335459073fcd9",
+      "runId": "797fb6a91895474e842f2db1",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "7fb8414ef8654de97368bbf24afc3b6a891081848fc322b7271b89a6bb99f9f5",
+      "runLockSha256": "c59dc18720d34ab1ad6652587084f3fbdbc043ce82f12dd0d42d7734d20898e5",
       "runLock": "run-locks/framework__react-hybrid__integration__react19.json"
     },
     {
       "fixtureId": "framework/react/integration/react17",
       "status": "pass",
-      "runId": "75f068f1e1181eb9ecb1e88f",
+      "runId": "ea677dbd9a564bab5603697d",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "a8cdd22600f73b057a011d9b004cfa69ef2e2a02fa2655831a6a531f07a84098",
+      "runLockSha256": "656f5d2ac0f03d8ec25eaa77ec0b332930bbf4a3b75f5e2e8415ed029cb21942",
       "runLock": "run-locks/framework__react__integration__react17.json"
     },
     {
       "fixtureId": "framework/react/integration/react18",
       "status": "pass",
-      "runId": "bbe746f301f5048e09ea357d",
+      "runId": "a5c5ae0fe579bbe77cb9e601",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "da2872bb7aefad767b8617141a0cf6646726a358f88627f6d46693e76ba8d4e9",
+      "runLockSha256": "77ca4d9212e0cbab13ca0ddc7dceb496d6e6d1dfe9ce3e7dff33cd24b6c14bc7",
       "runLock": "run-locks/framework__react__integration__react18.json"
     },
     {
       "fixtureId": "framework/react/integration/react19",
       "status": "pass",
-      "runId": "9abc0d26177053fab590def3",
+      "runId": "b92aaab8a5f8eadff40f1477",
       "mode": "clean",
       "reused": false,
-      "runLockSha256": "d8665ca8fc52d7c2534577f1dfab021cf5144308e7cd1f43ac471028548adbd6",
+      "runLockSha256": "c689969b2883e12c5a7e8b7de6588551d2f1e644f81753cfd59e9dc958a4598c",
       "runLock": "run-locks/framework__react__integration__react19.json"
     }
   ],

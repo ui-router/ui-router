@@ -1,23 +1,41 @@
 #!/usr/bin/env node
-import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
+import { cloneValidationFixture } from './validation-test-fixture.mjs';
+import { currentReleaseClassification, releaseVersionPlanPath } from './release-version-plan.mjs';
 
 const source = path.resolve(import.meta.dirname, '..');
 const tempRoot = mkdtempSync(path.join(os.tmpdir(), 'uirouter-n04-negative-'));
 const json = (root, file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
 const save = (root, file, value) => writeFileSync(path.join(root, file), `${JSON.stringify(value, null, 2)}\n`);
 let passed = 0;
+const candidate = existsSync(path.join(source, releaseVersionPlanPath));
+// A candidate rejects manifest/lock mutations before the lower-level edge
+// checks. Keep explicit expectations for both modes so neither gate is skipped.
+const expectedForPlan = (normal, candidateMessage) => candidate ? new RegExp(candidateMessage) : normal;
 
-function checkout(name) {
-  const root = path.join(tempRoot, name);
-  mkdirSync(root);
+function createSnapshot(root) {
+  if (candidate) cloneValidationFixture(source, root);
+  else mkdirSync(root);
   const archive = execFileSync('git', ['archive', 'HEAD'], { cwd: source, maxBuffer: 128 * 1024 * 1024 });
   const tar = spawnSync('tar', ['-x', '-C', root], { input: archive, encoding: null });
   if (tar.status !== 0) throw new Error(`tar extraction failed: ${tar.stderr}`);
-  for (const file of ['verify-layout.mjs', 'verify-internal-deps.mjs']) cpSync(path.join(source, 'tools', file), path.join(root, 'tools', file));
+  for (const file of ['verify-layout.mjs', 'verify-internal-deps.mjs', 'release-version-plan.mjs']) cpSync(path.join(source, 'tools', file), path.join(root, 'tools', file));
+  if (candidate) {
+    cpSync(path.join(source, 'release'), path.join(root, 'release'), { recursive: true });
+    const classification = json(root, 'migration/package-classification.json');
+    currentReleaseClassification(root, classification);
+  }
   cpSync(path.join(source, 'package.json'), path.join(root, 'package.json'));
+}
+
+function checkout(name) {
+  const snapshot = path.join(tempRoot, 'snapshot');
+  if (!existsSync(snapshot)) createSnapshot(snapshot);
+  const root = path.join(tempRoot, name);
+  cpSync(snapshot, root, { recursive: true });
   return root;
 }
 
@@ -75,22 +93,22 @@ try {
 
   expectFailure('deps-delete-current', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'frameworks/react/examples/sample-app/package.json'); delete value.dependencies['@uirouter/react']; save(root, 'frameworks/react/examples/sample-app/package.json', value);
-  }, /edge coverage mismatch/);
+  }, expectedForPlan(/edge coverage mismatch/, 'frameworks/react/examples/sample-app/package.json manifest differs'));
   expectFailure('deps-add-optional', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/react/examples/sample-app/package.json'; const value = json(root, file);
     value.optionalDependencies = { '@uirouter/rx': '^1.0.0' }; save(root, file, value);
-  }, /unclassified current internal edge/);
+  }, expectedForPlan(/unclassified current internal edge/, 'frameworks/react/examples/sample-app/package.json manifest differs'));
   expectFailure('deps-move-section', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/react/examples/sample-app/package.json'; const value = json(root, file);
     value.devDependencies['@uirouter/react'] = value.dependencies['@uirouter/react']; delete value.dependencies['@uirouter/react']; save(root, file, value);
-  }, /unclassified current internal edge/);
+  }, expectedForPlan(/unclassified current internal edge/, 'frameworks/react/examples/sample-app/package.json manifest differs'));
   expectFailure('deps-unsatisfied-range', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/react/examples/sample-app/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/react'] = '^99.0.0'; save(root, file, value);
-  }, /current spec .* != finalSpec|does not satisfy/);
+  }, expectedForPlan(/current spec .* != finalSpec|does not satisfy/, 'frameworks/react/examples/sample-app/package.json manifest differs'));
   expectFailure('deps-workspace-registry-fallback', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'package-lock.json'); value.packages['node_modules/@uirouter/react'] = { version: '1.0.8', resolved: 'https://registry.npmjs.org/@uirouter/react/-/react-1.0.8.tgz' }; save(root, 'package-lock.json', value);
-  }, /root lock does not use a workspace link/);
+  }, expectedForPlan(/root lock does not use a workspace link/, 'root lock differs'));
   expectFailure('deps-local-link', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package-lock.json'; const value = json(root, file);
     value.packages['node_modules/@uirouter/core'] = { link: true, resolved: '../../../' }; save(root, file, value);
@@ -130,11 +148,11 @@ try {
   expectFailure('deps-local-workspace-spec', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/integration-tests/typescript-3.9/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/core'] = 'workspace:*'; save(root, file, value);
-  }, /must retain source spec/);
+  }, expectedForPlan(/must retain source spec/, 'core/integration-tests/typescript-3.9/package.json manifest differs'));
   expectFailure('deps-published-file-spec', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/react/uirouter-react/package.json'; const value = json(root, file);
     value.dependencies['@uirouter/core'] = 'file:../../../core'; save(root, file, value);
-  }, /current spec .* != finalSpec|publish-unsafe/);
+  }, expectedForPlan(/current spec .* != finalSpec|publish-unsafe/, 'frameworks/react/uirouter-react/package.json manifest differs'));
   expectFailure('deps-delete-downstream', 'verify-internal-deps.mjs', (root) => {
     const file = 'plugins/dsr/downstream_projects.json'; const value = json(root, file);
     delete value.react['react-vite']; save(root, file, value);
@@ -156,34 +174,34 @@ try {
   }, /downstream destination has no classified manifest/);
   expectFailure('deps-fabricated-null-edge', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'migration/package-classification.json'); value.edges.push({ ...value.edges.find((edge) => edge.declaredSpec === null), id: 'edge-fabricated' }); save(root, 'migration/package-classification.json', value);
-  }, /expected 137 classified edges/);
+  }, expectedForPlan(/expected 137 classified edges/, 'package-classification.json historical binding differs'));
   expectFailure('deps-root-override', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'package.json'); value.overrides = { '@uirouter/angular': '22.0.0' }; save(root, 'package.json', value);
-  }, /root overrides\/resolutions are forbidden/);
+  }, expectedForPlan(/root overrides\/resolutions are forbidden/, 'root manifest differs'));
   expectFailure('deps-resolution-record-drift', 'verify-internal-deps.mjs', (root) => {
     const value = json(root, 'migration/package-classification.json'); value.resolutions[0].decision = 'isolated-integration'; save(root, 'migration/package-classification.json', value);
-  }, /resolution decision .* != /);
+  }, expectedForPlan(/resolution decision .* != /, 'package-classification.json historical binding differs'));
   expectFailure('deps-workspace-dist-tag', 'verify-internal-deps.mjs', (root) => {
     const manifestFile = 'frameworks/react/examples/sample-app/package.json'; const manifest = json(root, manifestFile);
     manifest.dependencies['@uirouter/react'] = 'latest'; save(root, manifestFile, manifest);
     const contract = json(root, 'migration/package-classification.json');
     contract.edges.find((edge) => edge.id === 'edge-framework-react-examples-sample-app-dependencies-uirouter-react').finalSpec = 'latest';
     save(root, 'migration/package-classification.json', contract);
-  }, /target 1\.0\.8 does not satisfy latest/);
+  }, expectedForPlan(/target 1\.0\.8 does not satisfy latest/, 'package-classification.json historical binding differs'));
   expectFailure('deps-workspace-malformed-range', 'verify-internal-deps.mjs', (root) => {
     const manifestFile = 'frameworks/react/examples/sample-app/package.json'; const manifest = json(root, manifestFile);
     manifest.dependencies['@uirouter/react'] = '^1.0.0 || nope'; save(root, manifestFile, manifest);
     const contract = json(root, 'migration/package-classification.json');
     contract.edges.find((edge) => edge.id === 'edge-framework-react-examples-sample-app-dependencies-uirouter-react').finalSpec = '^1.0.0 || nope';
     save(root, 'migration/package-classification.json', contract);
-  }, /target 1\.0\.8 does not satisfy/);
+  }, expectedForPlan(/target 1\.0\.8 does not satisfy/, 'package-classification.json historical binding differs'));
   expectFailure('deps-angular-override-drift', 'verify-internal-deps.mjs', (root) => {
     const file = 'frameworks/angular/integration-tests/angular-versions/v22/package.json'; const value = json(root, file);
     value.overrides['@uirouter/angular']['@angular/core'] = '22.0.0'; save(root, file, value);
-  }, /override differs from approved exact shape/);
+  }, expectedForPlan(/override differs from approved exact shape/, 'frameworks/angular/integration-tests/angular-versions/v22/package.json manifest differs'));
   expectFailure('deps-yarn-resolution', 'verify-internal-deps.mjs', (root) => {
     const file = 'core/package.json'; const value = json(root, file); value.resolutions = { chokidar: '3.6.0' }; save(root, file, value);
-  }, /current Yarn resolutions are forbidden/);
+  }, expectedForPlan(/current Yarn resolutions are forbidden/, 'core/package.json manifest differs'));
   expectSuccess('deps-ignore-n03-counters', 'verify-internal-deps.mjs', (root) => {
     const file = 'migration/evidence/n03/install-proof.json'; const value = json(root, file);
     value.summary = { fabricatedCounter: 999 }; save(root, file, value);

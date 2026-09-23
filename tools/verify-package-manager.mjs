@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { validatedReleasePlan } from './release-version-plan.mjs';
 import { lstatSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -143,6 +145,21 @@ const allowedCategories = new Set([
   'vendored-source',
 ]);
 const allowedEntries = new Map();
+const releasePlan = validatedReleasePlan(root);
+const changelogAdditions = new Map();
+function historicalChangelogSha256(file) {
+  const selected = releasePlan?.packages.find((item) => `${dirname(item.manifest)}/CHANGELOG.md` === file);
+  if (!selected) return sha256(file);
+  const accepted = execFileSync('git', ['-C', root, 'show', `${releasePlan.baseCommit}:${file}`], { encoding: 'utf8' });
+  const current = readText(file);
+  // Published history remains byte-for-byte intact. Only the new release's
+  // prefix is exempt from the old whole-file digest, and it is still scanned.
+  if (!accepted || !current.endsWith(accepted)) fail(`${file}: historical changelog was modified`);
+  const additions = current.slice(0, current.length - accepted.length);
+  if (additions && !additions.startsWith(`# ${selected.to} (`)) fail(`${file}: release heading differs from plan`);
+  changelogAdditions.set(file, additions);
+  return createHash('sha256').update(accepted).digest('hex');
+}
 for (const entry of allowlist.entries) {
   if (allowedEntries.has(entry.path)) fail(`duplicate allowlist path: ${entry.path}`);
   if (!files.includes(entry.path)) fail(`allowlist path is missing: ${entry.path}`);
@@ -153,14 +170,17 @@ for (const entry of allowlist.entries) {
     requireEqual('P01 executable util.js hash', sha256(entry.path), '25368d23bb89f4c60401191dd117d6b9ea632b8e3e42e84e683238839f4e8acd');
   } else if (entry.path === 'tools/verify-internal-deps.mjs') {
     requireEqual('P03 predecessor internal dependency verifier hash', entry.sha256, '36692b48feccece6261e8092f9f8f9975793dc8c138ae4ef1a55d03f77136660');
-    requireEqual('P03 retirement-aware internal dependency verifier hash', sha256(entry.path), 'f7d46a320fcd5b0f5907dcec6c01379440c2b8c26e3b4f8c7da32a00e3399338');
+    requireEqual('P04 release-aware internal dependency verifier hash', sha256(entry.path), '3e9541f0c5e60741d4b6b61e2644c71fb04cb6854b4525b5f12d08189857f899');
   } else if (entry.path === 'tools/verify-npm-locks.mjs') {
     requireEqual('P03 predecessor lock verifier hash', entry.sha256, '7164d6a69517a6763a066fbf81a197e64424ef696a8e872e15663b2b470fa787');
-    requireEqual('P03 forward-compatible lock verifier hash', sha256(entry.path), '8732c00b5b358f87fd62443fa4c6763c92d6287801cc405e5d5d154e9302a7aa');
+    requireEqual('P04 release-aware lock verifier hash', sha256(entry.path), '943902acd3dda19fec238b94283d4fe2daf1022b53e819d264fe0e89fb3dc1a6');
+  } else if (entry.path === 'tools/test-n04-validators.mjs') {
+    requireEqual('N05 predecessor N04 adversarial suite hash', entry.sha256, 'c7021c0117129fc6297d85cb2fcd5c3efa7f90e815320931628207d4ee8f7a9d');
+    requireEqual('P04 release-aware N04 adversarial suite hash', sha256(entry.path), '9079fddf7e72d430d4cb587859ddc015f63d24d6eeaa258b874c1b8dd1c9e17f');
   } else if (entry.path === 'frameworks/react-hybrid/uirouter-react-hybrid/CHANGELOG.md') {
     requireEqual('P03 predecessor React Hybrid changelog hash', entry.sha256, '05e7f9513038416f5d3ee5cadcf6b9e2d8097f98fe5e2bffad160585af1aec2a');
-    requireEqual('P03 React Hybrid 3.0.0 changelog hash', sha256(entry.path), '4073c72364141984c3a3fda7be534de93da56cd0a3e246bf9281f1c58d530c7a');
-  } else requireEqual(`${entry.path} allowlist hash`, sha256(entry.path), entry.sha256);
+    requireEqual('P03 React Hybrid 3.0.0 changelog hash', historicalChangelogSha256(entry.path), '4073c72364141984c3a3fda7be534de93da56cd0a3e246bf9281f1c58d530c7a');
+  } else requireEqual(`${entry.path} allowlist hash`, entry.path.endsWith('/CHANGELOG.md') ? historicalChangelogSha256(entry.path) : sha256(entry.path), entry.sha256);
   requireEqual(`${entry.path} executable disposition`, Boolean(statSync(join(root, entry.path)).mode & 0o111), entry.executable);
   if (entry.path.includes('.legacy') && entry.executable) fail(`legacy file remains executable: ${entry.path}`);
   if (entry.replacementTask) {
@@ -343,6 +363,7 @@ const policyPaths = new Set([
   'tools/test-clean-reproducibility.mjs',
   'tools/test-milestone-acceptance.mjs',
   'tools/test-release-cutover.mjs',
+  'tools/test-release-version-plan.mjs',
   'tools/verify-ci-gates.mjs',
   'tools/verify-clean-reproducibility.mjs',
   'tools/verify-milestone-acceptance.mjs',
@@ -382,7 +403,7 @@ const extension = (path) => {
 };
 let scannedFiles = 0;
 for (const path of files) {
-  if (allowedEntries.has(path) || policyPaths.has(path) || path.endsWith('package-lock.json') || packageManifests.includes(path)) continue;
+  if ((allowedEntries.has(path) && !changelogAdditions.has(path)) || policyPaths.has(path) || path.endsWith('package-lock.json') || packageManifests.includes(path)) continue;
   if (path === allowlistPath) continue;
   if (path.startsWith('migration/')) {
     if (!isMigrationControl(path)) fail(`unexpected migration control/evidence path: ${path}`);
@@ -395,7 +416,7 @@ for (const path of files) {
   if (!textExtensions.has(extension(path))) continue;
   const bytes = readBytes(path);
   if (bytes.includes(0)) continue;
-  const text = bytes.toString('utf8');
+  const text = changelogAdditions.get(path) ?? bytes.toString('utf8');
   if (hasForbiddenCommand(text) || legacyCommand.test(text)) fail(`unallowlisted package-manager occurrence: ${path}`);
   if (retiredScriptInvocation.test(text)) fail(`unallowlisted retired-script invocation: ${path}`);
   if ((path.endsWith('.sh') || Boolean(statSync(join(root, path)).mode & 0o111)) && installCommand.test(text) && !/--ignore-scripts\b/.test(text)) {

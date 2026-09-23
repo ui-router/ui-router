@@ -8,11 +8,11 @@ The order is intentional.  We should make ordinary development reliable before
 we automate releases, and prove a stable release before pointing users away
 from the original repositories.
 
-## Checkpoint: 2026-09-21
+## Checkpoint: 2026-09-22
 
 The repository migration (milestone A01) is accepted. The post-migration
 program below is still in progress. Current main is
-`deae8472a36e0b8e2e900720ac5fb10971e0d4be` after PR #36.
+`cc12c449a17ba4487dc7ae312ff3626126b45c2e` after PR #37.
 
 - **P01 partial:** PR #31 introduced syncpack and aligned Vitest; PR #35 added
   ESLint to Redux while retaining Oxc; PR #36 migrated AngularJS to ESLint 9
@@ -24,8 +24,11 @@ program below is still in progress. Current main is
 - **P03 complete:** React 16 retirement (#32), restored AngularJS lint (#33),
   and deterministic local TypeDoc builds (#34) are merged. These are normal
   checks rather than active migration waivers.
-- **P04 pending:** the release/cutover plan exists; the detailed release design
-  and local release implementation still need review and completion.
+- **P04 partial:** PR #37 added a safe release preview. Draft PR #40 implements
+  local version/changelog/root-lock preparation; its twelve CI checks passed
+  at `2c3ce221acbedfff78f30c54fb14c0cbf80a1bad`. It is not merged. Release-aware
+  validation is next, followed by publishing rehearsal, authentication, and
+  live publishing.
 - **P05 specification only:** `DOCUMENTATION_SPEC.md` exists; content inventory,
   generator comparison, prototype, and site implementation remain.
 - **P06/P07 pending:** production release and source-repository transitions
@@ -35,6 +38,55 @@ A01 retains its recorded historical-input exception: the sixteen source
 checkouts were verified when the original import archives/tooling inputs were
 unavailable. This does not claim byte-identical reproduction of the original
 history import; see `migration/milestone-acceptance.json` on main.
+
+### Engineering handoff: release preparation
+
+The pushed branch is `codex/local-release-preparation` in
+[PR #40](https://github.com/ui-router/ui-router/pull/40). Implementation commit
+`addfd53ea4e5bd9b66db67f35eb66a7a4b37487d` is followed by clean consumer evidence
+at `2c3ce221acbedfff78f30c54fb14c0cbf80a1bad`. This handoff only updates the plan;
+it does not change release code, package versions, or recorded proofs.
+
+Completed validation for that implementation:
+
+- `node --test tools/test-local-release.mjs`: eight tests passed, including
+  dependency/version planning, offline lock installation, refusal before writes,
+  rollback after a write failure, Angular coordination, and AngularJS dual names.
+- All twelve package-directory commands
+  `npm run --silent release -- --prepare --dry-run --bump patch` passed.
+- A disposable real-monorepo preparation advanced Core to 6.1.3 and React to
+  1.0.9, retained the already assigned React Hybrid 3.0.0 and its breaking-change
+  notes, and produced a lock accepted unchanged by
+  `npm install --package-lock-only --ignore-scripts --no-audit --no-fund --offline`.
+  Those candidate versions were not applied to this implementation branch.
+- `node tools/test-ci-gates.mjs`: 74 cases passed.
+- `npm run prove:package-artifacts -- --write`: twelve packages, 1,062 built
+  files, fifteen edges, 443 consumer records, 46 entry points, two repetitions.
+- `node tools/verify-npm-locks.mjs` passed in a clean checkout.
+- `node tools/stage-ci-package-artifacts.mjs --output .ci-artifacts/local-release-preparation`,
+  then `node tools/run-integration-matrix.mjs --mode clean --retain --write --artifacts .ci-artifacts/local-release-preparation --output .migration-work/i02/local-release-preparation`:
+  thirteen projects passed, zero waivers, 32 edges, nine browser projects.
+- After `npm run clean --workspace=@uirouter/angular --workspace=@uirouter/angular-hybrid`,
+  `npm run check:static:installed` passed. Cleaning removes build-generated
+  manifests that would otherwise affect static manifest enumeration.
+- [CI](https://github.com/ui-router/ui-router/actions/runs/35552595181) and
+  [clean reproducibility](https://github.com/ui-router/ui-router/actions/runs/35552595183)
+  passed at the evidence commit above. Recheck the latest PR head before merging.
+
+The next release task is to make current validation accept a reviewed version
+plan while preserving immutable migration evidence. Inspect
+`tools/verify-manifest-normalization.mjs`, `tools/verify-internal-deps.mjs`, and
+their use of `migration/package-classification.json`. Refreshing validation
+bindings alone does not resolve their accepted-version/range checks. Do not
+rewrite historical contracts or reuse old artifact proofs for a new candidate.
+Then regenerate candidate proofs and rehearse both AngularJS npm names against
+a non-production registry. Individual npm authentication and the live publish
+path follow; production publishing remains separately authorized under R01.
+
+Use a normal merge for PR #40 so its recorded implementation commit remains in
+ancestry. Preserve the local checkout's work when resuming, fetch current refs,
+and check whether PR #40 has merged before choosing a branch. Do not rerun the
+entire proof suite solely because the work moved to another machine.
 
 ### Maintainer direction: eventual Oxlint migration
 
@@ -197,11 +249,10 @@ The implementation sequence is:
    Publish the approved artifact, verify it and its consumers, then promote the
    agreed dist-tag and create matching Git tags/releases, as R01 requires.
 
-The current scripts assume `master`, bare version tags, package manifests at
-Git root, and package-local dependency resolution. Their old dry run still
-writes files and can publish docs; AngularJS chains extra publishing commands.
-They also push tags before npm publication. These are migration gaps to fix,
-not a working release procedure to execute on main.
+The remaining live scripts assume `master`, bare version tags, manifests at
+Git root, and package-local dependency resolution. They push tags before npm
+publication. Live monorepo execution remains disabled while these gaps are
+resolved.
 
 P04 is complete when a non-production rehearsal produces the exact version
 plan, package changelogs, reproducible artifacts, dependency order, and clean
@@ -209,13 +260,57 @@ consumer evidence. Authentication, provenance, prerelease/stable promotion,
 and recovery decisions must be documented before the separately authorized
 P06 production release. No production publication is authorized by this plan.
 
-The first implementation supports `npm run release -- --dry-run --bump patch`
-from a package directory, or `npm run release --workspace=@uirouter/core --
---dry-run --bump patch` from root. Preview bumps are `none` (the default),
-`patch`, `minor`, and `major`. It lists package-scoped commits for review; it
-does not generate the final changelog or prepare artifacts. Live monorepo
-release execution stops with an explanation until the remaining steps above
-are implemented.
+From a package directory, inspect the existing preview with
+`npm run release -- --dry-run --bump patch`. To preview the complete preparation
+plan, use `npm run release -- --prepare --dry-run --bump patch`. From a clean
+branch, remove `--dry-run` to write the planned manifests, changelogs, and root
+lockfile. Root invocation also works with `--workspace=@uirouter/core` before
+the `--` separator.
+
+Preparation includes dependent packages when an exact internal version must
+advance. It keeps an already assigned unreleased version; otherwise it proposes
+a patch. Compatible ranges remain unchanged, and incompatible ranges stop the
+operation for explicit compatibility review. Angular and Angular Hybrid are
+prepared together on their supported Angular major. Requested `--deps` produce
+range-change summaries without cloning repositories. Authored release notes
+are retained, including existing breaking-change text. No registry request,
+lifecycle script, commit, tag, or push is part of preparation.
+
+Prepared files are drafts for review, not an approved release candidate. The
+current migration checks still pin accepted versions and internal ranges.
+Before the first versioned candidate can pass all gates, make a reviewed update
+to the current version checks while preserving the historical migration audit,
+then regenerate package and isolated-consumer proofs. Preparation deliberately
+does not rewrite those historical contracts or label old proof as current.
+Publishing rehearsal and individual npm authentication follow that work.
+
+The local continuation adds a separate candidate version plan; see
+[`release/README.md`](../release/README.md). After preparation,
+`node tools/prepare-release-validation.mjs --base <full-source-commit> --package <selected-package> --write`
+records the draft version/dependency changes for review. Current workspace
+validation consumes that plan without changing the migration classification,
+historical N02/N03 evidence, or isolated registry baselines. Candidate package
+and consumer proofs still need to be regenerated; the plan does not approve
+publication or certify old artifacts for new versions.
+
+Review fixes add an independent current-version baseline for every published
+package, explicit selection of assigned unreleased versions, and release-tag
+eligibility checks. Candidate test fixtures retain their Git ancestry; release
+preparation tests create a branch at the exact tested revision so detached CI
+checkouts work. The migration classification and historical proofs remain
+unchanged. A baseline update for another release cycle is a separate reviewed
+change, never an inferred result of changing the preparation base.
+
+Local validation on Node 24.19.0 / npm 11.17.0 covers the existing release
+tests plus a real disposable Core preparation, adversarial version-plan
+checks, and Angular coordination. The disposable Core candidate passes
+manifest, internal-dependency, and root-lock verification. Its refreshed
+package contract passes while its old artifact proof is rejected. The
+implementation checkout also passes `npm run check:static:installed`, the
+39-case N04 validator suite, and the 45-case package-artifact suite. No
+candidate versions or regenerated candidate proofs are retained in this
+implementation checkpoint. The next focused task is candidate package and
+consumer proof regeneration; registry rehearsal remains approval-gated.
 
 ### Next AngularJS release notes
 

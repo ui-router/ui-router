@@ -13,6 +13,8 @@ import {
 } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { cloneValidationFixture } from "./validation-test-fixture.mjs";
+import { releaseVersionPlanPath } from "./release-version-plan.mjs";
 
 import {
   normalizeSourceMapReferences,
@@ -26,6 +28,8 @@ import {
 
 let fixture;
 let cases = 0;
+let candidate = false;
+const expectedForPlan = (normal, candidateMessage) => candidate ? candidateMessage : normal;
 
 async function readJson(filename) {
   return JSON.parse(await readFile(path.join(fixture, filename), "utf8"));
@@ -150,6 +154,8 @@ async function mutateManifest(
 
 try {
   fixture = await mkdtemp(path.join(os.tmpdir(), "uirouter-p01-adversarial-"));
+  candidate = await pathExists(path.join(repository, releaseVersionPlanPath));
+  if (candidate) cloneValidationFixture(repository, fixture);
   await cp(repository, fixture, {
     recursive: true,
     filter(source) {
@@ -436,7 +442,7 @@ try {
       value.description = "mutated";
       await writeJson("core/package.json", value);
     },
-    "core manifest digest differs"
+    expectedForPlan("core manifest digest differs", "core/package.json manifest differs")
   );
   await expectFailure(
     "scripts-digest",
@@ -458,7 +464,7 @@ try {
         },
         { updateScripts: true }
       ),
-    "pack script is not the canonical helper path"
+    expectedForPlan("pack script is not the canonical helper path", "tools/publish-scripts/package.json manifest differs")
   );
   await expectFailure(
     "files-policy",
@@ -467,7 +473,7 @@ try {
       mutateManifest("plugins/rx/package.json", (value) => {
         value.files.push("src");
       }),
-    "manifest files policy differs"
+    expectedForPlan("manifest files policy differs", "plugins/rx/package.json manifest differs")
   );
   await expectFailure(
     "undeclared-external-peer",
@@ -476,7 +482,7 @@ try {
       mutateManifest("plugins/redux/package.json", (value) => {
         value.peerDependencies["p01-missing-peer"] = "^1.0.0";
       }),
-    "external peer p01-missing-peer is absent"
+    expectedForPlan("external peer p01-missing-peer is absent", "plugins/redux/package.json manifest differs")
   );
   await expectFailure(
     "package-private",
@@ -485,7 +491,7 @@ try {
       mutateManifest("plugins/rx/package.json", (value) => {
         value.private = true;
       }),
-    "is unexpectedly private"
+    expectedForPlan("is unexpectedly private", "plugins/rx/package.json manifest differs")
   );
   await expectFailure(
     "evidence-contract-digest",
@@ -496,6 +502,17 @@ try {
       await writeJson("migration/evidence/p01/package-proof.json", value);
     },
     "package proof contract digest differs",
+    true
+  );
+  await expectFailure(
+    "evidence-release-plan-digest",
+    ["migration/evidence/p01/package-proof.json"],
+    async () => {
+      const value = await readJson("migration/evidence/p01/package-proof.json");
+      value.releaseVersionPlanSha256 = "0".repeat(64);
+      await writeJson("migration/evidence/p01/package-proof.json", value);
+    },
+    "package proof release version plan digest differs",
     true
   );
   await expectFailure(

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { validatedReleasePlan } from "./release-version-plan.mjs";
 import { existsSync, readFileSync, realpathSync } from "node:fs";
 import path from "node:path";
 
@@ -69,13 +71,17 @@ equal(
 );
 
 const manifest = json(packagePath);
+const releasePlan = validatedReleasePlan(repository);
+const baselineManifest = releasePlan
+  ? JSON.parse(execFileSync('git', ['-C', repository, 'show', `${releasePlan.baseCommit}:${packagePath}`], { encoding: 'utf8' }))
+  : manifest;
 if (
-  manifest.name !== evidence.npm.package ||
-  manifest.version !== evidence.npm.version
+  baselineManifest.name !== evidence.npm.package ||
+  baselineManifest.version !== evidence.npm.version
 )
   fail("package identity differs from the published release");
 equal(manifest.peerDependencies, evidence.npm.peerDependencies, "peer range");
-equal(manifest.dependencies, evidence.npm.dependencies, "runtime dependencies");
+equal(baselineManifest.dependencies, evidence.npm.dependencies, "historical runtime dependencies");
 if (manifest.devDependencies["@uirouter/publish-scripts"] !== "^2.7.0")
   fail("publish-scripts range differs from the normalized monorepo range");
 if (
@@ -171,25 +177,25 @@ const packageArtifacts = json("migration/package-artifacts.json");
 const artifact = packageArtifacts.packages.find(
   (record) => record.package === evidence.npm.package
 );
-if (artifact?.version !== evidence.npm.version)
+if (artifact?.version !== manifest.version)
   fail("package artifact inventory has the wrong React Hybrid version");
 
 const release = json("migration/release-cutover.json");
 const releasePackage = release.releaseInventory.packages.find(
   (record) => record.name === evidence.npm.package
 );
-if (releasePackage?.version !== evidence.npm.version)
+if (releasePackage?.version !== manifest.version)
   fail("release inventory has the wrong React Hybrid version");
 
 const rootLock = json("package-lock.json");
 const lockPackage =
   rootLock.packages[packagePath.replace(/\/package\.json$/, "")];
 if (
-  lockPackage?.version !== evidence.npm.version ||
+  lockPackage?.version !== manifest.version ||
   lockPackage.peerDependencies?.react !== evidence.npm.peerDependencies.react ||
   lockPackage.devDependencies?.["@uirouter/publish-scripts"] !== "^2.7.0"
 )
-  fail("root lock does not describe React Hybrid 3.0.0");
+  fail("root lock does not describe the current React Hybrid candidate");
 
 console.log(
   `REACT_HYBRID_RETIREMENT_OK version=${manifest.version} active=${activeProjectIds.length} retired=1`

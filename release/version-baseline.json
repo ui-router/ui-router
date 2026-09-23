@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "67a6954d8e77166a0ce49322d682b0a95f39dd2f",
+  "publicationEvidence": [
+    "migration/evidence/p03/react-hybrid-3.json"
+  ]
+}

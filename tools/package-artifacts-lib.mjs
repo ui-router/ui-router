@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile, realpath } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { currentReleaseClassification, releaseVersionPlanSha256 } from "./release-version-plan.mjs";
 
 import { validateJsonSchema } from "./validate-migration-contract.mjs";
 
@@ -435,7 +436,7 @@ export async function validatePackageArtifactsContract({
     published.map((manifest) => manifest.finalName)
   );
   const productionEdges = expectedPublishedEdges(
-    classification,
+    currentReleaseClassification(root, classification),
     publishedNames
   );
   const expectedEdgeIds = productionEdges.map((edge) => edge.id).sort();
@@ -671,6 +672,10 @@ export async function validatePackageArtifactsEvidence({
     (await sha256File(path.join(root, contractPath)))
   )
     fail("package proof contract digest differs");
+  // Selecting an already assigned version may leave the manifests and lock
+  // unchanged. Its proof must still be regenerated for this exact candidate plan.
+  if (evidence.releaseVersionPlanSha256 !== releaseVersionPlanSha256(root))
+    fail("package proof release version plan digest differs");
   if (evidence.rootLockSha256 !== contract.rootLockSha256)
     fail("package proof root lock digest differs");
   assertEqual(evidence.runtime, contract.runtime, "package proof runtime");

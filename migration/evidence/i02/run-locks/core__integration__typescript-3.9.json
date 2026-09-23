@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "bundleState": "final",
-  "runId": "1591807fa214f32bbcda8103",
+  "runId": "4af1297f19100ed944b586d6",
   "fixtureId": "core/integration/typescript-3.9",
   "mode": "clean",
   "repository": {
-    "commit": "f9739aa3314b27ca15355317e68b05f3880c15ba",
-    "tree": "4e0eb61d3e9eacf62f510771cac299140f5e529a",
+    "commit": "addfd53ea4e5bd9b66db67f35eb66a7a4b37487d",
+    "tree": "f567995640b4f2d0e519e3a0e9f46969aa2ba74a",
     "dirty": false,
-    "sourceSnapshotSha256": "5bfd61c3d8bdde7b35aeeb374aeedea43b46f0f9e26dca5f1ff81422875ab8c2"
+    "sourceSnapshotSha256": "7e0152b7d60ced90870f21b8a6e576337262e39a0021b09730dd444d60cc2ddd"
   },
   "contracts": {
-    "matrixSha256": "754caee96e2928a2da3e01dde10cfdc911ff426ea2b1f9c7aa8e0422ef95d8bd",
+    "matrixSha256": "982ccc82ba96f16aa35fa4a0f3ce319272bac9beb9d306419d356a9b42595821",
     "isolatedProjectsSha256": "c450f2e9e10d8baae3cdb1c42f68c197ba22fba638692b0929c085ed85d39689",
-    "packageArtifactsSha256": "84f2dcf9064fabf1f6d951f360abc8868f05fe3213c8aa17c553dbde73941985",
+    "packageArtifactsSha256": "c1a04916fd3d6904869a8dc9f0d4e8512fe4f959da7e79e039aab8a98f35589d",
     "packageClassificationSha256": "a8a069a2946c2e93f92121378d57857da4f038fac000e4f73ff4c465de320365",
     "pathRepairsSha256": "8157d74014064be02a360c77a4610c889c8998798504da2930d8cf8794bcb2ad",
     "baselinesSha256": "067aba9638577ece965e0ca7527e659ff6658dd97bb57c90ec9060fe2901ccd9",
@@ -34,15 +34,15 @@
     "projectNpmrc": null,
     "npmEnvironment": {
       "PATH": "/usr/local/bin:/usr/local/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-      "HOME": "/tmp/uirouter-i02-clean-WfgHnO/home",
-      "TMPDIR": "/tmp/uirouter-i02-clean-WfgHnO/tmp",
+      "HOME": "/tmp/uirouter-i02-clean-ncj68B/home",
+      "TMPDIR": "/tmp/uirouter-i02-clean-ncj68B/tmp",
       "CI": "1",
       "HUSKY": "0",
       "LC_ALL": "C",
       "TZ": "UTC",
-      "npm_config_cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
+      "npm_config_cache": "/tmp/uirouter-i02-clean-ncj68B/npm-cache",
       "npm_config_registry": "https://registry.npmjs.org/",
-      "npm_config_userconfig": "/tmp/uirouter-i02-clean-WfgHnO/npmrc",
+      "npm_config_userconfig": "/tmp/uirouter-i02-clean-ncj68B/npmrc",
       "npm_config_globalconfig": "/dev/null",
       "npm_config_ignore_scripts": "true",
       "npm_config_audit": "false",
@@ -51,11 +51,11 @@
       "npm_config_force": "false",
       "npm_config_offline": "false",
       "npm_config_bin_links": "true",
-      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WfgHnO/browser-cache"
+      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-ncj68B/browser-cache"
     },
     "effectiveNpmSettings": {
       "registry": "https://registry.npmjs.org/",
-      "cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
+      "cache": "/tmp/uirouter-i02-clean-ncj68B/npm-cache",
       "ignore-scripts": "true",
       "audit": "false",
       "fund": "false",
@@ -64,20 +64,20 @@
       "offline": "false",
       "bin-links": "true"
     },
-    "npmConfigSha256": "b12695032172c7a0a8f1caaa72990c9f86fcc51f33640b60aed3cb9ec011746a"
+    "npmConfigSha256": "fda660ca53a84eee91f95297f2abef01334d14f71d4f6833fd29dc59ed08c768"
   },
   "browser": null,
   "environment": {
     "PATH": "/usr/local/bin:/usr/local/lib/node_modules/npm/bin:/usr/local/bin:/usr/bin:/bin",
-    "HOME": "/tmp/uirouter-i02-clean-WfgHnO/home",
-    "TMPDIR": "/tmp/uirouter-i02-clean-WfgHnO/tmp",
+    "HOME": "/tmp/uirouter-i02-clean-ncj68B/home",
+    "TMPDIR": "/tmp/uirouter-i02-clean-ncj68B/tmp",
     "CI": "1",
     "HUSKY": "0",
     "LC_ALL": "C",
     "TZ": "UTC",
-    "npm_config_cache": "/tmp/uirouter-i02-clean-WfgHnO/npm-cache",
+    "npm_config_cache": "/tmp/uirouter-i02-clean-ncj68B/npm-cache",
     "npm_config_registry": "https://registry.npmjs.org/",
-    "npm_config_userconfig": "/tmp/uirouter-i02-clean-WfgHnO/npmrc",
+    "npm_config_userconfig": "/tmp/uirouter-i02-clean-ncj68B/npmrc",
     "npm_config_globalconfig": "/dev/null",
     "npm_config_ignore_scripts": "true",
     "npm_config_audit": "false",
@@ -86,7 +86,7 @@
     "npm_config_force": "false",
     "npm_config_offline": "false",
     "npm_config_bin_links": "true",
-    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-WfgHnO/browser-cache"
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/uirouter-i02-clean-ncj68B/browser-cache"
   },
   "commands": {
     "lock": [
@@ -115,13 +115,13 @@
     "selectedSha256": "7586947f694b0536a359c8db8dd76d5233e45c5cab46456f67c8204d7555069f"
   },
   "sandbox": {
-    "path": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9",
-    "realpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9",
+    "path": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9",
+    "realpath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9",
     "cacheRoot": null,
-    "artifactStagingRoot": "/tmp/uirouter-i02-clean-WfgHnO/artifacts",
+    "artifactStagingRoot": "/tmp/uirouter-i02-clean-ncj68B/artifacts",
     "outsideRepositoryAncestry": true,
     "linkScanSha256": "d966c6451704f537b2ecf226e5e6dd73db8a956dd932b0ea06b2ded5a6f7c7e2",
-    "resetInputsSha256": "fac581324eb4d7db025de6c27a19732ca827b6535dbbdc5b8911ff085cbad3be",
+    "resetInputsSha256": "e2e70b2da101fa5afc6b4fe8d826a6db97fbd397d455fd8308a6e91d027d6fe8",
     "reused": false,
     "reuseUpdated": false,
     "changedArtifactIds": []
@@ -140,9 +140,9 @@
     "lockSha256": "b2558f23e8f1a42fb623ba8d24dfc332f9a26e6b6112814bc525d1406625ca52"
   },
   "staged": {
-    "manifestPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/package.json",
+    "manifestPath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/package.json",
     "manifestSha256": "a52098829e7c435ea60b8403f14dba90c038c9b042e6db9e06bab2d66020affd",
-    "lockPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/package-lock.json",
+    "lockPath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/package-lock.json",
     "lockSha256": "5df4b070f3af9ead0fbddb88f24627d4c729ad0cbc1e0b08c2a632f102233f82",
     "rewriteIds": [
       "rewrite-core-integration-typescript-3.9-core"
@@ -166,9 +166,9 @@
     "externalBeforeSha256": "1ac84e00341f4b934c7f902c37d93ad49e0ef58dd8e8420cd9abb67538eff656",
     "externalAfterSha256": "1ac84e00341f4b934c7f902c37d93ad49e0ef58dd8e8420cd9abb67538eff656",
     "lockSha256": "5df4b070f3af9ead0fbddb88f24627d4c729ad0cbc1e0b08c2a632f102233f82",
-    "installedSha256": "d2cb15807047247f8b9056d430c735a402ba7bf58aa43c4e62f2650113d4c0ee",
+    "installedSha256": "8ede2e1b5e74bb9b5062e881044519e7bdb115b772554f99440cf98d8eeee67d",
     "peerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "moduleAuditSha256": "f8b9c79d60194f9a2cd7f2e403e4ee588ab6516010929a72563bb2a27c6118e1",
+    "moduleAuditSha256": "267ed157bb5532fe51e002f75b61bc908ea07dc2b49ed0f3cea742ba6a6ae043",
     "nodeModulesSha256": "f1c7eee91008547e3ed2c13948efc0c3b3c390c5e5cb766d5f63bbe87732acc8"
   },
   "origins": [
@@ -181,10 +181,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
       "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
@@ -198,10 +198,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
       "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
@@ -216,10 +216,10 @@
       "lockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "expectedLockResolved": "file:../../../artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
       "lockIntegrity": "sha512-WV2/q9lN8Hg0vo9AflHtr7Jg+F2iqaWALSyE2uNwNovyto6qcO8x1G6EEzXr5EXNw7Xwnvplv8zzOiPChm6+XQ==",
-      "stagedArtifactPath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-WfgHnO/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
-      "installedPath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
-      "installedRealpath": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "stagedArtifactPath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "stagedArtifactRealpath": "/tmp/uirouter-i02-clean-ncj68B/artifacts/uirouter-core-6.1.2-sha256-7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18.tgz",
+      "installedPath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
+      "installedRealpath": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9/project/node_modules/@uirouter/core",
       "manifestSha256": "6c30c200abdcf84f00fca48518116b9c768f8a4a8f522d73092bdbfe1d6a0f42",
       "insideSandbox": true,
       "symlink": false
@@ -238,7 +238,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "92cd6bb8c797844f8a6348d0625232d708ad0dc8c2c99212596ee9ccb91d342b",
+      "stdoutSha256": "a4744eebf9526c105956d52fab46f2db302712cc2488a94e3c0feb9ee3a1bc72",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -252,7 +252,7 @@
         "--loglevel=error"
       ],
       "status": 0,
-      "stdoutSha256": "00f5fa15756c5c5ee5f8c901980c9ce7d31b4743071edb3060075992c4d1832d",
+      "stdoutSha256": "913046cc9576ce80af96a83f42c4178a6174aeacdd2a134503adb905dfe8d68d",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -264,7 +264,7 @@
         "--json"
       ],
       "status": 0,
-      "stdoutSha256": "85b4ddbc25f12a6fe6af0e1331d45d3af63a6341510b2a46af3f26ae8a5a44ad",
+      "stdoutSha256": "80d0b8c127bedca7bbfcac379e5ac008a241371f21791dbb7c7ced05d083305e",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
@@ -306,6 +306,6 @@
       "<external-cache-root>",
       "--reset"
     ],
-    "retainedSandbox": "/tmp/uirouter-i02-clean-WfgHnO/projects/core__integration__typescript-3.9"
+    "retainedSandbox": "/tmp/uirouter-i02-clean-ncj68B/projects/core__integration__typescript-3.9"
   }
 }

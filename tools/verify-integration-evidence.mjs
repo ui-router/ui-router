@@ -13,6 +13,7 @@ import path from "node:path";
 
 import {
   canonicalJson,
+  integrationEvidenceScopePaths,
   matrixPath,
   repository,
   runLockSchemaPath,
@@ -169,9 +170,7 @@ if (
   fail("reviewed integration-proof scope is not an ancestor of HEAD");
 const evidencePrefix = "migration/evidence/i02/";
 const postImplementationPaths = new Set(
-  git(["diff", "--name-only", `${implementationCommit}..${reviewedScopeHead}`])
-    .split("\n")
-    .filter(Boolean)
+  integrationEvidenceScopePaths(repository, implementationCommit, reviewedScopeHead)
 );
 const c01OwnedPaths = new Set([
   ".github/workflows/ci.yml",

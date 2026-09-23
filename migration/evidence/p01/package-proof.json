@@ -92,14 +92,14 @@
       "artifactId": "publish-scripts",
       "package": "@uirouter/publish-scripts",
       "version": "2.8.0",
-      "filename": "uirouter-publish-scripts-2.8.0-sha256-056ddd469eff08607601303ae7d1229999530b62694cf977e6074684f020ed67.tgz",
-      "sha256": "056ddd469eff08607601303ae7d1229999530b62694cf977e6074684f020ed67",
-      "shasum": "c7776777729e0ec97bf6a9e2f9b58d9ba694f7fc",
-      "integrity": "sha512-JOei1vbimpzQ4Wa8d9S4dRhAO/IP2lSs5QyKX5FY7GruZI3OqTGISve7npTKxT/AnW6NabXrmqYWjJv4KWBJ7w==",
-      "size": 14033,
-      "unpackedSize": 47332,
+      "filename": "uirouter-publish-scripts-2.8.0-sha256-d0c7b86ffbc83c4877b5e972b9dfd965b63da048a9baab21e3638f4da43454fd.tgz",
+      "sha256": "d0c7b86ffbc83c4877b5e972b9dfd965b63da048a9baab21e3638f4da43454fd",
+      "shasum": "1d199dfc87ca9f3462f63de12025c88d9e9ea3bf",
+      "integrity": "sha512-xYOiVGPfCW9DdI/pyiHvWNHz8Wdow1tS7xh2nz41RQjRN0vQEB6LAz6DL2iopamNFQLTbCu4hCNtZWJ3hnATwg==",
+      "size": 14187,
+      "unpackedSize": 48042,
       "fileCount": 13,
-      "filesSha256": "913bfa276125ef737ebd9f609d333bc33db3981c86f2bbe0c412be192aa99117"
+      "filesSha256": "22d8fc1a79bbb2371381fa08b5f5e1797457bcf41d2d029abb973b775aaaa4a3"
     },
     {
       "artifactId": "react",
@@ -182,9 +182,9 @@
   ],
   "productionEdges": 15,
   "consumer": {
-    "lockSha256": "7c8ba78cfcfaa4dd07ddfd618fda45697619527971ba69e893b70b4d4816706a",
+    "lockSha256": "d1bfdf507996e1b9b3b6a6352a38d1f027202127948d2d572e9dbc8e6265e6ef",
     "dependencyRecords": 443,
-    "dependencyGraphSha256": "6a0b0379571b36ac6fd1576dbbbde86e9c64a1aae71ef9391d08a75401bdc262",
+    "dependencyGraphSha256": "5a5aa627046cdd6516371dd5821523ea833728fb5fb235829412b6a4160f4fb2",
     "internalPackages": 12,
     "installedFiles": 969,
     "entrypoints": 46,

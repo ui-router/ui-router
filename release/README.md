@@ -82,7 +82,7 @@ The prepared local directory is `/tmp/ui-router-registry-lab`; its exact registr
 installation is recorded in `package-lock.json`. These temporary files are
 conveniences, not durable dependencies of the repository.
 
-Prepared publication inputs, in dependency order:
+Prepared publication inputs (publish Core and scoped AngularJS before React Hybrid):
 
 | Name | Rehearsal version | SHA-256 |
 | --- | --- | --- |
@@ -142,3 +142,34 @@ Preparation includes a registry health check, artifact parity checks, and five
 loopback. It does not upload packages or change registry tags. The maintainer's
 standing instruction requires separate approval for the actual uploads and tag
 changes, including this local rehearsal.
+
+
+### Completed local rehearsal
+
+The maintainer approved localhost execution after reviewing this plan.
+[`local-registry-rehearsal.json`](local-registry-rehearsal.json) records the
+results, exact input/readback hashes, external seed integrities, consumer locks,
+and tag transitions. All five tarballs read back byte-for-byte. A deliberately
+unavailable loopback endpoint interrupted the legacy AngularJS upload; retry
+verified the scoped package and filled the missing legacy package. Duplicate
+publication failed, and the readback guard rejected a changed-byte input.
+
+Ten external dependency tarballs were fetched read-only from their proven lock
+URLs, integrity-checked, and seeded locally. Three empty-cache consumers installed
+entirely from localhost with peer resolution enabled. Both AngularJS names and
+React Hybrid passed browser route rendering, navigation away and back, and an
+uncaught-error check. Browser bundles used only each consumer's installed inputs.
+All five `candidate` tags were added, removed, and restored with artifact hashes
+unchanged. The registry was then stopped; diagnostics remain outside the repo.
+
+**Limitation:** this Verdaccio version synthesizes `latest` for a first version,
+even after removing that tag. The planned absence-of-`latest` check therefore
+failed and is not an accepted result. The separate `candidate` tag recovery
+passed. A production-like existing-version/tag fixture and subsequent real npm
+verification are still needed before claiming production promotion parity.
+
+Next, adapt the existing local release entry point to consume verified artifacts
+and use explicit registry/dependency ordering, resumable readback, and the tested
+AngularJS name conversion. Resolve the promotion limitation before completing
+P04. Real npm authentication/2FA, provenance and corrective-release behavior
+remain untested. This manual rehearsal is not a complete automated publish path.

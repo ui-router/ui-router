@@ -224,6 +224,7 @@ function preparationFixture() {
   write(dir, "historical/fix.txt", "fix");
   git(dir, "add", ".");
   git(dir, "commit", "-m", "fix: historical package fix");
+  write(dir, "release/version-baseline.json", { schemaVersion: 1, sourceCommit: git(dir, "rev-parse", "HEAD"), publicationEvidence: [] });
   const manifests = {
     demo: {
       name: "@uirouter/demo",

@@ -14,6 +14,7 @@ function preparationPlan(root, preview, semver) {
     execFileSync('git', args, { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim();
   const inventory = read('migration/package-artifacts.json').packages;
   const sources = read('migration/sources.json').sources;
+  const publications = require('../release-version-plan.mjs').releasePublications(root);
   const lock = read('package-lock.json');
   if (lock.lockfileVersion !== 3 || !lock.packages)
     throw new Error('Preparation requires a version 3 root package-lock.json.');
@@ -49,7 +50,8 @@ function preparationPlan(root, preview, semver) {
     const current = workspaces.get(name).before.version;
     const source = sources.find((item) => item.name === records.get(name).id);
     if (!source) throw new Error(`Missing release history mapping for ${name}`);
-    const released = [...allTags].some(
+    const released = publications.some((record) => record.name === name && record.version === current) ||
+      [...allTags, ...source.releaseTags.map((record) => record.targetName)].some(
       (tag) => tag.startsWith(source.tagNamespace) && semver.valid(tag.slice(source.tagNamespace.length)) === current
     );
     return released ? semver.inc(current, 'patch') : current;
@@ -116,8 +118,14 @@ function preparationPlan(root, preview, semver) {
     ) {
       throw new Error('The Angular package major must match its supported Angular peer range.');
     }
+    for (const publication of publications.filter((record) => record.name === name)) {
+      if (!semver.valid(publication.version) || !semver.gt(version, publication.version))
+        throw new Error(`${name}: choose a version newer than published ${publication.version}.`);
+    }
     const tag = `${source.tagNamespace}${version}`;
-    if (allTags.has(tag)) throw new Error(`Release tag already exists: ${tag}; choose a new version.`);
+    if ([...allTags, ...source.releaseTags.map((record) => record.targetName)].some(
+      (known) => known.startsWith(source.tagNamespace) && semver.valid(known.slice(source.tagNamespace.length)) === version
+    )) throw new Error(`Release tag already exists: ${tag}; choose a new version.`);
     const tags = git('tag', '--merged', 'HEAD', '--list', `${source.tagNamespace}*`)
       .split('\n')
       .map((value) => ({ tag: value, version: semver.valid(value.slice(source.tagNamespace.length)) }))

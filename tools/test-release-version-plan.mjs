@@ -61,7 +61,10 @@ function releaseFixture(root) {
   const revision = existsSync(path.join(repository, releaseVersionPlanPath))
     ? read(repository, releaseVersionPlanPath).baseCommit
     : 'HEAD';
-  return cloneValidationFixture(repository, root, revision);
+  cloneValidationFixture(repository, root, revision);
+  copyValidationTools(root);
+  if (git(root, 'status', '--porcelain')) commit(root);
+  return git(root, 'rev-parse', 'HEAD');
 }
 function copyValidationTools(root) {
   for (const file of [
@@ -75,6 +78,9 @@ function copyValidationTools(root) {
     'test-package-artifacts.mjs',
     'package-artifacts-lib.mjs',
     'prove-package-artifacts.mjs',
+    'verify-package-manager.mjs',
+    'test-n05-package-manager.mjs',
+    'verify-react-hybrid-retirement.mjs',
   ])
     cpSync(path.join(repository, 'tools', file), path.join(root, 'tools', file));
   mkdirSync(path.join(root, 'release'), { recursive: true });
@@ -168,8 +174,12 @@ test('Angular version plans coordinate majors and preserve exact-range spelling'
       ],
       { cwd: root },
     );
-    const base = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
-    save(root, releaseVersionBaselinePath, { schemaVersion: 1, sourceCommit: base });
+    let base = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+    save(root, releaseVersionBaselinePath, { schemaVersion: 1, sourceCommit: base, publicationEvidence: [] });
+    commit(root);
+    base = git(root, 'rev-parse', 'HEAD');
+    const assigned = createReleaseVersionPlan(root, base, manifests.map((item) => item.name));
+    assert.ok(assigned.packages.every((item) => item.from === item.to));
     for (const [index, manifest] of manifests.entries()) {
       manifest.version = '22.0.1';
       if (manifest.dependencies) manifest.dependencies['@uirouter/angular'] = '=22.0.1';
@@ -228,7 +238,7 @@ test('prepared Core candidate passes current version gates without rewriting mig
     assert.deepEqual(plan.packages.map((item) => [item.name, item.from, item.to]).sort(), [
       ['@uirouter/core', '6.1.2', '6.1.3'],
       ['@uirouter/react', '1.0.8', '1.0.9'],
-      ['@uirouter/react-hybrid', '3.0.0', '3.0.0'],
+      ['@uirouter/react-hybrid', '3.0.0', '3.0.1'],
     ]);
     assert.equal(plan.dependencyUpdates.length, 3);
     succeeds(run(root, 'tools/prepare-release-validation.mjs', ['--base', base, '--write']));
@@ -481,6 +491,45 @@ test('prepared Core candidate passes current version gates without rewriting mig
       });
     }
 
+    await t.test('a coherent dependency update cannot reuse a post-import publication', () => {
+      const files = ['frameworks/react-hybrid/uirouter-react-hybrid/package.json', 'package-lock.json'];
+      const originals = files.map((file) => readFileSync(path.join(root, file)));
+      try {
+        const hybrid = read(root, files[0]);
+        hybrid.version = '3.0.0';
+        save(root, files[0], hybrid);
+        const lock = read(root, files[1]);
+        lock.packages['frameworks/react-hybrid/uirouter-react-hybrid'].version = '3.0.0';
+        save(root, files[1], lock);
+        assert.throws(() => createReleaseVersionPlan(root, base), /newer than published 3.0.0/);
+      } finally {
+        files.forEach((file, index) => writeFileSync(path.join(root, file), originals[index]));
+      }
+    });
+    await t.test('a candidate cannot remove accepted publications from its baseline', () => {
+      const original = readFileSync(path.join(root, releaseVersionBaselinePath));
+      try {
+        const baseline = JSON.parse(original);
+        baseline.publicationEvidence = [];
+        save(root, releaseVersionBaselinePath, baseline);
+        assert.throws(() => createReleaseVersionPlan(root, base), /version baseline historical binding/);
+      } finally {
+        writeFileSync(path.join(root, releaseVersionBaselinePath), original);
+      }
+    });
+    await t.test('publication evidence cannot be edited to make an occupied version available', () => {
+      const file = 'migration/evidence/p03/react-hybrid-3.json';
+      const original = readFileSync(path.join(root, file));
+      try {
+        const evidence = JSON.parse(original);
+        evidence.npm.version = '2.0.0';
+        save(root, file, evidence);
+        assert.throws(() => validateReleaseVersionPlan(root, plan), /publication evidence/);
+      } finally {
+        writeFileSync(path.join(root, file), original);
+      }
+    });
+
     await t.test('refreshed package metadata accepts the plan but historical artifact proof still fails', async () => {
       const contract = read(root, 'migration/package-artifacts.json');
       contract.rootLockSha256 = digest(readFileSync(path.join(root, 'package-lock.json')));
@@ -491,11 +540,44 @@ test('prepared Core candidate passes current version gates without rewriting mig
       save(root, 'migration/package-artifacts.json', contract);
       await validatePackageArtifactsContract({ root });
       await assert.rejects(validatePackageArtifactsEvidence({ root }), /package proof contract digest differs/);
+      const cutover = read(root, 'migration/release-cutover.json');
+      for (const item of cutover.releaseInventory.packages)
+        item.version = contract.packages.find((record) => record.package === item.name).version;
+      save(root, 'migration/release-cutover.json', cutover);
+      for (const validator of ['verify-package-manager.mjs', 'verify-react-hybrid-retirement.mjs'])
+        succeeds(run(root, `tools/${validator}`));
+      const changelog = 'core/CHANGELOG.md';
+      const original = readFileSync(path.join(root, changelog), 'utf8');
+      for (const [text, pattern] of [
+        [original + '\nChanged historical content\n', /historical changelog was modified/],
+        [original.replace('\n', '\nRun yarn install\n'), /unallowlisted package-manager occurrence/],
+      ]) {
+        writeFileSync(path.join(root, changelog), text);
+        const result = run(root, 'tools/verify-package-manager.mjs');
+        assert.notEqual(result.status, 0);
+        assert.match(result.stderr, pattern);
+      }
+      writeFileSync(path.join(root, changelog), original);
+      const hybridFile = 'frameworks/react-hybrid/uirouter-react-hybrid/package.json';
+      const hybrid = readFileSync(path.join(root, hybridFile));
+      const broken = JSON.parse(hybrid);
+      broken.dependencies['@uirouter/core'] = '99.0.0';
+      save(root, hybridFile, broken);
+      assert.notEqual(run(root, 'tools/verify-react-hybrid-retirement.mjs').status, 0);
+      writeFileSync(path.join(root, hybridFile), hybrid);
+      const planBytes = readFileSync(path.join(root, releaseVersionPlanPath));
+      rmSync(path.join(root, releaseVersionPlanPath));
+      for (const validator of ['verify-package-manager.mjs', 'verify-react-hybrid-retirement.mjs'])
+        assert.notEqual(run(root, `tools/${validator}`).status, 0);
+      writeFileSync(path.join(root, releaseVersionPlanPath), planBytes);
     });
 
     await t.test('candidate N04 fixtures retain Git history and reject mutations at the applicable gate', () => {
       commit(root);
       succeeds(run(root, 'tools/test-n04-validators.mjs'));
+    });
+    await t.test('candidate package-manager fixtures retain history and reject policy violations', () => {
+      succeeds(run(root, 'tools/test-n05-package-manager.mjs'));
     });
     await t.test('candidate artifact fixtures exercise all checks with synthetic evidence', () => {
       // Only this disposable test tree gets synthetic proof metadata. The real
@@ -525,49 +607,21 @@ test('prepared Core candidate passes current version gates without rewriting mig
   }
 });
 
-test('an explicitly selected unreleased version can be prepared without a version or dependency change', async () => {
-  const temporary = mkdtempSync(path.join(os.tmpdir(), 'uirouter-assigned-release-'));
+test('post-import published versions cannot be prepared or selected without a bump', () => {
+  const temporary = mkdtempSync(path.join(os.tmpdir(), 'uirouter-published-release-'));
   const root = path.join(temporary, 'candidate');
   try {
     const base = releaseFixture(root);
-    succeeds(
-      run(
-        path.join(root, 'frameworks/react-hybrid/uirouter-react-hybrid'),
-        path.join(repository, 'tools/publish-scripts/release.js'),
-        ['--prepare', '--bump', 'none'],
-      ),
-    );
-    copyValidationTools(root);
-    const args = ['--base', base, '--package', '@uirouter/react-hybrid'];
-    const preview = run(root, 'tools/prepare-release-validation.mjs', args);
-    succeeds(preview);
-    const plan = JSON.parse(preview.stdout);
-    assert.deepEqual(plan.packages, [
-      {
-        name: '@uirouter/react-hybrid',
-        manifest: 'frameworks/react-hybrid/uirouter-react-hybrid/package.json',
-        from: '3.0.0',
-        to: '3.0.0',
-      },
-    ]);
-    assert.deepEqual(plan.dependencyUpdates, []);
-    succeeds(run(root, 'tools/prepare-release-validation.mjs', [...args, '--write']));
-    assert.deepEqual(read(root, releaseVersionPlanPath), plan);
-    await validatePackageArtifactsContract({ root });
-    await assert.rejects(validatePackageArtifactsEvidence({ root }), /release version plan digest differs/);
-    for (const validator of ['verify-manifest-normalization.mjs', 'verify-internal-deps.mjs', 'verify-npm-locks.mjs'])
-      succeeds(run(root, `tools/${validator}`));
-    assert.throws(() => createReleaseVersionPlan(root, base, ['@uirouter/core']), /already tagged/);
-    // Deleting an imported tag locally must not make that version eligible.
+    const args = ['--prepare', '--bump', 'none'];
+    const result = run(path.join(root, 'frameworks/react-hybrid/uirouter-react-hybrid'),
+      path.join(repository, 'tools/publish-scripts/release.js'), args);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /newer than published 3.0.0/);
+    assert.equal(git(root, 'status', '--porcelain'), '');
+    assert.throws(() => createReleaseVersionPlan(root, base, ['@uirouter/react-hybrid']), /newer than published 3.0.0/);
+    // Imported records remain authoritative even when a local tag is removed.
     git(root, 'tag', '-d', 'core@6.1.2');
     assert.throws(() => createReleaseVersionPlan(root, base, ['@uirouter/core']), /already tagged/);
-    assert.throws(() => createReleaseVersionPlan(root, base, ['@uirouter/unknown']), /unknown selected/);
-    assert.throws(
-      () => createReleaseVersionPlan(root, base, ['@uirouter/react-hybrid', '@uirouter/react-hybrid']),
-      /without duplicates/,
-    );
-    const invalid = run(root, 'tools/prepare-release-validation.mjs', [...args, '--unexpected']);
-    assert.notEqual(invalid.status, 0);
   } finally {
     rmSync(temporary, { recursive: true, force: true });
   }

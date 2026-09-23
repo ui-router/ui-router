@@ -26,6 +26,26 @@ function semverApi() {
   const npmCli = realpathSync(execFileSync('which', ['npm'], { encoding: 'utf8' }).trim());
   return createRequire(path.join(path.dirname(npmCli), '..', 'package.json'))('semver');
 }
+// Post-import publications are read from the reviewed baseline commit, not
+// inferred from the presence of local Git tags or from mutable registry state.
+export function releasePublications(root) {
+  const baseline = JSON.parse(readFileSync(path.join(root, releaseVersionBaselinePath), 'utf8'));
+  shape(baseline, ['schemaVersion', 'sourceCommit', 'publicationEvidence'], 'version baseline');
+  if (baseline.schemaVersion !== 1 || !/^[a-f0-9]{40}$/.test(baseline.sourceCommit) ||
+      !Array.isArray(baseline.publicationEvidence) || new Set(baseline.publicationEvidence).size !== baseline.publicationEvidence.length)
+    fail('invalid publication baseline');
+  return baseline.publicationEvidence.map((file) => {
+    if (typeof file !== 'string' || !file.startsWith('migration/evidence/') || file.split('/').includes('..'))
+      fail('invalid publication evidence path');
+    const accepted = execFileSync('git', ['-C', root, 'show', `${baseline.sourceCommit}:${file}`]);
+    equal(hash(readFileSync(path.join(root, file))), hash(accepted), `${file} publication evidence`);
+    const { npm } = JSON.parse(accepted);
+    if (!npm || typeof npm.package !== 'string' || typeof npm.version !== 'string')
+      fail(`${file} lacks publication identity`);
+    return { name: npm.package, version: npm.version };
+  });
+}
+
 function inputs(root, baseCommit) {
   if (!/^[a-f0-9]{40}$/.test(baseCommit)) fail('baseCommit must be a full immutable commit ID');
   const git = (...args) =>
@@ -41,8 +61,9 @@ function inputs(root, baseCommit) {
   const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
   const before = (file) => JSON.parse(git('show', `${baseCommit}:${file}`).toString('utf8'));
   const baselineBytes = readFileSync(path.join(root, releaseVersionBaselinePath));
+  equal(hash(baselineBytes), hash(git('show', `${baseCommit}:${releaseVersionBaselinePath}`)), 'version baseline historical binding');
   const baseline = JSON.parse(baselineBytes);
-  shape(baseline, ['schemaVersion', 'sourceCommit'], 'version baseline');
+  shape(baseline, ['schemaVersion', 'sourceCommit', 'publicationEvidence'], 'version baseline');
   if (baseline.schemaVersion !== 1 || !/^[a-f0-9]{40}$/.test(baseline.sourceCommit))
     fail('version baseline requires schemaVersion 1 and a full immutable sourceCommit');
   try {
@@ -96,14 +117,20 @@ function inputs(root, baseCommit) {
       );
     }
   }
-  return { read, before, bindings, classification, canonical, manifests, byName, git };
+  return { read, before, bindings, classification, canonical, manifests, byName, git, publications: releasePublications(root) };
 }
 
-function releaseEligibility({ read, canonical, git }, semver) {
+function releaseEligibility({ read, canonical, git, publications }, semver) {
   const sources = read(sourcesPath).sources;
   const tags = git('tag', '--list').toString('utf8').trim().split('\n');
   const mergedTags = new Set(git('tag', '--merged', 'HEAD', '--list').toString('utf8').trim().split('\n'));
   return (item, version) => {
+    const published = publications.filter((record) => record.name === item.record.finalName);
+    for (const record of published) {
+      if (!semver.valid(record.version)) fail('invalid published version');
+      if (!semver.gt(version, record.version))
+        fail(`${item.record.finalName}: release version ${version} must be newer than published ${record.version}`);
+    }
     const source = sources.find((source) => canonical(`${source.destinationPrefix}/package.json`) === item.file);
     if (!source?.tagNamespace || !Array.isArray(source.releaseTags))
       fail(`${item.file}: missing release history mapping`);
@@ -177,7 +204,7 @@ export function validateReleaseVersionPlan(root, plan) {
     equal(item.from, source.before.version, `${item.name} previous version`);
     if (semver.valid(item.to) !== item.to || semver.lt(item.to, item.from))
       fail(`${item.name} requires a valid, non-decreasing version`);
-    // An assigned unreleased version (for example React Hybrid 3.0.0) can be
+    // An assigned unreleased version can be
     // selected without dependency edits; it must still pass release eligibility.
     checkEligibility(source, item.to);
     packages.set(item.name, item);
@@ -245,6 +272,14 @@ export function validateReleaseVersionPlan(root, plan) {
     return current;
   });
   return { ...classification, edges: currentEdges };
+}
+
+export function validatedReleasePlan(root) {
+  const file = path.join(root, releaseVersionPlanPath);
+  if (!existsSync(file)) return null;
+  const plan = JSON.parse(readFileSync(file, 'utf8'));
+  validateReleaseVersionPlan(root, plan);
+  return plan;
 }
 
 export function currentReleaseClassification(root, classification) {

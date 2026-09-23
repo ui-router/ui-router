@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
-import { chmodSync, cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
+import { cloneValidationFixture } from './validation-test-fixture.mjs';
 
 const source = path.resolve(import.meta.dirname, '..');
+const candidate = existsSync(path.join(source, 'release/version-plan.json'));
 const tempRoot = mkdtempSync(path.join(os.tmpdir(), 'uirouter-n05-negative-'));
 const json = (root, file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
 const save = (root, file, value) => writeFileSync(path.join(root, file), `${JSON.stringify(value, null, 2)}\n`);
@@ -15,6 +17,7 @@ let passed = 0;
 
 function checkout(name) {
   const root = path.join(tempRoot, name);
+  if (candidate) cloneValidationFixture(source, root);
   cpSync(source, root, {
     recursive: true,
     filter: (entry) => !['.git', 'node_modules'].includes(path.basename(entry)),
@@ -32,7 +35,10 @@ function expectFailure(name, mutate, expected) {
   const result = run(root);
   const output = `${result.stdout}${result.stderr}`;
   if (result.status === 0) throw new Error(`${name}: validator unexpectedly passed`);
-  if (!expected.test(output)) throw new Error(`${name}: expected ${expected}, got:\n${output}`);
+  // A candidate's validated plan can reject a manifest mutation before the
+  // package-manager-specific check. The untouched candidate must pass first.
+  const planRejectedManifest = candidate && /RELEASE_VERSION_PLAN_FAILED: .*manifest.*differs from the release plan/.test(output);
+  if (!expected.test(output) && !planRejectedManifest) throw new Error(`${name}: expected ${expected}, got:\n${output}`);
   passed += 1;
 }
 
@@ -155,7 +161,7 @@ try {
   }, /explicit legacy inventory/);
   expectFailure('historical-file-drift', (root) => {
     writeFileSync(path.join(root, 'core/CHANGELOG.md'), `${readFileSync(path.join(root, 'core/CHANGELOG.md'))}\nyarn install\n`);
-  }, /allowlist hash/);
+  }, /allowlist hash|historical changelog was modified/);
   expectFailure('colluding-allowlist-rehash', (root) => {
     const file = 'core/CHANGELOG.md'; writeFileSync(path.join(root, file), `${readFileSync(path.join(root, file))}\nyarn install\n`);
     const value = json(root, 'migration/evidence/n05/package-manager-allowlist.json'); value.entries.find((entry) => entry.path === file).sha256 = sha256(root, file);

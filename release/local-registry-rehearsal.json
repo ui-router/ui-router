@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "scope": "manual disposable local-registry rehearsal; not production release approval or automated release-path acceptance",
+  "completedAt": "2026-09-23T06:24:16.282532+00:00",
+  "source": {
+    "mergedMain": "760513abef094c79840fb24d3cf6bb5dfc8ba70b",
+    "candidate": "6dee99d39",
+    "provenPackageRevision": "3847d6a48315ef791867b04e26b6fcb15ca9270c"
+  },
+  "runtime": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "registry": "verdaccio@6.10.4",
+    "registryIntegrity": "sha512-2XjsxiH/ZYWjefbVLY854mo+lz1M14mdhx/tI1278aVXN/D9dTflpw0T6w1oi6WChMLhRogTnz8blL36Ys/dhQ==",
+    "registryInstallLockSha256": "681ef4e8bf309ea5db7a3b2947c279c382a6ee1963729db2188708e17ed3818f",
+    "listener": "127.0.0.1:4873",
+    "uplinks": {},
+    "stoppedAfterRehearsal": true,
+    "authentication": "anonymous loopback only; real authentication not tested"
+  },
+  "publication": {
+    "registry": "http://127.0.0.1:4873/",
+    "upstreams": [],
+    "artifacts": [
+      {
+        "name": "angular-ui-router",
+        "version": "1.1.2",
+        "sha256": "aa93f5e8c83325e5e71ed305558eedbbfbd07b476b33602f02fa1efa1468910d",
+        "registryReadback": "byte-identical",
+        "tags": {
+          "latest": "1.1.2",
+          "rehearsal": "1.1.2"
+        }
+      },
+      {
+        "name": "@uirouter/react-hybrid",
+        "version": "3.0.1",
+        "sha256": "f20abb1be6af2e69960407d7113087261652416ff56f98442ec4b3b82b46526f",
+        "registryReadback": "byte-identical",
+        "tags": {
+          "latest": "3.0.1",
+          "rehearsal": "3.0.1"
+        }
+      },
+      {
+        "name": "@uirouter/angularjs",
+        "version": "1.1.2",
+        "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23",
+        "registryReadback": "byte-identical",
+        "tags": {
+          "latest": "1.1.2",
+          "rehearsal": "1.1.2"
+        }
+      },
+      {
+        "name": "@uirouter/core",
+        "version": "6.1.3",
+        "sha256": "dbbf71a3fe4a438b718e0e7ebaa9244534d3cd63f3d82b5feb1765af94b3b638",
+        "registryReadback": "byte-identical",
+        "tags": {
+          "rehearsal": "6.1.3",
+          "latest": "6.1.3"
+        }
+      },
+      {
+        "name": "@uirouter/react",
+        "version": "1.0.9",
+        "sha256": "c5ffa71c8517e58e27a6b8e7acc0d8cc60e544e3d1ebaffb565d0222d316b602",
+        "registryReadback": "byte-identical",
+        "tags": {
+          "latest": "1.0.9",
+          "rehearsal": "1.0.9"
+        }
+      }
+    ],
+    "recovery": [
+      "interrupted legacy upload: scoped bytes verified, missing legacy resumed",
+      "repeat publication rejected; existing bytes unchanged",
+      "resume byte comparison rejects changed input"
+    ],
+    "limitations": [
+      "Verdaccio synthesizes latest for the first version despite rehearsal tag; removing latest does not remove it from metadata. Withheld candidate promotion is tested separately."
+    ]
+  },
+  "legacyParity": {
+    "source": "uirouter-angularjs-1.1.2-sha256-889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23.tgz",
+    "legacy": "angular-ui-router-1.1.2.tgz",
+    "legacySha256": "aa93f5e8c83325e5e71ed305558eedbbfbd07b476b33602f02fa1efa1468910d",
+    "files": 122,
+    "onlySemanticDifference": "package.json name: @uirouter/angularjs -> angular-ui-router"
+  },
+  "externalSeed": [
+    {
+      "name": "angular",
+      "version": "1.8.3",
+      "sha256": "005824934b8145261b6ab131070ad7edaa50056cfacad5f86748fbcff9e26cdf",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "1.8.3",
+        "rehearsal": "1.8.3"
+      }
+    },
+    {
+      "name": "react",
+      "version": "19.2.8",
+      "sha256": "94c6b9e0785854d2e5d9628cec05c33ed017b6a9002af5e8778d4134e9ada611",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "19.2.8",
+        "rehearsal": "19.2.8"
+      }
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.8",
+      "sha256": "1ffc99af594271b41835004a9b6789a832eacc5d153169f3bfbd1f76f9547dbb",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "19.2.8",
+        "rehearsal": "19.2.8"
+      }
+    },
+    {
+      "name": "classnames",
+      "version": "2.5.1",
+      "sha256": "6c9e10fc21a14499b74bfe1e8e8dd7a6152da02fb575c3ffd3cd71f67390ebf1",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "2.5.1",
+        "rehearsal": "2.5.1"
+      }
+    },
+    {
+      "name": "prop-types",
+      "version": "15.8.1",
+      "sha256": "1c739eb05d8a462c286a4e9dd02f2ce5485c6fa3529244e9ff9b13a3671aa557",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "15.8.1",
+        "rehearsal": "15.8.1"
+      }
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "sha256": "ab26ce35ce4032f04b78cfc5bbb4cfe13358e9fe7a5433a8aa6315c3debc5095",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "0.27.0",
+        "rehearsal": "0.27.0"
+      }
+    },
+    {
+      "name": "loose-envify",
+      "version": "1.4.0",
+      "sha256": "1218830a93538a4f730d530138e945ea6a65b45e099ee7a9ea538a05141babdc",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "1.4.0",
+        "rehearsal": "1.4.0"
+      }
+    },
+    {
+      "name": "object-assign",
+      "version": "4.1.1",
+      "sha256": "782d726a263ba7b26cced612af97b80035516df4b0cd788524e7b2cebc4e29ed",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "4.1.1",
+        "rehearsal": "4.1.1"
+      }
+    },
+    {
+      "name": "react-is",
+      "version": "16.13.1",
+      "sha256": "0bdbb5d473ddc13e850987f3937666e261b6a3a8fcaffddd8195953ff0faee8f",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "16.13.1",
+        "rehearsal": "16.13.1"
+      }
+    },
+    {
+      "name": "js-tokens",
+      "version": "4.0.0",
+      "sha256": "d884c7a2d8adb5568c1272d92b4f9c62707f4226cf9e7b22e7b957c7361e3c53",
+      "registryReadback": "byte-identical",
+      "tags": {
+        "latest": "4.0.0",
+        "rehearsal": "4.0.0"
+      }
+    }
+  ],
+  "browserConsumers": [
+    {
+      "consumer": "scoped",
+      "package": "@uirouter/angularjs",
+      "result": "pass",
+      "checks": [
+        "route render",
+        "navigate away",
+        "navigate back",
+        "no uncaught browser errors",
+        "bundle inputs confined to registry consumer"
+      ]
+    },
+    {
+      "consumer": "legacy",
+      "package": "angular-ui-router",
+      "result": "pass",
+      "checks": [
+        "route render",
+        "navigate away",
+        "navigate back",
+        "no uncaught browser errors",
+        "bundle inputs confined to registry consumer"
+      ]
+    },
+    {
+      "consumer": "react",
+      "package": "@uirouter/react-hybrid",
+      "result": "pass",
+      "checks": [
+        "route render",
+        "navigate away",
+        "navigate back",
+        "no uncaught browser errors",
+        "bundle inputs confined to registry consumer"
+      ]
+    }
+  ],
+  "changedInputRefusal": {
+    "result": "pass",
+    "check": "actual readback guard rejects a different tarball for the already-published name/version; no upload attempted"
+  },
+  "promotion": [
+    {
+      "name": "angular-ui-router",
+      "version": "1.1.2",
+      "transitions": [
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2",
+            "candidate": "1.1.2"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "rm",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2",
+            "candidate": "1.1.2"
+          },
+          "artifactUnchanged": true
+        }
+      ]
+    },
+    {
+      "name": "@uirouter/react-hybrid",
+      "version": "3.0.1",
+      "transitions": [
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "3.0.1",
+            "rehearsal": "3.0.1",
+            "candidate": "3.0.1"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "rm",
+          "tags": {
+            "latest": "3.0.1",
+            "rehearsal": "3.0.1"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "3.0.1",
+            "rehearsal": "3.0.1",
+            "candidate": "3.0.1"
+          },
+          "artifactUnchanged": true
+        }
+      ]
+    },
+    {
+      "name": "@uirouter/angularjs",
+      "version": "1.1.2",
+      "transitions": [
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2",
+            "candidate": "1.1.2"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "rm",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.1.2",
+            "rehearsal": "1.1.2",
+            "candidate": "1.1.2"
+          },
+          "artifactUnchanged": true
+        }
+      ]
+    },
+    {
+      "name": "@uirouter/core",
+      "version": "6.1.3",
+      "transitions": [
+        {
+          "operation": "add",
+          "tags": {
+            "rehearsal": "6.1.3",
+            "latest": "6.1.3",
+            "candidate": "6.1.3"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "rm",
+          "tags": {
+            "rehearsal": "6.1.3",
+            "latest": "6.1.3"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "add",
+          "tags": {
+            "rehearsal": "6.1.3",
+            "latest": "6.1.3",
+            "candidate": "6.1.3"
+          },
+          "artifactUnchanged": true
+        }
+      ]
+    },
+    {
+      "name": "@uirouter/react",
+      "version": "1.0.9",
+      "transitions": [
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.0.9",
+            "rehearsal": "1.0.9",
+            "candidate": "1.0.9"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "rm",
+          "tags": {
+            "latest": "1.0.9",
+            "rehearsal": "1.0.9"
+          },
+          "artifactUnchanged": true
+        },
+        {
+          "operation": "add",
+          "tags": {
+            "latest": "1.0.9",
+            "rehearsal": "1.0.9",
+            "candidate": "1.0.9"
+          },
+          "artifactUnchanged": true
+        }
+      ]
+    }
+  ],
+  "consumerLocks": {
+    "scoped": {
+      "name": "registry-consumer-scoped",
+      "version": "1.0.0",
+      "lockfileVersion": 3,
+      "requires": true,
+      "packages": {
+        "": {
+          "name": "registry-consumer-scoped",
+          "version": "1.0.0",
+          "dependencies": {
+            "@uirouter/angularjs": "1.1.2",
+            "@uirouter/core": "6.1.3",
+            "angular": "1.8.3"
+          }
+        },
+        "node_modules/@uirouter/angularjs": {
+          "version": "1.1.2",
+          "resolved": "http://127.0.0.1:4873/@uirouter/angularjs/-/angularjs-1.1.2.tgz",
+          "integrity": "sha512-605nmZhJTKOuqIWfFV7DERRWI1B8jKEXRn6AjID1eFsCG2aTp1AAFzbd4u6ZibkNyX3DsRWe60Fpb5EPq0kAJw==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "peerDependencies": {
+            "@uirouter/core": "^6.1.2",
+            "angular": ">=1.2.0"
+          }
+        },
+        "node_modules/@uirouter/core": {
+          "version": "6.1.3",
+          "resolved": "http://127.0.0.1:4873/@uirouter/core/-/core-6.1.3.tgz",
+          "integrity": "sha512-3pYptHqpG9Z/n8HmZw5GYSkv7svbwUjWyzC+4PLMfXuyblWlXlUFOqWDi+o6EIMycoXzRR7vOJff0CxiHep1/A==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          }
+        },
+        "node_modules/angular": {
+          "version": "1.8.3",
+          "resolved": "http://127.0.0.1:4873/angular/-/angular-1.8.3.tgz",
+          "integrity": "sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==",
+          "license": "MIT"
+        }
+      }
+    },
+    "legacy": {
+      "name": "registry-consumer-legacy",
+      "version": "1.0.0",
+      "lockfileVersion": 3,
+      "requires": true,
+      "packages": {
+        "": {
+          "name": "registry-consumer-legacy",
+          "version": "1.0.0",
+          "dependencies": {
+            "@uirouter/core": "6.1.3",
+            "angular": "1.8.3",
+            "angular-ui-router": "1.1.2"
+          }
+        },
+        "node_modules/@uirouter/core": {
+          "version": "6.1.3",
+          "resolved": "http://127.0.0.1:4873/@uirouter/core/-/core-6.1.3.tgz",
+          "integrity": "sha512-3pYptHqpG9Z/n8HmZw5GYSkv7svbwUjWyzC+4PLMfXuyblWlXlUFOqWDi+o6EIMycoXzRR7vOJff0CxiHep1/A==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          }
+        },
+        "node_modules/angular": {
+          "version": "1.8.3",
+          "resolved": "http://127.0.0.1:4873/angular/-/angular-1.8.3.tgz",
+          "integrity": "sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==",
+          "license": "MIT"
+        },
+        "node_modules/angular-ui-router": {
+          "version": "1.1.2",
+          "resolved": "http://127.0.0.1:4873/angular-ui-router/-/angular-ui-router-1.1.2.tgz",
+          "integrity": "sha512-83zG8t+NaEnUrXt4wXJYRYKLyz0e6yI9cU6wJtzlH0fFgpS2wQJNUCkEADbA7U07lsZVuj7pxTiw3EfoQAaeHQ==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "peerDependencies": {
+            "@uirouter/core": "^6.1.2",
+            "angular": ">=1.2.0"
+          }
+        }
+      }
+    },
+    "react": {
+      "name": "registry-consumer-react",
+      "version": "1.0.0",
+      "lockfileVersion": 3,
+      "requires": true,
+      "packages": {
+        "": {
+          "name": "registry-consumer-react",
+          "version": "1.0.0",
+          "dependencies": {
+            "@uirouter/core": "6.1.3",
+            "@uirouter/react-hybrid": "3.0.1",
+            "angular": "1.8.3",
+            "react": "19.2.8",
+            "react-dom": "19.2.8"
+          }
+        },
+        "node_modules/@uirouter/angularjs": {
+          "version": "1.1.2",
+          "resolved": "http://127.0.0.1:4873/@uirouter/angularjs/-/angularjs-1.1.2.tgz",
+          "integrity": "sha512-605nmZhJTKOuqIWfFV7DERRWI1B8jKEXRn6AjID1eFsCG2aTp1AAFzbd4u6ZibkNyX3DsRWe60Fpb5EPq0kAJw==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          },
+          "peerDependencies": {
+            "@uirouter/core": "^6.1.2",
+            "angular": ">=1.2.0"
+          }
+        },
+        "node_modules/@uirouter/core": {
+          "version": "6.1.3",
+          "resolved": "http://127.0.0.1:4873/@uirouter/core/-/core-6.1.3.tgz",
+          "integrity": "sha512-3pYptHqpG9Z/n8HmZw5GYSkv7svbwUjWyzC+4PLMfXuyblWlXlUFOqWDi+o6EIMycoXzRR7vOJff0CxiHep1/A==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=4.0.0"
+          }
+        },
+        "node_modules/@uirouter/react": {
+          "version": "1.0.9",
+          "resolved": "http://127.0.0.1:4873/@uirouter/react/-/react-1.0.9.tgz",
+          "integrity": "sha512-ADp57D0trIAWEy6EKMe5mMV+OVi5ajvXu4vaY7Msfj2pcJV/z4qXM9pM9oSoAFCUab1BwU7cPHjHgxt9x4g32A==",
+          "license": "MIT",
+          "dependencies": {
+            "@uirouter/core": "6.1.3",
+            "classnames": "^2.5.1",
+            "prop-types": "^15.8.1"
+          },
+          "peerDependencies": {
+            "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+          }
+        },
+        "node_modules/@uirouter/react-hybrid": {
+          "version": "3.0.1",
+          "resolved": "http://127.0.0.1:4873/@uirouter/react-hybrid/-/react-hybrid-3.0.1.tgz",
+          "integrity": "sha512-xIPm9iBZvisQEm6PCXgoXvF3NkjghFxRsqsxbOiTZttm3VV/tF8aGNeGGAT/ef8BnMY5VhmMFYKz2YTSSMAnsA==",
+          "license": "MIT",
+          "dependencies": {
+            "@uirouter/angularjs": "1.1.2",
+            "@uirouter/core": "6.1.3",
+            "@uirouter/react": "1.0.9"
+          },
+          "peerDependencies": {
+            "angular": "^1.5.0",
+            "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+          }
+        },
+        "node_modules/angular": {
+          "version": "1.8.3",
+          "resolved": "http://127.0.0.1:4873/angular/-/angular-1.8.3.tgz",
+          "integrity": "sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==",
+          "license": "MIT"
+        },
+        "node_modules/classnames": {
+          "version": "2.5.1",
+          "resolved": "http://127.0.0.1:4873/classnames/-/classnames-2.5.1.tgz",
+          "integrity": "sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==",
+          "license": "MIT"
+        },
+        "node_modules/js-tokens": {
+          "version": "4.0.0",
+          "resolved": "http://127.0.0.1:4873/js-tokens/-/js-tokens-4.0.0.tgz",
+          "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
+          "license": "MIT"
+        },
+        "node_modules/loose-envify": {
+          "version": "1.4.0",
+          "resolved": "http://127.0.0.1:4873/loose-envify/-/loose-envify-1.4.0.tgz",
+          "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
+          "license": "MIT",
+          "dependencies": {
+            "js-tokens": "^3.0.0 || ^4.0.0"
+          },
+          "bin": {
+            "loose-envify": "cli.js"
+          }
+        },
+        "node_modules/object-assign": {
+          "version": "4.1.1",
+          "resolved": "http://127.0.0.1:4873/object-assign/-/object-assign-4.1.1.tgz",
+          "integrity": "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=0.10.0"
+          }
+        },
+        "node_modules/prop-types": {
+          "version": "15.8.1",
+          "resolved": "http://127.0.0.1:4873/prop-types/-/prop-types-15.8.1.tgz",
+          "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
+          "license": "MIT",
+          "dependencies": {
+            "loose-envify": "^1.4.0",
+            "object-assign": "^4.1.1",
+            "react-is": "^16.13.1"
+          }
+        },
+        "node_modules/react": {
+          "version": "19.2.8",
+          "resolved": "http://127.0.0.1:4873/react/-/react-19.2.8.tgz",
+          "integrity": "sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==",
+          "license": "MIT",
+          "engines": {
+            "node": ">=0.10.0"
+          }
+        },
+        "node_modules/react-dom": {
+          "version": "19.2.8",
+          "resolved": "http://127.0.0.1:4873/react-dom/-/react-dom-19.2.8.tgz",
+          "integrity": "sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==",
+          "license": "MIT",
+          "dependencies": {
+            "scheduler": "^0.27.0"
+          },
+          "peerDependencies": {
+            "react": "^19.2.8"
+          }
+        },
+        "node_modules/react-is": {
+          "version": "16.13.1",
+          "resolved": "http://127.0.0.1:4873/react-is/-/react-is-16.13.1.tgz",
+          "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
+          "license": "MIT"
+        },
+        "node_modules/scheduler": {
+          "version": "0.27.0",
+          "resolved": "http://127.0.0.1:4873/scheduler/-/scheduler-0.27.0.tgz",
+          "integrity": "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==",
+          "license": "MIT"
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Verdaccio synthesizes latest even after removal; withholding latest promotion was not proven. Custom candidate tag add/remove/restore passed.",
+    "Manual local registry exercise; normal release-command integration, npm authentication/2FA, provenance, corrective releases, and production approval remain outstanding."
+  ],
+  "diagnosticsDirectory": "/tmp/ui-router-registry-lab"
+}

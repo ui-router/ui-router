@@ -644,5 +644,170 @@
     "Verdaccio synthesizes latest even after removal; withholding latest promotion was not proven. Custom candidate tag add/remove/restore passed.",
     "Manual local registry exercise; normal release-command integration, npm authentication/2FA, provenance, corrective releases, and production approval remain outstanding."
   ],
-  "diagnosticsDirectory": "/tmp/ui-router-registry-lab"
+  "diagnosticsDirectory": "/tmp/ui-router-registry-lab",
+  "releaseCommandRehearsal": {
+    "sourceCommit": "da4a0ba03c52a1dc8e58b30ce20098746e4a4476",
+    "note": "Exercises the new command with accepted main-branch artifacts, not proposed production versions.",
+    "preview": {
+      "mode": "read-only-artifact-rehearsal",
+      "registry": "http://127.0.0.1:4874/",
+      "tag": "rehearsal",
+      "packages": [
+        {
+          "name": "@uirouter/core",
+          "version": "6.1.2",
+          "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18"
+        },
+        {
+          "name": "@uirouter/angularjs",
+          "version": "1.1.2",
+          "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23"
+        },
+        {
+          "name": "@uirouter/react",
+          "version": "1.0.8",
+          "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692"
+        },
+        {
+          "name": "@uirouter/react-hybrid",
+          "version": "3.0.0",
+          "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8"
+        },
+        {
+          "name": "angular-ui-router",
+          "version": "1.1.2",
+          "derivedFrom": "@uirouter/angularjs"
+        }
+      ]
+    },
+    "publication": {
+      "mode": "local-artifact-rehearsal",
+      "registry": "http://127.0.0.1:4874/",
+      "tag": "rehearsal",
+      "packages": [
+        {
+          "name": "@uirouter/core",
+          "version": "6.1.2",
+          "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18"
+        },
+        {
+          "name": "@uirouter/angularjs",
+          "version": "1.1.2",
+          "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23"
+        },
+        {
+          "name": "@uirouter/react",
+          "version": "1.0.8",
+          "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692"
+        },
+        {
+          "name": "@uirouter/react-hybrid",
+          "version": "3.0.0",
+          "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8"
+        },
+        {
+          "name": "angular-ui-router",
+          "version": "1.1.2",
+          "derivedFrom": "@uirouter/angularjs"
+        }
+      ],
+      "results": [
+        {
+          "name": "@uirouter/core",
+          "version": "6.1.2",
+          "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18",
+          "action": "published-and-verified"
+        },
+        {
+          "name": "@uirouter/angularjs",
+          "version": "1.1.2",
+          "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23",
+          "action": "published-and-verified"
+        },
+        {
+          "name": "@uirouter/react",
+          "version": "1.0.8",
+          "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692",
+          "action": "published-and-verified"
+        },
+        {
+          "name": "@uirouter/react-hybrid",
+          "version": "3.0.0",
+          "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8",
+          "action": "published-and-verified"
+        },
+        {
+          "name": "angular-ui-router",
+          "version": "1.1.2",
+          "sha256": "aa93f5e8c83325e5e71ed305558eedbbfbd07b476b33602f02fa1efa1468910d",
+          "action": "published-and-verified"
+        }
+      ]
+    },
+    "retry": {
+      "mode": "local-artifact-rehearsal",
+      "registry": "http://127.0.0.1:4874/",
+      "tag": "rehearsal",
+      "packages": [
+        {
+          "name": "@uirouter/core",
+          "version": "6.1.2",
+          "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18"
+        },
+        {
+          "name": "@uirouter/angularjs",
+          "version": "1.1.2",
+          "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23"
+        },
+        {
+          "name": "@uirouter/react",
+          "version": "1.0.8",
+          "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692"
+        },
+        {
+          "name": "@uirouter/react-hybrid",
+          "version": "3.0.0",
+          "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8"
+        },
+        {
+          "name": "angular-ui-router",
+          "version": "1.1.2",
+          "derivedFrom": "@uirouter/angularjs"
+        }
+      ],
+      "results": [
+        {
+          "name": "@uirouter/core",
+          "version": "6.1.2",
+          "sha256": "7ba79b989e0f659f134e6cf0327f13cbe3d8f434d36cb73bba26ca93552efc18",
+          "action": "verified-existing"
+        },
+        {
+          "name": "@uirouter/angularjs",
+          "version": "1.1.2",
+          "sha256": "889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23",
+          "action": "verified-existing"
+        },
+        {
+          "name": "@uirouter/react",
+          "version": "1.0.8",
+          "sha256": "3acfda3b8a88a460ffb47f2ef85f32e59fa55726ced3141c9e7c610accd00692",
+          "action": "verified-existing"
+        },
+        {
+          "name": "@uirouter/react-hybrid",
+          "version": "3.0.0",
+          "sha256": "f6be42b3924cae821fcb36b506c9d3d6445d15d58491b0a9611a92ecfc4995e8",
+          "action": "verified-existing"
+        },
+        {
+          "name": "angular-ui-router",
+          "version": "1.1.2",
+          "sha256": "aa93f5e8c83325e5e71ed305558eedbbfbd07b476b33602f02fa1efa1468910d",
+          "action": "verified-existing"
+        }
+      ]
+    },
+    "registryStopped": true
+  }
 }

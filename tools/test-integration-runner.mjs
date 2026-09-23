@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
+import assert from "node:assert/strict";
 import {
   copyFileSync,
   linkSync,
@@ -16,10 +17,45 @@ import path from "node:path";
 import {
   assertExternalSandbox,
   assertNoLinksOrSharedFiles,
+  integrationEvidenceScopePaths,
   repository,
 } from "./integration-matrix-lib.mjs";
 
 const cases = [];
+const history = mkdtempSync(path.join(os.tmpdir(), "uirouter-i02-scope-"));
+try {
+  const git = (...args) => execFileSync("git", [
+    "-c", "user.name=Integration test", "-c", "user.email=test@example.invalid",
+    "-c", "commit.gpgsign=false", ...args,
+  ], { cwd: history, encoding: "utf8" }).trim();
+  git("init", "--quiet");
+  writeFileSync(path.join(history, "source.js"), "original\n");
+  git("add", ".");
+  git("commit", "--quiet", "-m", "original proof");
+  const oldProof = git("rev-parse", "HEAD");
+  writeFileSync(path.join(history, "source.js"), "reviewed change\n");
+  git("add", ".");
+  git("commit", "--quiet", "-m", "reviewed checkpoint");
+  const reviewed = git("rev-parse", "HEAD");
+  assert.deepEqual(integrationEvidenceScopePaths(history, oldProof, reviewed), ["source.js"]);
+  cases.push("older-proof-retains-reviewed-ownership-check");
+  assert.deepEqual(integrationEvidenceScopePaths(history, reviewed, reviewed), []);
+  cases.push("checkpoint-proof-has-no-unproved-changes");
+  writeFileSync(path.join(history, "CHANGELOG.md"), "prepared release\n");
+  git("add", ".");
+  git("commit", "--quiet", "-m", "fresh candidate proof");
+  const freshProof = git("rev-parse", "HEAD");
+  assert.deepEqual(integrationEvidenceScopePaths(history, freshProof, reviewed), []);
+  cases.push("fresh-candidate-does-not-diff-backwards");
+  git("checkout", "--quiet", "--detach", oldProof);
+  writeFileSync(path.join(history, "branch.txt"), "other proof branch\n");
+  git("add", ".");
+  git("commit", "--quiet", "-m", "divergent proof");
+  assert.deepEqual(integrationEvidenceScopePaths(history, git("rev-parse", "HEAD"), reviewed), ["source.js"]);
+  cases.push("divergent-proof-retains-reviewed-branch-changes");
+} finally {
+  rmSync(history, { recursive: true, force: true });
+}
 function rejects(name, operation) {
   try {
     operation();

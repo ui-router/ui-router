@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import {
   existsSync,
   lstatSync,
@@ -16,6 +17,19 @@ export const matrixSchemaPath =
   "migration/schemas/integration-matrix.schema.json";
 export const runLockSchemaPath =
   "migration/schemas/integration-run-lock.schema.json";
+
+// Only changes after the proof and through the reviewed checkpoint need the
+// historical ownership exception. A newer proof already covers its own inputs;
+// diffing backwards would incorrectly treat those inputs as unproved changes.
+export function integrationEvidenceScopePaths(root, proofCommit, reviewedCommit) {
+  const git = (...args) => execFileSync(
+    "git", ["-c", `safe.directory=${root}`, ...args],
+    { cwd: root, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
+  ).trim();
+  const base = git("merge-base", proofCommit, reviewedCommit);
+  return git("diff", "--name-only", `${base}..${reviewedCommit}`)
+    .split("\n").filter(Boolean);
+}
 
 export function fail(message) {
   throw new Error(`INTEGRATION_MATRIX_VERIFY_FAILED: ${message}`);

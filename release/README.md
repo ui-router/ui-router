@@ -63,3 +63,82 @@ Next, regenerate the package and isolated-consumer proofs and rehearse the
 registry sequence, including both `@uirouter/angularjs` and `angular-ui-router`.
 Merging, registry publishing, tags/releases, and repository transitions still
 require the maintainer's separate approval.
+
+
+## Local registry rehearsal prepared after PR #41
+
+PR #41 merged at `760513abef094c79840fb24d3cf6bb5dfc8ba70b`.
+The completed disposable candidate is retained on local branch
+`codex/post-merge-candidate-proof` at `6dee99d39`. Package inputs were proven
+at `3847d6a48315ef791867b04e26b6fcb15ca9270c`; all thirteen isolated consumers,
+including nine browser projects, passed. This is not a production selection.
+
+The next bounded execution is a disposable Verdaccio 6.10.4 registry on
+`http://127.0.0.1:4873/`, with `uplinks: {}` and no package proxy rules.
+[Verdaccio configuration](https://www.verdaccio.org/docs/configuration/)
+documents the listener, storage, and uplink settings. Keep its installation,
+lockfile, storage, npm configuration, and credentials outside the repository.
+The prepared local directory is `/tmp/ui-router-registry-lab`; its exact registry
+installation is recorded in `package-lock.json`. These temporary files are
+conveniences, not durable dependencies of the repository.
+
+Prepared publication inputs, in dependency order:
+
+| Name | Rehearsal version | SHA-256 |
+| --- | --- | --- |
+| `@uirouter/core` | 6.1.3 | `dbbf71a3fe4a438b718e0e7ebaa9244534d3cd63f3d82b5feb1765af94b3b638` |
+| `@uirouter/react` | 1.0.9 | `c5ffa71c8517e58e27a6b8e7acc0d8cc60e544e3d1ebaffb565d0222d316b602` |
+| `@uirouter/react-hybrid` | 3.0.1 | `f20abb1be6af2e69960407d7113087261652416ff56f98442ec4b3b82b46526f` |
+| `@uirouter/angularjs` | 1.1.2 | `889f8455798145c70edc6c899e3e33c3d100b7af5f59eed10aafbcb6a8050b23` |
+| `angular-ui-router` | 1.1.2 | `aa93f5e8c83325e5e71ed305558eedbbfbd07b476b33602f02fa1efa1468910d` |
+
+The AngularJS pair exercises the existing accepted 1.1.2 artifact only in the
+empty test registry; it does not propose republishing that version to npm.
+Create the alternate-name tarball by extracting the accepted scoped artifact
+into a disposable directory, changing only `package.json.name`, and running
+`npm pack --ignore-scripts`. Assert identical member inventories, byte-identical
+non-manifest files, and manifest semantic equality after restoring the name.
+The prepared pair passed this comparison for all 122 files. Do not invoke the
+legacy script: it edits the source manifest, assumes `master`, and publishes
+without an explicit registry argument.
+
+### Execution after maintainer approval
+
+1. Recheck the registry listener, disabled uplinks, empty package storage, and
+   every input digest. Run npm from the disposable directory with an isolated
+   user config, global config `/dev/null`, empty dedicated cache, and an explicit
+   loopback registry. Remove inherited npm/auth environment configuration.
+   Reject tarballs with a non-loopback `publishConfig.registry`. Use disposable
+   local credentials only. Lifecycle scripts and provenance are disabled.
+2. Publish each exact tarball under the `rehearsal` dist-tag. Download each
+   registry tarball and compare its bytes and integrity with the approved input;
+   verify its name, version, dependency metadata, and tag. Reject any returned
+   tarball URL outside the local registry before downloading it.
+3. Pause after the scoped AngularJS upload to simulate partial completion.
+   Confirm the legacy name is absent and no package has a `latest` tag. Resume
+   by verifying the scoped artifact and uploading only the missing legacy name.
+   Refuse to skip an existing version if its downloaded bytes differ. Confirm a
+   repeat publication cannot replace an existing version.
+4. Seed the exact external dependency closure from the proven consumer lock
+   into the test registry, recording original integrities and read-only source
+   downloads. Keep upstream forwarding disabled. Install the published packages
+   into fresh consumer directories with empty caches. Exercise both AngularJS
+   names separately with the same Angular/browser smoke checks and Core version;
+   check the React dependency chain too. Do not weaken peer ranges or use
+   `--legacy-peer-deps` to get an install to pass.
+5. Only after readback and consumers pass, rehearse promotion to a local
+   `candidate` tag. Simulate a stop by removing that tag, retain immutable
+   versions, then restore it after verification. Do not depend on unpublishing.
+   Record partial-failure state, resume decisions, commands, tarball digests,
+   registry metadata, consumer outcomes, and tag transitions.
+6. Stop the registry after recording results. Preserve diagnostics and lockfiles.
+   This proves registry mechanics; integration into the normal local release
+   command, real npm login/2FA, production provenance, and R01 production gates
+   remain later work. No Git release tags, GitHub releases, or production writes
+   are part of this rehearsal.
+
+Preparation includes a registry health check, artifact parity checks, and five
+`npm publish --dry-run --ignore-scripts --tag rehearsal` previews directed to
+loopback. It does not upload packages or change registry tags. The maintainer's
+standing instruction requires separate approval for the actual uploads and tag
+changes, including this local rehearsal.

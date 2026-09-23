@@ -224,7 +224,11 @@ function preparationFixture() {
   write(dir, "historical/fix.txt", "fix");
   git(dir, "add", ".");
   git(dir, "commit", "-m", "fix: historical package fix");
-  write(dir, "release/version-baseline.json", { schemaVersion: 1, sourceCommit: git(dir, "rev-parse", "HEAD"), publicationEvidence: [] });
+  write(dir, "release/version-baseline.json", {
+    schemaVersion: 1,
+    sourceCommit: git(dir, "rev-parse", "HEAD"),
+    publicationEvidence: [],
+  });
   const manifests = {
     demo: {
       name: "@uirouter/demo",
@@ -592,5 +596,112 @@ test("dependent releases retain a version already assigned to an unpublished rel
     assert.match(notes, /@uirouter\/demo: 1.2.3 → 1.2.4/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("artifact rehearsal restricts registry destinations and orders internal dependencies", async () => {
+  const { localRegistry, orderedArtifacts } = await import(
+    "./publish-scripts/publish_artifacts.js"
+  ).then((m) => m.default);
+  for (const url of [
+    "https://registry.npmjs.org/",
+    "http://localhost:4873/",
+    "http://127.0.0.1:4873/path",
+    "http://user@127.0.0.1:4873/",
+    "http://127.0.0.1:4873/?x=1",
+  ])
+    assert.throws(() => localRegistry(url), /Rehearsal requires/);
+  assert.equal(
+    localRegistry("http://127.0.0.1:4873/"),
+    "http://127.0.0.1:4873/"
+  );
+  const items = [
+    {
+      package: "app",
+      manifest: {
+        dependencies: { adapter: "1" },
+        peerDependencies: { core: "1" },
+      },
+    },
+    { package: "adapter", manifest: { dependencies: { core: "1" } } },
+    { package: "core", manifest: {} },
+  ];
+  assert.deepEqual(
+    orderedArtifacts(items, "app").map((x) => x.package),
+    ["core", "adapter", "app"]
+  );
+  assert.throws(() => orderedArtifacts(items, "missing"), /absent/);
+  items[2].manifest.dependencies = { app: "1" };
+  assert.throws(() => orderedArtifacts(items, "app"), /cycle/);
+});
+
+test("artifact readback verifies retry bytes and rejects redirects and nonlocal downloads", async () => {
+  const { createServer } = await import("node:http");
+  const { readback } = await import(
+    "./publish-scripts/publish_artifacts.js"
+  ).then((m) => m.default);
+  const bytes = Buffer.from("packed fixture");
+  let mode = "ok",
+    origin;
+  const server = createServer((req, res) => {
+    if (mode === "missing") {
+      res.writeHead(404).end();
+      return;
+    }
+    if (mode === "redirect") {
+      res.writeHead(302, { location: "https://registry.npmjs.org/" }).end();
+      return;
+    }
+    if (req.url === "/archive") {
+      res.end(mode === "bytes" ? "different" : bytes);
+      return;
+    }
+    res.setHeader("content-type", "application/json");
+    res.end(
+      JSON.stringify({
+        versions: {
+          "1.0.0": {
+            name: mode === "identity" ? "other" : "test",
+            version: "1.0.0",
+            dist: {
+              integrity:
+                mode === "integrity"
+                  ? "wrong"
+                  : "sha512-" +
+                    createHash("sha512").update(bytes).digest("base64"),
+              tarball:
+                mode === "remote"
+                  ? "https://registry.npmjs.org/test.tgz"
+                  : origin + "archive",
+            },
+          },
+        },
+      })
+    );
+  });
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  origin = `http://127.0.0.1:${server.address().port}/`;
+  const item = {
+    package: "test",
+    version: "1.0.0",
+    manifest: { name: "test", version: "1.0.0" },
+    sha256: createHash("sha256").update(bytes).digest("hex"),
+  };
+  try {
+    assert.equal(await readback(origin, item), true);
+    mode = "missing";
+    assert.equal(await readback(origin, item), false);
+    for (const [value, expected] of [
+      ["bytes", /bytes differ/],
+      ["integrity", /integrity differs/],
+      ["identity", /metadata differs/],
+      ["remote", /loopback registry/],
+      ["redirect", /fetch failed/],
+    ]) {
+      mode = value;
+      await assert.rejects(readback(origin, item), expected);
+    }
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
   }
 });

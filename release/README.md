@@ -173,3 +173,34 @@ and use explicit registry/dependency ordering, resumable readback, and the teste
 AngularJS name conversion. Resolve the promotion limitation before completing
 P04. Real npm authentication/2FA, provenance and corrective-release behavior
 remain untested. This manual rehearsal is not a complete automated publish path.
+
+## Rehearse through the existing release command
+
+From a clean committed checkout with fresh package proof and staged artifacts:
+
+```sh
+npm run release --workspace=@uirouter/react-hybrid -- --rehearse \
+  --artifacts .ci-artifacts/release-rehearsal \
+  --registry http://127.0.0.1:4873/ --legacy-angularjs --dry-run
+```
+
+Remove `--dry-run` after reviewing the package list to upload to the explicitly
+selected local registry. The command includes staged internal dependencies and
+peers in dependency order. `--legacy-angularjs` also creates and verifies the
+alternate AngularJS tarball. All inputs must match the current committed package
+proof and staging manifest; stale or dirty inputs stop before publication.
+
+The dry run reads local evidence only. Execution copies the verified inputs to
+a temporary directory, isolates npm configuration/cache, disables lifecycle
+scripts and provenance, and publishes under `rehearsal`. It accepts only an HTTP
+registry at the literal address `127.0.0.1` with an explicit port. Registry
+redirects and tarball downloads to another origin are rejected. This mode uses
+disposable local-registry access, not maintainer credentials.
+
+On retry, identical existing versions are verified and skipped; different bytes
+or metadata stop the operation. A failure may leave earlier packages published:
+rerun the same command after resolving it. Progress is written to stderr and a
+successful result is JSON on stdout. No tag promotion, version preparation,
+Git commits/tags/pushes, or production publication is performed. External
+consumer dependencies must be separately seeded into an offline test registry.
+The manual rehearsal's Verdaccio `latest` limitation still applies.

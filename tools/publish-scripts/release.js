@@ -18,6 +18,12 @@ const yargs = require('yargs')
     description: 'Print a read-only release preview; do not prepare or publish a release.',
     boolean: true,
   })
+  .option('rehearse', {
+    description: 'Upload verified staged artifacts to an explicit loopback registry',
+    boolean: true,
+  })
+  .option('artifacts', { description: 'Directory produced by stage-ci-package-artifacts.mjs', type: 'string' })
+  .option('registry', { description: 'Explicit http://127.0.0.1:<port>/ rehearsal registry', type: 'string' })
   .option('prepare', {
     description: 'Prepare versions, changelogs, and the root lock locally; combine with --dry-run to preview',
     boolean: true,
@@ -46,6 +52,12 @@ const yargs = require('yargs')
     if (Object.prototype.hasOwnProperty.call(argv, 'bower')) {
       throw new Error('Bower publishing is retired. Use the npm release path.');
     }
+    if (argv.rehearse && (argv.prepare || argv.bump !== 'none' || argv['manual-publish']))
+      throw new Error('Artifact rehearsal cannot prepare, bump, or use manual publishing.');
+    if (argv.rehearse && (!argv.artifacts || !argv.registry))
+      throw new Error('Artifact rehearsal requires --artifacts and --registry.');
+    if (!argv.rehearse && (argv.artifacts || argv.registry))
+      throw new Error('--artifacts and --registry require --rehearse.');
     return true;
   });
 
@@ -62,7 +74,26 @@ const git = (...args) =>
 const artifactsPath = path.join(repositoryRoot, 'migration/package-artifacts.json');
 const isMonorepo = fs.existsSync(artifactsPath);
 
-if (yargs.argv.prepare) {
+if (yargs.argv.rehearse) {
+  if (!isMonorepo || packageJson.private) throw new Error('Select a public monorepo package for artifact rehearsal.');
+  require('./publish_artifacts')
+    .publishArtifacts({
+      root: repositoryRoot,
+      selected: packageJson.name,
+      directory: yargs.argv.artifacts,
+      registry: yargs.argv.registry,
+      dryRun: yargs.argv.dryrun,
+      legacyAngularjs: yargs.argv['legacy-angularjs'],
+    })
+    .then((result) => {
+      console.log(JSON.stringify(result, null, 2));
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error(`Artifact rehearsal failed: ${error.message}`);
+      process.exit(1);
+    });
+} else if (yargs.argv.prepare) {
   if (!isMonorepo) {
     console.error('Local preparation requires the UI-Router monorepo.');
     process.exit(1);
@@ -90,13 +121,13 @@ if (yargs.argv.prepare) {
   }
 }
 
-if (isMonorepo && !yargs.argv.prepare) {
+if (isMonorepo && !yargs.argv.prepare && !yargs.argv.rehearse) {
   console.error(
     'Live monorepo releases are not implemented yet. Use npm run release -- --dry-run for a read-only preview.'
   );
   process.exit(1);
 }
-if (!yargs.argv.prepare) legacyRelease();
+if (!yargs.argv.prepare && !yargs.argv.rehearse) legacyRelease();
 
 function releasePreview() {
   if (packageJson.private) throw new Error('Select a public package directory.');

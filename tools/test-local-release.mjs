@@ -146,7 +146,7 @@ test("preview uses imported paths, filters history, handles versions, and cannot
     }
     const blocked = run(cwd, []);
     assert.equal(blocked.status, 1);
-    assert.match(blocked.stderr, /Live monorepo releases are not implemented/);
+    assert.match(blocked.stderr, /Manual release requires a clean checkout/);
     assert.equal(run(cwd, ["--dry-run", "--bump", "invalid"]).status, 1);
     assert.equal(run(dir, ["--dry-run"]).status, 1);
     const retired = run(cwd, ["--dry-run", "--bower"]);
@@ -703,5 +703,154 @@ test("artifact readback verifies retry bytes and rejects redirects and nonlocal 
     }
   } finally {
     await new Promise((resolve) => server.close(resolve));
+  }
+});
+
+test("manual package release builds, commits, tags and publishes only the selected package", async (t) => {
+  const { manualRelease } = await import(
+    "./publish-scripts/prepare_release.js"
+  ).then((m) => m.default);
+  for (const scenario of [
+    "root",
+    "dist",
+    "build-failure",
+    "publish-failure",
+    "cancel",
+    "manual-publish",
+  ]) {
+    await t.test(scenario, async () => {
+      const dir = fixture();
+      try {
+        git(dir, "init", "--quiet", "--initial-branch=main");
+        git(dir, "config", "user.name", "Release test");
+        git(dir, "config", "user.email", "test@example.invalid");
+        const manifest = {
+          name: "@uirouter/demo",
+          version: "1.0.0",
+          scripts: { build: "test-build" },
+        };
+        write(dir, "packages/demo/package.json", manifest);
+        write(dir, "packages/demo/CHANGELOG.md", "# 1.0.0\nExisting notes\n");
+        write(dir, "packages/other/package.json", {
+          name: "@uirouter/other",
+          version: "2.0.0",
+        });
+        write(dir, "package-lock.json", {
+          lockfileVersion: 3,
+          packages: {
+            "packages/demo": { name: manifest.name, version: manifest.version },
+          },
+        });
+        git(dir, "add", ".");
+        git(
+          dir,
+          "-c",
+          "commit.gpgsign=false",
+          "commit",
+          "--quiet",
+          "-m",
+          "feat: initial"
+        );
+        git(dir, "tag", "demo@1.0.0");
+        const commands = [];
+        const publishDirectory =
+          scenario === "dist" ? "packages/demo/dist" : "packages/demo";
+        const preview = {
+          packageDirectory: "packages/demo",
+          publishDirectory,
+          branch: "main",
+          dirty: false,
+          tagAlreadyExists: false,
+          proposedVersion: "1.0.1",
+          proposedTag: "demo@1.0.1",
+          previousTag: "demo@1.0.0",
+          commits: [],
+        };
+        const operation = () =>
+          manualRelease(
+            dir,
+            preview,
+            {
+              confirm: () => scenario !== "cancel",
+              manualPublish: scenario === "manual-publish",
+            },
+            (command, args, cwd) => {
+              commands.push({ command, args, cwd });
+              if (command === "npm" && args[0] === "run") {
+                if (scenario === "build-failure")
+                  throw new Error("build failed");
+                if (scenario === "dist")
+                  write(dir, publishDirectory + "/package.json", {
+                    ...manifest,
+                    version: "1.0.1",
+                  });
+              }
+              if (
+                command === "npm" &&
+                args[0] === "publish" &&
+                scenario === "publish-failure"
+              )
+                throw new Error("publish failed");
+            }
+          );
+        if (scenario.endsWith("failure"))
+          await assert.rejects(operation(), /failed/);
+        else await operation();
+        assert.equal(
+          JSON.parse(readFileSync(path.join(dir, "packages/demo/package.json")))
+            .version,
+          "1.0.1"
+        );
+        assert.equal(
+          JSON.parse(readFileSync(path.join(dir, "package-lock.json")))
+            .packages["packages/demo"].version,
+          "1.0.1"
+        );
+        assert.equal(
+          JSON.parse(
+            readFileSync(path.join(dir, "packages/other/package.json"))
+          ).version,
+          "2.0.0"
+        );
+        assert.match(
+          readFileSync(path.join(dir, "packages/demo/CHANGELOG.md"), "utf8"),
+          /^# 1\.0\.1/
+        );
+        assert.match(
+          readFileSync(path.join(dir, "packages/demo/CHANGELOG.md"), "utf8"),
+          /Existing notes/
+        );
+        assert.deepEqual(commands[0], {
+          command: "npm",
+          args: ["run", "build"],
+          cwd: path.join(dir, "packages/demo"),
+        });
+        if (["build-failure", "cancel"].includes(scenario))
+          assert.equal(commands.length, 1);
+        else {
+          assert.deepEqual(
+            commands.slice(1).map((c) => c.args[0]),
+            scenario === "manual-publish"
+              ? ["add", "commit", "tag", "push", "push"]
+              : ["add", "commit", "tag", "push", "push", "publish"]
+          );
+          assert.deepEqual(commands[3].args, ["tag", "demo@1.0.1"]);
+          assert.deepEqual(commands[4].args, [
+            "push",
+            "origin",
+            "HEAD:refs/heads/main",
+          ]);
+          if (scenario !== "manual-publish")
+            assert.equal(commands.at(-1).cwd, path.join(dir, publishDirectory));
+        }
+        assert.equal(
+          git(dir, "tag", "--list", "demo@1.0.1"),
+          "",
+          "mocked execution must never create a real release tag"
+        );
+      } finally {
+        rmSync(dir, { recursive: true, force: true });
+      }
+    });
   }
 });

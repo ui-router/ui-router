@@ -10,7 +10,7 @@ npm run release -- --bump patch
 ```
 
 The script asks for the version bump, updates that package's `package.json`, its
-entry in the shared root lock, and its changelog, then runs its build script.
+changelog, and refreshes the shared root lock with npm, then runs its build script.
 After you review the changes and confirm, it commits those files, creates a
 namespaced tag such as `core@6.1.3`, pushes the current branch and tag to `origin`,
 and runs `npm publish` in the package's publish directory (`dist` for Angular
@@ -24,6 +24,8 @@ steps and prints the remaining npm commands instead of publishing.
 
 AngularJS's existing command also publishes `angular-ui-router`. Its alternate
 name is prepared in a temporary packed copy, leaving the source manifest alone.
+That tarball is published from the original project directory so project npm
+registry and authentication settings still apply.
 If a build fails, no commit/tag/push/publish follows. If a later step fails, the
 script exits unsuccessfully and retains local changes/tags for manual recovery;
 it never silently retries a publication or rewinds a pushed tag.

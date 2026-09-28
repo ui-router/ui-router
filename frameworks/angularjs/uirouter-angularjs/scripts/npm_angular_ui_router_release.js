@@ -23,7 +23,17 @@ try {
   if (manifest.name !== '@uirouter/angularjs') throw new Error('Expected the scoped AngularJS package.');
   manifest.name = 'angular-ui-router';
   fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
-  execFileSync('npm', ['publish', '--ignore-scripts'], { cwd: target, stdio: 'inherit' });
+  const legacy = JSON.parse(
+    execFileSync('npm', ['pack', target, '--ignore-scripts', '--json', '--pack-destination', temporary], {
+      cwd: directory,
+      encoding: 'utf8',
+    })
+  )[0];
+  // Keep the original npm project context (registry and authentication settings).
+  execFileSync('npm', ['publish', path.join(temporary, legacy.filename), '--ignore-scripts'], {
+    cwd: directory,
+    stdio: 'inherit',
+  });
   fs.rmSync(temporary, { recursive: true, force: true });
 } catch (error) {
   console.error(`Legacy publication failed. Packed files remain at ${temporary}; source manifests are unchanged.`);

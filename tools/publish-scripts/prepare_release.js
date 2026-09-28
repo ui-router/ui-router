@@ -386,6 +386,7 @@ async function manualRelease(
   );
   const publishDirectory = path.resolve(root, preview.publishDirectory);
   try {
+    execute('npm', ['install', '--package-lock-only', '--ignore-scripts', '--no-audit', '--no-fund'], root);
     if (manifest.scripts?.build) execute('npm', ['run', 'build'], directory);
     const built = JSON.parse(fs.readFileSync(path.join(publishDirectory, 'package.json')));
     if (built.name !== manifest.name || built.version !== manifest.version)

@@ -822,20 +822,31 @@ test("manual package release builds, commits, tags and publishes only the select
         );
         assert.deepEqual(commands[0], {
           command: "npm",
+          args: [
+            "install",
+            "--package-lock-only",
+            "--ignore-scripts",
+            "--no-audit",
+            "--no-fund",
+          ],
+          cwd: dir,
+        });
+        assert.deepEqual(commands[1], {
+          command: "npm",
           args: ["run", "build"],
           cwd: path.join(dir, "packages/demo"),
         });
         if (["build-failure", "cancel"].includes(scenario))
-          assert.equal(commands.length, 1);
+          assert.equal(commands.length, 2);
         else {
           assert.deepEqual(
-            commands.slice(1).map((c) => c.args[0]),
+            commands.slice(2).map((c) => c.args[0]),
             scenario === "manual-publish"
               ? ["add", "commit", "tag", "push", "push"]
               : ["add", "commit", "tag", "push", "push", "publish"]
           );
-          assert.deepEqual(commands[3].args, ["tag", "demo@1.0.1"]);
-          assert.deepEqual(commands[4].args, [
+          assert.deepEqual(commands[4].args, ["tag", "demo@1.0.1"]);
+          assert.deepEqual(commands[5].args, [
             "push",
             "origin",
             "HEAD:refs/heads/main",
@@ -852,5 +863,231 @@ test("manual package release builds, commits, tags and publishes only the select
         rmSync(dir, { recursive: true, force: true });
       }
     });
+  }
+});
+
+test("manual bump regenerates a shared lock that npm ci accepts with exact dependents", async () => {
+  const { spawn } = await import("node:child_process");
+  const { manualRelease } = await import(
+    "./publish-scripts/prepare_release.js"
+  ).then((m) => m.default);
+  const temporary = fixture(),
+    dir = path.join(temporary, "repo");
+  let server;
+  try {
+    write(temporary, "archive/package/package.json", {
+      name: "@uirouter/test-core",
+      version: "1.0.0",
+    });
+    const archive = path.join(temporary, "old.tgz");
+    execFileSync("tar", [
+      "-czf",
+      archive,
+      "-C",
+      path.join(temporary, "archive"),
+      "package",
+    ]);
+    const bytes = readFileSync(archive);
+    const metadata = {
+      name: "@uirouter/test-core",
+      "dist-tags": { latest: "1.0.0" },
+      versions: {
+        "1.0.0": {
+          name: "@uirouter/test-core",
+          version: "1.0.0",
+          dist: {
+            integrity:
+              "sha512-" + createHash("sha512").update(bytes).digest("base64"),
+          },
+        },
+      },
+    };
+    server = spawn(
+      process.execPath,
+      [
+        "-e",
+        `const http=require('http'),fs=require('fs'); const m=${JSON.stringify(
+          metadata
+        )}; const s=http.createServer((q,r)=>{if(q.url==='/old.tgz')return r.end(fs.readFileSync(${JSON.stringify(
+          archive
+        )}));m.versions['1.0.0'].dist.tarball='http://127.0.0.1:'+s.address().port+'/old.tgz';r.setHeader('content-type','application/json');r.end(JSON.stringify(m));});s.listen(0,'127.0.0.1',()=>console.log(s.address().port));`,
+      ],
+      { stdio: ["ignore", "pipe", "inherit"] }
+    );
+    const port = await new Promise((resolve, reject) => {
+      server.stdout.once("data", (data) => resolve(data.toString().trim()));
+      server.once("error", reject);
+    });
+    write(temporary, "user.npmrc", "");
+    const env = {
+      ...process.env,
+      npm_config_registry: `http://127.0.0.1:${port}/`,
+      npm_config_userconfig: path.join(temporary, "user.npmrc"),
+      npm_config_globalconfig: "/dev/null",
+      npm_config_cache: path.join(temporary, "cache"),
+    };
+    write(dir, "package.json", {
+      name: "lock-test",
+      private: true,
+      workspaces: ["packages/*"],
+    });
+    write(dir, "packages/core/package.json", {
+      name: "@uirouter/test-core",
+      version: "1.0.0",
+    });
+    write(dir, "packages/app/package.json", {
+      name: "app",
+      version: "1.0.0",
+      private: true,
+      dependencies: { "@uirouter/test-core": "1.0.0" },
+    });
+    const npm = (args) =>
+      execFileSync("npm", args, { cwd: dir, env, stdio: "pipe" });
+    npm([
+      "install",
+      "--package-lock-only",
+      "--ignore-scripts",
+      "--no-audit",
+      "--no-fund",
+    ]);
+    git(dir, "init", "--quiet", "--initial-branch=main");
+    git(dir, "config", "user.name", "Release test");
+    git(dir, "config", "user.email", "test@example.invalid");
+    git(dir, "add", ".");
+    git(
+      dir,
+      "-c",
+      "commit.gpgsign=false",
+      "commit",
+      "--quiet",
+      "-m",
+      "initial"
+    );
+    git(dir, "tag", "core@1.0.0");
+    await manualRelease(
+      dir,
+      {
+        packageDirectory: "packages/core",
+        publishDirectory: "packages/core",
+        branch: "main",
+        dirty: false,
+        proposedVersion: "1.0.1",
+        proposedTag: "core@1.0.1",
+        previousTag: "core@1.0.0",
+        commits: [],
+      },
+      { confirm: () => false },
+      (command, args) => {
+        assert.equal(command, "npm");
+        assert.equal(args[0], "install");
+        npm(args);
+      }
+    );
+    npm(["ci", "--dry-run", "--ignore-scripts", "--no-audit", "--no-fund"]);
+    const lock = JSON.parse(readFileSync(path.join(dir, "package-lock.json")));
+    assert.equal(lock.packages["packages/core"].version, "1.0.1");
+    assert.ok(
+      Object.entries(lock.packages).some(
+        ([key, value]) =>
+          key.includes("node_modules/@uirouter/test-core") &&
+          value.version === "1.0.0"
+      )
+    );
+    assert.equal(
+      JSON.parse(readFileSync(path.join(dir, "packages/app/package.json")))
+        .version,
+      "1.0.0"
+    );
+  } finally {
+    if (server) server.kill();
+    rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
+test("legacy AngularJS publish retains project npm registry and leaves the source name unchanged", async () => {
+  const { chmodSync } = await import("node:fs");
+  const { spawn } = await import("node:child_process");
+  const dir = fixture();
+  let server;
+  try {
+    server = spawn(
+      process.execPath,
+      [
+        "-e",
+        "const s=require('http').createServer((q,r)=>r.writeHead(404).end());s.listen(0,'127.0.0.1',()=>console.log(s.address().port));",
+      ],
+      { stdio: ["ignore", "pipe", "inherit"] }
+    );
+    const port = await new Promise((resolve, reject) => {
+      server.stdout.once("data", (d) => resolve(d.toString().trim()));
+      server.once("error", reject);
+    });
+    const registry = `http://127.0.0.1:${port}/`;
+    const source = path.join(dir, "source"),
+      bin = path.join(dir, "bin"),
+      log = path.join(dir, "publish.json");
+    write(source, "package.json", {
+      name: "@uirouter/angularjs",
+      version: "1.1.2",
+      files: ["index.js"],
+    });
+    write(source, "index.js", "module.exports = 1;");
+    write(dir, "package.json", { private: true, workspaces: ["source"] });
+    write(dir, ".npmrc", `registry=${registry}\n`);
+    write(
+      source,
+      "scripts/npm_angular_ui_router_release.js",
+      readFileSync(
+        path.join(
+          root,
+          "frameworks/angularjs/uirouter-angularjs/scripts/npm_angular_ui_router_release.js"
+        ),
+        "utf8"
+      )
+    );
+    const original = readFileSync(path.join(source, "package.json"), "utf8");
+    const realNpm = path.join(path.dirname(process.execPath), "npm");
+    write(
+      bin,
+      "npm",
+      `#!${process.execPath}
+const fs=require('fs'),cp=require('child_process');
+const args=process.argv.slice(2),npm=${JSON.stringify(realNpm)};
+if(args[0]==='publish') {
+  const result=cp.spawnSync(npm,[...args,'--dry-run','--json'],{encoding:'utf8'});
+  if(result.status!==0) throw new Error(result.stderr);
+  const registry=result.stderr.match(/Publishing to (\\S+)/)[1];
+  fs.writeFileSync(${JSON.stringify(
+    log
+  )},JSON.stringify({cwd:process.cwd(),registry,manifest:JSON.parse(cp.execFileSync('tar',['-xOf',args[1],'package/package.json'],{encoding:'utf8'}))}));
+} else process.stdout.write(cp.execFileSync(npm,args,{encoding:'utf8'}));`
+    );
+    chmodSync(path.join(bin, "npm"), 0o755);
+    write(dir, "user.npmrc", "");
+    execFileSync(
+      process.execPath,
+      [path.join(source, "scripts/npm_angular_ui_router_release.js")],
+      {
+        cwd: source,
+        env: {
+          ...process.env,
+          PATH: bin + path.delimiter + process.env.PATH,
+          npm_config_userconfig: path.join(dir, "user.npmrc"),
+          npm_config_globalconfig: "/dev/null",
+        },
+        stdio: "pipe",
+      }
+    );
+    const result = JSON.parse(readFileSync(log));
+    assert.equal(result.registry, registry);
+    assert.equal(result.cwd, source);
+    assert.equal(result.manifest.name, "angular-ui-router");
+    assert.equal(
+      readFileSync(path.join(source, "package.json"), "utf8"),
+      original
+    );
+  } finally {
+    if (server) server.kill();
+    rmSync(dir, { recursive: true, force: true });
   }
 });

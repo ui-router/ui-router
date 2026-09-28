@@ -14,7 +14,7 @@
   ],
   "versionGroups": [
     {
-      "label": "Playwright fixture ranges stay frozen with the I01 migration record",
+      "label": "Isolated Playwright fixtures manage their own compatible ranges",
       "dependencies": ["@playwright/test"],
       "dependencyTypes": ["dev"],
       "isIgnored": true

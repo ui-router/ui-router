@@ -12,7 +12,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: `npx serve ${distPath} -l 4000 -s`,
+    command: `serve ${distPath} -l 4000 -s`,
     url: 'http://localhost:4000',
     reuseExistingServer: !process.env.CI,
   },

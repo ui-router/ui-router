@@ -5,10 +5,8 @@ import {
   mkdirSync,
   readFileSync,
   readlinkSync,
-  renameSync,
   rmSync,
   symlinkSync,
-  writeFileSync,
 } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -18,6 +16,8 @@ const repository = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   ".."
 );
+// npm may deduplicate this Angular tool into the sample app. The sticky-states
+// example needs the same locked tool at its own lookup path for browser setup.
 const sourceRelative =
   "frameworks/angular/examples/sample-app/node_modules/@angular/build";
 const destinationRelative =
@@ -25,10 +25,6 @@ const destinationRelative =
 const source = path.join(repository, sourceRelative);
 const destination = path.join(repository, destinationRelative);
 const relativeTarget = path.relative(path.dirname(destination), source);
-const output = path.join(
-  repository,
-  ".ci-results/browser/workspace-tool-link.json"
-);
 function fail(message) {
   throw new Error(`CI_WORKSPACE_BROWSER_PREPARE_FAILED: ${message}`);
 }
@@ -45,7 +41,6 @@ const destinationLock = lock.packages[destinationRelative];
 if (
   !sourceLock ||
   !destinationLock ||
-  sourceLock.version !== "22.1.5" ||
   destinationLock.version !== sourceLock.version ||
   destinationLock.integrity !== sourceLock.integrity
 )
@@ -83,22 +78,4 @@ try {
 }
 mkdirSync(path.dirname(destination), { recursive: true });
 symlinkSync(relativeTarget, destination, "dir");
-const evidence = {
-  schemaVersion: 1,
-  status: "prepared",
-  links: [
-    {
-      package: "@angular/build",
-      version: sourceLock.version,
-      integrity: sourceLock.integrity,
-      source: sourceRelative,
-      destination: destinationRelative,
-      relativeTarget,
-    },
-  ],
-};
-mkdirSync(path.dirname(output), { recursive: true });
-const temporary = `${output}.tmp-${process.pid}`;
-writeFileSync(temporary, `${JSON.stringify(evidence, null, 2)}\n`);
-renameSync(temporary, output);
 console.log("CI_WORKSPACE_BROWSER_PREPARE_OK links=1");

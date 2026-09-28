@@ -50,10 +50,11 @@ function preparationPlan(root, preview, semver) {
     const current = workspaces.get(name).before.version;
     const source = sources.find((item) => item.name === records.get(name).id);
     if (!source) throw new Error(`Missing release history mapping for ${name}`);
-    const released = publications.some((record) => record.name === name && record.version === current) ||
+    const released =
+      publications.some((record) => record.name === name && record.version === current) ||
       [...allTags, ...source.releaseTags.map((record) => record.targetName)].some(
-      (tag) => tag.startsWith(source.tagNamespace) && semver.valid(tag.slice(source.tagNamespace.length)) === current
-    );
+        (tag) => tag.startsWith(source.tagNamespace) && semver.valid(tag.slice(source.tagNamespace.length)) === current
+      );
     return released ? semver.inc(current, 'patch') : current;
   }
   const versions = new Map([[preview.package, preview.proposedVersion]]);
@@ -123,9 +124,13 @@ function preparationPlan(root, preview, semver) {
         throw new Error(`${name}: choose a version newer than published ${publication.version}.`);
     }
     const tag = `${source.tagNamespace}${version}`;
-    if ([...allTags, ...source.releaseTags.map((record) => record.targetName)].some(
-      (known) => known.startsWith(source.tagNamespace) && semver.valid(known.slice(source.tagNamespace.length)) === version
-    )) throw new Error(`Release tag already exists: ${tag}; choose a new version.`);
+    if (
+      [...allTags, ...source.releaseTags.map((record) => record.targetName)].some(
+        (known) =>
+          known.startsWith(source.tagNamespace) && semver.valid(known.slice(source.tagNamespace.length)) === version
+      )
+    )
+      throw new Error(`Release tag already exists: ${tag}; choose a new version.`);
     const tags = git('tag', '--merged', 'HEAD', '--list', `${source.tagNamespace}*`)
       .split('\n')
       .map((value) => ({ tag: value, version: semver.valid(value.slice(source.tagNamespace.length)) }))
@@ -339,4 +344,86 @@ async function prepareRelease(preparation, dryRun) {
   return plan;
 }
 
-module.exports = { preparationPlan, prepareRelease };
+// The normal maintainer workflow releases one package. Reuse changelog writing,
+// but do not invoke candidate planning, proof generation, or dependent releases.
+async function manualRelease(
+  root,
+  preview,
+  options,
+  execute = (command, args, cwd) => execFileSync(command, args, { cwd, stdio: 'inherit' })
+) {
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  if (!preview.branch || preview.dirty) throw new Error('Manual release requires a clean checkout on a branch.');
+  if (preview.tagAlreadyExists) throw new Error(`Release tag already exists: ${preview.proposedTag}`);
+  const directory = path.join(root, preview.packageDirectory);
+  const manifestPath = path.posix.join(preview.packageDirectory, 'package.json');
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, manifestPath)));
+  const lock = JSON.parse(fs.readFileSync(path.join(root, 'package-lock.json')));
+  const locked = lock.packages?.[preview.packageDirectory];
+  if (lock.lockfileVersion !== 3 || locked?.version !== manifest.version || locked?.name !== manifest.name)
+    throw new Error('Selected workspace has a stale root lock entry.');
+  if (options.legacyAngularjs && manifest.name !== '@uirouter/angularjs')
+    throw new Error('The legacy npm name applies only to the AngularJS package.');
+  manifest.version = locked.version = preview.proposedVersion;
+  const item = {
+    name: manifest.name,
+    version: manifest.version,
+    tag: preview.proposedTag,
+    tagPrefix: preview.proposedTag.slice(0, -manifest.version.length),
+    previousTag: preview.previousTag,
+    manifest: manifestPath,
+    changelog: path.posix.join(preview.packageDirectory, 'CHANGELOG.md'),
+    commits: preview.commits.map((line) => line.split(' ')[0]),
+    dependencyNotes: [],
+  };
+  const files = new Map([
+    [manifestPath, json(manifest)],
+    ['package-lock.json', json(lock)],
+  ]);
+  await prepareRelease(
+    { root, git, files, plan: { sourceCommit: git('rev-parse', 'HEAD'), packages: [item], dependencyUpdates: [] } },
+    false
+  );
+  const publishDirectory = path.resolve(root, preview.publishDirectory);
+  try {
+    execute('npm', ['install', '--package-lock-only', '--ignore-scripts', '--no-audit', '--no-fund'], root);
+    if (manifest.scripts?.build) execute('npm', ['run', 'build'], directory);
+    const built = JSON.parse(fs.readFileSync(path.join(publishDirectory, 'package.json')));
+    if (built.name !== manifest.name || built.version !== manifest.version)
+      throw new Error('Publish directory name/version differs from the selected release.');
+    const changed = git('diff', '--name-only').split('\n').filter(Boolean);
+    if (changed.some((file) => !files.has(file)))
+      throw new Error('Build changed unrelated tracked files; review before committing.');
+    console.log(`Review ${item.changelog} and the version changes before continuing.`);
+    if (!options.confirm(`Commit and push ${item.tag} on ${preview.branch}, then publish ${manifest.name}?`))
+      return { mode: 'prepared-only', package: manifest.name, version: manifest.version };
+    execute('git', ['add', '--', ...files.keys()], root);
+    execute('git', ['commit', '-m', `Release ${item.tag}`], root);
+    execute('git', ['tag', item.tag], root);
+    execute('git', ['push', 'origin', `HEAD:refs/heads/${preview.branch}`], root);
+    execute('git', ['push', 'origin', `refs/tags/${item.tag}`], root);
+    if (options.manualPublish) {
+      console.log(`Publish manually from ${publishDirectory}: npm publish`);
+      if (options.legacyAngularjs)
+        console.log(`Then run: node ${path.join(directory, 'scripts/npm_angular_ui_router_release.js')}`);
+    } else {
+      execute('npm', ['publish'], publishDirectory);
+      if (options.legacyAngularjs)
+        execute(process.execPath, [path.join(directory, 'scripts/npm_angular_ui_router_release.js')], directory);
+    }
+    return {
+      mode: 'manual-release',
+      package: manifest.name,
+      version: manifest.version,
+      tag: item.tag,
+      publishDirectory,
+    };
+  } catch (error) {
+    console.error(
+      `Release stopped. Local changes/tags are retained for recovery. Inspect git status and remote tags before retrying. If Git steps completed, retry npm publish from ${publishDirectory}.`
+    );
+    throw error;
+  }
+}
+
+module.exports = { preparationPlan, prepareRelease, manualRelease };

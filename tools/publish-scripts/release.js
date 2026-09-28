@@ -29,7 +29,7 @@ const yargs = require('yargs')
     boolean: true,
   })
   .option('bump', {
-    description: 'Version bump for the preview or local preparation',
+    description: 'Version bump for a package release, preview, or local preparation',
     choices: ['patch', 'minor', 'major', 'none'],
     default: 'none',
   })
@@ -121,13 +121,38 @@ if (yargs.argv.rehearse) {
   }
 }
 
-if (isMonorepo && !yargs.argv.prepare && !yargs.argv.rehearse) {
-  console.error(
-    'Live monorepo releases are not implemented yet. Use npm run release -- --dry-run for a read-only preview.'
-  );
-  process.exit(1);
+if (!yargs.argv.prepare && !yargs.argv.rehearse) {
+  if (isMonorepo) {
+    Promise.resolve()
+      .then(() => {
+        if (git('status', '--porcelain')) throw new Error('Manual release requires a clean checkout on a branch.');
+        const preview = releasePreview();
+        if (!process.argv.some((argument) => argument === '--bump' || argument.startsWith('--bump='))) {
+          const bumps = ['patch', 'minor', 'major', 'none'];
+          const choice = readlineSync.keyInSelect(bumps, `Release ${packageJson.name} (${packageJson.version}): bump?`);
+          if (choice < 0) return { mode: 'cancelled' };
+          preview.proposedVersion =
+            bumps[choice] === 'none' ? packageJson.version : semver.inc(packageJson.version, bumps[choice]);
+          const prefix = preview.proposedTag.slice(0, -preview.currentVersion.length);
+          preview.proposedTag = prefix + preview.proposedVersion;
+          preview.tagAlreadyExists = Boolean(git('tag', '--list', preview.proposedTag));
+        }
+        return require('./prepare_release').manualRelease(repositoryRoot, preview, {
+          confirm: (question) => readlineSync.keyInYNStrict(question),
+          manualPublish: yargs.argv['manual-publish'],
+          legacyAngularjs: yargs.argv['legacy-angularjs'],
+        });
+      })
+      .then((result) => {
+        console.log(JSON.stringify(result, null, 2));
+        process.exit(0);
+      })
+      .catch((error) => {
+        console.error(`Release failed: ${error.message}`);
+        process.exit(1);
+      });
+  } else legacyRelease();
 }
-if (!yargs.argv.prepare && !yargs.argv.rehearse) legacyRelease();
 
 function releasePreview() {
   if (packageJson.private) throw new Error('Select a public package directory.');

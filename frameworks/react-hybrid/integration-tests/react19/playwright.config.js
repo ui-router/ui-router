@@ -12,7 +12,7 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npx serve -s -p 4000 build',
+    command: 'serve -s -p 4000 build',
     url: 'http://localhost:4000',
     reuseExistingServer: !process.env.CI,
   },

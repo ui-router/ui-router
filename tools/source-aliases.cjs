@@ -5,7 +5,7 @@ const path = require('node:path');
 const ts = require('typescript');
 
 const repositoryRoot = path.resolve(__dirname, '..');
-const contract = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'migration/source-aliases.json'), 'utf8'));
+const contract = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'tools/source-aliases.json'), 'utf8'));
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

@@ -18,16 +18,6 @@ const yargs = require('yargs')
     description: 'Print a read-only release preview; do not prepare or publish a release.',
     boolean: true,
   })
-  .option('rehearse', {
-    description: 'Upload verified staged artifacts to an explicit loopback registry',
-    boolean: true,
-  })
-  .option('artifacts', { description: 'Directory produced by stage-ci-package-artifacts.mjs', type: 'string' })
-  .option('registry', { description: 'Explicit http://127.0.0.1:<port>/ rehearsal registry', type: 'string' })
-  .option('prepare', {
-    description: 'Prepare versions, changelogs, and the root lock locally; combine with --dry-run to preview',
-    boolean: true,
-  })
   .option('bump', {
     description: 'Version bump for a package release, preview, or local preparation',
     choices: ['patch', 'minor', 'major', 'none'],
@@ -52,12 +42,8 @@ const yargs = require('yargs')
     if (Object.prototype.hasOwnProperty.call(argv, 'bower')) {
       throw new Error('Bower publishing is retired. Use the npm release path.');
     }
-    if (argv.rehearse && (argv.prepare || argv.bump !== 'none' || argv['manual-publish']))
-      throw new Error('Artifact rehearsal cannot prepare, bump, or use manual publishing.');
-    if (argv.rehearse && (!argv.artifacts || !argv.registry))
-      throw new Error('Artifact rehearsal requires --artifacts and --registry.');
-    if (!argv.rehearse && (argv.artifacts || argv.registry))
-      throw new Error('--artifacts and --registry require --rehearse.');
+    if (argv.prepare || argv.rehearse || argv.artifacts || argv.registry)
+      throw new Error('Candidate preparation and rehearsal have retired. Use release --dry-run or release --bump.');
     return true;
   });
 
@@ -71,47 +57,10 @@ const { execFileSync } = require('child_process');
 const repositoryRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
 const git = (...args) =>
   execFileSync('git', args, { cwd: repositoryRoot, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }).trim();
-const artifactsPath = path.join(repositoryRoot, 'migration/package-artifacts.json');
+const artifactsPath = path.join(repositoryRoot, 'tools/packages.json');
 const isMonorepo = fs.existsSync(artifactsPath);
 
-if (yargs.argv.rehearse) {
-  if (!isMonorepo || packageJson.private) throw new Error('Select a public monorepo package for artifact rehearsal.');
-  require('./publish_artifacts')
-    .publishArtifacts({
-      root: repositoryRoot,
-      selected: packageJson.name,
-      directory: yargs.argv.artifacts,
-      registry: yargs.argv.registry,
-      dryRun: yargs.argv.dryrun,
-      legacyAngularjs: yargs.argv['legacy-angularjs'],
-    })
-    .then((result) => {
-      console.log(JSON.stringify(result, null, 2));
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error(`Artifact rehearsal failed: ${error.message}`);
-      process.exit(1);
-    });
-} else if (yargs.argv.prepare) {
-  if (!isMonorepo) {
-    console.error('Local preparation requires the UI-Router monorepo.');
-    process.exit(1);
-  }
-  Promise.resolve()
-    .then(() => {
-      const { preparationPlan, prepareRelease } = require('./prepare_release');
-      return prepareRelease(preparationPlan(repositoryRoot, releasePreview(), semver), yargs.argv.dryrun);
-    })
-    .then((plan) => {
-      console.log(JSON.stringify(plan, null, 2));
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error(`Release preparation failed: ${error.message}`);
-      process.exit(1);
-    });
-} else if (yargs.argv.dryrun) {
+if (yargs.argv.dryrun) {
   try {
     console.log(JSON.stringify(releasePreview(), null, 2));
     process.exit(0);
@@ -121,7 +70,7 @@ if (yargs.argv.rehearse) {
   }
 }
 
-if (!yargs.argv.prepare && !yargs.argv.rehearse) {
+{
   if (isMonorepo) {
     Promise.resolve()
       .then(() => {
@@ -162,11 +111,7 @@ function releasePreview() {
   if (isMonorepo && (!record || record.package !== packageJson.name)) {
     throw new Error('The current package is not in the release package inventory.');
   }
-  const sources = isMonorepo
-    ? JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'migration/sources.json'))).sources
-    : [];
-  const source = record && sources.find((item) => item.name === record.id);
-  if (isMonorepo && !source) throw new Error('Missing imported history mapping.');
+  const source = record && { tagNamespace: record.tagNamespace, destinationPrefix: record.historicalDirectory };
   const namespace = source ? source.tagNamespace : '';
   const tags = git('tag', '--merged', 'HEAD', '--list', `${namespace}*`)
     .split('\n')
@@ -177,12 +122,10 @@ function releasePreview() {
   let previousManifest = null;
   let previousVersion = null;
   if (previous) {
-    const historical = source && source.releaseTags.some((item) => item.targetName === previous.tag);
-    previousManifest = historical
-      ? `${source.destinationPrefix}/package.json`
-      : packageDirectory
-      ? `${packageDirectory}/package.json`
-      : 'package.json';
+    const currentPath = packageDirectory ? `${packageDirectory}/package.json` : 'package.json';
+    // Imported tags use the original layout; newer tags use the current package directory.
+    const currentExists = require('child_process').spawnSync('git', ['cat-file', '-e', `refs/tags/${previous.tag}:${currentPath}`], { cwd: repositoryRoot }).status === 0;
+    previousManifest = currentExists || !source ? currentPath : `${source.destinationPrefix}/package.json`;
     const manifest = JSON.parse(git('show', `refs/tags/${previous.tag}:${previousManifest}`));
     previousVersion = manifest.version;
   }
@@ -223,7 +166,7 @@ function releasePreview() {
       : null,
     remaining: [
       'version/changelog/shared-lock preparation',
-      'package and consumer rehearsal',
+      'build and review',
       'authenticated publication and registry readback',
     ],
   };

@@ -1,0 +1,143 @@
+[
+  {
+    "id": "core/integration/typescript-3.9",
+    "manifest": "core/integration-tests/typescript-3.9/package.json",
+    "browser": false,
+    "script": "test",
+    "packages": {
+      "@uirouter/core": "dependencies"
+    }
+  },
+  {
+    "id": "core/integration/typescript-5.4",
+    "manifest": "core/integration-tests/typescript-5.4/package.json",
+    "browser": false,
+    "script": "test",
+    "packages": {
+      "@uirouter/core": "dependencies"
+    }
+  },
+  {
+    "id": "framework/angular/integration/angular-versions/v22",
+    "manifest": "frameworks/angular/integration-tests/angular-versions/v22/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/angular": "dependencies",
+      "@uirouter/core": "dependencies",
+      "@uirouter/rx": "dependencies"
+    }
+  },
+  {
+    "id": "framework/angular/integration/angular-versions/v22-standalone",
+    "manifest": "frameworks/angular/integration-tests/angular-versions/v22-standalone/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/angular": "dependencies",
+      "@uirouter/core": "dependencies",
+      "@uirouter/rx": "dependencies"
+    }
+  },
+  {
+    "id": "framework/angular/integration/angular-versions/v22-zoneless",
+    "manifest": "frameworks/angular/integration-tests/angular-versions/v22-zoneless/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/angular": "dependencies",
+      "@uirouter/core": "dependencies",
+      "@uirouter/rx": "dependencies"
+    }
+  },
+  {
+    "id": "framework/angular/integration/typescript-versions/typescript6",
+    "manifest": "frameworks/angular/integration-tests/typescript-versions/typescript6/package.json",
+    "browser": false,
+    "script": "test",
+    "packages": {
+      "@uirouter/angular": "dependencies",
+      "@uirouter/core": "devDependencies",
+      "@uirouter/rx": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/angularjs/integration/typescript-versions/3.9",
+    "manifest": "frameworks/angularjs/integration-tests/typescript-versions/3.9/package.json",
+    "browser": false,
+    "script": "test",
+    "packages": {
+      "@uirouter/angularjs": "dependencies",
+      "@uirouter/core": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react-hybrid/integration/react17",
+    "manifest": "frameworks/react-hybrid/integration-tests/react17/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react-hybrid": "dependencies",
+      "@uirouter/visualizer": "dependencies",
+      "@uirouter/angularjs": "devDependencies",
+      "@uirouter/core": "devDependencies",
+      "@uirouter/react": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react-hybrid/integration/react18",
+    "manifest": "frameworks/react-hybrid/integration-tests/react18/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react-hybrid": "dependencies",
+      "@uirouter/visualizer": "dependencies",
+      "@uirouter/angularjs": "devDependencies",
+      "@uirouter/core": "devDependencies",
+      "@uirouter/react": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react-hybrid/integration/react19",
+    "manifest": "frameworks/react-hybrid/integration-tests/react19/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react-hybrid": "dependencies",
+      "@uirouter/visualizer": "dependencies",
+      "@uirouter/angularjs": "devDependencies",
+      "@uirouter/core": "devDependencies",
+      "@uirouter/react": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react/integration/react17",
+    "manifest": "frameworks/react/integration-tests/react17/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react": "dependencies",
+      "@uirouter/core": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react/integration/react18",
+    "manifest": "frameworks/react/integration-tests/react18/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react": "dependencies",
+      "@uirouter/core": "devDependencies"
+    }
+  },
+  {
+    "id": "framework/react/integration/react19",
+    "manifest": "frameworks/react/integration-tests/react19/package.json",
+    "browser": true,
+    "script": "test",
+    "packages": {
+      "@uirouter/react": "dependencies",
+      "@uirouter/core": "devDependencies"
+    }
+  }
+]

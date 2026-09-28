@@ -20,7 +20,6 @@ import {
   normalizeSourceMapReferences,
   packageRecordForCwd,
   repository,
-  sha256,
   validatePackedFileList,
   validateSourceMapReferences,
 } from "./package-artifacts-lib.mjs";
@@ -74,7 +73,7 @@ function textual(filename) {
 }
 
 async function normalizeSourceMaps(packageRecord, packageRoot, packRoot) {
-  const roots = packageRecord.pack.root
+  const roots = packageRecord.pack.directory !== "."
     ? [packRoot]
     : (packageRecord.build?.cleanPaths || []).map((entry) =>
         path.join(packageRoot, entry)
@@ -110,7 +109,7 @@ async function normalizeSourceMaps(packageRecord, packageRoot, packRoot) {
 async function inspectContent(contract, packageRecord, extractedPackage) {
   const sourceEntrypoints = JSON.parse(
     await readFile(
-      path.join(repository, "migration/source-aliases.json"),
+      path.join(repository, "tools/source-aliases.json"),
       "utf8"
     )
   ).edges.map((edge) => edge.sourceEntrypoint);
@@ -127,7 +126,7 @@ async function inspectContent(contract, packageRecord, extractedPackage) {
         repository,
         repository.replaceAll(path.sep, "/"),
         "tools/source-aliases.cjs",
-        "migration/source-aliases.json",
+        "tools/source-aliases.json",
       ]) {
         if (text.includes(forbidden))
           fail(
@@ -157,7 +156,6 @@ async function inspectContent(contract, packageRecord, extractedPackage) {
       path: filename,
       mode: metadata.mode & 0o777,
       size: contents.length,
-      sha256: sha256(contents),
     });
   }
   fileRecords.sort((left, right) => left.path.localeCompare(right.path));
@@ -239,7 +237,7 @@ try {
   }
   await normalizeSourceMaps(packageRecord, packageRoot, packRoot);
 
-  temporary = await mkdtemp(path.join(os.tmpdir(), "uirouter-p01-pack-"));
+  temporary = await mkdtemp(path.join(os.tmpdir(), "uirouter-pack-"));
   const packArgs = [...contract.artifactPolicy.npmPackArgv.slice(1), temporary];
   const environment = { ...process.env, ...contract.normalizedEnvironment };
   const packed = run(contract.artifactPolicy.npmPackArgv[0], packArgs, {
@@ -260,12 +258,9 @@ try {
   const filenames = result.files.map((file) => file.path).sort();
   validatePackedFileList(contract, packageRecord, filenames);
   const temporaryTarball = path.join(temporary, result.filename);
-  const tarballContents = await readFile(temporaryTarball);
-  const digest = sha256(tarballContents);
   const stem = artifactStem(
     packageRecord.package,
-    packageRecord.version,
-    digest
+    packageRecord.version
   );
   const artifactDirectory = path.join(
     packageRoot,
@@ -299,26 +294,7 @@ try {
   );
   assertNpmFileParity(result.files, fileRecords, packageRecord.id);
 
-  const metadata = {
-    schemaVersion: 1,
-    artifactId: packageRecord.id,
-    package: packageRecord.package,
-    version: packageRecord.version,
-    filename: artifactFilename,
-    sha256: digest,
-    shasum: result.shasum,
-    integrity: result.integrity,
-    size: tarballContents.length,
-    unpackedSize: result.unpackedSize,
-    files: fileRecords,
-  };
-  await writeFile(
-    path.join(artifactDirectory, `${stem}.json`),
-    `${JSON.stringify(metadata, null, 2)}\n`
-  );
-  console.log(
-    `P01_PACK_OK package=${packageRecord.package} files=${fileRecords.length} sha256=${digest}`
-  );
+  console.log(`Packed ${packageRecord.package}: ${artifactPath} (${fileRecords.length} files)`);
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exitCode = 1;

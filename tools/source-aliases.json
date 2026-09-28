@@ -1,0 +1,194 @@
+{
+  "edges": [
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "frameworks/angular/uirouter-angular/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/rx",
+      "export": ".",
+      "consumer": "frameworks/angular/uirouter-angular/package.json",
+      "sourceEntrypoint": "plugins/rx/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "plugins/rx/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/router",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "sourceEntrypoint": "core/src/router.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateRegistry",
+      "consumer": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "sourceEntrypoint": "core/src/state/stateRegistry.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "plugins/dsr/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/state/interface",
+      "consumer": "plugins/dsr/package.json",
+      "sourceEntrypoint": "core/src/state/interface.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateObject",
+      "consumer": "plugins/dsr/package.json",
+      "sourceEntrypoint": "core/src/state/stateObject.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/vanilla",
+      "consumer": "plugins/dsr/package.json",
+      "sourceEntrypoint": "core/src/vanilla.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "frameworks/react/uirouter-react/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "plugins/redux/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/react",
+      "export": ".",
+      "consumer": "plugins/redux/package.json",
+      "sourceEntrypoint": "frameworks/react/uirouter-react/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "frameworks/react/uirouter-react/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/globals",
+      "consumer": "plugins/rx/package.json",
+      "sourceEntrypoint": "core/src/globals.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "plugins/rx/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": ".",
+      "consumer": "plugins/sticky-states/package.json",
+      "sourceEntrypoint": "core/src/index.ts",
+      "precedence": 100,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/state/interface",
+      "consumer": "plugins/sticky-states/package.json",
+      "sourceEntrypoint": "core/src/state/interface.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/state/stateObject",
+      "consumer": "plugins/sticky-states/package.json",
+      "sourceEntrypoint": "core/src/state/stateObject.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/transition/interface",
+      "consumer": "plugins/sticky-states/package.json",
+      "sourceEntrypoint": "core/src/transition/interface.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    },
+    {
+      "package": "@uirouter/core",
+      "export": "./lib/transition/transitionService",
+      "consumer": "plugins/sticky-states/package.json",
+      "sourceEntrypoint": "core/src/transition/transitionService.ts",
+      "precedence": 10,
+      "watchRoots": [
+        "core/src"
+      ]
+    }
+  ]
+}

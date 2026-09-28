@@ -238,7 +238,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**",
         "$TURBO_ROOT$/plugins/rx/src/**"
@@ -252,7 +252,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**",
         "$TURBO_ROOT$/plugins/rx/src/**"
@@ -264,7 +264,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -277,7 +277,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -288,7 +288,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -298,7 +298,7 @@
       "cache": false,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs"
       ],
       "outputs": [],
@@ -310,7 +310,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs"
       ],
       "outputs": [],
@@ -320,7 +320,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -333,7 +333,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -344,7 +344,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -357,7 +357,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -368,7 +368,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**",
         "$TURBO_ROOT$/frameworks/react/uirouter-react/src/**"
@@ -382,7 +382,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**",
         "$TURBO_ROOT$/frameworks/react/uirouter-react/src/**"
@@ -394,7 +394,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -407,7 +407,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -418,7 +418,7 @@
       "cache": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],
@@ -431,7 +431,7 @@
       "interruptible": true,
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/migration/source-aliases.json",
+        "$TURBO_ROOT$/tools/source-aliases.json",
         "$TURBO_ROOT$/tools/source-aliases.cjs",
         "$TURBO_ROOT$/core/src/**"
       ],

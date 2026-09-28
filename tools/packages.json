@@ -1,0 +1,812 @@
+{
+  "packages": [
+    {
+      "id": "core",
+      "manifest": "core/package.json",
+      "package": "@uirouter/core",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-core.js",
+          "_bundles/ui-router-core.min.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "core-require",
+          "mode": "require",
+          "specifier": "@uirouter/core",
+          "target": "lib/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "core-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/core",
+          "target": "lib-esm/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "core-types",
+          "mode": "types",
+          "specifier": "@uirouter/core",
+          "target": "lib/index.d.ts",
+          "export": "UIRouter"
+        }
+      ],
+      "tagNamespace": "core@",
+      "historicalDirectory": "core"
+    },
+    {
+      "id": "angular",
+      "manifest": "frameworks/angular/uirouter-angular/package.json",
+      "package": "@uirouter/angular",
+      "kind": "angular-library",
+      "build": {
+        "cleanPaths": [
+          "dist"
+        ]
+      },
+      "pack": {
+        "directory": "dist",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "fesm2022/**",
+          "types/**"
+        ],
+        "required": [
+          "package.json",
+          "fesm2022/uirouter-angular.mjs",
+          "types/uirouter-angular.d.ts"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "angular-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/angular",
+          "target": "fesm2022/uirouter-angular.mjs",
+          "export": "UIRouterModule"
+        },
+        {
+          "id": "angular-types",
+          "mode": "types",
+          "specifier": "@uirouter/angular",
+          "target": "types/uirouter-angular.d.ts",
+          "export": "UIRouterModule"
+        }
+      ],
+      "tagNamespace": "angular@",
+      "historicalDirectory": "framework/angular/router"
+    },
+    {
+      "id": "angular-hybrid",
+      "manifest": "frameworks/angular-hybrid/uirouter-angular-hybrid/package.json",
+      "package": "@uirouter/angular-hybrid",
+      "kind": "angular-library",
+      "build": {
+        "cleanPaths": [
+          "dist"
+        ]
+      },
+      "pack": {
+        "directory": "dist",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "fesm2022/**",
+          "types/**"
+        ],
+        "required": [
+          "package.json",
+          "fesm2022/uirouter-angular-hybrid.mjs",
+          "types/uirouter-angular-hybrid.d.ts"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "angular-hybrid-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/angular-hybrid",
+          "target": "fesm2022/uirouter-angular-hybrid.mjs",
+          "export": "UIRouterUpgradeModule"
+        },
+        {
+          "id": "angular-hybrid-types",
+          "mode": "types",
+          "specifier": "@uirouter/angular-hybrid",
+          "target": "types/uirouter-angular-hybrid.d.ts",
+          "export": "UIRouterUpgradeModule"
+        }
+      ],
+      "tagNamespace": "angular-hybrid@",
+      "historicalDirectory": "framework/angular-hybrid/router"
+    },
+    {
+      "id": "angularjs",
+      "manifest": "frameworks/angularjs/uirouter-angularjs/package.json",
+      "package": "@uirouter/angularjs",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "release"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "DOCS.md",
+          "lib/**",
+          "lib-esm/**",
+          "release/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "release/ui-router-angularjs.js",
+          "release/ui-router-angularjs.min.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "angularjs-require",
+          "mode": "require",
+          "specifier": "@uirouter/angularjs",
+          "target": "release/ui-router-angularjs.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "angularjs-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/angularjs",
+          "target": "lib-esm/index.js",
+          "export": "UIRouter"
+        },
+        {
+          "id": "angularjs-types",
+          "mode": "types",
+          "specifier": "@uirouter/angularjs",
+          "target": "lib/index.d.ts",
+          "export": "UIRouter"
+        }
+      ],
+      "tagNamespace": "angularjs@",
+      "historicalDirectory": "framework/angularjs/router"
+    },
+    {
+      "id": "react",
+      "manifest": "frameworks/react/uirouter-react/package.json",
+      "package": "@uirouter/react",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "DOCS.md",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-react.js",
+          "_bundles/ui-router-react.min.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "react-require",
+          "mode": "require",
+          "specifier": "@uirouter/react",
+          "target": "lib/index.js",
+          "export": "UIRouterReact"
+        },
+        {
+          "id": "react-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react",
+          "target": "lib-esm/index.js",
+          "export": "UIRouterReact"
+        },
+        {
+          "id": "react-types",
+          "mode": "types",
+          "specifier": "@uirouter/react",
+          "target": "lib/index.d.ts",
+          "export": "UIRouterReact"
+        }
+      ],
+      "tagNamespace": "react@",
+      "historicalDirectory": "framework/react/router"
+    },
+    {
+      "id": "react-hybrid",
+      "manifest": "frameworks/react-hybrid/uirouter-react-hybrid/package.json",
+      "package": "@uirouter/react-hybrid",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.d.ts",
+          "lib/legacy.d.ts",
+          "lib-esm/index.js",
+          "lib-esm/legacy.js",
+          "_bundles/ui-router-react-hybrid.js",
+          "_bundles/ui-router-react-hybrid-legacy.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "react-hybrid-require",
+          "mode": "require",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "_bundles/ui-router-react-hybrid.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-require",
+          "mode": "require",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "_bundles/ui-router-react-hybrid-legacy.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "lib-esm/index.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "lib-esm/legacy.js",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-types",
+          "mode": "types",
+          "specifier": "@uirouter/react-hybrid",
+          "target": "lib/index.d.ts",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        },
+        {
+          "id": "react-hybrid-legacy-types",
+          "mode": "types",
+          "specifier": "@uirouter/react-hybrid/legacy",
+          "target": "lib/legacy.d.ts",
+          "export": "UI_ROUTER_REACT_HYBRID"
+        }
+      ],
+      "tagNamespace": "react-hybrid@",
+      "historicalDirectory": "framework/react-hybrid/router"
+    },
+    {
+      "id": "dsr",
+      "manifest": "plugins/dsr/package.json",
+      "package": "@uirouter/dsr",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "_bundles/ui-router-dsr.js",
+          "_bundles/ui-router-dsr.min.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "dsr-require",
+          "mode": "require",
+          "specifier": "@uirouter/dsr",
+          "target": "lib/index.js",
+          "export": "DSRPlugin"
+        },
+        {
+          "id": "dsr-types",
+          "mode": "types",
+          "specifier": "@uirouter/dsr",
+          "target": "lib/index.d.ts",
+          "export": "DSRPlugin"
+        }
+      ],
+      "tagNamespace": "dsr@",
+      "historicalDirectory": "plugins/dsr"
+    },
+    {
+      "id": "redux",
+      "manifest": "plugins/redux/package.json",
+      "package": "@uirouter/redux",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "dist"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "dist/**"
+        ],
+        "required": [
+          "package.json",
+          "dist/index.cjs",
+          "dist/index.mjs",
+          "dist/index.d.cts",
+          "dist/index.d.mts",
+          "dist/react.cjs",
+          "dist/react.mjs",
+          "dist/react.d.cts",
+          "dist/react.d.mts"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "redux-require",
+          "mode": "require",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.cjs",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.mjs",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-types",
+          "mode": "types",
+          "specifier": "@uirouter/redux",
+          "target": "dist/index.d.mts",
+          "export": "createReduxPlugin"
+        },
+        {
+          "id": "redux-react-require",
+          "mode": "require",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.cjs",
+          "export": "ConnectedUIRouter"
+        },
+        {
+          "id": "redux-react-import",
+          "mode": "node-import",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.mjs",
+          "export": "ConnectedUIRouter"
+        },
+        {
+          "id": "redux-react-types",
+          "mode": "types",
+          "specifier": "@uirouter/redux/react",
+          "target": "dist/react.d.mts",
+          "export": "ConnectedUIRouter"
+        }
+      ],
+      "tagNamespace": "redux@",
+      "historicalDirectory": "plugins/redux"
+    },
+    {
+      "id": "rx",
+      "manifest": "plugins/rx/package.json",
+      "package": "@uirouter/rx",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-rx.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "rx-require",
+          "mode": "require",
+          "specifier": "@uirouter/rx",
+          "target": "lib/index.js",
+          "export": "UIRouterRx"
+        },
+        {
+          "id": "rx-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/rx",
+          "target": "lib-esm/index.js",
+          "export": "UIRouterRx"
+        },
+        {
+          "id": "rx-types",
+          "mode": "types",
+          "specifier": "@uirouter/rx",
+          "target": "lib/index.d.ts",
+          "export": "UIRouterRx"
+        }
+      ],
+      "tagNamespace": "rx@",
+      "historicalDirectory": "plugins/rx"
+    },
+    {
+      "id": "sticky-states",
+      "manifest": "plugins/sticky-states/package.json",
+      "package": "@uirouter/sticky-states",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "lib/**",
+          "lib-esm/**",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "lib/index.js",
+          "lib/index.d.ts",
+          "lib-esm/index.js",
+          "_bundles/ui-router-sticky-states.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "sticky-states-require",
+          "mode": "require",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib/index.js",
+          "export": "StickyStatesPlugin"
+        },
+        {
+          "id": "sticky-states-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib-esm/index.js",
+          "export": "StickyStatesPlugin"
+        },
+        {
+          "id": "sticky-states-types",
+          "mode": "types",
+          "specifier": "@uirouter/sticky-states",
+          "target": "lib/index.d.ts",
+          "export": "StickyStatesPlugin"
+        }
+      ],
+      "tagNamespace": "sticky-states@",
+      "historicalDirectory": "plugins/sticky-states"
+    },
+    {
+      "id": "visualizer",
+      "manifest": "plugins/visualizer/package.json",
+      "package": "@uirouter/visualizer",
+      "kind": "library",
+      "build": {
+        "cleanPaths": [
+          "lib",
+          "lib-esm",
+          "_bundles"
+        ]
+      },
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "README.md",
+          "LICENSE",
+          "artisinal.typings.d.ts",
+          "_bundles/**"
+        ],
+        "required": [
+          "package.json",
+          "artisinal.typings.d.ts",
+          "_bundles/ui-router-visualizer.js",
+          "_bundles/ui-router-visualizer.esm.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "visualizer-require",
+          "mode": "require",
+          "specifier": "@uirouter/visualizer",
+          "target": "_bundles/ui-router-visualizer.js",
+          "export": "Visualizer"
+        },
+        {
+          "id": "visualizer-bundler",
+          "mode": "bundler-import",
+          "specifier": "@uirouter/visualizer",
+          "target": "_bundles/ui-router-visualizer.esm.js",
+          "export": "Visualizer"
+        },
+        {
+          "id": "visualizer-types",
+          "mode": "types",
+          "specifier": "@uirouter/visualizer",
+          "target": "artisinal.typings.d.ts",
+          "export": "Visualizer"
+        }
+      ],
+      "tagNamespace": "visualizer@",
+      "historicalDirectory": "plugins/visualizer"
+    },
+    {
+      "id": "publish-scripts",
+      "manifest": "tools/publish-scripts/package.json",
+      "package": "@uirouter/publish-scripts",
+      "kind": "cli",
+      "build": null,
+      "pack": {
+        "directory": ".",
+        "allowed": [
+          "package.json",
+          "artifact_tagging.js",
+          "docgen_via_docker.sh",
+          "ensure_clean_master.js",
+          "modify_sourcemap_paths.js",
+          "publish_docs.js",
+          "publish_yalc_package.js",
+          "release.js",
+          "prepare_release.js",
+          "show_changelog.js",
+          "show_version.js",
+          "test_downstream_projects.js",
+          "util.js"
+        ],
+        "required": [
+          "package.json",
+          "artifact_tagging.js",
+          "docgen_via_docker.sh",
+          "ensure_clean_master.js",
+          "modify_sourcemap_paths.js",
+          "publish_docs.js",
+          "publish_yalc_package.js",
+          "release.js",
+          "prepare_release.js",
+          "show_changelog.js",
+          "test_downstream_projects.js",
+          "util.js"
+        ]
+      },
+      "entrypoints": [
+        {
+          "id": "publish-scripts-artifact-tagging",
+          "mode": "bin",
+          "specifier": "artifact_tagging",
+          "target": "artifact_tagging.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-ensure-clean-master",
+          "mode": "bin",
+          "specifier": "ensure_clean_master",
+          "target": "ensure_clean_master.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-generate-docs",
+          "mode": "bin",
+          "specifier": "generate_docs",
+          "target": "docgen_via_docker.sh",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-modify-sourcemap-paths",
+          "mode": "bin",
+          "specifier": "modify_sourcemap_paths",
+          "target": "modify_sourcemap_paths.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-publish-docs",
+          "mode": "bin",
+          "specifier": "publish_docs",
+          "target": "publish_docs.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-publish-yalc-package",
+          "mode": "bin",
+          "specifier": "publish_yalc_package",
+          "target": "publish_yalc_package.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-release",
+          "mode": "bin",
+          "specifier": "release",
+          "target": "release.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-show-changelog",
+          "mode": "bin",
+          "specifier": "show_changelog",
+          "target": "show_changelog.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-test-downstream",
+          "mode": "bin",
+          "specifier": "test_downstream_projects",
+          "target": "test_downstream_projects.js",
+          "export": null
+        },
+        {
+          "id": "publish-scripts-util",
+          "mode": "bin",
+          "specifier": "util",
+          "target": "util.js",
+          "export": null
+        }
+      ],
+      "tagNamespace": "publish-scripts@",
+      "historicalDirectory": "tools/publish-scripts"
+    }
+  ],
+  "artifactPolicy": {
+    "directory": ".artifacts/packages",
+    "npmPackArgv": [
+      "npm",
+      "pack",
+      "--ignore-scripts",
+      "--json",
+      "--pack-destination"
+    ],
+    "forbiddenPatterns": [
+      "(^|/)node_modules(/|$)",
+      "(^|/)(src|test|tests|examples|integration-tests)(/|$)",
+      "(^|/)package-lock.json$",
+      "(^|/)(tsconfig|typedoc|vitest|jest|karma|rollup|rolldown|webpack|eslint)[^/]*$",
+      "(^|/)downstream_projects.json$",
+      "(^|/)artifacts.json$",
+      "(^|/).*\\.legacy(\\.[^/]*)?$",
+      "tools/source-aliases.json",
+      "tools/source-aliases.cjs"
+    ]
+  },
+  "consumer": {
+    "name": "@uirouter/packed-consumer",
+    "dependencies": {
+      "@angular/common": "22.1.3",
+      "@angular/compiler": "22.1.3",
+      "@angular/core": "22.1.3",
+      "@angular/upgrade": "22.1.3",
+      "@types/angular": "1.8.9",
+      "@types/jquery": "3.5.34",
+      "@types/node": "24.13.3",
+      "@types/react": "19.2.18",
+      "@types/react-dom": "19.2.5",
+      "angular": "1.8.3",
+      "jsdom": "27.4.0",
+      "react": "19.2.8",
+      "react-dom": "19.2.8",
+      "react-redux": "9.3.0",
+      "redux": "5.0.1",
+      "rxjs": "7.8.2",
+      "zone.js": "0.16.2"
+    },
+    "typecheck": {
+      "typescript": "5.9.3",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--project",
+        "tsconfig.json",
+        "--noEmit"
+      ]
+    },
+    "bundler": {
+      "package": "esbuild",
+      "version": "0.28.2",
+      "command": [
+        "node_modules/.bin/esbuild",
+        "bundler-probe.ts",
+        "--bundle",
+        "--format=esm",
+        "--platform=browser",
+        "--outfile=bundler-probe.mjs"
+      ]
+    }
+  }
+}

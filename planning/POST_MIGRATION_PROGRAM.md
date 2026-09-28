@@ -1,5 +1,8 @@
 # Post-migration engineering program
 
+> Current status: migration accepted; migration-only CI, proof bundles, and candidate rehearsal tooling have been retired. Releases now use the simple per-package command documented in the root README. Historical preparation/proof sections below record earlier work and are not release prerequisites. Tooling convergence, documentation, and approved production/repository transitions remain follow-up work.
+
+
 This is the proposed program after the migration acceptance work.  It is a
 planning document: it does not authorize publishing to npm, tagging a release,
 changing GitHub or npm settings, or changing the original repositories.

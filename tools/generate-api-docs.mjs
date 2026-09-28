@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 import {
   existsSync,
@@ -8,9 +7,7 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
-  renameSync,
   rmSync,
-  writeFileSync,
 } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -53,7 +50,7 @@ function value(name) {
   if (indexes.length > 1) fail(`${name} may appear only once`);
   return indexes.length ? process.argv[indexes[0] + 1] : null;
 }
-const known = new Set(["--all", "--project", "--output-root", "--proof"]);
+const known = new Set(["--all", "--project", "--output-root"]);
 for (let index = 2; index < process.argv.length; index += 1) {
   const argument = process.argv[index];
   if (!known.has(argument)) fail(`unknown argument ${argument}`);
@@ -72,10 +69,6 @@ const selected = all
   : projects.filter((project) => project.id === projectId);
 if (!selected.length) fail(`unknown project ${projectId}`);
 
-const sha256 = (bytes) =>
-  crypto.createHash("sha256").update(bytes).digest("hex");
-const portable = (absolute) =>
-  path.relative(repository, absolute).split(path.sep).join("/");
 function safeDocsPath(argument, label) {
   const root = path.join(repository, ".ci-results", "docs");
   const resolved = path.resolve(repository, argument);
@@ -88,16 +81,6 @@ const outputRootArgument = value("--output-root");
 const outputRoot = outputRootArgument
   ? safeDocsPath(outputRootArgument, "output root")
   : null;
-const proofArgument = value("--proof");
-const proof = proofArgument ? safeDocsPath(proofArgument, "proof") : null;
-if (proof && !outputRoot)
-  fail("--proof requires --output-root so generated output is isolated");
-
-const typedocPackage = JSON.parse(
-  readFileSync(path.join(repository, "node_modules", "typedoc", "package.json"))
-);
-if (typedocPackage.version !== "0.28.20")
-  fail(`expected TypeDoc 0.28.20, found ${typedocPackage.version}`);
 const typedoc = path.join(repository, "node_modules", "typedoc", "bin", "typedoc");
 if (!existsSync(typedoc)) fail("TypeDoc executable is not installed");
 
@@ -113,8 +96,7 @@ function digestDirectory(directory) {
       if (info.isSymbolicLink()) fail(`generated output contains symlink ${name}`);
       if (info.isDirectory()) walk(absolute, name);
       else if (info.isFile()) {
-        const bytes = readFileSync(absolute);
-        files.push({ path: name, size: bytes.length, sha256: sha256(bytes) });
+        files.push({ path: name, size: info.size });
       } else fail(`generated output contains unsupported entry ${name}`);
     }
   }
@@ -122,7 +104,6 @@ function digestDirectory(directory) {
   return {
     fileCount: files.length,
     bytes: files.reduce((total, file) => total + file.size, 0),
-    sha256: sha256(JSON.stringify(files)),
   };
 }
 
@@ -157,40 +138,6 @@ for (const project of selected) {
   const digest = digestDirectory(output);
   if (digest.fileCount < 5 || digest.bytes < 1_000)
     fail(`${project.id} generated output is unexpectedly small`);
-  results.push({
-    id: project.id,
-    package: project.package,
-    config: portable(config),
-    configSha256: sha256(readFileSync(config)),
-    tsconfig: portable(tsconfig),
-    tsconfigSha256: sha256(readFileSync(tsconfig)),
-    output: portable(output),
-    ...digest,
-  });
+  results.push(digest);
 }
-
-if (proof) {
-  mkdirSync(path.dirname(proof), { recursive: true });
-  const temporary = `${proof}.tmp-${process.pid}`;
-  writeFileSync(
-    temporary,
-    `${JSON.stringify(
-      {
-        schemaVersion: 1,
-        status: "ok",
-        generator: { package: "typedoc", version: typedocPackage.version },
-        projects: results,
-      },
-      null,
-      2
-    )}\n`
-  );
-  renameSync(temporary, proof);
-}
-
-console.log(
-  `API_DOCS_OK projects=${results.length} files=${results.reduce(
-    (total, result) => total + result.fileCount,
-    0
-  )}${proof ? ` proof=${portable(proof)}` : ""}`
-);
+console.log(`API_DOCS_OK projects=${results.length}`);

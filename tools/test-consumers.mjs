@@ -10,6 +10,22 @@ const config = read(path.join(root, 'tools/packages.json'));
 const projects = read(path.join(root, 'tools/integration-projects.json'));
 const selected = process.argv[2] ?? 'all';
 if (!['all', 'packages', 'core', 'angular', 'angularjs', 'react', 'react-hybrid'].includes(selected)) throw new Error(`Unknown consumer group: ${selected}`);
+const minimum = process.argv[3] === '--minimum';
+if (process.argv.length > 4 || (process.argv[3] && !minimum) || (minimum && !['react', 'react-hybrid'].includes(selected))) {
+  throw new Error('Use --minimum only with the react or react-hybrid consumer group');
+}
+const minimumVersions = new Map();
+if (minimum) {
+  const record = config.packages.find(record => record.id === selected);
+  const manifest = read(path.join(root, record.manifest));
+  for (const [name, range] of Object.entries(manifest.dependencies)) {
+    if (!config.packages.some(record => record.package === name)) continue;
+    const match = /^\^(\d+\.\d+\.\d+)$/.exec(range);
+    if (!match) throw new Error(`Expected a caret range for ${name}, got ${range}`);
+    minimumVersions.set(name, match[1]);
+  }
+  console.log('Testing published minimum dependencies:', Object.fromEntries(minimumVersions));
+}
 const sandbox = mkdtempSync(path.join(os.tmpdir(), 'uirouter-consumers-'));
 const env = { ...process.env, CI: '1' };
 delete env.NODE_PATH;
@@ -31,15 +47,24 @@ function install(cwd, manifest) {
   writeFileSync(path.join(cwd, 'package.json'), JSON.stringify(manifest, null, 2) + '\n');
   run(['npm', 'install', '--package-lock-only', '--ignore-scripts', '--no-audit', '--no-fund'], cwd);
   run(['npm', 'ci', '--ignore-scripts', '--no-audit', '--no-fund'], cwd);
-  // A nested registry copy would make this a test of a released package instead of our changes.
+  // Only explicitly selected minimum dependencies may come from npm; all others must use our tarballs.
   const lock = read(path.join(cwd, 'package-lock.json'));
   for (const [location, entry] of Object.entries(lock.packages)) {
     const name = location.split('node_modules/').at(-1);
     if (!artifacts.has(name)) continue;
+    if (minimumVersions.has(name)) {
+      if (entry.link || entry.version !== minimumVersions.get(name) || !entry.resolved?.startsWith('https://registry.npmjs.org/') || !entry.integrity) {
+        throw new Error(`Expected published ${name}@${minimumVersions.get(name)}: ${location}`);
+      }
+      continue;
+    }
     if (entry.link || !entry.resolved?.startsWith('file:')) throw new Error(`Registry fallback or workspace link for ${name}: ${location}`);
     const resolved = path.resolve(cwd, entry.resolved.slice(5));
     if (resolved !== artifacts.get(name)) throw new Error(`Wrong tarball for ${name}`);
     if (!realpathSync(path.join(cwd, location)).startsWith(cwd + path.sep)) throw new Error(`Package escapes consumer: ${name}`);
+  }
+  for (const [name, version] of minimumVersions) {
+    if (lock.packages[`node_modules/${name}`]?.version !== version) throw new Error(`Missing minimum dependency ${name}@${version}`);
   }
   run(['npm', 'ls', '--all'], cwd);
 }
@@ -73,7 +98,7 @@ try {
     const manifest = read(path.join(cwd, 'package.json'));
     for (const [name, section] of Object.entries(project.packages)) {
       manifest[section] ??= {};
-      manifest[section][name] = `file:${artifacts.get(name)}`;
+      manifest[section][name] = minimumVersions.get(name) ?? `file:${artifacts.get(name)}`;
     }
     console.log(`Testing ${project.id}`);
     install(cwd, manifest);

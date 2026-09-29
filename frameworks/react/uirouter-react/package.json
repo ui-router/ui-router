@@ -48,7 +48,7 @@
     "directory": "frameworks/react/uirouter-react"
   },
   "dependencies": {
-    "@uirouter/core": "6.1.2",
+    "@uirouter/core": "^6.1.2",
     "classnames": "^2.5.1",
     "prop-types": "^15.8.1"
   },

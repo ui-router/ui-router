@@ -2,6 +2,8 @@
 
 > Current status: migration accepted; migration-only CI, proof bundles, and candidate rehearsal tooling have been retired. Releases now use the simple per-package command documented in the root README. Historical preparation/proof sections below record earlier work and are not release prerequisites. Tooling convergence, documentation, and approved production/repository transitions remain follow-up work.
 
+**P04 direction (2026-09-28):** use Release Please with independent package release PRs and direct npm trusted publishing. The [Release Please plan](RELEASE_PLEASE_PLAN.md) is the active implementation plan; it supersedes the older candidate preparation and rehearsal proposals below. Planning is complete enough to start the compatibility check; automation and production publication are not yet enabled.
+
 
 This is the proposed program after the migration acceptance work.  It is a
 planning document: it does not authorize publishing to npm, tagging a release,

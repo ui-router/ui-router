@@ -3,7 +3,7 @@
 Status: proposed implementation plan, 2026-09-28.
 Starting point: main at `6fa0eaeaf` (migration cleanup PR #45 merged).
 
-Progress: the [initial compatibility check](RELEASE_PLEASE_COMPATIBILITY.md) passed local independent-release and root-lock regeneration experiments. Bootstrap version inventory is recorded; initial history selection and live bot behavior remain to be verified. Dependency ranges are next.
+Progress: the [initial compatibility check](RELEASE_PLEASE_COMPATIBILITY.md) passed local independent-release and root-lock regeneration experiments. The dependency-range changes and minimum-version tests landed in PR #47. Draft release-PR automation is now prepared; see [setup instructions](RELEASE_PLEASE_SETUP.md). Initial release notes, live bot behavior, and publication remain to be verified.
 
 ## Agreed experience
 

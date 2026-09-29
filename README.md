@@ -33,6 +33,8 @@ React and React Hybrid accept compatible UI-Router dependency updates using care
 
 Review dependent package ranges when bumping versions. Packages are released individually; coordinated Angular major updates remain a maintainer decision. See [package configuration](tools/packages.json) for publish directories and imported history paths.
 
+Release Please is being set up to propose independent package releases. See [draft release PR setup](planning/RELEASE_PLEASE_SETUP.md) for the GitHub App settings and current limits. The workflow does not publish packages yet.
+
 ## Migration history and remaining work
 
 The monorepo migration is accepted. The migration specification, immutable snapshots, proof bundles, validators, and rehearsal machinery are preserved in [the pre-cleanup Git tree](https://github.com/ui-router/ui-router/tree/82bbde2ab). Normal CI tests current source and tarballs rather than revalidating that historical checkpoint.

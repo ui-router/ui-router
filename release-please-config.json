@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "separate-pull-requests": true,
+  "always-update": true,
+  "draft-pull-request": true,
+  "pull-request-title-pattern": "Release${component} ${version} ${scope}",
+  "include-v-in-tag": false,
+  "tag-separator": "@",
+  "last-release-sha": "cb80720b8f0ceff309913f00a9dac147fa03752f",
+  "pull-request-header": "This is a draft release proposal while we set up Release Please. Review the initial version and changelog before marking it ready. Tag creation and npm publishing are disabled.",
+  "packages": {
+    "core": {
+      "component": "core"
+    },
+    "frameworks/angular/uirouter-angular": {
+      "component": "angular"
+    },
+    "frameworks/angular-hybrid/uirouter-angular-hybrid": {
+      "component": "angular-hybrid"
+    },
+    "frameworks/angularjs/uirouter-angularjs": {
+      "component": "angularjs"
+    },
+    "frameworks/react/uirouter-react": {
+      "component": "react"
+    },
+    "frameworks/react-hybrid/uirouter-react-hybrid": {
+      "component": "react-hybrid"
+    },
+    "plugins/dsr": {
+      "component": "dsr"
+    },
+    "plugins/redux": {
+      "component": "redux"
+    },
+    "plugins/rx": {
+      "component": "rx"
+    },
+    "plugins/sticky-states": {
+      "component": "sticky-states"
+    },
+    "plugins/visualizer": {
+      "component": "visualizer"
+    },
+    "tools/publish-scripts": {
+      "component": "publish-scripts"
+    }
+  }
+}

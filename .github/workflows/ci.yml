@@ -36,6 +36,7 @@ jobs:
       - run: "npm run typecheck -- --cache=local:"
       - run: "npm test -- --cache=local: --env-mode=loose"
       - run: "npm run test:release"
+      - run: "node --test tools/test-release-please.mjs"
   packages:
     runs-on: ubuntu-24.04
     container: mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac

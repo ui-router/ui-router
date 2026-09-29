@@ -33,16 +33,3 @@ jobs:
           manifest-file: .release-please-manifest.json
           # Draft PRs only during setup: no tags or GitHub releases.
           skip-github-release: true
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          ref: main
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24.19.0'
-      - run: npm install --global npm@11.17.0 --ignore-scripts --no-audit --no-fund
-      - name: Update shared locks in pending release PRs
-        env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
-        run: node tools/refresh-release-locks.mjs

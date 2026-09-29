@@ -15,7 +15,7 @@ Grant these repository permissions:
 
 | Permission | Access | Purpose |
 | --- | --- | --- |
-| Contents | Read and write | Update the bot's branches and shared lockfile |
+| Contents | Read and write | Update the bot's release branches |
 | Pull requests | Read and write | Open and update release PRs |
 | Issues | Read and write | Apply the release labels |
 | Metadata | Read | GitHub's required default |
@@ -57,8 +57,8 @@ published. We have not edited existing authored changelogs.
 Check the proposed versions and notes, then confirm:
 
 - Each PR changes only its package release files plus the shared manifest/lock.
-- The app's lock update triggers CI, and the final PR head passes the checks.
-- A workflow rerun leaves a current lock alone and can recover a failed lock update.
+- Each PR updates its package version in the root lock, without changing other packages' versions.
+- The app's PR updates trigger CI, and the final PR head passes the checks.
 
 Keep these draft proposals unmerged during setup. Before enabling real releases,
 review genuine unpublished changes, preserve authored breaking-change notes, and
@@ -69,17 +69,24 @@ Change the setup-only draft/header settings as part of that reviewed activation.
 
 ## How the shared lock is updated
 
-Release Please's Node strategy does not maintain our root lockfile. After it
-updates its branches, the workflow runs npm's lock-only install with package
-scripts disabled in a temporary checkout of each pending release branch. It
-commits only `package-lock.json`, and only when it changed. A normal Git push
-rejects an intervening branch change rather than overwriting it. Re-running the
-workflow also checks pending PRs that RP did not change in that run.
+Each package's `extra-files` setting tells Release Please to update that package's
+version field in the root `package-lock.json`. This is a built-in JSON updater:
+there is no follow-up script, npm install, or extra bot commit. Independent PRs
+change independent version fields. The workspace plugin is not enabled, so a
+compatible dependency release does not automatically bump its consumers.
 
-The workflow runs only on main pushes or manual runs on main, so its lock commits
-do not start another release-proposal run. They do start ordinary PR CI because
-they use the app token. Failed npm operations or pushes fail the workflow; they
-must not be mistaken for a ready-to-merge release PR.
+Dependency changes still need npm lock regeneration in the ordinary code PR
+that changes them. The release PR then updates only the package version. Keep
+internal workspace dependencies on compatible ranges, including private examples;
+an exact pin could cause npm to resolve an older registry copy after a local bump.
+A major release outside an existing range needs explicit dependency review and
+lock regeneration before merging the release PR.
+
+The configuration was tested with Release Please 17.3.0 by generating independent
+patch releases for all twelve packages, then comparing each lock with npm's own
+regeneration. The Angular Hybrid example's remaining exact Rx pin was changed to
+`^1.0.0` so an Rx patch does not change dependency resolution. Separate React and
+Angular proposals also kept their lock updates independent.
 
 ## What remains before publishing
 
@@ -91,8 +98,8 @@ At setup inspection, the repository's UIRouter ruleset was disabled and main had
 no classic branch protection. Before live publishing, agree on and enable the
 intended maintainer/CI merge rules; this change does not modify them.
 
-Local checks cover the lock helper's failure cases, a real npm/Git update against
-a disposable local remote, action syntax, and read-only RP proposals from actual
+Local checks cover the package configuration, built-in JSON lock updates compared
+with npm regeneration, action syntax, and read-only RP proposals from actual
 GitHub history. Creating app-authored PRs and confirming their CI requires the app
 setup above and remains to be tested.
 

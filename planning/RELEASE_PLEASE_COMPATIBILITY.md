@@ -4,7 +4,12 @@ Checked 2026-09-28 against main `6fa0eaeaf` with Release Please 17.11.2,
 Node 24.19.0 and npm 11.17.0. No release PRs, tags, GitHub releases or npm
 publications were created by these experiments.
 
-## Results and implementation decisions
+Update: further testing found that built-in `extra-files` JSON updates can handle
+independent compatible version bumps after the remaining exact example pin is
+removed. This supersedes the custom lock-refresh recommendation below; see
+[the current setup](RELEASE_PLEASE_SETUP.md#how-the-shared-lock-is-updated).
+
+## Initial results and implementation decisions
 
 - **Independent releases work in the local simulation.** Using the real RP
   Manifest/Node implementation with a read-only in-memory repository adapter,
@@ -25,9 +30,9 @@ publications were created by these experiments.
   npm added the published 1.0.8 beneath React Hybrid and adjusted dependency
   metadata. This is valid resolution, but defeats testing against the updated
   local dependency. Make the planned range changes before enabling releases.
-  Use one npm lock-refresh step on RP-owned branches; do not add a cascading
-  workspace plugin or a custom lockfile editor. Recheck this with the final
-  ranges and real bot PR refresh behavior.
+  This initially motivated a lock-refresh step. Further testing with compatible
+  ranges showed that RP's built-in JSON updater can handle the version-only
+  release change; the custom step has been removed.
 
 ## Registry baseline
 
@@ -83,7 +88,7 @@ is being introduced. RP action integration must pin and test the actual bundled
 RP version rather than assuming it matches this independently installed CLI.
 
 Next, change and test internal dependency ranges. Then implement release-PR
-configuration and lock refresh with publication disabled, resolve the initial
+configuration and built-in lock updates with publication disabled, resolve the initial
 history boundary, and verify real bot PR behavior. Follow the
 [release plan](RELEASE_PLEASE_PLAN.md) for publisher, preview, dry-run and
 explicitly approved first-publication work.

@@ -108,7 +108,13 @@ Before activation, inspect main-branch protection/rulesets and who can modify th
 
 The Node strategy normally updates package-local lockfiles. Our public workspaces share a root `package-lock.json`; do not assume native manifest mode updates it correctly. In a disposable checkout, generate separate React and Angular release proposals and check their diffs and clean installs.
 
-Prefer supported configuration if it can maintain the shared lock correctly. Otherwise use one small lock-refresh step on the bot's own release branches: run the pinned npm's `install --package-lock-only --ignore-scripts --no-audit --no-fund`, commit only the intended root-lock changes, then let ordinary CI validate the resulting PR head. Avoid workflow loops and stale check results. Do not enable the dependency-cascading workspace plugin solely to obtain lock updates. A hand-edited workspace version entry alone is insufficient when dependency resolution changes.
+Use RP's built-in `extra-files` JSON updater to change only the selected package's
+version entry in the root lock. This replaces the initially proposed custom
+lock-refresh step. Compatible patch bumps for all twelve packages were checked
+against npm regeneration after loosening the private Angular Hybrid example's Rx
+pin. Dependency changes still regenerate the lock in their ordinary code PR;
+major releases outside existing ranges need explicit dependency/lock review.
+Keep the workspace plugin disabled to avoid automatic dependent bumps.
 
 Confirm that merging one release PR causes the other to refresh cleanly, including the shared Release Please manifest and root lock. Unexpected dependency graph drift must be reviewed before merging.
 
@@ -126,7 +132,7 @@ Check registry state before retrying. Publish only missing package/version ident
 
 1. **Compatibility check and bootstrap design.** Exercise native separate PRs, tag format/history, root-lock updates, and pending React versus Angular using disposable fixtures or local simulations. Resolve the lock approach before implementing production publication.
 2. **Dependency ranges.** Make the reviewed Core/internal-range changes with lock regeneration and focused minimum-version consumer tests. Keep these changes separate from workflow behavior for review.
-3. **Release PR automation.** Add pinned Release Please configuration and the GitHub App integration. Keep npm publication explicitly disabled while validating real bot PRs and their CI. Creating live release tags remains disabled until the bootstrap is reviewed.
+3. **Release PR automation.** Add pinned Release Please configuration, built-in root-lock version updates, and the GitHub App integration. Keep npm publication explicitly disabled while validating real bot PRs and their CI. Creating live release tags remains disabled until the bootstrap is reviewed.
 4. **Publisher and recovery.** Implement same-workflow selection, builds/checks, OIDC, legacy dual publishing, retry, and optional manual previews from `main`. Reuse the same publisher. Complete the non-publishing validation above; dry runs do not prove live OIDC authentication.
 5. **Activate deliberately.** Present exact npm/GitHub setup and proposed first package/version, choosing a useful preview or the first intended stable release. After maintainer approval, configure trust and enable that first real publication. Verify npm contents/provenance and install the published package. Then enable the remaining configured packages without an extra approval in their routine merge-to-publish flow.
 6. **Finish documentation and retire overlaps.** Document the normal release-PR flow, optional previews from trunk, dry-run limits, range changes, failed-publish recovery, and the status of the manual fallback. Update the post-migration program to make this the active P04 release direction.

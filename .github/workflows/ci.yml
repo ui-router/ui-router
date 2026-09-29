@@ -131,6 +131,8 @@ jobs:
           name: packages
           path: .
       - run: "npm run test:consumers -- ${{ matrix.shard }}"
+      - if: matrix.shard == 'react' || matrix.shard == 'react-hybrid'
+        run: "npm run test:consumers -- ${{ matrix.shard }} --minimum"
       - if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

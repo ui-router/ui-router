@@ -29,6 +29,8 @@ npm run release -- --bump patch
 
 The manual command updates that package's version and changelog, regenerates the shared lock, builds, asks for review, commits, creates and pushes its namespaced tag, and publishes from the package's root or `dist` directory using your npm authentication. `--manual-publish` stops after the Git push and prints the npm command. AngularJS retains the legacy `angular-ui-router` dual publish.
 
+React and React Hybrid accept compatible UI-Router dependency updates using caret ranges, keeping their existing minimum versions. After packing, run `npm run test:consumers -- react --minimum` or `npm run test:consumers -- react-hybrid --minimum` to test the new package against its published minimum dependencies. CI runs these alongside the normal tests against current package archives.
+
 Review dependent package ranges when bumping versions. Packages are released individually; coordinated Angular major updates remain a maintainer decision. See [package configuration](tools/packages.json) for publish directories and imported history paths.
 
 ## Migration history and remaining work

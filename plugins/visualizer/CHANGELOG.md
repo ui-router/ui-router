@@ -48,6 +48,19 @@
 
 
 
+## [7.3.0](https://github.com/ui-router/ui-router/compare/visualizer@7.2.1...visualizer@7.3.0) (2026-11-24)
+
+
+### Features
+
+* Support Angular v21 ([81ee791](https://github.com/ui-router/ui-router/commit/81ee79175d91248e647731aa711360472a0ec24c))
+* Support Angular v22 ([eda59aa](https://github.com/ui-router/ui-router/commit/eda59aa7d3120f8d5822a4869eff23d4387c35d3))
+
+
+### Bug Fixes
+
+* support zoneless ([#1012](https://github.com/ui-router/ui-router/issues/1012)) ([4b8fccb](https://github.com/ui-router/ui-router/commit/4b8fccb6e4c01cf6620b6f35724da121868bde72))
+
 ## 6.0.3 (2019-01-25)
 [Compare `@uirouter/visualizer` versions 6.0.2 and 6.0.3](https://github.com/ui-router/visualizer/compare/6.0.2...6.0.3)
 

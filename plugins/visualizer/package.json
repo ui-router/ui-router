@@ -1,7 +1,7 @@
 {
   "name": "@uirouter/visualizer",
   "description": "UI-Router State Visualizer and Transition Visualizer",
-  "version": "7.2.1",
+  "version": "7.3.0",
   "scripts": {
     "start": "npm run bundle && serve . --open /examples/example",
     "clean": "shx rm -rf lib lib-esm _bundles",
@@ -63,7 +63,10 @@
   "peerDependencies": {
     "@uirouter/core": ">=5.0.0"
   },
-  "files": ["_bundles", "artisinal.typings.d.ts"],
+  "files": [
+    "_bundles",
+    "artisinal.typings.d.ts"
+  ],
   "main": "_bundles/ui-router-visualizer.js",
   "module": "_bundles/ui-router-visualizer.esm.js",
   "typings": "artisinal.typings.d.ts",

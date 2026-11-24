@@ -9,6 +9,6 @@
   "plugins/redux": "1.0.0",
   "plugins/rx": "1.0.0",
   "plugins/sticky-states": "1.5.1",
-  "plugins/visualizer": "7.2.1",
+  "plugins/visualizer": "7.3.0",
   "tools/publish-scripts": "2.8.0"
 }

@@ -11,6 +11,19 @@
 
 
 
+## [1.1.0](https://github.com/ui-router/ui-router/compare/rx@1.0.0...rx@1.1.0) (2026-11-24)
+
+
+### Features
+
+* Support Angular v21 ([81ee791](https://github.com/ui-router/ui-router/commit/81ee79175d91248e647731aa711360472a0ec24c))
+* Support Angular v22 ([eda59aa](https://github.com/ui-router/ui-router/commit/eda59aa7d3120f8d5822a4869eff23d4387c35d3))
+
+
+### Bug Fixes
+
+* support zoneless ([#1012](https://github.com/ui-router/ui-router/issues/1012)) ([4b8fccb](https://github.com/ui-router/ui-router/commit/4b8fccb6e4c01cf6620b6f35724da121868bde72))
+
 ## 0.6.5 (2020-01-13)
 [Compare `@uirouter/rx` versions 0.6.4 and 0.6.5](https://github.com/ui-router/rx/compare/0.6.4...0.6.5)
 
@@ -151,5 +164,3 @@ Because this package now provides an async resolve policy for Observables, this 
 * Initial commit ([b5e9dd2](https://github.com/ui-router/rx/commit/b5e9dd2))
 * Update readme ([5ec502f](https://github.com/ui-router/rx/commit/5ec502f))
 * Update README.md ([2b616a4](https://github.com/ui-router/rx/commit/2b616a4))
-
-

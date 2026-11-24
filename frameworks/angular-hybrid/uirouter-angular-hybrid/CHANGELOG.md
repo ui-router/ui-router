@@ -354,6 +354,26 @@ Changelog for `@uirouter/angularjs`:
 
 * should not transition states when alt-clicked ([8080adb](https://github.com/angular-ui/ui-router/commit/8080adb))
 
+## [23.0.0](https://github.com/ui-router/ui-router/compare/angular-hybrid@22.0.0...angular-hybrid@23.0.0) (2026-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### Features
+
+* Support Angular 9-10 ([8a2d650](https://github.com/ui-router/ui-router/commit/8a2d6500d335b8400ca48f786aaf33938ac274ce))
+* Support Angular v21 ([81ee791](https://github.com/ui-router/ui-router/commit/81ee79175d91248e647731aa711360472a0ec24c))
+* Support Angular v22 ([eda59aa](https://github.com/ui-router/ui-router/commit/eda59aa7d3120f8d5822a4869eff23d4387c35d3))
+
+
+### Bug Fixes
+
+* **params:** When performing DSR with param criteria, only consider the parameters listed in the dsr configuration block ([6f0d901](https://github.com/ui-router/ui-router/commit/6f0d9013d35c4c17a7329d6878dffa97c5dfff08))
+* Pin d3-interpolate to 1.4.0 to avoid bundling an arrow function for IE11 compat ([0889b31](https://github.com/ui-router/ui-router/commit/0889b31597c50f676705f65415ce1856cc7d7c4d))
+* support zoneless ([#1012](https://github.com/ui-router/ui-router/issues/1012)) ([4b8fccb](https://github.com/ui-router/ui-router/commit/4b8fccb6e4c01cf6620b6f35724da121868bde72))
+
 ## 11.0.2 (2020-07-22)
 [Compare `@uirouter/angular-hybrid` versions 11.0.1 and 11.0.2](https://github.com/ui-router/angular-hybrid/compare/11.0.1...11.0.2)
 

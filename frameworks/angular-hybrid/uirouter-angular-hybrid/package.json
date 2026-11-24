@@ -1,6 +1,6 @@
 {
   "name": "@uirouter/angular-hybrid",
-  "version": "22.0.0",
+  "version": "23.0.0",
   "scripts": {
     "clean": "shx rm -rf lib _bundles dist",
     "build": "npm run clean && ng-packagr -p ng-package.json",

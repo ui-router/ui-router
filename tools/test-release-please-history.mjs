@@ -42,7 +42,7 @@ async function proposals(commits, releaseConfig = config, tags) {
   }));
 }
 
-test('history policy runs against the Release Please version bundled in the pinned action', () => {
+test('history policy runs against the pinned Release Please library', () => {
   assert.equal(VERSION, '17.3.0');
 });
 

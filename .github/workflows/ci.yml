@@ -39,8 +39,8 @@ jobs:
       - run: "node --test tools/test-release-please.mjs"
       - name: Check Release Please history attribution
         run: |
-          npm install --prefix "$RUNNER_TEMP/release-please" --no-save --package-lock=false --ignore-scripts --no-audit --no-fund release-please@17.3.0
-          NODE_PATH="$RUNNER_TEMP/release-please/node_modules" node --test tools/test-release-please-history.mjs
+          npm ci --prefix .github/release-please --ignore-scripts --no-audit --no-fund
+          NODE_PATH="$GITHUB_WORKSPACE/.github/release-please/node_modules" node --test tools/test-release-please-history.mjs tools/test-release-please-http.mjs
   packages:
     runs-on: ubuntu-24.04
     container: mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac

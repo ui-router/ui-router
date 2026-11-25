@@ -105,7 +105,7 @@ This is version-specific behavior of the pinned library, rather than a dedicated
 `include-empty` configuration option. CI exercises the actual 17.3.0 manifest
 implementation with empty imported commits, empty `Release-As` commits, genuine
 breaking changes, multi-package changes and distinct empty tag boundaries. Keep
-those tests passing when changing the action/library version. An intentional
+those tests passing when changing the runner/library version. An intentional
 release instruction must change a file in its package; empty commits no longer
 request releases for every package.
 
@@ -124,12 +124,42 @@ does not automatically close old proposals that no longer have a candidate, so
 the Angular Hybrid, Rx and Visualizer drafts require separate cleanup.
 
 To run the library regression checks locally without changing workspace
-dependencies:
+dependencies (use the repository's pinned Node/npm versions):
 
 ```sh
-npm install --prefix /tmp/ui-router-release-please-tests --no-save --package-lock=false --ignore-scripts --no-audit --no-fund release-please@17.3.0
-NODE_PATH=/tmp/ui-router-release-please-tests/node_modules node --test tools/test-release-please.mjs tools/test-release-please-history.mjs
+npm ci --prefix .github/release-please --ignore-scripts --no-audit --no-fund
+NODE_PATH="$PWD/.github/release-please/node_modules" node --test tools/test-release-please.mjs tools/test-release-please-history.mjs tools/test-release-please-http.mjs
 ```
+
+### GitHub API failures during the initial history scan
+
+After #62 merged, the first scan failed on a GitHub REST commit request after
+about three minutes. That same request succeeded when checked directly. One job
+retry passed that commit and failed on another commit read after seven minutes,
+with an empty error message. Thousands of file-list requests make a full job
+restart an unreliable recovery strategy; the 55-minute job limit was not the
+failure in either attempt.
+
+The workflow now runs the same Release Please 17.3.0 library through
+`.github/release-please/run.mjs`, using its supported custom-fetch hook. The
+isolated package and lockfile pin the runtime dependencies without adding them
+to the public workspaces. Installation finishes before minting the App token.
+
+The fetch wrapper retries transient GitHub GET and GraphQL query failures at the
+failed request, with at most three retries and exponential backoff. HTTP 408,
+500, 502, 503 and 504 and recognized connection errors are retryable. Rate-limit
+responses respect `Retry-After` and primary quota reset headers; waits beyond one
+minute fail visibly so a long pause does not consume the App token's lifetime.
+Authentication/validation failures, mutations and other write requests are not
+retried. Logs include the HTTP status and endpoint path without request headers,
+query strings or response bodies, including when GitHub returns an empty error.
+
+The runner validates separate draft proposals for every package and calls only
+`createPullRequests()`. It has no release-creation call. The main-branch/enable
+guard, App permissions, full 5,000-commit search, attribution filter, 55-minute
+limit and disabled publication policy remain in place. Tests exercise actual
+library pagination through a failed commit page, retry exhaustion, rate limits,
+connection resets, GraphQL queries versus mutations, and draft-only execution.
 
 ## How the shared lock is updated
 

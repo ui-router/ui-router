@@ -27,19 +27,31 @@ function harness(responses) {
   return { fetch, calls, delays, warnings };
 }
 
-test('a failed commit page is retried through the real library without restarting successful pages', async () => {
+test('an HTTP 422 commit timeout retries the failed page through the real library without restarting successful pages', async () => {
   const next = `${url}?page=2`;
   const h = harness([
     json({ files: [{ filename: 'core/a.ts' }] }, 200, { link: `<${next}>; rel="next"` }),
-    json({ message: 'The request is taking too long to generate.' }, 500),
+    json({ message: 'The request is taking too long to generate.' }, 422),
     json({ files: [{ filename: 'core/b.ts' }] }),
   ]);
   const github = await GitHub.create({ owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main', token: 'fixture-token', fetch: h.fetch });
   assert.deepEqual(await github.getCommitFiles('example'), ['core/a.ts', 'core/b.ts']);
   assert.deepEqual(h.calls.map(([input]) => input), [url, next, next]);
   assert.deepEqual(h.delays, [1000]);
-  assert.ok(h.warnings.some(text => text.includes('HTTP 500')));
+  assert.ok(h.warnings.some(text => text.includes('HTTP 422')));
   assert.ok(h.warnings.every(text => !text.includes('fixture-token')));
+});
+
+test('ordinary HTTP 422 errors preserve their bodies and the timeout exception is restricted to commit reads', async () => {
+  const invalid = harness([json({ message: 'Validation Failed' }, 422)]);
+  const response = await invalid.fetch(url);
+  assert.deepEqual(await response.json(), { message: 'Validation Failed' });
+  assert.deepEqual(invalid.delays, []);
+  for (const [input, options] of [[url, { method: 'POST' }], [url.replace('/commits/example', '/pulls/1'), {}]]) {
+    const h = harness([json({ message: 'The request is taking too long to generate.' }, 422)]);
+    assert.equal((await h.fetch(input, options)).status, 422);
+    assert.deepEqual(h.delays, []);
+  }
 });
 
 test('transient GET failures have bounded exponential retries and preserve the last error response', async () => {

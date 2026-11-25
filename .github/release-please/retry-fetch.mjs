@@ -13,11 +13,19 @@ function isRead(url, method, body) {
   } catch { return false; }
 }
 
-function retryDelay(response, attempt, now) {
+async function isCommitGenerationTimeout(response, url, method) {
+  if (method !== 'GET' || response.status !== 422 || !/^\/repos\/[^/]+\/[^/]+\/commits\/[^/]+\/?$/.test(url.pathname)) return false;
+  try {
+    const { message } = await response.clone().json();
+    return typeof message === 'string' && /^The request is taking too long to generate\.?$/i.test(message.trim());
+  } catch { return false; }
+}
+
+function retryDelay(response, attempt, now, generationTimeout) {
   const limited = response.status === 429 || (response.status === 403 && (
     response.headers.has('retry-after') || response.headers.get('x-ratelimit-remaining') === '0'
   ));
-  if (!limited && !transientStatuses.has(response.status)) return;
+  if (!limited && !transientStatuses.has(response.status) && !generationTimeout) return;
   const retryAfter = response.headers.get('retry-after');
   let requiredDelay = 0;
   if (retryAfter !== null) {
@@ -54,7 +62,8 @@ export function createRetryFetch({ fetch = globalThis.fetch, sleep = setTimeout,
         continue;
       }
       if (!response.ok) warn(`${label}: HTTP ${response.status} (attempt ${attempt + 1})`);
-      const delay = retryable && attempt < 3 ? retryDelay(response, attempt, now) : undefined;
+      const generationTimeout = retryable && attempt < 3 && await isCommitGenerationTimeout(response, url, method);
+      const delay = retryable && attempt < 3 ? retryDelay(response, attempt, now, generationTimeout) : undefined;
       if (delay === undefined) return response;
       await response.body?.cancel();
       warn(`${label}: retry ${attempt + 1}/3 in ${delay}ms`);

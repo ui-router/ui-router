@@ -147,7 +147,10 @@ to the public workspaces. Installation finishes before minting the App token.
 
 The fetch wrapper retries transient GitHub GET and GraphQL query failures at the
 failed request, with at most three retries and exponential backoff. HTTP 408,
-500, 502, 503 and 504 and recognized connection errors are retryable. Rate-limit
+500, 502, 503 and 504 and recognized connection errors are retryable. GitHub also
+returns HTTP 422 for a commit-generation timeout: only a GET commit response with
+the exact `The request is taking too long to generate.` message gets that
+exception; ordinary 422 validation errors are not retried. Rate-limit
 responses respect `Retry-After` and primary quota reset headers; waits beyond one
 minute fail visibly so a long pause does not consume the App token's lifetime.
 Authentication/validation failures, mutations and other write requests are not

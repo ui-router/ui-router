@@ -1,5 +1,5 @@
 {
-  "core": "6.1.2",
+  "core": "6.1.3",
   "frameworks/angular/uirouter-angular": "22.0.0",
   "frameworks/angular-hybrid/uirouter-angular-hybrid": "22.0.0",
   "frameworks/angularjs/uirouter-angularjs": "1.1.2",

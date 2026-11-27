@@ -1,7 +1,7 @@
 {
   "name": "@uirouter/core",
   "description": "UI-Router Core: Framework agnostic, State-based routing for JavaScript Single Page Apps",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _bundles .cache _doc",
     "compile": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
@@ -63,7 +63,11 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "files": ["lib", "lib-esm", "_bundles"],
+  "files": [
+    "lib",
+    "lib-esm",
+    "_bundles"
+  ],
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "jsnext:main": "lib-esm/index.js",

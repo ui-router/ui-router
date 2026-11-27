@@ -8,6 +8,14 @@
 
 
 
+## [6.1.3](https://github.com/ui-router/ui-router/compare/core@6.1.2...core@6.1.3) (2026-11-27)
+
+
+### Bug Fixes
+
+* replace legacy docs container with local TypeDoc ([158aa24](https://github.com/ui-router/ui-router/commit/158aa241912132d72525deebf07a8126a30355d6))
+* replace legacy docs container with local TypeDoc ([69b5554](https://github.com/ui-router/ui-router/commit/69b5554ac6522820c74119e01321bf8f8e968c9e))
+
 ## 6.1.1 (2024-07-15)
 [Compare `@uirouter/core` versions 6.1.0 and 6.1.1](https://github.com/ui-router/core/compare/6.1.0...6.1.1)
 

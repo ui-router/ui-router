@@ -9,9 +9,13 @@ const { FileNotFoundError } = require('release-please/build/src/errors/index.js'
 const root = new URL('../', import.meta.url);
 const read = file => readFileSync(new URL(file, root), 'utf8');
 const config = JSON.parse(read('release-please-config.json'));
-const versions = JSON.parse(read('.release-please-manifest.json'));
 const react = 'frameworks/react/uirouter-react';
 const angular = 'frameworks/angular/uirouter-angular';
+// Synthetic release history needs fixed baselines even when a real release PR
+// changes the repository's package and manifest versions.
+const versions = Object.fromEntries(Object.keys(config.packages).map(path => [path, '1.0.0']));
+versions[react] = '1.0.8';
+versions[angular] = '22.0.0';
 const logger = Object.fromEntries(['error', 'warn', 'info', 'debug', 'trace'].map(level => [level, () => {}]));
 setLogger(logger);
 const commit = (sha, message, files = []) => ({ sha, message, files });
@@ -19,7 +23,11 @@ const commit = (sha, message, files = []) => ({ sha, message, files });
 async function proposals(commits, releaseConfig = config, tags) {
   const github = {
     repository: { owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main' },
-    getFileJson: async file => file === 'release-please-config.json' ? releaseConfig : JSON.parse(read(file)),
+    getFileJson: async file => {
+      if (file === 'release-please-config.json') return releaseConfig;
+      if (file === '.release-please-manifest.json') return versions;
+      return JSON.parse(read(file));
+    },
     getFileContentsOnBranch: async file => {
       let text;
       try { text = read(file); } catch { throw new FileNotFoundError(file); }

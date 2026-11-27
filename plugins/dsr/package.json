@@ -1,7 +1,7 @@
 {
   "name": "@uirouter/dsr",
   "description": "UI-Router Deep State Redirect: redirect to the most recently activated child state",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _bundles",
     "build": "npm run compile && rolldown -c rolldown.config.mjs && rolldown -c rolldown.config.mjs --environment MINIFY",
@@ -42,7 +42,11 @@
     "node": ">=18.0.0"
   },
   "jsnext:main": "lib-esm/index.js",
-  "files": ["lib", "lib-esm", "_bundles"],
+  "files": [
+    "lib",
+    "lib-esm",
+    "_bundles"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "license": "MIT",

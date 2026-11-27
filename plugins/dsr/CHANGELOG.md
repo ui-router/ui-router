@@ -6,6 +6,14 @@
 
 - **params:** When performing DSR with param criteria, only consider the parameters listed in the dsr configuration block ([d073218](https://github.com/ui-router/dsr/commit/d073218))
 
+## [1.3.0](https://github.com/ui-router/ui-router/compare/dsr@1.2.0...dsr@1.3.0) (2026-11-27)
+
+
+### Features
+
+* retire Bower publishing and retain legacy npm releases ([bc604be](https://github.com/ui-router/ui-router/commit/bc604be5bb7b8e30f08f67fa4b1970a4787a349b))
+* **update_dependencies:** Add a repository_dispatch trigger ([8416891](https://github.com/ui-router/ui-router/commit/8416891af1e101552adff08984d3082ed10cfce2))
+
 ## 1.1.1 (2019-10-08)
 
 [Compare `@uirouter/dsr` versions 1.1.0 and 1.1.1](https://github.com/ui-router/dsr/compare/1.1.0...1.1.1)

@@ -125,13 +125,14 @@ test('aborted reads and non-GitHub requests do not retry, and diagnostics omit c
 
 test('proposal runner enforces draft configuration and never invokes release creation', async () => {
   const calls = [];
+  const pullRequests = [{ number: 61 }];
   const manifest = {
     separatePullRequests: true, repositoryConfig: { core: { draftPullRequest: true } },
-    createPullRequests: async () => { calls.push('prs'); return [61]; },
+    createPullRequests: async () => { calls.push('prs'); return pullRequests; },
     createReleases: async () => { throw new Error('release creation is prohibited'); },
   };
   const Manifest = { fromManifest: async (_github, branch) => { assert.equal(branch, 'main'); return manifest; } };
-  assert.deepEqual(await createDraftProposals({}, Manifest), [61]);
+  assert.deepEqual(await createDraftProposals({}, Manifest), pullRequests);
   manifest.repositoryConfig.core.draftPullRequest = false;
   await assert.rejects(createDraftProposals({}, Manifest), /requires separate draft PRs/);
   assert.deepEqual(calls, ['prs']);

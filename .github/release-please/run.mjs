@@ -26,8 +26,8 @@ export async function main(env = process.env) {
     owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main',
     token: env.RELEASE_PLEASE_TOKEN, fetch: createRetryFetch(),
   });
-  const numbers = await createDraftProposals(github, Manifest);
-  console.log(`Release proposal PRs: ${numbers.join(', ') || 'none'}`);
+  const pullRequests = await createDraftProposals(github, Manifest);
+  console.log(`Release proposal PRs: ${pullRequests.map(pr => `#${pr.number}`).join(', ') || 'none'}`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

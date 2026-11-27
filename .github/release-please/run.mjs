@@ -11,10 +11,15 @@ export async function createDraftProposals(github, Manifest) {
   return manifest.createPullRequests();
 }
 
-export async function main(env = process.env) {
-  if (env.GITHUB_REPOSITORY !== 'ui-router/ui-router' || env.GITHUB_REF !== 'refs/heads/main') {
-    throw new Error('Release proposals must run on ui-router/ui-router main');
+export function validateRunContext(env) {
+  const manualBranch = env.GITHUB_EVENT_NAME === 'workflow_dispatch' && env.GITHUB_REF?.startsWith('refs/heads/');
+  if (env.GITHUB_REPOSITORY !== 'ui-router/ui-router' || (env.GITHUB_REF !== 'refs/heads/main' && !manualBranch)) {
+    throw new Error('Release proposals must run on main or an explicitly dispatched ui-router/ui-router branch');
   }
+}
+
+export async function main(env = process.env) {
+  validateRunContext(env);
   if (!env.RELEASE_PLEASE_TOKEN) throw new Error('Missing Release Please App token');
   const { GitHub, Manifest } = createRequire(import.meta.url)('release-please');
   const github = await GitHub.create({

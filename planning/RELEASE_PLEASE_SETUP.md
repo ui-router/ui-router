@@ -158,11 +158,37 @@ retried. Logs include the HTTP status and endpoint path without request headers,
 query strings or response bodies, including when GitHub returns an empty error.
 
 The runner validates separate draft proposals for every package and calls only
-`createPullRequests()`. It has no release-creation call. The main-branch/enable
-guard, App permissions, full 5,000-commit search, attribution filter, 55-minute
+`createPullRequests()`. It has no release-creation call. The enable switch,
+App permissions, full 5,000-commit search, attribution filter, 55-minute
 limit and disabled publication policy remain in place. Tests exercise actual
 library pagination through a failed commit page, retry exhaustion, rate limits,
 connection resets, GraphQL queries versus mutations, and draft-only execution.
+
+### Test workflow changes before merging
+
+The existing workflow can be manually dispatched from a maintainer's branch:
+
+```sh
+gh workflow run release-please.yml --repo ui-router/ui-router --ref codex/release-api-retries
+```
+
+This executes the workflow, locked runtime and runner from that branch, using the
+real App installation. It opens or refreshes real draft release PRs targeting
+`main`; the release configuration, manifest, package files and history are read
+from `main`. It is an integration test with draft PR writes, not a read-only
+preview. All runs require `RELEASE_PLEASE_ENABLED=true` and serialize with normal
+main runs, so two generators cannot update the proposal branches concurrently.
+
+Automatic runs still trigger only on pushes to `main`. Branch execution requires
+an explicit `workflow_dispatch` by a user with repository write access; pull
+request events, tag dispatches and other repositories are rejected. Tags,
+GitHub releases and npm publication remain disabled.
+
+Iterate on the same PR branch and dispatch again after pushing each correction.
+Record the successful run's exact head SHA before merging that tested code.
+Changes to the release configuration itself need a separate read-only preview
+using the candidate configuration; a branch dispatch of this runner reads the
+configuration already committed on `main`.
 
 ## How the shared lock is updated
 

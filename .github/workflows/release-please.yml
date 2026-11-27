@@ -10,8 +10,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release-prs:
-    # Setting up the app does not enable the bot until this variable is set.
-    if: github.ref == 'refs/heads/main' && vars.RELEASE_PLEASE_ENABLED == 'true'
+    # Maintainers can test this workflow from a branch by manually dispatching it.
+    # Automatic runs remain main-only; all runs respect the enable switch.
+    if: vars.RELEASE_PLEASE_ENABLED == 'true' && (github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/heads/')))
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     steps:

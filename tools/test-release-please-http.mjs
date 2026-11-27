@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { createRetryFetch } from '../.github/release-please/retry-fetch.mjs';
-import { createDraftProposals, main } from '../.github/release-please/run.mjs';
+import { createDraftProposals, main, validateRunContext } from '../.github/release-please/run.mjs';
 
 const { GitHub } = createRequire(new URL('../.github/release-please/package.json', import.meta.url))('release-please');
 const url = 'https://api.github.com/repos/ui-router/ui-router/commits/example';
@@ -136,4 +136,16 @@ test('proposal runner enforces draft configuration and never invokes release cre
   await assert.rejects(createDraftProposals({}, Manifest), /requires separate draft PRs/);
   assert.deepEqual(calls, ['prs']);
   await assert.rejects(main({ GITHUB_REPOSITORY: 'ui-router/ui-router', GITHUB_REF: 'refs/heads/feature' }), /must run/);
+});
+
+test('maintainer dispatches can test branch code against main without enabling automatic branch runs', () => {
+  const env = { GITHUB_REPOSITORY: 'ui-router/ui-router', GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'push' };
+  assert.doesNotThrow(() => validateRunContext(env));
+  assert.doesNotThrow(() => validateRunContext({ ...env, GITHUB_REF: 'refs/heads/candidate', GITHUB_EVENT_NAME: 'workflow_dispatch' }));
+  for (const blocked of [
+    { ...env, GITHUB_REF: 'refs/heads/candidate' },
+    { ...env, GITHUB_REF: 'refs/pull/63/merge', GITHUB_EVENT_NAME: 'pull_request' },
+    { ...env, GITHUB_REF: 'refs/tags/test', GITHUB_EVENT_NAME: 'workflow_dispatch' },
+    { ...env, GITHUB_REPOSITORY: 'someone/fork', GITHUB_EVENT_NAME: 'workflow_dispatch' },
+  ]) assert.throws(() => validateRunContext(blocked), /must run/);
 });

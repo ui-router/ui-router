@@ -17,6 +17,24 @@ Changelog for `@uirouter/core`:
 
 * **urlMatcher:** Fix potential ReDoS, thanks to www.HeroDevs.com ([0db52a1](https://github.com/ui-router/core/commit/0db52a1))
 
+## [1.2.0](https://github.com/ui-router/ui-router/compare/angularjs@1.1.2...angularjs@1.2.0) (2026-11-27)
+
+
+### Features
+
+* preview local monorepo releases without side effects ([3d1174c](https://github.com/ui-router/ui-router/commit/3d1174c3614494cc53553322eb40cdb7f09b8244))
+* retire Bower publishing and retain legacy npm releases ([bc604be](https://github.com/ui-router/ui-router/commit/bc604be5bb7b8e30f08f67fa4b1970a4787a349b))
+
+
+### Bug Fixes
+
+* refresh release lock and preserve npm publish context ([464622c](https://github.com/ui-router/ui-router/commit/464622c3b5aee3b76b5c36b63fadd7f5a9a01e5d))
+* replace legacy docs container with local TypeDoc ([158aa24](https://github.com/ui-router/ui-router/commit/158aa241912132d72525deebf07a8126a30355d6))
+* replace legacy docs container with local TypeDoc ([69b5554](https://github.com/ui-router/ui-router/commit/69b5554ac6522820c74119e01321bf8f8e968c9e))
+* restore AngularJS lint in monorepo CI ([1f3e402](https://github.com/ui-router/ui-router/commit/1f3e402b07a6ba2597257799cd8fcf5096d59098))
+* restore AngularJS lint in monorepo CI ([33af0cf](https://github.com/ui-router/ui-router/commit/33af0cf2d7eacde2812ddf578d397aba346bde0a))
+* restore straightforward per-package manual releases ([82f7d55](https://github.com/ui-router/ui-router/commit/82f7d556f03b43a77816e9f65f283f4c1f48ad19))
+
 ## 1.1.1 (2024-07-15)
 [Compare `@uirouter/angularjs` versions 1.1.0 and 1.1.1](https://github.com/angular-ui/ui-router/compare/1.1.0...1.1.1)
 

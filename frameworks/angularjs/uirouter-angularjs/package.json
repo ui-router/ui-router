@@ -1,7 +1,7 @@
 {
   "name": "@uirouter/angularjs",
   "description": "State-based routing for AngularJS 1.x",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "scripts": {
     "clean": "shx rm -rf lib lib-esm _doc build release *.log",
     "compile": "tsc && tsc -m es6 --outDir lib-esm && npm run fixdts",
@@ -74,7 +74,12 @@
     "node": ">=4.0.0"
   },
   "license": "MIT",
-  "files": ["lib", "lib-esm", "release", "DOCS.md"],
+  "files": [
+    "lib",
+    "lib-esm",
+    "release",
+    "DOCS.md"
+  ],
   "main": "release/ui-router-angularjs.js",
   "jsnext:main": "lib-esm/index.js",
   "module": "lib-esm/index.js",

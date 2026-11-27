@@ -13,6 +13,24 @@
 
 * add support for yarn, npm, and pnpm package managers ([edb3628](https://github.com/ui-router/publish-scripts/commit/edb3628))
 
+## [2.9.0](https://github.com/ui-router/ui-router/compare/publish-scripts@2.8.0...publish-scripts@2.9.0) (2026-11-27)
+
+
+### Features
+
+* prepare and validate local release candidates ([145c172](https://github.com/ui-router/ui-router/commit/145c172de0ff33b60730c04651a5ed6c9a292e13))
+* prepare local monorepo release versions and changelogs ([addfd53](https://github.com/ui-router/ui-router/commit/addfd53ea4e5bd9b66db67f35eb66a7a4b37487d))
+* preview local monorepo releases without side effects ([3d1174c](https://github.com/ui-router/ui-router/commit/3d1174c3614494cc53553322eb40cdb7f09b8244))
+* rehearse verified artifacts through local release command ([5da9639](https://github.com/ui-router/ui-router/commit/5da96393e601ba7948d04d4e0cb8868a22c7f83c))
+* retire Bower publishing and retain legacy npm releases ([bc604be](https://github.com/ui-router/ui-router/commit/bc604be5bb7b8e30f08f67fa4b1970a4787a349b))
+
+
+### Bug Fixes
+
+* refresh release lock and preserve npm publish context ([464622c](https://github.com/ui-router/ui-router/commit/464622c3b5aee3b76b5c36b63fadd7f5a9a01e5d))
+* reject published release versions and validate candidate static gates ([b6f687e](https://github.com/ui-router/ui-router/commit/b6f687ef9fa14a93474c73b3c07e02a7ccce2273))
+* restore straightforward per-package manual releases ([82f7d55](https://github.com/ui-router/ui-router/commit/82f7d556f03b43a77816e9f65f283f4c1f48ad19))
+
 ## 2.6.8 (2026-01-02)
 [Compare `@uirouter/publish-scripts` versions 2.6.7 and 2.6.8](https://github.com/ui-router/publish-scripts/compare/2.6.7...2.6.8)
 

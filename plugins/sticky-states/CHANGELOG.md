@@ -1,3 +1,13 @@
+# Changelog
+
+## [1.6.0](https://github.com/ui-router/ui-router/compare/sticky-states@1.5.1...sticky-states@1.6.0) (2026-11-27)
+
+
+### Features
+
+* retire Bower publishing and retain legacy npm releases ([bc604be](https://github.com/ui-router/ui-router/commit/bc604be5bb7b8e30f08f67fa4b1970a4787a349b))
+* **update_dependencies:** Add a repository_dispatch trigger ([c5b4732](https://github.com/ui-router/ui-router/commit/c5b4732975c029e366874a5f3f86058c2646a9b5))
+
 ## 1.5.1 (2019-10-08)
 
 [Compare `@uirouter/sticky-states` versions 1.5.0 and 1.5.1](https://github.com/ui-router/sticky-states/compare/1.5.0...1.5.1)
@@ -9,7 +19,7 @@
 - **prettier:** switch to trailing commas: es5 ([dfb6bde](https://github.com/ui-router/sticky-states/commit/dfb6bde))
 - **travis:** use service: xvfb instead of launching it manually. install libgconf debian package to fix cypress ([07c9b17](https://github.com/ui-router/sticky-states/commit/07c9b17))
 
-# 1.5.0 (2018-01-28)
+## 1.5.0 (2018-01-28)
 
 [Compare `@uirouter/sticky-states` versions 1.4.1 and 1.5.0](https://github.com/ui-router/sticky-states/compare/1.4.1...1.5.0)
 

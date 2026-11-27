@@ -1,12 +1,14 @@
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { createRetryFetch } from './retry-fetch.mjs';
+import { ExcludeHousekeeping } from './excluded-commits.mjs';
 
 export async function createDraftProposals(github, Manifest) {
   const manifest = await Manifest.fromManifest(github, 'main', 'release-please-config.json', '.release-please-manifest.json');
   if (!manifest.separatePullRequests || Object.values(manifest.repositoryConfig).some(config => config.draftPullRequest !== true)) {
     throw new Error('Release proposal setup requires separate draft PRs for every package');
   }
+  manifest.plugins.unshift(new ExcludeHousekeeping(github, 'main', manifest.repositoryConfig));
   // This entry point intentionally calls only the proposal API, never createReleases().
   return manifest.createPullRequests();
 }

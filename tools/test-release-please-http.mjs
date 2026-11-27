@@ -127,7 +127,7 @@ test('proposal runner enforces draft configuration and never invokes release cre
   const calls = [];
   const pullRequests = [{ number: 61 }];
   const manifest = {
-    separatePullRequests: true, repositoryConfig: { core: { draftPullRequest: true } },
+    separatePullRequests: true, plugins: [], repositoryConfig: { core: { draftPullRequest: true } },
     createPullRequests: async () => { calls.push('prs'); return pullRequests; },
     createReleases: async () => { throw new Error('release creation is prohibited'); },
   };

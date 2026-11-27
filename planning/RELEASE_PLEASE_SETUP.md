@@ -190,6 +190,25 @@ Changes to the release configuration itself need a separate read-only preview
 using the candidate configuration; a branch dispatch of this runner reads the
 configuration already committed on `main`.
 
+### Excluding housekeeping commits
+
+Use `chore:`, `ci:`, `docs:` or `test:` for new housekeeping commits, including
+the PR title when it supplies the merge message. Reserve breaking-change markers
+and `Release-As` for intentional releases.
+
+For a commit already on main, add its full SHA, the affected component names and
+a reason to `.github/release-please/excluded-commits.json`. A normal merge can
+produce two changelog entries. Include both SHAs if the proposal lists both.
+The runner applies these rules after locating each package's release tag and
+before calculating its next version and changelog. Scope mixed commits to the
+packages for which they are housekeeping. For example, changing a maintainer's
+publish command in AngularJS can also change the public publish-scripts CLI.
+
+A manual branch dispatch uses the exclusion list from the selected branch.
+Review its generated candidates before closing obsolete drafts. The generator
+only opens and updates candidates, so a draft can outlive the change that
+originally triggered it.
+
 ## How the shared lock is updated
 
 Each package's `extra-files` setting tells Release Please to update that package's

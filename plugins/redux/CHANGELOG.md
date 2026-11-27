@@ -39,6 +39,13 @@ Co-authored-by: Chris Thielen <christopherthielen@users.noreply.github.com>
 
 
 
+## [1.1.0](https://github.com/ui-router/ui-router/compare/redux@1.0.0...redux@1.1.0) (2026-11-27)
+
+
+### Features
+
+* **example:** modernize example app with React 18 and Vite ([9e9f5eb](https://github.com/ui-router/ui-router/commit/9e9f5ebcc2aba6a5360acda0c2783f0afb436334))
+
 ## 0.1.1 (2017-11-05)
 [Compare `@uirouter/redux` versions 0.1.0 and 0.1.1](https://github.com/ui-router/redux/compare/0.1.0...0.1.1)
 

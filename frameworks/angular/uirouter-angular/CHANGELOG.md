@@ -18,6 +18,14 @@
 
 * Support Angular v21 ([4c66883](https://github.com/ui-router/angular/commit/4c66883))
 
+## [22.0.1](https://github.com/ui-router/ui-router/compare/angular@22.0.0...angular@22.0.1) (2026-11-27)
+
+
+### Bug Fixes
+
+* replace legacy docs container with local TypeDoc ([158aa24](https://github.com/ui-router/ui-router/commit/158aa241912132d72525deebf07a8126a30355d6))
+* replace legacy docs container with local TypeDoc ([69b5554](https://github.com/ui-router/ui-router/commit/69b5554ac6522820c74119e01321bf8f8e968c9e))
+
 ## 17.0.1 (2025-12-31)
 [Compare `@uirouter/angular` versions 17.0.0 and 17.0.1](https://github.com/ui-router/angular/compare/17.0.0...17.0.1)
 

@@ -1,6 +1,6 @@
 {
   "core": "6.1.2",
-  "frameworks/angular/uirouter-angular": "22.0.0",
+  "frameworks/angular/uirouter-angular": "22.0.1",
   "frameworks/angular-hybrid/uirouter-angular-hybrid": "22.0.0",
   "frameworks/angularjs/uirouter-angularjs": "1.1.2",
   "frameworks/react/uirouter-react": "1.0.8",

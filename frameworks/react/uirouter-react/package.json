@@ -1,8 +1,13 @@
 {
   "name": "@uirouter/react",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "State based routing for React",
-  "files": ["lib", "lib-esm", "_bundles", "DOCS.md"],
+  "files": [
+    "lib",
+    "lib-esm",
+    "_bundles",
+    "DOCS.md"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "jsnext:main": "lib-esm/index.js",

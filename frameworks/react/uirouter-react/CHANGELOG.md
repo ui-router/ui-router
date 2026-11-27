@@ -24,6 +24,13 @@ Changelog for `@uirouter/core`:
 * **stateService:** make sure `$state.href` (and by extension `uiSref`) handle `inherit: false` ([#834](https://github.com/ui-router/core/issues/834)) ([12cd951](https://github.com/ui-router/core/commit/12cd951)), closes [/github.com/ui-router/core/pull/834#issuecomment-1379019917](https://github.com//github.com/ui-router/core/pull/834/issues/issuecomment-1379019917) [/github.com/ui-router/core/pull/834#issuecomment-1379195131](https://github.com//github.com/ui-router/core/pull/834/issues/issuecomment-1379195131)
 * **urlMatcher:** Fix potential ReDoS, thanks to www.HeroDevs.com ([0c00a12](https://github.com/ui-router/core/commit/0c00a12))
 
+## [1.0.9](https://github.com/ui-router/ui-router/compare/react@1.0.8...react@1.0.9) (2026-11-27)
+
+
+### Bug Fixes
+
+* allow compatible UI-Router dependency updates ([c4e6379](https://github.com/ui-router/ui-router/commit/c4e63799669e72efff23cbe26727afa2bda8cd5d))
+
 ## 1.0.7 (2021-07-27)
 [Compare `@uirouter/react` versions 1.0.6 and 1.0.7](https://github.com/ui-router/react/compare/1.0.6...1.0.7)
 

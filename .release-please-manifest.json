@@ -4,7 +4,7 @@
   "frameworks/angular-hybrid/uirouter-angular-hybrid": "22.0.0",
   "frameworks/angularjs/uirouter-angularjs": "1.1.2",
   "frameworks/react/uirouter-react": "1.0.8",
-  "frameworks/react-hybrid/uirouter-react-hybrid": "3.0.0",
+  "frameworks/react-hybrid/uirouter-react-hybrid": "3.0.1",
   "plugins/dsr": "1.2.0",
   "plugins/redux": "1.0.0",
   "plugins/rx": "1.0.0",

@@ -67,6 +67,13 @@ Changelog for `@uirouter/angularjs`:
 * update uirouter core ([#3859](https://github.com/angular-ui/ui-router/issues/3859)) ([275c595](https://github.com/angular-ui/ui-router/commit/275c595))
 * **package:** move [@uirouter](https://github.com/uirouter)/core to peerDeps as per other uirouter packages ([#3850](https://github.com/angular-ui/ui-router/issues/3850)) ([6dd057c](https://github.com/angular-ui/ui-router/commit/6dd057c))
 
+## [3.0.1](https://github.com/ui-router/ui-router/compare/react-hybrid@3.0.0...react-hybrid@3.0.1) (2026-11-27)
+
+
+### Bug Fixes
+
+* allow compatible UI-Router dependency updates ([c4e6379](https://github.com/ui-router/ui-router/commit/c4e63799669e72efff23cbe26727afa2bda8cd5d))
+
 ## 1.0.5 (2022-02-28)
 [Compare `@uirouter/react-hybrid` versions 1.0.4 and 1.0.5](https://github.com/ui-router/react-hybrid/compare/1.0.4...1.0.5)
 

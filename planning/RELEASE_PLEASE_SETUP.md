@@ -38,7 +38,7 @@ not change external settings.
 
 ## Review the first proposals
 
-The manifest starts at the twelve versions already published on npm. Each version
+The initial manifest started at the twelve versions already published on npm. Each version
 has a matching namespaced tag. Release Please uses those tags as its release
 boundaries, with no shared `last-release-sha` or `bootstrap-sha` override.
 `commit-search-depth` is 5,000 because the oldest baseline tags are about 4,000
@@ -196,13 +196,16 @@ Use `chore:`, `ci:`, `docs:` or `test:` for new housekeeping commits, including
 the PR title when it supplies the merge message. Reserve breaking-change markers
 and `Release-As` for intentional releases.
 
-For a commit already on main, add its full SHA, the affected component names and
-a reason to `.github/release-please/excluded-commits.json`. A normal merge can
+For a commit already on main, add its full SHA and a reason to
+`.github/release-please/excluded-commits.json`. A normal merge can
 produce two changelog entries. Include both SHAs if the proposal lists both.
 The runner applies these rules after locating each package's release tag and
-before calculating its next version and changelog. Scope mixed commits to the
-packages for which they are housekeeping. For example, changing a maintainer's
-publish command in AngularJS can also change the public publish-scripts CLI.
+before calculating its next version and changelog. Each exclusion applies across
+all packages. Keep a commit eligible if any library needs to release its change.
+
+Release Please manages the eleven router packages. The release configuration
+and version manifest omit `tools/publish-scripts` so changes there can be used
+inside the monorepo without opening releases for `@uirouter/publish-scripts`.
 
 A manual branch dispatch uses the exclusion list from the selected branch.
 Review its generated candidates before closing obsolete drafts. The generator

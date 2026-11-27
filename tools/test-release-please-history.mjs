@@ -57,12 +57,10 @@ test('history policy runs against the pinned Release Please library', () => {
   assert.equal(VERSION, '17.3.0');
 });
 
-test('housekeeping exclusions use full commit IDs and configured components', () => {
-  const components = new Set(Object.values(config.packages).map(pkg => pkg.component));
-  for (const rule of exclusions) {
-    assert.ok(rule.reason.trim() && rule.commits.length && rule.components.length);
-    for (const sha of rule.commits) assert.match(sha, /^[a-f0-9]{40}$/);
-    for (const component of rule.components) assert.ok(components.has(component), component);
+test('housekeeping exclusions use full commit IDs with a review reason', () => {
+  for (const [sha, reason] of Object.entries(exclusions)) {
+    assert.match(sha, /^[a-f0-9]{40}$/);
+    assert.ok(reason.trim());
   }
 });
 
@@ -79,18 +77,12 @@ test('excluded changes cannot trigger a bump or enter the notes of a genuine rel
   assert.doesNotMatch(candidate.body.toString(), /docs migration/);
 });
 
-test('a shared publishing change still counts for the published CLI', async () => {
+test('new publish-scripts features cannot trigger proposals', async () => {
   const candidates = await proposals([
-    commit('3d1174c3614494cc53553322eb40cdb7f09b8244', 'feat: preview local releases', [
-      'frameworks/angularjs/uirouter-angularjs/package.json', 'tools/publish-scripts/release.js',
-    ]),
+    commit('new-cli-feature', 'feat: add local release tooling', ['tools/publish-scripts/release.js']),
     commit('baseline', 'chore: previous release'),
   ]);
-  assert.equal(candidates.length, 1);
-  const [candidate] = candidates;
-  assert.equal(candidate.path, 'tools/publish-scripts');
-  assert.equal(candidate.version.toString(), '1.1.0');
-  assert.match(candidate.body.toString(), /preview local releases/);
+  assert.deepEqual(candidates, []);
 });
 
 test('empty imported commits cannot bump versions or leak into another package changelog', async () => {

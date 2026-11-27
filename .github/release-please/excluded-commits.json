@@ -1,37 +1,18 @@
-[
-  {
-    "reason": "TypeDoc migration, including the merge of #34",
-    "commits": ["69b5554ac6522820c74119e01321bf8f8e968c9e", "158aa241912132d72525deebf07a8126a30355d6"],
-    "components": ["core", "angular", "angularjs", "react"]
-  },
-  {
-    "reason": "AngularJS lint setup, including the merge of #33",
-    "commits": ["33af0cf2d7eacde2812ddf578d397aba346bde0a", "1f3e402b07a6ba2597257799cd8fcf5096d59098"],
-    "components": ["angularjs"]
-  },
-  {
-    "reason": "Maintainer release commands and npm publishing scripts",
-    "commits": ["3d1174c3614494cc53553322eb40cdb7f09b8244", "464622c3b5aee3b76b5c36b63fadd7f5a9a01e5d", "82f7d556f03b43a77816e9f65f283f4c1f48ad19"],
-    "components": ["angularjs"]
-  },
-  {
-    "reason": "Retirement of the Bower publishing workflow and updates to example documentation",
-    "commits": ["bc604be5bb7b8e30f08f67fa4b1970a4787a349b"],
-    "components": ["angularjs", "dsr", "sticky-states"]
-  },
-  {
-    "reason": "GitHub Actions triggers for dependency maintenance",
-    "commits": ["8416891af1e101552adff08984d3082ed10cfce2", "c5b4732975c029e366874a5f3f86058c2646a9b5"],
-    "components": ["dsr", "sticky-states"]
-  },
-  {
-    "reason": "Redux example app and its local start command",
-    "commits": ["9e9f5ebcc2aba6a5360acda0c2783f0afb436334"],
-    "components": ["redux"]
-  },
-  {
-    "reason": "React 16 retirement already shipped in react-hybrid@3.0.0 (see #49)",
-    "commits": ["9b7403b1c8d9346c03ede5ab83247215a182adec"],
-    "components": ["react-hybrid"]
-  }
-]
+{
+  "69b5554ac6522820c74119e01321bf8f8e968c9e": "TypeDoc migration, including the merge of #34",
+  "158aa241912132d72525deebf07a8126a30355d6": "TypeDoc migration, including the merge of #34",
+  "33af0cf2d7eacde2812ddf578d397aba346bde0a": "AngularJS lint setup, including the merge of #33",
+  "1f3e402b07a6ba2597257799cd8fcf5096d59098": "AngularJS lint setup, including the merge of #33",
+  "3d1174c3614494cc53553322eb40cdb7f09b8244": "Maintainer release commands and npm publishing scripts",
+  "464622c3b5aee3b76b5c36b63fadd7f5a9a01e5d": "Maintainer release commands and npm publishing scripts",
+  "82f7d556f03b43a77816e9f65f283f4c1f48ad19": "Maintainer release commands and npm publishing scripts",
+  "bc604be5bb7b8e30f08f67fa4b1970a4787a349b": "Retirement of the Bower publishing workflow and updates to example documentation",
+  "8416891af1e101552adff08984d3082ed10cfce2": "GitHub Actions triggers for dependency maintenance",
+  "c5b4732975c029e366874a5f3f86058c2646a9b5": "GitHub Actions triggers for dependency maintenance",
+  "9e9f5ebcc2aba6a5360acda0c2783f0afb436334": "Redux example app and its local start command",
+  "9b7403b1c8d9346c03ede5ab83247215a182adec": "React 16 retirement already shipped in react-hybrid@3.0.0 (see #49)",
+  "145c172de0ff33b60730c04651a5ed6c9a292e13": "Local release candidate preparation and validation",
+  "addfd53ea4e5bd9b66db67f35eb66a7a4b37487d": "Local version and changelog preparation",
+  "5da96393e601ba7948d04d4e0cb8868a22c7f83c": "Local release rehearsal",
+  "b6f687ef9fa14a93474c73b3c07e02a7ccce2273": "Validation of local release candidates"
+}

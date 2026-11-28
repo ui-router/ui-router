@@ -38,7 +38,7 @@ not change external settings.
 
 ## Review the first proposals
 
-The manifest starts at the twelve versions already published on npm. Each version
+The initial manifest started at the twelve versions already published on npm. Each version
 has a matching namespaced tag. Release Please uses those tags as its release
 boundaries, with no shared `last-release-sha` or `bootstrap-sha` override.
 `commit-search-depth` is 5,000 because the oldest baseline tags are about 4,000
@@ -105,7 +105,7 @@ This is version-specific behavior of the pinned library, rather than a dedicated
 `include-empty` configuration option. CI exercises the actual 17.3.0 manifest
 implementation with empty imported commits, empty `Release-As` commits, genuine
 breaking changes, multi-package changes and distinct empty tag boundaries. Keep
-those tests passing when changing the action/library version. An intentional
+those tests passing when changing the runner/library version. An intentional
 release instruction must change a file in its package; empty commits no longer
 request releases for every package.
 
@@ -124,12 +124,98 @@ does not automatically close old proposals that no longer have a candidate, so
 the Angular Hybrid, Rx and Visualizer drafts require separate cleanup.
 
 To run the library regression checks locally without changing workspace
-dependencies:
+dependencies (use the repository's pinned Node/npm versions):
 
 ```sh
-npm install --prefix /tmp/ui-router-release-please-tests --no-save --package-lock=false --ignore-scripts --no-audit --no-fund release-please@17.3.0
-NODE_PATH=/tmp/ui-router-release-please-tests/node_modules node --test tools/test-release-please.mjs tools/test-release-please-history.mjs
+npm ci --prefix .github/release-please --ignore-scripts --no-audit --no-fund
+NODE_PATH="$PWD/.github/release-please/node_modules" node --test tools/test-release-please.mjs tools/test-release-please-history.mjs tools/test-release-please-http.mjs
 ```
+
+### GitHub API failures during the initial history scan
+
+After #62 merged, the first scan failed on a GitHub REST commit request after
+about three minutes. That same request succeeded when checked directly. One job
+retry passed that commit and failed on another commit read after seven minutes,
+with an empty error message. Thousands of file-list requests make a full job
+restart an unreliable recovery strategy; the 55-minute job limit was not the
+failure in either attempt.
+
+The workflow now runs the same Release Please 17.3.0 library through
+`.github/release-please/run.mjs`, using its supported custom-fetch hook. The
+isolated package and lockfile pin the runtime dependencies without adding them
+to the public workspaces. Installation finishes before minting the App token.
+
+The fetch wrapper retries transient GitHub GET and GraphQL query failures at the
+failed request, with at most three retries and exponential backoff. HTTP 408,
+500, 502, 503 and 504 and recognized connection errors are retryable. GitHub also
+returns HTTP 422 for a commit-generation timeout: only a GET commit response with
+the exact `The request is taking too long to generate.` message gets that
+exception; ordinary 422 validation errors are not retried. Rate-limit
+responses respect `Retry-After` and primary quota reset headers; waits beyond one
+minute fail visibly so a long pause does not consume the App token's lifetime.
+Authentication/validation failures, mutations and other write requests are not
+retried. Logs include the HTTP status and endpoint path without request headers,
+query strings or response bodies, including when GitHub returns an empty error.
+
+A successful commit read must contain a complete JSON file list. A disconnect
+after the response headers, truncated JSON or an invalid list retries that page.
+After four failed attempts the scan stops. A valid empty list still represents
+a fileless commit.
+
+The runner validates separate draft proposals for every package and calls only
+`createPullRequests()`. It has no release-creation call. The enable switch,
+App permissions, full 5,000-commit search, attribution filter, 55-minute
+limit and disabled publication policy remain in place. Tests exercise actual
+library pagination through a failed commit page, retry exhaustion, rate limits,
+connection resets, GraphQL queries versus mutations, and draft-only execution.
+
+### Test workflow changes before merging
+
+The existing workflow can be manually dispatched from a maintainer's branch:
+
+```sh
+gh workflow run release-please.yml --repo ui-router/ui-router --ref codex/release-api-retries
+```
+
+This executes the workflow, locked runtime and runner from that branch, using the
+real App installation. It opens or refreshes real draft release PRs targeting
+`main`; the release configuration, manifest, package files and history are read
+from `main`. It is an integration test with draft PR writes, not a read-only
+preview. All runs require `RELEASE_PLEASE_ENABLED=true` and serialize with normal
+main runs, so two generators cannot update the proposal branches concurrently.
+
+Automatic runs still trigger only on pushes to `main`. Branch execution requires
+an explicit `workflow_dispatch` by a user with repository write access; pull
+request events, tag dispatches and other repositories are rejected. Tags,
+GitHub releases and npm publication remain disabled.
+
+Iterate on the same PR branch and dispatch again after pushing each correction.
+Record the successful run's exact head SHA before merging that tested code.
+Changes to the release configuration itself need a separate read-only preview
+using the candidate configuration; a branch dispatch of this runner reads the
+configuration already committed on `main`.
+
+### Excluding housekeeping commits
+
+Use `chore:`, `ci:`, `docs:` or `test:` for new housekeeping commits, including
+the PR title when it supplies the merge message. Reserve breaking-change markers
+and `Release-As` for intentional releases.
+
+For a commit already on main, add its full SHA and a reason to
+`.github/release-please/excluded-commits.json`. A normal merge can
+produce two changelog entries. Include both SHAs if the proposal lists both.
+The runner applies these rules after locating each package's release tag and
+before calculating its next version and changelog. Each exclusion applies across
+all packages. Keep a commit eligible if any library needs to release its change.
+
+Release Please manages the eleven router packages. The release configuration
+and version manifest omit `tools/publish-scripts` so changes there can be used
+inside the monorepo without opening releases for `@uirouter/publish-scripts`.
+
+A manual branch dispatch uses the exclusion list from the selected branch.
+Review its generated candidates before closing obsolete drafts. The generator
+only opens and updates candidates, so a draft can outlive the change that
+originally triggered it.
 
 ## How the shared lock is updated
 

@@ -1,0 +1,7 @@
+{
+  "name": "ui-router-release-proposals",
+  "private": true,
+  "dependencies": {
+    "release-please": "17.3.0"
+  }
+}

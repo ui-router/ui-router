@@ -5,10 +5,10 @@ import { readFileSync } from 'node:fs';
 const root = new URL('../', import.meta.url);
 const read = file => JSON.parse(readFileSync(new URL(file, root), 'utf8'));
 
-test('release configuration covers only the public package inventory', () => {
+test('release configuration covers all public packages except publish-scripts', () => {
   const config = read('release-please-config.json');
   const manifest = read('.release-please-manifest.json');
-  const inventory = read('tools/packages.json').packages;
+  const inventory = read('tools/packages.json').packages.filter(pkg => pkg.manifest !== 'tools/publish-scripts/package.json');
   const paths = inventory.map(pkg => pkg.manifest.replace(/\/package.json$/, '')).sort();
   assert.deepEqual(Object.keys(config.packages).sort(), paths);
   assert.deepEqual(Object.keys(manifest).sort(), paths);

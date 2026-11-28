@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { ExcludeHousekeeping } from '../.github/release-please/excluded-commits.mjs';
+import exclusions from '../.github/release-please/excluded-commits.json' with { type: 'json' };
 
 const require = createRequire(import.meta.url);
 const { Manifest, VERSION, setLogger } = require('release-please');
@@ -9,9 +11,13 @@ const { FileNotFoundError } = require('release-please/build/src/errors/index.js'
 const root = new URL('../', import.meta.url);
 const read = file => readFileSync(new URL(file, root), 'utf8');
 const config = JSON.parse(read('release-please-config.json'));
-const versions = JSON.parse(read('.release-please-manifest.json'));
 const react = 'frameworks/react/uirouter-react';
 const angular = 'frameworks/angular/uirouter-angular';
+// Synthetic release history needs fixed baselines even when a real release PR
+// changes the repository's package and manifest versions.
+const versions = Object.fromEntries(Object.keys(config.packages).map(path => [path, '1.0.0']));
+versions[react] = '1.0.8';
+versions[angular] = '22.0.0';
 const logger = Object.fromEntries(['error', 'warn', 'info', 'debug', 'trace'].map(level => [level, () => {}]));
 setLogger(logger);
 const commit = (sha, message, files = []) => ({ sha, message, files });
@@ -19,7 +25,11 @@ const commit = (sha, message, files = []) => ({ sha, message, files });
 async function proposals(commits, releaseConfig = config, tags) {
   const github = {
     repository: { owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main' },
-    getFileJson: async file => file === 'release-please-config.json' ? releaseConfig : JSON.parse(read(file)),
+    getFileJson: async file => {
+      if (file === 'release-please-config.json') return releaseConfig;
+      if (file === '.release-please-manifest.json') return versions;
+      return JSON.parse(read(file));
+    },
     getFileContentsOnBranch: async file => {
       let text;
       try { text = read(file); } catch { throw new FileNotFoundError(file); }
@@ -34,6 +44,7 @@ async function proposals(commits, releaseConfig = config, tags) {
     async *mergeCommitIterator() { yield* commits; },
   };
   const manifest = await Manifest.fromManifest(github, 'main', undefined, undefined, { logger });
+  manifest.plugins.unshift(new ExcludeHousekeeping(github, 'main', manifest.repositoryConfig));
   assert.equal(manifest.lastReleaseSha, undefined);
   assert.equal(manifest.bootstrapSha, undefined);
   return (await manifest.buildPullRequests()).map(candidate => ({
@@ -42,8 +53,36 @@ async function proposals(commits, releaseConfig = config, tags) {
   }));
 }
 
-test('history policy runs against the Release Please version bundled in the pinned action', () => {
+test('history policy runs against the pinned Release Please library', () => {
   assert.equal(VERSION, '17.3.0');
+});
+
+test('housekeeping exclusions use full commit IDs with a review reason', () => {
+  for (const [sha, reason] of Object.entries(exclusions)) {
+    assert.match(sha, /^[a-f0-9]{40}$/);
+    assert.ok(reason.trim());
+  }
+});
+
+test('excluded changes cannot trigger a bump or enter the notes of a genuine release', async () => {
+  const docs = commit('69b5554ac6522820c74119e01321bf8f8e968c9e', 'feat!: docs migration', [react + '/package.json', angular + '/package.json']);
+  const baseline = commit('baseline', 'chore: previous release');
+  assert.deepEqual(await proposals([docs, baseline]), []);
+  const candidates = await proposals([commit('new-fix', 'fix: router update', [react + '/src/router.ts']), docs, baseline]);
+  assert.equal(candidates.length, 1);
+  const [candidate] = candidates;
+  assert.equal(candidate.path, react);
+  assert.equal(candidate.version.toString(), '1.0.9');
+  assert.match(candidate.body.toString(), /router update/);
+  assert.doesNotMatch(candidate.body.toString(), /docs migration/);
+});
+
+test('new publish-scripts features cannot trigger proposals', async () => {
+  const candidates = await proposals([
+    commit('new-cli-feature', 'feat: add local release tooling', ['tools/publish-scripts/release.js']),
+    commit('baseline', 'chore: previous release'),
+  ]);
+  assert.deepEqual(candidates, []);
 });
 
 test('empty imported commits cannot bump versions or leak into another package changelog', async () => {

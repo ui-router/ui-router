@@ -120,16 +120,6 @@
           "jsonpath": "$.packages['plugins/visualizer'].version"
         }
       ]
-    },
-    "tools/publish-scripts": {
-      "component": "publish-scripts",
-      "extra-files": [
-        {
-          "type": "json",
-          "path": "/package-lock.json",
-          "jsonpath": "$.packages['tools/publish-scripts'].version"
-        }
-      ]
     }
   }
 }

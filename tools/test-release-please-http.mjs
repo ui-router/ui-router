@@ -54,6 +54,38 @@ test('ordinary HTTP 422 errors preserve their bodies and the timeout exception i
   }
 });
 
+function interruptedCommitPage() {
+  const body = new ReadableStream({
+    start(controller) { controller.enqueue(new TextEncoder().encode('{"files":[')); },
+    pull(controller) { controller.error(new TypeError('terminated', { cause: { code: 'UND_ERR_SOCKET' } })); },
+  });
+  return new Response(body, { headers: { 'content-type': 'application/json' } });
+}
+
+test('a disconnect after HTTP 200 retries only the interrupted commit page', async () => {
+  const next = `${url}?page=2`;
+  const h = harness([
+    json({ files: [{ filename: 'core/a.ts' }] }, 200, { link: `<${next}>; rel="next"` }),
+    interruptedCommitPage(), json({ files: [{ filename: 'core/src/router.ts' }] }),
+  ]);
+  const github = await GitHub.create({ owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main', token: 'fixture-token', fetch: h.fetch });
+  assert.deepEqual(await github.getCommitFiles('example'), ['core/a.ts', 'core/src/router.ts']);
+  assert.deepEqual(h.calls.map(([input]) => input), [url, next, next]);
+});
+
+test('unreadable or invalid commit pages fail the scan after retries', async () => {
+  for (const makePage of [interruptedCommitPage, () => new Response('{"files":'), () => json({}), () => json({ files: [{}] })]) {
+    const h = harness(Array.from({ length: 4 }, makePage));
+    const github = await GitHub.create({ owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main', token: 'fixture-token', fetch: h.fetch });
+    await assert.rejects(github.getCommitFiles('example'));
+    assert.deepEqual(h.delays, [1000, 2000, 4000]);
+  }
+  const empty = harness([json({ files: [] })]);
+  const github = await GitHub.create({ owner: 'ui-router', repo: 'ui-router', defaultBranch: 'main', token: 'fixture-token', fetch: empty.fetch });
+  assert.deepEqual(await github.getCommitFiles('example'), []);
+  assert.deepEqual(empty.delays, []);
+});
+
 test('transient GET failures have bounded exponential retries and preserve the last error response', async () => {
   const h = harness([json({}, 502), json({}, 503), json({}, 504), json({}, 500)]);
   assert.equal((await h.fetch(url)).status, 500);
@@ -82,10 +114,10 @@ test('connection resets on reads recover, while permanent failures and writes do
 });
 
 test('rate limits wait until allowed, and excessive reset delays fail without retrying early', async () => {
-  const h = harness([json({}, 429, { 'retry-after': '60' }), json({})]);
+  const h = harness([json({}, 429, { 'retry-after': '60' }), json({ files: [] })]);
   assert.equal((await h.fetch(url)).status, 200);
   assert.deepEqual(h.delays, [60_000]);
-  const primary = harness([json({}, 403, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '1060' }), json({})]);
+  const primary = harness([json({}, 403, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '1060' }), json({ files: [] })]);
   assert.equal((await primary.fetch(url)).status, 200);
   assert.deepEqual(primary.delays, [60_000]);
   for (const headers of [{ 'retry-after': '120' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '2000' }]) {
@@ -118,7 +150,7 @@ test('aborted reads and non-GitHub requests do not retry, and diagnostics omit c
   const external = harness([json({}, 503)]);
   await external.fetch('https://example.com/resource');
   assert.deepEqual(external.delays, []);
-  const diagnostics = harness([json({}, 503), json({})]);
+  const diagnostics = harness([json({}, 503), json({ files: [] })]);
   await diagnostics.fetch(`${url}?secret=fixture-query`, { headers: { authorization: 'fixture-header' } });
   assert.ok(diagnostics.warnings.every(text => !/fixture-query|fixture-header/.test(text)));
 });

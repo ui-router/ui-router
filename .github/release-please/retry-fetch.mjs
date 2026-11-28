@@ -13,8 +13,25 @@ function isRead(url, method, body) {
   } catch { return false; }
 }
 
-async function isCommitGenerationTimeout(response, url, method) {
-  if (method !== 'GET' || response.status !== 422 || !/^\/repos\/[^/]+\/[^/]+\/commits\/[^/]+\/?$/.test(url.pathname)) return false;
+class InvalidCommitPage extends Error {}
+
+async function validateCommitPage(response) {
+  // Octokit consumes the original stream later and can turn a failed JSON read
+  // into an empty string. Finish reading a copy while this page can still retry.
+  const text = await response.clone().text();
+  let page;
+  try {
+    page = JSON.parse(text);
+  } catch {
+    throw new InvalidCommitPage('Invalid JSON in commit file list');
+  }
+  if (response.status !== 200 || !response.headers.get('content-type')?.includes('application/json') ||
+      !Array.isArray(page?.files) || !page.files.every(file => typeof file?.filename === 'string' && file.filename.length > 0)) {
+    throw new InvalidCommitPage('Invalid GitHub commit file list');
+  }
+}
+
+async function isCommitGenerationTimeout(response) {
   try {
     const { message } = await response.clone().json();
     return typeof message === 'string' && /^The request is taking too long to generate\.?$/i.test(message.trim());
@@ -48,21 +65,25 @@ export function createRetryFetch({ fetch = globalThis.fetch, sleep = setTimeout,
     const url = new URL(typeof input === 'string' || input instanceof URL ? input : input.url);
     const method = (options.method ?? input.method ?? 'GET').toUpperCase();
     const retryable = isRead(url, method, options.body);
+    const commitRead = retryable && method === 'GET' && /^\/repos\/[^/]+\/[^/]+\/commits\/[^/]+\/?$/.test(url.pathname);
     const label = `${method} ${url.pathname}`;
     for (let attempt = 0; ; attempt++) {
       let response;
       try {
         response = await fetch(input, options);
+        if (commitRead && response.ok) await validateCommitPage(response);
       } catch (error) {
+        await response?.body?.cancel().catch(() => {});
         const code = error.cause?.code ?? error.code;
-        if (!retryable || attempt === 3 || options.signal?.aborted || !transientCodes.has(code)) throw error;
+        const recoverable = error instanceof InvalidCommitPage || transientCodes.has(code);
+        if (!retryable || attempt === 3 || options.signal?.aborted || !recoverable) throw error;
         const delay = 1000 * 2 ** attempt;
-        warn(`${label}: ${code}; retry ${attempt + 1}/3 in ${delay}ms`);
+        warn(`${label}: ${code ?? error.message}; retry ${attempt + 1}/3 in ${delay}ms`);
         await sleep(delay, undefined, { signal: options.signal });
         continue;
       }
       if (!response.ok) warn(`${label}: HTTP ${response.status} (attempt ${attempt + 1})`);
-      const generationTimeout = retryable && attempt < 3 && await isCommitGenerationTimeout(response, url, method);
+      const generationTimeout = commitRead && response.status === 422 && attempt < 3 && await isCommitGenerationTimeout(response);
       const delay = retryable && attempt < 3 ? retryDelay(response, attempt, now, generationTimeout) : undefined;
       if (delay === undefined) return response;
       await response.body?.cancel();

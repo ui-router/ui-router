@@ -157,6 +157,11 @@ Authentication/validation failures, mutations and other write requests are not
 retried. Logs include the HTTP status and endpoint path without request headers,
 query strings or response bodies, including when GitHub returns an empty error.
 
+A successful commit read must contain a complete JSON file list. A disconnect
+after the response headers, truncated JSON or an invalid list retries that page.
+After four failed attempts the scan stops. A valid empty list still represents
+a fileless commit.
+
 The runner validates separate draft proposals for every package and calls only
 `createPullRequests()`. It has no release-creation call. The enable switch,
 App permissions, full 5,000-commit search, attribution filter, 55-minute
